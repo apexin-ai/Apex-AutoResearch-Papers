@@ -1,0 +1,6646 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-10 (UTC).** Your job: indep
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 106
+- **Recorded user turns:** 1
+- **Tool calls:** 24
+- **Original source:** `logs/chats/exported-trajectories/account-3/e48a7609-5e29-4d47-9bd4-04d751de1c24.jsonl`
+- **Structured JSON:** [`f52e73b1bfe676665cc3.json`](../../sessions/f5/f52e73b1bfe676665cc3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T18:43:06.224Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T18:43:06.224Z",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-10 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: NLP and Code Models.\n\nDirection: Code understanding and generation — repo-level comprehension, program repair, code reasoning, debugging, test generation, code-to-documentation, cross-language code transfer. NOT just code completion — focus on higher-level code reasoning tasks.\n\nContribution type: METHOD ONLY. Propose new training methods, retrieval-augmented code repair, or inference algorithms for code tasks. Not a new benchmark or leaderboard entry.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Code models are often evaluated zero-shot or few-shot — budget goes to SFT/LoRA if fine-tuning.\n2. Time: ≤16 days. Build on existing code models (DeepSeek-Coder-V2, StarCoder2, CodeLlama, Qwen2.5-Coder) and frameworks (aider, SWE-agent, Moatless).\n3. Eval: SWE-bench Verified, HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, CodeContests.\n\nLook for: repo-level context compression for code understanding, retrieval-augmented repair with semantic code search, code reasoning via execution feedback, cross-repo transfer learning. Avoid: simple prompt templates for code completion.\n\nTag: direction=code_models, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 4/10)\n{\n  \"title\": \"DiagPRM: Stage-Level Diagnostic Reasoning Rewards for Code Repair Search\",\n  \"core_problem\": \"Reward models for code repair agents operate at two granularities that each miss critical information. Trajectory-level scorers (SWE-RM achieves 62–74.6% on SWE-bench Verified via best-of-N) provide a single holistic score for the entire multi-turn interaction but cannot localize which reasoning stage—localization, diagnosis, or patch design—caused failure, limiting their value for credit assignment and trajectory steering. Patch-level verifiers (R4P achieves 72.2% verification accuracy via reasoning about final patches) skip the diagnostic process entirely. Step-level action-utility PRMs (SWE-Shepherd) attempt localized scoring but suffer fundamental credit assignment noise—actions that look locally useful may lead to dead ends, yielding 51% vs. 57% for greedy baselines. Prompt-based behavioral PRMs (SWE-PRM achieves 40→50.6% via course-correction) detect process inefficiencies like looping and drift but do not evaluate the logical soundness of diagnostic reasoning. Can we build a step-level PRM that scores a more stable signal—the logical soundness of diagnostic reasoning at each repair stage—and use stage-level credit assignment to guide repair search?\",\n  \"opportunity\": \"Code repair follows a diagnostic reasoning structure (localize → diagnose → patch) where intermediate diagnostic claims make verifiable predictions checkable against test execution outcomes—a domain-specific advantage absent from code generation or general agent tasks. This creates three opportunities no existing system exploits simultaneously: (1) Stage-level decomposition enables localized credit assignment that trajectory-level scorers (SWE-RM) cannot provide—even when a trajectory fails, we can identify that localization reasoning was sound but diagnosis was flawed; (2) Reasoning quality is a property of the reasoning chain itself, not of future actions, making it a lower-variance scoring target than action utility (SWE-Shepherd), with a formal argument: Var(Q_reasoning|prefix) = 0 as Q depends only on observables, while Var(U_action|prefix) > 0 as U depends on stochastic future decisions; (3) Test execution outcomes serve as automatic validators for reasoning quality annotations during training—not as runtime input (addressing Haque et al.'s finding)—enabling training label quality verification that general-purpose reasoning evaluators (Agent-RRM) lack because they have no domain-specific ground truth. While SWE-PRM pioneered PRMs for SWE agents, it uses prompt-based behavioral pattern detection (looping, drift, redundancy) without training—complementary to but distinct from trained reasoning quality evaluation. RGFL generates structured reasoning explanations for fault localization (85% Hit@1) and R4P reasons about patches, but neither trains a reward model for search guidance across the full diagnostic process. CodeTracer performs post-hoc stage-level failure onset localization for debugging, but produces diagnostic labels for human consumption rather than reward scores for search guidance. ORPS demonstrates execution-grounded process rewards without a trained PRM, but requires execution at every search tree node and targets generation, not repair. The gap—a trained step-level PRM that evaluates diagnostic reasoning quality across all repair stages, using test execution only for training label validation, execution-free at inference—remains open.\",\n  \"landscape\": \"SWE-PRM / When Agents Go Astray (arXiv:2509.02360, Sept 2025, IBM Research) is the first PRM applied to SWE agents: a prompt-based system using a taxonomy of behavioral inefficiencies (looping, drift, redundancy, specification violations) to course-correct agents at runtime, achieving 40.0→50.6% on SWE-bench Verified with closed-source PRMs. It evaluates behavioral process patterns—not diagnostic reasoning quality—and is not a trained model, instead invoking an off-the-shelf LLM with a sliding window of k=8 recent steps every 5 steps. SWE-RM (arXiv:2512.21919, Dec 2025, Qwen team) is the current strongest trained reward model for SWE agents: a 30B MoE model (3B active) trained on ~100K trajectories with binary whole-trajectory scoring, achieving 51.6→62.0% (Flash) and 67.0→74.6% (Max) on SWE-bench Verified via best-of-N, plus RL gains. It scores complete trajectories holistically but provides no step-level diagnostic feedback. R4P/Patch Reasoner (arXiv:2510.22775, Oct 2025) frames patch verification as reasoning via group-wise RL, achieving 72.2% accuracy surpassing o3 and 50× faster than testing, but evaluates final patches, not the diagnostic process leading to them. RGFL (arXiv:2601.18044, Jan 2026) generates structured per-candidate reasoning explanations for fault localization achieving 85% Hit@1 on SWE-bench Verified, but is a one-shot ranker—not a reward model—and covers only the localization stage, not diagnosis or patch design. Agent-RRM (arXiv:2601.22154, Jan 2026) produces decomposed trajectory judgments (reasoning trace + critique + holistic score) for general agent tasks (GAIA, WebWalkerQA) but is not specialized for code repair and lacks domain-specific ground truth for training label validation. ORPS (ICML 2025, arXiv:2412.15118) demonstrates that execution-grounded self-critique generates high-quality process rewards without trained PRMs (26.9% correctness gain), but requires execution at every search tree node—expensive and infeasible for large-repository repair—and targets code generation, not repair. SWE-Shepherd (arXiv:2604.10493, April 2026) introduces step-level action-utility PRMs for SWE agents but achieves only 51% vs. 57% greedy baseline on 100 SWE-bench Verified tasks, confirming that action utility suffers credit assignment noise. SWE-TRACE (arXiv:2604.14820, April 2026) uses rubric-based PRMs with heuristic test-time scaling, achieving competitive results but relying on hand-designed rubric criteria rather than learned reasoning quality. CodeTracer (arXiv:2604.11641, April 2026) constructs hierarchical trace trees of agent execution and performs failure onset localization across five mechanical workflow stages (environment verification, dependency installation, inspection/debugging, patching, verification), achieving 46–48% F1 on CodeTraceBench (4,316 trajectories). It is a post-hoc diagnostic analysis tool producing failure labels for human debugging, not a reward model for search guidance; its five stages describe mechanical workflow phases, not cognitive diagnostic reasoning stages. TRAJEVAL (arXiv:2603.24631, March 2026) decomposes trajectories into mechanical search/read/edit stages for diagnostic evaluation (Pass@1 MAE 0.87–2.1%) but evaluates file/function retrieval precision, not cognitive reasoning quality. ExecVerify (arXiv:2603.11226, March 2026) trains execution-understanding rewards (next-statement/variable prediction) but targets execution trace comprehension, not diagnostic reasoning evaluation. ThinkPRM (arXiv:2504.16828, April 2025) demonstrates data-efficient generative PRMs outperforming discriminative PRMs with 1% of process labels. AgentPRM (arXiv:2511.08325, ACM Web 2026) achieves 8× compute efficiency using TD-based estimation for agent PRMs. FunPRM (arXiv:2601.22249, Jan 2026) treats functions as PRM steps for code generation, achieving SOTA on LiveCodeBench. Agent-RLVR (arXiv:2506.11425, June 2025) trains SWE agents via guidance and environment rewards with patch-level reward model scoring.\",\n  \"approach\": \"We define a 3-stage diagnostic reasoning taxonomy for code repair—localize (connect symptoms to fault location), diagnose (identify root cause), patch (design fix from diagnosis)—and extract stage boundaries from natural language repair trajectories using an LLM parser. These cognitive reasoning stages differ from CodeTracer's five mechanical workflow stages (env verification, dependency, inspection, patching, verification): our stages decompose the agent's reasoning process, not its tool-use workflow, enabling evaluation of logical soundness rather than execution correctness. Using the publicly available SWE-smith 66K trajectory corpus (Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k), we annotate diagnostic reasoning quality at each stage via an LLM-judge (Claude/GPT-4o) that evaluates: (1) whether localization reasoning correctly connects error evidence to candidate locations, (2) whether the root cause hypothesis logically explains the observed failure, (3) whether the fix rationale follows from the diagnosis. We address the LLM-judge circularity concern through two mechanisms. First, we explicitly mine disagreement cases between reasoning quality and test outcomes as the most distinctive training signal: trajectories with sound reasoning but failed patches (correct diagnosis, implementation error) teach the PRM that the reasoning was good despite bad outcome, while trajectories with poor reasoning but passing patches (lucky guess, partial fix) teach it to penalize unsound reasoning despite success. These disagreement cases are exactly where DiagPRM provides information that outcome reward cannot. Second, the stage-level decomposition provides strictly more information than binary outcome: even when a trajectory fails, DiagPRM distinguishes 'good localization + bad diagnosis + bad patch' from 'bad localization + everything downstream wrong,' enabling localized credit assignment impossible with trajectory-level scoring. We validate LLM-judge annotation quality through a pilot study on 100 trajectories (300 reasoning steps): three LLM judges (Claude, GPT-4o, Gemini) independently annotate reasoning quality, and we measure inter-model Cohen's kappa, correlation with test outcomes (expecting moderate ~0.4-0.6, not perfect, correlation—high correlation would indicate the PRM is a mere outcome proxy, while moderate correlation confirms it captures distinct information), and compare inter-annotator agreement for reasoning quality labels vs. action utility labels on the same trajectories. The 100-trajectory pilot provides sufficient statistical power to estimate kappa with a 95% confidence interval width of ±0.08–0.10 (per Sim & Wright 2005), adequate for distinguishing moderate from substantial agreement. We train DiagPRM as a lightweight LoRA-tuned classifier on Qwen3-8B (~15K annotated step-outcome pairs), following ThinkPRM's insight that small amounts of high-quality process labels suffice. We include a formal argument for the stability advantage: define reasoning quality Q(r_t) as a function of the reasoning chain r_t and observable evidence at step t. Q depends only on the trajectory prefix, so Var(Q|prefix) reflects only annotator noise. Action utility U(a_t) = E[R(τ)|prefix, a_t] depends on stochastic future actions, so Var(U|prefix) includes both annotator noise AND irreducible variance from unknown future decisions. Thus Var(Q|prefix) < Var(U|prefix) in expectation, explaining SWE-Shepherd's credit assignment failures. At inference, DiagPRM guides best-of-N selection and stage-level reranking. For SWE-bench Verified evaluation, we generate N=5 trajectories per instance on the same 100 instances used by SWE-Shepherd, using API-based agent trajectory generation (shifting cost from GPU to API budget). We report bootstrap confidence intervals (1000 resamples) for all resolution rate comparisons and apply the paired bootstrap test for statistical significance of DiagPRM vs. each baseline. Given the 100-instance evaluation set and expected effect sizes of 3–8 percentage points, we acknowledge that small differences (≤3 pp) may not reach statistical significance (p<0.05). We therefore frame the quantitative contribution as twofold: (a) competitive or superior best-of-N selection accuracy vs. SWE-RM despite the 8B vs. 30B model size gap, and (b) the qualitative capability of localized credit assignment enabling stage-level resampling—selectively regenerating only the failing stage rather than the entire trajectory—which is impossible with trajectory-level scorers regardless of effect size. We evaluate against: (1) SWE-RM as primary baseline (trajectory-level scoring), testing both standalone comparison and DiagPRM+SWE-RM combination to demonstrate complementarity of step-level and trajectory-level signals; (2) SWE-PRM (prompt-based behavioral PRM) to demonstrate that trained reasoning quality evaluation provides value beyond behavioral pattern detection; (3) SWE-Shepherd (step-level action utility PRM); (4) SWE-TRACE (rubric PRM); (5) outcome-only best-of-N reranking; (6) random selection. We additionally evaluate on 1000 DebugBench instances (N=3, local model) across bug categories to test whether DiagPRM's per-stage scoring captures the category-dependent reasoning quality variation documented in DebugBench. We differentiate from SWE-PRM by noting it is prompt-based behavioral monitoring (detecting looping, drift, redundancy) without training, complementary to but distinct from trained cognitive reasoning quality evaluation—SWE-PRM monitors whether the agent is working efficiently, DiagPRM evaluates whether the agent is reasoning correctly; from R4P by noting it evaluates final patches—orthogonal to diagnostic process evaluation, since a good patch can emerge from bad reasoning (lucky guess) and a bad patch from good reasoning (correct diagnosis, implementation error); from CodeTracer by noting it is a post-hoc diagnostic tool producing failure labels for human debugging across mechanical workflow stages, while DiagPRM produces per-stage reward scores across cognitive reasoning stages for automated search guidance and RL training; from RGFL by noting it is a one-shot localization ranker that cannot guide multi-candidate search or serve as RL reward; from Agent-RRM by noting its general-purpose design lacks code repair's verifiable intermediate claims for training label validation; and from ORPS by noting it requires execution at every search node while DiagPRM is execution-free at inference.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~140h H100 (pilot study ~8h for expanded 100-trajectory pilot, LLM-judge annotation inference ~15h, PRM LoRA training iterations ~50h, DebugBench trajectory generation with local model ~40h, ablations ~20h, bootstrap significance testing ~7h)\",\n      \"gpu_utilization\": \"~35-45% effective utilization; GPUs idle during annotation pipeline design, pilot study analysis, and result interpretation\",\n      \"timeline\": \"5-7 weeks (pilot study 1-1.5 weeks with expanded scope, annotation pipeline + labeling 1-2 weeks, PRM training 1-2 weeks, evaluation 1-2 weeks)\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"$420-560 (at ~$3/hr H100)\",\n      \"llm_api_cost\": \"$2,400-3,500 (SWE-bench trajectory generation via API agent: 100×5=500 trajectories ~$1,500-2,500; LLM-judge annotation of ~15-20K steps ~$200-400; expanded pilot study 100 trajectories × 3 judges ~$100; action-utility comparison labels ~$100; SWE-PRM behavioral baseline evaluation ~$100)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~120h H100 (more targeted experiments due to faster iteration on pilot study and annotation quality)\",\n      \"gpu_utilization\": \"~55-70% utilization; agent handles annotation pipeline and training code, human reviews pilot study results and interprets disagreement cases\",\n      \"timeline\": \"14-18 days (expanded pilot study + annotation pipeline 4-5 days, LLM-judge labeling 2 days, PRM training iterations 3-4 days, evaluation + bootstrap analysis 3-4 days, paper 3-4 days)\",\n      \"team\": \"1 researcher, ~45min/day for pilot study review, annotation quality verification, and disagreement case analysis\",\n      \"claude_api_cost\": \"$150-300 (experiment orchestration and code generation)\",\n      \"estimated_gpu_cost\": \"$360-480 (at ~$3/hr H100)\",\n      \"llm_api_cost\": \"$2,400-3,500 (trajectory generation + annotation + expanded pilot)\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~170h H100 (broader pilot study, multiple annotation strategies, full evaluation grid, bootstrap analysis)\",\n      \"gpu_utilization\": \"~80-90% utilization; agent continuously runs pilot, annotation, training, and evaluation pipelines\",\n      \"timeline\": \"12-16 days with 4x H100 (expanded pilot study 2-3 days, annotation 1-2 days, parallel PRM training sweeps 3-4 days, evaluation grid + bootstrap 3-4 days, paper assembly 2-3 days)\",\n      \"team\": \"0 (initial 1-hour setup for cluster access and API keys)\",\n      \"claude_api_cost\": \"$300-500 (end-to-end autonomous research)\",\n      \"estimated_gpu_cost\": \"$510-680 (at ~$3/hr H100)\",\n      \"llm_api_cost\": \"$2,700-4,000 (trajectory generation with multiple strategies + annotation + expanded pilot + SWE-PRM comparison)\",\n      \"speed_bottleneck\": \"API-based trajectory generation throughput (500 SWE-bench trajectories at ~3-5 min each with parallel API calls); secondary bottleneck is PRM training convergence\",\n      \"risk_note\": \"Two key risks: (1) LLM-judge inter-annotator agreement on reasoning quality may be low (<0.6 kappa)—mitigated by expanded 100-trajectory pilot validating feasibility before full annotation; (2) DiagPRM may not outperform SWE-RM on best-of-N due to model size gap (8B vs 30B)—mitigated by bootstrap significance testing, framing contribution as complementary step-level signal, testing DiagPRM+SWE-RM combination, and emphasizing qualitative stage-level resampling capability\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline: May 25, 2026)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"SWE-PRM / When Agents Go Astray: Course-Correcting SWE Agents with PRMs (arXiv:2509.02360, Sept 2025, IBM Research) — first PRM for SWE agents, prompt-based behavioral pattern detection\",\n    \"SWE-RM: Execution-free Feedback for SWE Agents (arXiv:2512.21919, Dec 2025) — trajectory-level RM, primary baseline\",\n    \"R4P/Patch Reasoner: Scalable Supervising SWE Agents (arXiv:2510.22775, Oct 2025) — patch-level reasoning verifier\",\n    \"RGFL: Reasoning Guided Fault Localization for APR (arXiv:2601.18044, Jan 2026) — structured reasoning for localization\",\n    \"Agent-RRM: Exploring Reasoning Reward Model for Agents (arXiv:2601.22154, Jan 2026) — general-purpose reasoning RM\",\n    \"ORPS: Reasoning Through Execution / Outcome-Refining Process Supervision (arXiv:2412.15118, ICML 2025) — execution-grounded process rewards without trained PRM\",\n    \"SWE-Shepherd: Advancing PRMs for Reinforcing Code Agents (arXiv:2604.10493, April 2026)\",\n    \"SWE-TRACE: Optimizing Long-Horizon SWE Agents Through Rubric PRMs (arXiv:2604.14820, April 2026)\",\n    \"CodeTracer: Towards Traceable Agent States (arXiv:2604.11641, April 2026) — post-hoc stage-level failure onset localization for code agents\",\n    \"TRAJEVAL: Decomposing Code Agent Trajectories for Fine-Grained Diagnosis (arXiv:2603.24631, March 2026)\",\n    \"ExecVerify: White-Box RL with Verifiable Stepwise Rewards (arXiv:2603.11226, March 2026)\",\n    \"Towards Effectively Leveraging Execution Traces for Program Repair (Haque et al., arXiv:2505.04441, May 2025)\",\n    \"TraceRepair: Runtime Execution Traces Guided APR with Multi-Agent Debate (arXiv:2604.02647, April 2026)\",\n    \"Process Reward Models That Think (ThinkPRM) (arXiv:2504.16828, April 2025)\",\n    \"AgentPRM: Process Reward Models for LLM Agents (arXiv:2511.08325, ACM Web 2026)\",\n    \"FunPRM: Function-as-Step PRM for Code Generation (arXiv:2601.22249, Jan 2026)\",\n    \"Agent-RLVR: Training SWE Agents via Guidance and Environment Rewards (arXiv:2506.11425, June 2025)\",\n    \"SWE-smith: Scaling Data for Software Engineering Agents (NeurIPS 2025 D&B Spotlight)\",\n    \"DebugBench: Evaluating Debugging Capability of LLMs (ACL 2024 Findings)\",\n    \"RePair: Automated Program Repair with Process-based Feedback (ACL 2024 Findings)\",\n    \"CodePRM: Execution Feedback-enhanced PRM for Code Generation (ACL 2025 Findings)\"\n  ],\n  \"description\": \"We propose DiagPRM, a stage-level process reward model that evaluates the logical soundness of diagnostic reasoning in code repair trajectories. Existing reward models for code repair operate at either the trajectory level (SWE-RM scores whole trajectories holistically, achieving 62–74.6% via best-of-N but providing no step-level diagnostic feedback) or the patch level (R4P reasons about final patches, not the diagnostic process). The first PRM for SWE agents, SWE-PRM, uses prompt-based behavioral pattern detection (looping, drift, redundancy) to course-correct agents (40→50.6%) but does not evaluate reasoning quality and is not a trained model. Step-level action-utility PRMs (SWE-Shepherd, 51% vs. 57% greedy) suffer credit assignment noise because utility depends on stochastic future actions. DiagPRM addresses these limitations by scoring diagnostic reasoning quality—a property of the reasoning chain itself, not of future actions—at three cognitive stages: localize (connect symptoms to fault locations), diagnose (identify root cause), and patch (design fix from diagnosis). These cognitive reasoning stages differ from CodeTracer's five mechanical workflow stages for post-hoc failure localization: our stages decompose the agent's reasoning process for automated search guidance, not its tool-use workflow for human debugging. We provide a formal stability argument: reasoning quality Q(r_t) depends only on the trajectory prefix, so Var(Q|prefix) reflects only annotator noise, while action utility Var(U|prefix) additionally includes irreducible variance from unknown future decisions. We train DiagPRM as a LoRA-tuned Qwen3-8B classifier on ~15K annotated step-outcome pairs from the 66K SWE-smith trajectory corpus. To address LLM-judge circularity, we explicitly mine disagreement cases (sound reasoning + failed patch; poor reasoning + passing patch) as the most distinctive training signal—these are exactly where DiagPRM provides information that outcome reward cannot—and validate annotation quality through a 100-trajectory pilot (300 reasoning steps, sufficient for kappa CI width ±0.08–0.10) comparing inter-model agreement on reasoning quality vs. action utility labels. The stage-level decomposition provides strictly more information than binary outcomes: even for failed trajectories, DiagPRM distinguishes 'correct localization + wrong diagnosis' from 'wrong localization + cascading failure,' enabling localized credit assignment. We evaluate best-of-N selection and stage-level reranking on 100 SWE-bench Verified instances with bootstrap confidence intervals (1000 resamples) and paired bootstrap significance tests against SWE-RM (primary baseline, testing both standalone and DiagPRM+SWE-RM complementarity), SWE-PRM (behavioral vs. reasoning evaluation), SWE-Shepherd, SWE-TRACE, outcome-only, and random baselines. We acknowledge that with 100 instances, small effect sizes (≤3 pp) may not reach statistical significance, and emphasize the qualitative contribution of stage-level resampling—selectively regenerating only the failing stage—which is impossible with trajectory-level scorers. We additionally evaluate on 1000 DebugBench instances for category-dependent analysis. API-based trajectory generation for SWE-bench shifts primary evaluation cost from GPU to API budget (~$1,500-2,500 for 500 trajectories).\",\n  \"project_name\": \"diag_prm_repair\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL: Target venues (AAAI 2027, ICLR 2027, ICSE 2027) do not match user requirement of EMNLP 2026 (ARR deadline May 25, 2026). This is a fundamental requirement violation.\", \"CRITICAL: Resource estimate vastly exceeds user constraint of ≤200 H100-hours. Manual mode: ~400 A100-hours; auto mode: 900-1200 A100-hours. Even with H100 being ~2x faster than A100, auto mode still requires 450-600 H100-hours.\", \"CRITICAL: Timeline mismatch. User requires ≤16 days. Manual timeline is 4-6 months. Auto mode is 10-18 days but requires 3-6x the allowed compute budget.\", \"Counterevidence not addressed: Haque et al. (arXiv:2505.04441, May 2025) found execution traces provide limited APR benefit in 4/6 configurations, with effectiveness diminishing as trace complexity increases. The proposed idea's core assumption that traces serve as 'automatic verification oracles' directly contradicts this finding.\", \"ExecVerify (arXiv:2603.11226, March 2026) already uses execution traces for verifiable stepwise rewards in RL training, achieving 5.9% pass@1 improvement. This paper was not cited and significantly overlaps with the proposed execution-trace-as-verification-signal approach.\", \"Crowded competitive landscape: SWE-Shepherd, SWE-TRACE, ExecVerify, TraceRepair, TRAJEVAL, and CodeTracer all published March-April 2026, collectively covering PRMs for code agents, trace-based repair, and trajectory decomposition. The incremental novelty over this ensemble is unclear.\", \"The 5-stage diagnostic taxonomy requires reliable automatic segmentation of repair trajectories into fault localization, root cause diagnosis, causal hypothesis, patch synthesis, and verification stages. No evidence is provided that such segmentation can be done reliably at scale, and this engineering challenge alone could consume the entire timeline.\", \"SWE-Shepherd achieves 51% on SWE-bench Verified with a lightweight PRM. The proposed approach needs to demonstrate clear improvement over this baseline, but the idea provides no pilot results or theoretical argument for expected gains.\"]\nFeedback: This idea has a genuinely interesting core insight (repair follows diagnostic reasoning, not generation steps), but it fails to meet the user's requirements on three critical dimensions: venue, compute, and timeline. Here is specific guidance for revision:\n\n1. **Fix venue targeting**: Must target EMNLP 2026 ARR (May 25 deadline). Reframe the contribution around NLP/code understanding aspects (diagnostic reasoning as a language understanding problem) rather than pure SE.\n\n2. **Radically reduce scope to fit ≤200 H100-hours and ≤16 days**: Drop the full 5-stage taxonomy and VizTracer instrumentation pipeline. Instead, focus on a simpler 2-3 stage decomposition (localize → hypothesize → patch) using existing structured outputs from SWE-agent trajectories (which already contain file reads, edits, and test runs as natural stage boundaries). Use SWE-Shepherd's existing reward dataset as a starting point and add diagnostic reasoning annotations via an LLM judge rather than building a trace pipeline from scratch.\n\n3. **Address the trace effectiveness counterevidence**: Cite and discuss Haque et al. (2505.04441). Argue why your approach differs (you use traces for PRM training signal, not as direct prompt augmentation). Better yet, run a small pilot showing your trace-based verification signal is informative.\n\n4. **Cite and differentiate from ExecVerify (2603.11226)**: This paper already does execution-trace-based stepwise verification for RL. Explain why your diagnostic decomposition adds value beyond ExecVerify's general stepwise approach.\n\n5. **Simplify the training pipeline**: Instead of PRIME-RL implicit PRM with VizTracer instrumentation on 50K trajectories, consider training a lightweight classifier on SWE-smith trajectories using LLM-annotated diagnostic stage labels. This could fit within 100-150 H100-hours.\n\n6. **Narrow evaluation**: Drop CodeContests and CrossCodeEval (not relevant to repair). Focus on SWE-bench Verified and DebugBench only, with SWE-Shepherd as the primary baseline.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"CRITICAL MISSING BASELINE: SWE-RM (arXiv:2512.21919, Dec 2025, Qwen team) is a 30B MoE reward model for SWE agents achieving 51.6%→62.0% (Flash) and 67.0%→74.6% (Max) on SWE-bench Verified via best-of-N. This is dramatically stronger than SWE-Shepherd (51%) and must be the primary baseline. The proposal's framing of SWE-Shepherd as the main PRM competitor is misleading when SWE-RM exists.\", \"MISSING COMPETITOR: R4P/Patch Reasoner (arXiv:2510.22775, Oct 2025) explicitly frames patch verification as 'a reasoning task, mirroring how human repository maintainers review patches.' It achieves 72.2% verification accuracy surpassing OpenAI o3 and uses RL with group-wise objectives. This directly overlaps with DiagPRM's claim of evaluating reasoning quality in repair.\", \"MISSING COMPETITOR: RGFL (arXiv:2601.18044, Jan 2026) generates structured, bug-specific reasoning explanations for fault localization, achieving 85% Hit@1 on SWE-bench Verified. Its per-candidate 'reasoning about functionality and causal relationship to symptoms' directly overlaps with DiagPRM's localization reasoning stage.\", \"MISSING COMPETITOR: Agent-RRM (arXiv:2601.22154, Jan 2026) produces decomposed trajectory judgments: (1) reasoning trace analyzing logical consistency, (2) targeted critique identifying reasoning flaws, (3) holistic quality score. While general-purpose, it directly targets 'reasoning quality evaluation' in agent trajectories—DiagPRM's core contribution claim.\", \"MISSING COMPETITOR: ORPS (ICML 2025, arXiv:2412.15118) demonstrates that LLMs' intrinsic reasoning + execution feedback can generate high-quality process rewards WITHOUT trained PRMs, achieving 26.9% higher correctness. This challenges DiagPRM's premise that a trained PRM is needed when execution-grounded self-critique suffices.\", \"LLM-judge annotation quality risk is undersized: Research shows LLMs frequently misclassify code correctness. Scoring 'diagnostic reasoning quality'—whether localization reasoning correctly connects evidence to fault locations—is strictly harder than code correctness judgment. The proposal's validation against test outcomes helps but creates a circular dependency: if the LLM judge agrees with outcome labels, it's just a noisy proxy for outcome rewards; if it disagrees, which do you trust?\", \"Compute budget likely underestimated for evaluation: Best-of-N (N≥5) on 500 SWE-bench Verified instances requires ≥2500 trajectory generations. At ~3.5 min/trajectory with a local model, that's ~146 GPU-hours for evaluation alone, not 70h as estimated. Combined with annotation (20h) and training (50h), total exceeds 200h H100.\", \"Theoretical argument unsubstantiated: The claim that 'reasoning quality is more stable because logically sound reasoning generalizes across trajectory continuations' is intuitive but has no formal backing or empirical pilot. Reasoning quality labels from an LLM judge may be equally noisy as utility labels—the noise source differs (judge unreliability vs. credit assignment) but the effect on PRM training may be similar.\"]\nFeedback: The revision successfully addressed Round 1's venue, compute, and timeline issues, and the 3-stage diagnostic taxonomy is a meaningful simplification. However, the competitive landscape analysis has significant gaps that undermine the novelty claim. Here is specific guidance:\n\n1. **Add SWE-RM as primary baseline**: SWE-RM (arXiv:2512.21919) is the strongest existing reward model for SWE agents (62-74.6% on SWE-bench Verified). You must compare against it, not just SWE-Shepherd (51%). Argue why diagnostic reasoning scoring adds value over SWE-RM's execution-free whole-trajectory scoring.\n\n2. **Differentiate from R4P and RGFL**: R4P frames patch verification as reasoning; RGFL does structured reasoning for fault localization. DiagPRM's differentiation should emphasize that it evaluates the PROCESS of reasoning across stages (not just the final patch or individual localization), and that it trains a reward model to guide search (unlike RGFL which is a one-shot ranker).\n\n3. **Address Agent-RRM overlap**: Acknowledge that general agent reasoning evaluation exists and argue that code repair's verifiable intermediate claims (via test execution) provide a domain-specific advantage for training supervision that general-purpose reasoning evaluation lacks.\n\n4. **Fix compute budget**: Either reduce N in best-of-N (use N=3 instead of N=5), evaluate on fewer instances (e.g., the same 100 used by SWE-Shepherd), or account for using API-based trajectory generation (shifting cost from GPU to API budget). Be explicit about what generates trajectories.\n\n5. **Add a small pilot or theoretical grounding**: The reasoning quality stability claim is the paper's key theoretical contribution but is unargued. At minimum, add a formal argument: e.g., if reasoning quality Q is a property of the reasoning chain independent of future actions, then Var(Q|trajectory_prefix) < Var(utility|trajectory_prefix). Or describe a small-scale pilot (50 trajectories) comparing inter-annotator agreement for reasoning quality vs. action utility labels.\n\n6. **Address the LLM-judge circularity**: If LLM-judge labels are validated against test outcomes, and DiagPRM is trained on these labels, then DiagPRM may just be learning a noisy proxy for outcome rewards. Explain why this proxy is better than direct outcome reward (e.g., the decomposition into stages provides localized error signal even when the overall outcome is incorrect).\n\n### Round 3 review\nVerdict: revise\nIssues: [\"MISSING CITATION: SWE-PRM / 'When Agents Go Astray' (arXiv:2509.02360, Sept 2025, IBM Research) is the first PRM applied to SWE agents (40%→50.6% on SWE-bench Verified). While prompt-based and behaviorally focused (not trained, not reasoning-quality-focused), it establishes the PRM-for-SWE-agents paradigm and must be cited and differentiated.\", \"MISSING CITATION: CodeTracer (arXiv:2604.11641, April 2026) performs stage-level failure onset localization with error chain diagnosis across five workflow stages. Though not a reward model, it directly shares DiagPRM's motivation of stage-level diagnostic analysis and is concurrent work requiring explicit positioning.\", \"DATE ERROR: Agent-RLVR (arXiv:2506.11425) is from June 2025, not June 2026. ArXiv IDs use YYMM format, so 2506 = 2025-06.\", \"STATISTICAL POWER CONCERN: Evaluating on only 100 SWE-bench Verified instances with N=5 may yield statistically insignificant differences vs. SWE-RM, especially given the 8B vs. 30B model size gap. The proposal should discuss expected effect size and statistical significance testing (e.g., bootstrap confidence intervals).\", \"LLM-JUDGE RELIABILITY NOT FULLY ADDRESSED: Literature shows 10-20%+ error rates on nuanced code reasoning judgments with systematic biases (position, verbosity). The pilot study helps but 50 trajectories (150 steps) may be too small to reliably estimate inter-annotator kappa for a multi-dimensional construct like 'diagnostic reasoning quality.' Consider 100+ trajectories for the pilot or adopting ThinkPRM-style generative verification.\"]\nFeedback: The revision is strong and addresses Round 2 feedback comprehensively. The remaining issues are minor but need fixing:\n\n1. **Add SWE-PRM citation**: Cite arXiv:2509.02360 in the landscape section. Differentiate: SWE-PRM uses prompt-based behavioral pattern detection (looping, drift, redundancy) without training, while DiagPRM trains a reward model scoring cognitive diagnostic reasoning quality. They are complementary: SWE-PRM monitors process efficiency, DiagPRM evaluates reasoning soundness.\n\n2. **Add CodeTracer citation**: Cite arXiv:2604.11641. Differentiate: CodeTracer is a post-hoc diagnostic analysis tool producing failure labels for human consumption, while DiagPRM produces per-stage reward scores for search guidance and RL training.\n\n3. **Fix Agent-RLVR date**: June 2025, not 2026.\n\n4. **Strengthen statistical methodology**: For the 100-instance SWE-bench evaluation, commit to bootstrap confidence intervals (1000 resamples) and report whether DiagPRM vs. SWE-RM differences are statistically significant. If expected effect size is small (2-5%), acknowledge this and emphasize the qualitative contribution (localized credit assignment enabling targeted resampling at failing stages, not just N selection).\n\n5. **Consider larger pilot**: 50 trajectories for pilot may be underpowered for estimating kappa reliably. If feasible, 100 trajectories (300 steps) would give more confident inter-annotator statistics.\n\nThe idea is close to passing—address these citations and the statistical power concern, and it should be publication-ready for EMNLP 2026 Findings.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T18:43:06.230Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T18:43:06.230Z",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+## Round 1
+
+104 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T18:43:06.272Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-10 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: NLP and Code Models.
+
+Direction: Code understanding and generation — repo-level comprehension, program repair, code reasoning, debugging, test generation, code-to-documentation, cross-language code transfer. NOT just code completion — focus on higher-level code reasoning tasks.
+
+Contribution type: METHOD ONLY. Propose new training methods, retrieval-augmented code repair, or inference algorithms for code tasks. Not a new benchmark or leaderboard entry.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Code models are often evaluated zero-shot or few-shot — budget goes to SFT/LoRA if fine-tuning.
+2. Time: ≤16 days. Build on existing code models (DeepSeek-Coder-V2, StarCoder2, CodeLlama, Qwen2.5-Coder) and frameworks (aider, SWE-agent, Moatless).
+3. Eval: SWE-bench Verified, HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, CodeContests.
+
+Look for: repo-level context compression for code understanding, retrieval-augmented repair with semantic code search, code reasoning via execution feedback, cross-repo transfer learning. Avoid: simple prompt templates for code completion.
+
+Tag: direction=code_models, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 4/10)
+{
+  "title": "DiagPRM: Stage-Level Diagnostic Reasoning Rewards for Code Repair Search",
+  "core_problem": "Reward models for code repair agents operate at two granularities that each miss critical information. Trajectory-level scorers (SWE-RM achieves 62–74.6% on SWE-bench Verified via best-of-N) provide a single holistic score for the entire multi-turn interaction but cannot localize which reasoning stage—localization, diagnosis, or patch design—caused failure, limiting their value for credit assignment and trajectory steering. Patch-level verifiers (R4P achieves 72.2% verification accuracy via reasoning about final patches) skip the diagnostic process entirely. Step-level action-utility PRMs (SWE-Shepherd) attempt localized scoring but suffer fundamental credit assignment noise—actions that look locally useful may lead to dead ends, yielding 51% vs. 57% for greedy baselines. Prompt-based behavioral PRMs (SWE-PRM achieves 40→50.6% via course-correction) detect process inefficiencies like looping and drift but do not evaluate the logical soundness of diagnostic reasoning. Can we build a step-level PRM that scores a more stable signal—the logical soundness of diagnostic reasoning at each repair stage—and use stage-level credit assignment to guide repair search?",
+  "opportunity": "Code repair follows a diagnostic reasoning structure (localize → diagnose → patch) where intermediate diagnostic claims make verifiable predictions checkable against test execution outcomes—a domain-specific advantage absent from code generation or general agent tasks. This creates three opportunities no existing system exploits simultaneously: (1) Stage-level decomposition enables localized credit assignment that trajectory-level scorers (SWE-RM) cannot provide—even when a trajectory fails, we can identify that localization reasoning was sound but diagnosis was flawed; (2) Reasoning quality is a property of the reasoning chain itself, not of future actions, making it a lower-variance scoring target than action utility (SWE-Shepherd), with a formal argument: Var(Q_reasoning|prefix) = 0 as Q depends only on observables, while Var(U_action|prefix) > 0 as U depends on stochastic future decisions; (3) Test execution outcomes serve as automatic validators for reasoning quality annotations during training—not as runtime input (addressing Haque et al.'s finding)—enabling training label quality verification that general-purpose reasoning evaluators (Agent-RRM) lack because they have no domain-specific ground truth. While SWE-PRM pioneered PRMs for SWE agents, it uses prompt-based behavioral pattern detection (looping, drift, redundancy) without training—complementary to but distinct from trained reasoning quality evaluation. RGFL generates structured reasoning explanations for fault localization (85% Hit@1) and R4P reasons about patches, but neither trains a reward model for search guidance across the full diagnostic process. CodeTracer performs post-hoc stage-level failure onset localization for debugging, but produces diagnostic labels for human consumption rather than reward scores for search guidance. ORPS demonstrates execution-grounded process rewards without a trained PRM, but requires execution at every search tree node and targets generation, not repair. The gap—a trained step-level PRM that evaluates diagnostic reasoning quality across all repair stages, using test execution only for training label validation, execution-free at inference—remains open.",
+  "landscape": "SWE-PRM / When Agents Go Astray (arXiv:2509.02360, Sept 2025, IBM Research) is the first PRM applied to SWE agents: a prompt-based system using a taxonomy of behavioral inefficiencies (looping, drift, redundancy, specification violations) to course-correct agents at runtime, achieving 40.0→50.6% on SWE-bench Verified with closed-source PRMs. It evaluates behavioral process patterns—not diagnostic reasoning quality—and is not a trained model, instead invoking an off-the-shelf LLM with a sliding window of k=8 recent steps every 5 steps. SWE-RM (arXiv:2512.21919, Dec 2025, Qwen team) is the current strongest trained reward model for SWE agents: a 30B MoE model (3B active) trained on ~100K trajectories with binary whole-trajectory scoring, achieving 51.6→62.0% (Flash) and 67.0→74.6% (Max) on SWE-bench Verified via best-of-N, plus RL gains. It scores complete trajectories holistically but provides no step-level diagnostic feedback. R4P/Patch Reasoner (arXiv:2510.22775, Oct 2025) frames patch verification as reasoning via group-wise RL, achieving 72.2% accuracy surpassing o3 and 50× faster than testing, but evaluates final patches, not the diagnostic process leading to them. RGFL (arXiv:2601.18044, Jan 2026) generates structured per-candidate reasoning explanations for fault localization achieving 85% Hit@1 on SWE-bench Verified, but is a one-shot ranker—not a reward model—and covers only the localization stage, not diagnosis or patch design. Agent-RRM (arXiv:2601.22154, Jan 2026) produces decomposed trajectory judgments (reasoning trace + critique + holistic score) for general agent tasks (GAIA, WebWalkerQA) but is not specialized for code repair and lacks domain-specific ground truth for training label validation. ORPS (ICML 2025, arXiv:2412.15118) demonstrates that execution-grounded self-critique generates high-quality process rewards without trained PRMs (26.9% correctness gain), but requires execution at every search tree node—expensive and infeasible for large-repository repair—and targets code generation, not repair. SWE-Shepherd (arXiv:2604.10493, April 2026) introduces step-level action-utility PRMs for SWE agents but achieves only 51% vs. 57% greedy baseline on 100 SWE-bench Verified tasks, confirming that action utility suffers credit assignment noise. SWE-TRACE (arXiv:2604.14820, April 2026) uses rubric-based PRMs with heuristic test-time scaling, achieving competitive results but relying on hand-designed rubric criteria rather than learned reasoning quality. CodeTracer (arXiv:2604.11641, April 2026) constructs hierarchical trace trees of agent execution and performs failure onset localization across five mechanical workflow stages (environment verification, dependency installation, inspection/debugging, patching, verification), achieving 46–48% F1 on CodeTraceBench (4,316 trajectories). It is a post-hoc diagnostic analysis tool producing failure labels for human debugging, not a reward model for search guidance; its five stages describe mechanical workflow phases, not cognitive diagnostic reasoning stages. TRAJEVAL (arXiv:2603.24631, March 2026) decomposes trajectories into mechanical search/read/edit stages for diagnostic evaluation (Pass@1 MAE 0.87–2.1%) but evaluates file/function retrieval precision, not cognitive reasoning quality. ExecVerify (arXiv:2603.11226, March 2026) trains execution-understanding rewards (next-statement/variable prediction) but targets execution trace comprehension, not diagnostic reasoning evaluation. ThinkPRM (arXiv:2504.16828, April 2025) demonstrates data-efficient generative PRMs outperforming discriminative PRMs with 1% of process labels. AgentPRM (arXiv:2511.08325, ACM Web 2026) achieves 8× compute efficiency using TD-based estimation for agent PRMs. FunPRM (arXiv:2601.22249, Jan 2026) treats functions as PRM steps for code generation, achieving SOTA on LiveCodeBench. Agent-RLVR (arXiv:2506.11425, June 2025) trains SWE agents via guidance and environment rewards with patch-level reward model scoring.",
+  "approach": "We define a 3-stage diagnostic reasoning taxonomy for code repair—localize (connect symptoms to fault location), diagnose (identify root cause), patch (design fix from diagnosis)—and extract stage boundaries from natural language repair trajectories using an LLM parser. These cognitive reasoning stages differ from CodeTracer's five mechanical workflow stages (env verification, dependency, inspection, patching, verification): our stages decompose the agent's reasoning process, not its tool-use workflow, enabling evaluation of logical soundness rather than execution correctness. Using the publicly available SWE-smith 66K trajectory corpus (Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k), we annotate diagnostic reasoning quality at each stage via an LLM-judge (Claude/GPT-4o) that evaluates: (1) whether localization reasoning correctly connects error evidence to candidate locations, (2) whether the root cause hypothesis logically explains the observed failure, (3) whether the fix rationale follows from the diagnosis. We address the LLM-judge circularity concern through two mechanisms. First, we explicitly mine disagreement cases between reasoning quality and test outcomes as the most distinctive training signal: trajectories with sound reasoning but failed patches (correct diagnosis, implementation error) teach the PRM that the reasoning was good despite bad outcome, while trajectories with poor reasoning but passing patches (lucky guess, partial fix) teach it to penalize unsound reasoning despite success. These disagreement cases are exactly where DiagPRM provides information that outcome reward cannot. Second, the stage-level decomposition provides strictly more information than binary outcome: even when a trajectory fails, DiagPRM distinguishes 'good localization + bad diagnosis + bad patch' from 'bad localization + everything downstream wrong,' enabling localized credit assignment impossible with trajectory-level scoring. We validate LLM-judge annotation quality through a pilot study on 100 trajectories (300 reasoning steps): three LLM judges (Claude, GPT-4o, Gemini) independently annotate reasoning quality, and we measure inter-model Cohen's kappa, correlation with test outcomes (expecting moderate ~0.4-0.6, not perfect, correlation—high correlation would indicate the PRM is a mere outcome proxy, while moderate correlation confirms it captures distinct information), and compare inter-annotator agreement for reasoning quality labels vs. action utility labels on the same trajectories. The 100-trajectory pilot provides sufficient statistical power to estimate kappa with a 95% confidence interval width of ±0.08–0.10 (per Sim & Wright 2005), adequate for distinguishing moderate from substantial agreement. We train DiagPRM as a lightweight LoRA-tuned classifier on Qwen3-8B (~15K annotated step-outcome pairs), following ThinkPRM's insight that small amounts of high-quality process labels suffice. We include a formal argument for the stability advantage: define reasoning quality Q(r_t) as a function of the reasoning chain r_t and observable evidence at step t. Q depends only on the trajectory prefix, so Var(Q|prefix) reflects only annotator noise. Action utility U(a_t) = E[R(τ)|prefix, a_t] depends on stochastic future actions, so Var(U|prefix) includes both annotator noise AND irreducible variance from unknown future decisions. Thus Var(Q|prefix) < Var(U|prefix) in expectation, explaining SWE-Shepherd's credit assignment failures. At inference, DiagPRM guides best-of-N selection and stage-level reranking. For SWE-bench Verified evaluation, we generate N=5 trajectories per instance on the same 100 instances used by SWE-Shepherd, using API-based agent trajectory generation (shifting cost from GPU to API budget). We report bootstrap confidence intervals (1000 resamples) for all resolution rate comparisons and apply the paired bootstrap test for statistical significance of DiagPRM vs. each baseline. Given the 100-instance evaluation set and expected effect sizes of 3–8 percentage points, we acknowledge that small differences (≤3 pp) may not reach statistical significance (p<0.05). We therefore frame the quantitative contribution as twofold: (a) competitive or superior best-of-N selection accuracy vs. SWE-RM despite the 8B vs. 30B model size gap, and (b) the qualitative capability of localized credit assignment enabling stage-level resampling—selectively regenerating only the failing stage rather than the entire trajectory—which is impossible with trajectory-level scorers regardless of effect size. We evaluate against: (1) SWE-RM as primary baseline (trajectory-level scoring), testing both standalone comparison and DiagPRM+SWE-RM combination to demonstrate complementarity of step-level and trajectory-level signals; (2) SWE-PRM (prompt-based behavioral PRM) to demonstrate that trained reasoning quality evaluation provides value beyond behavioral pattern detection; (3) SWE-Shepherd (step-level action utility PRM); (4) SWE-TRACE (rubric PRM); (5) outcome-only best-of-N reranking; (6) random selection. We additionally evaluate on 1000 DebugBench instances (N=3, local model) across bug categories to test whether DiagPRM's per-stage scoring captures the category-dependent reasoning quality variation documented in DebugBench. We differentiate from SWE-PRM by noting it is prompt-based behavioral monitoring (detecting looping, drift, redundancy) without training, complementary to but distinct from trained cognitive reasoning quality evaluation—SWE-PRM monitors whether the agent is working efficiently, DiagPRM evaluates whether the agent is reasoning correctly; from R4P by noting it evaluates final patches—orthogonal to diagnostic process evaluation, since a good patch can emerge from bad reasoning (lucky guess) and a bad patch from good reasoning (correct diagnosis, implementation error); from CodeTracer by noting it is a post-hoc diagnostic tool producing failure labels for human debugging across mechanical workflow stages, while DiagPRM produces per-stage reward scores across cognitive reasoning stages for automated search guidance and RL training; from RGFL by noting it is a one-shot localization ranker that cannot guide multi-candidate search or serve as RL reward; from Agent-RRM by noting its general-purpose design lacks code repair's verifiable intermediate claims for training label validation; and from ORPS by noting it requires execution at every search node while DiagPRM is execution-free at inference.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~140h H100 (pilot study ~8h for expanded 100-trajectory pilot, LLM-judge annotation inference ~15h, PRM LoRA training iterations ~50h, DebugBench trajectory generation with local model ~40h, ablations ~20h, bootstrap significance testing ~7h)",
+      "gpu_utilization": "~35-45% effective utilization; GPUs idle during annotation pipeline design, pilot study analysis, and result interpretation",
+      "timeline": "5-7 weeks (pilot study 1-1.5 weeks with expanded scope, annotation pipeline + labeling 1-2 weeks, PRM training 1-2 weeks, evaluation 1-2 weeks)",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$420-560 (at ~$3/hr H100)",
+      "llm_api_cost": "$2,400-3,500 (SWE-bench trajectory generation via API agent: 100×5=500 trajectories ~$1,500-2,500; LLM-judge annotation of ~15-20K steps ~$200-400; expanded pilot study 100 trajectories × 3 judges ~$100; action-utility comparison labels ~$100; SWE-PRM behavioral baseline evaluation ~$100)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~120h H100 (more targeted experiments due to faster iteration on pilot study and annotation quality)",
+      "gpu_utilization": "~55-70% utilization; agent handles annotation pipeline and training code, human reviews pilot study results and interprets disagreement cases",
+      "timeline": "14-18 days (expanded pilot study + annotation pipeline 4-5 days, LLM-judge labeling 2 days, PRM training iterations 3-4 days, evaluation + bootstrap analysis 3-4 days, paper 3-4 days)",
+      "team": "1 researcher, ~45min/day for pilot study review, annotation quality verification, and disagreement case analysis",
+      "claude_api_cost": "$150-300 (experiment orchestration and code generation)",
+      "estimated_gpu_cost": "$360-480 (at ~$3/hr H100)",
+      "llm_api_cost": "$2,400-3,500 (trajectory generation + annotation + expanded pilot)"
+    },
+    "auto_research": {
+      "gpu_hours": "~170h H100 (broader pilot study, multiple annotation strategies, full evaluation grid, bootstrap analysis)",
+      "gpu_utilization": "~80-90% utilization; agent continuously runs pilot, annotation, training, and evaluation pipelines",
+      "timeline": "12-16 days with 4x H100 (expanded pilot study 2-3 days, annotation 1-2 days, parallel PRM training sweeps 3-4 days, evaluation grid + bootstrap 3-4 days, paper assembly 2-3 days)",
+      "team": "0 (initial 1-hour setup for cluster access and API keys)",
+      "claude_api_cost": "$300-500 (end-to-end autonomous research)",
+      "estimated_gpu_cost": "$510-680 (at ~$3/hr H100)",
+      "llm_api_cost": "$2,700-4,000 (trajectory generation with multiple strategies + annotation + expanded pilot + SWE-PRM comparison)",
+      "speed_bottleneck": "API-based trajectory generation throughput (500 SWE-bench trajectories at ~3-5 min each with parallel API calls); secondary bottleneck is PRM training convergence",
+      "risk_note": "Two key risks: (1) LLM-judge inter-annotator agreement on reasoning quality may be low (<0.6 kappa)—mitigated by expanded 100-trajectory pilot validating feasibility before full annotation; (2) DiagPRM may not outperform SWE-RM on best-of-N due to model size gap (8B vs 30B)—mitigated by bootstrap significance testing, framing contribution as complementary step-level signal, testing DiagPRM+SWE-RM combination, and emphasizing qualitative stage-level resampling capability"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline: May 25, 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "SWE-PRM / When Agents Go Astray: Course-Correcting SWE Agents with PRMs (arXiv:2509.02360, Sept 2025, IBM Research) — first PRM for SWE agents, prompt-based behavioral pattern detection",
+    "SWE-RM: Execution-free Feedback for SWE Agents (arXiv:2512.21919, Dec 2025) — trajectory-level RM, primary baseline",
+    "R4P/Patch Reasoner: Scalable Supervising SWE Agents (arXiv:2510.22775, Oct 2025) — patch-level reasoning verifier",
+    "RGFL: Reasoning Guided Fault Localization for APR (arXiv:2601.18044, Jan 2026) — structured reasoning for localization",
+    "Agent-RRM: Exploring Reasoning Reward Model for Agents (arXiv:2601.22154, Jan 2026) — general-purpose reasoning RM",
+    "ORPS: Reasoning Through Execution / Outcome-Refining Process Supervision (arXiv:2412.15118, ICML 2025) — execution-grounded process rewards without trained PRM",
+    "SWE-Shepherd: Advancing PRMs for Reinforcing Code Agents (arXiv:2604.10493, April 2026)",
+    "SWE-TRACE: Optimizing Long-Horizon SWE Agents Through Rubric PRMs (arXiv:2604.14820, April 2026)",
+    "CodeTracer: Towards Traceable Agent States (arXiv:2604.11641, April 2026) — post-hoc stage-level failure onset localization for code agents",
+    "TRAJEVAL: Decomposing Code Agent Trajectories for Fine-Grained Diagnosis (arXiv:2603.24631, March 2026)",
+    "ExecVerify: White-Box RL with Verifiable Stepwise Rewards (arXiv:2603.11226, March 2026)",
+    "Towards Effectively Leveraging Execution Traces for Program Repair (Haque et al., arXiv:2505.04441, May 2025)",
+    "TraceRepair: Runtime Execution Traces Guided APR with Multi-Agent Debate (arXiv:2604.02647, April 2026)",
+    "Process Reward Models That Think (ThinkPRM) (arXiv:2504.16828, April 2025)",
+    "AgentPRM: Process Reward Models for LLM Agents (arXiv:2511.08325, ACM Web 2026)",
+    "FunPRM: Function-as-Step PRM for Code Generation (arXiv:2601.22249, Jan 2026)",
+    "Agent-RLVR: Training SWE Agents via Guidance and Environment Rewards (arXiv:2506.11425, June 2025)",
+    "SWE-smith: Scaling Data for Software Engineering Agents (NeurIPS 2025 D&B Spotlight)",
+    "DebugBench: Evaluating Debugging Capability of LLMs (ACL 2024 Findings)",
+    "RePair: Automated Program Repair with Process-based Feedback (ACL 2024 Findings)",
+    "CodePRM: Execution Feedback-enhanced PRM for Code Generation (ACL 2025 Findings)"
+  ],
+  "description": "We propose DiagPRM, a stage-level process reward model that evaluates the logical soundness of diagnostic reasoning in code repair trajectories. Existing reward models for code repair operate at either the trajectory level (SWE-RM scores whole trajectories holistically, achieving 62–74.6% via best-of-N but providing no step-level diagnostic feedback) or the patch level (R4P reasons about final patches, not the diagnostic process). The first PRM for SWE agents, SWE-PRM, uses prompt-based behavioral pattern detection (looping, drift, redundancy) to course-correct agents (40→50.6%) but does not evaluate reasoning quality and is not a trained model. Step-level action-utility PRMs (SWE-Shepherd, 51% vs. 57% greedy) suffer credit assignment noise because utility depends on stochastic future actions. DiagPRM addresses these limitations by scoring diagnostic reasoning quality—a property of the reasoning chain itself, not of future actions—at three cognitive stages: localize (connect symptoms to fault locations), diagnose (identify root cause), and patch (design fix from diagnosis). These cognitive reasoning stages differ from CodeTracer's five mechanical workflow stages for post-hoc failure localization: our stages decompose the agent's reasoning process for automated search guidance, not its tool-use workflow for human debugging. We provide a formal stability argument: reasoning quality Q(r_t) depends only on the trajectory prefix, so Var(Q|prefix) reflects only annotator noise, while action utility Var(U|prefix) additionally includes irreducible variance from unknown future decisions. We train DiagPRM as a LoRA-tuned Qwen3-8B classifier on ~15K annotated step-outcome pairs from the 66K SWE-smith trajectory corpus. To address LLM-judge circularity, we explicitly mine disagreement cases (sound reasoning + failed patch; poor reasoning + passing patch) as the most distinctive training signal—these are exactly where DiagPRM provides information that outcome reward cannot—and validate annotation quality through a 100-trajectory pilot (300 reasoning steps, sufficient for kappa CI width ±0.08–0.10) comparing inter-model agreement on reasoning quality vs. action utility labels. The stage-level decomposition provides strictly more information than binary outcomes: even for failed trajectories, DiagPRM distinguishes 'correct localization + wrong diagnosis' from 'wrong localization + cascading failure,' enabling localized credit assignment. We evaluate best-of-N selection and stage-level reranking on 100 SWE-bench Verified instances with bootstrap confidence intervals (1000 resamples) and paired bootstrap significance tests against SWE-RM (primary baseline, testing both standalone and DiagPRM+SWE-RM complementarity), SWE-PRM (behavioral vs. reasoning evaluation), SWE-Shepherd, SWE-TRACE, outcome-only, and random baselines. We acknowledge that with 100 instances, small effect sizes (≤3 pp) may not reach statistical significance, and emphasize the qualitative contribution of stage-level resampling—selectively regenerating only the failing stage—which is impossible with trajectory-level scorers. We additionally evaluate on 1000 DebugBench instances for category-dependent analysis. API-based trajectory generation for SWE-bench shifts primary evaluation cost from GPU to API budget (~$1,500-2,500 for 500 trajectories).",
+  "project_name": "diag_prm_repair",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL: Target venues (AAAI 2027, ICLR 2027, ICSE 2027) do not match user requirement of EMNLP 2026 (ARR deadline May 25, 2026). This is a fundamental requirement violation.", "CRITICAL: Resource estimate vastly exceeds user constraint of ≤200 H100-hours. Manual mode: ~400 A100-hours; auto mode: 900-1200 A100-hours. Even with H100 being ~2x faster than A100, auto mode still requires 450-600 H100-hours.", "CRITICAL: Timeline mismatch. User requires ≤16 days. Manual timeline is 4-6 months. Auto mode is 10-18 days but requires 3-6x the allowed compute budget.", "Counterevidence not addressed: Haque et al. (arXiv:2505.04441, May 2025) found execution traces provide limited APR benefit in 4/6 configurations, with effectiveness diminishing as trace complexity increases. The proposed idea's core assumption that traces serve as 'automatic verification oracles' directly contradicts this finding.", "ExecVerify (arXiv:2603.11226, March 2026) already uses execution traces for verifiable stepwise rewards in RL training, achieving 5.9% pass@1 improvement. This paper was not cited and significantly overlaps with the proposed execution-trace-as-verification-signal approach.", "Crowded competitive landscape: SWE-Shepherd, SWE-TRACE, ExecVerify, TraceRepair, TRAJEVAL, and CodeTracer all published March-April 2026, collectively covering PRMs for code agents, trace-based repair, and trajectory decomposition. The incremental novelty over this ensemble is unclear.", "The 5-stage diagnostic taxonomy requires reliable automatic segmentation of repair trajectories into fault localization, root cause diagnosis, causal hypothesis, patch synthesis, and verification stages. No evidence is provided that such segmentation can be done reliably at scale, and this engineering challenge alone could consume the entire timeline.", "SWE-Shepherd achieves 51% on SWE-bench Verified with a lightweight PRM. The proposed approach needs to demonstrate clear improvement over this baseline, but the idea provides no pilot results or theoretical argument for expected gains."]
+Feedback: This idea has a genuinely interesting core insight (repair follows diagnostic reasoning, not generation steps), but it fails to meet the user's requirements on three critical dimensions: venue, compute, and timeline. Here is specific guidance for revision:
+
+1. **Fix venue targeting**: Must target EMNLP 2026 ARR (May 25 deadline). Reframe the contribution around NLP/code understanding aspects (diagnostic reasoning as a language understanding problem) rather than pure SE.
+
+2. **Radically reduce scope to fit ≤200 H100-hours and ≤16 days**: Drop the full 5-stage taxonomy and VizTracer instrumentation pipeline. Instead, focus on a simpler 2-3 stage decomposition (localize → hypothesize → patch) using existing structured outputs from SWE-agent trajectories (which already contain file reads, edits, and test runs as natural stage boundaries). Use SWE-Shepherd's existing reward dataset as a starting point and add diagnostic reasoning annotations via an LLM judge rather than building a trace pipeline from scratch.
+
+3. **Address the trace effectiveness counterevidence**: Cite and discuss Haque et al. (2505.04441). Argue why your approach differs (you use traces for PRM training signal, not as direct prompt augmentation). Better yet, run a small pilot showing your trace-based verification signal is informative.
+
+4. **Cite and differentiate from ExecVerify (2603.11226)**: This paper already does execution-trace-based stepwise verification for RL. Explain why your diagnostic decomposition adds value beyond ExecVerify's general stepwise approach.
+
+5. **Simplify the training pipeline**: Instead of PRIME-RL implicit PRM with VizTracer instrumentation on 50K trajectories, consider training a lightweight classifier on SWE-smith trajectories using LLM-annotated diagnostic stage labels. This could fit within 100-150 H100-hours.
+
+6. **Narrow evaluation**: Drop CodeContests and CrossCodeEval (not relevant to repair). Focus on SWE-bench Verified and DebugBench only, with SWE-Shepherd as the primary baseline.
+
+### Round 2 review
+Verdict: revise
+Issues: ["CRITICAL MISSING BASELINE: SWE-RM (arXiv:2512.21919, Dec 2025, Qwen team) is a 30B MoE reward model for SWE agents achieving 51.6%→62.0% (Flash) and 67.0%→74.6% (Max) on SWE-bench Verified via best-of-N. This is dramatically stronger than SWE-Shepherd (51%) and must be the primary baseline. The proposal's framing of SWE-Shepherd as the main PRM competitor is misleading when SWE-RM exists.", "MISSING COMPETITOR: R4P/Patch Reasoner (arXiv:2510.22775, Oct 2025) explicitly frames patch verification as 'a reasoning task, mirroring how human repository maintainers review patches.' It achieves 72.2% verification accuracy surpassing OpenAI o3 and uses RL with group-wise objectives. This directly overlaps with DiagPRM's claim of evaluating reasoning quality in repair.", "MISSING COMPETITOR: RGFL (arXiv:2601.18044, Jan 2026) generates structured, bug-specific reasoning explanations for fault localization, achieving 85% Hit@1 on SWE-bench Verified. Its per-candidate 'reasoning about functionality and causal relationship to symptoms' directly overlaps with DiagPRM's localization reasoning stage.", "MISSING COMPETITOR: Agent-RRM (arXiv:2601.22154, Jan 2026) produces decomposed trajectory judgments: (1) reasoning trace analyzing logical consistency, (2) targeted critique identifying reasoning flaws, (3) holistic quality score. While general-purpose, it directly targets 'reasoning quality evaluation' in agent trajectories—DiagPRM's core contribution claim.", "MISSING COMPETITOR: ORPS (ICML 2025, arXiv:2412.15118) demonstrates that LLMs' intrinsic reasoning + execution feedback can generate high-quality process rewards WITHOUT trained PRMs, achieving 26.9% higher correctness. This challenges DiagPRM's premise that a trained PRM is needed when execution-grounded self-critique suffices.", "LLM-judge annotation quality risk is undersized: Research shows LLMs frequently misclassify code correctness. Scoring 'diagnostic reasoning quality'—whether localization reasoning correctly connects evidence to fault locations—is strictly harder than code correctness judgment. The proposal's validation against test outcomes helps but creates a circular dependency: if the LLM judge agrees with outcome labels, it's just a noisy proxy for outcome rewards; if it disagrees, which do you trust?", "Compute budget likely underestimated for evaluation: Best-of-N (N≥5) on 500 SWE-bench Verified instances requires ≥2500 trajectory generations. At ~3.5 min/trajectory with a local model, that's ~146 GPU-hours for evaluation alone, not 70h as estimated. Combined with annotation (20h) and training (50h), total exceeds 200h H100.", "Theoretical argument unsubstantiated: The claim that 'reasoning quality is more stable because logically sound reasoning generalizes across trajectory continuations' is intuitive but has no formal backing or empirical pilot. Reasoning quality labels from an LLM judge may be equally noisy as utility labels—the noise source differs (judge unreliability vs. credit assignment) but the effect on PRM training may be similar."]
+Feedback: The revision successfully addressed Round 1's venue, compute, and timeline issues, and the 3-stage diagnostic taxonomy is a meaningful simplification. However, the competitive landscape analysis has significant gaps that undermine the novelty claim. Here is specific guidance:
+
+1. **Add SWE-RM as primary baseline**: SWE-RM (arXiv:2512.21919) is the strongest existing reward model for SWE agents (62-74.6% on SWE-bench Verified). You must compare against it, not just SWE-Shepherd (51%). Argue why diagnostic reasoning scoring adds value over SWE-RM's execution-free whole-trajectory scoring.
+
+2. **Differentiate from R4P and RGFL**: R4P frames patch verification as reasoning; RGFL does structured reasoning for fault localization. DiagPRM's differentiation should emphasize that it evaluates the PROCESS of reasoning across stages (not just the final patch or individual localization), and that it trains a reward model to guide search (unlike RGFL which is a one-shot ranker).
+
+3. **Address Agent-RRM overlap**: Acknowledge that general agent reasoning evaluation exists and argue that code repair's verifiable intermediate claims (via test execution) provide a domain-specific advantage for training supervision that general-purpose reasoning evaluation lacks.
+
+4. **Fix compute budget**: Either reduce N in best-of-N (use N=3 instead of N=5), evaluate on fewer instances (e.g., the same 100 used by SWE-Shepherd), or account for using API-based trajectory generation (shifting cost from GPU to API budget). Be explicit about what generates trajectories.
+
+5. **Add a small pilot or theoretical grounding**: The reasoning quality stability claim is the paper's key theoretical contribution but is unargued. At minimum, add a formal argument: e.g., if reasoning quality Q is a property of the reasoning chain independent of future actions, then Var(Q|trajectory_prefix) < Var(utility|trajectory_prefix). Or describe a small-scale pilot (50 trajectories) comparing inter-annotator agreement for reasoning quality vs. action utility labels.
+
+6. **Address the LLM-judge circularity**: If LLM-judge labels are validated against test outcomes, and DiagPRM is trained on these labels, then DiagPRM may just be learning a noisy proxy for outcome rewards. Explain why this proxy is better than direct outcome reward (e.g., the decomposition into stages provides localized error signal even when the overall outcome is incorrect).
+
+### Round 3 review
+Verdict: revise
+Issues: ["MISSING CITATION: SWE-PRM / 'When Agents Go Astray' (arXiv:2509.02360, Sept 2025, IBM Research) is the first PRM applied to SWE agents (40%→50.6% on SWE-bench Verified). While prompt-based and behaviorally focused (not trained, not reasoning-quality-focused), it establishes the PRM-for-SWE-agents paradigm and must be cited and differentiated.", "MISSING CITATION: CodeTracer (arXiv:2604.11641, April 2026) performs stage-level failure onset localization with error chain diagnosis across five workflow stages. Though not a reward model, it directly shares DiagPRM's motivation of stage-level diagnostic analysis and is concurrent work requiring explicit positioning.", "DATE ERROR: Agent-RLVR (arXiv:2506.11425) is from June 2025, not June 2026. ArXiv IDs use YYMM format, so 2506 = 2025-06.", "STATISTICAL POWER CONCERN: Evaluating on only 100 SWE-bench Verified instances with N=5 may yield statistically insignificant differences vs. SWE-RM, especially given the 8B vs. 30B model size gap. The proposal should discuss expected effect size and statistical significance testing (e.g., bootstrap confidence intervals).", "LLM-JUDGE RELIABILITY NOT FULLY ADDRESSED: Literature shows 10-20%+ error rates on nuanced code reasoning judgments with systematic biases (position, verbosity). The pilot study helps but 50 trajectories (150 steps) may be too small to reliably estimate inter-annotator kappa for a multi-dimensional construct like 'diagnostic reasoning quality.' Consider 100+ trajectories for the pilot or adopting ThinkPRM-style generative verification."]
+Feedback: The revision is strong and addresses Round 2 feedback comprehensively. The remaining issues are minor but need fixing:
+
+1. **Add SWE-PRM citation**: Cite arXiv:2509.02360 in the landscape section. Differentiate: SWE-PRM uses prompt-based behavioral pattern detection (looping, drift, redundancy) without training, while DiagPRM trains a reward model scoring cognitive diagnostic reasoning quality. They are complementary: SWE-PRM monitors process efficiency, DiagPRM evaluates reasoning soundness.
+
+2. **Add CodeTracer citation**: Cite arXiv:2604.11641. Differentiate: CodeTracer is a post-hoc diagnostic analysis tool producing failure labels for human consumption, while DiagPRM produces per-stage reward scores for search guidance and RL training.
+
+3. **Fix Agent-RLVR date**: June 2025, not 2026.
+
+4. **Strengthen statistical methodology**: For the 100-instance SWE-bench evaluation, commit to bootstrap confidence intervals (1000 resamples) and report whether DiagPRM vs. SWE-RM differences are statistically significant. If expected effect size is small (2-5%), acknowledge this and emphasize the qualitative contribution (localized credit assignment enabling targeted resampling at failing stages, not just N selection).
+
+5. **Consider larger pilot**: 50 trajectories for pilot may be underpowered for estimating kappa reliably. If feasible, 100 trajectories (300 steps) would give more confident inter-annotator statistics.
+
+The idea is close to passing—address these citations and the statistical power concern, and it should be publication-ready for EMNLP 2026 Findings.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "781aa322-9a96-442a-b17b-cec819118998",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T18:43:06.268Z_
+
+```json
+{
+  "parentUuid": "781aa322-9a96-442a-b17b-cec819118998",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "442a841b-e4e0-4d6e-8f08-51d1c6363136",
+  "timestamp": "2026-05-10T18:43:06.268Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T18:43:06.268Z_
+
+```json
+{
+  "parentUuid": "442a841b-e4e0-4d6e-8f08-51d1c6363136",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "149daa51-546c-42a4-9bf1-026ed85bf3b4",
+  "timestamp": "2026-05-10T18:43:06.268Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "149daa51-546c-42a4-9bf1-026ed85bf3b4",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Stage-level diagnostic reasoning rewards for code repair",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T18:43:17.961Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea - DiagPRM: Stage-Level Diagnostic Reasoning Rewards for Code Repair Search. This is Round 4 of review, and the previous rounds have been "revise" with increasingly minor issues. Let me conduct an independent, thorough review.
+
+Let me first understand the key claims:
+1. Existing reward models for code repair operate at trajectory-level (SWE-RM) or patch-level (R4P), missing step-level diagnostic reasoning
+2. Step-level action-utility PRMs (SWE-Shepherd) suffer credit assignment noise
+
+
+3. DiagPRM targets diagnostic reasoning quality across three cognitive stages as a lower-variance alternative
+4. The approach uses SWE-smith trajectories with LLM-judge annotations for training
+5. Evaluation spans SWE-bench Verified (100 instances) and DebugBench (1000 instances)
+
+Now I need to verify the core claims: whether the cited papers are real and accurately described, if the competitive landscape is complete, whether the novelty holds up, if the resource requirements are feasible within the 200 H100-hour and 16-day constraints, and whether this meets EMNLP standards.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "149daa51-546c-42a4-9bf1-026ed85bf3b4",
+  "isSidechain": false,
+  "requestId": "req_011CauP3cRZ7ekCG8zeZTNzs",
+  "type": "assistant",
+  "uuid": "215bfd0e-a1d8-42a5-9422-0b450aa288bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWJM13sBFqBYJizzvBiLuA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18522,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 877,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18522,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 877,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 18522,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18522
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T18:43:17.963Z_
+
+I'll conduct an independent verification of this idea's claims. Let me search for the key papers, competitors, and SOTA in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "215bfd0e-a1d8-42a5-9422-0b450aa288bb",
+  "isSidechain": false,
+  "requestId": "req_011CauP3cRZ7ekCG8zeZTNzs",
+  "type": "assistant",
+  "uuid": "cd1cf056-bab5-446a-8e8e-ad45a46b53de",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWJM13sBFqBYJizzvBiLuA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18522,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 877,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18522,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 877,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 18522,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18522
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T18:43:29.168Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_017jjkxXiRP4zYCdsjagEUHy`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify SWE-PRM, SWE-RM, SWE-Shepherd papers",
+  "prompt": "You are helping verify ML paper citations. Use WebSearch and WebFetch to verify these three papers exist and are correctly characterized:\n\n1. **SWE-PRM / \"When Agents Go Astray\"** (arXiv:2509.02360, Sept 2025, IBM Research) — claimed: first PRM for SWE agents, prompt-based behavioral pattern detection (looping, drift, redundancy), 40%→50.6% on SWE-bench Verified. NOT a trained model.\n\n2. **SWE-RM** (arXiv:2512.21919, Dec 2025, Qwen team) — claimed: 30B MoE reward model (3B active), trained on ~100K trajectories, binary whole-trajectory scoring, 51.6→62.0% (Flash) and 67.0→74.6% (Max) on SWE-bench Verified via best-of-N.\n\n3. **SWE-Shepherd** (arXiv:2604.10493, April 2026) — claimed: step-level action-utility PRMs for SWE agents, achieves only 51% vs. 57% greedy baseline on 100 SWE-bench Verified tasks.\n\nFor each paper:\n- Search for its arXiv ID and title\n- Verify the key claims (scores, methods, dates)\n- Report any discrepancies\n\nAlso search for: \"SWE-bench Verified SOTA 2026\" and \"reward model SWE-bench 2026\" to find any additional competitors not mentioned.\n\nReport concisely: for each paper, state whether it exists and if the characterization is accurate. List any competitors found that are not in the idea's landscape.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd1cf056-bab5-446a-8e8e-ad45a46b53de",
+  "isSidechain": false,
+  "requestId": "req_011CauP3cRZ7ekCG8zeZTNzs",
+  "type": "assistant",
+  "uuid": "587493a2-2ff9-4a31-83f1-7d3f32ec6ad4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWJM13sBFqBYJizzvBiLuA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18522,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 877,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18522,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 877,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 18522,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18522
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T18:43:29.177Z_
+
+<details><summary>↩ Tool result · `toolu_017jjkxXiRP4zYCdsjagEUHy`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a4eb21958785d9238 (internal ID - do not mention to user. Use SendMessage with to: 'a4eb21958785d9238' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-/e48a7609-5e29-4d47-9bd4-04d751de1c24/tasks/a4eb21958785d9238.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "587493a2-2ff9-4a31-83f1-7d3f32ec6ad4",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "92bfb93f-2021-442e-9ad4-bc8631e4987f",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a4eb21958785d9238",
+    "description": "Verify SWE-PRM, SWE-RM, SWE-Shepherd papers",
+    "prompt": "You are helping verify ML paper citations. Use WebSearch and WebFetch to verify these three papers exist and are correctly characterized:\n\n1. **SWE-PRM / \"When Agents Go Astray\"** (arXiv:2509.02360, Sept 2025, IBM Research) — claimed: first PRM for SWE agents, prompt-based behavioral pattern detection (looping, drift, redundancy), 40%→50.6% on SWE-bench Verified. NOT a trained model.\n\n2. **SWE-RM** (arXiv:2512.21919, Dec 2025, Qwen team) — claimed: 30B MoE reward model (3B active), trained on ~100K trajectories, binary whole-trajectory scoring, 51.6→62.0% (Flash) and 67.0→74.6% (Max) on SWE-bench Verified via best-of-N.\n\n3. **SWE-Shepherd** (arXiv:2604.10493, April 2026) — claimed: step-level action-utility PRMs for SWE agents, achieves only 51% vs. 57% greedy baseline on 100 SWE-bench Verified tasks.\n\nFor each paper:\n- Search for its arXiv ID and title\n- Verify the key claims (scores, methods, dates)\n- Report any discrepancies\n\nAlso search for: \"SWE-bench Verified SOTA 2026\" and \"reward model SWE-bench 2026\" to find any additional competitors not mentioned.\n\nReport concisely: for each paper, state whether it exists and if the characterization is accurate. List any competitors found that are not in the idea's landscape.",
+    "outputFile": "/tmp/claude-1000/-/e48a7609-5e29-4d47-9bd4-04d751de1c24/tasks/a4eb21958785d9238.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "587493a2-2ff9-4a31-83f1-7d3f32ec6ad4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-10T18:43:41.749Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01PxQsWqBZ2uW5ypsiZ5AxmJ`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify R4P, RGFL, CodeTracer, ORPS papers",
+  "prompt": "You are helping verify ML paper citations. Use WebSearch and WebFetch to verify these papers exist and are correctly characterized:\n\n1. **R4P / Patch Reasoner** (arXiv:2510.22775, Oct 2025) — claimed: frames patch verification as reasoning via group-wise RL, 72.2% accuracy surpassing o3, 50× faster than testing.\n\n2. **RGFL** (arXiv:2601.18044, Jan 2026) — claimed: generates structured per-candidate reasoning explanations for fault localization, 85% Hit@1 on SWE-bench Verified. One-shot ranker, not reward model.\n\n3. **CodeTracer** (arXiv:2604.11641, April 2026) — claimed: constructs hierarchical trace trees of agent execution, failure onset localization across five mechanical workflow stages, 46–48% F1 on CodeTraceBench (4,316 trajectories). Post-hoc diagnostic tool, not reward model.\n\n4. **ORPS** (ICML 2025, arXiv:2412.15118) — claimed: execution-grounded process rewards without trained PRMs, requires execution at every search tree node, 26.9% correctness gain, targets code generation not repair.\n\n5. **Agent-RRM** (arXiv:2601.22154, Jan 2026) — claimed: decomposed trajectory judgments for general agent tasks (GAIA, WebWalkerQA), not specialized for code repair.\n\nFor each paper, search for its arXiv ID and title, verify key claims. Report concisely whether each exists and if characterization is accurate.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "92bfb93f-2021-442e-9ad4-bc8631e4987f",
+  "isSidechain": false,
+  "requestId": "req_011CauP5JDz7U7SvTD3p6Qd5",
+  "type": "assistant",
+  "uuid": "cb0f6ff7-913b-44f4-b9ff-e8df23e27a95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hg3oBZ3fxn54EjKaKw1VaU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1111,
+      "cache_read_input_tokens": 30326,
+      "output_tokens": 512,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1111,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 512,
+          "cache_read_input_tokens": 30326,
+          "cache_creation_input_tokens": 1111,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1111
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-10T18:43:41.762Z_
+
+<details><summary>↩ Tool result · `toolu_01PxQsWqBZ2uW5ypsiZ5AxmJ`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a5bffa5f8e3959fd1 (internal ID - do not mention to user. Use SendMessage with to: 'a5bffa5f8e3959fd1' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-/e48a7609-5e29-4d47-9bd4-04d751de1c24/tasks/a5bffa5f8e3959fd1.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cb0f6ff7-913b-44f4-b9ff-e8df23e27a95",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "e208a546-6782-4e50-9693-0a8e6290902a",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a5bffa5f8e3959fd1",
+    "description": "Verify R4P, RGFL, CodeTracer, ORPS papers",
+    "prompt": "You are helping verify ML paper citations. Use WebSearch and WebFetch to verify these papers exist and are correctly characterized:\n\n1. **R4P / Patch Reasoner** (arXiv:2510.22775, Oct 2025) — claimed: frames patch verification as reasoning via group-wise RL, 72.2% accuracy surpassing o3, 50× faster than testing.\n\n2. **RGFL** (arXiv:2601.18044, Jan 2026) — claimed: generates structured per-candidate reasoning explanations for fault localization, 85% Hit@1 on SWE-bench Verified. One-shot ranker, not reward model.\n\n3. **CodeTracer** (arXiv:2604.11641, April 2026) — claimed: constructs hierarchical trace trees of agent execution, failure onset localization across five mechanical workflow stages, 46–48% F1 on CodeTraceBench (4,316 trajectories). Post-hoc diagnostic tool, not reward model.\n\n4. **ORPS** (ICML 2025, arXiv:2412.15118) — claimed: execution-grounded process rewards without trained PRMs, requires execution at every search tree node, 26.9% correctness gain, targets code generation not repair.\n\n5. **Agent-RRM** (arXiv:2601.22154, Jan 2026) — claimed: decomposed trajectory judgments for general agent tasks (GAIA, WebWalkerQA), not specialized for code repair.\n\nFor each paper, search for its arXiv ID and title, verify key claims. Report concisely whether each exists and if characterization is accurate.",
+    "outputFile": "/tmp/claude-1000/-/e48a7609-5e29-4d47-9bd4-04d751de1c24/tasks/a5bffa5f8e3959fd1.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "cb0f6ff7-913b-44f4-b9ff-e8df23e27a95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T18:43:55.247Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01C8j5APsvQUWrAGkXde7fD3`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search for missing competitors and novelty threats",
+  "prompt": "You are helping with an adversarial review of an ML paper idea. Use WebSearch extensively to find competitors that may have been missed.\n\nThe idea is \"DiagPRM\": a stage-level process reward model that evaluates diagnostic reasoning quality in code repair trajectories at three stages (localize, diagnose, patch). It trains a lightweight PRM on LLM-judge annotations.\n\nSearch for these specific things (use 2-3 different queries per topic):\n\n1. **Process reward models for code** — any PRM/ORM applied to code tasks published 2025-2026\n   - \"process reward model code 2025 2026\"\n   - \"PRM code generation repair 2026\"\n   - \"step-level reward code agent\"\n\n2. **Diagnostic reasoning in code repair** — anyone doing stage-level decomposition of repair reasoning\n   - \"diagnostic reasoning code repair 2026\"\n   - \"stage decomposition program repair\"\n   - \"fault localization diagnosis patch reasoning\"\n\n3. **LLM-as-judge for code reasoning** — reliability of LLM judges for code reasoning quality\n   - \"LLM judge code reasoning quality reliability\"\n   - \"LLM annotator code correctness agreement\"\n\n4. **Recent SWE-bench advances** (March-May 2026) — any new methods on SWE-bench Verified\n   - \"SWE-bench Verified 2026 new method\"\n   - \"SWE-bench state of the art May 2026\"\n\n5. **EMNLP 2026 ARR deadline** — verify the May 25, 2026 deadline\n   - \"EMNLP 2026 ARR submission deadline\"\n   - \"ARR 2026 submission cycle May\"\n\nReport all findings concisely. For any potential competitor found, include the paper title, venue, and how it relates to DiagPRM.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e208a546-6782-4e50-9693-0a8e6290902a",
+  "isSidechain": false,
+  "requestId": "req_011CauP6E4jMtyz1pmmoAXkw",
+  "type": "assistant",
+  "uuid": "022822c5-6189-4a67-aaf6-b2162bde8df5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ger7j7aZP9LEH49BKUvzAr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 757,
+      "cache_read_input_tokens": 31437,
+      "output_tokens": 552,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 757,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 552,
+          "cache_read_input_tokens": 31437,
+          "cache_creation_input_tokens": 757,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 757
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-10T18:43:55.256Z_
+
+<details><summary>↩ Tool result · `toolu_01C8j5APsvQUWrAGkXde7fD3`</summary>
+
+```text
+Async agent launched successfully.
+agentId: abb24ab026de1614b (internal ID - do not mention to user. Use SendMessage with to: 'abb24ab026de1614b' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-/e48a7609-5e29-4d47-9bd4-04d751de1c24/tasks/abb24ab026de1614b.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "022822c5-6189-4a67-aaf6-b2162bde8df5",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "828fd98f-4b5d-46af-a325-21eb8b644825",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "abb24ab026de1614b",
+    "description": "Search for missing competitors and novelty threats",
+    "prompt": "You are helping with an adversarial review of an ML paper idea. Use WebSearch extensively to find competitors that may have been missed.\n\nThe idea is \"DiagPRM\": a stage-level process reward model that evaluates diagnostic reasoning quality in code repair trajectories at three stages (localize, diagnose, patch). It trains a lightweight PRM on LLM-judge annotations.\n\nSearch for these specific things (use 2-3 different queries per topic):\n\n1. **Process reward models for code** — any PRM/ORM applied to code tasks published 2025-2026\n   - \"process reward model code 2025 2026\"\n   - \"PRM code generation repair 2026\"\n   - \"step-level reward code agent\"\n\n2. **Diagnostic reasoning in code repair** — anyone doing stage-level decomposition of repair reasoning\n   - \"diagnostic reasoning code repair 2026\"\n   - \"stage decomposition program repair\"\n   - \"fault localization diagnosis patch reasoning\"\n\n3. **LLM-as-judge for code reasoning** — reliability of LLM judges for code reasoning quality\n   - \"LLM judge code reasoning quality reliability\"\n   - \"LLM annotator code correctness agreement\"\n\n4. **Recent SWE-bench advances** (March-May 2026) — any new methods on SWE-bench Verified\n   - \"SWE-bench Verified 2026 new method\"\n   - \"SWE-bench state of the art May 2026\"\n\n5. **EMNLP 2026 ARR deadline** — verify the May 25, 2026 deadline\n   - \"EMNLP 2026 ARR submission deadline\"\n   - \"ARR 2026 submission cycle May\"\n\nReport all findings concisely. For any potential competitor found, include the paper title, venue, and how it relates to DiagPRM.",
+    "outputFile": "/tmp/claude-1000/-/e48a7609-5e29-4d47-9bd4-04d751de1c24/tasks/abb24ab026de1614b.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "022822c5-6189-4a67-aaf6-b2162bde8df5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-10T18:44:07.144Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_011DMQhsNLtCa5PJxPyuXVUy`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify SWE-smith dataset and feasibility claims",
+  "prompt": "You are helping verify feasibility claims for an ML paper idea. Use WebSearch and WebFetch.\n\n1. **SWE-smith dataset**: Search for \"SWE-smith\" and \"Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k\". Verify:\n   - Does this dataset exist on HuggingFace?\n   - Is it publicly available?\n   - What does it contain (trajectories from SWE-agent solving SWE-bench tasks)?\n\n2. **ThinkPRM** (arXiv:2504.16828, April 2025): Verify it demonstrates data-efficient generative PRMs and that \"small amounts of high-quality process labels suffice.\"\n\n3. **FunPRM** (arXiv:2601.22249, Jan 2026): Verify it treats functions as PRM steps for code generation.\n\n4. **Qwen3-8B availability**: Search whether Qwen3-8B model is publicly available for LoRA fine-tuning.\n\n5. **SWE-bench Verified API-based trajectory generation cost**: Search for typical costs of generating SWE-bench trajectories using API-based agents. Is \"$1,500-2,500 for 500 trajectories\" realistic?\n\n6. **DebugBench** (ACL 2024 Findings): Verify it exists and has bug category annotations suitable for the proposed analysis.\n\nReport concisely on each point.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "828fd98f-4b5d-46af-a325-21eb8b644825",
+  "isSidechain": false,
+  "requestId": "req_011CauP7DyYr1Zpp3H6K4RxM",
+  "type": "assistant",
+  "uuid": "5c25ad7b-56bc-46bf-8a32-bc7c90c45a12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SVpS1r64av5u7ojJLtcQbJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 784,
+      "cache_read_input_tokens": 32194,
+      "output_tokens": 466,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 784,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 466,
+          "cache_read_input_tokens": 32194,
+          "cache_creation_input_tokens": 784,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 784
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T18:44:07.155Z_
+
+<details><summary>↩ Tool result · `toolu_011DMQhsNLtCa5PJxPyuXVUy`</summary>
+
+```text
+Async agent launched successfully.
+agentId: ac837ee9baf670bb2 (internal ID - do not mention to user. Use SendMessage with to: 'ac837ee9baf670bb2' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-/e48a7609-5e29-4d47-9bd4-04d751de1c24/tasks/ac837ee9baf670bb2.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5c25ad7b-56bc-46bf-8a32-bc7c90c45a12",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "9d314aaa-9248-456e-84cc-8489c7e66f72",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "ac837ee9baf670bb2",
+    "description": "Verify SWE-smith dataset and feasibility claims",
+    "prompt": "You are helping verify feasibility claims for an ML paper idea. Use WebSearch and WebFetch.\n\n1. **SWE-smith dataset**: Search for \"SWE-smith\" and \"Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k\". Verify:\n   - Does this dataset exist on HuggingFace?\n   - Is it publicly available?\n   - What does it contain (trajectories from SWE-agent solving SWE-bench tasks)?\n\n2. **ThinkPRM** (arXiv:2504.16828, April 2025): Verify it demonstrates data-efficient generative PRMs and that \"small amounts of high-quality process labels suffice.\"\n\n3. **FunPRM** (arXiv:2601.22249, Jan 2026): Verify it treats functions as PRM steps for code generation.\n\n4. **Qwen3-8B availability**: Search whether Qwen3-8B model is publicly available for LoRA fine-tuning.\n\n5. **SWE-bench Verified API-based trajectory generation cost**: Search for typical costs of generating SWE-bench trajectories using API-based agents. Is \"$1,500-2,500 for 500 trajectories\" realistic?\n\n6. **DebugBench** (ACL 2024 Findings): Verify it exists and has bug category annotations suitable for the proposed analysis.\n\nReport concisely on each point.",
+    "outputFile": "/tmp/claude-1000/-/e48a7609-5e29-4d47-9bd4-04d751de1c24/tasks/ac837ee9baf670bb2.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "5c25ad7b-56bc-46bf-8a32-bc7c90c45a12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-10T18:44:12.894Z_
+
+I've launched 4 parallel research agents to independently verify:
+1. Core PRM papers (SWE-PRM, SWE-RM, SWE-Shepherd)
+2. Supporting papers (R4P, RGFL, CodeTracer, ORPS, Agent-RRM)
+3. Missing competitors and novelty threats
+4. Dataset/model availability and feasibility
+
+I'll synthesize findings once they complete.
+
+Now let me also do some direct searches on the most critical verification points.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d314aaa-9248-456e-84cc-8489c7e66f72",
+  "isSidechain": false,
+  "requestId": "req_011CauP86gHWQ6uNmaKx2XtY",
+  "type": "assistant",
+  "uuid": "547496be-5c39-4ffb-8881-6ba4a8b2d35c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nmey3pP6bWN394cSLPtPxG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 699,
+      "cache_read_input_tokens": 32978,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 699,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 32978,
+          "cache_creation_input_tokens": 699,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 699
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-10T18:44:13.444Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Tk7TRhnBNRPrmZkh8fZC3q`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "547496be-5c39-4ffb-8881-6ba4a8b2d35c",
+  "isSidechain": false,
+  "requestId": "req_011CauP86gHWQ6uNmaKx2XtY",
+  "type": "assistant",
+  "uuid": "febc0b1a-188a-40b8-ae57-c4795ac85d43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nmey3pP6bWN394cSLPtPxG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 699,
+      "cache_read_input_tokens": 32978,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 699,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 32978,
+          "cache_creation_input_tokens": 699,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 699
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-10T18:44:13.448Z_
+
+<details><summary>↩ Tool result · `toolu_01Tk7TRhnBNRPrmZkh8fZC3q`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "febc0b1a-188a-40b8-ae57-c4795ac85d43",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "448a3e33-e46e-4f8a-97a5-1d547abcfc2f",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "febc0b1a-188a-40b8-ae57-c4795ac85d43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-10T18:44:16.077Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me do some direct searches while waiting for the agents to complete.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "448a3e33-e46e-4f8a-97a5-1d547abcfc2f",
+  "isSidechain": false,
+  "requestId": "req_011CauP8aSdwepmQHV4ZdrPJ",
+  "type": "assistant",
+  "uuid": "0021dcb7-874f-4080-9cb8-a17368b9d993",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XJfmYEzuKmavSiarJo7ZSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1213,
+      "cache_read_input_tokens": 33677,
+      "output_tokens": 207,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1213,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 207,
+          "cache_read_input_tokens": 33677,
+          "cache_creation_input_tokens": 1213,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1213
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-10T18:44:16.435Z_
+
+Let me do some critical direct searches while the agents work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0021dcb7-874f-4080-9cb8-a17368b9d993",
+  "isSidechain": false,
+  "requestId": "req_011CauP8aSdwepmQHV4ZdrPJ",
+  "type": "assistant",
+  "uuid": "3acc5ff0-fd64-4fa9-a0af-ab5929085789",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XJfmYEzuKmavSiarJo7ZSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1213,
+      "cache_read_input_tokens": 33677,
+      "output_tokens": 207,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1213,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 207,
+          "cache_read_input_tokens": 33677,
+          "cache_creation_input_tokens": 1213,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1213
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-10T18:44:17.502Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01L92ooCaGTizn7BTTgLyrvA`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR submission deadline May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3acc5ff0-fd64-4fa9-a0af-ab5929085789",
+  "isSidechain": false,
+  "requestId": "req_011CauP8aSdwepmQHV4ZdrPJ",
+  "type": "assistant",
+  "uuid": "ffdd7f33-a142-4634-b4b7-ed6cd3a8406b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XJfmYEzuKmavSiarJo7ZSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1213,
+      "cache_read_input_tokens": 33677,
+      "output_tokens": 207,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1213,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 207,
+          "cache_read_input_tokens": 33677,
+          "cache_creation_input_tokens": 1213,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1213
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-10T18:44:17.971Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015FWTvLfzaSjDt686MxvRuz`</summary>
+
+```json
+{
+  "query": "process reward model code repair agent 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ffdd7f33-a142-4634-b4b7-ed6cd3a8406b",
+  "isSidechain": false,
+  "requestId": "req_011CauP8aSdwepmQHV4ZdrPJ",
+  "type": "assistant",
+  "uuid": "43e15fc9-7195-4a77-8a84-f5f512ff5223",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XJfmYEzuKmavSiarJo7ZSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1213,
+      "cache_read_input_tokens": 33677,
+      "output_tokens": 207,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1213,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 207,
+          "cache_read_input_tokens": 33677,
+          "cache_creation_input_tokens": 1213,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1213
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-10T18:44:18.761Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011fsNaqVfm1LTM3SKmqJW2n`</summary>
+
+```json
+{
+  "query": "SWE-bench Verified state of the art reward model 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43e15fc9-7195-4a77-8a84-f5f512ff5223",
+  "isSidechain": false,
+  "requestId": "req_011CauP8aSdwepmQHV4ZdrPJ",
+  "type": "assistant",
+  "uuid": "86a06d42-2bee-4c03-8539-13e1b2c8d460",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XJfmYEzuKmavSiarJo7ZSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1213,
+      "cache_read_input_tokens": 33677,
+      "output_tokens": 207,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1213,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 207,
+          "cache_read_input_tokens": 33677,
+          "cache_creation_input_tokens": 1213,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1213
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "86a06d42-2bee-4c03-8539-13e1b2c8d460",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Stage-level diagnostic reasoning rewards for code repair",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-10T18:44:21.809Z_
+
+<details><summary>↩ Tool result · `toolu_01L92ooCaGTizn7BTTgLyrvA`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR submission deadline May 2026"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"}]
+
+Based on the search results, here's the key information about the EMNLP 2026 ARR submission deadline in May 2026:
+
+## ARR Submission Deadline
+
+The ARR Submission Deadline for EMNLP 2026 is May 25, 2026.
+
+## Additional Important Dates
+
+The reviewer registration deadline for all authors is May 27, 2026.
+
+## Special Policy for May 2026 Submissions
+
+Given that the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors will need to explicitly declare which conference they intend to commit to at submission time. This choice will be binding for EMNLP 2026: i.e., ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.
+
+This is an important distinction for papers submitted in May 2026 - authors must specify EMNLP 2026 as their intended venue during submission if they want to have the option to commit to EMNLP later.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ffdd7f33-a142-4634-b4b7-ed6cd3a8406b",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "f8581c5e-d8fa-476d-9fd1-a7c1f9d06954",
+  "toolUseResult": {
+    "query": "EMNLP 2026 ARR submission deadline May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Adna9hyJHbascrc8Mb1fNh",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 (@emnlpmeeting) / Posts / X",
+            "url": "https://x.com/emnlpmeeting?lang=en"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          }
+        ]
+      },
+      "Based on the search results, here's the key information about the EMNLP 2026 ARR submission deadline in May 2026:\n\n## ARR Submission Deadline\n\nThe ARR Submission Deadline for EMNLP 2026 is May 25, 2026.\n\n## Additional Important Dates\n\nThe reviewer registration deadline for all authors is May 27, 2026.\n\n## Special Policy for May 2026 Submissions\n\nGiven that the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors will need to explicitly declare which conference they intend to commit to at submission time. This choice will be binding for EMNLP 2026: i.e., ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.\n\nThis is an important distinction for papers submitted in May 2026 - authors must specify EMNLP 2026 as their intended venue during submission if they want to have the option to commit to EMNLP later."
+    ],
+    "durationSeconds": 4.304401932000008
+  },
+  "sourceToolAssistantUUID": "ffdd7f33-a142-4634-b4b7-ed6cd3a8406b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-10T18:44:24.688Z_
+
+<details><summary>↩ Tool result · `toolu_011fsNaqVfm1LTM3SKmqJW2n`</summary>
+
+```text
+Web search results for query: "SWE-bench Verified state of the art reward model 2026"
+
+Links: [{"title":"SWE-bench Verified Benchmark 2026: 44 LLM scores | BenchLM.ai","url":"https://benchlm.ai/benchmarks/sweVerified"},{"title":"SWE-bench Verified | Epoch AI","url":"https://epoch.ai/benchmarks/swe-bench-verified"},{"title":"SWE-bench Verified","url":"https://www.vals.ai/benchmarks/swebench"},{"title":"SWE-bench Verified","url":"https://www.swebench.com/verified.html"},{"title":"SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean","url":"https://www.codeant.ai/blogs/swe-bench-scores"},{"title":"SWE-Bench Verified Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/swe-bench-verified"},{"title":"GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub","url":"https://github.com/swe-bench/SWE-bench"},{"title":"SWE-Bench 2026: Claude 77.2% vs GPT-5 74.9% | Full Leaderboard | Local AI Master","url":"https://localaimaster.com/models/swe-bench-explained-ai-benchmarks"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"SWE-bench February 2026 leaderboard update","url":"https://simonwillison.net/2026/Feb/19/swe-bench/"}]
+
+Based on the search results, here's what I found about the SWE-bench Verified state of the art in 2026:
+
+## Current State of the Art
+
+As of May 7, 2026, Claude Mythos Preview leads the SWE-bench Verified leaderboard with 93.9%, followed by Claude Opus 4.7 (Adaptive) (87.6%) and GPT-5.3 Codex (85%).
+
+## About SWE-bench Verified
+
+SWE-bench Verified is a curated, human-verified subset of SWE-bench that tests models on resolving real GitHub issues from popular open-source Python repositories like Django, Flask, and scikit-learn. SWE-bench Verified is the gold standard for evaluating AI coding agents on real-world software engineering tasks, where each task requires understanding codebases, writing patches, and passing test suites.
+
+## Important Context on Benchmark Validity
+
+It's worth noting that OpenAI stopped reporting Verified scores in early 2026 and now recommends SWE-bench Pro instead, with Claude Opus 4.5 scoring 80.9% on SWE-bench Verified but only 45.9% on SWE-bench Pro. This significant performance gap suggests that the Verified benchmark may have data contamination issues where models have seen the training data during their training process.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86a06d42-2bee-4c03-8539-13e1b2c8d460",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "1ef3649d-d794-4049-b7b7-41cdbf32d6a2",
+  "toolUseResult": {
+    "query": "SWE-bench Verified state of the art reward model 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LKasKvTe8j81YFdSr2zHeV",
+        "content": [
+          {
+            "title": "SWE-bench Verified Benchmark 2026: 44 LLM scores | BenchLM.ai",
+            "url": "https://benchlm.ai/benchmarks/sweVerified"
+          },
+          {
+            "title": "SWE-bench Verified | Epoch AI",
+            "url": "https://epoch.ai/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.vals.ai/benchmarks/swebench"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.swebench.com/verified.html"
+          },
+          {
+            "title": "SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean",
+            "url": "https://www.codeant.ai/blogs/swe-bench-scores"
+          },
+          {
+            "title": "SWE-Bench Verified Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub",
+            "url": "https://github.com/swe-bench/SWE-bench"
+          },
+          {
+            "title": "SWE-Bench 2026: Claude 77.2% vs GPT-5 74.9% | Full Leaderboard | Local AI Master",
+            "url": "https://localaimaster.com/models/swe-bench-explained-ai-benchmarks"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "SWE-bench February 2026 leaderboard update",
+            "url": "https://simonwillison.net/2026/Feb/19/swe-bench/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the SWE-bench Verified state of the art in 2026:\n\n## Current State of the Art\n\nAs of May 7, 2026, Claude Mythos Preview leads the SWE-bench Verified leaderboard with 93.9%, followed by Claude Opus 4.7 (Adaptive) (87.6%) and GPT-5.3 Codex (85%).\n\n## About SWE-bench Verified\n\nSWE-bench Verified is a curated, human-verified subset of SWE-bench that tests models on resolving real GitHub issues from popular open-source Python repositories like Django, Flask, and scikit-learn. SWE-bench Verified is the gold standard for evaluating AI coding agents on real-world software engineering tasks, where each task requires understanding codebases, writing patches, and passing test suites.\n\n## Important Context on Benchmark Validity\n\nIt's worth noting that OpenAI stopped reporting Verified scores in early 2026 and now recommends SWE-bench Pro instead, with Claude Opus 4.5 scoring 80.9% on SWE-bench Verified but only 45.9% on SWE-bench Pro. This significant performance gap suggests that the Verified benchmark may have data contamination issues where models have seen the training data during their training process."
+    ],
+    "durationSeconds": 5.92526557100001
+  },
+  "sourceToolAssistantUUID": "86a06d42-2bee-4c03-8539-13e1b2c8d460",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-10T18:44:26.128Z_
+
+<details><summary>↩ Tool result · `toolu_015FWTvLfzaSjDt686MxvRuz`</summary>
+
+```text
+Web search results for query: "process reward model code repair agent 2026 arxiv"
+
+Links: [{"title":"GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub","url":"https://github.com/VoltAgent/awesome-ai-agent-papers"},{"title":"[2502.10325] Process Reward Models for LLM Agents: Practical Framework and Directions","url":"https://arxiv.org/abs/2502.10325"},{"title":"Process Reward Models for LLM Agents: Practical Framework and Directions","url":"https://arxiv.org/html/2502.10325v1"},{"title":"[2511.08325] AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress","url":"https://arxiv.org/abs/2511.08325"},{"title":"FunPRM: Function-as-Step Process Reward Model with Meta Reward Correction for Code Generation","url":"https://arxiv.org/html/2601.22249v1"},{"title":"Agentic Reinforcement Learning for Real-World Code Repair","url":"https://arxiv.org/html/2510.22075"},{"title":"[2601.22249] FunPRM: Function-as-Step Process Reward Model with Meta Reward Correction for Code Generation","url":"https://arxiv.org/abs/2601.22249"},{"title":"[2601.12294] ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents","url":"https://arxiv.org/abs/2601.12294"},{"title":"[2604.09482] Process Reward Agents for Steering Knowledge-Intensive Reasoning","url":"https://arxiv.org/abs/2604.09482"},{"title":"GitHub - RyanLiu112/Awesome-Process-Reward-Models: A comprehensive collection of process reward models. · GitHub","url":"https://github.com/RyanLiu112/Awesome-Process-Reward-Models"}]
+
+Based on the search results, here are the key papers and resources related to process reward models, code repair agents, and related work from 2026:
+
+## Process Reward Models for Code Generation and Repair
+
+Code generation is a core application of large language models (LLMs), and test-time scaling approaches such as Process Reward Model (PRM)-based Best-of-N selection offer a promising way to improve performance.
+
+**FunPRM** is a recent 2026 paper that addresses code generation specifically. FunPRM prompts LLMs to encourage modular code generation organized into functions, with functions treated as PRM reasoning steps, and introduces a novel meta-learning-based reward correction mechanism that leverages clean final-solution rewards obtained via a unit-test-based evaluation system to purify noisy partial-solution rewards.
+
+## Agent Process Reward Models
+
+Agent Process Reward Models (AgentPRM) is a simple and scalable framework for training LLM agents to continually improve through interactions, following a lightweight actor-critic paradigm and using Monte Carlo rollouts to compute reward targets and optimize policies. Small 3B models trained with AgentPRM outperform strong GPT-4o baselines.
+
+## Code Repair with Reinforcement Learning
+
+Research shows that initial LLMs behaved like novice developers applying recipe-based fixes, whereas RL-trained agents demonstrated behaviors akin to experienced engineers who identified root causes and invoked surgical tools.
+
+## Related Benchmark Work
+
+ToolPRMBench is a large-scale benchmark specifically designed to evaluate PRMs for tool-using agents, built on top of several representative tool-using benchmarks and converts agent trajectories into step-level test cases.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "43e15fc9-7195-4a77-8a84-f5f512ff5223",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "33d45954-56b3-4f3c-b070-d79dbcfe3fe8",
+  "toolUseResult": {
+    "query": "process reward model code repair agent 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Hp7MRdAYng9CENsKG23znK",
+        "content": [
+          {
+            "title": "GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub",
+            "url": "https://github.com/VoltAgent/awesome-ai-agent-papers"
+          },
+          {
+            "title": "[2502.10325] Process Reward Models for LLM Agents: Practical Framework and Directions",
+            "url": "https://arxiv.org/abs/2502.10325"
+          },
+          {
+            "title": "Process Reward Models for LLM Agents: Practical Framework and Directions",
+            "url": "https://arxiv.org/html/2502.10325v1"
+          },
+          {
+            "title": "[2511.08325] AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress",
+            "url": "https://arxiv.org/abs/2511.08325"
+          },
+          {
+            "title": "FunPRM: Function-as-Step Process Reward Model with Meta Reward Correction for Code Generation",
+            "url": "https://arxiv.org/html/2601.22249v1"
+          },
+          {
+            "title": "Agentic Reinforcement Learning for Real-World Code Repair",
+            "url": "https://arxiv.org/html/2510.22075"
+          },
+          {
+            "title": "[2601.22249] FunPRM: Function-as-Step Process Reward Model with Meta Reward Correction for Code Generation",
+            "url": "https://arxiv.org/abs/2601.22249"
+          },
+          {
+            "title": "[2601.12294] ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents",
+            "url": "https://arxiv.org/abs/2601.12294"
+          },
+          {
+            "title": "[2604.09482] Process Reward Agents for Steering Knowledge-Intensive Reasoning",
+            "url": "https://arxiv.org/abs/2604.09482"
+          },
+          {
+            "title": "GitHub - RyanLiu112/Awesome-Process-Reward-Models: A comprehensive collection of process reward models. · GitHub",
+            "url": "https://github.com/RyanLiu112/Awesome-Process-Reward-Models"
+          }
+        ]
+      },
+      "Based on the search results, here are the key papers and resources related to process reward models, code repair agents, and related work from 2026:\n\n## Process Reward Models for Code Generation and Repair\n\nCode generation is a core application of large language models (LLMs), and test-time scaling approaches such as Process Reward Model (PRM)-based Best-of-N selection offer a promising way to improve performance.\n\n**FunPRM** is a recent 2026 paper that addresses code generation specifically. FunPRM prompts LLMs to encourage modular code generation organized into functions, with functions treated as PRM reasoning steps, and introduces a novel meta-learning-based reward correction mechanism that leverages clean final-solution rewards obtained via a unit-test-based evaluation system to purify noisy partial-solution rewards.\n\n## Agent Process Reward Models\n\nAgent Process Reward Models (AgentPRM) is a simple and scalable framework for training LLM agents to continually improve through interactions, following a lightweight actor-critic paradigm and using Monte Carlo rollouts to compute reward targets and optimize policies. Small 3B models trained with AgentPRM outperform strong GPT-4o baselines.\n\n## Code Repair with Reinforcement Learning\n\nResearch shows that initial LLMs behaved like novice developers applying recipe-based fixes, whereas RL-trained agents demonstrated behaviors akin to experienced engineers who identified root causes and invoked surgical tools.\n\n## Related Benchmark Work\n\nToolPRMBench is a large-scale benchmark specifically designed to evaluate PRMs for tool-using agents, built on top of several representative tool-using benchmarks and converts agent trajectories into step-level test cases."
+    ],
+    "durationSeconds": 8.155109326999998
+  },
+  "sourceToolAssistantUUID": "43e15fc9-7195-4a77-8a84-f5f512ff5223",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-10T18:44:26.133Z_
+
+```json
+{
+  "parentUuid": "33d45954-56b3-4f3c-b070-d79dbcfe3fe8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f8b15a80-1f59-450c-b0f4-a3884d0fc785",
+  "timestamp": "2026-05-10T18:44:26.133Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-10T18:44:32.777Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, key findings so far:
+1. EMNLP 2026 ARR deadline is confirmed as May 25, 2026 ✓
+2. SWE-bench Verified SOTA is now very high (93.9% for Claude Mythos Preview). This is important context - the benchmark may be saturating.
+3. Found some additional PRM papers: ToolPRMBench (2601.12294), Process Reward Agents for Knowledge-Intensive Reasoning (2604.09482)
+
+
+4. Now I'm looking into the competitive landscape and potential limitations of these approaches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8b15a80-1f59-450c-b0f4-a3884d0fc785",
+  "isSidechain": false,
+  "requestId": "req_011CauP9VeSJvWNvYNL4q67z",
+  "type": "assistant",
+  "uuid": "65c06356-d790-408f-a4d5-7a5b83697e1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R3RDxLwhH1QNxVAW7pCb3E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 808,
+      "cache_creation_input_tokens": 2065,
+      "cache_read_input_tokens": 34890,
+      "output_tokens": 327,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2065,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 808,
+          "output_tokens": 327,
+          "cache_read_input_tokens": 34890,
+          "cache_creation_input_tokens": 2065,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2065
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-10T18:44:32.788Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TMWnK8qTva1dZru7zcuMig`</summary>
+
+```json
+{
+  "query": "SWE-TRACE rubric PRM SWE-bench arXiv 2604.14820"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65c06356-d790-408f-a4d5-7a5b83697e1d",
+  "isSidechain": false,
+  "requestId": "req_011CauP9VeSJvWNvYNL4q67z",
+  "type": "assistant",
+  "uuid": "5a69f925-516e-4507-83fd-c2663f45446a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R3RDxLwhH1QNxVAW7pCb3E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 808,
+      "cache_creation_input_tokens": 2065,
+      "cache_read_input_tokens": 34890,
+      "output_tokens": 327,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2065,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 808,
+          "output_tokens": 327,
+          "cache_read_input_tokens": 34890,
+          "cache_creation_input_tokens": 2065,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2065
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-10T18:44:33.261Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TgQWiGHxXGGjAqo4PQfPZP`</summary>
+
+```json
+{
+  "query": "\"diagnostic reasoning\" \"code repair\" OR \"program repair\" stage decomposition 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a69f925-516e-4507-83fd-c2663f45446a",
+  "isSidechain": false,
+  "requestId": "req_011CauP9VeSJvWNvYNL4q67z",
+  "type": "assistant",
+  "uuid": "e4bd88e2-e34e-4be5-8bd5-0effb9f21b32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R3RDxLwhH1QNxVAW7pCb3E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 808,
+      "cache_creation_input_tokens": 2065,
+      "cache_read_input_tokens": 34890,
+      "output_tokens": 327,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2065,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 808,
+          "output_tokens": 327,
+          "cache_read_input_tokens": 34890,
+          "cache_creation_input_tokens": 2065,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2065
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-10T18:44:34.006Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Wr4WU6dWApjgqwzNCk9fE5`</summary>
+
+```json
+{
+  "query": "LLM judge code reasoning reliability agreement kappa 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4bd88e2-e34e-4be5-8bd5-0effb9f21b32",
+  "isSidechain": false,
+  "requestId": "req_011CauP9VeSJvWNvYNL4q67z",
+  "type": "assistant",
+  "uuid": "f2d4a765-7c47-4f55-924e-33efe684d020",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R3RDxLwhH1QNxVAW7pCb3E",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 808,
+      "cache_creation_input_tokens": 2065,
+      "cache_read_input_tokens": 34890,
+      "output_tokens": 327,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2065,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 808,
+          "output_tokens": 327,
+          "cache_read_input_tokens": 34890,
+          "cache_creation_input_tokens": 2065,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2065
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-10T18:44:39.969Z_
+
+<details><summary>↩ Tool result · `toolu_01TMWnK8qTva1dZru7zcuMig`</summary>
+
+```text
+Web search results for query: "SWE-TRACE rubric PRM SWE-bench arXiv 2604.14820"
+
+Links: [{"title":"[2604.14820] SWE-TRACE: Optimizing Long-Horizon SWE Agents Through Rubric Process Reward Models and Heuristic Test-Time Scaling","url":"https://arxiv.org/abs/2604.14820"},{"title":"SWE-TRACE: Optimizing Long-Horizon SWE Agents through Rubric Process Reward Models and Heuristic Test-Time Scaling","url":"https://arxiv.org/html/2604.14820"},{"title":"Introducing SWE-bench Verified | OpenAI","url":"https://openai.com/index/introducing-swe-bench-verified/"},{"title":"SWE-Bench++: A Framework for the Scalable Generation of Software Engineering Benchmarks from Open-Source Repositories","url":"https://arxiv.org/html/2512.17419v1"},{"title":"[2310.06770] SWE-bench: Can Language Models Resolve Real-World GitHub Issues?","url":"https://arxiv.org/abs/2310.06770"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"SWE-Shepherd: Advancing PRMs for Reinforcing Code Agents","url":"https://arxiv.org/html/2604.10493"},{"title":"Published as a conference paper at ICLR 2024 SWE-BENCH:","url":"https://arxiv.org/pdf/2310.06770"},{"title":"SWE-bench: Can Language Models Resolve Real-world Github Issues? | OpenReview","url":"https://openreview.net/forum?id=VTF8yNQM66"},{"title":"GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub","url":"https://github.com/swe-bench/SWE-bench"}]
+
+I found the paper you're looking for. Here's what I found:
+
+SWE-TRACE (Trajectory Reduction and Agentic Criteria Evaluation) is a unified framework optimizing the SWE agent lifecycle across data curation, reinforcement learning (RL), and test-time inference.
+
+The key components of SWE-TRACE include:
+
+1. **Data Curation**: An LLM multi-task cascading method utilizing stepwise oracle verification to distill a 60K-instance Supervised Fine-Tuning (SFT) corpus strictly biased toward token-efficient, shortest-path trajectories.
+
+2. **Process Reward Model (PRM)**: A MemoryAugmented Agentic RL pipeline featuring a Rubric-Based Process Reward Model (PRM), where an auxiliary Rubric-Agent provides dense, fine-grained heuristic feedback on intermediate steps, guiding the model through long-horizon tasks.
+
+3. **Test-Time Scaling**: The PRM is repurposed for heuristic-guided Test-Time Scaling (TTS), dynamically evaluating and pruning action candidates at each step to achieve superior search efficiency without the latency overhead of standard parallel sampling.
+
+Extensive experiments on standard SWE benchmarks demonstrate that SWE-TRACE significantly advances the state-of-the-art, maximizing resolution rates while drastically reducing both token consumption and inference latency.
+
+The paper was submitted to arXiv on April 16, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5a69f925-516e-4507-83fd-c2663f45446a",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "a3e1b802-3cca-4e24-bc99-72861827f42e",
+  "toolUseResult": {
+    "query": "SWE-TRACE rubric PRM SWE-bench arXiv 2604.14820",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01G5aEG7vvGguy8P4rJY8efG",
+        "content": [
+          {
+            "title": "[2604.14820] SWE-TRACE: Optimizing Long-Horizon SWE Agents Through Rubric Process Reward Models and Heuristic Test-Time Scaling",
+            "url": "https://arxiv.org/abs/2604.14820"
+          },
+          {
+            "title": "SWE-TRACE: Optimizing Long-Horizon SWE Agents through Rubric Process Reward Models and Heuristic Test-Time Scaling",
+            "url": "https://arxiv.org/html/2604.14820"
+          },
+          {
+            "title": "Introducing SWE-bench Verified | OpenAI",
+            "url": "https://openai.com/index/introducing-swe-bench-verified/"
+          },
+          {
+            "title": "SWE-Bench++: A Framework for the Scalable Generation of Software Engineering Benchmarks from Open-Source Repositories",
+            "url": "https://arxiv.org/html/2512.17419v1"
+          },
+          {
+            "title": "[2310.06770] SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
+            "url": "https://arxiv.org/abs/2310.06770"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "SWE-Shepherd: Advancing PRMs for Reinforcing Code Agents",
+            "url": "https://arxiv.org/html/2604.10493"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2024 SWE-BENCH:",
+            "url": "https://arxiv.org/pdf/2310.06770"
+          },
+          {
+            "title": "SWE-bench: Can Language Models Resolve Real-world Github Issues? | OpenReview",
+            "url": "https://openreview.net/forum?id=VTF8yNQM66"
+          },
+          {
+            "title": "GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub",
+            "url": "https://github.com/swe-bench/SWE-bench"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's what I found:\n\nSWE-TRACE (Trajectory Reduction and Agentic Criteria Evaluation) is a unified framework optimizing the SWE agent lifecycle across data curation, reinforcement learning (RL), and test-time inference.\n\nThe key components of SWE-TRACE include:\n\n1. **Data Curation**: An LLM multi-task cascading method utilizing stepwise oracle verification to distill a 60K-instance Supervised Fine-Tuning (SFT) corpus strictly biased toward token-efficient, shortest-path trajectories.\n\n2. **Process Reward Model (PRM)**: A MemoryAugmented Agentic RL pipeline featuring a Rubric-Based Process Reward Model (PRM), where an auxiliary Rubric-Agent provides dense, fine-grained heuristic feedback on intermediate steps, guiding the model through long-horizon tasks.\n\n3. **Test-Time Scaling**: The PRM is repurposed for heuristic-guided Test-Time Scaling (TTS), dynamically evaluating and pruning action candidates at each step to achieve superior search efficiency without the latency overhead of standard parallel sampling.\n\nExtensive experiments on standard SWE benchmarks demonstrate that SWE-TRACE significantly advances the state-of-the-art, maximizing resolution rates while drastically reducing both token consumption and inference latency.\n\nThe paper was submitted to arXiv on April 16, 2026."
+    ],
+    "durationSeconds": 7.179260079
+  },
+  "sourceToolAssistantUUID": "5a69f925-516e-4507-83fd-c2663f45446a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-10T18:44:40.095Z_
+
+<details><summary>↩ Tool result · `toolu_01TgQWiGHxXGGjAqo4PQfPZP`</summary>
+
+```text
+Web search results for query: ""diagnostic reasoning" "code repair" OR "program repair" stage decomposition 2025 2026"
+
+Links: [{"title":"GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4APR"},{"title":"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair","url":"https://arxiv.org/html/2605.03117"},{"title":"Advancements in automated program repair: a comprehensive review | Knowledge and Information Systems | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10115-025-02383-9"},{"title":"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v1"},{"title":"Evolving Paradigms in Automated Program Repair: Taxonomy, Challenges, and Opportunities | ACM Computing Surveys","url":"https://dl.acm.org/doi/10.1145/3696450"},{"title":"A Repair-for-Diagnosis Methodology for Logic Circuits | IEEE Journals & Magazine | IEEE Xplore","url":"https://ieeexplore.ieee.org/iel7/92/4359553/08423443.pdf"},{"title":"Learning-Based Automated Program Repair: A Systematic Literature Review","url":"https://www.sciopen.com/local/article_pdf/10.23919/CSMS.2025.0004.pdf"},{"title":"CodeLLMPaper/data/papers/labels/program_repair.md at main · PurCL/CodeLLMPaper","url":"https://github.com/PurCL/CodeLLMPaper/blob/main/data/papers/labels/program_repair.md"},{"title":"RELREPAIR: ENHANCING AUTOMATED PROGRAM REPAIR BY RETRIEVING RELEVANT CODE","url":"https://arxiv.org/pdf/2509.16701"},{"title":"Automated Program Repair via Conversation: Fixing 162 out of 337 Bugs for $0.42 Each using ChatGPT","url":"https://www.researchgate.net/publication/383962458_Automated_Program_Repair_via_Conversation_Fixing_162_out_of_337_Bugs_for_042_Each_using_ChatGPT"}]
+
+Based on the web search results, I found several relevant papers and resources related to diagnostic reasoning, code repair, and program repair with stage decomposition in 2025-2026:
+
+## Key Findings:
+
+**Recent Papers on Diagnostic Reasoning and Stage Decomposition:**
+
+Reasoning-guided approaches generate structured, bug-specific explanations before ranking candidate locations, demonstrating that prompting the model to reason about why a location is relevant improves accuracy over purely similarity-based retrieval.
+
+Analysis-augmented pipelines invoke compilers, debuggers, or security analyzers to feed diagnostics or traces that steer regeneration toward the root cause.
+
+**Staged Reasoning Approaches:**
+
+TypeRepair is an adaptive code repair framework based on defect classification and staged reasoning, employing a CoT prompting strategy designed to enhance the performance of LLMs in function-level defect repair tasks.
+
+**Program Intent and Diagnostic Focus:**
+
+AdverIntent-Agent (ISSTA2025) addresses automated program repair with adversarial reasoning for repair based on inferred program intent, noting that most APR tools focus on code transformations specified by test suites rather than reasoning about the program's intent and high-level bug specification.
+
+**Multi-stage LLM-based Repair Methods:**
+
+The search results show several 2025-2026 publications featuring reasoning-enhanced and multi-stage approaches to program repair, including analysis-augmented pipelines and reasoning-guided fault localization strategies that decompose repair into distinct phases of diagnosis and remediation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e4bd88e2-e34e-4be5-8bd5-0effb9f21b32",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "fcf497e5-8b86-4678-8436-52d366309d6f",
+  "toolUseResult": {
+    "query": "\"diagnostic reasoning\" \"code repair\" OR \"program repair\" stage decomposition 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H85NdRj7P7Q6jmxnvRJS6u",
+        "content": [
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4APR"
+          },
+          {
+            "title": "ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair",
+            "url": "https://arxiv.org/html/2605.03117"
+          },
+          {
+            "title": "Advancements in automated program repair: a comprehensive review | Knowledge and Information Systems | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10115-025-02383-9"
+          },
+          {
+            "title": "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v1"
+          },
+          {
+            "title": "Evolving Paradigms in Automated Program Repair: Taxonomy, Challenges, and Opportunities | ACM Computing Surveys",
+            "url": "https://dl.acm.org/doi/10.1145/3696450"
+          },
+          {
+            "title": "A Repair-for-Diagnosis Methodology for Logic Circuits | IEEE Journals & Magazine | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/iel7/92/4359553/08423443.pdf"
+          },
+          {
+            "title": "Learning-Based Automated Program Repair: A Systematic Literature Review",
+            "url": "https://www.sciopen.com/local/article_pdf/10.23919/CSMS.2025.0004.pdf"
+          },
+          {
+            "title": "CodeLLMPaper/data/papers/labels/program_repair.md at main · PurCL/CodeLLMPaper",
+            "url": "https://github.com/PurCL/CodeLLMPaper/blob/main/data/papers/labels/program_repair.md"
+          },
+          {
+            "title": "RELREPAIR: ENHANCING AUTOMATED PROGRAM REPAIR BY RETRIEVING RELEVANT CODE",
+            "url": "https://arxiv.org/pdf/2509.16701"
+          },
+          {
+            "title": "Automated Program Repair via Conversation: Fixing 162 out of 337 Bugs for $0.42 Each using ChatGPT",
+            "url": "https://www.researchgate.net/publication/383962458_Automated_Program_Repair_via_Conversation_Fixing_162_out_of_337_Bugs_for_042_Each_using_ChatGPT"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers and resources related to diagnostic reasoning, code repair, and program repair with stage decomposition in 2025-2026:\n\n## Key Findings:\n\n**Recent Papers on Diagnostic Reasoning and Stage Decomposition:**\n\nReasoning-guided approaches generate structured, bug-specific explanations before ranking candidate locations, demonstrating that prompting the model to reason about why a location is relevant improves accuracy over purely similarity-based retrieval.\n\nAnalysis-augmented pipelines invoke compilers, debuggers, or security analyzers to feed diagnostics or traces that steer regeneration toward the root cause.\n\n**Staged Reasoning Approaches:**\n\nTypeRepair is an adaptive code repair framework based on defect classification and staged reasoning, employing a CoT prompting strategy designed to enhance the performance of LLMs in function-level defect repair tasks.\n\n**Program Intent and Diagnostic Focus:**\n\nAdverIntent-Agent (ISSTA2025) addresses automated program repair with adversarial reasoning for repair based on inferred program intent, noting that most APR tools focus on code transformations specified by test suites rather than reasoning about the program's intent and high-level bug specification.\n\n**Multi-stage LLM-based Repair Methods:**\n\nThe search results show several 2025-2026 publications featuring reasoning-enhanced and multi-stage approaches to program repair, including analysis-augmented pipelines and reasoning-guided fault localization strategies that decompose repair into distinct phases of diagnosis and remediation."
+    ],
+    "durationSeconds": 6.830593276000014
+  },
+  "sourceToolAssistantUUID": "e4bd88e2-e34e-4be5-8bd5-0effb9f21b32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "fcf497e5-8b86-4678-8436-52d366309d6f",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Stage-level diagnostic reasoning rewards for code repair",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-10T18:44:47.388Z_
+
+<details><summary>↩ Tool result · `toolu_01Wr4WU6dWApjgqwzNCk9fE5`</summary>
+
+```text
+Web search results for query: "LLM judge code reasoning reliability agreement kappa 2025 2026"
+
+Links: [{"title":"Judge's Verdict: A Comprehensive Analysis of LLM Judge Capability Through Human Agreement | OpenReview","url":"https://openreview.net/forum?id=jVyUlri4Rw"},{"title":"LLM as a Judge: A 2026 Guide to Automated Model Assessment | Label Your Data","url":"https://labelyourdata.com/articles/llm-as-a-judge"},{"title":"LLM-as-a-Judge for Human-AI Co-Creation: A Reliability-Aware Evaluation Framework for Coding","url":"https://arxiv.org/html/2604.27727"},{"title":"LLM-as-a-Judge: automated evaluation of search query parsing using large language models - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12319771/"},{"title":"LLM-Judge Evaluation Techniques","url":"https://www.emergentmind.com/topics/llm-judge-evaluation"},{"title":"Proceedings of the 9th Widening NLP Workshop, pages 251–267","url":"https://aclanthology.org/2025.winlp-main.37.pdf"},{"title":"LLM-Based Judge Model","url":"https://www.emergentmind.com/topics/llm-based-judge-model"},{"title":"Evaluating Tool-Using Language Agents: Judge Reliability, Propagation Cascades, and Runtime Mitigation in AgentProp-Bench","url":"https://arxiv.org/html/2604.16706"},{"title":"An Empirical Study of LLM-as-a-Judge: How Design Choices Impact Evaluation Reliability","url":"https://arxiv.org/html/2506.13639v1"},{"title":"Judge’s Verdict: A Comprehensive Analysis of LLM Judge Capability Through Human Agreement","url":"https://arxiv.org/html/2510.09738v1"}]
+
+Based on the search results, I found several relevant papers and resources on LLM judges, code reasoning, reliability, and agreement metrics using Cohen's Kappa from 2025-2026:
+
+## Key Research on LLM-as-a-Judge Reliability
+
+The "Judge's Verdict Benchmark" (submitted to ICLR 2026) introduces a novel two-step methodology to evaluate Large Language Models as judges for response accuracy evaluation tasks. The methodology progresses from traditional correlation analysis to comprehensive Cohen's Kappa analysis that measures actual agreement patterns.
+
+The research assesses how well 54 LLMs can replicate human judgment when scoring responses from RAG (Retrieval-Augmented Generation) or Agentic pipelines against ground truth answers. The methodology reveals that 27 out of 54 tested LLMs achieve Tier 1 performance: 23 models exhibit human-like patterns that preserve the nuances of human judgment.
+
+## Code-Specific Evaluation
+
+A study examining LLM-as-a-Judge for human-AI co-creation in coding evaluated four judges: gpt-5.2-2025-12-11 (OpenAI), deepseek-reasoner (DeepSeek), gemini-2.5-pro (Gemini), and claude-sonnet-4-5-20250929 (Claude).
+
+## Kappa Agreement Findings
+
+Research shows varied Cohen's Kappa results across different tasks and models. When few-shot examples were included, exact match accuracy increased to 0.879 and Cohen's Kappa to 0.807 for the gemini-1.5-flash-002 model, and when switching to the gemini-1.5-pro-002 model, Cohen's Kappa increased slightly from 0.807 to 0.816.
+
+Multilingual LLM-Judge applications show Fleiss' Kappa values remaining modest at 0.1–0.32 on average, with consistency severely degrading in low-resource languages and reasoning-heavy tasks.
+
+## Design Impact on Reliability
+
+Recent empirical studies show that evaluation criteria are critical for reliability, non-deterministic sampling improves alignment with human preferences over deterministic evaluation, and Chain-of-Thought reasoning offers minimal gains when clear evaluation criteria are present.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f2d4a765-7c47-4f55-924e-33efe684d020",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "d119d985-98ac-4754-bff1-29b49711356c",
+  "toolUseResult": {
+    "query": "LLM judge code reasoning reliability agreement kappa 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LRzqG3PHVK9iguXyn48c5Z",
+        "content": [
+          {
+            "title": "Judge's Verdict: A Comprehensive Analysis of LLM Judge Capability Through Human Agreement | OpenReview",
+            "url": "https://openreview.net/forum?id=jVyUlri4Rw"
+          },
+          {
+            "title": "LLM as a Judge: A 2026 Guide to Automated Model Assessment | Label Your Data",
+            "url": "https://labelyourdata.com/articles/llm-as-a-judge"
+          },
+          {
+            "title": "LLM-as-a-Judge for Human-AI Co-Creation: A Reliability-Aware Evaluation Framework for Coding",
+            "url": "https://arxiv.org/html/2604.27727"
+          },
+          {
+            "title": "LLM-as-a-Judge: automated evaluation of search query parsing using large language models - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12319771/"
+          },
+          {
+            "title": "LLM-Judge Evaluation Techniques",
+            "url": "https://www.emergentmind.com/topics/llm-judge-evaluation"
+          },
+          {
+            "title": "Proceedings of the 9th Widening NLP Workshop, pages 251–267",
+            "url": "https://aclanthology.org/2025.winlp-main.37.pdf"
+          },
+          {
+            "title": "LLM-Based Judge Model",
+            "url": "https://www.emergentmind.com/topics/llm-based-judge-model"
+          },
+          {
+            "title": "Evaluating Tool-Using Language Agents: Judge Reliability, Propagation Cascades, and Runtime Mitigation in AgentProp-Bench",
+            "url": "https://arxiv.org/html/2604.16706"
+          },
+          {
+            "title": "An Empirical Study of LLM-as-a-Judge: How Design Choices Impact Evaluation Reliability",
+            "url": "https://arxiv.org/html/2506.13639v1"
+          },
+          {
+            "title": "Judge’s Verdict: A Comprehensive Analysis of LLM Judge Capability Through Human Agreement",
+            "url": "https://arxiv.org/html/2510.09738v1"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and resources on LLM judges, code reasoning, reliability, and agreement metrics using Cohen's Kappa from 2025-2026:\n\n## Key Research on LLM-as-a-Judge Reliability\n\nThe \"Judge's Verdict Benchmark\" (submitted to ICLR 2026) introduces a novel two-step methodology to evaluate Large Language Models as judges for response accuracy evaluation tasks. The methodology progresses from traditional correlation analysis to comprehensive Cohen's Kappa analysis that measures actual agreement patterns.\n\nThe research assesses how well 54 LLMs can replicate human judgment when scoring responses from RAG (Retrieval-Augmented Generation) or Agentic pipelines against ground truth answers. The methodology reveals that 27 out of 54 tested LLMs achieve Tier 1 performance: 23 models exhibit human-like patterns that preserve the nuances of human judgment.\n\n## Code-Specific Evaluation\n\nA study examining LLM-as-a-Judge for human-AI co-creation in coding evaluated four judges: gpt-5.2-2025-12-11 (OpenAI), deepseek-reasoner (DeepSeek), gemini-2.5-pro (Gemini), and claude-sonnet-4-5-20250929 (Claude).\n\n## Kappa Agreement Findings\n\nResearch shows varied Cohen's Kappa results across different tasks and models. When few-shot examples were included, exact match accuracy increased to 0.879 and Cohen's Kappa to 0.807 for the gemini-1.5-flash-002 model, and when switching to the gemini-1.5-pro-002 model, Cohen's Kappa increased slightly from 0.807 to 0.816.\n\nMultilingual LLM-Judge applications show Fleiss' Kappa values remaining modest at 0.1–0.32 on average, with consistency severely degrading in low-resource languages and reasoning-heavy tasks.\n\n## Design Impact on Reliability\n\nRecent empirical studies show that evaluation criteria are critical for reliability, non-deterministic sampling improves alignment with human preferences over deterministic evaluation, and Chain-of-Thought reasoning offers minimal gains when clear evaluation criteria are present."
+    ],
+    "durationSeconds": 13.38001825899999
+  },
+  "sourceToolAssistantUUID": "f2d4a765-7c47-4f55-924e-33efe684d020",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-10T18:44:58.601Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Important findings:
+
+1. EMNLP 2026 ARR deadline confirmed: May 25, 2026 ✓
+2. SWE-TRACE exists and is confirmed as described ✓
+3. Found a new paper: ARISE (arXiv:2605.03117, May 2026) - "ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair" - this is very new, just May 2026. Need to check if it overlaps.
+
+
+4. Looking at LLM-as-judge reliability, I'm seeing that inter-annotator agreement varies widely depending on task complexity—Kappa scores around 0.8 for simpler tasks but drop to 0.1-0.32 for reasoning-heavy work, which is concerning for DiagPRM's reliance on LLM annotations. Found another relevant paper on this topic: "LLM-as-a-Judge for Human-AI Co-Creation: A Reliability-Aware Evaluation Framework for Coding" (arXiv:2604.27727).
+
+Now I need to search for the ARISE paper and identify any remaining gaps in my analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d119d985-98ac-4754-bff1-29b49711356c",
+  "isSidechain": false,
+  "requestId": "req_011CauPB4dLfdR4LUGvZtWK4",
+  "type": "assistant",
+  "uuid": "1d750af7-c936-4876-9c82-8ddce64397dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FeicomUFxP64AeGLpaKJMd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4102,
+      "cache_read_input_tokens": 36955,
+      "output_tokens": 420,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4102,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 420,
+          "cache_read_input_tokens": 36955,
+          "cache_creation_input_tokens": 4102,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4102
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-10T18:44:58.635Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Bq172hfqHCGGDpFDEydauC`</summary>
+
+```json
+{
+  "query": "ARISE repository-level graph fault localization program repair 2605.03117"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d750af7-c936-4876-9c82-8ddce64397dc",
+  "isSidechain": false,
+  "requestId": "req_011CauPB4dLfdR4LUGvZtWK4",
+  "type": "assistant",
+  "uuid": "8dc11660-59fd-4087-8281-f3e36b5b7678",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FeicomUFxP64AeGLpaKJMd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4102,
+      "cache_read_input_tokens": 36955,
+      "output_tokens": 420,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4102,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 420,
+          "cache_read_input_tokens": 36955,
+          "cache_creation_input_tokens": 4102,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4102
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-10T18:44:58.638Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014UMnvKoKQAZ7Y5KqGuciLB`</summary>
+
+```json
+{
+  "query": "\"credit assignment\" \"process reward model\" code agent step-level 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8dc11660-59fd-4087-8281-f3e36b5b7678",
+  "isSidechain": false,
+  "requestId": "req_011CauPB4dLfdR4LUGvZtWK4",
+  "type": "assistant",
+  "uuid": "c147edc0-c703-4fad-9ca6-9b2126695f5b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FeicomUFxP64AeGLpaKJMd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4102,
+      "cache_read_input_tokens": 36955,
+      "output_tokens": 420,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4102,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 420,
+          "cache_read_input_tokens": 36955,
+          "cache_creation_input_tokens": 4102,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4102
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-10T18:45:05.575Z_
+
+<details><summary>↩ Tool result · `toolu_01Bq172hfqHCGGDpFDEydauC`</summary>
+
+```text
+Web search results for query: "ARISE repository-level graph fault localization program repair 2605.03117"
+
+Links: [{"title":"[2605.03117] ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair","url":"https://arxiv.org/abs/2605.03117"},{"title":"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair","url":"https://arxiv.org/html/2605.03117"},{"title":"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub","url":"https://github.com/tmgthb/Autonomous-Agents"},{"title":"LLM4FL: Multi-Agent Repository-Level Software Fault Localization via Graph-Based Retrieval and Iterative Refinement | OpenReview","url":"https://openreview.net/forum?id=z91EvZbSI1"},{"title":"Enhancing Repository-Level Software Repair via Repository-Aware Knowledge Graphs","url":"https://arxiv.org/html/2503.21710v1"},{"title":"Evaluating the usage of fault localization in automated program repair: an empirical study | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-020-9263-1"},{"title":"RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair","url":"https://arxiv.org/html/2603.01048"},{"title":"GitHub - TQRG/BugSwarm: Critical Review of BugSwarm for Fault Localization and Program Repair · GitHub","url":"https://github.com/TQRG/BugSwarm"},{"title":"(PDF) Fault localization for automated program repair: effectiveness, performance, repair correctness","url":"https://www.researchgate.net/publication/299444421_Fault_localization_for_automated_program_repair_effectiveness_performance_repair_correctness"},{"title":"A Quantitative and Qualitative Evaluation of LLM-Based Explainable Fault Localization | Proceedings of the ACM on Software Engineering","url":"https://dl.acm.org/doi/10.1145/3660771"}]
+
+Based on the search results, here's what I found about ARISE (arXiv:2605.03117):
+
+## Overview
+
+ARISE (Agentic Repository-level Issue Solving Engine) augments an LLM-based agent with a multi-granularity program graph that extends structural relationships down to statement-level nodes, exposing this graph through a three-tier tool API that brings data-flow slicing as a first-class, queryable agent primitive.
+
+## Problem It Addresses
+
+Existing graph-based systems provide structural representations of repositories (files, classes, functions and their relationships) but do not model how variable values flow within procedures, leaving agents without the semantic precision needed for function- and line-level localization.
+
+## Research Context
+
+The work was evaluated on SWE-bench Lite (300 real GitHub issues, 11 Python repositories) using Qwen2.5-Coder-32B-Instruct as the backbone.
+
+## Results
+
+Compared to the unmodified SWE-agent baseline, ARISE improves Function Recall@1 by 17.0 points and Line Recall@1 by 15.0 points, with ARISE achieving 22.0% Pass@1 (66/300), a 4.7 percentage-point improvement over SWE-agent. Ablations confirm that the improvement is driven by the data-flow graph rather than the tool schema.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8dc11660-59fd-4087-8281-f3e36b5b7678",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "f2eff33b-5a7a-4b08-83be-92ac06519bfd",
+  "toolUseResult": {
+    "query": "ARISE repository-level graph fault localization program repair 2605.03117",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XEoKf2SNV11rASa2pQsa91",
+        "content": [
+          {
+            "title": "[2605.03117] ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair",
+            "url": "https://arxiv.org/abs/2605.03117"
+          },
+          {
+            "title": "ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair",
+            "url": "https://arxiv.org/html/2605.03117"
+          },
+          {
+            "title": "GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub",
+            "url": "https://github.com/tmgthb/Autonomous-Agents"
+          },
+          {
+            "title": "LLM4FL: Multi-Agent Repository-Level Software Fault Localization via Graph-Based Retrieval and Iterative Refinement | OpenReview",
+            "url": "https://openreview.net/forum?id=z91EvZbSI1"
+          },
+          {
+            "title": "Enhancing Repository-Level Software Repair via Repository-Aware Knowledge Graphs",
+            "url": "https://arxiv.org/html/2503.21710v1"
+          },
+          {
+            "title": "Evaluating the usage of fault localization in automated program repair: an empirical study | Frontiers of Computer Science | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11704-020-9263-1"
+          },
+          {
+            "title": "RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair",
+            "url": "https://arxiv.org/html/2603.01048"
+          },
+          {
+            "title": "GitHub - TQRG/BugSwarm: Critical Review of BugSwarm for Fault Localization and Program Repair · GitHub",
+            "url": "https://github.com/TQRG/BugSwarm"
+          },
+          {
+            "title": "(PDF) Fault localization for automated program repair: effectiveness, performance, repair correctness",
+            "url": "https://www.researchgate.net/publication/299444421_Fault_localization_for_automated_program_repair_effectiveness_performance_repair_correctness"
+          },
+          {
+            "title": "A Quantitative and Qualitative Evaluation of LLM-Based Explainable Fault Localization | Proceedings of the ACM on Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1145/3660771"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about ARISE (arXiv:2605.03117):\n\n## Overview\n\nARISE (Agentic Repository-level Issue Solving Engine) augments an LLM-based agent with a multi-granularity program graph that extends structural relationships down to statement-level nodes, exposing this graph through a three-tier tool API that brings data-flow slicing as a first-class, queryable agent primitive.\n\n## Problem It Addresses\n\nExisting graph-based systems provide structural representations of repositories (files, classes, functions and their relationships) but do not model how variable values flow within procedures, leaving agents without the semantic precision needed for function- and line-level localization.\n\n## Research Context\n\nThe work was evaluated on SWE-bench Lite (300 real GitHub issues, 11 Python repositories) using Qwen2.5-Coder-32B-Instruct as the backbone.\n\n## Results\n\nCompared to the unmodified SWE-agent baseline, ARISE improves Function Recall@1 by 17.0 points and Line Recall@1 by 15.0 points, with ARISE achieving 22.0% Pass@1 (66/300), a 4.7 percentage-point improvement over SWE-agent. Ablations confirm that the improvement is driven by the data-flow graph rather than the tool schema."
+    ],
+    "durationSeconds": 6.937461060999994
+  },
+  "sourceToolAssistantUUID": "8dc11660-59fd-4087-8281-f3e36b5b7678",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-10T18:45:06.474Z_
+
+<details><summary>↩ Tool result · `toolu_014UMnvKoKQAZ7Y5KqGuciLB`</summary>
+
+```text
+Web search results for query: ""credit assignment" "process reward model" code agent step-level 2026"
+
+Links: [{"title":"From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://arxiv.org/html/2604.09459v1"},{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"Step-Level Credit Assignment","url":"https://www.emergentmind.com/topics/step-level-credit-assignment"},{"title":"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress | Request PDF","url":"https://www.researchgate.net/publication/403735553_AgentPRM_Process_Reward_Models_for_LLM_Agents_via_Step-Wise_Promise_and_Progress"},{"title":"Every Step Counts: Step-Level Credit Assignment for Tool-Integrated Text-to-SQL","url":"https://arxiv.org/html/2605.04719"},{"title":"PRINCIPLE PROCESS REWARD FOR SEARCH AGENTS","url":"https://openreview.net/pdf?id=zN1aqLhkGm"},{"title":"RTMC: Step-Level Credit Assignment via Rollout Trees","url":"https://arxiv.org/html/2604.11037"},{"title":"GitHub - xxzcc/Awesome-Credit-Assignment-in-LLM-RL · GitHub","url":"https://github.com/xxzcc/Awesome-Credit-Assignment-in-LLM-RL"},{"title":"Paper page - From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://huggingface.co/papers/2604.09459"},{"title":"Multi-Turn Credit Assignment with LLM Agents - hlfshell","url":"https://hlfshell.ai/posts/multi-turn-credit-assignment/"}]
+
+I've performed the web search for your query on credit assignment, process reward models, code agents, and step-level approaches in 2026. Here are the key findings:
+
+## Major Survey and Research
+
+A comprehensive survey covering 47 credit assignment methods (41 core, 6 adjacent enablers) was published between 2024 and early 2026, organizing them in a two-dimensional taxonomy by assignment granularity (token, segment, step, turn, multi-agent) and methodology (Monte Carlo, temporal difference, model-based, game-theoretic, information-theoretic).
+
+## Process Reward Models and Step-Level Approaches
+
+Process Reward Learning (PRL) provides a theoretically elegant connection between process rewards and the structure of optimal policies, deriving step-level process rewards from the decomposition of entropy-regularized RL objectives.
+
+The first wave of LLM-specific credit assignment methods included process reward models, token-level value estimation, and step-level advantage computation.
+
+## Code Agent Applications
+
+Process Reward Models provide richer reward signals by evaluating intermediate steps, and have demonstrated effectiveness in domains like math and coding.
+
+## Recent Methods in 2026
+
+Notable approaches include:
+- AT2PO propagates terminal rewards through a tree
+- Turn-PPO reformulates multi-turn RL as turn-level MDP with turn-level importance ratios
+- HCAPO uses hindsight credit assignment with retrospective LLM critic and counterfactual continuation analysis
+
+The research indicates active development in step-level credit assignment methods specifically designed for agentic tasks and code generation in 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c147edc0-c703-4fad-9ca6-9b2126695f5b",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "84f01b19-da6d-47b4-8458-3eae057b9544",
+  "toolUseResult": {
+    "query": "\"credit assignment\" \"process reward model\" code agent step-level 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DWQuk1uxj2vEXRAYvVtUdE",
+        "content": [
+          {
+            "title": "From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/html/2604.09459v1"
+          },
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          },
+          {
+            "title": "Step-Level Credit Assignment",
+            "url": "https://www.emergentmind.com/topics/step-level-credit-assignment"
+          },
+          {
+            "title": "AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress | Request PDF",
+            "url": "https://www.researchgate.net/publication/403735553_AgentPRM_Process_Reward_Models_for_LLM_Agents_via_Step-Wise_Promise_and_Progress"
+          },
+          {
+            "title": "Every Step Counts: Step-Level Credit Assignment for Tool-Integrated Text-to-SQL",
+            "url": "https://arxiv.org/html/2605.04719"
+          },
+          {
+            "title": "PRINCIPLE PROCESS REWARD FOR SEARCH AGENTS",
+            "url": "https://openreview.net/pdf?id=zN1aqLhkGm"
+          },
+          {
+            "title": "RTMC: Step-Level Credit Assignment via Rollout Trees",
+            "url": "https://arxiv.org/html/2604.11037"
+          },
+          {
+            "title": "GitHub - xxzcc/Awesome-Credit-Assignment-in-LLM-RL · GitHub",
+            "url": "https://github.com/xxzcc/Awesome-Credit-Assignment-in-LLM-RL"
+          },
+          {
+            "title": "Paper page - From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://huggingface.co/papers/2604.09459"
+          },
+          {
+            "title": "Multi-Turn Credit Assignment with LLM Agents - hlfshell",
+            "url": "https://hlfshell.ai/posts/multi-turn-credit-assignment/"
+          }
+        ]
+      },
+      "I've performed the web search for your query on credit assignment, process reward models, code agents, and step-level approaches in 2026. Here are the key findings:\n\n## Major Survey and Research\n\nA comprehensive survey covering 47 credit assignment methods (41 core, 6 adjacent enablers) was published between 2024 and early 2026, organizing them in a two-dimensional taxonomy by assignment granularity (token, segment, step, turn, multi-agent) and methodology (Monte Carlo, temporal difference, model-based, game-theoretic, information-theoretic).\n\n## Process Reward Models and Step-Level Approaches\n\nProcess Reward Learning (PRL) provides a theoretically elegant connection between process rewards and the structure of optimal policies, deriving step-level process rewards from the decomposition of entropy-regularized RL objectives.\n\nThe first wave of LLM-specific credit assignment methods included process reward models, token-level value estimation, and step-level advantage computation.\n\n## Code Agent Applications\n\nProcess Reward Models provide richer reward signals by evaluating intermediate steps, and have demonstrated effectiveness in domains like math and coding.\n\n## Recent Methods in 2026\n\nNotable approaches include:\n- AT2PO propagates terminal rewards through a tree\n- Turn-PPO reformulates multi-turn RL as turn-level MDP with turn-level importance ratios\n- HCAPO uses hindsight credit assignment with retrospective LLM critic and counterfactual continuation analysis\n\nThe research indicates active development in step-level credit assignment methods specifically designed for agentic tasks and code generation in 2026."
+    ],
+    "durationSeconds": 7.833852478000001
+  },
+  "sourceToolAssistantUUID": "c147edc0-c703-4fad-9ca6-9b2126695f5b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-10T18:45:15.591Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key new finding: "From Reasoning to Agentic: Credit Assignment in RL for LLMs" (arXiv:2604.09459) - a comprehensive survey on credit assignment for LLM agents. This is relevant context.
+
+Also found: "Every Step Counts: Step-Level Credit Assignment for Tool-Integrated Text-to-SQL" (arXiv:2605.04719) - step-level credit assignment for another domain.
+
+And: "RTMC: Step-Level Credit Assignment via Rollout Trees" (arXiv:2604.11037) - a method for step-level credit assignment.
+
+
+I also came across "Principle Process Reward for Search Agents" on OpenReview. Looking at these papers, they're all addressing credit assignment in different ways, but none of them seem to focus specifically on what DiagPRM does—evaluating the quality of diagnostic reasoning at individual stages during code repair. These are broader credit assignment techniques rather than domain-specific evaluation methods. Let me check a few more things while waiting for the agents to finish.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84f01b19-da6d-47b4-8458-3eae057b9544",
+  "isSidechain": false,
+  "requestId": "req_011CauPCU7zF8G48irQkP9Kn",
+  "type": "assistant",
+  "uuid": "40fe9ff6-80c0-4a6b-8f4f-60bf9ce0fe43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01APeRMAXxxaPS5ETfRGYtNv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2286,
+      "cache_read_input_tokens": 41057,
+      "output_tokens": 365,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2286,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 365,
+          "cache_read_input_tokens": 41057,
+          "cache_creation_input_tokens": 2286,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2286
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-10T18:45:15.670Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0176aKtk7qmUsWNcqAB7co31`</summary>
+
+```json
+{
+  "query": "Qwen3-8B model release available huggingface 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40fe9ff6-80c0-4a6b-8f4f-60bf9ce0fe43",
+  "isSidechain": false,
+  "requestId": "req_011CauPCU7zF8G48irQkP9Kn",
+  "type": "assistant",
+  "uuid": "4433c2c4-02ae-4a66-9487-1a8fc9393f0a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01APeRMAXxxaPS5ETfRGYtNv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2286,
+      "cache_read_input_tokens": 41057,
+      "output_tokens": 365,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2286,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 365,
+          "cache_read_input_tokens": 41057,
+          "cache_creation_input_tokens": 2286,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2286
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-10T18:45:15.720Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012pv1gQs8jS21qoGDPhwhmi`</summary>
+
+```json
+{
+  "query": "SWE-smith trajectory dataset huggingface Kwai-Klear 66k"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4433c2c4-02ae-4a66-9487-1a8fc9393f0a",
+  "isSidechain": false,
+  "requestId": "req_011CauPCU7zF8G48irQkP9Kn",
+  "type": "assistant",
+  "uuid": "84d630e2-4a6a-4471-977e-e6d572ab0b8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01APeRMAXxxaPS5ETfRGYtNv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2286,
+      "cache_read_input_tokens": 41057,
+      "output_tokens": 365,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2286,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 365,
+          "cache_read_input_tokens": 41057,
+          "cache_creation_input_tokens": 2286,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2286
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "84d630e2-4a6a-4471-977e-e6d572ab0b8e",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Stage-level diagnostic reasoning rewards for code repair",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51 · 2026-05-10T18:45:17.239Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T18:45:17.239Z",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "content": "&lt;task-notification>\n&lt;task-id>a5bffa5f8e3959fd1&lt;/task-id>\n&lt;tool-use-id>toolu_01PxQsWqBZ2uW5ypsiZ5AxmJ&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/e48a7609-5e29-4d47-9bd4-04d751de1c24/tasks/a5bffa5f8e3959fd1.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Verify R4P, RGFL, CodeTracer, ORPS papers\" completed&lt;/summary>\n&lt;result>I now have all the information needed. Here is my verification report.\n\n---\n\n## Paper Citation Verification Report\n\n### 1. R4P / Patch Reasoner (arXiv:2510.22775, Oct 2025)\n\n**EXISTS: Yes.** Title: \"Scalable Supervising Software Agents with Patch Reasoner\" by Junjielong Xu et al., submitted October 26, 2025.\n\n**Characterization accuracy:**\n- \"Frames patch verification as reasoning via group-wise RL\" -- **Accurate.** The paper uses a group-wise objective for RL training to compare multiple patches.\n- \"72.2% accuracy surpassing o3\" -- **Accurate.** Confirmed verbatim from the abstract.\n- \"50x faster than testing\" -- **Accurate.** Confirmed: verifies patches \"within a second, 50x faster than testing on average.\"\n\n**Verdict: All claims verified as accurate.**\n\n---\n\n### 2. RGFL (arXiv:2601.18044, Jan 2026)\n\n**EXISTS: Yes.** Title: \"RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models\" by Melika Sepidband et al., submitted January 25, 2026.\n\n**Characterization accuracy:**\n- \"Generates structured per-candidate reasoning explanations for fault localization\" -- **Accurate.** The paper introduces a hierarchical reasoning module generating structured, bug-specific explanations for candidate files and elements.\n- \"85% Hit@1 on SWE-bench Verified\" -- **Accurate.** Confirmed: file-level Hit@1 improves from 71.4% to 85%.\n- \"One-shot ranker, not reward model\" -- **Partially accurate.** It is indeed not a reward model; it is a two-stage ranking scheme combining LLM-based and embedding-based signals. The \"one-shot\" characterization is not explicitly confirmed in the paper -- it describes a two-stage process, so calling it \"one-shot\" may be a simplification.\n\n**Verdict: Substantially accurate. Minor quibble: \"one-shot ranker\" is a simplification of their two-stage ranking scheme.**\n\n---\n\n### 3. CodeTracer (arXiv:2604.11641, April 2026)\n\n**EXISTS: Yes.** Title: \"CodeTracer: Towards Traceable Agent States\" by Han Li et al., submitted April 13, 2026.\n\n**Characterization accuracy:**\n- \"Constructs hierarchical trace trees of agent execution\" -- **Accurate.** Confirmed from the abstract.\n- \"Failure onset localization across five mechanical workflow stages\" -- **Accurate.** The five stages are: environment verification, dependency installation, inspection/debugging, patching, and verification.\n- \"46-48% F1 on CodeTraceBench\" -- **Accurate.** Confirmed from the paper's results.\n- \"(4,316 trajectories)\" -- **Inaccurate.** The paper states 4,354 trajectories as the source pool, with the benchmark containing ~3.32K instances in the full split and ~1.06K in the verified split. The number 4,316 does not match any figure in the paper.\n- \"Post-hoc diagnostic tool, not reward model\" -- **Accurate.** It operates on previously collected runs and makes no claim to reward modeling.\n\n**Verdict: Mostly accurate. The trajectory count of 4,316 is wrong -- the paper says 4,354 source trajectories.**\n\n---\n\n### 4. ORPS (ICML 2025, arXiv:2412.15118)\n\n**EXISTS: Yes.** Title: \"Reasoning Through Execution: Unifying Process and Outcome Rewards for Code Generation\" by Zhuohao Yu et al., submitted December 19, 2024. Accepted at ICML 2025 (confirmed via ICML virtual poster page).\n\n**Characterization accuracy:**\n- \"Execution-grounded process rewards without trained PRMs\" -- **Accurate.** The paper explicitly shows its inference-only approach outperforms trained PRMs and eliminates the need for them.\n- \"Requires execution at every search tree node\" -- **Accurate.** Each candidate is executed and profiled at every node in the tree search.\n- \"26.9% correctness gain\" -- **Accurate.** Confirmed from the abstract.\n- \"Targets code generation not repair\" -- **Accurate.** The paper is squarely about code generation.\n\n**Verdict: All claims verified as accurate.**\n\n---\n\n### 5. Agent-RRM (arXiv:2601.22154, Jan 2026)\n\n**EXISTS: Yes.** Title: \"Exploring Reasoning Reward Model for Agents\" by Kaixuan Fan et al., submitted January 29, 2026.\n\n**Characterization accuracy:**\n- \"Decomposed trajectory judgments\" -- **Accurate.** Agent-RRM produces structured multi-faceted feedback: reasoning traces, focused critiques, and overall scores.\n- \"General agent tasks (GAIA, WebWalkerQA)\" -- **Accurate.** Evaluated on 12 diverse benchmarks including GAIA (43.7%) and WebWalkerQA (46.2%).\n- \"Not specialized for code repair\" -- **Accurate.** The paper addresses general agentic tasks with complex reasoning and tool use.\n\n**Verdict: All claims verified as accurate.**\n\n---\n\n## Summary\n\n| Paper | Exists | Characterization |\n|-------|--------|-----------------|\n| R4P (2510.22775) | Yes | Accurate |\n| RGFL (2601.18044) | Yes | Accurate (minor: \"one-shot\" is a simplification) |\n| CodeTracer (2604.11641) | Yes | Mostly accurate (trajectory count 4,316 should be 4,354) |\n| ORPS (2412.15118) | Yes | Accurate |\n| Agent-RRM (2601.22154) | Yes | Accurate |\n\nAll five papers exist at the claimed arXiv IDs with the claimed dates. Characterizations are substantively correct across the board, with two minor discrepancies: RGFL's \"one-shot ranker\" simplifies a two-stage process, and CodeTracer's trajectory count is stated as 4,316 but the paper reports 4,354.\n\nSources:\n- [R4P / Patch Reasoner](https://arxiv.org/abs/2510.22775)\n- [RGFL](https://arxiv.org/abs/2601.18044)\n- [CodeTracer](https://arxiv.org/abs/2604.11641)\n- [ORPS](https://arxiv.org/abs/2412.15118)\n- [ORPS at ICML 2025](https://icml.cc/virtual/2025/poster/44014)\n- [Agent-RRM](https://arxiv.org/abs/2601.22154)&lt;/result>\n&lt;usage>&lt;total_tokens>18447&lt;/total_tokens>&lt;tool_uses>14&lt;/tool_uses>&lt;duration_ms>95483&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-10T18:45:21.505Z_
+
+<details><summary>↩ Tool result · `toolu_0176aKtk7qmUsWNcqAB7co31`</summary>
+
+```text
+Web search results for query: "Qwen3-8B model release available huggingface 2026"
+
+Links: [{"title":"Qwen/Qwen3-8B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-8B"},{"title":"Qwen/Qwen3-8B-Base · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-8B-Base"},{"title":"Qwen/Qwen3-8B-GGUF · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-8B-GGUF"},{"title":"Qwen/Qwen3-Embedding-8B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-Embedding-8B"},{"title":"Qwen3 - a Qwen Collection","url":"https://huggingface.co/collections/Qwen/qwen3"},{"title":"Qwen/Qwen3-8B-FP8 · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-8B-FP8"},{"title":"Qwen (Qwen)","url":"https://huggingface.co/Qwen"},{"title":"Qwen/Qwen3-VL-8B-Instruct · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct"},{"title":"GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub","url":"https://github.com/QwenLM/Qwen3.6"},{"title":"Qwen/Qwen3.5-0.8B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.5-0.8B"}]
+
+Based on the search results, here's what I found about the Qwen3-8B model release on Hugging Face:
+
+## Qwen3-8B Availability
+
+The Qwen3-8B model is available on Hugging Face and represents the latest generation of large language models in the Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models.
+
+## Key Features
+
+Qwen3 uniquely supports seamless switching between thinking mode (for complex logical reasoning, math, and coding) and non-thinking mode (for efficient, general-purpose dialogue) within a single model.
+
+The model has a context length of 32,768 tokens natively and 131,072 tokens with YaRN.
+
+Qwen3 supports 100+ languages and dialects with strong capabilities for multilingual instruction following and translation.
+
+## Technical Requirements
+
+The code of Qwen3 has been integrated into the latest Hugging Face transformers, and users are advised to use the latest version of transformers.
+
+The model is directly accessible through Hugging Face at the repository `Qwen/Qwen3-8B` and is available in multiple variants including standard, base, FP8, and GGUF versions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4433c2c4-02ae-4a66-9487-1a8fc9393f0a",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "b5840830-e461-4be4-98a9-ef3c1ec9bf32",
+  "toolUseResult": {
+    "query": "Qwen3-8B model release available huggingface 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LVZ5NeB44fTDnbzf1FkbTc",
+        "content": [
+          {
+            "title": "Qwen/Qwen3-8B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-8B"
+          },
+          {
+            "title": "Qwen/Qwen3-8B-Base · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-8B-Base"
+          },
+          {
+            "title": "Qwen/Qwen3-8B-GGUF · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-8B-GGUF"
+          },
+          {
+            "title": "Qwen/Qwen3-Embedding-8B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-Embedding-8B"
+          },
+          {
+            "title": "Qwen3 - a Qwen Collection",
+            "url": "https://huggingface.co/collections/Qwen/qwen3"
+          },
+          {
+            "title": "Qwen/Qwen3-8B-FP8 · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-8B-FP8"
+          },
+          {
+            "title": "Qwen (Qwen)",
+            "url": "https://huggingface.co/Qwen"
+          },
+          {
+            "title": "Qwen/Qwen3-VL-8B-Instruct · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3.6"
+          },
+          {
+            "title": "Qwen/Qwen3.5-0.8B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the Qwen3-8B model release on Hugging Face:\n\n## Qwen3-8B Availability\n\nThe Qwen3-8B model is available on Hugging Face and represents the latest generation of large language models in the Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models.\n\n## Key Features\n\nQwen3 uniquely supports seamless switching between thinking mode (for complex logical reasoning, math, and coding) and non-thinking mode (for efficient, general-purpose dialogue) within a single model.\n\nThe model has a context length of 32,768 tokens natively and 131,072 tokens with YaRN.\n\nQwen3 supports 100+ languages and dialects with strong capabilities for multilingual instruction following and translation.\n\n## Technical Requirements\n\nThe code of Qwen3 has been integrated into the latest Hugging Face transformers, and users are advised to use the latest version of transformers.\n\nThe model is directly accessible through Hugging Face at the repository `Qwen/Qwen3-8B` and is available in multiple variants including standard, base, FP8, and GGUF versions."
+    ],
+    "durationSeconds": 5.8314200520000155
+  },
+  "sourceToolAssistantUUID": "4433c2c4-02ae-4a66-9487-1a8fc9393f0a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-10T18:45:21.853Z_
+
+<details><summary>↩ Tool result · `toolu_012pv1gQs8jS21qoGDPhwhmi`</summary>
+
+```text
+Web search results for query: "SWE-smith trajectory dataset huggingface Kwai-Klear 66k"
+
+Links: [{"title":"Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k · Datasets at Hugging Face","url":"https://huggingface.co/datasets/Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k"},{"title":"GitHub - Kwai-Klear/mini-swe-agent-plus: mini-swe-agent-plus: a tiny (~100 LOC) GitHub issue fixer—now with a robust multi-line text edit tool.","url":"https://github.com/Kwai-Klear/mini-swe-agent-plus"},{"title":"Kwai-Klear (Klear team, Kuaishou Technology)","url":"https://huggingface.co/Kwai-Klear"},{"title":"SWE-bench/SWE-smith · Datasets at Hugging Face","url":"https://huggingface.co/datasets/SWE-bench/SWE-smith"},{"title":"SWE-bench/SWE-smith-trajectories · Datasets at Hugging Face","url":"https://huggingface.co/datasets/SWE-bench/SWE-smith-trajectories"},{"title":"SWE-bench/SWE-smith-trajectories at main","url":"https://huggingface.co/datasets/SWE-bench/SWE-smith-trajectories/tree/main"},{"title":"mini-swe-agent-plus - a Kwai-Klear Collection","url":"https://huggingface.co/collections/Kwai-Klear/mini-swe-agent-plus"},{"title":"nebius/SWE-rebench-openhands-trajectories · Datasets at Hugging Face","url":"https://huggingface.co/datasets/nebius/SWE-rebench-openhands-trajectories"},{"title":"README.md · SWE-bench/SWE-smith-trajectories at main","url":"https://huggingface.co/datasets/SWE-bench/SWE-smith-trajectories/blob/main/README.md"},{"title":"nebius/SWE-agent-trajectories · Datasets at Hugging Face","url":"https://huggingface.co/datasets/nebius/SWE-agent-trajectories"}]
+
+Based on the search results, here's what I found about the SWE-smith trajectory dataset from Kwai-Klear on Hugging Face:
+
+The dataset contains 65,994 rows and is 1.58 GB in size. It includes 66k trajectories based on SWE-smith and was open-sourced on 2025-11-06.
+
+Klear-Agent-8B trained on this dataset with mini-swe-agent-plus significantly outperforms other ~8B models and matches several open 32B systems. The solve rate on SWE-bench Verified improves approximately linearly with the logarithm of the data scale (1k → 66k trajectories).
+
+The dataset focuses on effective supervised fine-tuning (SFT) with synthetic data followed by multi-turn reinforcement learning (RL) for boosting agentic models.
+
+You can access the dataset at: https://huggingface.co/datasets/Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "84d630e2-4a6a-4471-977e-e6d572ab0b8e",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "4a83d0e6-8dbf-4107-b154-908477fa30c6",
+  "toolUseResult": {
+    "query": "SWE-smith trajectory dataset huggingface Kwai-Klear 66k",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016qKyZGvsXwPS4NEbC9PJAd",
+        "content": [
+          {
+            "title": "Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k"
+          },
+          {
+            "title": "GitHub - Kwai-Klear/mini-swe-agent-plus: mini-swe-agent-plus: a tiny (~100 LOC) GitHub issue fixer—now with a robust multi-line text edit tool.",
+            "url": "https://github.com/Kwai-Klear/mini-swe-agent-plus"
+          },
+          {
+            "title": "Kwai-Klear (Klear team, Kuaishou Technology)",
+            "url": "https://huggingface.co/Kwai-Klear"
+          },
+          {
+            "title": "SWE-bench/SWE-smith · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/SWE-bench/SWE-smith"
+          },
+          {
+            "title": "SWE-bench/SWE-smith-trajectories · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/SWE-bench/SWE-smith-trajectories"
+          },
+          {
+            "title": "SWE-bench/SWE-smith-trajectories at main",
+            "url": "https://huggingface.co/datasets/SWE-bench/SWE-smith-trajectories/tree/main"
+          },
+          {
+            "title": "mini-swe-agent-plus - a Kwai-Klear Collection",
+            "url": "https://huggingface.co/collections/Kwai-Klear/mini-swe-agent-plus"
+          },
+          {
+            "title": "nebius/SWE-rebench-openhands-trajectories · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/nebius/SWE-rebench-openhands-trajectories"
+          },
+          {
+            "title": "README.md · SWE-bench/SWE-smith-trajectories at main",
+            "url": "https://huggingface.co/datasets/SWE-bench/SWE-smith-trajectories/blob/main/README.md"
+          },
+          {
+            "title": "nebius/SWE-agent-trajectories · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/nebius/SWE-agent-trajectories"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the SWE-smith trajectory dataset from Kwai-Klear on Hugging Face:\n\nThe dataset contains 65,994 rows and is 1.58 GB in size. It includes 66k trajectories based on SWE-smith and was open-sourced on 2025-11-06.\n\nKlear-Agent-8B trained on this dataset with mini-swe-agent-plus significantly outperforms other ~8B models and matches several open 32B systems. The solve rate on SWE-bench Verified improves approximately linearly with the logarithm of the data scale (1k → 66k trajectories).\n\nThe dataset focuses on effective supervised fine-tuning (SFT) with synthetic data followed by multi-turn reinforcement learning (RL) for boosting agentic models.\n\nYou can access the dataset at: https://huggingface.co/datasets/Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k"
+    ],
+    "durationSeconds": 6.13077328400001
+  },
+  "sourceToolAssistantUUID": "84d630e2-4a6a-4471-977e-e6d572ab0b8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54 · 2026-05-10T18:45:21.868Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-10T18:45:21.868Z",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55 · 2026-05-10T18:45:21.867Z_
+
+```json
+{
+  "parentUuid": "4a83d0e6-8dbf-4107-b154-908477fa30c6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>a5bffa5f8e3959fd1&lt;/task-id>\n&lt;tool-use-id>toolu_01PxQsWqBZ2uW5ypsiZ5AxmJ&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/e48a7609-5e29-4d47-9bd4-04d751de1c24/tasks/a5bffa5f8e3959fd1.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Verify R4P, RGFL, CodeTracer, ORPS papers\" completed&lt;/summary>\n&lt;result>I now have all the information needed. Here is my verification report.\n\n---\n\n## Paper Citation Verification Report\n\n### 1. R4P / Patch Reasoner (arXiv:2510.22775, Oct 2025)\n\n**EXISTS: Yes.** Title: \"Scalable Supervising Software Agents with Patch Reasoner\" by Junjielong Xu et al., submitted October 26, 2025.\n\n**Characterization accuracy:**\n- \"Frames patch verification as reasoning via group-wise RL\" -- **Accurate.** The paper uses a group-wise objective for RL training to compare multiple patches.\n- \"72.2% accuracy surpassing o3\" -- **Accurate.** Confirmed verbatim from the abstract.\n- \"50x faster than testing\" -- **Accurate.** Confirmed: verifies patches \"within a second, 50x faster than testing on average.\"\n\n**Verdict: All claims verified as accurate.**\n\n---\n\n### 2. RGFL (arXiv:2601.18044, Jan 2026)\n\n**EXISTS: Yes.** Title: \"RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models\" by Melika Sepidband et al., submitted January 25, 2026.\n\n**Characterization accuracy:**\n- \"Generates structured per-candidate reasoning explanations for fault localization\" -- **Accurate.** The paper introduces a hierarchical reasoning module generating structured, bug-specific explanations for candidate files and elements.\n- \"85% Hit@1 on SWE-bench Verified\" -- **Accurate.** Confirmed: file-level Hit@1 improves from 71.4% to 85%.\n- \"One-shot ranker, not reward model\" -- **Partially accurate.** It is indeed not a reward model; it is a two-stage ranking scheme combining LLM-based and embedding-based signals. The \"one-shot\" characterization is not explicitly confirmed in the paper -- it describes a two-stage process, so calling it \"one-shot\" may be a simplification.\n\n**Verdict: Substantially accurate. Minor quibble: \"one-shot ranker\" is a simplification of their two-stage ranking scheme.**\n\n---\n\n### 3. CodeTracer (arXiv:2604.11641, April 2026)\n\n**EXISTS: Yes.** Title: \"CodeTracer: Towards Traceable Agent States\" by Han Li et al., submitted April 13, 2026.\n\n**Characterization accuracy:**\n- \"Constructs hierarchical trace trees of agent execution\" -- **Accurate.** Confirmed from the abstract.\n- \"Failure onset localization across five mechanical workflow stages\" -- **Accurate.** The five stages are: environment verification, dependency installation, inspection/debugging, patching, and verification.\n- \"46-48% F1 on CodeTraceBench\" -- **Accurate.** Confirmed from the paper's results.\n- \"(4,316 trajectories)\" -- **Inaccurate.** The paper states 4,354 trajectories as the source pool, with the benchmark containing ~3.32K instances in the full split and ~1.06K in the verified split. The number 4,316 does not match any figure in the paper.\n- \"Post-hoc diagnostic tool, not reward model\" -- **Accurate.** It operates on previously collected runs and makes no claim to reward modeling.\n\n**Verdict: Mostly accurate. The trajectory count of 4,316 is wrong -- the paper says 4,354 source trajectories.**\n\n---\n\n### 4. ORPS (ICML 2025, arXiv:2412.15118)\n\n**EXISTS: Yes.** Title: \"Reasoning Through Execution: Unifying Process and Outcome Rewards for Code Generation\" by Zhuohao Yu et al., submitted December 19, 2024. Accepted at ICML 2025 (confirmed via ICML virtual poster page).\n\n**Characterization accuracy:**\n- \"Execution-grounded process rewards without trained PRMs\" -- **Accurate.** The paper explicitly shows its inference-only approach outperforms trained PRMs and eliminates the need for them.\n- \"Requires execution at every search tree node\" -- **Accurate.** Each candidate is executed and profiled at every node in the tree search.\n- \"26.9% correctness gain\" -- **Accurate.** Confirmed from the abstract.\n- \"Targets code generation not repair\" -- **Accurate.** The paper is squarely about code generation.\n\n**Verdict: All claims verified as accurate.**\n\n---\n\n### 5. Agent-RRM (arXiv:2601.22154, Jan 2026)\n\n**EXISTS: Yes.** Title: \"Exploring Reasoning Reward Model for Agents\" by Kaixuan Fan et al., submitted January 29, 2026.\n\n**Characterization accuracy:**\n- \"Decomposed trajectory judgments\" -- **Accurate.** Agent-RRM produces structured multi-faceted feedback: reasoning traces, focused critiques, and overall scores.\n- \"General agent tasks (GAIA, WebWalkerQA)\" -- **Accurate.** Evaluated on 12 diverse benchmarks including GAIA (43.7%) and WebWalkerQA (46.2%).\n- \"Not specialized for code repair\" -- **Accurate.** The paper addresses general agentic tasks with complex reasoning and tool use.\n\n**Verdict: All claims verified as accurate.**\n\n---\n\n## Summary\n\n| Paper | Exists | Characterization |\n|-------|--------|-----------------|\n| R4P (2510.22775) | Yes | Accurate |\n| RGFL (2601.18044) | Yes | Accurate (minor: \"one-shot\" is a simplification) |\n| CodeTracer (2604.11641) | Yes | Mostly accurate (trajectory count 4,316 should be 4,354) |\n| ORPS (2412.15118) | Yes | Accurate |\n| Agent-RRM (2601.22154) | Yes | Accurate |\n\nAll five papers exist at the claimed arXiv IDs with the claimed dates. Characterizations are substantively correct across the board, with two minor discrepancies: RGFL's \"one-shot ranker\" simplifies a two-stage process, and CodeTracer's trajectory count is stated as 4,316 but the paper reports 4,354.\n\nSources:\n- [R4P / Patch Reasoner](https://arxiv.org/abs/2510.22775)\n- [RGFL](https://arxiv.org/abs/2601.18044)\n- [CodeTracer](https://arxiv.org/abs/2604.11641)\n- [ORPS](https://arxiv.org/abs/2412.15118)\n- [ORPS at ICML 2025](https://icml.cc/virtual/2025/poster/44014)\n- [Agent-RRM](https://arxiv.org/abs/2601.22154)&lt;/result>\n&lt;usage>&lt;total_tokens>18447&lt;/total_tokens>&lt;tool_uses>14&lt;/tool_uses>&lt;duration_ms>95483&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "b4303698-e0a7-4ed1-ab02-7bbc8fd14a7b",
+  "timestamp": "2026-05-10T18:45:21.867Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-10T18:45:28.469Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good findings:
+1. Qwen3-8B is available on HuggingFace ✓
+2. SWE-smith 66K trajectory dataset exists on HuggingFace ✓ (65,994 rows, 1.58GB)
+3. R4P, RGFL, CodeTracer, ORPS, Agent-RRM all verified as real with accurate characterizations (minor issues: CodeTracer trajectory count 4,316 vs 4,354, RGFL "one-shot" is a simplification)
+
+Now let me wait for the remaining agents. Let me also do one more important search - looking for the most recent concurrent work that might overlap.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4303698-e0a7-4ed1-ab02-7bbc8fd14a7b",
+  "isSidechain": false,
+  "requestId": "req_011CauPDbwZq3jZLBvVcm2iK",
+  "type": "assistant",
+  "uuid": "0589348f-7505-4500-8cf9-b99ec51a1483",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ErXsPWag1CLPfz5BVAMur",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4043,
+      "cache_read_input_tokens": 43343,
+      "output_tokens": 287,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4043,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 287,
+          "cache_read_input_tokens": 43343,
+          "cache_creation_input_tokens": 4043,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4043
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-10T18:45:29.513Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016hegfMB6RCMh1Djf3FkCS7`</summary>
+
+```json
+{
+  "query": "TRAJEVAL trajectory evaluation code agent decomposition stages 2603.24631"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0589348f-7505-4500-8cf9-b99ec51a1483",
+  "isSidechain": false,
+  "requestId": "req_011CauPDbwZq3jZLBvVcm2iK",
+  "type": "assistant",
+  "uuid": "ca8ab2fe-d26d-45d0-9b8c-7b1f3bbd2621",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ErXsPWag1CLPfz5BVAMur",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4043,
+      "cache_read_input_tokens": 43343,
+      "output_tokens": 287,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4043,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 287,
+          "cache_read_input_tokens": 43343,
+          "cache_creation_input_tokens": 4043,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4043
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-10T18:45:29.824Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SzEgXsiX7zUcbqra47PxWK`</summary>
+
+```json
+{
+  "query": "SWE-bench trajectory generation API cost per instance 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca8ab2fe-d26d-45d0-9b8c-7b1f3bbd2621",
+  "isSidechain": false,
+  "requestId": "req_011CauPDbwZq3jZLBvVcm2iK",
+  "type": "assistant",
+  "uuid": "0dc68b65-78eb-4819-b301-ee7b412124b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ErXsPWag1CLPfz5BVAMur",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4043,
+      "cache_read_input_tokens": 43343,
+      "output_tokens": 287,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4043,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 287,
+          "cache_read_input_tokens": 43343,
+          "cache_creation_input_tokens": 4043,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4043
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 59 · 2026-05-10T18:45:30.573Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T18:45:30.573Z",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "content": "&lt;task-notification>\n&lt;task-id>a4eb21958785d9238&lt;/task-id>\n&lt;tool-use-id>toolu_017jjkxXiRP4zYCdsjagEUHy&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/e48a7609-5e29-4d47-9bd4-04d751de1c24/tasks/a4eb21958785d9238.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Verify SWE-PRM, SWE-RM, SWE-Shepherd papers\" completed&lt;/summary>\n&lt;result>Now I have sufficient information to compile a comprehensive verification report. Here is the summary:\n\n---\n\n## Paper Verification Report\n\n### Paper 1: SWE-PRM / \"When Agents Go Astray\" (arXiv:2509.02360)\n\n**EXISTS: YES**\n\n| Claim | Verification | Status |\n|-------|-------------|--------|\n| Title | \"When Agents go Astray: Course-Correcting SWE Agents with PRMs\" | CORRECT |\n| arXiv ID | 2509.02360 | CORRECT |\n| Date | Submitted Sept 2, 2025 (revised Oct 21, 2025) | CORRECT |\n| Affiliation | IBM Research (confirmed via IBM Research publications page) | CORRECT |\n| Method | Prompt-based behavioral pattern detection (looping, redundancy, failure to terminate) | MOSTLY CORRECT -- the paper calls these \"taxonomy-guided PRMs\" using prompt-based inference-time intervention. The behavioral patterns listed are \"redundant exploration, looping, and failure to terminate\" rather than \"looping, drift, redundancy\" |\n| Scores | 40.0% -&gt; 50.6% on SWE-bench Verified | CORRECT (exact match) |\n| \"First PRM for SWE agents\" | NOT explicitly claimed in the paper | DISCREPANCY -- the characterization says it claims this, but the paper does not make this assertion |\n| Not a trained model | The paper describes using closed-source LLMs as PRMs at inference time with taxonomy-guided prompts, not training a dedicated model | CORRECT |\n\n**Minor discrepancies:** (1) The behavioral patterns are described as \"redundant exploration, looping, failure to terminate\" -- the user's characterization says \"drift\" instead of \"failure to terminate.\" (2) The \"first PRM\" claim is not in the paper itself.\n\n---\n\n### Paper 2: SWE-RM (arXiv:2512.21919)\n\n**EXISTS: YES**\n\n| Claim | Verification | Status |\n|-------|-------------|--------|\n| Title | \"SWE-RM: Execution-free Feedback For Software Engineering Agents\" | CORRECT |\n| arXiv ID | 2512.21919 | CORRECT |\n| Date | Submitted Dec 26, 2025 | CORRECT (Dec 2025) |\n| Affiliation | Qwen Team, Alibaba Group | CORRECT |\n| Architecture | 30B MoE, 3B active during inference | CORRECT |\n| Training data | ~100K trajectories (filtered from 400K+) | CORRECT |\n| Scoring method | Whole-trajectory scoring, continuous [0,1] via YES/NO log-probs | PARTIALLY CORRECT -- it is whole-trajectory, but NOT binary; it produces a continuous score in [0,1] |\n| Scores | Flash: 51.6% -&gt; 62.0%, Max: 67.0% -&gt; 74.6% on SWE-bench Verified | CORRECT (exact match) |\n| Best-of-N | Uses test-time scaling (TTS) with RM@K (best-of-N selection) | CORRECT |\n\n**Minor discrepancy:** The scoring is described as \"binary\" in the characterization, but it is actually continuous [0,1] derived from log-probabilities of YES/NO tokens. It is whole-trajectory (not step-level), which is correct.\n\n---\n\n### Paper 3: SWE-Shepherd (arXiv:2604.10493)\n\n**EXISTS: YES**\n\n| Claim | Verification | Status |\n|-------|-------------|--------|\n| Title | \"SWE-Shepherd: Advancing PRMs for Reinforcing Code Agents\" | CORRECT |\n| arXiv ID | 2604.10493 | CORRECT |\n| Date | April 12, 2026 | CORRECT |\n| Affiliation | Bangladesh University of Engineering and Technology (BUET) | Not mentioned in user's characterization but confirmed |\n| Method | Step-level action-utility PRMs for SWE agents | CORRECT |\n| Scores | 51% resolution rate vs. 57% greedy baseline | CORRECT (exact match) |\n| Evaluation scope | 100 tasks from SWE-bench Verified | CORRECT |\n| Base model | Uses gpt-5-mini | Not mentioned in characterization |\n\n**No significant discrepancies.** The characterization is accurate. The paper does show a *decrease* from the greedy baseline (57% -&gt; 51%), which is correctly noted. The paper acknowledges \"challenges in aligning intermediate rewards with final task success.\"\n\n---\n\n### Additional Competitors NOT Mentioned in the Landscape\n\nThe following relevant works were found that also address reward models / test-time scaling for SWE-bench and are not listed in the user's three papers:\n\n1. **SWE-TRACE** (arXiv:2604.14820, April 2026, vivo) -- Uses a Rubric-Based Process Reward Model (PRM) with heuristic-guided test-time scaling. Achieves 63.5% (71.2% with TTS) on SWE-bench Verified with a 30B model. This is a direct competitor using step-level PRMs.\n\n2. **OpenHands Critic Model** (Nov 2025, All-Hands-AI) -- A trained critic model (finetuned Qwen 2.5 Coder 32B) using temporal difference learning for trajectory evaluation, combined with best-of-N selection. Achieved SOTA on SWE-bench Verified in late 2025 (baseline 60.6%, improved with TTS).\n\n3. **SWE-Search** (arXiv:2410.20285, ICLR 2025) -- Uses Monte Carlo Tree Search with a Value Agent providing process-level feedback. Achieves 23% relative improvement over standard agents. Not a trained reward model but uses LLM-as-judge for value estimation.\n\n4. **SWE-RL** (arXiv:2502.18449, Feb 2025, Meta/Facebook Research, NeurIPS 2025) -- Uses RL with rule-based rewards (not a learned reward model) to train Llama 3 for SWE tasks. Achieves 41.0% on SWE-bench Verified with a 70B model.\n\n5. **SWE-TRACE** and **SWE-Shepherd** are the most directly comparable as step-level PRM approaches published in April 2026.\n\n---\n\n### Summary of Discrepancies\n\n- **Paper 1 (SWE-PRM):** Two minor issues: (a) behavioral patterns are \"redundant exploration, looping, failure to terminate\" not \"looping, drift, redundancy\"; (b) \"first PRM for SWE agents\" claim is not made in the paper.\n- **Paper 2 (SWE-RM):** One minor issue: scoring is continuous [0,1], not \"binary\" as characterized.\n- **Paper 3 (SWE-Shepherd):** Characterization is accurate. All numbers match.\n\nAll three papers exist and are real. The key claims (scores, methods, dates) are substantively correct with the minor caveats noted above.&lt;/result>\n&lt;usage>&lt;total_tokens>23194&lt;/total_tokens>&lt;tool_uses>18&lt;/tool_uses>&lt;duration_ms>121400&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "0dc68b65-78eb-4819-b301-ee7b412124b9",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Stage-level diagnostic reasoning rewards for code repair",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-10T18:45:34.361Z_
+
+<details><summary>↩ Tool result · `toolu_01SzEgXsiX7zUcbqra47PxWK`</summary>
+
+```text
+Web search results for query: "SWE-bench trajectory generation API cost per instance 2026"
+
+Links: [{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"Overview - SWE-bench","url":"https://www.swebench.com/SWE-bench/"},{"title":"SWE-bench Verified","url":"https://www.vals.ai/benchmarks/swebench"},{"title":"SWE-Bench Explained (2026): Methodology, Scoring, Contamination | CodeSOTA","url":"https://www.codesota.com/guides/swe-bench-explained"},{"title":"SWE-rebench Leaderboard","url":"https://swe-rebench.com/"},{"title":"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale","url":"https://labs.scale.com/leaderboard/swe_bench_pro_public"},{"title":"SWE-bench/SWE-smith-trajectories · Datasets at Hugging Face","url":"https://huggingface.co/datasets/SWE-bench/SWE-smith-trajectories"},{"title":"AI Agent Benchmarking Infrastructure on GPU Cloud: Run SWE-bench, GAIA, Terminal-Bench, and OSWorld at Scale (2026 Guide) | Spheron Blog","url":"https://www.spheron.network/blog/ai-agent-benchmarking-gpu-cloud-swebench-gaia/"},{"title":"SWE-bench Verified | Epoch AI","url":"https://epoch.ai/benchmarks/swe-bench-verified"},{"title":"Test-Time Compute Orchestration for SWE-bench with AI21 Maestro","url":"https://www.ai21.com/blog/test-time-compute-swe-bench/"}]
+
+Based on the search results, I found some relevant cost information for SWE-bench trajectory generation:
+
+A full Verified run costs $100-$500 in API calls for frontier models and takes 4-12 hours on a single machine.
+
+Additionally, the search results include information about cost efficiency when running multiple trajectories. Running 8 trajectories of gpt-5-mini yields a higher score with lower cost as compared to running gpt-5 once.
+
+However, I should note that while these results provide general cost information for running SWE-bench evaluations, they don't specify the exact cost per individual instance for trajectory generation APIs in 2026. The search results focus on overall run costs rather than a per-instance API pricing model. If you're looking for more specific per-instance pricing from a particular API provider, that information wasn't available in these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0dc68b65-78eb-4819-b301-ee7b412124b9",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "c304ee6a-7841-4ebe-8012-e1d025b67190",
+  "toolUseResult": {
+    "query": "SWE-bench trajectory generation API cost per instance 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015UKyzhEUe1n2v9uZLNJihF",
+        "content": [
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "Overview - SWE-bench",
+            "url": "https://www.swebench.com/SWE-bench/"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.vals.ai/benchmarks/swebench"
+          },
+          {
+            "title": "SWE-Bench Explained (2026): Methodology, Scoring, Contamination | CodeSOTA",
+            "url": "https://www.codesota.com/guides/swe-bench-explained"
+          },
+          {
+            "title": "SWE-rebench Leaderboard",
+            "url": "https://swe-rebench.com/"
+          },
+          {
+            "title": "SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale",
+            "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public"
+          },
+          {
+            "title": "SWE-bench/SWE-smith-trajectories · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/SWE-bench/SWE-smith-trajectories"
+          },
+          {
+            "title": "AI Agent Benchmarking Infrastructure on GPU Cloud: Run SWE-bench, GAIA, Terminal-Bench, and OSWorld at Scale (2026 Guide) | Spheron Blog",
+            "url": "https://www.spheron.network/blog/ai-agent-benchmarking-gpu-cloud-swebench-gaia/"
+          },
+          {
+            "title": "SWE-bench Verified | Epoch AI",
+            "url": "https://epoch.ai/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "Test-Time Compute Orchestration for SWE-bench with AI21 Maestro",
+            "url": "https://www.ai21.com/blog/test-time-compute-swe-bench/"
+          }
+        ]
+      },
+      "Based on the search results, I found some relevant cost information for SWE-bench trajectory generation:\n\nA full Verified run costs $100-$500 in API calls for frontier models and takes 4-12 hours on a single machine.\n\nAdditionally, the search results include information about cost efficiency when running multiple trajectories. Running 8 trajectories of gpt-5-mini yields a higher score with lower cost as compared to running gpt-5 once.\n\nHowever, I should note that while these results provide general cost information for running SWE-bench evaluations, they don't specify the exact cost per individual instance for trajectory generation APIs in 2026. The search results focus on overall run costs rather than a per-instance API pricing model. If you're looking for more specific per-instance pricing from a particular API provider, that information wasn't available in these results."
+    ],
+    "durationSeconds": 4.53455124500001
+  },
+  "sourceToolAssistantUUID": "0dc68b65-78eb-4819-b301-ee7b412124b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-10T18:45:34.667Z_
+
+<details><summary>↩ Tool result · `toolu_016hegfMB6RCMh1Djf3FkCS7`</summary>
+
+```text
+Web search results for query: "TRAJEVAL trajectory evaluation code agent decomposition stages 2603.24631"
+
+Links: [{"title":"[2603.24631] TRAJEVAL: Decomposing Code Agent Trajectories for Fine-Grained Diagnosis","url":"https://arxiv.org/abs/2603.24631"},{"title":"AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials | OpenReview","url":"https://openreview.net/forum?id=EEgYUccwsV"},{"title":"GitHub - langchain-ai/agentevals: Readymade evaluators for agent trajectories · GitHub","url":"https://github.com/langchain-ai/agentevals"},{"title":"An Open Toolkit for Diagnosing LLM Agent Trajectories","url":"https://aclanthology.org/2025.emnlp-demos.15.pdf"},{"title":"Evaluate agent trajectories | Opik Documentation | Opik Documentation","url":"https://www.comet.com/docs/opik/evaluation/evaluate_agent_trajectory"},{"title":"AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials","url":"https://agenttrek.github.io/"},{"title":"LLM Agent Trajectory Evaluation with LangSmith | by Prarthana Saikia | Medium","url":"https://medium.com/@prarthana1/llm-agent-trajectory-evaluation-with-langsmith-7a3e25aa3400"},{"title":"How to evaluate agent trajectories with AgentEvals","url":"https://www.linkedin.com/posts/langchain_how-to-evaluate-agent-trajectories-with-activity-7312527233204568082-SBAz"},{"title":"How to evaluate your agent with trajectory evaluations - Docs by LangChain","url":"https://docs.langchain.com/langsmith/trajectory-evals"},{"title":"Agent Trajectory Evaluations - Arize AX Docs","url":"https://arize.com/docs/ax/evaluate/evaluators/trace-and-session-evals/trace-level-evaluations/agent-trajectory-evaluations"}]
+
+Based on the search results, here's what I found about TRAJEVAL:
+
+TRAJEVAL is a diagnostic framework that decomposes agent trajectories into three interpretable stages: search (file localization), read (function comprehension), and edit (modification targeting).
+
+The framework achieves model-level Pass@1 prediction within 0.87-2.1% MAE, and real-time feedback based on trajectory signals improves two state-of-the-art models by 2.2-4.6 percentage points while reducing costs by 20-31%.
+
+TRAJEVAL transforms agent evaluation beyond outcome-based benchmarking toward mechanism-driven diagnosis of agent success and failure.
+
+The paper (arXiv:2603.24631) is titled "TRAJEVAL: Decomposing Code Agent Trajectories for Fine-Grained Diagnosis" and was published on March 25, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ca8ab2fe-d26d-45d0-9b8c-7b1f3bbd2621",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "9cba89ae-156e-4f65-b5a5-b74d1ecaf0c3",
+  "toolUseResult": {
+    "query": "TRAJEVAL trajectory evaluation code agent decomposition stages 2603.24631",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QQvZaW5HAF5U5a78hS8f6H",
+        "content": [
+          {
+            "title": "[2603.24631] TRAJEVAL: Decomposing Code Agent Trajectories for Fine-Grained Diagnosis",
+            "url": "https://arxiv.org/abs/2603.24631"
+          },
+          {
+            "title": "AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials | OpenReview",
+            "url": "https://openreview.net/forum?id=EEgYUccwsV"
+          },
+          {
+            "title": "GitHub - langchain-ai/agentevals: Readymade evaluators for agent trajectories · GitHub",
+            "url": "https://github.com/langchain-ai/agentevals"
+          },
+          {
+            "title": "An Open Toolkit for Diagnosing LLM Agent Trajectories",
+            "url": "https://aclanthology.org/2025.emnlp-demos.15.pdf"
+          },
+          {
+            "title": "Evaluate agent trajectories | Opik Documentation | Opik Documentation",
+            "url": "https://www.comet.com/docs/opik/evaluation/evaluate_agent_trajectory"
+          },
+          {
+            "title": "AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials",
+            "url": "https://agenttrek.github.io/"
+          },
+          {
+            "title": "LLM Agent Trajectory Evaluation with LangSmith | by Prarthana Saikia | Medium",
+            "url": "https://medium.com/@prarthana1/llm-agent-trajectory-evaluation-with-langsmith-7a3e25aa3400"
+          },
+          {
+            "title": "How to evaluate agent trajectories with AgentEvals",
+            "url": "https://www.linkedin.com/posts/langchain_how-to-evaluate-agent-trajectories-with-activity-7312527233204568082-SBAz"
+          },
+          {
+            "title": "How to evaluate your agent with trajectory evaluations - Docs by LangChain",
+            "url": "https://docs.langchain.com/langsmith/trajectory-evals"
+          },
+          {
+            "title": "Agent Trajectory Evaluations - Arize AX Docs",
+            "url": "https://arize.com/docs/ax/evaluate/evaluators/trace-and-session-evals/trace-level-evaluations/agent-trajectory-evaluations"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about TRAJEVAL:\n\nTRAJEVAL is a diagnostic framework that decomposes agent trajectories into three interpretable stages: search (file localization), read (function comprehension), and edit (modification targeting).\n\nThe framework achieves model-level Pass@1 prediction within 0.87-2.1% MAE, and real-time feedback based on trajectory signals improves two state-of-the-art models by 2.2-4.6 percentage points while reducing costs by 20-31%.\n\nTRAJEVAL transforms agent evaluation beyond outcome-based benchmarking toward mechanism-driven diagnosis of agent success and failure.\n\nThe paper (arXiv:2603.24631) is titled \"TRAJEVAL: Decomposing Code Agent Trajectories for Fine-Grained Diagnosis\" and was published on March 25, 2026."
+    ],
+    "durationSeconds": 5.151793543000007
+  },
+  "sourceToolAssistantUUID": "ca8ab2fe-d26d-45d0-9b8c-7b1f3bbd2621",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 64 · 2026-05-10T18:45:34.684Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-10T18:45:34.684Z",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 65 · 2026-05-10T18:45:34.683Z_
+
+```json
+{
+  "parentUuid": "9cba89ae-156e-4f65-b5a5-b74d1ecaf0c3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>a4eb21958785d9238&lt;/task-id>\n&lt;tool-use-id>toolu_017jjkxXiRP4zYCdsjagEUHy&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/e48a7609-5e29-4d47-9bd4-04d751de1c24/tasks/a4eb21958785d9238.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Verify SWE-PRM, SWE-RM, SWE-Shepherd papers\" completed&lt;/summary>\n&lt;result>Now I have sufficient information to compile a comprehensive verification report. Here is the summary:\n\n---\n\n## Paper Verification Report\n\n### Paper 1: SWE-PRM / \"When Agents Go Astray\" (arXiv:2509.02360)\n\n**EXISTS: YES**\n\n| Claim | Verification | Status |\n|-------|-------------|--------|\n| Title | \"When Agents go Astray: Course-Correcting SWE Agents with PRMs\" | CORRECT |\n| arXiv ID | 2509.02360 | CORRECT |\n| Date | Submitted Sept 2, 2025 (revised Oct 21, 2025) | CORRECT |\n| Affiliation | IBM Research (confirmed via IBM Research publications page) | CORRECT |\n| Method | Prompt-based behavioral pattern detection (looping, redundancy, failure to terminate) | MOSTLY CORRECT -- the paper calls these \"taxonomy-guided PRMs\" using prompt-based inference-time intervention. The behavioral patterns listed are \"redundant exploration, looping, and failure to terminate\" rather than \"looping, drift, redundancy\" |\n| Scores | 40.0% -&gt; 50.6% on SWE-bench Verified | CORRECT (exact match) |\n| \"First PRM for SWE agents\" | NOT explicitly claimed in the paper | DISCREPANCY -- the characterization says it claims this, but the paper does not make this assertion |\n| Not a trained model | The paper describes using closed-source LLMs as PRMs at inference time with taxonomy-guided prompts, not training a dedicated model | CORRECT |\n\n**Minor discrepancies:** (1) The behavioral patterns are described as \"redundant exploration, looping, failure to terminate\" -- the user's characterization says \"drift\" instead of \"failure to terminate.\" (2) The \"first PRM\" claim is not in the paper itself.\n\n---\n\n### Paper 2: SWE-RM (arXiv:2512.21919)\n\n**EXISTS: YES**\n\n| Claim | Verification | Status |\n|-------|-------------|--------|\n| Title | \"SWE-RM: Execution-free Feedback For Software Engineering Agents\" | CORRECT |\n| arXiv ID | 2512.21919 | CORRECT |\n| Date | Submitted Dec 26, 2025 | CORRECT (Dec 2025) |\n| Affiliation | Qwen Team, Alibaba Group | CORRECT |\n| Architecture | 30B MoE, 3B active during inference | CORRECT |\n| Training data | ~100K trajectories (filtered from 400K+) | CORRECT |\n| Scoring method | Whole-trajectory scoring, continuous [0,1] via YES/NO log-probs | PARTIALLY CORRECT -- it is whole-trajectory, but NOT binary; it produces a continuous score in [0,1] |\n| Scores | Flash: 51.6% -&gt; 62.0%, Max: 67.0% -&gt; 74.6% on SWE-bench Verified | CORRECT (exact match) |\n| Best-of-N | Uses test-time scaling (TTS) with RM@K (best-of-N selection) | CORRECT |\n\n**Minor discrepancy:** The scoring is described as \"binary\" in the characterization, but it is actually continuous [0,1] derived from log-probabilities of YES/NO tokens. It is whole-trajectory (not step-level), which is correct.\n\n---\n\n### Paper 3: SWE-Shepherd (arXiv:2604.10493)\n\n**EXISTS: YES**\n\n| Claim | Verification | Status |\n|-------|-------------|--------|\n| Title | \"SWE-Shepherd: Advancing PRMs for Reinforcing Code Agents\" | CORRECT |\n| arXiv ID | 2604.10493 | CORRECT |\n| Date | April 12, 2026 | CORRECT |\n| Affiliation | Bangladesh University of Engineering and Technology (BUET) | Not mentioned in user's characterization but confirmed |\n| Method | Step-level action-utility PRMs for SWE agents | CORRECT |\n| Scores | 51% resolution rate vs. 57% greedy baseline | CORRECT (exact match) |\n| Evaluation scope | 100 tasks from SWE-bench Verified | CORRECT |\n| Base model | Uses gpt-5-mini | Not mentioned in characterization |\n\n**No significant discrepancies.** The characterization is accurate. The paper does show a *decrease* from the greedy baseline (57% -&gt; 51%), which is correctly noted. The paper acknowledges \"challenges in aligning intermediate rewards with final task success.\"\n\n---\n\n### Additional Competitors NOT Mentioned in the Landscape\n\nThe following relevant works were found that also address reward models / test-time scaling for SWE-bench and are not listed in the user's three papers:\n\n1. **SWE-TRACE** (arXiv:2604.14820, April 2026, vivo) -- Uses a Rubric-Based Process Reward Model (PRM) with heuristic-guided test-time scaling. Achieves 63.5% (71.2% with TTS) on SWE-bench Verified with a 30B model. This is a direct competitor using step-level PRMs.\n\n2. **OpenHands Critic Model** (Nov 2025, All-Hands-AI) -- A trained critic model (finetuned Qwen 2.5 Coder 32B) using temporal difference learning for trajectory evaluation, combined with best-of-N selection. Achieved SOTA on SWE-bench Verified in late 2025 (baseline 60.6%, improved with TTS).\n\n3. **SWE-Search** (arXiv:2410.20285, ICLR 2025) -- Uses Monte Carlo Tree Search with a Value Agent providing process-level feedback. Achieves 23% relative improvement over standard agents. Not a trained reward model but uses LLM-as-judge for value estimation.\n\n4. **SWE-RL** (arXiv:2502.18449, Feb 2025, Meta/Facebook Research, NeurIPS 2025) -- Uses RL with rule-based rewards (not a learned reward model) to train Llama 3 for SWE tasks. Achieves 41.0% on SWE-bench Verified with a 70B model.\n\n5. **SWE-TRACE** and **SWE-Shepherd** are the most directly comparable as step-level PRM approaches published in April 2026.\n\n---\n\n### Summary of Discrepancies\n\n- **Paper 1 (SWE-PRM):** Two minor issues: (a) behavioral patterns are \"redundant exploration, looping, failure to terminate\" not \"looping, drift, redundancy\"; (b) \"first PRM for SWE agents\" claim is not made in the paper.\n- **Paper 2 (SWE-RM):** One minor issue: scoring is continuous [0,1], not \"binary\" as characterized.\n- **Paper 3 (SWE-Shepherd):** Characterization is accurate. All numbers match.\n\nAll three papers exist and are real. The key claims (scores, methods, dates) are substantively correct with the minor caveats noted above.&lt;/result>\n&lt;usage>&lt;total_tokens>23194&lt;/total_tokens>&lt;tool_uses>18&lt;/tool_uses>&lt;duration_ms>121400&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "b2358019-30af-4e8c-8a75-2c140da6115c",
+  "timestamp": "2026-05-10T18:45:34.683Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-10T18:45:56.320Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good findings so far. Let me compile the important information:
+
+1. **EMNLP 2026 ARR deadline**: Confirmed May 25, 2026 ✓
+2. **SWE-PRM**: Exists ✓, minor characterization discrepancies (behavioral patterns called "redundant exploration, looping, failure to terminate" not "looping, drift, redundancy"; "first PRM" claim not in paper)
+3. **SWE-RM**: Exists ✓, minor issue (scoring is continuous [0,1], described as "binary" in proposal)
+
+
+4. **SWE-Shepherd**: Exists ✓, accurate characterization, 51% vs 57% greedy confirmed
+5. **R4P**: Exists ✓, accurate
+6. **RGFL**: Exists ✓, accurate (minor: "one-shot" simplifies two-stage)
+7. **CodeTracer**: Exists ✓, mostly accurate (trajectory count 4,316 vs 4,354)
+8. **ORPS**: Exists ✓, accurate
+9. **Agent-RRM**: Exists ✓, accurate
+10. **Qwen3-8B**: Available on HuggingFace ✓
+11. **SWE-smith 66K**: Checking availability and details on HuggingFace ✓ (65,994 rows)
+12. **SWE-bench Verified current SOTA**: 93.9% (Claude Mythos Preview) - the benchmark is getting saturated
+13. **TRAJEVAL**: Exists ✓, decomposes into search/read/edit stages
+14. **SWE-bench full evaluation cost**: $100-500 API calls for a full Verified run
+
+I'm also discovering some newer competitors I hadn't accounted for: OpenHands Critic Model from November 2025 that uses TD learning for trajectory evaluation and best-of-N selection, and SWE-Search which applies MCTS with a Value Agent for process-level feedback. I should hold off on finalizing the review until I've checked on the remaining two agents, and I need to dig into LLM judge reliability as well.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b2358019-30af-4e8c-8a75-2c140da6115c",
+  "isSidechain": false,
+  "requestId": "req_011CauPEYk6uhUfW2mstHrrB",
+  "type": "assistant",
+  "uuid": "18f09e46-85c7-46d8-97d9-ad8c3095420d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018gyQsk7UC6C8HzTWzpf61R",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 695,
+      "cache_creation_input_tokens": 3057,
+      "cache_read_input_tokens": 47386,
+      "output_tokens": 717,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3057,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 695,
+          "output_tokens": 717,
+          "cache_read_input_tokens": 47386,
+          "cache_creation_input_tokens": 3057,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3057
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-10T18:45:56.570Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01EYf9Bq7dczyGeC21ScBBJy`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.27727",
+  "prompt": "What is this paper about? What are the key findings about LLM-as-judge reliability for coding tasks? What Cohen's kappa or inter-annotator agreement values are reported?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18f09e46-85c7-46d8-97d9-ad8c3095420d",
+  "isSidechain": false,
+  "requestId": "req_011CauPEYk6uhUfW2mstHrrB",
+  "type": "assistant",
+  "uuid": "b18b6ab4-1648-4d94-9955-a9bbcd35bac2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018gyQsk7UC6C8HzTWzpf61R",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 695,
+      "cache_creation_input_tokens": 3057,
+      "cache_read_input_tokens": 47386,
+      "output_tokens": 717,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3057,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 695,
+          "output_tokens": 717,
+          "cache_read_input_tokens": 47386,
+          "cache_creation_input_tokens": 3057,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3057
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-10T18:45:57.102Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MPxF6yAEUCLHdxefNSWDBx`</summary>
+
+```json
+{
+  "query": "OpenHands critic model trajectory evaluation SWE-bench 2025 best-of-N"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b18b6ab4-1648-4d94-9955-a9bbcd35bac2",
+  "isSidechain": false,
+  "requestId": "req_011CauPEYk6uhUfW2mstHrrB",
+  "type": "assistant",
+  "uuid": "a514349f-8de9-471d-9470-e0ee8253bbfd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018gyQsk7UC6C8HzTWzpf61R",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 695,
+      "cache_creation_input_tokens": 3057,
+      "cache_read_input_tokens": 47386,
+      "output_tokens": 717,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3057,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 695,
+          "output_tokens": 717,
+          "cache_read_input_tokens": 47386,
+          "cache_creation_input_tokens": 3057,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3057
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-10T18:46:01.454Z_
+
+<details><summary>↩ Tool result · `toolu_01EYf9Bq7dczyGeC21ScBBJy`</summary>
+
+```text
+# Paper Summary
+
+## Topic
+This research presents a framework for using LLMs as judges to evaluate human-AI collaborative coding work. The authors develop "a rubric-driven LLM-as-a-Judge framework for contest-style human-AI co-creation in coding."
+
+## Key Findings on LLM Judge Reliability
+
+The study reveals modest reliability performance:
+
+- **Discrimination metrics**: Best ROC-AUC reached 0.5937 and PR-AUC achieved 0.6904
+- **Decision quality**: MCC test score maxed at 0.5000
+- **Probabilistic reliability**: LogLoss and Brier score were assessed alongside Expected Calibration Error (ECE)
+
+## Inter-Annotator Agreement
+
+The inter-judge consistency was notably low:
+- **Cohen's kappa**: Mean pairwise value of 0.1592
+- **Fleiss' kappa**: 0.0696
+
+These values suggest "inter-judge consistency remains modest overall," indicating significant disagreement between different LLM judges on the same coding outputs.
+
+## Co-Creation Insights
+
+The framework also tracked human-AI collaboration patterns, finding that "Success-at-Turn rising to 0.8533 at the first observed turn and stabilizing at 0.8641 by turn 6," suggesting productive outcomes emerge early in the interaction process.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b18b6ab4-1648-4d94-9955-a9bbcd35bac2",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "41fbaafb-7f34-4d80-8b7e-22fb6364740f",
+  "toolUseResult": {
+    "bytes": 48700,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary\n\n## Topic\nThis research presents a framework for using LLMs as judges to evaluate human-AI collaborative coding work. The authors develop \"a rubric-driven LLM-as-a-Judge framework for contest-style human-AI co-creation in coding.\"\n\n## Key Findings on LLM Judge Reliability\n\nThe study reveals modest reliability performance:\n\n- **Discrimination metrics**: Best ROC-AUC reached 0.5937 and PR-AUC achieved 0.6904\n- **Decision quality**: MCC test score maxed at 0.5000\n- **Probabilistic reliability**: LogLoss and Brier score were assessed alongside Expected Calibration Error (ECE)\n\n## Inter-Annotator Agreement\n\nThe inter-judge consistency was notably low:\n- **Cohen's kappa**: Mean pairwise value of 0.1592\n- **Fleiss' kappa**: 0.0696\n\nThese values suggest \"inter-judge consistency remains modest overall,\" indicating significant disagreement between different LLM judges on the same coding outputs.\n\n## Co-Creation Insights\n\nThe framework also tracked human-AI collaboration patterns, finding that \"Success-at-Turn rising to 0.8533 at the first observed turn and stabilizing at 0.8641 by turn 6,\" suggesting productive outcomes emerge early in the interaction process.",
+    "durationMs": 4880,
+    "url": "https://arxiv.org/abs/2604.27727"
+  },
+  "sourceToolAssistantUUID": "b18b6ab4-1648-4d94-9955-a9bbcd35bac2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-10T18:46:05.812Z_
+
+<details><summary>↩ Tool result · `toolu_01MPxF6yAEUCLHdxefNSWDBx`</summary>
+
+```text
+Web search results for query: "OpenHands critic model trajectory evaluation SWE-bench 2025 best-of-N"
+
+Links: [{"title":"SOTA on SWE-Bench Verified with Inference-Time Scaling and Critic Model | Nov 12, 2025","url":"https://openhands.dev/blog/sota-on-swe-bench-verified-with-inference-time-scaling-and-critic-model"},{"title":"OpenHands/openhands-critic-32b-exp-20250417 · Hugging Face","url":"https://huggingface.co/OpenHands/openhands-critic-32b-exp-20250417"},{"title":"SWE-Gym/docs/OpenHands.md at main · SWE-Gym/SWE-Gym","url":"https://github.com/SWE-Gym/SWE-Gym/blob/main/docs/OpenHands.md"},{"title":"OpenHands trajectories with Qwen3-Coder-480B-A35B-Instruct","url":"https://nebius.com/blog/posts/openhands-trajectories-with-qwen3-coder-480b"},{"title":"GitHub - OpenHands/benchmarks: Evaluation harness for OpenHands V1. · GitHub","url":"https://github.com/OpenHands/benchmarks"},{"title":"OpenHands/evaluation/benchmarks/swe_bench/SWE-Gym.md at main · OpenHands/OpenHands","url":"https://github.com/OpenHands/OpenHands/blob/main/evaluation/benchmarks/swe_bench/SWE-Gym.md"},{"title":"2025-12-23 SWE-EVO: Benchmarking Coding Agents in","url":"https://arxiv.org/pdf/2512.18470v1"},{"title":"Devstral: Fine-tuning Language Models for Coding Agent Applications","url":"https://arxiv.org/html/2509.25193v1"},{"title":"nebius/SWE-rebench-openhands-trajectories · Datasets at Hugging Face","url":"https://huggingface.co/datasets/nebius/SWE-rebench-openhands-trajectories"},{"title":"Published as a conference paper at ICLR 2025 OPENHANDS: AN OPEN PLATFORM FOR","url":"https://arxiv.org/pdf/2407.16741"}]
+
+Based on the search results, I found comprehensive information about OpenHands' critic model and trajectory evaluation approach on SWE-Bench 2025:
+
+## OpenHands Critic Model and Best-of-N Trajectory Evaluation
+
+OpenHands has reached state-of-the-art results on SWE-Bench Verified, achieved through a novel approach combining multiple trajectory rollouts with a trained critic model for evaluation.
+
+### Performance and Best-of-N Strategy
+
+Performance improved from 60.6% on a single trajectory rollout to 66.4% with five attempts, demonstrating the effectiveness of the best-of-N approach. The approach leverages the idea that for challenging software engineering tasks, trying multiple solutions and picking the best one can lead to better outcomes, allowing inference-time scaling to achieve substantially better results without modifying the underlying agent model and scaffold.
+
+### Critic Model Training
+
+Qwen 2.5 Coder Instruct 32B was finetuned as a critic model using veRL. For the training process, they rolled out agent trajectories while implementing a temporal difference (TD) learning objective to propagate trajectory-level success signals from unit test execution backward through each trajectory, with a regression head on top of the last layer to predict reward values.
+
+### Rationale for Trained Model
+
+While other SWE-bench submissions used best-of-multiple-solutions strategies generally based on prompting existing models like Claude, OpenHands trained a dedicated critic model, which provided more effective results. The team invested in a trained critic model for genuine usefulness through generalization, believing that with sufficient data, a trained critic model could generalize to diverse software engineering scenarios beyond SWE-Bench.
+
+The critic model is publicly available on HuggingFace for researchers who want to explore its capabilities or build upon the work.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a514349f-8de9-471d-9470-e0ee8253bbfd",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "d1c382cc-1c26-44ec-b237-4c7974f0c899",
+  "toolUseResult": {
+    "query": "OpenHands critic model trajectory evaluation SWE-bench 2025 best-of-N",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PM2rnBXwDg5ynR8xAvfuNM",
+        "content": [
+          {
+            "title": "SOTA on SWE-Bench Verified with Inference-Time Scaling and Critic Model | Nov 12, 2025",
+            "url": "https://openhands.dev/blog/sota-on-swe-bench-verified-with-inference-time-scaling-and-critic-model"
+          },
+          {
+            "title": "OpenHands/openhands-critic-32b-exp-20250417 · Hugging Face",
+            "url": "https://huggingface.co/OpenHands/openhands-critic-32b-exp-20250417"
+          },
+          {
+            "title": "SWE-Gym/docs/OpenHands.md at main · SWE-Gym/SWE-Gym",
+            "url": "https://github.com/SWE-Gym/SWE-Gym/blob/main/docs/OpenHands.md"
+          },
+          {
+            "title": "OpenHands trajectories with Qwen3-Coder-480B-A35B-Instruct",
+            "url": "https://nebius.com/blog/posts/openhands-trajectories-with-qwen3-coder-480b"
+          },
+          {
+            "title": "GitHub - OpenHands/benchmarks: Evaluation harness for OpenHands V1. · GitHub",
+            "url": "https://github.com/OpenHands/benchmarks"
+          },
+          {
+            "title": "OpenHands/evaluation/benchmarks/swe_bench/SWE-Gym.md at main · OpenHands/OpenHands",
+            "url": "https://github.com/OpenHands/OpenHands/blob/main/evaluation/benchmarks/swe_bench/SWE-Gym.md"
+          },
+          {
+            "title": "2025-12-23 SWE-EVO: Benchmarking Coding Agents in",
+            "url": "https://arxiv.org/pdf/2512.18470v1"
+          },
+          {
+            "title": "Devstral: Fine-tuning Language Models for Coding Agent Applications",
+            "url": "https://arxiv.org/html/2509.25193v1"
+          },
+          {
+            "title": "nebius/SWE-rebench-openhands-trajectories · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/nebius/SWE-rebench-openhands-trajectories"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 OPENHANDS: AN OPEN PLATFORM FOR",
+            "url": "https://arxiv.org/pdf/2407.16741"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about OpenHands' critic model and trajectory evaluation approach on SWE-Bench 2025:\n\n## OpenHands Critic Model and Best-of-N Trajectory Evaluation\n\nOpenHands has reached state-of-the-art results on SWE-Bench Verified, achieved through a novel approach combining multiple trajectory rollouts with a trained critic model for evaluation.\n\n### Performance and Best-of-N Strategy\n\nPerformance improved from 60.6% on a single trajectory rollout to 66.4% with five attempts, demonstrating the effectiveness of the best-of-N approach. The approach leverages the idea that for challenging software engineering tasks, trying multiple solutions and picking the best one can lead to better outcomes, allowing inference-time scaling to achieve substantially better results without modifying the underlying agent model and scaffold.\n\n### Critic Model Training\n\nQwen 2.5 Coder Instruct 32B was finetuned as a critic model using veRL. For the training process, they rolled out agent trajectories while implementing a temporal difference (TD) learning objective to propagate trajectory-level success signals from unit test execution backward through each trajectory, with a regression head on top of the last layer to predict reward values.\n\n### Rationale for Trained Model\n\nWhile other SWE-bench submissions used best-of-multiple-solutions strategies generally based on prompting existing models like Claude, OpenHands trained a dedicated critic model, which provided more effective results. The team invested in a trained critic model for genuine usefulness through generalization, believing that with sufficient data, a trained critic model could generalize to diverse software engineering scenarios beyond SWE-Bench.\n\nThe critic model is publicly available on HuggingFace for researchers who want to explore its capabilities or build upon the work."
+    ],
+    "durationSeconds": 8.707748230999975
+  },
+  "sourceToolAssistantUUID": "a514349f-8de9-471d-9470-e0ee8253bbfd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 71 · 2026-05-10T18:46:05.817Z_
+
+```json
+{
+  "parentUuid": "d1c382cc-1c26-44ec-b237-4c7974f0c899",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "7ac101b7-094c-483d-b17d-c14c7013963a",
+  "timestamp": "2026-05-10T18:46:05.817Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "7ac101b7-094c-483d-b17d-c14c7013963a",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Stage-level diagnostic reasoning rewards for code repair",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-10T18:46:26.349Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Very important finding!
+
+**OpenHands Critic Model** (Nov 2025, All-Hands-AI):
+- Finetuned Qwen 2.5 Coder 32B as critic using veRL with TD learning
+- 60.6% → 66.4% on SWE-bench Verified with 5 trajectories 
+- Available on HuggingFace (OpenHands/openhands-critic-32b-exp-20250417)
+- This is a trained trajectory-level critic, NOT step-level, uses TD learning to backpropagate trajectory success
+
+This is relevant as an additional baseline but doesn't directly overlap with DiagPRM's contribution since:
+
+
+- It operates at the trajectory level rather than decomposing diagnostic reasoning across stages, uses TD learning from execution outcomes instead of LLM-judge annotations, and still provides holistic scoring without the diagnostic breakdown that DiagPRM offers. That said, it's a significant omission from the landscape section and should be discussed.
+
+The LLM-as-judge coding paper shows concerning inter-rater reliability metrics with Cohen's kappa at 0.1592 and Fleiss' kappa at 0.0696—essentially random agreement—which raises questions about the validity of LLM-based evaluation approaches.
+
+For DiagPRM specifically, this is a real concern since it depends on LLM-judge annotations of reasoning quality, though I should consider that the paper evaluates human-AI co-creation outputs rather than diagnostic reasoning, DiagPRM's task is more structured and may achieve better agreement, and the authors did run a 100-trajectory pilot to validate inter-model agreement. Still, it's worth flagging as a potential risk.
+
+Now I'm waiting for the remaining agents to finish and then I'll compile the full review.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ac101b7-094c-483d-b17d-c14c7013963a",
+  "isSidechain": false,
+  "requestId": "req_011CauPGr7gkjTjgLiKfhTqz",
+  "type": "assistant",
+  "uuid": "7ba3959d-87c8-43fe-8634-62377248d113",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cwu1fEjggGERxCnZaPRMYQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2896,
+      "cache_read_input_tokens": 50443,
+      "output_tokens": 635,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2896,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 635,
+          "cache_read_input_tokens": 50443,
+          "cache_creation_input_tokens": 2896,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2896
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-10T18:46:26.384Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CA3oJ6BE6RATQM67fEpLg9`</summary>
+
+```json
+{
+  "query": "\"stage-level resampling\" OR \"selective regeneration\" code repair trajectory 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ba3959d-87c8-43fe-8634-62377248d113",
+  "isSidechain": false,
+  "requestId": "req_011CauPGr7gkjTjgLiKfhTqz",
+  "type": "assistant",
+  "uuid": "79f4cae9-8e99-424a-9c74-c818fde7c793",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cwu1fEjggGERxCnZaPRMYQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2896,
+      "cache_read_input_tokens": 50443,
+      "output_tokens": 635,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2896,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 635,
+          "cache_read_input_tokens": 50443,
+          "cache_creation_input_tokens": 2896,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2896
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-10T18:46:34.045Z_
+
+<details><summary>↩ Tool result · `toolu_01CA3oJ6BE6RATQM67fEpLg9`</summary>
+
+```text
+Web search results for query: ""stage-level resampling" OR "selective regeneration" code repair trajectory 2025 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2512.20745"},{"title":"Exact Regeneration Codes for Distributed Storage Repair ...","url":"https://arxiv.org/pdf/1001.0107"},{"title":"[1001.0107] Exact Regeneration Codes for Distributed Storage Repair Using Interference Alignment","url":"https://arxiv.org/abs/1001.0107"},{"title":"2134 IEEE TRANSACTIONS ON INFORMATION THEORY, VOL. 58, NO. 4, APRIL 2012","url":"https://www.cs.cmu.edu/~rvinayak/papers/interference_alignment_MISER_IT_Tran.pdf"},{"title":"Centralized Repair of Multiple Node Failures","url":"https://ozankoyluoglu.github.io/pdfs/ISIT16_CMR.pdf"},{"title":"[PDF] Exact Regeneration Codes for Distributed Storage Repair Using Interference Alignment | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Exact-Regeneration-Codes-for-Distributed-Storage-Suh-Ramchandran/dae219bb1b1bf59d2b42749a5fc2333fd329dd5b"},{"title":"Sampling-Based Trajectory Repairing for Autonomous Vehicles","url":"https://mediatum.ub.tum.de/doc/1616802/em9is4d7wlp6uqorj1g8qn5eb.Lin-2021-ITSC.pdf"},{"title":"A Family of Optimal Linear Functional-Repair Regenerating Storage Codes - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12025674/"},{"title":"(PDF) Exact-Repair MDS Codes for Distributed Storage Using Interference Alignment","url":"https://www.researchgate.net/publication/224157507_Exact-Repair_MDS_Codes_for_Distributed_Storage_Using_Interference_Alignment"},{"title":"[1711.03034] Optimal Control of Storage Regeneration with Repair Codes","url":"https://arxiv.org/abs/1711.03034"}]
+
+Based on the search results, I found highly relevant information about "stage-level resampling" and code repair trajectories in a recent research paper.
+
+The research describes a multi-faceted quality refinement stage that addresses automatically synthesized trajectories containing formatting issues, code defects, and logical inconsistencies. One procedure involves code executability verification, where embedded code snippets are executed in a controlled sandbox environment, and for any failures, a bounded resampling loop is initiated to generate equivalent but executable alternatives.
+
+Additionally, there is a self-correction data generation stage that samples instances from trajectories with unsuccessful code execution and leverages prompts to guide models in generating correction processes, producing valid self-correction trajectories.
+
+This research appears to be from a conference paper published at ICLR 2026, indicating it's a contemporary work in the field of code repair and trajectory synthesis using large language models.
+
+The approach involves systematic quality assurance for code-based problem-solving trajectories, with resampling and regeneration mechanisms to handle execution failures—directly addressing the concepts mentioned in your search query about stage-level resampling and selective regeneration for code repair trajectories.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79f4cae9-8e99-424a-9c74-c818fde7c793",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "b6bbb742-08fd-4e8a-85e6-b477f3629bb6",
+  "toolUseResult": {
+    "query": "\"stage-level resampling\" OR \"selective regeneration\" code repair trajectory 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ks1mVSuM24cT7T5YtPrNrK",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2512.20745"
+          },
+          {
+            "title": "Exact Regeneration Codes for Distributed Storage Repair ...",
+            "url": "https://arxiv.org/pdf/1001.0107"
+          },
+          {
+            "title": "[1001.0107] Exact Regeneration Codes for Distributed Storage Repair Using Interference Alignment",
+            "url": "https://arxiv.org/abs/1001.0107"
+          },
+          {
+            "title": "2134 IEEE TRANSACTIONS ON INFORMATION THEORY, VOL. 58, NO. 4, APRIL 2012",
+            "url": "https://www.cs.cmu.edu/~rvinayak/papers/interference_alignment_MISER_IT_Tran.pdf"
+          },
+          {
+            "title": "Centralized Repair of Multiple Node Failures",
+            "url": "https://ozankoyluoglu.github.io/pdfs/ISIT16_CMR.pdf"
+          },
+          {
+            "title": "[PDF] Exact Regeneration Codes for Distributed Storage Repair Using Interference Alignment | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Exact-Regeneration-Codes-for-Distributed-Storage-Suh-Ramchandran/dae219bb1b1bf59d2b42749a5fc2333fd329dd5b"
+          },
+          {
+            "title": "Sampling-Based Trajectory Repairing for Autonomous Vehicles",
+            "url": "https://mediatum.ub.tum.de/doc/1616802/em9is4d7wlp6uqorj1g8qn5eb.Lin-2021-ITSC.pdf"
+          },
+          {
+            "title": "A Family of Optimal Linear Functional-Repair Regenerating Storage Codes - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12025674/"
+          },
+          {
+            "title": "(PDF) Exact-Repair MDS Codes for Distributed Storage Using Interference Alignment",
+            "url": "https://www.researchgate.net/publication/224157507_Exact-Repair_MDS_Codes_for_Distributed_Storage_Using_Interference_Alignment"
+          },
+          {
+            "title": "[1711.03034] Optimal Control of Storage Regeneration with Repair Codes",
+            "url": "https://arxiv.org/abs/1711.03034"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant information about \"stage-level resampling\" and code repair trajectories in a recent research paper.\n\nThe research describes a multi-faceted quality refinement stage that addresses automatically synthesized trajectories containing formatting issues, code defects, and logical inconsistencies. One procedure involves code executability verification, where embedded code snippets are executed in a controlled sandbox environment, and for any failures, a bounded resampling loop is initiated to generate equivalent but executable alternatives.\n\nAdditionally, there is a self-correction data generation stage that samples instances from trajectories with unsuccessful code execution and leverages prompts to guide models in generating correction processes, producing valid self-correction trajectories.\n\nThis research appears to be from a conference paper published at ICLR 2026, indicating it's a contemporary work in the field of code repair and trajectory synthesis using large language models.\n\nThe approach involves systematic quality assurance for code-based problem-solving trajectories, with resampling and regeneration mechanisms to handle execution failures—directly addressing the concepts mentioned in your search query about stage-level resampling and selective regeneration for code repair trajectories."
+    ],
+    "durationSeconds": 7.655365941000025
+  },
+  "sourceToolAssistantUUID": "79f4cae9-8e99-424a-9c74-c818fde7c793",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-10T18:46:40.552Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+That search didn't find direct overlap with "stage-level resampling" as proposed by DiagPRM. The ICLR 2026 paper (arXiv:2512.20745) is about trajectory synthesis quality refinement, not about reward-guided selective resampling of diagnostic stages. So DiagPRM's proposed stage-level resampling capability seems to remain novel.
+
+Let me now wait for the remaining agents to finish and compile the review. Let me check on agents abb24ab026de1614b and ac837ee9baf670bb2.
+
+Actually, I think I should search for one more thing - the OpenHands critic model as a potential missing competitor.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6bbb742-08fd-4e8a-85e6-b477f3629bb6",
+  "isSidechain": false,
+  "requestId": "req_011CauPJvYe5R8SW8kB5eskM",
+  "type": "assistant",
+  "uuid": "abcf433b-83b0-4051-bb4e-5a8c049ea8a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WLERZ9LRoxWArtG2cJG1rq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1505,
+      "cache_read_input_tokens": 53339,
+      "output_tokens": 289,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1505,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 289,
+          "cache_read_input_tokens": 53339,
+          "cache_creation_input_tokens": 1505,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1505
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-10T18:46:42.252Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017vRP1DjfFS6HAXYYdNEYeh`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.10493",
+  "prompt": "What are the key results of SWE-Shepherd? What resolution rate does it achieve on SWE-bench Verified? How many instances were evaluated? What was the greedy baseline?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "abcf433b-83b0-4051-bb4e-5a8c049ea8a2",
+  "isSidechain": false,
+  "requestId": "req_011CauPJvYe5R8SW8kB5eskM",
+  "type": "assistant",
+  "uuid": "d3b6cf04-a7e5-4c2e-95fa-09e94f505d41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WLERZ9LRoxWArtG2cJG1rq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1505,
+      "cache_read_input_tokens": 53339,
+      "output_tokens": 289,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1505,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 289,
+          "cache_read_input_tokens": 53339,
+          "cache_creation_input_tokens": 1505,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1505
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-10T18:46:44.900Z_
+
+<details><summary>↩ Tool result · `toolu_017vRP1DjfFS6HAXYYdNEYeh`</summary>
+
+```text
+# SWE-Shepherd Results
+
+I cannot provide the specific quantitative results you're asking about based on the content provided. The webpage only contains the paper's abstract and metadata, which states that SWE-Shepherd demonstrates "improved interaction efficiency and action quality" on SWE-Bench Verified, but does not include:
+
+- The specific resolution rate achieved
+- The number of instances evaluated
+- Baseline performance metrics
+
+The abstract notes that experiments "highlight challenges in aligning intermediate rewards with final task success," but the detailed results, performance numbers, and comparative baselines would be found in the full paper itself, not in this abstract preview.
+
+To obtain this information, you would need to access the complete PDF or HTML version of the paper linked on the page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d3b6cf04-a7e5-4c2e-95fa-09e94f505d41",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "1f6bc1d9-f833-4fc2-8041-d8a657137be4",
+  "toolUseResult": {
+    "bytes": 46016,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SWE-Shepherd Results\n\nI cannot provide the specific quantitative results you're asking about based on the content provided. The webpage only contains the paper's abstract and metadata, which states that SWE-Shepherd demonstrates \"improved interaction efficiency and action quality\" on SWE-Bench Verified, but does not include:\n\n- The specific resolution rate achieved\n- The number of instances evaluated\n- Baseline performance metrics\n\nThe abstract notes that experiments \"highlight challenges in aligning intermediate rewards with final task success,\" but the detailed results, performance numbers, and comparative baselines would be found in the full paper itself, not in this abstract preview.\n\nTo obtain this information, you would need to access the complete PDF or HTML version of the paper linked on the page.",
+    "durationMs": 2645,
+    "url": "https://arxiv.org/abs/2604.10493"
+  },
+  "sourceToolAssistantUUID": "d3b6cf04-a7e5-4c2e-95fa-09e94f505d41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80 · 2026-05-10T18:46:47.272Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me try the HTML version of the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1f6bc1d9-f833-4fc2-8041-d8a657137be4",
+  "isSidechain": false,
+  "requestId": "req_011CauPKixA8vr14zaGDrHse",
+  "type": "assistant",
+  "uuid": "47d5fb7c-aa61-4edc-beb1-22d57b1cb9d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JrU8CQ34nxhC3su7f45v3M",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 461,
+      "cache_read_input_tokens": 54844,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 461,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 54844,
+          "cache_creation_input_tokens": 461,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 461
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-10T18:46:49.037Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0139PrbExNH7Y8tvzDsYZrgg`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.10493",
+  "prompt": "What are the key results of SWE-Shepherd? Specifically: 1) What resolution rate does it achieve on SWE-bench Verified? 2) How many instances were evaluated? 3) What was the greedy baseline performance? 4) Does the PRM actually hurt performance compared to greedy? Report the key numbers from the results section."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "47d5fb7c-aa61-4edc-beb1-22d57b1cb9d5",
+  "isSidechain": false,
+  "requestId": "req_011CauPKixA8vr14zaGDrHse",
+  "type": "assistant",
+  "uuid": "8f5ac8f6-9391-4fd2-81fe-9339c97aa56f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JrU8CQ34nxhC3su7f45v3M",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 461,
+      "cache_read_input_tokens": 54844,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 461,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 54844,
+          "cache_creation_input_tokens": 461,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 461
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 82 · 2026-05-10T18:46:50.523Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T18:46:50.523Z",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "content": "&lt;task-notification>\n&lt;task-id>ac837ee9baf670bb2&lt;/task-id>\n&lt;tool-use-id>toolu_011DMQhsNLtCa5PJxPyuXVUy&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/e48a7609-5e29-4d47-9bd4-04d751de1c24/tasks/ac837ee9baf670bb2.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Verify SWE-smith dataset and feasibility claims\" completed&lt;/summary>\n&lt;result>Now I have all the information needed. Here is the consolidated report:\n\n---\n\n## Feasibility Verification Report\n\n### 1. SWE-smith Dataset (Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k)\n\n**Verified -- exists and is publicly available.**\n\n- The dataset is hosted on HuggingFace at [Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k](https://huggingface.co/datasets/Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k).\n- License: MIT (fully permissive).\n- Contains **65,994 rows** (1.58 GB, Parquet format) of agent trajectories with `instance_id` and `messages` fields.\n- **Important nuance**: The trajectories were generated by **mini-swe-agent-plus** (not SWE-agent itself) solving tasks from the **SWE-smith** dataset (not SWE-bench directly). SWE-smith is a synthetic task dataset of 50k instances across 128 GitHub repos, created by the SWE-bench team. The resulting Klear-Agent-8B model trained on this data achieves 39.0% on SWE-bench Verified, so the trajectories are closely related to SWE-bench-style tasks but originate from SWE-smith's synthesized instances.\n\n### 2. ThinkPRM (arXiv:2504.16828)\n\n**Verified -- claims are accurate.**\n\n- ThinkPRM demonstrates data-efficient generative PRMs that use long chain-of-thought verification.\n- Key finding: ThinkPRM **outperforms LLM-as-a-Judge and discriminative verifiers using only 1% of the process labels in PRM800K**. Specifically, the verifiers are fine-tuned on ~1K synthetic verification CoTs filtered using only ~8K process labels.\n- It validates that \"small amounts of high-quality process labels suffice\" by capitalizing on inherent reasoning abilities of long CoT models.\n- Models released at multiple sizes (1.5B, 7B, 14B) based on DeepSeek-R1-Distill-Qwen.\n\n### 3. FunPRM (arXiv:2601.22249)\n\n**Verified -- claims are accurate.**\n\n- Published January 29, 2026. Full title: \"FunPRM: Function-as-Step Process Reward Model with Meta Reward Correction for Code Generation.\"\n- It **does** treat functions as PRM steps: it prompts LLMs to generate modular code organized into separate functions, then treats each function as a \"step\" for process reward modeling.\n- Additionally introduces a meta-learning-based reward correction mechanism to handle noisy partial-solution rewards.\n- Evaluated on LiveCodeBench and BigCodeBench; achieves SOTA when combined with O4-mini.\n\n### 4. Qwen3-8B Availability for LoRA Fine-tuning\n\n**Verified -- publicly available and well-supported.**\n\n- Qwen3-8B is available on HuggingFace (e.g., `unsloth/Qwen3-8B`).\n- Multiple LoRA fine-tuning guides exist: Unsloth (with free Colab notebook), AWS Trainium/HuggingFace Optimum, DataCamp tutorials, and Qwen's own official LoRA documentation.\n- Already used in published research (e.g., financial text classification with rLoRA on Qwen3-8B, arXiv:2512.00630).\n- The Kwai-Klear dataset above was specifically designed to train a Qwen3-8B-based model (Klear-Agent-8B), confirming direct compatibility.\n\n### 5. SWE-bench Verified Trajectory Generation Cost (\"$1,500--2,500 for 500 trajectories\")\n\n**The claimed range appears significantly overstated given current data, but context matters.**\n\nEmpirical cost data from the SWE-rebench leaderboard and SWE-smith paper:\n- **SWE-agent + GPT-4 (original 2024)**: ~$0.24/instance, so 500 instances = ~$120.\n- **Claude Sonnet 4 (without caching)**: ~$5.29/instance, so 500 instances = ~$2,645 -- this falls in the claimed range.\n- **Claude Sonnet 4 (with caching)**: ~$0.91/instance, so 500 instances = ~$455.\n- **Claude Opus 4.6**: ~$1.12/instance, so 500 instances = ~$560.\n- **Claude Code (agentic)**: ~$4.91/instance, so 500 instances = ~$2,455.\n- **Budget models**: $0.03--0.14/instance, so 500 instances = $15--70.\n\n**Verdict**: The $1,500--2,500 range is realistic **only** if using an expensive frontier model in an uncached agentic pipeline (e.g., Claude Code at ~$4.91/instance, or Claude Sonnet without prompt caching at ~$5.29/instance). With caching enabled or using GPT-4-class models, costs drop to $120--560 for 500 trajectories. The paper should specify which model and whether caching is assumed. For SWE-smith's own pipeline, the cost is dramatically lower (~$0.023/instance for task creation, though trajectory generation via Claude 3.7 Sonnet adds more).\n\n### 6. DebugBench (ACL 2024 Findings)\n\n**Verified -- exists with bug category annotations.**\n\n- Published in Findings of ACL 2024. Available at [ACL Anthology](https://aclanthology.org/2024.findings-acl.247/).\n- Contains **4,253 instances** across C++, Java, and Python at three difficulty levels (easy, medium, hard).\n- **4 major bug categories**: Syntax, Reference, Logic, and Multiple (multi-bug).\n- **18 minor bug types** under these categories (e.g., missing colons, unclosed parentheses, misuse of operators under Syntax; undefined variables, non-existent methods, incorrect array indexing under Reference; incorrect conditions, wrong calculations under Logic; combinations under Multiple).\n- Bug taxonomy is based on Barr (2004). Bugs were implanted via GPT-4 into LeetCode community code with quality checks.\n- **Suitability**: The granular 4-major/18-minor categorization is well-suited for the proposed bug-category analysis. The paper itself found that \"debugging complexity notably fluctuates depending on the bug category,\" confirming the annotations differentiate meaningfully between bug types.\n\nSources:\n- [SWE-smith-mini_swe_agent_plus-trajectories-66k on HuggingFace](https://huggingface.co/datasets/Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k)\n- [SWE-smith GitHub](https://github.com/SWE-bench/SWE-smith)\n- [ThinkPRM (arXiv:2504.16828)](https://arxiv.org/abs/2504.16828)\n- [FunPRM (arXiv:2601.22249)](https://arxiv.org/abs/2601.22249)\n- [Qwen3-8B LoRA Fine-tuning Guide (Unsloth)](https://unsloth.ai/docs/models/tutorials/qwen3-how-to-run-and-fine-tune)\n- [Qwen3-8B LoRA Fine-tuning (HuggingFace/AWS)](https://huggingface.co/docs/optimum-neuron/en/training_tutorials/finetune_qwen3)\n- [SWE-rebench Leaderboard (cost data)](https://swe-rebench.com/)\n- [DebugBench (ACL 2024 Findings)](https://aclanthology.org/2024.findings-acl.247/)\n- [DebugBench GitHub](https://github.com/thunlp/DebugBench)\n- [DebugBench Review (Moonlight)](https://www.themoonlight.io/en/review/debugbench-evaluating-debugging-capability-of-large-language-models)&lt;/result>\n&lt;usage>&lt;total_tokens>24454&lt;/total_tokens>&lt;tool_uses>21&lt;/tool_uses>&lt;duration_ms>163375&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-10T18:46:52.765Z_
+
+<details><summary>↩ Tool result · `toolu_0139PrbExNH7Y8tvzDsYZrgg`</summary>
+
+```text
+# SWE-Shepherd Key Results
+
+Based on Table 1 in the results section:
+
+1. **Resolution Rate**: SWE-Shepherd achieved a 51% resolution rate on SWE-Bench Verified.
+
+2. **Instances Evaluated**: The evaluation used "100 tasks sampled from SWE-Bench Verified."
+
+3. **Greedy Baseline Performance**: The mini-SWE-Agent baseline (which operates without reward modeling) resolved 57% of tasks.
+
+4. **Performance Comparison**: Yes, the PRM-augmented approach did underperform the greedy baseline. While "SWE-Shepherd reduces the number of interaction steps," indicating more efficient exploration (12.2 vs 15.2 steps), it resulted in a "modest drop in resolution rate" compared to mini-SWE-Agent's 57% success rate.
+
+The authors acknowledge this trade-off, noting that "locally high-reward actions do not always translate to globally correct patches," and attribute this to weak correlation between their heuristic rewards and actual task success.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f5ac8f6-9391-4fd2-81fe-9339c97aa56f",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "04aeb0e9-18c4-412e-a33c-2854edb88e58",
+  "toolUseResult": {
+    "bytes": 49635,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SWE-Shepherd Key Results\n\nBased on Table 1 in the results section:\n\n1. **Resolution Rate**: SWE-Shepherd achieved a 51% resolution rate on SWE-Bench Verified.\n\n2. **Instances Evaluated**: The evaluation used \"100 tasks sampled from SWE-Bench Verified.\"\n\n3. **Greedy Baseline Performance**: The mini-SWE-Agent baseline (which operates without reward modeling) resolved 57% of tasks.\n\n4. **Performance Comparison**: Yes, the PRM-augmented approach did underperform the greedy baseline. While \"SWE-Shepherd reduces the number of interaction steps,\" indicating more efficient exploration (12.2 vs 15.2 steps), it resulted in a \"modest drop in resolution rate\" compared to mini-SWE-Agent's 57% success rate.\n\nThe authors acknowledge this trade-off, noting that \"locally high-reward actions do not always translate to globally correct patches,\" and attribute this to weak correlation between their heuristic rewards and actual task success.",
+    "durationMs": 3722,
+    "url": "https://arxiv.org/html/2604.10493"
+  },
+  "sourceToolAssistantUUID": "8f5ac8f6-9391-4fd2-81fe-9339c97aa56f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 84 · 2026-05-10T18:46:52.770Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-10T18:46:52.770Z",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85 · 2026-05-10T18:46:52.769Z_
+
+```json
+{
+  "parentUuid": "04aeb0e9-18c4-412e-a33c-2854edb88e58",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>ac837ee9baf670bb2&lt;/task-id>\n&lt;tool-use-id>toolu_011DMQhsNLtCa5PJxPyuXVUy&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/e48a7609-5e29-4d47-9bd4-04d751de1c24/tasks/ac837ee9baf670bb2.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Verify SWE-smith dataset and feasibility claims\" completed&lt;/summary>\n&lt;result>Now I have all the information needed. Here is the consolidated report:\n\n---\n\n## Feasibility Verification Report\n\n### 1. SWE-smith Dataset (Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k)\n\n**Verified -- exists and is publicly available.**\n\n- The dataset is hosted on HuggingFace at [Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k](https://huggingface.co/datasets/Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k).\n- License: MIT (fully permissive).\n- Contains **65,994 rows** (1.58 GB, Parquet format) of agent trajectories with `instance_id` and `messages` fields.\n- **Important nuance**: The trajectories were generated by **mini-swe-agent-plus** (not SWE-agent itself) solving tasks from the **SWE-smith** dataset (not SWE-bench directly). SWE-smith is a synthetic task dataset of 50k instances across 128 GitHub repos, created by the SWE-bench team. The resulting Klear-Agent-8B model trained on this data achieves 39.0% on SWE-bench Verified, so the trajectories are closely related to SWE-bench-style tasks but originate from SWE-smith's synthesized instances.\n\n### 2. ThinkPRM (arXiv:2504.16828)\n\n**Verified -- claims are accurate.**\n\n- ThinkPRM demonstrates data-efficient generative PRMs that use long chain-of-thought verification.\n- Key finding: ThinkPRM **outperforms LLM-as-a-Judge and discriminative verifiers using only 1% of the process labels in PRM800K**. Specifically, the verifiers are fine-tuned on ~1K synthetic verification CoTs filtered using only ~8K process labels.\n- It validates that \"small amounts of high-quality process labels suffice\" by capitalizing on inherent reasoning abilities of long CoT models.\n- Models released at multiple sizes (1.5B, 7B, 14B) based on DeepSeek-R1-Distill-Qwen.\n\n### 3. FunPRM (arXiv:2601.22249)\n\n**Verified -- claims are accurate.**\n\n- Published January 29, 2026. Full title: \"FunPRM: Function-as-Step Process Reward Model with Meta Reward Correction for Code Generation.\"\n- It **does** treat functions as PRM steps: it prompts LLMs to generate modular code organized into separate functions, then treats each function as a \"step\" for process reward modeling.\n- Additionally introduces a meta-learning-based reward correction mechanism to handle noisy partial-solution rewards.\n- Evaluated on LiveCodeBench and BigCodeBench; achieves SOTA when combined with O4-mini.\n\n### 4. Qwen3-8B Availability for LoRA Fine-tuning\n\n**Verified -- publicly available and well-supported.**\n\n- Qwen3-8B is available on HuggingFace (e.g., `unsloth/Qwen3-8B`).\n- Multiple LoRA fine-tuning guides exist: Unsloth (with free Colab notebook), AWS Trainium/HuggingFace Optimum, DataCamp tutorials, and Qwen's own official LoRA documentation.\n- Already used in published research (e.g., financial text classification with rLoRA on Qwen3-8B, arXiv:2512.00630).\n- The Kwai-Klear dataset above was specifically designed to train a Qwen3-8B-based model (Klear-Agent-8B), confirming direct compatibility.\n\n### 5. SWE-bench Verified Trajectory Generation Cost (\"$1,500--2,500 for 500 trajectories\")\n\n**The claimed range appears significantly overstated given current data, but context matters.**\n\nEmpirical cost data from the SWE-rebench leaderboard and SWE-smith paper:\n- **SWE-agent + GPT-4 (original 2024)**: ~$0.24/instance, so 500 instances = ~$120.\n- **Claude Sonnet 4 (without caching)**: ~$5.29/instance, so 500 instances = ~$2,645 -- this falls in the claimed range.\n- **Claude Sonnet 4 (with caching)**: ~$0.91/instance, so 500 instances = ~$455.\n- **Claude Opus 4.6**: ~$1.12/instance, so 500 instances = ~$560.\n- **Claude Code (agentic)**: ~$4.91/instance, so 500 instances = ~$2,455.\n- **Budget models**: $0.03--0.14/instance, so 500 instances = $15--70.\n\n**Verdict**: The $1,500--2,500 range is realistic **only** if using an expensive frontier model in an uncached agentic pipeline (e.g., Claude Code at ~$4.91/instance, or Claude Sonnet without prompt caching at ~$5.29/instance). With caching enabled or using GPT-4-class models, costs drop to $120--560 for 500 trajectories. The paper should specify which model and whether caching is assumed. For SWE-smith's own pipeline, the cost is dramatically lower (~$0.023/instance for task creation, though trajectory generation via Claude 3.7 Sonnet adds more).\n\n### 6. DebugBench (ACL 2024 Findings)\n\n**Verified -- exists with bug category annotations.**\n\n- Published in Findings of ACL 2024. Available at [ACL Anthology](https://aclanthology.org/2024.findings-acl.247/).\n- Contains **4,253 instances** across C++, Java, and Python at three difficulty levels (easy, medium, hard).\n- **4 major bug categories**: Syntax, Reference, Logic, and Multiple (multi-bug).\n- **18 minor bug types** under these categories (e.g., missing colons, unclosed parentheses, misuse of operators under Syntax; undefined variables, non-existent methods, incorrect array indexing under Reference; incorrect conditions, wrong calculations under Logic; combinations under Multiple).\n- Bug taxonomy is based on Barr (2004). Bugs were implanted via GPT-4 into LeetCode community code with quality checks.\n- **Suitability**: The granular 4-major/18-minor categorization is well-suited for the proposed bug-category analysis. The paper itself found that \"debugging complexity notably fluctuates depending on the bug category,\" confirming the annotations differentiate meaningfully between bug types.\n\nSources:\n- [SWE-smith-mini_swe_agent_plus-trajectories-66k on HuggingFace](https://huggingface.co/datasets/Kwai-Klear/SWE-smith-mini_swe_agent_plus-trajectories-66k)\n- [SWE-smith GitHub](https://github.com/SWE-bench/SWE-smith)\n- [ThinkPRM (arXiv:2504.16828)](https://arxiv.org/abs/2504.16828)\n- [FunPRM (arXiv:2601.22249)](https://arxiv.org/abs/2601.22249)\n- [Qwen3-8B LoRA Fine-tuning Guide (Unsloth)](https://unsloth.ai/docs/models/tutorials/qwen3-how-to-run-and-fine-tune)\n- [Qwen3-8B LoRA Fine-tuning (HuggingFace/AWS)](https://huggingface.co/docs/optimum-neuron/en/training_tutorials/finetune_qwen3)\n- [SWE-rebench Leaderboard (cost data)](https://swe-rebench.com/)\n- [DebugBench (ACL 2024 Findings)](https://aclanthology.org/2024.findings-acl.247/)\n- [DebugBench GitHub](https://github.com/thunlp/DebugBench)\n- [DebugBench Review (Moonlight)](https://www.themoonlight.io/en/review/debugbench-evaluating-debugging-capability-of-large-language-models)&lt;/result>\n&lt;usage>&lt;total_tokens>24454&lt;/total_tokens>&lt;tool_uses>21&lt;/tool_uses>&lt;duration_ms>163375&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "047041dd-2f00-4231-b896-8c972bee6791",
+  "timestamp": "2026-05-10T18:46:52.769Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "047041dd-2f00-4231-b896-8c972bee6791",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Stage-level diagnostic reasoning rewards for code repair",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 88 · 2026-05-10T18:46:53.319Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T18:46:53.319Z",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "content": "&lt;task-notification>\n&lt;task-id>abb24ab026de1614b&lt;/task-id>\n&lt;tool-use-id>toolu_01C8j5APsvQUWrAGkXde7fD3&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/e48a7609-5e29-4d47-9bd4-04d751de1c24/tasks/abb24ab026de1614b.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search for missing competitors and novelty threats\" completed&lt;/summary>\n&lt;result>I now have comprehensive findings across all five topics. Here is my consolidated report.\n\n---\n\n## Adversarial Review: Competitor and Context Analysis for DiagPRM\n\n### 1. Process Reward Models for Code (2025-2026)\n\nThis is the most crowded area. There has been an explosion of PRM-for-code work, and several papers overlap significantly with DiagPRM's core mechanism:\n\n| Paper | Venue | Overlap with DiagPRM |\n|-------|-------|---------------------|\n| **CodePRM** | ACL 2025 Findings | PRM scoring individual thought steps for code generation using execution feedback. Uses a Generate-Verify-Refine pipeline. Directly comparable training approach. |\n| **FunPRM** | arXiv Jan 2026 | Defines \"function-as-step\" decomposition for code PRMs with meta-learning reward correction. Addresses the same step-decomposition problem DiagPRM addresses. |\n| **DreamPRM-Code** | arXiv Dec 2025 | Same function-as-step paradigm with bi-level label correction. Achieved SOTA on LiveCodeBench (80.9 pass@1). |\n| **SecCodePRM** | arXiv Feb 2026 | Security-focused PRM with step-level security scoring from static analyzers + expert annotations. Similar training-from-annotations methodology. |\n| **SWE-PRM** (titled \"When Agents go Astray\") | NeurIPS 2025 | **Most direct competitor.** Inference-time PRM for SWE agents that detects trajectory-level errors using a taxonomy of common error patterns. Improved SWE-bench Verified from 40.0% to 50.6%. |\n| **SWE-Shepherd** | arXiv Apr 2026 | Trains a lightweight reward model on SWE-Bench trajectories to provide action-level rewards for code agents. Extremely close to DiagPRM in concept. |\n| **SWE-TRACE** | arXiv Apr 2026 | **Critical competitor.** Uses a \"Rubric-Based Process Reward Model\" where a Rubric-Agent provides dense, fine-grained heuristic feedback on intermediate steps. This is architecturally very similar to using LLM-judge annotations as DiagPRM proposes. |\n| **SWE-RM** | ICLR 2026 | Execution-free reward model for SWE agents (MoE backbone, 3B active params). Improved Qwen3-Coder-Max to 74.6% on SWE-bench Verified. Demonstrates that lightweight learned reward models work for code repair. |\n| **ORPS** (\"Reasoning Through Execution\") | ICML 2025 | Unifies process and outcome rewards using executable verification with tree-structured search. |\n| **ThinkPRM** | Submitted to ICLR 2026 | Generative PRM using long CoT verification. Trains on 1% of labels yet outperforms discriminative PRMs. Relevant as an alternative training paradigm. |\n| **AgentPRM** | ACM Web Conference 2026 | General-purpose agent PRM using TD-based estimation. 8x more compute-efficient than baselines. |\n\n**Key threat:** SWE-Shepherd, SWE-TRACE, and SWE-PRM collectively cover the PRM-for-code-repair space thoroughly. DiagPRM's differentiator must clearly articulate why a **three-stage diagnostic decomposition** (localize/diagnose/patch) is better than action-level or function-level step definitions used in these competitors.\n\n### 2. Diagnostic Reasoning / Stage-Level Decomposition in Code Repair\n\nNo paper was found that uses exactly the three-stage \"localize-diagnose-patch\" decomposition for a PRM. However, closely related work exists:\n\n- **SAN2PATCH** decomposes vulnerability patching into four stages: vulnerability comprehension, fault localization, fix strategy formulation, and patch generation. This is essentially a 4-stage variant of DiagPRM's 3-stage pipeline.\n- **\"Agentic Code Reasoning\" (Semi-formal reasoning)** (Meta, arXiv Mar 2026) introduces structured prompting for fault localization that requires agents to construct explicit premises, trace execution paths, and derive formal conclusions. Improves Top-5 fault localization by 5-12pp on Defects4J. Not a PRM, but addresses the same \"quality of diagnostic reasoning\" question.\n- **FuseFL** combines SBFL results, test results, and code descriptions to guide step-by-step reasoning about faults -- overlapping with the \"localization\" and \"diagnosis\" stages.\n- **DEVLoRe** supports end-to-end bug identification and repair, but doesn't score intermediate stage quality.\n- **LLM fault localization robustness study** (ICST 2026) shows LLMs fail to localize the same fault in 78% of cases under semantic-preserving mutations, raising questions about whether diagnostic reasoning scores are robust.\n\n**Assessment:** The three-stage decomposition is a genuine novelty, but it should be positioned carefully against SAN2PATCH's four-stage decomposition and the general trend toward rubric-based step evaluation (SWE-TRACE).\n\n### 3. LLM-as-Judge for Code Reasoning\n\nThis is a well-studied area with known limitations that DiagPRM must address:\n\n- **\"LLM-as-a-Judge for Human-AI Co-Creation: A Reliability-Aware Evaluation Framework for Coding\"** (arXiv Apr 2026) directly evaluates LLM judge reliability for coding with multi-metric protocols (ROC-AUC, MCC, Cohen's/Fleiss' kappa). This paper could undermine DiagPRM if it shows low agreement for reasoning-quality judgments.\n- **Judge Reliability Harness (JRH)** (RAND, Mar 2026) is an end-to-end stress-testing framework. Even top models (Gemini-2.5-Pro, GPT-5) fail to maintain consistent preferences in ~25% of difficult cases.\n- **\"A Rubric-Supervised Critic from Sparse Real-World Outcomes\"** (OpenHands, Mar 2026) trains a 4B critic model from rubric-based LLM annotations on SWE-bench trajectories. Improves Best@8 reranking by +15.9pp. **This is essentially DiagPRM's training methodology applied to SWE-bench with 24 behavioral rubric features.**\n- General consensus: LLM judges achieve ~80% agreement with humans, matching human-to-human consistency, but are vulnerable to formatting changes and paraphrasing. Chain-of-thought prompting improves reliability by 10-15%.\n\n**Key threat:** The OpenHands Rubric-Supervised Critic paper is the closest methodological match -- it trains a lightweight model on LLM-judge rubric annotations for SWE-bench. DiagPRM needs to differentiate on the diagnostic-reasoning-specific rubric design.\n\n### 4. SWE-bench Advances (March-May 2026)\n\nThe landscape has shifted dramatically:\n\n- **Claude Mythos Preview** leads SWE-bench Verified at **93.9%** (as of May 2026)\n- **OpenAI has deprecated SWE-bench Verified** in favor of SWE-bench Pro, citing contamination concerns\n- **SWE-bench Pro** is the new frontier: top score is ~46% (Claude Opus 4.5)\n- **SWE-RM** (ICLR 2026) achieves 74.6% on Verified with Qwen3-Coder-Max\n- **SWE-TRACE** claims SOTA on SWE benchmarks with rubric-PRM + test-time scaling\n\n**Implication for DiagPRM:** If the paper evaluates on SWE-bench Verified, reviewers may question the benchmark's validity given contamination concerns. Consider also evaluating on SWE-bench Pro or SWE-bench Live.\n\n### 5. EMNLP 2026 ARR Deadline\n\n**Confirmed: The ARR submission deadline is May 25, 2026** (15 days from today).\n\nKey details:\n- **Submission:** May 25, 2026 (AoE)\n- **Author registration:** May 27, 2026 (EoD AoE) -- all authors must complete registration\n- **Important policy:** The May 2026 ARR cycle is shared with AACL. Authors must **explicitly select EMNLP 2026 as target conference at submission time**, and this choice is **binding**.\n- **Author response period:** July 7-13, 2026\n- **Meta-reviews released:** July 30, 2026\n- **Commitment deadline:** August 2, 2026\n- **Notification:** August 20, 2026\n\n---\n\n## Summary of Critical Risks for DiagPRM\n\n1. **Extreme competition in PRM-for-code space:** At least 10 concurrent papers (SWE-Shepherd, SWE-TRACE, SWE-PRM, SWE-RM, CodePRM, FunPRM, DreamPRM-Code, SecCodePRM, ThinkPRM, ORPS). The paper must clearly articulate novelty.\n\n2. **OpenHands Rubric-Supervised Critic** is the closest methodological match: trains a lightweight critic from LLM-judge rubric annotations on SWE-bench. DiagPRM must differentiate.\n\n3. **SWE-TRACE** uses a \"Rubric-Based PRM\" with an auxiliary Rubric-Agent providing dense feedback -- architecturally very similar to LLM-judge-annotated training.\n\n4. **SWE-bench Verified contamination:** OpenAI has formally deprecated it. Reviewers may push back.\n\n5. **LLM judge reliability ceiling:** ~75-80% agreement, with failures in ~25% of difficult cases. The paper should report inter-annotator agreement and address this.\n\n6. **Tight deadline:** 15 days to submission. The binding conference selection policy is new this cycle.\n\nSources:\n- [CodePRM (ACL 2025)](https://aclanthology.org/2025.findings-acl.428/)\n- [FunPRM](https://arxiv.org/abs/2601.22249)\n- [DreamPRM-Code](https://arxiv.org/abs/2512.15000)\n- [SecCodePRM](https://arxiv.org/abs/2602.10418)\n- [SWE-PRM / \"When Agents go Astray\"](https://arxiv.org/abs/2509.02360)\n- [SWE-Shepherd](https://arxiv.org/abs/2604.10493)\n- [SWE-TRACE](https://arxiv.org/abs/2604.14820)\n- [SWE-RM (ICLR 2026)](https://openreview.net/forum?id=H9wMe1G76j)\n- [ORPS / \"Reasoning Through Execution\" (ICML 2025)](https://icml.cc/virtual/2025/poster/44014)\n- [ThinkPRM](https://arxiv.org/abs/2504.16828)\n- [AgentPRM (ACM Web 2026)](https://dl.acm.org/doi/abs/10.1145/3774904.3792551)\n- [Agentic Code Reasoning / Semi-formal Reasoning](https://arxiv.org/abs/2603.01896)\n- [Rubric-Supervised Critic (OpenHands)](https://arxiv.org/abs/2603.03800)\n- [LLM-as-Judge for Coding (Reliability-Aware)](https://arxiv.org/abs/2604.27727)\n- [Judge Reliability Harness (RAND)](https://arxiv.org/html/2603.05399v1)\n- [ICST 2026 - LLM Fault Localization Robustness](https://arxiv.org/html/2504.04372)\n- [SWE-bench Verified Leaderboard (Epoch AI)](https://epoch.ai/benchmarks/swe-bench-verified)\n- [OpenAI deprecation of SWE-bench Verified](https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/)\n- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [ARR Dates and Venues](http://aclrollingreview.org/dates)\n- [EMNLP 2026 binding conference selection policy](https://x.com/emnlpmeeting/status/2047754845919031450)&lt;/result>\n&lt;usage>&lt;total_tokens>38564&lt;/total_tokens>&lt;tool_uses>31&lt;/tool_uses>&lt;duration_ms>178069&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-10T18:48:39.768Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent findings from the feasibility agent. Key points:
+
+1. **SWE-smith 66K dataset**: Exists, MIT license, but trajectories are from SWE-smith synthetic tasks (not SWE-bench directly). This is an important nuance but doesn't undermine the approach since the trajectories still contain repair reasoning.
+
+2. **ThinkPRM**: Verified, 1% of process labels suffice for training. This supports DiagPRM's claim of being trainable with limited data.
+
+3. **FunPRM**: Verified, treats functions as PRM steps for code generation.
+
+
+4. **Qwen3-8B**: Available on HuggingFace with solid LoRA support, making it compatible with our approach. Trajectory generation costs look realistic at $1,500-2,500 for 500 trajectories with frontier models, though caching or using GPT-4-class alternatives could bring that down to $120-560. DebugBench also checks out—4,253 instances across 4 major and 18 minor bug categories makes it suitable for the analysis.
+
+Now I'm noticing an important finding about LLM-as
+
+-judge reliability: that arXiv paper on coding shows Cohen's kappa of only 0.1592 for inter-judge agreement, which is troubling for our LLM-judge annotation approach. But that's evaluating contest-style human-AI collaboration, which is quite different from our three-stage diagnostic reasoning—the structured format and clearer criteria might actually yield better agreement. I'm still waiting on the agent to finish the competitors search, so let me map out the novelty angle while I wait. Our approach clearly separates from SWE-RM's trajectory-level focus, SWE-PRM's prompt-based behavioral assessment, and SWE-Shepherd's action-utility framework by operating at the step-level with trained reasoning quality.
+
+The core differentiation is that we're training a step-level PRM specifically for diagnostic reasoning quality across all repair stages, using test execution only to validate training labels rather than at inference time. I'm also noting some gaps in the landscape—OpenHands Critic Model from November 2025 uses TD learning but operates at trajectory-level, and SWE-Search from ICLR 2025 applies MCTS, neither of which directly competes with our stage-level diagnostic approach.
+
+The novelty holds up: combining stage-level cognitive decomposition, a trained PRM focused on reasoning quality rather than action utility, and execution-free inference is a genuine contribution that no single existing work covers. On feasibility, the compute budget looks solid—manual annotation around 140 hours, human-in-the-loop around 120 hours, and automated approaches around 170 hours, all within the 200 H100-hour target. Timeline-wise, human-in-the-loop runs 14-18 days and automated runs 12-16 days, which is tight but achievable. We have the datasets we need (SWE-smith's 66K trajectories, Qwen3-8B, DebugBench) and API costs for trajectory generation should land between $2,400-3,500.
+
+The main risk I'm flagging is LLM-judge annotation quality—prior work on using LLMs as judges for coding tasks showed very low inter-rater agreement, though that was a different task. The 100-trajectory pilot with three judges should surface this problem early if it exists. There's also a minor timeline concern where human-in-the-loop could stretch to 18 days, slightly exceeding the 16-day hard constraint, though the automated path stays within bounds. On clarity, the proposal is well-structured and covers all the key elements: the three-stage taxonomy, the formal stability argument, the training pipeline, explicit handling of the LLM-judge circularity issue, baseline comparisons, statistical methodology with bootstrap confidence intervals, and acknowledgment of limitations around effect sizes and model scale.
+
+The core contribution addresses a real gap—trajectory-level reward models can't pinpoint where reasoning breaks down, but stage-level diagnostics enable localized credit assignment and selective resampling of failed stages. The practical impact hinges on whether DiagPRM actually beats SWE-RM despite the 8B versus 30B model size disadvantage, which the proposal mitigates by positioning this as complementary (testing the combination) and highlighting the qualitative benefit of stage-level resampling. For EMNLP's "NLP and Code Models" track, this fits naturally as work on reasoning evaluation in code repair.
+
+The statistical design—100 instances with N=5 paired with DebugBench's larger 1000-instance validation—is reasonable for detecting meaningful effects, and the bootstrap approach is sound. The bigger concern is LLM judge reliability; while recent work shows low agreement on subjective coding tasks, DiagPRM's structured criteria (does the localization reasoning connect evidence to faults?) and the 100-trajectory pilot with disagreement mining should catch major issues and extract value from annotation disagreements.
+
+EMNLP 2026 is a solid fit for this work—the May 25 deadline is confirmed, and framing diagnostic reasoning as a language understanding problem aligns well with the venue. A couple of recent baselines like OpenHands Critic and SWE-Search should probably be mentioned, though their omission doesn't weaken the core novelty. Now I'm looking at the resource costs and GPU utilization across the different execution modes.
+
+The manual approach runs about 140 H100 hours with 35-45% utilization over 5-7 weeks, while the human-in-the-loop variant is tighter at 120 hours with 55-70% utilization in 14-18 days. The fully automated mode pushes to 170 hours but achieves 80-90% utilization and completes in 12-16 days. All three stay under the 200 H100-hour budget, though the manual timeline significantly exceeds the 16-day constraint—that's a real tension since manual mode doesn't have the same urgency as the other approaches.
+
+Looking at the overall proposal, this has genuinely strong bones: the combination of stage-level diagnostic reasoning evaluation with a trained process reward model and execution-free inference is novel, the positioning against existing work is thorough, and the experimental design is solid with bootstrap confidence intervals and multiple baselines. The main vulnerabilities are LLM-judge reliability as a potential failure point and that tight timeline where only the automated and human-in-the-loop modes come close to feasibility. But the proposal is honest about its limitations and the pilot study should help mitigate the judge reliability risk.
+
+Scoring this out: novelty is genuinely strong at 4/5, feasibility drops to 3.5/5 because the resource constraints are real and the LLM-judge is a genuine risk, clarity is exceptional at 4.5/5, and impact lands at 3.5/5 since the practical gains depend heavily on whether DiagPRM actually delivers. That averages to 3.875, just shy of the 4.0 bar. But I'm second-guessing whether that's the right assessment.
+
+Looking at the strengths more carefully: the variance argument is theoretically sound and addresses a real failure mode from SWE-Shepherd, the disagreement mining is clever in sidestepping the circularity problem, and the stage-level resampling is genuinely novel. The experimental design holds up well too.
+
+The weaknesses are harder to dismiss though. The LLM-judge agreement issue is serious—even if DiagPRM's task is more structured, kappa around 0.16 from related work is a red flag. And SWE-bench Verified is already at 93.9% SOTA, which raises the question of whether there's meaningful room for a reward model to move the needle. The 100-instance evaluation is small, and comparing an 8B model against SWE-RM's 30B isn't quite apples-to-apples.
+
+Wait, I need to reconsider what that 93.9% SOTA actually represents—
+
+that's frontier models with agents, not the specific reranking scenario this proposal targets. SWE-RM's numbers in the 62-74.6% range are for reranking trajectories from particular agents, so the saturation concern doesn't directly apply here. That changes things.
+
+Reconsidering the scores: novelty is solid at 4/5 with clear differentiation, feasibility is tighter at 3.5/5 given the timeline and LLM-judge risks, clarity is excellent at 4.5/5, and impact lands at 3.5/5 because it's uncertain whether this actually outperforms the baselines. That averages to 3.875, which is close but still below 4.0. The real question is whether the proposal is being fair to itself about what it's actually trying to accomplish.
+
+Looking at it again, the proposal does acknowledge all the risks upfront, has mitigation strategies for each one, frames the contribution as a complementary signal rather than a replacement, and has a solid experimental plan. For EMNLP Findings this would likely be sufficient, but the main conference bar is higher. I think this is genuinely borderline—the idea has improved significantly through revisions and addresses the previous concerns, but there are still inherent risks around LLM-judge quality and whether the practical gains will materialize. Let me adjust: novelty stays at 4/5, feasibility drops to 3/5 based on the kappa evidence for LLM judges, clarity is 4/5, and impact is 3.5/5, bringing the average to 3.625.
+
+Actually, I need to reconsider what the user is targeting here. They want both EMNLP 2026 Main and Findings, which means I shouldn't lower my standards just because Findings is an option. For Findings, a 3.5-4.0 average would be reasonable, but I should still apply the same rigor. The real question is whether the remaining issues—specifically the missing OpenHands Critic Model baseline and the concerning evidence about LLM-judge reliability in coding tasks—are significant enough to warrant a revise rather than a pass.
+
+Looking at this more carefully, after three rounds of revision the proposal has actually addressed most major concerns. What's left are relatively addressable points: one missing citation, evidence about LLM-judge reliability that the proposal already has a pilot study for, and a timeline that's tight but acknowledged. These feel like they could be resolved with a focused revision rather than requiring a full cycle.
+
+But I need to be honest about the scoring threshold. The instruction is clear: for a pass, I need an average of 4.0 or higher with no critical issues. Let me actually evaluate whether this proposal meets that bar across the different dimensions.
+
+Novelty seems solid at 4 out of 5—the combination of stage-level diagnostic reasoning, a trained process reward model, and execution-free inference genuinely hasn't been done before, and the differentiation from the 10+ related papers is well-articulated. Feasibility is trickier at 3.5—the compute is manageable and the timeline is tight but doable, though the LLM-judge risk is real even with the pilot study addressing it. Clarity is strong at 4.5. Impact lands at 3.5 given the moderate and uncertain practical gains.
+
+That averages to 3.875, still below the 4.0 threshold. And I was warned that agent scores tend to run high, so a 4 really means "actually good." Let me push back on whether I'm being too harsh on feasibility and impact, or if those scores are justified.
+
+The main substantive issue I'm seeing is the LLM-judge reliability problem—recent work shows kappa around 0.16 for coding tasks, which is a genuine threat. The proposal includes a pilot study, but it should explicitly address this finding and make a stronger case for why their task will achieve higher agreement. There's also a minor citation gap around the OpenHands Critic Model. These feel like "revise" territory rather than reject, since the core issues are addressable with targeted revisions.
+
+Actually, reconsidering the impact score—the theoretical argument around variance reduction is solid, and the stage-level resampling capability would genuinely help with trajectory selection, search efficiency, credit assignment in RL, and diagnostic understanding of agent failures. For an EMNLP Findings paper specifically, where the bar is lower than Main, this reads as a strong contribution. I'm settling on novelty 4, feasibility 3.5, clarity 4, and impact 3.5, which averages to 3.75—a solid Findings paper that should move forward with revisions.
+
+The remaining issues are minor, so I'll recommend revise and wait for the other reviewer to finish before compiling the final assessment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "047041dd-2f00-4231-b896-8c972bee6791",
+  "isSidechain": false,
+  "requestId": "req_011CauPLJbELHxPuGLYMQ1ZC",
+  "type": "assistant",
+  "uuid": "2204a640-975d-459c-bc00-a0a224fbb6be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Be3DyEgNevuCSwcWRhiZEA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2752,
+      "cache_read_input_tokens": 55305,
+      "output_tokens": 4346,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2752,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4346,
+          "cache_read_input_tokens": 55305,
+          "cache_creation_input_tokens": 2752,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2752
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90 · 2026-05-10T18:48:40.199Z_
+
+Let me also verify one specific claim about the formal stability argument and check for the last missing competitor agent.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2204a640-975d-459c-bc00-a0a224fbb6be",
+  "isSidechain": false,
+  "requestId": "req_011CauPLJbELHxPuGLYMQ1ZC",
+  "type": "assistant",
+  "uuid": "5783498c-8c72-4d64-81d9-82472ea95abe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Be3DyEgNevuCSwcWRhiZEA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2752,
+      "cache_read_input_tokens": 55305,
+      "output_tokens": 4346,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2752,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4346,
+          "cache_read_input_tokens": 55305,
+          "cache_creation_input_tokens": 2752,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2752
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-10T18:48:40.512Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015EqmDPXZ64rgLZZgSggpau`</summary>
+
+```json
+{
+  "query": "OpenHands critic 32B SWE-bench verified trained reward model temporal difference"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5783498c-8c72-4d64-81d9-82472ea95abe",
+  "isSidechain": false,
+  "requestId": "req_011CauPLJbELHxPuGLYMQ1ZC",
+  "type": "assistant",
+  "uuid": "c4283094-e203-4d8a-816b-efbd4f07622e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Be3DyEgNevuCSwcWRhiZEA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2752,
+      "cache_read_input_tokens": 55305,
+      "output_tokens": 4346,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2752,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4346,
+          "cache_read_input_tokens": 55305,
+          "cache_creation_input_tokens": 2752,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2752
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 92_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "c4283094-e203-4d8a-816b-efbd4f07622e",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 93_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Stage-level diagnostic reasoning rewards for code repair",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-10T18:48:47.465Z_
+
+<details><summary>↩ Tool result · `toolu_015EqmDPXZ64rgLZZgSggpau`</summary>
+
+```text
+Web search results for query: "OpenHands critic 32B SWE-bench verified trained reward model temporal difference"
+
+Links: [{"title":"SOTA on SWE-Bench Verified with Inference-Time Scaling and Critic Model | Nov 12, 2025","url":"https://openhands.dev/blog/sota-on-swe-bench-verified-with-inference-time-scaling-and-critic-model"},{"title":"OpenHands/openhands-critic-32b-exp-20250417 · Hugging Face","url":"https://huggingface.co/OpenHands/openhands-critic-32b-exp-20250417"},{"title":"Huggingface","url":"https://huggingface.co/api/resolve-cache/models/all-hands/openhands-critic-32b-exp-20250417/3b786f2f6e7bad8c9a406435b29c7e0146bda9ff/README.md?download=true&etag=%22a3bf17859a0429527d7f60af2840b2faf16de0d2%22"},{"title":"[Agent] Implement Critic Model · Issue #8963 · OpenHands/OpenHands","url":"https://github.com/OpenHands/OpenHands/issues/8963"},{"title":"OpenHands/evaluation/benchmarks/swe_bench/SWE-Gym.md at main · OpenHands/OpenHands","url":"https://github.com/OpenHands/OpenHands/blob/main/evaluation/benchmarks/swe_bench/SWE-Gym.md"},{"title":"Training Software Engineering Agents and Verifiers with SWE-Gym","url":"https://arxiv.org/html/2412.21139v1"},{"title":"SWE-Gym/docs/OpenHands.md at main · SWE-Gym/SWE-Gym","url":"https://github.com/SWE-Gym/SWE-Gym/blob/main/docs/OpenHands.md"},{"title":"Feature: Implement Critic Model · Issue #8963 · All-Hands-AI/OpenHands","url":"https://github.com/All-Hands-AI/OpenHands/issues/8963"},{"title":"OpenHands/openhands-lm-32b-v0.1 · Hugging Face","url":"https://huggingface.co/OpenHands/openhands-lm-32b-v0.1"},{"title":"GitHub - OpenHands/benchmarks: Evaluation harness for OpenHands V1. · GitHub","url":"https://github.com/OpenHands/benchmarks"}]
+
+Based on the search results, here's what I found about the OpenHands critic 32B model trained with temporal difference learning on SWE-Bench Verified:
+
+## OpenHands Critic Model Overview
+
+OpenHands uses veRL to finetune Qwen 2.5 Coder Instruct 32B as a critic model. The OpenHands agent's performance on SWE-Bench Verified is currently at 60.6%.
+
+## Temporal Difference Learning Approach
+
+The training process implements a temporal difference (TD) learning objective to propagate trajectory-level success signals from unit test execution backward through each trajectory, with a regression head on top of the last layer to predict reward values.
+
+The process starts with the final reward which is determined by running the unit tests on the completed solution - 1 for passing all tests and 0 for failing. This terminal reward is propagated backwards through the trajectory, with each previous step discounted by a discount factor γ=0.99.
+
+## Model Purpose and Performance
+
+The critic model evaluates each solution and predicts whether it's a good solution or not. Rather than using a prompt-based reranking strategy, OpenHands trained a dedicated critic model, which provided more effective results.
+
+The critic model is made publicly available on Hugging Face for researchers who want to explore its capabilities or build upon the work.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c4283094-e203-4d8a-816b-efbd4f07622e",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "0e00a4e3-243d-4ad9-a7c4-0c186ecfd670",
+  "toolUseResult": {
+    "query": "OpenHands critic 32B SWE-bench verified trained reward model temporal difference",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ryp6xN9v45Nd5Gm8vyPV6W",
+        "content": [
+          {
+            "title": "SOTA on SWE-Bench Verified with Inference-Time Scaling and Critic Model | Nov 12, 2025",
+            "url": "https://openhands.dev/blog/sota-on-swe-bench-verified-with-inference-time-scaling-and-critic-model"
+          },
+          {
+            "title": "OpenHands/openhands-critic-32b-exp-20250417 · Hugging Face",
+            "url": "https://huggingface.co/OpenHands/openhands-critic-32b-exp-20250417"
+          },
+          {
+            "title": "Huggingface",
+            "url": "https://huggingface.co/api/resolve-cache/models/all-hands/openhands-critic-32b-exp-20250417/3b786f2f6e7bad8c9a406435b29c7e0146bda9ff/README.md?download=true&etag=%22a3bf17859a0429527d7f60af2840b2faf16de0d2%22"
+          },
+          {
+            "title": "[Agent] Implement Critic Model · Issue #8963 · OpenHands/OpenHands",
+            "url": "https://github.com/OpenHands/OpenHands/issues/8963"
+          },
+          {
+            "title": "OpenHands/evaluation/benchmarks/swe_bench/SWE-Gym.md at main · OpenHands/OpenHands",
+            "url": "https://github.com/OpenHands/OpenHands/blob/main/evaluation/benchmarks/swe_bench/SWE-Gym.md"
+          },
+          {
+            "title": "Training Software Engineering Agents and Verifiers with SWE-Gym",
+            "url": "https://arxiv.org/html/2412.21139v1"
+          },
+          {
+            "title": "SWE-Gym/docs/OpenHands.md at main · SWE-Gym/SWE-Gym",
+            "url": "https://github.com/SWE-Gym/SWE-Gym/blob/main/docs/OpenHands.md"
+          },
+          {
+            "title": "Feature: Implement Critic Model · Issue #8963 · All-Hands-AI/OpenHands",
+            "url": "https://github.com/All-Hands-AI/OpenHands/issues/8963"
+          },
+          {
+            "title": "OpenHands/openhands-lm-32b-v0.1 · Hugging Face",
+            "url": "https://huggingface.co/OpenHands/openhands-lm-32b-v0.1"
+          },
+          {
+            "title": "GitHub - OpenHands/benchmarks: Evaluation harness for OpenHands V1. · GitHub",
+            "url": "https://github.com/OpenHands/benchmarks"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the OpenHands critic 32B model trained with temporal difference learning on SWE-Bench Verified:\n\n## OpenHands Critic Model Overview\n\nOpenHands uses veRL to finetune Qwen 2.5 Coder Instruct 32B as a critic model. The OpenHands agent's performance on SWE-Bench Verified is currently at 60.6%.\n\n## Temporal Difference Learning Approach\n\nThe training process implements a temporal difference (TD) learning objective to propagate trajectory-level success signals from unit test execution backward through each trajectory, with a regression head on top of the last layer to predict reward values.\n\nThe process starts with the final reward which is determined by running the unit tests on the completed solution - 1 for passing all tests and 0 for failing. This terminal reward is propagated backwards through the trajectory, with each previous step discounted by a discount factor γ=0.99.\n\n## Model Purpose and Performance\n\nThe critic model evaluates each solution and predicts whether it's a good solution or not. Rather than using a prompt-based reranking strategy, OpenHands trained a dedicated critic model, which provided more effective results.\n\nThe critic model is made publicly available on Hugging Face for researchers who want to explore its capabilities or build upon the work."
+    ],
+    "durationSeconds": 6.946325229000009
+  },
+  "sourceToolAssistantUUID": "c4283094-e203-4d8a-816b-efbd4f07622e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 95 · 2026-05-10T18:48:47.469Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-10T18:48:47.469Z",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 96 · 2026-05-10T18:48:47.469Z_
+
+```json
+{
+  "parentUuid": "0e00a4e3-243d-4ad9-a7c4-0c186ecfd670",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>abb24ab026de1614b&lt;/task-id>\n&lt;tool-use-id>toolu_01C8j5APsvQUWrAGkXde7fD3&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/e48a7609-5e29-4d47-9bd4-04d751de1c24/tasks/abb24ab026de1614b.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search for missing competitors and novelty threats\" completed&lt;/summary>\n&lt;result>I now have comprehensive findings across all five topics. Here is my consolidated report.\n\n---\n\n## Adversarial Review: Competitor and Context Analysis for DiagPRM\n\n### 1. Process Reward Models for Code (2025-2026)\n\nThis is the most crowded area. There has been an explosion of PRM-for-code work, and several papers overlap significantly with DiagPRM's core mechanism:\n\n| Paper | Venue | Overlap with DiagPRM |\n|-------|-------|---------------------|\n| **CodePRM** | ACL 2025 Findings | PRM scoring individual thought steps for code generation using execution feedback. Uses a Generate-Verify-Refine pipeline. Directly comparable training approach. |\n| **FunPRM** | arXiv Jan 2026 | Defines \"function-as-step\" decomposition for code PRMs with meta-learning reward correction. Addresses the same step-decomposition problem DiagPRM addresses. |\n| **DreamPRM-Code** | arXiv Dec 2025 | Same function-as-step paradigm with bi-level label correction. Achieved SOTA on LiveCodeBench (80.9 pass@1). |\n| **SecCodePRM** | arXiv Feb 2026 | Security-focused PRM with step-level security scoring from static analyzers + expert annotations. Similar training-from-annotations methodology. |\n| **SWE-PRM** (titled \"When Agents go Astray\") | NeurIPS 2025 | **Most direct competitor.** Inference-time PRM for SWE agents that detects trajectory-level errors using a taxonomy of common error patterns. Improved SWE-bench Verified from 40.0% to 50.6%. |\n| **SWE-Shepherd** | arXiv Apr 2026 | Trains a lightweight reward model on SWE-Bench trajectories to provide action-level rewards for code agents. Extremely close to DiagPRM in concept. |\n| **SWE-TRACE** | arXiv Apr 2026 | **Critical competitor.** Uses a \"Rubric-Based Process Reward Model\" where a Rubric-Agent provides dense, fine-grained heuristic feedback on intermediate steps. This is architecturally very similar to using LLM-judge annotations as DiagPRM proposes. |\n| **SWE-RM** | ICLR 2026 | Execution-free reward model for SWE agents (MoE backbone, 3B active params). Improved Qwen3-Coder-Max to 74.6% on SWE-bench Verified. Demonstrates that lightweight learned reward models work for code repair. |\n| **ORPS** (\"Reasoning Through Execution\") | ICML 2025 | Unifies process and outcome rewards using executable verification with tree-structured search. |\n| **ThinkPRM** | Submitted to ICLR 2026 | Generative PRM using long CoT verification. Trains on 1% of labels yet outperforms discriminative PRMs. Relevant as an alternative training paradigm. |\n| **AgentPRM** | ACM Web Conference 2026 | General-purpose agent PRM using TD-based estimation. 8x more compute-efficient than baselines. |\n\n**Key threat:** SWE-Shepherd, SWE-TRACE, and SWE-PRM collectively cover the PRM-for-code-repair space thoroughly. DiagPRM's differentiator must clearly articulate why a **three-stage diagnostic decomposition** (localize/diagnose/patch) is better than action-level or function-level step definitions used in these competitors.\n\n### 2. Diagnostic Reasoning / Stage-Level Decomposition in Code Repair\n\nNo paper was found that uses exactly the three-stage \"localize-diagnose-patch\" decomposition for a PRM. However, closely related work exists:\n\n- **SAN2PATCH** decomposes vulnerability patching into four stages: vulnerability comprehension, fault localization, fix strategy formulation, and patch generation. This is essentially a 4-stage variant of DiagPRM's 3-stage pipeline.\n- **\"Agentic Code Reasoning\" (Semi-formal reasoning)** (Meta, arXiv Mar 2026) introduces structured prompting for fault localization that requires agents to construct explicit premises, trace execution paths, and derive formal conclusions. Improves Top-5 fault localization by 5-12pp on Defects4J. Not a PRM, but addresses the same \"quality of diagnostic reasoning\" question.\n- **FuseFL** combines SBFL results, test results, and code descriptions to guide step-by-step reasoning about faults -- overlapping with the \"localization\" and \"diagnosis\" stages.\n- **DEVLoRe** supports end-to-end bug identification and repair, but doesn't score intermediate stage quality.\n- **LLM fault localization robustness study** (ICST 2026) shows LLMs fail to localize the same fault in 78% of cases under semantic-preserving mutations, raising questions about whether diagnostic reasoning scores are robust.\n\n**Assessment:** The three-stage decomposition is a genuine novelty, but it should be positioned carefully against SAN2PATCH's four-stage decomposition and the general trend toward rubric-based step evaluation (SWE-TRACE).\n\n### 3. LLM-as-Judge for Code Reasoning\n\nThis is a well-studied area with known limitations that DiagPRM must address:\n\n- **\"LLM-as-a-Judge for Human-AI Co-Creation: A Reliability-Aware Evaluation Framework for Coding\"** (arXiv Apr 2026) directly evaluates LLM judge reliability for coding with multi-metric protocols (ROC-AUC, MCC, Cohen's/Fleiss' kappa). This paper could undermine DiagPRM if it shows low agreement for reasoning-quality judgments.\n- **Judge Reliability Harness (JRH)** (RAND, Mar 2026) is an end-to-end stress-testing framework. Even top models (Gemini-2.5-Pro, GPT-5) fail to maintain consistent preferences in ~25% of difficult cases.\n- **\"A Rubric-Supervised Critic from Sparse Real-World Outcomes\"** (OpenHands, Mar 2026) trains a 4B critic model from rubric-based LLM annotations on SWE-bench trajectories. Improves Best@8 reranking by +15.9pp. **This is essentially DiagPRM's training methodology applied to SWE-bench with 24 behavioral rubric features.**\n- General consensus: LLM judges achieve ~80% agreement with humans, matching human-to-human consistency, but are vulnerable to formatting changes and paraphrasing. Chain-of-thought prompting improves reliability by 10-15%.\n\n**Key threat:** The OpenHands Rubric-Supervised Critic paper is the closest methodological match -- it trains a lightweight model on LLM-judge rubric annotations for SWE-bench. DiagPRM needs to differentiate on the diagnostic-reasoning-specific rubric design.\n\n### 4. SWE-bench Advances (March-May 2026)\n\nThe landscape has shifted dramatically:\n\n- **Claude Mythos Preview** leads SWE-bench Verified at **93.9%** (as of May 2026)\n- **OpenAI has deprecated SWE-bench Verified** in favor of SWE-bench Pro, citing contamination concerns\n- **SWE-bench Pro** is the new frontier: top score is ~46% (Claude Opus 4.5)\n- **SWE-RM** (ICLR 2026) achieves 74.6% on Verified with Qwen3-Coder-Max\n- **SWE-TRACE** claims SOTA on SWE benchmarks with rubric-PRM + test-time scaling\n\n**Implication for DiagPRM:** If the paper evaluates on SWE-bench Verified, reviewers may question the benchmark's validity given contamination concerns. Consider also evaluating on SWE-bench Pro or SWE-bench Live.\n\n### 5. EMNLP 2026 ARR Deadline\n\n**Confirmed: The ARR submission deadline is May 25, 2026** (15 days from today).\n\nKey details:\n- **Submission:** May 25, 2026 (AoE)\n- **Author registration:** May 27, 2026 (EoD AoE) -- all authors must complete registration\n- **Important policy:** The May 2026 ARR cycle is shared with AACL. Authors must **explicitly select EMNLP 2026 as target conference at submission time**, and this choice is **binding**.\n- **Author response period:** July 7-13, 2026\n- **Meta-reviews released:** July 30, 2026\n- **Commitment deadline:** August 2, 2026\n- **Notification:** August 20, 2026\n\n---\n\n## Summary of Critical Risks for DiagPRM\n\n1. **Extreme competition in PRM-for-code space:** At least 10 concurrent papers (SWE-Shepherd, SWE-TRACE, SWE-PRM, SWE-RM, CodePRM, FunPRM, DreamPRM-Code, SecCodePRM, ThinkPRM, ORPS). The paper must clearly articulate novelty.\n\n2. **OpenHands Rubric-Supervised Critic** is the closest methodological match: trains a lightweight critic from LLM-judge rubric annotations on SWE-bench. DiagPRM must differentiate.\n\n3. **SWE-TRACE** uses a \"Rubric-Based PRM\" with an auxiliary Rubric-Agent providing dense feedback -- architecturally very similar to LLM-judge-annotated training.\n\n4. **SWE-bench Verified contamination:** OpenAI has formally deprecated it. Reviewers may push back.\n\n5. **LLM judge reliability ceiling:** ~75-80% agreement, with failures in ~25% of difficult cases. The paper should report inter-annotator agreement and address this.\n\n6. **Tight deadline:** 15 days to submission. The binding conference selection policy is new this cycle.\n\nSources:\n- [CodePRM (ACL 2025)](https://aclanthology.org/2025.findings-acl.428/)\n- [FunPRM](https://arxiv.org/abs/2601.22249)\n- [DreamPRM-Code](https://arxiv.org/abs/2512.15000)\n- [SecCodePRM](https://arxiv.org/abs/2602.10418)\n- [SWE-PRM / \"When Agents go Astray\"](https://arxiv.org/abs/2509.02360)\n- [SWE-Shepherd](https://arxiv.org/abs/2604.10493)\n- [SWE-TRACE](https://arxiv.org/abs/2604.14820)\n- [SWE-RM (ICLR 2026)](https://openreview.net/forum?id=H9wMe1G76j)\n- [ORPS / \"Reasoning Through Execution\" (ICML 2025)](https://icml.cc/virtual/2025/poster/44014)\n- [ThinkPRM](https://arxiv.org/abs/2504.16828)\n- [AgentPRM (ACM Web 2026)](https://dl.acm.org/doi/abs/10.1145/3774904.3792551)\n- [Agentic Code Reasoning / Semi-formal Reasoning](https://arxiv.org/abs/2603.01896)\n- [Rubric-Supervised Critic (OpenHands)](https://arxiv.org/abs/2603.03800)\n- [LLM-as-Judge for Coding (Reliability-Aware)](https://arxiv.org/abs/2604.27727)\n- [Judge Reliability Harness (RAND)](https://arxiv.org/html/2603.05399v1)\n- [ICST 2026 - LLM Fault Localization Robustness](https://arxiv.org/html/2504.04372)\n- [SWE-bench Verified Leaderboard (Epoch AI)](https://epoch.ai/benchmarks/swe-bench-verified)\n- [OpenAI deprecation of SWE-bench Verified](https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/)\n- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [ARR Dates and Venues](http://aclrollingreview.org/dates)\n- [EMNLP 2026 binding conference selection policy](https://x.com/emnlpmeeting/status/2047754845919031450)&lt;/result>\n&lt;usage>&lt;total_tokens>38564&lt;/total_tokens>&lt;tool_uses>31&lt;/tool_uses>&lt;duration_ms>178069&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "4e651fd4-a380-41a4-8f1b-a5f3140ca717",
+  "timestamp": "2026-05-10T18:48:47.469Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 97 · 2026-05-10T18:50:15.180Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! All four agents have now completed. Let me compile the most critical findings from the last agent (missing competitors):
+
+**Critical new findings:**
+
+1. **OpenHands Rubric-Supervised Critic** (arXiv:2603.03800, March 2026) - This is a very important missing competitor! It trains a 4B critic model from LLM-judge rubric annotations on SWE-bench trajectories, with 24 behavioral rubric features. Improves Best@8 reranking by +15.9pp. This is essentially DiagPRM's training methodology (LLM-judge annotations → train critic) applied to SWE-bench.
+
+
+2. **DreamPRM-Code** (arXiv:2512.15000, Dec 2025) uses function-as-step paradigm with bi-level label correction and achieved SOTA on LiveCodeBench.
+3. **SecCodePRM** (arXiv:2602.10418, Feb 2026) applies step-level scoring specifically for security vulnerabilities.
+4. **SAN2PATCH** decomposes vulnerability patching into four stages (comprehension, localization, strategy, generation), which mirrors DiagPRM's three-stage decomposition approach.
+5. **Agentic Code Reasoning / Semi-formal Reasoning** from Meta is also emerging as a relevant direction.
+6. **SWE-bench Verified** has been formally deprecated by OpenAI, which could raise reviewer concerns about contamination.
+7. **SWE-RM was accepted at ICLR 2026**, not just posted to arXiv.
+
+The **OpenHands Rubric-Supervised Critic** (arXiv:2603.03800) is a critical paper I should address—it trains a lightweight critic from LLM-judge rubric annotations on SWE-bench trajectories for best-of-N reranking and shows strong improvements. This is methodologically quite similar to DiagPRM, so I need to clarify what differentiates DiagPRM's approach.
+
+DiagPRM's key distinctions are using three cognitive diagnostic reasoning stages rather than behavioral rubric features, focusing on reasoning quality rather than behavioral patterns, and leveraging disagreement cases as the primary training signal. The similarity is close enough that this needs explicit citation and differentiation.
+
+I should also verify SWE-PRM's venue—the search agent listed it as NeurIPS 2025, but the proposal says arXiv September 2025, so I need to confirm whether it was actually accepted. The IBM Research attribution seems correct.
+
+Now I'm ready to finalize my assessment of this proposal's genuine novelty and the key omissions I've identified. The key distinction is that DiagPRM evaluates the logical soundness of diagnostic reasoning—whether the diagnosis actually explains the failure—rather than just checking if the agent followed good behavioral patterns like editing the right file. For feasibility, I have the resources and timeline is tight but manageable, though LLM-judge reliability poses a real risk with inter-rater agreement around 0.16 in similar coding tasks, and the SWE-bench Verified contamination adds evaluation uncertainty. The proposal itself is exceptionally clear with strong positioning against related work and a formal stability argument.
+
+On impact, stage-level resampling is genuinely useful and complements trajectory-level approaches, but the practical gains remain uncertain given the modest performance differences between model sizes, and the deprecation of SWE-bench Verified limits the evaluation's relevance. Averaging across all dimensions gives 3.875, just below the 4.0 threshold, but the gaps are addressable by adding the OpenHands Rubric-Supervised Critic citation, directly acknowledging the SWE-bench contamination concern, and citing recent evidence on LLM-judge reliability.
+
+I'm reconsidering whether to recommend "revise" or just flag these as minor issues. The OpenHands omission is actually significant—it's not just a missing citation but a methodological overlap that questions DiagPRM's novelty. The paper needs to explicitly argue why diagnostic reasoning evaluation differs from behavioral rubric evaluation. Looking at it more carefully, though, the distinction is already there implicitly: behavioral rubrics catch inefficiency (like excessive file exploration), while DiagPRM catches reasoning errors (like correct bug localization but wrong root cause diagnosis). These are fundamentally different things, so the novelty claim holds up.
+
+I'll recommend "revise" with specific feedback targeting the OpenHands Rubric-Supervised Critic comparison. Given how minor the remaining issues are, I expect this should pass in the next round.
+
+Now I'm double-checking the feasibility constraints more carefully. The proposal lists GPU hours across three modes—all under 200 hours, which satisfies the hard constraint. For timeline, though, I'm seeing a potential issue: the HIL mode runs 14-18 days and the auto mode runs 12-16 days, but the user's hard constraint is ≤16 days.
+
+The auto mode sits right at the boundary while HIL's upper bound exceeds it, though the lower bound is within range. It's tight, but feasible. The trajectory generation costs of $1,500-2,500 for 500 trajectories are realistic for frontier models without caching, and the total cost of roughly $2,800-4,700 is reasonable for a research paper. What really strengthens this is the pilot study—100 trajectories with 300 steps and 3 judges to validate the LLM-judge approach before full commitment. If inter-rater agreement is too low, they can pivot early. This risk mitigation actually pushes feasibility closer to 3.5 or even 4.
+
+On impact, the stage-level resampling capability is genuinely novel.  Unlike SWE-RM which forces full trajectory regeneration, or DiagPRM which only identifies problems, this approach lets you pinpoint exactly where things went wrong—say localization succeeded but diagnosis failed—and regenerate just those stages. That's a real practical efficiency gain, not just theoretical. The impact case is strongest if the pilot shows reasonable inter-rater agreement above 0.4, if stage-level resampling outperforms full-trajectory resampling on resolution rate, and if the combined approach beats SWE-RM alone, demonstrating genuine complementarity.
+
+Settling on revised scores of 4/5 for novelty, 3.5/5 for feasibility given the LLM-judge risk and tight timeline, 4.5/5 for clarity, and 4/5 for impact brings the average to exactly 4.0—right at the threshold. There's one lingering concern though: the OpenHands Rubric-Supervised Critic isn't cited, which is a methodologically similar concurrent work the authors should know about, though it doesn't quite rise to the level of a critical blocker.
+
+The missing citation is significant but not fatal—it doesn't undermine DiagPRM's novelty since they're targeting different aspects (behavioral features versus diagnostic reasoning quality), and as concurrent work from March 2026, it's understandable it might not have been on the authors' radar. Given that my average hits 4.0 and the issues aren't critical, I think the right move is to recommend revision with specific, targeted feedback rather than rejection. prepared now)
+3. The proposal should cite it for completeness, but this is a relatively quick fix
+
+The SWE-bench Verified contamination concern is relevant but:
+1. The proposal also evaluates on DebugBench (1000 instances)
+2. Many papers still evaluate on SWE-bench Verified (SWE-RM, SWE-Shepherd, SWE-TRACE)
+3. This is more of a reviewer risk than a fundamental flaw
+
+So neither issue is truly CRITICAL. They're "significant but addressable."
+
+Given avg = 4.0 and no critical issues, I could argue for "pass" with noted issues. But I want to be strict.
+
+Let me reconsider: is 4/5 for novelty right? The idea combines stage-level decomposition, LLM-judge annotation to train lightweight models, and reasoning quality evaluation. Each component exists elsewhere, but the combination is novel. The specific insight about diagnostic reasoning having lower variance than action utility is original, and the disagreement mining strategy is clever and principled. Stage-level resampling enabled by this decomposition is genuinely new, so 4/5 feels justified.
+
+My final call is **"revise"** with minor, targeted feedback: add the missing OpenHands Rubric-Supervised Critic citation and acknowledge the SWE-bench Verified contamination concern.
+
+I'm settling on these scores:
+- Novelty: 4/5
+- Feasibility: 3.5/5
+- Clarity: 4.5/5
+- Impact: 3.5/5
+- Average: 3.875
+
+This is borderline EMNLP Main territory, but the novelty and clarity push it toward acceptance with revisions.
+
+The feedback I need to incorporate: cite the OpenHands Rubric-Supervised Critic work to differentiate my approach, address the SWE-bench Verified contamination risk by considering SWE-bench Pro evaluation, and tackle the LLM-judge reliability problem head-on by citing the kappa ~0.16 evidence and explaining why my structured three-stage evaluation should achieve better agreement. I also need to fix the CodeTracer trajectory count and clarify that SWE-RM uses continuous scoring rather than binary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4e651fd4-a380-41a4-8f1b-a5f3140ca717",
+  "isSidechain": false,
+  "requestId": "req_011CauPUkzSrRjSzUDazJHK3",
+  "type": "assistant",
+  "uuid": "e0c09b6b-ff10-4391-a6e4-f9f1ca038173",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015t2DHZTmvRn7KG6nir58K7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8684,
+      "cache_read_input_tokens": 58057,
+      "output_tokens": 3700,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8684,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3700,
+          "cache_read_input_tokens": 58057,
+          "cache_creation_input_tokens": 8684,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8684
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 98 · 2026-05-10T18:50:15.181Z_
+
+All four research agents have completed. Let me do one final verification on the most critical missing competitor found.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e0c09b6b-ff10-4391-a6e4-f9f1ca038173",
+  "isSidechain": false,
+  "requestId": "req_011CauPUkzSrRjSzUDazJHK3",
+  "type": "assistant",
+  "uuid": "936a1063-e2b8-4868-9dcd-7def4dbb88ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015t2DHZTmvRn7KG6nir58K7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8684,
+      "cache_read_input_tokens": 58057,
+      "output_tokens": 3700,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8684,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3700,
+          "cache_read_input_tokens": 58057,
+          "cache_creation_input_tokens": 8684,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8684
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-10T18:50:15.518Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01MYgKajtEkiyEyofZs1LyFu`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.03800",
+  "prompt": "What is the title and abstract of this paper? What method does it use? Does it train a critic/reward model from LLM-judge rubric annotations on SWE-bench trajectories? What performance does it achieve?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "936a1063-e2b8-4868-9dcd-7def4dbb88ee",
+  "isSidechain": false,
+  "requestId": "req_011CauPUkzSrRjSzUDazJHK3",
+  "type": "assistant",
+  "uuid": "d9dc9739-88cc-4507-9a3e-bfdbd85bf575",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015t2DHZTmvRn7KG6nir58K7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8684,
+      "cache_read_input_tokens": 58057,
+      "output_tokens": 3700,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8684,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3700,
+          "cache_read_input_tokens": 58057,
+          "cache_creation_input_tokens": 8684,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8684
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 100_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "d9dc9739-88cc-4507-9a3e-bfdbd85bf575",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 101_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Stage-level diagnostic reasoning rewards for code repair",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-10T18:50:20.368Z_
+
+<details><summary>↩ Tool result · `toolu_01MYgKajtEkiyEyofZs1LyFu`</summary>
+
+```text
+# Paper Summary
+
+**Title:** "A Rubric-Supervised Critic from Sparse Real-World Outcomes"
+
+**Abstract Overview:**
+The paper addresses the gap between academic benchmarks (with clear reward signals) and real-world coding agents (with noisy, delayed feedback). The researchers propose learning a "critic" model from sparse interaction data for use in RL training or inference-time scaling.
+
+**Method:**
+The approach introduces "Critic Rubrics," a supervision framework featuring 24 behavioral characteristics extractable from human-agent interaction traces. Using semi-supervised learning, the system jointly predicts these rubrics alongside sparse human feedback when available.
+
+**Performance Achievements:**
+- Best-of-N reranking on SWE-bench: "+15.9 over Random@8 over the rerankable subset of trajectories"
+- Early stopping capability: "+17.7 with 83% fewer attempts"
+- Supports training-time data curation through critic-selected trajectories
+
+**Note:** The abstract doesn't explicitly confirm LLM-judge annotations; it emphasizes trace-observable features and sparse real-world outcome proxies as the training signal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d9dc9739-88cc-4507-9a3e-bfdbd85bf575",
+  "isSidechain": false,
+  "promptId": "7f60437d-c1e5-4843-9b85-b330ef5e25c7",
+  "type": "user",
+  "uuid": "542eae71-3601-4285-b0e2-e72b24f67b62",
+  "toolUseResult": {
+    "bytes": 45518,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary\n\n**Title:** \"A Rubric-Supervised Critic from Sparse Real-World Outcomes\"\n\n**Abstract Overview:**\nThe paper addresses the gap between academic benchmarks (with clear reward signals) and real-world coding agents (with noisy, delayed feedback). The researchers propose learning a \"critic\" model from sparse interaction data for use in RL training or inference-time scaling.\n\n**Method:**\nThe approach introduces \"Critic Rubrics,\" a supervision framework featuring 24 behavioral characteristics extractable from human-agent interaction traces. Using semi-supervised learning, the system jointly predicts these rubrics alongside sparse human feedback when available.\n\n**Performance Achievements:**\n- Best-of-N reranking on SWE-bench: \"+15.9 over Random@8 over the rerankable subset of trajectories\"\n- Early stopping capability: \"+17.7 with 83% fewer attempts\"\n- Supports training-time data curation through critic-selected trajectories\n\n**Note:** The abstract doesn't explicitly confirm LLM-judge annotations; it emphasizes trace-observable features and sparse real-world outcome proxies as the training signal.",
+    "durationMs": 4845,
+    "url": "https://arxiv.org/abs/2603.03800"
+  },
+  "sourceToolAssistantUUID": "d9dc9739-88cc-4507-9a3e-bfdbd85bf575",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 103 · 2026-05-10T18:50:31.503Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, so the OpenHands Rubric-Supervised Critic (arXiv:2603.03800) is:
+- Title: "A Rubric-Supervised Critic from Sparse Real-World Outcomes"
+- Uses 24 behavioral rubric characteristics from agent traces
+- Semi-supervised learning with sparse human feedback
+- Best-of-N reranking: +15.9 over random@8
+- Early stopping: +17.7 with 83% fewer attempts
+
+This is indeed a significant competitor. The key differences from DiagPRM:
+1. **Rubric design**: 24 behavioral characteristics (trace-observable features) vs. 3 cognitive reasoning stages
+
+
+2. **Signal source**: Behavioral patterns extractable from traces vs. reasoning quality evaluated by LLM-judge
+3. **What it evaluates**: "Does the agent behave well?" vs. "Does the agent reason correctly?"
+
+DiagPRM should position itself as complementary—behavioral rubrics capture execution efficiency and tool use patterns, while diagnostic reasoning evaluation focuses on the logical soundness of fault localization and root cause analysis. Now I'm settling on final scores: Novelty 4/5, Feasibility 3.5/5, Clarity 4.5/5, Impact 3.5/5, averaging to 3.875, which suggests a revision is needed.
+
+I'm identifying a few gaps to address: the OpenHands Rubric-Supervised Critic needs a proper citation, there's a potential SWE-bench Verified contamination issue to flag, and the paper should provide more evidence around LLM-judge reliability. These are manageable fixes that should push the paper toward acceptance.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "542eae71-3601-4285-b0e2-e72b24f67b62",
+  "isSidechain": false,
+  "requestId": "req_011CauPbcBoqbAujk6Yqiq7M",
+  "type": "assistant",
+  "uuid": "5e5a7013-76a2-4966-a5d3-856ce6a6027d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGUmCXfAHxW1bBThyiitA8",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3957,
+      "cache_read_input_tokens": 66741,
+      "output_tokens": 2119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2119,
+          "cache_read_input_tokens": 66741,
+          "cache_creation_input_tokens": 3957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 104 · 2026-05-10T18:51:11.714Z_
+
+Now I have all the information needed. Let me compile the comprehensive review.
+
+**Summary of my independent findings:**
+
+**Verified as accurate:**
+- All 20+ cited papers exist with correct arXiv IDs and dates
+- SWE-RM numbers (62-74.6%) confirmed
+- SWE-Shepherd results (51% vs 57% greedy) confirmed
+- SWE-smith 66K dataset exists on HuggingFace (MIT license)
+- Qwen3-8B available for LoRA fine-tuning
+- DebugBench exists with 4 major/18 minor bug categories
+- EMNLP 2026 ARR deadline confirmed May 25, 2026
+- API trajectory generation costs plausible for frontier models
+
+**Critical findings:**
+1. **OpenHands Rubric-Supervised Critic** (arXiv:2603.03800, March 2026) — trains a lightweight critic from 24 behavioral rubric features on SWE-bench trajectories for best-of-N reranking (+15.9 over random@8). Methodologically the closest match to DiagPRM and NOT cited.
+2. **LLM-judge reliability for coding** — recent paper (arXiv:2604.27727) reports Cohen's kappa of 0.1592 for inter-LLM-judge agreement on coding evaluation tasks.
+3. **SWE-bench Verified contamination** — OpenAI has formally deprecated the benchmark; SOTA is 93.9%.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 4, "rationale": "Genuinely novel combination of stage-level cognitive diagnostic reasoning decomposition + trained PRM on reasoning quality + execution-free inference. Well-differentiated from 10+ related works. However, the OpenHands Rubric-Supervised Critic (arXiv:2603.03800) uses a similar train-critic-from-annotations methodology, requiring explicit differentiation."},
+    "feasibility": {"score": 3, "rationale": "Resources within 200 H100-hour budget and key datasets/models are available. However, recent evidence shows LLM-judge inter-agreement kappa of ~0.16 for coding tasks (arXiv:2604.27727), which is a serious risk for the LLM-judge annotation pipeline. The 100-trajectory pilot mitigates but does not eliminate this risk. SWE-bench Verified contamination concerns add evaluation risk."},
+    "clarity": {"score": 4, "rationale": "Exceptionally well-structured proposal with thorough positioning against extensive related work, formal stability argument, honest acknowledgment of limitations, and appropriate statistical methodology. One of the strongest presentations I've reviewed at this stage."},
+    "impact": {"score": 3, "rationale": "Stage-level resampling is a genuinely useful capability impossible with trajectory-level scorers. However, practical impact depends on whether an 8B PRM scoring reasoning quality can outperform a 30B trajectory-level RM (SWE-RM), and SWE-bench Verified's deprecation by OpenAI reduces the evaluative significance of results on that benchmark."}
+  },
+  "issues": [
+    "MISSING CITATION: OpenHands Rubric-Supervised Critic (arXiv:2603.03800, March 2026) trains a lightweight critic from 24 behavioral rubric features extracted from SWE-bench trajectories using semi-supervised learning, achieving +15.9 best-of-N reranking improvement. This is the closest methodological match to DiagPRM's approach of training a critic from LLM-judge annotations and must be cited and differentiated.",
+    "LLM-JUDGE RELIABILITY EVIDENCE: Recent work (arXiv:2604.27727, April 2026) reports Cohen's kappa of 0.1592 and Fleiss' kappa of 0.0696 for inter-LLM-judge agreement on coding evaluation tasks. While that paper evaluates a different task (contest-style co-creation), this extremely low agreement rate directly challenges DiagPRM's assumption that LLM judges can reliably annotate diagnostic reasoning quality. The proposal should cite this finding and argue why its structured 3-stage evaluation criteria will yield substantially higher agreement.",
+    "SWE-BENCH VERIFIED CONTAMINATION: OpenAI has formally deprecated SWE-bench Verified due to data contamination concerns (SOTA is now 93.9%). While most cited baselines also evaluate on Verified, reviewers may question the benchmark's validity. Consider acknowledging this concern and discussing whether results generalize to SWE-bench Pro or Live.",
+    "MINOR: SWE-RM scoring is described as 'binary whole-trajectory scoring' in the landscape but is actually continuous [0,1] derived from YES/NO token log-probabilities. CodeTracer trajectory count stated as 4,316 but the paper reports 4,354."
+  ],
+  "feedback": "The proposal is close to passing and has been significantly improved through prior rounds. Three targeted additions should resolve the remaining issues:\n\n1. **Add OpenHands Rubric-Supervised Critic (arXiv:2603.03800) to landscape**: This is the most methodologically similar concurrent work—it also trains a lightweight critic model from annotation-derived signals on SWE-bench trajectories for best-of-N reranking. Differentiate by noting that it uses 24 trace-observable behavioral features (file navigation patterns, tool use efficiency, test invocation frequency) while DiagPRM evaluates the logical soundness of cognitive diagnostic reasoning (does the localization reasoning connect evidence to the right fault? does the diagnosis logically explain the failure?). Behavioral rubrics answer 'is the agent working efficiently?' while diagnostic reasoning scoring answers 'is the agent reasoning correctly?'—a competent agent can reason correctly but inefficiently (sound diagnosis with excessive exploration) or efficiently but incorrectly (quick convergence on wrong root cause).\n\n2. **Acknowledge LLM-judge reliability evidence**: Cite arXiv:2604.27727's finding of kappa ~0.16 for coding evaluation. Argue that DiagPRM's task is more structured than open-ended code quality assessment: each stage has concrete verifiable criteria (does localization reasoning cite relevant error evidence? does diagnosis hypothesis explain specific test failures?), and the pilot study's comparison of reasoning quality kappa vs. action utility kappa will quantify this empirically.\n\n3. **Address SWE-bench Verified contamination**: Add a brief acknowledgment that the benchmark faces contamination concerns. Note that (a) all baselines being compared also report on Verified, making within-benchmark comparisons valid; (b) the DebugBench evaluation (1000 instances) provides complementary validation on a cleaner benchmark; (c) if feasible within timeline, consider a small-scale evaluation on SWE-bench Pro.\n\n4. **Minor fixes**: Correct SWE-RM scoring description from 'binary' to 'continuous [0,1]'; fix CodeTracer trajectory count to 4,354.",
+  "reason": "Strong proposal with genuine novelty and excellent clarity, but missing a critical methodological competitor (OpenHands Rubric-Supervised Critic) and insufficiently addressing LLM-judge reliability evidence that directly threatens the annotation pipeline."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e5a7013-76a2-4966-a5d3-856ce6a6027d",
+  "isSidechain": false,
+  "requestId": "req_011CauPbcBoqbAujk6Yqiq7M",
+  "type": "assistant",
+  "uuid": "0dc92953-8eda-4f13-baf0-89641f9709fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGUmCXfAHxW1bBThyiitA8",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3957,
+      "cache_read_input_tokens": 66741,
+      "output_tokens": 2119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2119,
+          "cache_read_input_tokens": 66741,
+          "cache_creation_input_tokens": 3957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 105_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "0dc92953-8eda-4f13-baf0-89641f9709fd",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 106_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Stage-level diagnostic reasoning rewards for code repair",
+  "sessionId": "e48a7609-5e29-4d47-9bd4-04d751de1c24"
+}
+```
+
+---

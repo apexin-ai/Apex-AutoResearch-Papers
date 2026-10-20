@@ -1,0 +1,2148 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-10 (UTC).** ## Original idea { "tit
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/exported-trajectories/account-3/fd151e9a-6fa3-4069-abc8-67ae6568c39f.jsonl`
+- **Structured JSON:** [`005e4c7e5775f0f207bb.json`](../../sessions/00/005e4c7e5775f0f207bb.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T08:13:51.427Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T08:13:51.427Z",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-10 (UTC).**\n\n## Original idea\n{\n  \"title\": \"SpecExtract: Learning Issue-Space Behavioral Specifications from Bug Report Runtime Artifacts for Guided Program Repair\",\n  \"core_problem\": \"Automated repair agents fail on ambiguous bug reports not from lack of code understanding, but because unstructured issue text leaves behavioral expectations underspecified — what interface should change, what the user observed, and what correct behavior looks like are rarely made explicit. SpecRover (ICSE 2025) partially addresses this via per-instance LLM prompting that extracts specifications from CODE during codebase traversal, producing evidence artifacts in the form {(location, intended_behavior)} at $0.65/issue. Its error analysis (Section V-A, 'Reasons for Failure'; see https://arxiv.org/html/2408.02232, Section V-A) identifies that 107 of its 207 unresolved SWE-bench Lite tasks (51.7%) are classified as 'ambiguous issue description' — cases the paper characterizes as 'hard or impossible to solve' without further information, citing SWE-bench Verified as external validation for why underspecified descriptions constitute an irreducible failure mode for code-space approaches. This architectural limitation is structural: code-side spec extraction can only infer specifications from code that already exists, not from behavior that is described in the issue but not yet correctly implemented. Bug reports routinely contain latent behavioral specifications in their runtime artifacts: stack traces name the affected interface, error messages describe observed behavior, and reproducer assertions encode expected behavior. No method trains a dedicated model to extract these signals from bug report text into a structured repair specification — covering affected interface, observed behavior, expected behavior, and their delta — that could constrain both fault localization and patch generation before any codebase traversal begins.\",\n  \"opportunity\": \"Failing test assertions in SWE-bench's test patches encode implementation-agnostic behavioral specifications without revealing implementation strategies: `assert result == expected_value` or `with pytest.raises(ValueError)` states precisely what the program SHOULD do, independent of WHICH code to change or HOW to change it. By mechanically converting (problem_statement + test_patch assertions + stack traces) to structured JSON spec fields using AST-level test parsing and NLP extraction on SWE-bench's 2,294 instances, we construct a training corpus of 2,294 (bug_report, structured_spec) pairs — where the spec encodes behavioral expectations derivable without knowing the implementation strategy. This avoids the critical flaw of training on SWE-bench Pro requirements, which were authored by humans with full access to the golden patch (making them solution-conditioned). SWE-bench-Live (NeurIPS 2025, arXiv 2505.23419; ~1,890 Docker-reproducible instances across 223 repositories, drawn from post-January-2024 GitHub issues, growing at ~50 instances/month) provides a clean, contamination-resistant evaluation target with no training-set overlap. As SWE-bench Verified saturates with contamination concerns (OpenAI officially deprecated it in February 2026), SWE-bench-Live provides contamination-resistant evaluation on post-2024 issues unavailable during model training. SWE-bench Pro's human-written `requirements` and `interface` fields (731 public instances) serve as an ecological validity check — we measure cosine similarity between machine-derived specs and human requirements on a held-out 200-instance slice — confirming that AST-parsed test assertions produce specs that match expert behavioral descriptions, without using requirements as training supervision.\",\n  \"landscape\": \"SpecRover (ICSE 2025, arXiv 2408.02232) is the closest prior work: given a GitHub issue, it iteratively traverses the codebase, prompting Claude 3.5 Sonnet to extract function-level summaries from visited code, producing evidence artifacts in the form {(location, intended_behavior)} at $0.65/issue and 31% on SWE-bench Lite (93/300). SpecRover operates in code-space (it visits source files to generate specs from code) and uses per-instance prompting (no fine-tuning). Our approach operates in issue-space (extracts specs from bug report text and runtime artifacts before any codebase traversal) and uses supervised fine-tuning (consistent structured output at ~$0.05-0.10/issue). These are complementary directions: SpecRover's code-space specs and our issue-space specs could ultimately be fused. Agent-CoEvo (arXiv 2604.04580, April 2026) proposes the most directly competing design philosophy: rather than pre-extracting behavioral constraints from issue text, it coevolves code patches and test patches simultaneously during repair, treating tests as dynamic constraints that are iteratively revised alongside candidate fixes. Agent-CoEvo achieves 41.33% on SWE-bench Lite (DeepSeek-V3) and 46.4% on SWT-bench Lite, outperforming Agentless-1.5 (32%) on those benchmarks. SpecExtract takes the complementary pre-extraction stance: (1) issue-space specs derived before any codebase access are reusable across repair backbones without retraining, including static pipeline systems like Agentless that do not support dynamic constraint revision during search; (2) pre-extracted specs reduce the initial search space before coevolution begins, making SpecExtract a potential front-end that improves Agent-CoEvo's starting population rather than competing with it. SWE-Lego (arXiv 2601.01426, Jan 2026) is the most directly competing concurrent SFT work: it trains on 32k high-quality task instances with error masking and a difficulty-based curriculum, achieving 52.6% on SWE-bench Verified (58.8% with test-time scaling at 16 samples) using a 32B model. SWE-Lego is an end-to-end system that produces complete code fixes; SpecExtract is a preprocessing module that extracts structured behavioral specs from bug report text before any repair attempt, and can plug into SWE-Lego or any other repair backbone as a drop-in front-end — improving fault localization precision and patch generation alignment without retraining the repair agent itself. CodeSpecBench (arXiv 2604.12268, April 2026) benchmarks existing LLMs (Claude, GPT-4, Gemini) on executable behavioral specification generation via prompting — it does not train a dedicated extractor, operates on code-side and description inputs rather than bug report runtime artifacts, and is an evaluation framework rather than a preprocessing pipeline for repair. Its benchmarking results show significant cross-instance variation in output structure and field completeness when prompting frontier LLMs for specs, validating the gap: no trained, issue-space specification extractor for repair preprocessing exists, and prompting-based spec generation is insufficiently reliable for programmatic downstream use. SpecFix (arXiv 2505.07270, May 2026) repairs ambiguous problem descriptions for LLM-based code generation benchmarks (HumanEval+, MBPP+, LiveCodeBench) via contrastive specification inference — analyzing the distribution of LLM-generated programs to identify and repair description ambiguity; SpecExtract operates on GitHub issue bug reports (not synthetic benchmark descriptions), produces structured 4-field JSON specs via supervised fine-tuning (not description repair), and serves as a preprocessing input to repair agents rather than modifying task descriptions. VibeRepair (arXiv 2602.08263, Feb 2026) translates buggy CODE into behavior specifications, repairs the spec, then synthesizes corrected code, achieving 19-23% improvement on Defects4J — code-space to spec, not text-space to spec. TraceRepair (arXiv 2604.02647, Apr 2026) uses runtime execution traces generated by instrumented code execution as shared repair constraints across a multi-agent committee, fixing 392 Defects4J defects — traces are generated during repair, not extracted from issue text before repair begins. RepoRepair (arXiv 2603.01048) generates hierarchical code documentation from source files toward the bug; its documentation is code-driven, not report-driven. SoRFT (arXiv 2502.20127, ACL 2025; https://aclanthology.org/2025.acl-long.559) fine-tunes on SWE-bench with RL to decompose the repair TASK into subtasks (file → function → line → edit), achieving 21.4% on SWE-bench Verified and 14.0% on SWE-bench Lite with a 7B model (30.8% Verified and 24.0% Lite with a 32B model) — it structures the repair pipeline, not the issue semantics. PathFix (arXiv 2510.14341) derives behavioral specs from static code execution paths — code-space and offline, not issue-space. The gap: no existing work trains a dedicated model to extract structured behavioral specifications from bug report text and embedded runtime artifacts, operating entirely in issue-space before codebase access.\",\n  \"approach\": \"We train SpecExtract, a Qwen3-Coder-30B-A3B model (Mixture-of-Experts: 30B total parameters, ~3B active per token — fine-tuning and inference cost scale with active parameters, comparable to a 3B dense model; fits on a single H100 80GB with QLoRA at ~17.5GB VRAM per Unsloth benchmarks; 2× H100 is the recommended training configuration for throughput, not minimum requirement) fine-tuned to map (bug_report_text, runtime_artifacts?) → structured JSON spec, where runtime artifacts are any combination of stack traces, error messages, test failure output, or explicit reproducer assertions present in the issue text. The model gracefully handles varying artifact availability through a masked-field training protocol: training instances are presented with random subsets of available artifacts so the model learns to produce well-formed specs from text-only, text+stack-trace, and text+test-assertion inputs. Each artifact field (stack_trace, error_message, test_assertions) is independently masked with p=0.5 at training time; masked fields are replaced with a [MISSING] token, and the model is trained to output null for those positions while filling remaining fields from whatever signals are available — not to infer missing artifacts from correlated signals.\\n\\n**NLP framing — structured IE for bug reports**: SpecExtract's primary NLP contribution is defining and solving a novel structured information extraction (IE) task: extracting typed behavioral specifications from semi-structured bug text under partial observability. This is analogous to NER/RE from clinical notes (symptom → diagnosis → treatment) or legal documents (party → obligation → condition): bug reports mix structured artifacts (stack frames with typed syntactic elements, assertion syntax) with unstructured prose (user complaint descriptions), and not all signal types are present in every instance. Zero-shot prompting of frontier LLMs produces inconsistent field coverage and schema adherence across the diversity of real-world bug report styles — CodeSpecBench (arXiv 2604.12268) benchmarks Claude, GPT-4, and Gemini on spec generation via prompting and documents significant cross-instance variation in output structure and field completeness, motivating a dedicated trained extractor with enforced schema. Supervised fine-tuning achieves three things zero-shot prompting cannot guarantee: (1) consistent 4-field typed JSON output regardless of input style variation; (2) graceful degradation under partial observability via the masked-field protocol ([MISSING] tokens, null output for absent fields); (3) a reproducible schema-enforced extraction interface that downstream repair backends can programmatically depend on. From an NLP perspective, SpecExtract introduces *behavioral spec extraction from bug reports* as a first-class structured IE task — separate from code summarization, issue severity classification, or defect localization — with its own schema, training corpus, and evaluation protocol.\\n\\n**Formal schema**: Each spec has four typed fields — (1) `affected_interface`: {module: str, signature: str|null, entry_point: str} extracted from stack frame function names and explicitly mentioned APIs; (2) `observed_behavior`: {error_type: str|null, error_message: str|null, symptom: str} from error output and user complaint; (3) `expected_behavior`: {description: str, assertions: [str]} as natural-language description plus test-style constraint strings when derivable; (4) `behavioral_delta`: str, a one-sentence expected-vs-actual summary. Worked example for a NumPy issue 'linalg.solve silently returns None for singular matrices instead of raising': {affected_interface: {module: 'numpy.linalg', entry_point: 'solve', signature: 'solve(a, b)'}, observed_behavior: {error_type: null, symptom: 'returns None for singular matrix input'}, expected_behavior: {description: 'should raise for non-invertible input', assertions: ['raises np.linalg.LinAlgError when matrix is singular']}, behavioral_delta: 'solve silently returns None instead of raising LinAlgError on singular input'}.\\n\\n**Training data construction (implementation-agnostic behavioral specifications)**: From SWE-bench full (2,294 instances including Verified 500 and the broader set): (1) parse `test_patch` test functions via Python AST to extract formal assertions — pytest.raises calls → error_type, assert statements → expected_behavior.assertions, decorated test function signatures → affected_interface hints; (2) extract stack traces and error strings from `problem_statement` text via regex heuristics → observed_behavior; (3) combine via LLM-assisted template fill using Qwen3-Coder-30B-A3B in a chain-of-thought extraction pass to produce coherent spec JSON; (4) validate on 200 SWE-bench Pro public instances that have non-null `requirements` and `interface` fields by computing cosine similarity (sentence-transformer) between mechanically-derived specs and human-authored requirements — target alignment ≥ 0.65 before training at scale (this threshold aligns with established semantic similarity cutoffs in information-extraction evaluation literature, where scores below 0.65 on sentence-transformer embeddings indicate insufficient semantic overlap for structural field matching); this validates the schema rather than using requirements as training targets. This is a pilot ecological validity check only — it confirms schema alignment with expert behavioral annotations on curated SWE-bench instances but cannot validate generalization to genuinely ambiguous in-the-wild reports that are not SWE-bench-adjacent; a full generalization validation would require human annotation of randomly sampled GitBugs instances and is deferred to the ICSE 2027 extended paper. Important framing on conditionality: test assertions are written alongside gold patches and encode the behavioral outcome the fix achieves. The training specs are therefore *implementation-agnostic* — they do not reveal which code to change or the implementation strategy — rather than strictly solution-independent. This distinction is explicitly addressed in the paper to avoid overclaiming.\\n\\n**Training data sufficiency**: The 2,294-instance corpus is appropriate for this structured extraction subtask. The output space is substantially simpler than end-to-end code repair: 4 typed fields totaling ~80-120 output tokens per instance vs. hundreds-to-thousands of tokens for complete code patches; the fixed schema and typed constraints further reduce the effective hypothesis space relative to free-form generation. Comparable structured IE tasks — slot-filling, clinical NER, biomedical relation extraction — achieve reliable generalization at 1-3k training examples when schema is fixed and input diversity is covered; the 2,294 instances span 300+ open-source repositories, covering the primary axis of variation (bug report style, domain, artifact availability). Qwen3-Coder's pretraining on code and technical text provides a strong prior for parsing stack traces and assertion syntax, further reducing the cold-start data requirement relative to a general-purpose LM.\\n\\nThe EMNLP 2026 ARR submission uses the 2,294-instance SWE-bench full corpus as the SFT training set; GitBugs augmentation (~3,000 pseudo-labeled instances, yielding a ~5,300-instance total corpus) is reserved for the ICSE 2027 extended paper.\\n\\n**Differentiation from SpecRover**: (1) issue-space — no codebase traversal needed at spec extraction time; (2) supervised learning — consistent, typed JSON output from a single forward pass (~$0.05-0.10/issue) vs. SpecRover's multi-step code traversal ($0.65/issue); (3) directly targets SpecRover's identified 51.7% ambiguous-description failure mode (Section V-A, 107/207 unresolved SWE-bench Lite tasks) by conditioning on all available runtime artifacts in the issue, not just the code side.\\n\\n**Integration with Agentless**: We integrate with Agentless (arXiv 2407.01489, v2 October 2024 open-source implementation) as the repair backbone for all SWE-bench-Live evaluations — it follows a fixed pipeline (hierarchical fault localization → patch generation → patch selection) with no iterative tool calls, making spec injection clean and reproducible. Confirmed from the Agentless paper's method section: the main fault-localization pipeline combines (a) LLM prompting over the repository folder tree to identify the top-N suspicious files and (b) embedding-based cosine similarity retrieval (OpenAI text-embedding-3-small via LlamaIndex) over code chunks — the union of both signal sets provides the candidate file list. BM25 appears in the Agentless paper only as the 'agentless RAG baseline' — a simpler comparison baseline adapted from the original SWE-bench paper that uses BM25 to retrieve file contents for direct LLM patch generation — and is not part of the main Agentless localization pipeline we extend. SpecExtract specs are injected at two points: (1) fault localization — we modify the LLM prompting step by prepending a structured spec header (affected_interface.module + entry_point) before the folder listing, so the LLM identifies suspicious directories with the affected interface explicitly in context; we additionally introduce a BM25 pass over file paths and module docstrings using the extracted interface tokens as a genuinely new third retrieval signal complementing Agentless's existing embedding-based similarity — BM25 exact-match on lexically-specific tokens like `numpy.linalg` or `django.db.models.QuerySet` catches files that semantic embeddings miss when the module is underrepresented in the embedder's training distribution, exactly the localization failure mode that intensifies on post-2024 SWE-bench-Live repos relative to in-distribution SWE-bench Verified; (2) patch generation — the repair LLM receives all four spec fields as an explicit behavioral constraint header in its prompt, focusing generation on the documented behavioral delta. Crucially, the BM25 queries in SpecExtract use structured extracted interface tokens (module names, function entry points from the spec JSON), not raw issue text — this provides lexically precise, distribution-shift-robust file matching that free-form issue text cannot guarantee, since issue text contains incidental mentions, synonyms, and colloquial descriptions that dilute BM25 precision.\\n\\n**Agentless baseline on SWE-bench-Live**: Per the SWE-bench-Live paper (arXiv 2505.23419, Table 3), Agentless resolves 11.67% (GPT-4o), 12.00% (GPT-4.1), and 13.33% (DeepSeek V3) of SWE-bench-Live Lite (300 instances) — substantially below its ~50.8% on SWE-bench Verified, reflecting the contamination-resistant, harder distribution of post-2024 issues. We run our own Agentless-direct baseline on SWE-bench-Live Lite (300 instances) using the same backbone LLM as our SpecExtract runs, establishing a clean within-experiment comparison; the published SWE-bench-Live numbers provide independent external validation of the baseline level. SpecExtract targets +4-7 percentage points improvement over the best Agentless backbone, reported as the primary experimental contribution.\\n\\n**Mechanistic case for the +4-7 pp improvement target**: Agentless's embedding-based file localization achieves ~57% file-level Recall@1 on SWE-bench Lite (original Agentless paper), yet its end-to-end resolve rate drops ~4× from SWE-bench Verified (~50.8%) to SWE-bench-Live Lite (13.33% best case). A primary contributor to this degradation is fault localization failure on post-2024 repos that are underrepresented in embedding model training data: embedding similarity between an issue query and post-2024 codebase chunks is noisier than on in-distribution repos, because the model has not seen those module structures and naming conventions. SpecExtract's BM25 pass on extracted module/entry_point tokens addresses this directly: exact-match retrieval on tokens like `numpy.linalg` does not require the embedding model to have indexed those repository paths during pretraining and does not degrade under distribution shift. Hybrid BM25+dense retrieval is well-established to improve out-of-domain recall in code search — a two-stage pipeline combining BM25 first-pass retrieval with dense reranking improves MRR by 8.6% over dense-only on out-of-distribution queries (Revisiting Code Search in a Two-Stage Paradigm, ICSE 2023). The +4-7 pp improvement target reflects two compounding gains: (a) localization improvement from BM25-anchored interface token matching, which provides a high-precision signal robust to the post-2024 distribution shift Agentless's embedder faces; (b) generation improvement from Stage 3 behavioral constraint injection narrowing the patch candidate space to the documented behavioral delta — these gains compound because better localization provides a more focused candidate file set for patch generation.\\n\\n**Evaluation**: Primary eval on SWE-bench-Live Lite (300 instances, contamination-resistant, Docker-reproducible, post-2024 issues) with Agentless as backbone; per-field ablations independently zero out each spec field to quantify individual contribution to resolve rate. Secondary eval: cosine-similarity validation on 200 SWE-bench Pro held-out instances (schema validity check). Comparison baselines: Agentless direct repair without spec (our own run + published 11-13% from SWE-bench-Live paper), SpecRover-equivalent prompting (ablation of supervised fine-tuning benefit), SoRFT-Qwen-7B (21.4% Verified / 14.0% Lite, structured subtask decomposition), SWE-Lego (52.6% Verified, end-to-end SFT backbone — SpecExtract as preprocessing front-end demonstrates orthogonal contribution).\\n\\n**Publication scope**: The EMNLP 2026 ARR submission (auto-research mode, 6-10 days) reports results on the 2,294-instance SWE-bench full SFT corpus with SWE-bench-Live Lite 300-instance primary eval and a 2-field ablation (affected_interface vs. none, expected_behavior vs. none) — the two fields with the strongest localization and generation signal respectively. The full 5,300-instance corpus (with GitBugs augmentation) and all four per-field ablation fields constitute the ICSE 2027 extended paper.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~90-110 H100-hours (~180-220 A100-equivalent hours)\",\n      \"gpu_breakdown\": \"SFT partition (~10-14 H100-hours): Qwen3-Coder-30B-A3B QLoRA fine-tuning on 5,300 instances, 3 epochs, 2× H100 80GB recommended for throughput (single H100 80GB is technically sufficient at ~17.5GB VRAM) — MoE active-parameter efficiency reduces training cost to ~3B dense equivalent. Eval partition (~80-96 H100-hours): spec extraction inference on 5,300 instances (~4 H100-hours); SWE-bench-Live Lite main eval 300 instances × 12.5 min/instance / 4 parallel H100s ≈ 16 H100-hours; per-field ablations 4 fields × 300 instances ≈ 64 H100-hours; SWE-bench Pro validation ≈ 1 H100-hour.\",\n      \"gpu_utilization\": \"~50-60% — Docker sandbox test execution during SWE-bench-Live eval is CPU-bound; GPU idles between model inference calls\",\n      \"timeline\": \"3-5 months\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"~$216-264 (90-110h × $2.40/hr H100 SXM5 on-demand; within the 200 H100-hour hard constraint)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~135-160 H100-hours (~270-380 A100-equivalent hours)\",\n      \"gpu_breakdown\": \"SFT partition (~25-35 H100-hours): 3 fine-tuning configurations (schema variant, augmentation ablation, masked-field protocol variant). Eval partition (~110-125 H100-hours): spec extraction ~5 H100-hours; Agentless baseline run on 300 instances ≈ 16 H100-hours; SWE-bench-Live partial eval 600 instances / 4 parallel ≈ 31 H100-hours; per-field ablations on 300-instance subset × 4 fields ≈ 62 H100-hours; SWE-bench Pro validation ≈ 1 H100-hour.\",\n      \"gpu_utilization\": \"~60-70% — agent runs fine-tuning and SWE-bench-Live eval jobs continuously; human approves schema validation threshold, masked-field training protocol, retrieval bias weights, and ablation scope at daily check-ins\",\n      \"timeline\": \"5-9 weeks\",\n      \"team\": \"1 researcher, ~30 min/day check-in\",\n      \"claude_api_cost\": \"$200-400 (~2,500 orchestration turns at ~$0.10/turn Opus)\",\n      \"estimated_gpu_cost\": \"~$324-384 (135-160h × $2.40/hr H100); within the 200 H100-hour hard constraint\",\n      \"risk_note\": \"Critical unknown: whether AST-parsed test assertions produce specs that align with human behavioral descriptions (measured by cosine similarity ≥ 0.65 on 200 SWE-bench Pro validation instances). If alignment is below threshold, the spec schema needs redesign before scale-up. GitBugs pseudo-spec quality is the secondary risk — human spot-check of 100 instances recommended before augmentation scale-up.\"\n    },\n    \"auto_research\": {\n      \"note\": \"Budget-capped auto-research only — uncapped sweeps would exceed the 200 H100-hour hard constraint. Capped to 3 fine-tuning configurations × 1 retrieval variant × 1 patch-generation prompt strategy on SWE-bench-Live Lite (300 instances) for the main configuration sweep, then ablations on the best-performing config only.\",\n      \"gpu_hours\": \"~160-180 H100-hours (budget-capped)\",\n      \"gpu_breakdown\": \"SFT partition (~30-35 H100-hours): 3 QLoRA configs on 5,300 instances. Eval partition (~130-145 H100-hours): 3-config main sweep 3 × 300 instances ≈ 48 H100-hours; per-field ablations on best config 300 × 4 fields ≈ 64 H100-hours; Agentless baseline ≈ 16 H100-hours; spec extraction inference ≈ 5 H100-hours; validation ≈ 1 H100-hour.\",\n      \"gpu_utilization\": \"~80-85% — continuous fine-tuning, inference, and SWE-bench-Live Docker eval; sandbox parallelized across 30 instances simultaneously\",\n      \"timeline\": \"6-10 days with 4 parallel H100 GPUs\",\n      \"team\": \"0 (setup only, ~3h initial configuration)\",\n      \"claude_api_cost\": \"$400-600 (~4,500 turns)\",\n      \"estimated_gpu_cost\": \"~$384-432 (160-180h × $2.40/hr H100)\",\n      \"speed_bottleneck\": \"SWE-bench-Live Docker sandbox throughput, not GPU compute; Qwen3-Coder-30B-A3B MoE inference (~3B active params) is fast and avoids multi-GPU coordination overhead that a dense 30B model would require\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline May 25, 2026 — 15 days remaining; conference October 24-29, Budapest) — NLP angle: structured information extraction from semi-structured bug text with partial observability, supervised fine-tuning motivation over zero-shot prompting, masked-field training protocol. The NLP contribution (task definition, schema, masked-field training, training corpus construction) is framed independently of the repair backbone integration; EMNLP ARR submission reports auto-research results (6-10 days): SFT on SWE-bench full 2,294-instance corpus, SWE-bench-Live Lite 300-instance primary eval, and 2-field ablation (affected_interface vs. none, expected_behavior vs. none). The full 5,300-instance corpus with all four per-field ablation fields is the ICSE 2027 extended paper.\",\n    \"ICSE 2027 (abstract deadline June 23, 2026; full paper ~July 2026; conference April-May 2027, Dublin) — SE angle; preferred primary target for full experimental results including GitBugs-augmented 5,300-instance corpus, SWE-bench-Live partial-set ablations, and all four per-field ablation conditions\",\n    \"NeurIPS 2026 (submission deadline expected May-June 2026) — systems and benchmarks angle; natural co-venue given SWE-bench-Live is NeurIPS 2025\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"SpecRover: Code Intent Extraction via LLMs (arXiv 2408.02232, ICSE 2025) — primary related work: code-space spec inference via prompting, 31% SWE-bench Lite (93/300), $0.65/issue; Section V-A 'Reasons for Failure' (see https://arxiv.org/html/2408.02232, Section V-A) categorizes 107/207 unresolved SWE-bench Lite tasks (51.7%) as 'ambiguous issue description', cases characterized as 'hard or impossible to solve' without further information, citing SWE-bench Verified as external validation for the hardness of this failure mode\",\n    \"SWE-bench Goes Live! (arXiv 2505.23419, NeurIPS 2025 D&B) — primary evaluation benchmark: ~1,890 contamination-resistant instances across 223 repositories, post-2024 GitHub issues, Docker-reproducible, growing at ~50 instances/month; Table 3 reports Agentless on SWE-bench-Live Lite (300 instances) at 11.67% (GPT-4o), 12.00% (GPT-4.1), 13.33% (DeepSeek V3) — establishes the Agentless-direct comparison level for our evaluation\",\n    \"Agent-CoEvo: Beyond Fixed Tests: Repository-Level Issue Resolution as Coevolution of Code and Behavioral Constraints (arXiv 2604.04580, April 2026) — most directly competing design philosophy: coevolves code patches and test patches simultaneously during repair (41.33% SWE-bench Lite with DeepSeek-V3); SpecExtract's pre-extraction stance is complementary — issue-space specs reduce the initial search space before coevolution, and are pipeline-agnostic for static repair systems that do not support dynamic constraint revision\",\n    \"SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? (arXiv 2509.16941) — schema ecological validity validator: 731 public instances with human requirements and interface fields\",\n    \"SWE-Lego (arXiv 2601.01426, Jan 2026) — most competitive concurrent SFT work: 32k training instances, difficulty-based curriculum SFT, 52.6% SWE-bench Verified (58.8% with 16-sample test-time scaling) with 32B model; end-to-end repair backbone that SpecExtract can serve as a preprocessing front-end for\",\n    \"Agentless: Demystifying LLM-based Software Engineering Agents (arXiv 2407.01489, v2 October 2024) — integration repair backbone: open-source fixed pipeline; confirmed from paper method section: main fault-localization pipeline uses (a) LLM prompting over repository folder tree and (b) embedding-based cosine similarity (OpenAI text-embedding-3-small via LlamaIndex) over code chunks; BM25 appears only in the Agentless paper's comparison baseline ('agentless RAG baseline' from the original SWE-bench paper) — it is not part of the main localization pipeline that SpecExtract extends; SpecExtract introduces BM25 as a new third retrieval signal using structured extracted interface tokens; ~50.8% SWE-bench Verified (Agentless-1.5), 32% SWE-bench Lite; file-level Recall@1 ~57% on SWE-bench Lite\",\n    \"Revisiting Code Search in a Two-Stage Paradigm (ICSE 2023, dl.acm.org/doi/pdf/10.1145/3539597.3570383) — hybrid BM25+dense code retrieval: two-stage BM25 first-pass → CodeBERT reranking improves MRR by 8.6% over dense-only on out-of-distribution queries; mechanistic support for adding BM25 as a third retrieval signal in Agentless fault localization on post-2024 SWE-bench-Live repos\",\n    \"CodeSpecBench: Benchmarking LLMs for Executable Behavioral Specification Generation (arXiv 2604.12268, April 2026) — evaluates prompting-based spec generation from code and descriptions using existing LLMs; documents significant cross-instance variation in output structure and field completeness when prompting frontier LLMs, directly motivating the SFT approach (consistent schema adherence requires supervised training, not just prompting); is an evaluation framework rather than a repair preprocessing pipeline — confirms both that structured spec generation is an active research area and that the trained, issue-space extractor gap remains open\",\n    \"SpecFix: Automated Repair of Ambiguous Problem Descriptions for LLM-Based Code Generation (arXiv 2505.07270, May 2026) — repairs ambiguous problem descriptions for code generation benchmarks (HumanEval+, MBPP+, LiveCodeBench) via contrastive specification inference; operates on synthetic benchmark descriptions rather than GitHub issue bug reports, produces repaired descriptions rather than structured 4-field specs, and targets benchmark performance improvement rather than repair preprocessing — distinct from SpecExtract in domain, method, and purpose\",\n    \"Specification Vibing for Automated Program Repair / VibeRepair (arXiv 2602.08263, Feb 2026) — code-space spec extraction before repair, Defects4J, 19-23% improvement\",\n    \"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate / TraceRepair (arXiv 2604.02647, Apr 2026) — trace-based repair constraints during execution, Defects4J\",\n    \"SoRFT: Issue Resolving with Subtask-oriented Reinforced Fine-Tuning (arXiv 2502.20127, ACL 2025; https://aclanthology.org/2025.acl-long.559) — structured repair subtask decomposition with RL; SoRFT-Qwen-7B: 21.4% SWE-bench Verified / 14.0% SWE-bench Lite; SoRFT-Qwen-32B: 30.8% SWE-bench Verified / 24.0% SWE-bench Lite; key baseline for SpecExtract's supervised fine-tuning approach\",\n    \"On the Role of Fault Localization Context for LLM-Based Program Repair (arXiv 2604.05481) — fault localization recall analysis: documents how localization granularity and retrieval method affect end-to-end repair performance; provides empirical context for why embedding-based localization degrades on out-of-distribution repos\",\n    \"GitBugs: Bug Reports for Duplicate Detection, Retrieval Augmented Generation, and More (arXiv 2504.09651) — 150K+ open-licensed bug reports for training augmentation\",\n    \"RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair (arXiv 2603.01048)\",\n    \"PathFix: Automated Program Repair with Expected Path (arXiv 2510.14341)\"\n  ],\n  \"description\": \"We introduce SpecExtract, the first supervised issue-space specification extractor for program repair: a fine-tuned Qwen3-Coder-30B-A3B model (MoE, ~3B active parameters — fine-tuning and inference cost comparable to a 3B dense model; fits on a single H100 80GB at ~17.5GB VRAM with QLoRA; 2× H100 recommended for training throughput) that maps (bug_report_text, runtime_artifacts?) → a structured four-field JSON spec covering affected interface, observed behavior, expected behavior, and behavioral delta. The primary NLP contribution is defining *behavioral spec extraction from bug reports* as a novel structured information extraction (IE) task — analogous to NER/RE from clinical notes or legal documents — where heterogeneous bug text mixes structured artifacts (stack traces, assertion syntax) with unstructured prose under partial observability. Zero-shot prompting of frontier LLMs produces inconsistent field coverage across diverse bug report styles (documented by CodeSpecBench, arXiv 2604.12268), motivating supervised fine-tuning: the SFT approach delivers consistent 4-field typed JSON output regardless of input style variation, graceful degradation via masked-field training when runtime artifacts are absent, and a reproducible schema-enforced extraction interface that repair backends can programmatically depend on. The masked-field training protocol (p=0.5 per artifact field, [MISSING] token, null output for masked positions) enables graceful handling of partially-available runtime artifacts at inference time. The key methodological insight for training data construction is that failing test assertions in SWE-bench test patches encode implementation-agnostic behavioral specifications — they state what the program SHOULD do without revealing which code to change or the implementation strategy — enabling AST-level test parsing combined with problem-statement NLP extraction to construct 2,294 clean (bug_report, structured_spec) training pairs from SWE-bench. The 2,294-instance corpus is appropriate for this structured extraction subtask: the output space (4 typed fields, ~80-120 tokens/instance) is substantially simpler than end-to-end code repair, and comparable structured IE tasks achieve reliable generalization at 1-3k examples when schema is fixed and input diversity is covered by instances spanning 300+ repositories. SWE-bench Pro public requirements serve as a pilot ecological validity check (cosine similarity ≥ 0.65 on 200 held-out instances, confirming schema alignment with expert annotations), not a training target. GitBugs (150K+ open-licensed bug reports) provides ~3,000 pseudo-labeled augmentation instances for the ICSE 2027 extended paper; the EMNLP 2026 ARR submission uses the 2,294-instance SWE-bench full corpus only. Extracted specs are integrated with Agentless (arXiv 2407.01489, v2 October 2024) as the repair backbone. Confirmed from the Agentless paper's method section: the main fault-localization pipeline uses LLM prompting over the repository folder tree combined with embedding-based cosine similarity (OpenAI text-embedding-3-small via LlamaIndex) — BM25 appears in the Agentless paper only as the 'agentless RAG baseline' comparison, not the main pipeline. SpecExtract augments Agentless localization by (a) prepending a structured spec header to the LLM prompting step and (b) adding a BM25 pass over file paths and docstrings using extracted interface tokens as a genuinely new third retrieval signal — these are structured module/function tokens (e.g., `numpy.linalg`, `django.db.models.QuerySet`), not raw issue text, providing lexically precise distribution-shift-robust file matching that catches modules underrepresented in the embedder's training distribution on post-2024 SWE-bench-Live repos; at patch generation, a structured behavioral constraint prefix focuses generation on the documented delta. Primary evaluation is on SWE-bench-Live Lite (300 instances, contamination-resistant, Docker-reproducible, post-2024 issues), with a within-experiment Agentless-direct baseline (complemented by published SWE-bench-Live results at 11-13%) and a mechanistically-grounded target improvement of +4-7 percentage points: Agentless's ~57% file-level Recall@1 on SWE-bench Lite degrades on post-2024 repos where embedding similarity is noisiest, and BM25-anchored lexical matching on extracted module/function tokens provides a distribution-shift-robust localization signal, consistent with hybrid retrieval literature showing 8.6% OOD MRR gains (ICSE 2023 two-stage code search). Per-field ablations measure individual spec contributions. Agent-CoEvo (arXiv 2604.04580, 41.33% SWE-bench Lite) represents the competing dynamic-coevolution philosophy; SpecExtract's pre-extraction stance is complementary — pipeline-agnostic and applicable to static repair systems. SWE-Lego (52.6% Verified with 32B) is included as an end-to-end SFT baseline to demonstrate that SpecExtract provides orthogonal gains as a preprocessing front-end. SpecFix (arXiv 2505.07270) addresses benchmark description repair via contrastive inference and is clearly distinct: different domain (synthetic benchmarks vs. GitHub issues), different output (repaired descriptions vs. structured specs), different purpose (benchmark performance vs. repair preprocessing). Differentiated from SpecRover (code-space prompting, $0.65/issue, 31% SWE-bench Lite) by operating in issue-space at ~$0.05-0.10/issue — directly targeting SpecRover's Section V-A identified 51.7% ambiguous-description failure mode. Compute in H100-hours: manual mode ~90-110 H100-hours (SFT ~10-14 H100-hours, eval ~80-96 H100-hours), within the 200-hour hard constraint.\",\n  \"project_name\": \"structured_spec_repair\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 8)\nIssues: [\"SIGNIFICANT (NEW) — RGFL (arXiv 2601.18044, Jan 2026) is absent from the landscape and directly competes: 'Reasoning Guided Fault Localization for Automated Program Repair Using LLMs' integrates a hierarchical reasoning module with Agentless to generate structured, bug-specific explanations for candidate files, achieving Hit@1 improvement from 71.4%→85% and 12.8% end-to-end repair success improvement on Agentless. This is a direct competitor on the core localization improvement claim and was available since January 2026 — EMNLP reviewers will flag its absence. SpecExtract must differentiate from RGFL: (1) RGFL uses per-instance LLM reasoning at localization time (high inference cost), while SpecExtract's spec extraction is a single forward pass of a fine-tuned model; (2) RGFL generates file-level explanations, not typed behavioral specs (affected interface, expected behavior, delta) that constrain patch generation; (3) RGFL does not address the 'ambiguous issue description' structural limitation that motivates issue-space extraction. These differentiations exist but must be stated explicitly.\", \"MODERATE (NEW) — SWE-Fixer (ACL Findings 2025, aclanthology.org/2025.findings-acl.62/) uses BM25 + lightweight retrieval model fine-tuning for code file retrieval in repair, achieving 22.0%/30.2% on SWE-bench Lite/Verified. As a fine-tuning-based approach using BM25 retrieval for repair (overlapping SpecExtract's BM25 contribution and SFT angle), its omission from the landscape may draw reviewer questions. The differentiator is clean: SWE-Fixer fine-tunes a retriever to find relevant files, while SpecExtract fine-tunes a spec extractor to produce structured behavioral constraints that improve retrieval precision — these are complementary, not competing.\", \"MODERATE (PERSISTENT) — The quantitative case for +4-7 pp improvement is now weakened by RGFL's published 12.8% end-to-end gain: if a reasoning-guided localization approach already achieves this improvement, the proposal must show either (a) SpecExtract achieves comparable gain via a cheaper, inference-time-efficient method (one forward pass vs. per-instance LLM reasoning), or (b) SpecExtract is additive on top of RGFL. The current mechanistic argument (ICSE 2023 hybrid retrieval → 8.6% OOD MRR gain) does not account for RGFL as a competing baseline.\", \"MINOR (NEW) — Statistical significance at 300-instance evaluation scale is unaddressed. The primary empirical claim (+4-7 pp over 13.33% baseline = +11 to +21 additional instances resolved out of 300) is small enough that statistical significance testing is non-trivial and reviewers will request it. McNemar's test on paired binary outcomes (instance i: SpecExtract resolves vs. Agentless-direct resolves) is the appropriate method and should be mentioned in the experimental design.\"]\nFeedback: Round 8 has successfully resolved all four Round 7 issues: Agentless BM25 mechanism is correctly described and verified; training data sufficiency is justified with comparable structured IE literature; EMNLP NLP framing is explicit; SpecFix is addressed. The primary blocking issue for Round 9 is a newly identified competitor.\n\n**(1) URGENT — Add RGFL to the landscape and differentiate**: RGFL (arXiv 2601.18044, January 2026) proposes reasoning-guided fault localization integrated with Agentless and achieves 12.8% end-to-end repair improvement — directly competing on SpecExtract's localization improvement claim. Add one paragraph: 'RGFL (arXiv 2601.18044, Jan 2026) generates structured, bug-specific LLM explanations for candidate files at fault localization time, achieving 12.8% end-to-end improvement when integrated with Agentless. SpecExtract complements rather than competes with RGFL: (a) spec extraction is a single forward pass of a fine-tuned model (~$0.05-0.10/issue) rather than per-instance LLM reasoning calls at localization time; (b) the structured 4-field spec constrains not only localization but also patch generation via behavioral delta injection; (c) issue-space extraction operates before any codebase access, making SpecExtract applicable as a front-end to RGFL itself — extracting the affected interface and behavioral delta that RGFL's reasoning module can then ground against codebase evidence.' This framing turns a competitor into a collaborator while protecting SpecExtract's novelty.\n\n**(2) Add SWE-Fixer** (ACL Findings 2025) in one sentence: 'SWE-Fixer fine-tunes a BM25+dense retrieval module to identify relevant files; SpecExtract instead trains a spec extractor to produce structured behavioral constraints that inform retrieval precision, complementing fine-tuned retrievers.' This is a 20-word addition that preempts a reviewer flag.\n\n**(3) Add statistical significance mention**: One sentence in the experimental design: 'Statistical significance is assessed via McNemar's test on paired binary instance outcomes (SpecExtract-Agentless vs. Agentless-direct), with bootstrapped CIs reported for the resolve-rate difference.'\n\nWith these three additions — particularly (1) — the proposal will have addressed all substantive issues from rounds 1-8 and should be ready to pass in Round 9.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\").\n\n## 停滞提醒\n这个 idea 已经经过 8 轮修订，近 3 轮的平均分从 3.5 到 3.5，没有明显改善。\n\n请认真思考：\n- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？\n- 如果你认为问题出在 approach 而非 framing，可以做 major revision。\n- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。\n- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。\n\n最终由你判断——做你认为最能提升 idea 质量的选择。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T08:13:51.432Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T08:13:51.432Z",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f"
+}
+```
+
+---
+
+## Round 1
+
+33 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T08:13:51.459Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-10 (UTC).**
+
+## Original idea
+{
+  "title": "SpecExtract: Learning Issue-Space Behavioral Specifications from Bug Report Runtime Artifacts for Guided Program Repair",
+  "core_problem": "Automated repair agents fail on ambiguous bug reports not from lack of code understanding, but because unstructured issue text leaves behavioral expectations underspecified — what interface should change, what the user observed, and what correct behavior looks like are rarely made explicit. SpecRover (ICSE 2025) partially addresses this via per-instance LLM prompting that extracts specifications from CODE during codebase traversal, producing evidence artifacts in the form {(location, intended_behavior)} at $0.65/issue. Its error analysis (Section V-A, 'Reasons for Failure'; see https://arxiv.org/html/2408.02232, Section V-A) identifies that 107 of its 207 unresolved SWE-bench Lite tasks (51.7%) are classified as 'ambiguous issue description' — cases the paper characterizes as 'hard or impossible to solve' without further information, citing SWE-bench Verified as external validation for why underspecified descriptions constitute an irreducible failure mode for code-space approaches. This architectural limitation is structural: code-side spec extraction can only infer specifications from code that already exists, not from behavior that is described in the issue but not yet correctly implemented. Bug reports routinely contain latent behavioral specifications in their runtime artifacts: stack traces name the affected interface, error messages describe observed behavior, and reproducer assertions encode expected behavior. No method trains a dedicated model to extract these signals from bug report text into a structured repair specification — covering affected interface, observed behavior, expected behavior, and their delta — that could constrain both fault localization and patch generation before any codebase traversal begins.",
+  "opportunity": "Failing test assertions in SWE-bench's test patches encode implementation-agnostic behavioral specifications without revealing implementation strategies: `assert result == expected_value` or `with pytest.raises(ValueError)` states precisely what the program SHOULD do, independent of WHICH code to change or HOW to change it. By mechanically converting (problem_statement + test_patch assertions + stack traces) to structured JSON spec fields using AST-level test parsing and NLP extraction on SWE-bench's 2,294 instances, we construct a training corpus of 2,294 (bug_report, structured_spec) pairs — where the spec encodes behavioral expectations derivable without knowing the implementation strategy. This avoids the critical flaw of training on SWE-bench Pro requirements, which were authored by humans with full access to the golden patch (making them solution-conditioned). SWE-bench-Live (NeurIPS 2025, arXiv 2505.23419; ~1,890 Docker-reproducible instances across 223 repositories, drawn from post-January-2024 GitHub issues, growing at ~50 instances/month) provides a clean, contamination-resistant evaluation target with no training-set overlap. As SWE-bench Verified saturates with contamination concerns (OpenAI officially deprecated it in February 2026), SWE-bench-Live provides contamination-resistant evaluation on post-2024 issues unavailable during model training. SWE-bench Pro's human-written `requirements` and `interface` fields (731 public instances) serve as an ecological validity check — we measure cosine similarity between machine-derived specs and human requirements on a held-out 200-instance slice — confirming that AST-parsed test assertions produce specs that match expert behavioral descriptions, without using requirements as training supervision.",
+  "landscape": "SpecRover (ICSE 2025, arXiv 2408.02232) is the closest prior work: given a GitHub issue, it iteratively traverses the codebase, prompting Claude 3.5 Sonnet to extract function-level summaries from visited code, producing evidence artifacts in the form {(location, intended_behavior)} at $0.65/issue and 31% on SWE-bench Lite (93/300). SpecRover operates in code-space (it visits source files to generate specs from code) and uses per-instance prompting (no fine-tuning). Our approach operates in issue-space (extracts specs from bug report text and runtime artifacts before any codebase traversal) and uses supervised fine-tuning (consistent structured output at ~$0.05-0.10/issue). These are complementary directions: SpecRover's code-space specs and our issue-space specs could ultimately be fused. Agent-CoEvo (arXiv 2604.04580, April 2026) proposes the most directly competing design philosophy: rather than pre-extracting behavioral constraints from issue text, it coevolves code patches and test patches simultaneously during repair, treating tests as dynamic constraints that are iteratively revised alongside candidate fixes. Agent-CoEvo achieves 41.33% on SWE-bench Lite (DeepSeek-V3) and 46.4% on SWT-bench Lite, outperforming Agentless-1.5 (32%) on those benchmarks. SpecExtract takes the complementary pre-extraction stance: (1) issue-space specs derived before any codebase access are reusable across repair backbones without retraining, including static pipeline systems like Agentless that do not support dynamic constraint revision during search; (2) pre-extracted specs reduce the initial search space before coevolution begins, making SpecExtract a potential front-end that improves Agent-CoEvo's starting population rather than competing with it. SWE-Lego (arXiv 2601.01426, Jan 2026) is the most directly competing concurrent SFT work: it trains on 32k high-quality task instances with error masking and a difficulty-based curriculum, achieving 52.6% on SWE-bench Verified (58.8% with test-time scaling at 16 samples) using a 32B model. SWE-Lego is an end-to-end system that produces complete code fixes; SpecExtract is a preprocessing module that extracts structured behavioral specs from bug report text before any repair attempt, and can plug into SWE-Lego or any other repair backbone as a drop-in front-end — improving fault localization precision and patch generation alignment without retraining the repair agent itself. CodeSpecBench (arXiv 2604.12268, April 2026) benchmarks existing LLMs (Claude, GPT-4, Gemini) on executable behavioral specification generation via prompting — it does not train a dedicated extractor, operates on code-side and description inputs rather than bug report runtime artifacts, and is an evaluation framework rather than a preprocessing pipeline for repair. Its benchmarking results show significant cross-instance variation in output structure and field completeness when prompting frontier LLMs for specs, validating the gap: no trained, issue-space specification extractor for repair preprocessing exists, and prompting-based spec generation is insufficiently reliable for programmatic downstream use. SpecFix (arXiv 2505.07270, May 2026) repairs ambiguous problem descriptions for LLM-based code generation benchmarks (HumanEval+, MBPP+, LiveCodeBench) via contrastive specification inference — analyzing the distribution of LLM-generated programs to identify and repair description ambiguity; SpecExtract operates on GitHub issue bug reports (not synthetic benchmark descriptions), produces structured 4-field JSON specs via supervised fine-tuning (not description repair), and serves as a preprocessing input to repair agents rather than modifying task descriptions. VibeRepair (arXiv 2602.08263, Feb 2026) translates buggy CODE into behavior specifications, repairs the spec, then synthesizes corrected code, achieving 19-23% improvement on Defects4J — code-space to spec, not text-space to spec. TraceRepair (arXiv 2604.02647, Apr 2026) uses runtime execution traces generated by instrumented code execution as shared repair constraints across a multi-agent committee, fixing 392 Defects4J defects — traces are generated during repair, not extracted from issue text before repair begins. RepoRepair (arXiv 2603.01048) generates hierarchical code documentation from source files toward the bug; its documentation is code-driven, not report-driven. SoRFT (arXiv 2502.20127, ACL 2025; https://aclanthology.org/2025.acl-long.559) fine-tunes on SWE-bench with RL to decompose the repair TASK into subtasks (file → function → line → edit), achieving 21.4% on SWE-bench Verified and 14.0% on SWE-bench Lite with a 7B model (30.8% Verified and 24.0% Lite with a 32B model) — it structures the repair pipeline, not the issue semantics. PathFix (arXiv 2510.14341) derives behavioral specs from static code execution paths — code-space and offline, not issue-space. The gap: no existing work trains a dedicated model to extract structured behavioral specifications from bug report text and embedded runtime artifacts, operating entirely in issue-space before codebase access.",
+  "approach": "We train SpecExtract, a Qwen3-Coder-30B-A3B model (Mixture-of-Experts: 30B total parameters, ~3B active per token — fine-tuning and inference cost scale with active parameters, comparable to a 3B dense model; fits on a single H100 80GB with QLoRA at ~17.5GB VRAM per Unsloth benchmarks; 2× H100 is the recommended training configuration for throughput, not minimum requirement) fine-tuned to map (bug_report_text, runtime_artifacts?) → structured JSON spec, where runtime artifacts are any combination of stack traces, error messages, test failure output, or explicit reproducer assertions present in the issue text. The model gracefully handles varying artifact availability through a masked-field training protocol: training instances are presented with random subsets of available artifacts so the model learns to produce well-formed specs from text-only, text+stack-trace, and text+test-assertion inputs. Each artifact field (stack_trace, error_message, test_assertions) is independently masked with p=0.5 at training time; masked fields are replaced with a [MISSING] token, and the model is trained to output null for those positions while filling remaining fields from whatever signals are available — not to infer missing artifacts from correlated signals.\n\n**NLP framing — structured IE for bug reports**: SpecExtract's primary NLP contribution is defining and solving a novel structured information extraction (IE) task: extracting typed behavioral specifications from semi-structured bug text under partial observability. This is analogous to NER/RE from clinical notes (symptom → diagnosis → treatment) or legal documents (party → obligation → condition): bug reports mix structured artifacts (stack frames with typed syntactic elements, assertion syntax) with unstructured prose (user complaint descriptions), and not all signal types are present in every instance. Zero-shot prompting of frontier LLMs produces inconsistent field coverage and schema adherence across the diversity of real-world bug report styles — CodeSpecBench (arXiv 2604.12268) benchmarks Claude, GPT-4, and Gemini on spec generation via prompting and documents significant cross-instance variation in output structure and field completeness, motivating a dedicated trained extractor with enforced schema. Supervised fine-tuning achieves three things zero-shot prompting cannot guarantee: (1) consistent 4-field typed JSON output regardless of input style variation; (2) graceful degradation under partial observability via the masked-field protocol ([MISSING] tokens, null output for absent fields); (3) a reproducible schema-enforced extraction interface that downstream repair backends can programmatically depend on. From an NLP perspective, SpecExtract introduces *behavioral spec extraction from bug reports* as a first-class structured IE task — separate from code summarization, issue severity classification, or defect localization — with its own schema, training corpus, and evaluation protocol.\n\n**Formal schema**: Each spec has four typed fields — (1) `affected_interface`: {module: str, signature: str|null, entry_point: str} extracted from stack frame function names and explicitly mentioned APIs; (2) `observed_behavior`: {error_type: str|null, error_message: str|null, symptom: str} from error output and user complaint; (3) `expected_behavior`: {description: str, assertions: [str]} as natural-language description plus test-style constraint strings when derivable; (4) `behavioral_delta`: str, a one-sentence expected-vs-actual summary. Worked example for a NumPy issue 'linalg.solve silently returns None for singular matrices instead of raising': {affected_interface: {module: 'numpy.linalg', entry_point: 'solve', signature: 'solve(a, b)'}, observed_behavior: {error_type: null, symptom: 'returns None for singular matrix input'}, expected_behavior: {description: 'should raise for non-invertible input', assertions: ['raises np.linalg.LinAlgError when matrix is singular']}, behavioral_delta: 'solve silently returns None instead of raising LinAlgError on singular input'}.\n\n**Training data construction (implementation-agnostic behavioral specifications)**: From SWE-bench full (2,294 instances including Verified 500 and the broader set): (1) parse `test_patch` test functions via Python AST to extract formal assertions — pytest.raises calls → error_type, assert statements → expected_behavior.assertions, decorated test function signatures → affected_interface hints; (2) extract stack traces and error strings from `problem_statement` text via regex heuristics → observed_behavior; (3) combine via LLM-assisted template fill using Qwen3-Coder-30B-A3B in a chain-of-thought extraction pass to produce coherent spec JSON; (4) validate on 200 SWE-bench Pro public instances that have non-null `requirements` and `interface` fields by computing cosine similarity (sentence-transformer) between mechanically-derived specs and human-authored requirements — target alignment ≥ 0.65 before training at scale (this threshold aligns with established semantic similarity cutoffs in information-extraction evaluation literature, where scores below 0.65 on sentence-transformer embeddings indicate insufficient semantic overlap for structural field matching); this validates the schema rather than using requirements as training targets. This is a pilot ecological validity check only — it confirms schema alignment with expert behavioral annotations on curated SWE-bench instances but cannot validate generalization to genuinely ambiguous in-the-wild reports that are not SWE-bench-adjacent; a full generalization validation would require human annotation of randomly sampled GitBugs instances and is deferred to the ICSE 2027 extended paper. Important framing on conditionality: test assertions are written alongside gold patches and encode the behavioral outcome the fix achieves. The training specs are therefore *implementation-agnostic* — they do not reveal which code to change or the implementation strategy — rather than strictly solution-independent. This distinction is explicitly addressed in the paper to avoid overclaiming.\n\n**Training data sufficiency**: The 2,294-instance corpus is appropriate for this structured extraction subtask. The output space is substantially simpler than end-to-end code repair: 4 typed fields totaling ~80-120 output tokens per instance vs. hundreds-to-thousands of tokens for complete code patches; the fixed schema and typed constraints further reduce the effective hypothesis space relative to free-form generation. Comparable structured IE tasks — slot-filling, clinical NER, biomedical relation extraction — achieve reliable generalization at 1-3k training examples when schema is fixed and input diversity is covered; the 2,294 instances span 300+ open-source repositories, covering the primary axis of variation (bug report style, domain, artifact availability). Qwen3-Coder's pretraining on code and technical text provides a strong prior for parsing stack traces and assertion syntax, further reducing the cold-start data requirement relative to a general-purpose LM.\n\nThe EMNLP 2026 ARR submission uses the 2,294-instance SWE-bench full corpus as the SFT training set; GitBugs augmentation (~3,000 pseudo-labeled instances, yielding a ~5,300-instance total corpus) is reserved for the ICSE 2027 extended paper.\n\n**Differentiation from SpecRover**: (1) issue-space — no codebase traversal needed at spec extraction time; (2) supervised learning — consistent, typed JSON output from a single forward pass (~$0.05-0.10/issue) vs. SpecRover's multi-step code traversal ($0.65/issue); (3) directly targets SpecRover's identified 51.7% ambiguous-description failure mode (Section V-A, 107/207 unresolved SWE-bench Lite tasks) by conditioning on all available runtime artifacts in the issue, not just the code side.\n\n**Integration with Agentless**: We integrate with Agentless (arXiv 2407.01489, v2 October 2024 open-source implementation) as the repair backbone for all SWE-bench-Live evaluations — it follows a fixed pipeline (hierarchical fault localization → patch generation → patch selection) with no iterative tool calls, making spec injection clean and reproducible. Confirmed from the Agentless paper's method section: the main fault-localization pipeline combines (a) LLM prompting over the repository folder tree to identify the top-N suspicious files and (b) embedding-based cosine similarity retrieval (OpenAI text-embedding-3-small via LlamaIndex) over code chunks — the union of both signal sets provides the candidate file list. BM25 appears in the Agentless paper only as the 'agentless RAG baseline' — a simpler comparison baseline adapted from the original SWE-bench paper that uses BM25 to retrieve file contents for direct LLM patch generation — and is not part of the main Agentless localization pipeline we extend. SpecExtract specs are injected at two points: (1) fault localization — we modify the LLM prompting step by prepending a structured spec header (affected_interface.module + entry_point) before the folder listing, so the LLM identifies suspicious directories with the affected interface explicitly in context; we additionally introduce a BM25 pass over file paths and module docstrings using the extracted interface tokens as a genuinely new third retrieval signal complementing Agentless's existing embedding-based similarity — BM25 exact-match on lexically-specific tokens like `numpy.linalg` or `django.db.models.QuerySet` catches files that semantic embeddings miss when the module is underrepresented in the embedder's training distribution, exactly the localization failure mode that intensifies on post-2024 SWE-bench-Live repos relative to in-distribution SWE-bench Verified; (2) patch generation — the repair LLM receives all four spec fields as an explicit behavioral constraint header in its prompt, focusing generation on the documented behavioral delta. Crucially, the BM25 queries in SpecExtract use structured extracted interface tokens (module names, function entry points from the spec JSON), not raw issue text — this provides lexically precise, distribution-shift-robust file matching that free-form issue text cannot guarantee, since issue text contains incidental mentions, synonyms, and colloquial descriptions that dilute BM25 precision.\n\n**Agentless baseline on SWE-bench-Live**: Per the SWE-bench-Live paper (arXiv 2505.23419, Table 3), Agentless resolves 11.67% (GPT-4o), 12.00% (GPT-4.1), and 13.33% (DeepSeek V3) of SWE-bench-Live Lite (300 instances) — substantially below its ~50.8% on SWE-bench Verified, reflecting the contamination-resistant, harder distribution of post-2024 issues. We run our own Agentless-direct baseline on SWE-bench-Live Lite (300 instances) using the same backbone LLM as our SpecExtract runs, establishing a clean within-experiment comparison; the published SWE-bench-Live numbers provide independent external validation of the baseline level. SpecExtract targets +4-7 percentage points improvement over the best Agentless backbone, reported as the primary experimental contribution.\n\n**Mechanistic case for the +4-7 pp improvement target**: Agentless's embedding-based file localization achieves ~57% file-level Recall@1 on SWE-bench Lite (original Agentless paper), yet its end-to-end resolve rate drops ~4× from SWE-bench Verified (~50.8%) to SWE-bench-Live Lite (13.33% best case). A primary contributor to this degradation is fault localization failure on post-2024 repos that are underrepresented in embedding model training data: embedding similarity between an issue query and post-2024 codebase chunks is noisier than on in-distribution repos, because the model has not seen those module structures and naming conventions. SpecExtract's BM25 pass on extracted module/entry_point tokens addresses this directly: exact-match retrieval on tokens like `numpy.linalg` does not require the embedding model to have indexed those repository paths during pretraining and does not degrade under distribution shift. Hybrid BM25+dense retrieval is well-established to improve out-of-domain recall in code search — a two-stage pipeline combining BM25 first-pass retrieval with dense reranking improves MRR by 8.6% over dense-only on out-of-distribution queries (Revisiting Code Search in a Two-Stage Paradigm, ICSE 2023). The +4-7 pp improvement target reflects two compounding gains: (a) localization improvement from BM25-anchored interface token matching, which provides a high-precision signal robust to the post-2024 distribution shift Agentless's embedder faces; (b) generation improvement from Stage 3 behavioral constraint injection narrowing the patch candidate space to the documented behavioral delta — these gains compound because better localization provides a more focused candidate file set for patch generation.\n\n**Evaluation**: Primary eval on SWE-bench-Live Lite (300 instances, contamination-resistant, Docker-reproducible, post-2024 issues) with Agentless as backbone; per-field ablations independently zero out each spec field to quantify individual contribution to resolve rate. Secondary eval: cosine-similarity validation on 200 SWE-bench Pro held-out instances (schema validity check). Comparison baselines: Agentless direct repair without spec (our own run + published 11-13% from SWE-bench-Live paper), SpecRover-equivalent prompting (ablation of supervised fine-tuning benefit), SoRFT-Qwen-7B (21.4% Verified / 14.0% Lite, structured subtask decomposition), SWE-Lego (52.6% Verified, end-to-end SFT backbone — SpecExtract as preprocessing front-end demonstrates orthogonal contribution).\n\n**Publication scope**: The EMNLP 2026 ARR submission (auto-research mode, 6-10 days) reports results on the 2,294-instance SWE-bench full SFT corpus with SWE-bench-Live Lite 300-instance primary eval and a 2-field ablation (affected_interface vs. none, expected_behavior vs. none) — the two fields with the strongest localization and generation signal respectively. The full 5,300-instance corpus (with GitBugs augmentation) and all four per-field ablation fields constitute the ICSE 2027 extended paper.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~90-110 H100-hours (~180-220 A100-equivalent hours)",
+      "gpu_breakdown": "SFT partition (~10-14 H100-hours): Qwen3-Coder-30B-A3B QLoRA fine-tuning on 5,300 instances, 3 epochs, 2× H100 80GB recommended for throughput (single H100 80GB is technically sufficient at ~17.5GB VRAM) — MoE active-parameter efficiency reduces training cost to ~3B dense equivalent. Eval partition (~80-96 H100-hours): spec extraction inference on 5,300 instances (~4 H100-hours); SWE-bench-Live Lite main eval 300 instances × 12.5 min/instance / 4 parallel H100s ≈ 16 H100-hours; per-field ablations 4 fields × 300 instances ≈ 64 H100-hours; SWE-bench Pro validation ≈ 1 H100-hour.",
+      "gpu_utilization": "~50-60% — Docker sandbox test execution during SWE-bench-Live eval is CPU-bound; GPU idles between model inference calls",
+      "timeline": "3-5 months",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "~$216-264 (90-110h × $2.40/hr H100 SXM5 on-demand; within the 200 H100-hour hard constraint)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~135-160 H100-hours (~270-380 A100-equivalent hours)",
+      "gpu_breakdown": "SFT partition (~25-35 H100-hours): 3 fine-tuning configurations (schema variant, augmentation ablation, masked-field protocol variant). Eval partition (~110-125 H100-hours): spec extraction ~5 H100-hours; Agentless baseline run on 300 instances ≈ 16 H100-hours; SWE-bench-Live partial eval 600 instances / 4 parallel ≈ 31 H100-hours; per-field ablations on 300-instance subset × 4 fields ≈ 62 H100-hours; SWE-bench Pro validation ≈ 1 H100-hour.",
+      "gpu_utilization": "~60-70% — agent runs fine-tuning and SWE-bench-Live eval jobs continuously; human approves schema validation threshold, masked-field training protocol, retrieval bias weights, and ablation scope at daily check-ins",
+      "timeline": "5-9 weeks",
+      "team": "1 researcher, ~30 min/day check-in",
+      "claude_api_cost": "$200-400 (~2,500 orchestration turns at ~$0.10/turn Opus)",
+      "estimated_gpu_cost": "~$324-384 (135-160h × $2.40/hr H100); within the 200 H100-hour hard constraint",
+      "risk_note": "Critical unknown: whether AST-parsed test assertions produce specs that align with human behavioral descriptions (measured by cosine similarity ≥ 0.65 on 200 SWE-bench Pro validation instances). If alignment is below threshold, the spec schema needs redesign before scale-up. GitBugs pseudo-spec quality is the secondary risk — human spot-check of 100 instances recommended before augmentation scale-up."
+    },
+    "auto_research": {
+      "note": "Budget-capped auto-research only — uncapped sweeps would exceed the 200 H100-hour hard constraint. Capped to 3 fine-tuning configurations × 1 retrieval variant × 1 patch-generation prompt strategy on SWE-bench-Live Lite (300 instances) for the main configuration sweep, then ablations on the best-performing config only.",
+      "gpu_hours": "~160-180 H100-hours (budget-capped)",
+      "gpu_breakdown": "SFT partition (~30-35 H100-hours): 3 QLoRA configs on 5,300 instances. Eval partition (~130-145 H100-hours): 3-config main sweep 3 × 300 instances ≈ 48 H100-hours; per-field ablations on best config 300 × 4 fields ≈ 64 H100-hours; Agentless baseline ≈ 16 H100-hours; spec extraction inference ≈ 5 H100-hours; validation ≈ 1 H100-hour.",
+      "gpu_utilization": "~80-85% — continuous fine-tuning, inference, and SWE-bench-Live Docker eval; sandbox parallelized across 30 instances simultaneously",
+      "timeline": "6-10 days with 4 parallel H100 GPUs",
+      "team": "0 (setup only, ~3h initial configuration)",
+      "claude_api_cost": "$400-600 (~4,500 turns)",
+      "estimated_gpu_cost": "~$384-432 (160-180h × $2.40/hr H100)",
+      "speed_bottleneck": "SWE-bench-Live Docker sandbox throughput, not GPU compute; Qwen3-Coder-30B-A3B MoE inference (~3B active params) is fast and avoids multi-GPU coordination overhead that a dense 30B model would require"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline May 25, 2026 — 15 days remaining; conference October 24-29, Budapest) — NLP angle: structured information extraction from semi-structured bug text with partial observability, supervised fine-tuning motivation over zero-shot prompting, masked-field training protocol. The NLP contribution (task definition, schema, masked-field training, training corpus construction) is framed independently of the repair backbone integration; EMNLP ARR submission reports auto-research results (6-10 days): SFT on SWE-bench full 2,294-instance corpus, SWE-bench-Live Lite 300-instance primary eval, and 2-field ablation (affected_interface vs. none, expected_behavior vs. none). The full 5,300-instance corpus with all four per-field ablation fields is the ICSE 2027 extended paper.",
+    "ICSE 2027 (abstract deadline June 23, 2026; full paper ~July 2026; conference April-May 2027, Dublin) — SE angle; preferred primary target for full experimental results including GitBugs-augmented 5,300-instance corpus, SWE-bench-Live partial-set ablations, and all four per-field ablation conditions",
+    "NeurIPS 2026 (submission deadline expected May-June 2026) — systems and benchmarks angle; natural co-venue given SWE-bench-Live is NeurIPS 2025"
+  ],
+  "level": "solid",
+  "key_references": [
+    "SpecRover: Code Intent Extraction via LLMs (arXiv 2408.02232, ICSE 2025) — primary related work: code-space spec inference via prompting, 31% SWE-bench Lite (93/300), $0.65/issue; Section V-A 'Reasons for Failure' (see https://arxiv.org/html/2408.02232, Section V-A) categorizes 107/207 unresolved SWE-bench Lite tasks (51.7%) as 'ambiguous issue description', cases characterized as 'hard or impossible to solve' without further information, citing SWE-bench Verified as external validation for the hardness of this failure mode",
+    "SWE-bench Goes Live! (arXiv 2505.23419, NeurIPS 2025 D&B) — primary evaluation benchmark: ~1,890 contamination-resistant instances across 223 repositories, post-2024 GitHub issues, Docker-reproducible, growing at ~50 instances/month; Table 3 reports Agentless on SWE-bench-Live Lite (300 instances) at 11.67% (GPT-4o), 12.00% (GPT-4.1), 13.33% (DeepSeek V3) — establishes the Agentless-direct comparison level for our evaluation",
+    "Agent-CoEvo: Beyond Fixed Tests: Repository-Level Issue Resolution as Coevolution of Code and Behavioral Constraints (arXiv 2604.04580, April 2026) — most directly competing design philosophy: coevolves code patches and test patches simultaneously during repair (41.33% SWE-bench Lite with DeepSeek-V3); SpecExtract's pre-extraction stance is complementary — issue-space specs reduce the initial search space before coevolution, and are pipeline-agnostic for static repair systems that do not support dynamic constraint revision",
+    "SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? (arXiv 2509.16941) — schema ecological validity validator: 731 public instances with human requirements and interface fields",
+    "SWE-Lego (arXiv 2601.01426, Jan 2026) — most competitive concurrent SFT work: 32k training instances, difficulty-based curriculum SFT, 52.6% SWE-bench Verified (58.8% with 16-sample test-time scaling) with 32B model; end-to-end repair backbone that SpecExtract can serve as a preprocessing front-end for",
+    "Agentless: Demystifying LLM-based Software Engineering Agents (arXiv 2407.01489, v2 October 2024) — integration repair backbone: open-source fixed pipeline; confirmed from paper method section: main fault-localization pipeline uses (a) LLM prompting over repository folder tree and (b) embedding-based cosine similarity (OpenAI text-embedding-3-small via LlamaIndex) over code chunks; BM25 appears only in the Agentless paper's comparison baseline ('agentless RAG baseline' from the original SWE-bench paper) — it is not part of the main localization pipeline that SpecExtract extends; SpecExtract introduces BM25 as a new third retrieval signal using structured extracted interface tokens; ~50.8% SWE-bench Verified (Agentless-1.5), 32% SWE-bench Lite; file-level Recall@1 ~57% on SWE-bench Lite",
+    "Revisiting Code Search in a Two-Stage Paradigm (ICSE 2023, dl.acm.org/doi/pdf/10.1145/3539597.3570383) — hybrid BM25+dense code retrieval: two-stage BM25 first-pass → CodeBERT reranking improves MRR by 8.6% over dense-only on out-of-distribution queries; mechanistic support for adding BM25 as a third retrieval signal in Agentless fault localization on post-2024 SWE-bench-Live repos",
+    "CodeSpecBench: Benchmarking LLMs for Executable Behavioral Specification Generation (arXiv 2604.12268, April 2026) — evaluates prompting-based spec generation from code and descriptions using existing LLMs; documents significant cross-instance variation in output structure and field completeness when prompting frontier LLMs, directly motivating the SFT approach (consistent schema adherence requires supervised training, not just prompting); is an evaluation framework rather than a repair preprocessing pipeline — confirms both that structured spec generation is an active research area and that the trained, issue-space extractor gap remains open",
+    "SpecFix: Automated Repair of Ambiguous Problem Descriptions for LLM-Based Code Generation (arXiv 2505.07270, May 2026) — repairs ambiguous problem descriptions for code generation benchmarks (HumanEval+, MBPP+, LiveCodeBench) via contrastive specification inference; operates on synthetic benchmark descriptions rather than GitHub issue bug reports, produces repaired descriptions rather than structured 4-field specs, and targets benchmark performance improvement rather than repair preprocessing — distinct from SpecExtract in domain, method, and purpose",
+    "Specification Vibing for Automated Program Repair / VibeRepair (arXiv 2602.08263, Feb 2026) — code-space spec extraction before repair, Defects4J, 19-23% improvement",
+    "Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate / TraceRepair (arXiv 2604.02647, Apr 2026) — trace-based repair constraints during execution, Defects4J",
+    "SoRFT: Issue Resolving with Subtask-oriented Reinforced Fine-Tuning (arXiv 2502.20127, ACL 2025; https://aclanthology.org/2025.acl-long.559) — structured repair subtask decomposition with RL; SoRFT-Qwen-7B: 21.4% SWE-bench Verified / 14.0% SWE-bench Lite; SoRFT-Qwen-32B: 30.8% SWE-bench Verified / 24.0% SWE-bench Lite; key baseline for SpecExtract's supervised fine-tuning approach",
+    "On the Role of Fault Localization Context for LLM-Based Program Repair (arXiv 2604.05481) — fault localization recall analysis: documents how localization granularity and retrieval method affect end-to-end repair performance; provides empirical context for why embedding-based localization degrades on out-of-distribution repos",
+    "GitBugs: Bug Reports for Duplicate Detection, Retrieval Augmented Generation, and More (arXiv 2504.09651) — 150K+ open-licensed bug reports for training augmentation",
+    "RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair (arXiv 2603.01048)",
+    "PathFix: Automated Program Repair with Expected Path (arXiv 2510.14341)"
+  ],
+  "description": "We introduce SpecExtract, the first supervised issue-space specification extractor for program repair: a fine-tuned Qwen3-Coder-30B-A3B model (MoE, ~3B active parameters — fine-tuning and inference cost comparable to a 3B dense model; fits on a single H100 80GB at ~17.5GB VRAM with QLoRA; 2× H100 recommended for training throughput) that maps (bug_report_text, runtime_artifacts?) → a structured four-field JSON spec covering affected interface, observed behavior, expected behavior, and behavioral delta. The primary NLP contribution is defining *behavioral spec extraction from bug reports* as a novel structured information extraction (IE) task — analogous to NER/RE from clinical notes or legal documents — where heterogeneous bug text mixes structured artifacts (stack traces, assertion syntax) with unstructured prose under partial observability. Zero-shot prompting of frontier LLMs produces inconsistent field coverage across diverse bug report styles (documented by CodeSpecBench, arXiv 2604.12268), motivating supervised fine-tuning: the SFT approach delivers consistent 4-field typed JSON output regardless of input style variation, graceful degradation via masked-field training when runtime artifacts are absent, and a reproducible schema-enforced extraction interface that repair backends can programmatically depend on. The masked-field training protocol (p=0.5 per artifact field, [MISSING] token, null output for masked positions) enables graceful handling of partially-available runtime artifacts at inference time. The key methodological insight for training data construction is that failing test assertions in SWE-bench test patches encode implementation-agnostic behavioral specifications — they state what the program SHOULD do without revealing which code to change or the implementation strategy — enabling AST-level test parsing combined with problem-statement NLP extraction to construct 2,294 clean (bug_report, structured_spec) training pairs from SWE-bench. The 2,294-instance corpus is appropriate for this structured extraction subtask: the output space (4 typed fields, ~80-120 tokens/instance) is substantially simpler than end-to-end code repair, and comparable structured IE tasks achieve reliable generalization at 1-3k examples when schema is fixed and input diversity is covered by instances spanning 300+ repositories. SWE-bench Pro public requirements serve as a pilot ecological validity check (cosine similarity ≥ 0.65 on 200 held-out instances, confirming schema alignment with expert annotations), not a training target. GitBugs (150K+ open-licensed bug reports) provides ~3,000 pseudo-labeled augmentation instances for the ICSE 2027 extended paper; the EMNLP 2026 ARR submission uses the 2,294-instance SWE-bench full corpus only. Extracted specs are integrated with Agentless (arXiv 2407.01489, v2 October 2024) as the repair backbone. Confirmed from the Agentless paper's method section: the main fault-localization pipeline uses LLM prompting over the repository folder tree combined with embedding-based cosine similarity (OpenAI text-embedding-3-small via LlamaIndex) — BM25 appears in the Agentless paper only as the 'agentless RAG baseline' comparison, not the main pipeline. SpecExtract augments Agentless localization by (a) prepending a structured spec header to the LLM prompting step and (b) adding a BM25 pass over file paths and docstrings using extracted interface tokens as a genuinely new third retrieval signal — these are structured module/function tokens (e.g., `numpy.linalg`, `django.db.models.QuerySet`), not raw issue text, providing lexically precise distribution-shift-robust file matching that catches modules underrepresented in the embedder's training distribution on post-2024 SWE-bench-Live repos; at patch generation, a structured behavioral constraint prefix focuses generation on the documented delta. Primary evaluation is on SWE-bench-Live Lite (300 instances, contamination-resistant, Docker-reproducible, post-2024 issues), with a within-experiment Agentless-direct baseline (complemented by published SWE-bench-Live results at 11-13%) and a mechanistically-grounded target improvement of +4-7 percentage points: Agentless's ~57% file-level Recall@1 on SWE-bench Lite degrades on post-2024 repos where embedding similarity is noisiest, and BM25-anchored lexical matching on extracted module/function tokens provides a distribution-shift-robust localization signal, consistent with hybrid retrieval literature showing 8.6% OOD MRR gains (ICSE 2023 two-stage code search). Per-field ablations measure individual spec contributions. Agent-CoEvo (arXiv 2604.04580, 41.33% SWE-bench Lite) represents the competing dynamic-coevolution philosophy; SpecExtract's pre-extraction stance is complementary — pipeline-agnostic and applicable to static repair systems. SWE-Lego (52.6% Verified with 32B) is included as an end-to-end SFT baseline to demonstrate that SpecExtract provides orthogonal gains as a preprocessing front-end. SpecFix (arXiv 2505.07270) addresses benchmark description repair via contrastive inference and is clearly distinct: different domain (synthetic benchmarks vs. GitHub issues), different output (repaired descriptions vs. structured specs), different purpose (benchmark performance vs. repair preprocessing). Differentiated from SpecRover (code-space prompting, $0.65/issue, 31% SWE-bench Lite) by operating in issue-space at ~$0.05-0.10/issue — directly targeting SpecRover's Section V-A identified 51.7% ambiguous-description failure mode. Compute in H100-hours: manual mode ~90-110 H100-hours (SFT ~10-14 H100-hours, eval ~80-96 H100-hours), within the 200-hour hard constraint.",
+  "project_name": "structured_spec_repair",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 8)
+Issues: ["SIGNIFICANT (NEW) — RGFL (arXiv 2601.18044, Jan 2026) is absent from the landscape and directly competes: 'Reasoning Guided Fault Localization for Automated Program Repair Using LLMs' integrates a hierarchical reasoning module with Agentless to generate structured, bug-specific explanations for candidate files, achieving Hit@1 improvement from 71.4%→85% and 12.8% end-to-end repair success improvement on Agentless. This is a direct competitor on the core localization improvement claim and was available since January 2026 — EMNLP reviewers will flag its absence. SpecExtract must differentiate from RGFL: (1) RGFL uses per-instance LLM reasoning at localization time (high inference cost), while SpecExtract's spec extraction is a single forward pass of a fine-tuned model; (2) RGFL generates file-level explanations, not typed behavioral specs (affected interface, expected behavior, delta) that constrain patch generation; (3) RGFL does not address the 'ambiguous issue description' structural limitation that motivates issue-space extraction. These differentiations exist but must be stated explicitly.", "MODERATE (NEW) — SWE-Fixer (ACL Findings 2025, aclanthology.org/2025.findings-acl.62/) uses BM25 + lightweight retrieval model fine-tuning for code file retrieval in repair, achieving 22.0%/30.2% on SWE-bench Lite/Verified. As a fine-tuning-based approach using BM25 retrieval for repair (overlapping SpecExtract's BM25 contribution and SFT angle), its omission from the landscape may draw reviewer questions. The differentiator is clean: SWE-Fixer fine-tunes a retriever to find relevant files, while SpecExtract fine-tunes a spec extractor to produce structured behavioral constraints that improve retrieval precision — these are complementary, not competing.", "MODERATE (PERSISTENT) — The quantitative case for +4-7 pp improvement is now weakened by RGFL's published 12.8% end-to-end gain: if a reasoning-guided localization approach already achieves this improvement, the proposal must show either (a) SpecExtract achieves comparable gain via a cheaper, inference-time-efficient method (one forward pass vs. per-instance LLM reasoning), or (b) SpecExtract is additive on top of RGFL. The current mechanistic argument (ICSE 2023 hybrid retrieval → 8.6% OOD MRR gain) does not account for RGFL as a competing baseline.", "MINOR (NEW) — Statistical significance at 300-instance evaluation scale is unaddressed. The primary empirical claim (+4-7 pp over 13.33% baseline = +11 to +21 additional instances resolved out of 300) is small enough that statistical significance testing is non-trivial and reviewers will request it. McNemar's test on paired binary outcomes (instance i: SpecExtract resolves vs. Agentless-direct resolves) is the appropriate method and should be mentioned in the experimental design."]
+Feedback: Round 8 has successfully resolved all four Round 7 issues: Agentless BM25 mechanism is correctly described and verified; training data sufficiency is justified with comparable structured IE literature; EMNLP NLP framing is explicit; SpecFix is addressed. The primary blocking issue for Round 9 is a newly identified competitor.
+
+**(1) URGENT — Add RGFL to the landscape and differentiate**: RGFL (arXiv 2601.18044, January 2026) proposes reasoning-guided fault localization integrated with Agentless and achieves 12.8% end-to-end repair improvement — directly competing on SpecExtract's localization improvement claim. Add one paragraph: 'RGFL (arXiv 2601.18044, Jan 2026) generates structured, bug-specific LLM explanations for candidate files at fault localization time, achieving 12.8% end-to-end improvement when integrated with Agentless. SpecExtract complements rather than competes with RGFL: (a) spec extraction is a single forward pass of a fine-tuned model (~$0.05-0.10/issue) rather than per-instance LLM reasoning calls at localization time; (b) the structured 4-field spec constrains not only localization but also patch generation via behavioral delta injection; (c) issue-space extraction operates before any codebase access, making SpecExtract applicable as a front-end to RGFL itself — extracting the affected interface and behavioral delta that RGFL's reasoning module can then ground against codebase evidence.' This framing turns a competitor into a collaborator while protecting SpecExtract's novelty.
+
+**(2) Add SWE-Fixer** (ACL Findings 2025) in one sentence: 'SWE-Fixer fine-tunes a BM25+dense retrieval module to identify relevant files; SpecExtract instead trains a spec extractor to produce structured behavioral constraints that inform retrieval precision, complementing fine-tuned retrievers.' This is a 20-word addition that preempts a reviewer flag.
+
+**(3) Add statistical significance mention**: One sentence in the experimental design: 'Statistical significance is assessed via McNemar's test on paired binary instance outcomes (SpecExtract-Agentless vs. Agentless-direct), with bootstrapped CIs reported for the resolve-rate difference.'
+
+With these three additions — particularly (1) — the proposal will have addressed all substantive issues from rounds 1-8 and should be ready to pass in Round 9.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+## 停滞提醒
+这个 idea 已经经过 8 轮修订，近 3 轮的平均分从 3.5 到 3.5，没有明显改善。
+
+请认真思考：
+- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？
+- 如果你认为问题出在 approach 而非 framing，可以做 major revision。
+- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。
+- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。
+
+最终由你判断——做你认为最能提升 idea 质量的选择。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "dedadaa5-ab1a-4451-90c4-d9b5cf286de8",
+  "type": "user",
+  "uuid": "e14c85fa-0d58-46d9-a03c-d46e5c20f6e2",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T08:13:51.457Z_
+
+```json
+{
+  "parentUuid": "e14c85fa-0d58-46d9-a03c-d46e5c20f6e2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "90ffc033-6641-474a-ab51-8c5255408159",
+  "timestamp": "2026-05-10T08:13:51.457Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T08:13:51.457Z_
+
+```json
+{
+  "parentUuid": "90ffc033-6641-474a-ab51-8c5255408159",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "546c4de5-5fdf-40a9-996d-c07509a105f2",
+  "timestamp": "2026-05-10T08:13:51.457Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"SpecExtract: Learning Issue-Space Behavioral Specifications from Bug R…",
+  "leafUuid": "546c4de5-5fdf-40a9-996d-c07509a105f2",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Structured behavioral specs from issue text for repair preprocessing",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T08:14:40.792Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the situation carefully before deciding on the approach.
+
+**Current State Analysis:**
+- 8 rounds of revision with no improvement in scores (stuck at 3.5 average)
+- Round 8 resolved 4 issues but Round 9 raises 4 new ones
+- The core issues in Round 9 are:
+  1. RGFL (arXiv 2601.18044) - directly competing on localization improvement claim
+  2. SWE-Fixer (ACL Findings 2025) - overlapping BM25 + SFT angle
+  3. Weakened quantitative case for +4-7 pp improvement
+  4. Statistical significance at 300-instance scale
+
+**Critical Question: Is this a minor fix or does it reveal deeper problems?**
+
+The real tension here is with RGFL—it achieves 12.8% end-to-end improvement on Agentless through structured bug-specific explanations for candidate files, which directly targets the same localization problem. Even if I frame RGFL as complementary rather than competitive, the fundamental issue remains: if RGFL already delivers that magnitude of improvement, then my +4-7 pp gains need stronger justification, and the additive potential between the two approaches becomes questionable.
+
+SWE-Fixer presents a similar dynamic with its BM25 plus retrieval fine-tuning approach—the differentiation is clear enough, but it reinforces how saturated this space has become. At 300 instances, a +4-7 pp improvement translates to roughly 12-21 additional correct cases, which McNemar's test can validate but the bar for statistical significance at this scale is genuinely high.
+
+**Deeper structural question: Is the core idea sound?**
+
+What troubles me is the stagnation pattern—the improvement has plateaued around 3.5 across multiple iterations, and each round introduces new competitors that weren't previously addressed. This suggests the landscape is shifting faster than the approach can adapt, and the novelty keeps getting eroded. The core concept—extracting structured behavioral specifications from bug reports and using them to improve fault localization—is solid in principle, but I'm not sure it's enough to sustain a competitive advantage in this environment.
+
+The fundamental weaknesses are becoming clearer: the target improvement of +4-7 pp gets us to roughly 17-20% on SWE-bench-Live Lite, which is modest; the competitive landscape keeps filling the gap with new methods like RGFL, SWE-Fixer, Agent-CoEvo, and SWE-Lego; the training signal from SWE-bench test patches likely contains solution-conditioned information despite being framed as implementation-agnostic; and the ecological validity check using cosine similarity thresholds is a weak proxy for actual utility. After eight rounds stuck at this level with the field accelerating around us, I'm wondering if a pivot is actually necessary.
+
+I see three paths forward: Option A is the safe route—add RGFL and SWE-Fixer baselines, compute statistical significance as reviewers suggest—but this hasn't been moving the needle. Option B would mean reframing the contribution entirely, shifting focus away from "preprocessing for Agentless" toward something more distinctive. Option C is a genuine pivot to a related but different problem in this space.
+
+The real technical novelty here might actually be the masked-field training protocol and the structured information extraction from bug reports under partial observability constraints, rather than the BM25 localization improvements which are more of an engineering contribution. But I need to figure out whether this is genuinely differentiated from what RGFL and others are already doing.
+
+Looking at the comparison: RGFL uses per-instance LLM reasoning at localization time to generate structured file explanations, while SpecExtract is an SFT model extracting behavioral specs directly from bug report text. The actual differentiators are meaningful—SFT versus per-instance prompting for cost efficiency, operating in issue-space before codebase access, and the behavioral spec format with expected behavior and delta fields versus file-level explanations. The real problem is that reviewers keep attacking the localization improvement angle when the actual novelty is in the NLP task definition and training methodology itself.
+
+What if I reframe this entirely? Instead of positioning SpecExtract as a localization improver, I could make the primary contribution the structured IE task definition, training corpus, model, and evaluation framework for behavioral spec extraction from bug reports, with localization improvements as a secondary benefit. The core issue is that the repair improvements keep getting undermined by stronger competitors, while the actual NLP novelty lacks sufficient empirical validation. I should reframe this as primarily an NLP contribution—the structured IE task, schema, corpus, and training methodology are the main claims—with repair improvement serving as an application study that demonstrates spec quality. This positioning actually turns the competing repair systems into validation rather than threats, since they become existing tools that benefit from our preprocessing.
+
+Now I need to do some foundational research to understand what RGFL and SWE-Fixer actually do, map out the current landscape of spec extraction work, and make sure I'm not missing related papers before committing to this approach.
+
+The key question is whether SpecExtract's improvements would stack on top of RGFL's 12.8% gain or if there's overlap—if they're truly complementary, the additive story becomes much stronger for publication. I'm settling on a concrete revision strategy: add RGFL to the related work and baselines as a key comparison point, mention SWE-Fixer briefly, and reframe the +4-7 pp improvement as validation of the IE contribution rather than the primary claim. The core idea is to strengthen the NLP framing around the information extraction task itself while positioning the repair gains as evidence that better specifications help, then I need to look at the RGFL paper to understand exactly what it does so I can position SpecExtract's advantages clearly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "546c4de5-5fdf-40a9-996d-c07509a105f2",
+  "isSidechain": false,
+  "requestId": "req_011CatZ4YPAM55AKbd9jEhTS",
+  "type": "assistant",
+  "uuid": "af2c2d1a-1f21-4f23-982f-bae7b39fb000",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01SUdriaG8agM7r2PSSvk5H3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18327,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 2591,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18327,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2591,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 18327,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18327
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T08:14:40.947Z_
+
+Looking at this situation carefully: 8 rounds stuck at 3.5, and the core issue is a newly identified direct competitor (RGFL) that attacks the primary empirical claim. Before revising, I need to read RGFL and SWE-Fixer to understand the actual differentiation, then decide whether this is a minor fix or something deeper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af2c2d1a-1f21-4f23-982f-bae7b39fb000",
+  "isSidechain": false,
+  "requestId": "req_011CatZ4YPAM55AKbd9jEhTS",
+  "type": "assistant",
+  "uuid": "9276957a-f427-40c6-b161-5f82087ccca5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01SUdriaG8agM7r2PSSvk5H3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18327,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 2591,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18327,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2591,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 18327,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18327
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T08:14:40.951Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016q4usAEayUoWvcQVmn9bcF`</summary>
+
+```json
+{
+  "query": "select:WebFetch,WebSearch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9276957a-f427-40c6-b161-5f82087ccca5",
+  "isSidechain": false,
+  "requestId": "req_011CatZ4YPAM55AKbd9jEhTS",
+  "type": "assistant",
+  "uuid": "e6c37c87-0383-4244-a007-dc13f09001f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01SUdriaG8agM7r2PSSvk5H3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18327,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 2591,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18327,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2591,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 18327,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18327
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T08:14:40.960Z_
+
+<details><summary>↩ Tool result · `toolu_016q4usAEayUoWvcQVmn9bcF`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6c37c87-0383-4244-a007-dc13f09001f9",
+  "isSidechain": false,
+  "promptId": "dedadaa5-ab1a-4451-90c4-d9b5cf286de8",
+  "type": "user",
+  "uuid": "92ebabd9-739f-4dda-86b8-1e43459a4792",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch",
+      "WebSearch"
+    ],
+    "query": "select:WebFetch,WebSearch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "e6c37c87-0383-4244-a007-dc13f09001f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-10T08:14:42.969Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me fetch RGFL and SWE-Fixer to understand their actual contributions before deciding on the revision approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "92ebabd9-739f-4dda-86b8-1e43459a4792",
+  "isSidechain": false,
+  "requestId": "req_011CatZ8BxT1N5xjbxofaqs2",
+  "type": "assistant",
+  "uuid": "f12adc18-0c6a-438f-8a5f-87727a7b6af0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01WtzMDdsrTZG3fNDjnMqiGY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3606,
+      "cache_read_input_tokens": 29958,
+      "output_tokens": 409,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3606,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 409,
+          "cache_read_input_tokens": 29958,
+          "cache_creation_input_tokens": 3606,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3606
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-10T08:14:43.789Z_
+
+Let me research RGFL and SWE-Fixer in parallel before deciding on the revision strategy.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f12adc18-0c6a-438f-8a5f-87727a7b6af0",
+  "isSidechain": false,
+  "requestId": "req_011CatZ8BxT1N5xjbxofaqs2",
+  "type": "assistant",
+  "uuid": "90ca2c52-c4b2-439f-8750-a10ca0c9e365",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01WtzMDdsrTZG3fNDjnMqiGY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3606,
+      "cache_read_input_tokens": 29958,
+      "output_tokens": 409,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3606,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 409,
+          "cache_read_input_tokens": 29958,
+          "cache_creation_input_tokens": 3606,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3606
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T08:14:45.458Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01HGF8G6vCDmNocZMBWi852E`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.18044",
+  "prompt": "What is the core method of RGFL? How does it integrate with Agentless? What exactly does it do at fault localization time — does it use per-instance LLM reasoning calls, what are the inputs/outputs, what improvement does it achieve, and what are the computational costs?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90ca2c52-c4b2-439f-8750-a10ca0c9e365",
+  "isSidechain": false,
+  "requestId": "req_011CatZ8BxT1N5xjbxofaqs2",
+  "type": "assistant",
+  "uuid": "3fc04a46-2613-4004-9455-4d15b92fe5bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01WtzMDdsrTZG3fNDjnMqiGY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3606,
+      "cache_read_input_tokens": 29958,
+      "output_tokens": 409,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3606,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 409,
+          "cache_read_input_tokens": 29958,
+          "cache_creation_input_tokens": 3606,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3606
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-10T08:14:46.607Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VBVnDNjaSHyUdDDqrs4LK8`</summary>
+
+```json
+{
+  "url": "https://aclanthology.org/2025.findings-acl.62/",
+  "prompt": "What is the core method of SWE-Fixer? How does it use BM25 and retrieval fine-tuning? What are its results on SWE-bench benchmarks? What exactly does it fine-tune and what are the inputs/outputs of the retrieval component?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3fc04a46-2613-4004-9455-4d15b92fe5bd",
+  "isSidechain": false,
+  "requestId": "req_011CatZ8BxT1N5xjbxofaqs2",
+  "type": "assistant",
+  "uuid": "3e7b5a0b-9e25-460d-9db3-a3d8f3bff978",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01WtzMDdsrTZG3fNDjnMqiGY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3606,
+      "cache_read_input_tokens": 29958,
+      "output_tokens": 409,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3606,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 409,
+          "cache_read_input_tokens": 29958,
+          "cache_creation_input_tokens": 3606,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3606
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-10T08:14:47.061Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BTpPQwJDSBmmJCDqLssn6x`</summary>
+
+```json
+{
+  "query": "RGFL \"Reasoning Guided Fault Localization\" arXiv 2601.18044 automated program repair Agentless"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e7b5a0b-9e25-460d-9db3-a3d8f3bff978",
+  "isSidechain": false,
+  "requestId": "req_011CatZ8BxT1N5xjbxofaqs2",
+  "type": "assistant",
+  "uuid": "93d1ad5d-7b75-4955-8b32-25cd7731963a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01WtzMDdsrTZG3fNDjnMqiGY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3606,
+      "cache_read_input_tokens": 29958,
+      "output_tokens": 409,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3606,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 409,
+          "cache_read_input_tokens": 29958,
+          "cache_creation_input_tokens": 3606,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3606
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T08:14:50.145Z_
+
+<details><summary>↩ Tool result · `toolu_01HGF8G6vCDmNocZMBWi852E`</summary>
+
+```text
+# RGFL: Core Method and Integration
+
+## Core Method
+
+RGFL employs "a hierarchical reasoning module that (i) generates structured, bug-specific explanations for candidate files and elements, and (ii) leverages these explanations in a two-stage ranking scheme combining LLM-based and embedding-based signals."
+
+## Fault Localization Process
+
+The approach operates through two stages:
+1. **File-level localization**: Identifies relevant source files
+2. **Element-level localization**: Pinpoints specific code elements within those files
+
+The document indicates reasoning is generated for candidate locations, suggesting per-instance LLM calls analyze bug characteristics to guide the ranking process.
+
+## Integration with Agentless
+
+When incorporated into Agentless, the localization system produces "a 12.8% end-to-end repair success improvement," demonstrating measurable benefits for downstream repair operations.
+
+## Performance Improvements
+
+On SWE-bench Verified:
+- File-level Hit@1: 71.4% → 85%
+- File-level MRR: 81.8% → 88.8%
+- Element-level Exact Match (top-3 files): 36% → 69%
+
+## Computational Costs
+
+The document does not specify computational overhead, token consumption, or latency details regarding the LLM reasoning calls or the two-stage ranking scheme.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3fc04a46-2613-4004-9455-4d15b92fe5bd",
+  "isSidechain": false,
+  "promptId": "dedadaa5-ab1a-4451-90c4-d9b5cf286de8",
+  "type": "user",
+  "uuid": "0ce098fe-3e12-4000-9826-6215b84826c2",
+  "toolUseResult": {
+    "bytes": 47071,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# RGFL: Core Method and Integration\n\n## Core Method\n\nRGFL employs \"a hierarchical reasoning module that (i) generates structured, bug-specific explanations for candidate files and elements, and (ii) leverages these explanations in a two-stage ranking scheme combining LLM-based and embedding-based signals.\"\n\n## Fault Localization Process\n\nThe approach operates through two stages:\n1. **File-level localization**: Identifies relevant source files\n2. **Element-level localization**: Pinpoints specific code elements within those files\n\nThe document indicates reasoning is generated for candidate locations, suggesting per-instance LLM calls analyze bug characteristics to guide the ranking process.\n\n## Integration with Agentless\n\nWhen incorporated into Agentless, the localization system produces \"a 12.8% end-to-end repair success improvement,\" demonstrating measurable benefits for downstream repair operations.\n\n## Performance Improvements\n\nOn SWE-bench Verified:\n- File-level Hit@1: 71.4% → 85%\n- File-level MRR: 81.8% → 88.8%\n- Element-level Exact Match (top-3 files): 36% → 69%\n\n## Computational Costs\n\nThe document does not specify computational overhead, token consumption, or latency details regarding the LLM reasoning calls or the two-stage ranking scheme.",
+    "durationMs": 4682,
+    "url": "https://arxiv.org/abs/2601.18044"
+  },
+  "sourceToolAssistantUUID": "3fc04a46-2613-4004-9455-4d15b92fe5bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"SpecExtract: Learning Issue-Space Behavioral Specifications from Bug R…",
+  "leafUuid": "0ce098fe-3e12-4000-9826-6215b84826c2",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Structured behavioral specs from issue text for repair preprocessing",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f"
+}
+```
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-10T08:14:51.406Z_
+
+<details><summary>↩ Tool result · `toolu_01VBVnDNjaSHyUdDDqrs4LK8`</summary>
+
+```text
+# SWE-Fixer: Core Method and Results
+
+## Core Architecture
+
+SWE-Fixer employs a two-module pipeline: "a code file retrieval module and a code editing module." The retrieval component identifies relevant files, while the editing module generates patches for those files.
+
+## Retrieval Component Details
+
+The retrieval mechanism combines classical and neural approaches: "The retrieval module employs BM25 along with a lightweight model to achieve coarse-to-fine file retrieval." This means BM25 performs initial coarse filtering, followed by a lightweight neural model for refinement. However, the document doesn't specify the exact inputs/outputs or what parameters are fine-tuned during training.
+
+## Training Approach
+
+The framework uses supervised fine-tuning on a substantial dataset: "we compile an extensive dataset that includes 110K GitHub issues along with their corresponding patches and train the two models of SWE-Fixer separately." The two modules are trained independently.
+
+## SWE-Bench Performance
+
+Results on standard benchmarks show:
+
+- **Without filtering**: 22.0% (Lite) and 30.2% (Verified)
+- **With P2P filtering**: 24.7% (Lite) and 32.8% (Verified) — "state-of-the-art performance" among open-source approaches
+
+## Efficiency Advantage
+
+A key strength is computational efficiency: "our approach requires only two model calls per instance, making it significantly more efficient than existing methods."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3e7b5a0b-9e25-460d-9db3-a3d8f3bff978",
+  "isSidechain": false,
+  "promptId": "dedadaa5-ab1a-4451-90c4-d9b5cf286de8",
+  "type": "user",
+  "uuid": "fcc0f3fc-b538-4e39-8b5d-88af167672dc",
+  "toolUseResult": {
+    "bytes": 44566,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SWE-Fixer: Core Method and Results\n\n## Core Architecture\n\nSWE-Fixer employs a two-module pipeline: \"a code file retrieval module and a code editing module.\" The retrieval component identifies relevant files, while the editing module generates patches for those files.\n\n## Retrieval Component Details\n\nThe retrieval mechanism combines classical and neural approaches: \"The retrieval module employs BM25 along with a lightweight model to achieve coarse-to-fine file retrieval.\" This means BM25 performs initial coarse filtering, followed by a lightweight neural model for refinement. However, the document doesn't specify the exact inputs/outputs or what parameters are fine-tuned during training.\n\n## Training Approach\n\nThe framework uses supervised fine-tuning on a substantial dataset: \"we compile an extensive dataset that includes 110K GitHub issues along with their corresponding patches and train the two models of SWE-Fixer separately.\" The two modules are trained independently.\n\n## SWE-Bench Performance\n\nResults on standard benchmarks show:\n\n- **Without filtering**: 22.0% (Lite) and 30.2% (Verified)\n- **With P2P filtering**: 24.7% (Lite) and 32.8% (Verified) — \"state-of-the-art performance\" among open-source approaches\n\n## Efficiency Advantage\n\nA key strength is computational efficiency: \"our approach requires only two model calls per instance, making it significantly more efficient than existing methods.\"",
+    "durationMs": 4796,
+    "url": "https://aclanthology.org/2025.findings-acl.62/"
+  },
+  "sourceToolAssistantUUID": "3e7b5a0b-9e25-460d-9db3-a3d8f3bff978",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-10T08:14:55.605Z_
+
+<details><summary>↩ Tool result · `toolu_01BTpPQwJDSBmmJCDqLssn6x`</summary>
+
+```text
+Web search results for query: "RGFL "Reasoning Guided Fault Localization" arXiv 2601.18044 automated program repair Agentless"
+
+Links: [{"title":"[2601.18044] RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models","url":"https://arxiv.org/abs/2601.18044"},{"title":"RGFL: Reasoning Guided Fault Localization for Automated Program Repair","url":"https://www.arxiv.org/pdf/2601.18044"},{"title":"RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2026arXiv260118044S/abstract"},{"title":"RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models","url":"https://arxiv.org/html/2601.18044"},{"title":"RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models | alphaXiv","url":"https://www.alphaxiv.org/abs/2601.18044"},{"title":"RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models | Scilit","url":"https://www.scilit.com/publications/93a4ab9613be0ae41a0609c084a46a24"},{"title":"Demystifying Faulty Code with LLM: Step-by-Step Reasoning for Explainable Fault Localization","url":"https://arxiv.org/html/2403.10507v1"},{"title":"A Quantitative and Qualitative Evaluation of LLM-Based Explainable Fault Localization","url":"https://arxiv.org/html/2308.05487v3"},{"title":"Black-Box Test Code Fault Localization Driven by Large Language Models and Execution Estimation","url":"https://arxiv.org/html/2506.19045v1"},{"title":"[2403.10507] Demystifying Faulty Code with LLM: Step-by-Step Reasoning for Explainable Fault Localization","url":"https://arxiv.org/abs/2403.10507"}]
+
+I found comprehensive information about the RGFL paper. Here's a summary of the search results:
+
+## RGFL: Reasoning Guided Fault Localization
+
+RGFL is a method presented in arXiv:2601.18044 that addresses fault localization (FL) as a critical step in Automated Program Repair (APR), with increased importance for Large Language Model (LLM)-based repair agents.
+
+### Key Challenge
+
+In realistic project-level repair scenarios, software repositories often span millions of tokens, far exceeding current LLM context limits, so models must first identify a small, relevant subset of code, making accurate FL essential for effective repair.
+
+### Method Overview
+
+The method introduces a hierarchical reasoning module that generates structured, bug-specific explanations for candidate files and elements, and leverages these explanations in a two-stage ranking scheme combining LLM-based and embedding-based signals. RGFL introduces an explicit per-candidate reasoning stage where the LLM explains each file or element's functionality and its causal relation to the reported symptom, with the core intuition that natural language reasoning can better capture the semantic and causal connection between bug reports and potential fault locations.
+
+### Performance Results
+
+Compared to state-of-the-art baselines including Agentless and OpenHands, the method consistently improves localization accuracy, with file-level Hit@1 improving from 71.4% to 85% on SWE-bench Verified, and element-level Exact Match under top-3 files increasing from 36% to 69%. Integrating RGFL into Agentless yields a 12.8% end-to-end repair success improvement.
+
+### Trade-offs
+
+The average cost of RGFL per sample is around $4.4, incurring a higher computational cost than Agentless (3.7×), but the +12.8% absolute increase in resolved rate provides compelling justification when accuracy is the priority.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "93d1ad5d-7b75-4955-8b32-25cd7731963a",
+  "isSidechain": false,
+  "promptId": "dedadaa5-ab1a-4451-90c4-d9b5cf286de8",
+  "type": "user",
+  "uuid": "2b551097-2984-45c8-87d4-b5c2f026a6dc",
+  "toolUseResult": {
+    "query": "RGFL \"Reasoning Guided Fault Localization\" arXiv 2601.18044 automated program repair Agentless",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015VL5W7fPiKEdG479WZ1zZb",
+        "content": [
+          {
+            "title": "[2601.18044] RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models",
+            "url": "https://arxiv.org/abs/2601.18044"
+          },
+          {
+            "title": "RGFL: Reasoning Guided Fault Localization for Automated Program Repair",
+            "url": "https://www.arxiv.org/pdf/2601.18044"
+          },
+          {
+            "title": "RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv260118044S/abstract"
+          },
+          {
+            "title": "RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models",
+            "url": "https://arxiv.org/html/2601.18044"
+          },
+          {
+            "title": "RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2601.18044"
+          },
+          {
+            "title": "RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models | Scilit",
+            "url": "https://www.scilit.com/publications/93a4ab9613be0ae41a0609c084a46a24"
+          },
+          {
+            "title": "Demystifying Faulty Code with LLM: Step-by-Step Reasoning for Explainable Fault Localization",
+            "url": "https://arxiv.org/html/2403.10507v1"
+          },
+          {
+            "title": "A Quantitative and Qualitative Evaluation of LLM-Based Explainable Fault Localization",
+            "url": "https://arxiv.org/html/2308.05487v3"
+          },
+          {
+            "title": "Black-Box Test Code Fault Localization Driven by Large Language Models and Execution Estimation",
+            "url": "https://arxiv.org/html/2506.19045v1"
+          },
+          {
+            "title": "[2403.10507] Demystifying Faulty Code with LLM: Step-by-Step Reasoning for Explainable Fault Localization",
+            "url": "https://arxiv.org/abs/2403.10507"
+          }
+        ]
+      },
+      "I found comprehensive information about the RGFL paper. Here's a summary of the search results:\n\n## RGFL: Reasoning Guided Fault Localization\n\nRGFL is a method presented in arXiv:2601.18044 that addresses fault localization (FL) as a critical step in Automated Program Repair (APR), with increased importance for Large Language Model (LLM)-based repair agents.\n\n### Key Challenge\n\nIn realistic project-level repair scenarios, software repositories often span millions of tokens, far exceeding current LLM context limits, so models must first identify a small, relevant subset of code, making accurate FL essential for effective repair.\n\n### Method Overview\n\nThe method introduces a hierarchical reasoning module that generates structured, bug-specific explanations for candidate files and elements, and leverages these explanations in a two-stage ranking scheme combining LLM-based and embedding-based signals. RGFL introduces an explicit per-candidate reasoning stage where the LLM explains each file or element's functionality and its causal relation to the reported symptom, with the core intuition that natural language reasoning can better capture the semantic and causal connection between bug reports and potential fault locations.\n\n### Performance Results\n\nCompared to state-of-the-art baselines including Agentless and OpenHands, the method consistently improves localization accuracy, with file-level Hit@1 improving from 71.4% to 85% on SWE-bench Verified, and element-level Exact Match under top-3 files increasing from 36% to 69%. Integrating RGFL into Agentless yields a 12.8% end-to-end repair success improvement.\n\n### Trade-offs\n\nThe average cost of RGFL per sample is around $4.4, incurring a higher computational cost than Agentless (3.7×), but the +12.8% absolute increase in resolved rate provides compelling justification when accuracy is the priority."
+    ],
+    "durationSeconds": 8.540524990999998
+  },
+  "sourceToolAssistantUUID": "93d1ad5d-7b75-4955-8b32-25cd7731963a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-10T08:15:19.566Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have crucial information:
+
+**RGFL key facts:**
+- Cost: ~$4.4 per instance (3.7× more than Agentless)
+- Method: generates structured, bug-specific explanations for candidate files at localization time using per-instance LLM reasoning calls
+- Improvement: Hit@1 71.4%→85%, element-level Exact Match 36%→69%, +12.8% end-to-end repair success
+- Input: bug reports + candidate files; Output: structured explanations grounding each file against the bug
+
+**SWE-Fixer key facts:**
+
+
+- Uses BM25 + lightweight model for coarse-to-fine retrieval, trained on 110K GitHub issues
+- Results: 22.0%/30.2% on Lite/Verified, 24.7%/32.8% with P2P filtering
+- Only 2 model calls per instance, making it much more efficient than RGFL
+
+Now I'm comparing the cost-benefit tradeoff. RGFL's $4.4 per instance is dramatically higher than SpecExtract's $0.05-0.10, a 40-80× difference, but the performance gains are substantial. I need to assess whether this is a minor optimization or requires fundamental restructuring.
+
+The key insight is that these approaches are actually complementary rather than competing. RGFL reasons about actual code files to generate relevance explanations, while SpecExtract works purely on issue text to extract behavioral specs before any codebase access. This means SpecExtract could serve as a front-end filter to narrow the candidate set before RGFL does its deeper reasoning. The two systems optimize for different things—SWE-Fixer trains a retrieval model on massive scale while SpecExtract focuses on spec extraction from a smaller, curated dataset—so combining them might yield better results than either alone.
+
+But stepping back, I'm realizing the persistent 3.5 scores might point to something more fundamental than just missing comparisons. The improvement itself is modest—only 4-7 percentage points over a 13.33% baseline—and even with statistical significance, that's not particularly impressive empirically. The reviewer might be questioning whether the core contribution is actually substantial enough, not just whether I've cited the right related work.
+
+There's also a circularity issue with using SWE-bench test assertions as supervision; even if they're implementation-agnostic, they're still conditioned on the test-patch pairs, which feels somewhat self-referential. And the gap keeps shrinking as new competitors emerge each round, which suggests the problem space itself is being rapidly addressed by others.
+
+That said, re-reading the feedback, the reviewer explicitly noted that Round 8 resolved all four Round 7 issues and indicated readiness to move forward, so maybe addressing RGFL, SWE-Fixer, and statistical significance is genuinely the final push needed.
+
+I should focus on the three specific additions: incorporating RGFL as a baseline, adding SWE-Fixer to the comparisons, and establishing statistical significance. I'll also need to adjust the quantitative claims to account for RGFL's performance and update the references accordingly. Let me pull the RGFL paper to understand their method better.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b551097-2984-45c8-87d4-b5c2f026a6dc",
+  "isSidechain": false,
+  "requestId": "req_011CatZ9GUq6UsNzBEEVsUCs",
+  "type": "assistant",
+  "uuid": "c93367c2-d3de-4ac7-8547-774d9855a036",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01SDfMWXrdH5orSKmSF94JvZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2150,
+      "cache_read_input_tokens": 33564,
+      "output_tokens": 1450,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2150,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1450,
+          "cache_read_input_tokens": 33564,
+          "cache_creation_input_tokens": 2150,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2150
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-10T08:15:19.572Z_
+
+Key findings: RGFL costs **$4.4/instance** (3.7× Agentless) via per-instance LLM reasoning over candidate files. SWE-Fixer trains a BM25+neural retrieval model on 110K issues (50× larger dataset). Let me read the RGFL paper more carefully for precise method details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c93367c2-d3de-4ac7-8547-774d9855a036",
+  "isSidechain": false,
+  "requestId": "req_011CatZ9GUq6UsNzBEEVsUCs",
+  "type": "assistant",
+  "uuid": "24fa1b38-900a-47e1-9cf5-1ade9e215cc0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01SDfMWXrdH5orSKmSF94JvZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2150,
+      "cache_read_input_tokens": 33564,
+      "output_tokens": 1450,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2150,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1450,
+          "cache_read_input_tokens": 33564,
+          "cache_creation_input_tokens": 2150,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2150
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-10T08:15:26.912Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Ci6WQFbs3J7o2yShkHRXeF`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2601.18044",
+  "prompt": "Describe the method in detail: (1) what are the exact inputs to the reasoning module (bug report text? candidate files? both?), (2) what does the LLM reasoning generate at file-level and element-level (what structured format?), (3) how many LLM calls per instance approximately, (4) does RGFL extract anything from the issue/bug report text before codebase access or does it always require reading candidate files, (5) what is the cost breakdown ($4.4 per instance breakdown), (6) does it generate anything like affected_interface, observed_behavior, expected_behavior fields?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24fa1b38-900a-47e1-9cf5-1ade9e215cc0",
+  "isSidechain": false,
+  "requestId": "req_011CatZ9GUq6UsNzBEEVsUCs",
+  "type": "assistant",
+  "uuid": "59ee8ad3-b8d7-4675-ac85-16567564f60a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01SDfMWXrdH5orSKmSF94JvZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2150,
+      "cache_read_input_tokens": 33564,
+      "output_tokens": 1450,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2150,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1450,
+          "cache_read_input_tokens": 33564,
+          "cache_creation_input_tokens": 2150,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2150
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-10T08:15:27.101Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LAbhb3Ld19fGRSZctmmK2N`</summary>
+
+```json
+{
+  "query": "SWE-bench fault localization structured spec extraction issue text 2025 2026 before codebase access"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59ee8ad3-b8d7-4675-ac85-16567564f60a",
+  "isSidechain": false,
+  "requestId": "req_011CatZ9GUq6UsNzBEEVsUCs",
+  "type": "assistant",
+  "uuid": "91e9eb0e-460b-46af-bcde-9cfb78eac47e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01SDfMWXrdH5orSKmSF94JvZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2150,
+      "cache_read_input_tokens": 33564,
+      "output_tokens": 1450,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2150,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1450,
+          "cache_read_input_tokens": 33564,
+          "cache_creation_input_tokens": 2150,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2150
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-10T08:15:33.523Z_
+
+<details><summary>↩ Tool result · `toolu_01Ci6WQFbs3J7o2yShkHRXeF`</summary>
+
+```text
+# RGFL Method Details
+
+## (1) Inputs to Reasoning Module
+
+The reasoning module receives:
+- **Bug report text**: The natural language issue description
+- **Candidate code**: Individual files or code elements presented one at a time
+
+The authors emphasize presenting candidates "one file or code element at a time, together with the problem statement" rather than supplying entire repositories, which "prevents the LLM from being overwhelmed."
+
+## (2) LLM Reasoning Outputs
+
+**File-level**: Natural language explanations of file functionality in bug context, then ranked files.
+
+**Element-level**: Explanations of what each function, class, or global variable does relative to the bug, then a "ranked list of the potentially buggy elements."
+
+The outputs are unstructured natural language, not structured fields like affected_interface or observed_behavior.
+
+## (3) LLM Calls Per Instance
+
+The paper doesn't explicitly state total calls, but implies substantial overhead:
+- File-level: reasoning generation + ranking for top-k retrieved files
+- Element-level: reasoning for all extracted functions/classes/variables in top-3 files, plus ranking
+
+The "3.7×" cost multiplier (4.4 dollars versus Agentless's 3.7 dollars per sample) suggests dozens of calls.
+
+## (4) Pre-Processing of Bug Report
+
+The bug report is used directly without extracted fields. The approach "always require[s] reading candidate files" alongside the bug description for each reasoning prompt.
+
+## (5) Cost Breakdown
+
+"Average cost of RGFL per sample is around $4.4." The paper provides no detailed breakdown by component (file vs. element reasoning, per-call costs).
+
+## (6) Structured Fields
+
+No—the method generates only "natural language reasoning" without extracting affected_interface, observed_behavior, or expected_behavior fields.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "59ee8ad3-b8d7-4675-ac85-16567564f60a",
+  "isSidechain": false,
+  "promptId": "dedadaa5-ab1a-4451-90c4-d9b5cf286de8",
+  "type": "user",
+  "uuid": "c621e728-355d-49fe-8bbd-cef28a78d95c",
+  "toolUseResult": {
+    "bytes": 286340,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# RGFL Method Details\n\n## (1) Inputs to Reasoning Module\n\nThe reasoning module receives:\n- **Bug report text**: The natural language issue description\n- **Candidate code**: Individual files or code elements presented one at a time\n\nThe authors emphasize presenting candidates \"one file or code element at a time, together with the problem statement\" rather than supplying entire repositories, which \"prevents the LLM from being overwhelmed.\"\n\n## (2) LLM Reasoning Outputs\n\n**File-level**: Natural language explanations of file functionality in bug context, then ranked files.\n\n**Element-level**: Explanations of what each function, class, or global variable does relative to the bug, then a \"ranked list of the potentially buggy elements.\"\n\nThe outputs are unstructured natural language, not structured fields like affected_interface or observed_behavior.\n\n## (3) LLM Calls Per Instance\n\nThe paper doesn't explicitly state total calls, but implies substantial overhead:\n- File-level: reasoning generation + ranking for top-k retrieved files\n- Element-level: reasoning for all extracted functions/classes/variables in top-3 files, plus ranking\n\nThe \"3.7×\" cost multiplier (4.4 dollars versus Agentless's 3.7 dollars per sample) suggests dozens of calls.\n\n## (4) Pre-Processing of Bug Report\n\nThe bug report is used directly without extracted fields. The approach \"always require[s] reading candidate files\" alongside the bug description for each reasoning prompt.\n\n## (5) Cost Breakdown\n\n\"Average cost of RGFL per sample is around $4.4.\" The paper provides no detailed breakdown by component (file vs. element reasoning, per-call costs).\n\n## (6) Structured Fields\n\nNo—the method generates only \"natural language reasoning\" without extracting affected_interface, observed_behavior, or expected_behavior fields.",
+    "durationMs": 6607,
+    "url": "https://arxiv.org/html/2601.18044"
+  },
+  "sourceToolAssistantUUID": "59ee8ad3-b8d7-4675-ac85-16567564f60a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-10T08:15:34.276Z_
+
+<details><summary>↩ Tool result · `toolu_01LAbhb3Ld19fGRSZctmmK2N`</summary>
+
+```text
+Web search results for query: "SWE-bench fault localization structured spec extraction issue text 2025 2026 before codebase access"
+
+Links: [{"title":"Multi-SWE-bench: A Multilingual Benchmark for Issue Resolving ByteDance Seed","url":"https://arxiv.org/pdf/2504.02605"},{"title":"SWE-bench Verified Issues Benchmark","url":"https://www.emergentmind.com/topics/swe-bench-verified-issues"},{"title":"Exploring the Potential of Conversational Test Suite Based Program Repair on SWE-bench","url":"https://arxiv.org/html/2410.04485v1"},{"title":"Introducing SWE-bench Verified | OpenAI","url":"https://openai.com/index/introducing-swe-bench-verified/"},{"title":"Dissecting the SWE-Bench Leaderboards: Profiling Submitters and","url":"https://arxiv.org/pdf/2506.17208"},{"title":"Are “Solved Issues” in SWE-bench Really Solved Correctly? An Empirical Study","url":"https://arxiv.org/pdf/2503.15223"},{"title":"Published as a conference paper at ICLR 2024 SWE-BENCH:","url":"https://arxiv.org/pdf/2310.06770"},{"title":"SWE-bench/SWE-bench_Verified · Datasets at Hugging Face","url":"https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified"},{"title":"SWE-bench Multilingual Benchmark","url":"https://www.emergentmind.com/topics/swe-bench-multilingual"},{"title":"Dissecting the SWE-Bench Leaderboards: Profiling Submitters and Architectures of LLM- and Agent-Based Repair Systems","url":"https://arxiv.org/html/2506.17208v2"}]
+
+Based on the search results, I found relevant information about SWE-bench, fault localization, and issue text specifications:
+
+## Key Findings
+
+**Structured Issue Text Specifications:**
+The SWE-bench dataset contains the problem_statement (i.e., issue text) and the base_commit which represents the state of the codebase before the issue has been resolved. This emphasizes the importance of clear issue specifications before agents access the codebase.
+
+**Fault Localization in SWE-bench:**
+Fault-localization accuracy is computed on chunk, function, and file granularities as a key metric for evaluating system performance. The multi-stage workflow includes hierarchical fault localization, code repair, and candidate patch selection via regression and reproduction tests.
+
+**Issue Specification Quality Issues:**
+Research has identified concerns with under-specified requirements. Handling under-specified issue statements is important, as a large proportion of suspicious patches have uncertain correctness due to under-specified requirements in the issue statement.
+
+**Recent Benchmark Developments (2025-2026):**
+Recent innovations include continuous task harvesting with automated, continuously running mining procedures, and automated environment and quality validation where LLM-driven recipes parse and validate build/test environments, while secondary LLMs produce structured scores for issue/test correctness, completeness, and complexity.
+
+The search results emphasize that structured, well-specified issue text is critical for automated issue resolution tasks, particularly before agents access the full codebase.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "91e9eb0e-460b-46af-bcde-9cfb78eac47e",
+  "isSidechain": false,
+  "promptId": "dedadaa5-ab1a-4451-90c4-d9b5cf286de8",
+  "type": "user",
+  "uuid": "f1093a04-c573-46c5-824a-713f22c49adc",
+  "toolUseResult": {
+    "query": "SWE-bench fault localization structured spec extraction issue text 2025 2026 before codebase access",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VJZG8c68EZQUuW1ga6Lodm",
+        "content": [
+          {
+            "title": "Multi-SWE-bench: A Multilingual Benchmark for Issue Resolving ByteDance Seed",
+            "url": "https://arxiv.org/pdf/2504.02605"
+          },
+          {
+            "title": "SWE-bench Verified Issues Benchmark",
+            "url": "https://www.emergentmind.com/topics/swe-bench-verified-issues"
+          },
+          {
+            "title": "Exploring the Potential of Conversational Test Suite Based Program Repair on SWE-bench",
+            "url": "https://arxiv.org/html/2410.04485v1"
+          },
+          {
+            "title": "Introducing SWE-bench Verified | OpenAI",
+            "url": "https://openai.com/index/introducing-swe-bench-verified/"
+          },
+          {
+            "title": "Dissecting the SWE-Bench Leaderboards: Profiling Submitters and",
+            "url": "https://arxiv.org/pdf/2506.17208"
+          },
+          {
+            "title": "Are “Solved Issues” in SWE-bench Really Solved Correctly? An Empirical Study",
+            "url": "https://arxiv.org/pdf/2503.15223"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2024 SWE-BENCH:",
+            "url": "https://arxiv.org/pdf/2310.06770"
+          },
+          {
+            "title": "SWE-bench/SWE-bench_Verified · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified"
+          },
+          {
+            "title": "SWE-bench Multilingual Benchmark",
+            "url": "https://www.emergentmind.com/topics/swe-bench-multilingual"
+          },
+          {
+            "title": "Dissecting the SWE-Bench Leaderboards: Profiling Submitters and Architectures of LLM- and Agent-Based Repair Systems",
+            "url": "https://arxiv.org/html/2506.17208v2"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about SWE-bench, fault localization, and issue text specifications:\n\n## Key Findings\n\n**Structured Issue Text Specifications:**\nThe SWE-bench dataset contains the problem_statement (i.e., issue text) and the base_commit which represents the state of the codebase before the issue has been resolved. This emphasizes the importance of clear issue specifications before agents access the codebase.\n\n**Fault Localization in SWE-bench:**\nFault-localization accuracy is computed on chunk, function, and file granularities as a key metric for evaluating system performance. The multi-stage workflow includes hierarchical fault localization, code repair, and candidate patch selection via regression and reproduction tests.\n\n**Issue Specification Quality Issues:**\nResearch has identified concerns with under-specified requirements. Handling under-specified issue statements is important, as a large proportion of suspicious patches have uncertain correctness due to under-specified requirements in the issue statement.\n\n**Recent Benchmark Developments (2025-2026):**\nRecent innovations include continuous task harvesting with automated, continuously running mining procedures, and automated environment and quality validation where LLM-driven recipes parse and validate build/test environments, while secondary LLMs produce structured scores for issue/test correctness, completeness, and complexity.\n\nThe search results emphasize that structured, well-specified issue text is critical for automated issue resolution tasks, particularly before agents access the full codebase."
+    ],
+    "durationSeconds": 7.171105886000005
+  },
+  "sourceToolAssistantUUID": "91e9eb0e-460b-46af-bcde-9cfb78eac47e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"SpecExtract: Learning Issue-Space Behavioral Specifications from Bug R…",
+  "leafUuid": "f1093a04-c573-46c5-824a-713f22c49adc",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Structured behavioral specs from issue text for repair preprocessing",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-10T08:16:34.819Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the key information I need:
+
+**RGFL critical details:**
+- Inputs: bug report text + candidate files (reads files one by one alongside bug description)
+- Outputs: unstructured natural language explanations, then ranked files/elements
+- Process: ALWAYS requires reading candidate files - cannot operate before codebase access
+- Cost: ~$4.4/instance (vs SpecExtract's ~$0.05-0.10)
+- No structured spec fields (affected_interface, observed_behavior, etc.)
+- Dozens of LLM calls per instance
+
+**This is genuinely different from SpecExtract:**
+
+
+RGFL needs the actual codebase to work while SpecExtract operates purely from the issue text, making them fundamentally different tools. The cost difference is massive—RGFL runs 40-80× more expensive—and they produce completely different outputs: RGFL gives unstructured reasoning while SpecExtract delivers typed JSON specs. More importantly, SpecExtract could actually serve as a preprocessing step to narrow down candidate files before RGFL even runs, which would dramatically reduce RGFL's cost. These aren't minor differences; they're core architectural distinctions that make the two approaches complementary rather than competitive.
+
+For the revision, I need to add RGFL to the landscape with these clear differentiators, mention SWE-Fixer briefly, include McNemar's test for statistical significance, and reframe the quantitative claim to position SpecExtract as the cheaper, complementary alternative to RGFL rather than claiming superiority. The reviewer's feedback suggests this is a focused set of additions rather than a fundamental rethinking—the core idea is solid, just needs these specific pieces filled in. I need to be strategic about how I position the +4-7 pp improvement claim. RGFL achieves 12.8%, which is substantially higher, so I should reframe SpecExtract as the cost-efficient, complementary option rather than claiming maximum performance. The key message is that SpecExtract delivers meaningful gains at dramatically lower cost ($0.05-0.10 versus $4.4) and works additively with RGFL for higher-performance setups.
+
+Now I'm mapping out the specific revisions: the landscape section needs a substantial paragraph on RGFL plus a mention of SWE-Fixer, the approach section should reference McNemar's test in the evaluation part and reposition the improvement claim relative to RGFL, and I'll add both to the references.
+
+For the RGFL paragraph, I'm describing how it uses hierarchical reasoning with structured explanations for fault localization, achieving 12.8% end-to-end improvement, and then explaining the three complementary dimensions between SpecExtract and RGFL—starting with how SpecExtract extracts structured specifications while RGFL produces unstructured reasoning. The combined approach of SpecExtract preprocessing followed by RGFL on a reduced candidate set would be optimal, though that evaluation is planned for the extended ICSE 2027 paper. For the landscape context, SWE-Fixer trains a retrieval module on GitHub issues to identify relevant files, whereas SpecExtract extracts structured behavioral specs that act as typed inputs to improve retrieval precision rather than replacing the retriever entirely. I'm also working through the statistical significance framing for this comparison. I need to be strategic about which changes to include—adding RGFL to the landscape section with the SWE-Fixer mention, updating the approach to include McNemar's test details, and clarifying that while RGFL shows stronger raw gains, SpecExtract's cost-efficiency makes it a distinct contribution since we can't directly compare numbers across different benchmarks. The revision is minor since I'm only inserting the specific sections the reviewer flagged, so I'll mark it as such and now draft the complete JSON with these surgical updates. Nemar test sentence in Evaluation section; add RGFL comparison note in "Mechanistic case" and "Evaluation" sections. I need to add RGFL after Agent-CoEvo in the landscape since they're both agentless integrations, and SWE-Fixer after SWE-Lego for the retrieval fine-tuning angle. Now I'm drafting the JSON updates—tracking the landscape additions, the McNemar sentence plus RGFL cost comparison in evaluation, adding both to key_references, and a minor description tweak. For the mechanistic case, I need to acknowledge RGFL's 12.8% at $4.4/instance with codebase access requirements, then position SpecExtract's +4-7 pp improvement at $0.05-0.10 as a distinct efficiency point on the cost-performance curve.
+
+Actually, I'm realizing RGFL also uses embedding-based signals in its two-stage ranking, so it would face the same distribution shift issues on post-2024 out-of-distribution repos that SpecExtract's BM25 advantage would help with—the mechanistic argument for SpecExtract's gain still holds even with RGFL in the picture.
+
+Updating the full JSON now... I'm finishing the comparison by noting that RGFL and SpecExtract operate at different cost-performance points—RGFL requires codebase access and multiple reasoning calls while SpecExtract uses a single forward pass, and their relative performance depends heavily on whether you're evaluating on the in-distribution SWE-bench Verified or the post-2024 SWE-bench-Live where embedding signals degrade. Now I need to verify that RGFL is included in the evaluation baselines section alongside Agentless, SpecRover-equivalent prompting, SoRFT-Qwen-7B, and SWE-Lego.
+
+I'll add RGFL as a published reference point with a note that direct SWE-bench-Live comparison is deferred to the extended paper, where I'll also evaluate the combined SpecExtract+RGFL configuration. The change_type is "minor" since these are targeted additions to the landscape and approach sections without restructuring the core contribution. Now I'm drafting each revised section carefully for the full JSON output. Updating the JSON with those additions now...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1093a04-c573-46c5-824a-713f22c49adc",
+  "isSidechain": false,
+  "requestId": "req_011CatZC7nnRb9XeUsQbF2y7",
+  "type": "assistant",
+  "uuid": "729cc405-d841-42e7-8b61-73424cba633f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_015gZYPudpMAwySGq1gLYhdb",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2748,
+      "cache_read_input_tokens": 35714,
+      "output_tokens": 15652,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2748,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 15652,
+          "cache_read_input_tokens": 35714,
+          "cache_creation_input_tokens": 2748,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2748
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-10T08:20:57.523Z_
+
+Now I have the key data I need. RGFL costs **$4.4/instance** (dozens of per-instance LLM calls reading candidate files), generates only unstructured natural language reasoning, and always requires codebase access. These are strong, concrete differentiators from SpecExtract. Let me now produce the revision.
+
+The strategic decision: this is a **minor fix**. The reviewer says the paper "should be ready to pass in Round 9" with exactly three additions. The stagnation at 3.5 is because each round keeps surfacing new competitors — RGFL is likely the last major one given the reviewer explicitly says so. The core idea is sound; executing these additions precisely is what's needed.
+
+Key analytical points from research:
+1. RGFL: $4.4/instance, code-space only (reads files), unstructured reasoning output, no behavioral spec fields — genuinely complementary not competing
+2. SWE-Fixer: trains a retriever (110K examples) to find relevant files — trains a different model for a different task than SpecExtract
+3. The RGFL cost ($4.4) vs SpecExtract ($0.05-0.10) is a 40-80× difference that must be foregrounded
+
+```json
+{
+  "title": "SpecExtract: Learning Issue-Space Behavioral Specifications from Bug Report Runtime Artifacts for Guided Program Repair",
+  "change_type": "minor",
+  "core_problem": "Automated repair agents fail on ambiguous bug reports not from lack of code understanding, but because unstructured issue text leaves behavioral expectations underspecified — what interface should change, what the user observed, and what correct behavior looks like are rarely made explicit. SpecRover (ICSE 2025) partially addresses this via per-instance LLM prompting that extracts specifications from CODE during codebase traversal, producing evidence artifacts in the form {(location, intended_behavior)} at $0.65/issue. Its error analysis (Section V-A, 'Reasons for Failure'; see https://arxiv.org/html/2408.02232, Section V-A) identifies that 107 of its 207 unresolved SWE-bench Lite tasks (51.7%) are classified as 'ambiguous issue description' — cases the paper characterizes as 'hard or impossible to solve' without further information, citing SWE-bench Verified as external validation for why underspecified descriptions constitute an irreducible failure mode for code-space approaches. This architectural limitation is structural: code-side spec extraction can only infer specifications from code that already exists, not from behavior that is described in the issue but not yet correctly implemented. Bug reports routinely contain latent behavioral specifications in their runtime artifacts: stack traces name the affected interface, error messages describe observed behavior, and reproducer assertions encode expected behavior. No method trains a dedicated model to extract these signals from bug report text into a structured repair specification — covering affected interface, observed behavior, expected behavior, and their delta — that could constrain both fault localization and patch generation before any codebase traversal begins.",
+  "opportunity": "Failing test assertions in SWE-bench's test patches encode implementation-agnostic behavioral specifications without revealing implementation strategies: `assert result == expected_value` or `with pytest.raises(ValueError)` states precisely what the program SHOULD do, independent of WHICH code to change or HOW to change it. By mechanically converting (problem_statement + test_patch assertions + stack traces) to structured JSON spec fields using AST-level test parsing and NLP extraction on SWE-bench's 2,294 instances, we construct a training corpus of 2,294 (bug_report, structured_spec) pairs — where the spec encodes behavioral expectations derivable without knowing the implementation strategy. This avoids the critical flaw of training on SWE-bench Pro requirements, which were authored by humans with full access to the golden patch (making them solution-conditioned). SWE-bench-Live (NeurIPS 2025, arXiv 2505.23419; ~1,890 Docker-reproducible instances across 223 repositories, drawn from post-January-2024 GitHub issues, growing at ~50 instances/month) provides a clean, contamination-resistant evaluation target with no training-set overlap. As SWE-bench Verified saturates with contamination concerns (OpenAI officially deprecated it in February 2026), SWE-bench-Live provides contamination-resistant evaluation on post-2024 issues unavailable during model training. SWE-bench Pro's human-written `requirements` and `interface` fields (731 public instances) serve as an ecological validity check — we measure cosine similarity between machine-derived specs and human requirements on a held-out 200-instance slice — confirming that AST-parsed test assertions produce specs that match expert behavioral descriptions, without using requirements as training supervision.",
+  "landscape": "SpecRover (ICSE 2025, arXiv 2408.02232) is the closest prior work: given a GitHub issue, it iteratively traverses the codebase, prompting Claude 3.5 Sonnet to extract function-level summaries from visited code, producing evidence artifacts in the form {(location, intended_behavior)} at $0.65/issue and 31% on SWE-bench Lite (93/300). SpecRover operates in code-space (it visits source files to generate specs from code) and uses per-instance prompting (no fine-tuning). Our approach operates in issue-space (extracts specs from bug report text and runtime artifacts before any codebase traversal) and uses supervised fine-tuning (consistent structured output at ~$0.05-0.10/issue). These are complementary directions: SpecRover's code-space specs and our issue-space specs could ultimately be fused. Agent-CoEvo (arXiv 2604.04580, April 2026) proposes the most directly competing design philosophy: rather than pre-extracting behavioral constraints from issue text, it coevolves code patches and test patches simultaneously during repair, treating tests as dynamic constraints that are iteratively revised alongside candidate fixes. Agent-CoEvo achieves 41.33% on SWE-bench Lite (DeepSeek-V3) and 46.4% on SWT-bench Lite, outperforming Agentless-1.5 (32%) on those benchmarks. SpecExtract takes the complementary pre-extraction stance: (1) issue-space specs derived before any codebase access are reusable across repair backbones without retraining, including static pipeline systems like Agentless that do not support dynamic constraint revision during search; (2) pre-extracted specs reduce the initial search space before coevolution begins, making SpecExtract a potential front-end that improves Agent-CoEvo's starting population rather than competing with it. RGFL (arXiv 2601.18044, Jan 2026) introduces a hierarchical reasoning module integrated with Agentless that generates structured, bug-specific natural language explanations for candidate files and elements at fault localization time, achieving file-level Hit@1 improvement from 71.4%→85%, element-level Exact Match under top-3 files from 36%→69%, and a 12.8% end-to-end repair success improvement on SWE-bench Verified. RGFL's method reads candidate files one at a time alongside the bug report, generating free-form causal reasoning about each file's relevance to the reported symptom — it always requires codebase access to generate its explanations, produces unstructured natural language rather than typed behavioral specs, and incurs $4.4/instance cost (3.7× Agentless) through multiple per-instance LLM reasoning calls over candidate files. SpecExtract and RGFL are complementary rather than competing across three dimensions: (a) SpecExtract extracts a structured 4-field JSON spec (affected interface, observed behavior, expected behavior, behavioral delta) from issue text alone before any codebase access, providing typed interface priors that reduce the initial candidate file set RGFL's reasoning module must process — directly lowering RGFL's per-instance cost; (b) SpecExtract's behavioral delta constrains patch generation, while RGFL constrains localization only; (c) SpecExtract runs at ~$0.05-0.10/instance (single SFT forward pass) versus RGFL's $4.4/instance, making SpecExtract practical as a standalone preprocessing step for cost-sensitive pipelines and as a candidate front-end for RGFL itself. The strongest configuration — SpecExtract front-end (cheap issue-space priors) + RGFL back-end (expensive code-space reasoning on a reduced candidate set) — is deferred to the ICSE 2027 extended paper. SWE-Fixer (ACL Findings 2025, aclanthology.org/2025.findings-acl.62/) fine-tunes a BM25+lightweight neural retrieval module on 110K GitHub issues for coarse-to-fine file retrieval in repair, achieving 22.0%/30.2% on SWE-bench Lite/Verified and requiring only two model calls per instance; the differentiator is that SWE-Fixer trains a retriever to identify relevant files directly, while SpecExtract trains a spec extractor to produce structured behavioral constraints (affected interface, expected behavior) that serve as typed query inputs to BM25 and the LLM fault localization prompt, improving retrieval precision rather than replacing the retriever — these are complementary, and SpecExtract's structured interface tokens could serve as high-precision query inputs to SWE-Fixer's BM25 stage. SWE-Lego (arXiv 2601.01426, Jan 2026) is the most directly competing concurrent SFT work: it trains on 32k high-quality task instances with error masking and a difficulty-based curriculum, achieving 52.6% on SWE-bench Verified (58.8% with test-time scaling at 16 samples) using a 32B model. SWE-Lego is an end-to-end system that produces complete code fixes; SpecExtract is a preprocessing module that extracts structured behavioral specs from bug report text before any repair attempt, and can plug into SWE-Lego or any other repair backbone as a drop-in front-end — improving fault localization precision and patch generation alignment without retraining the repair agent itself. CodeSpecBench (arXiv 2604.12268, April 2026) benchmarks existing LLMs (Claude, GPT-4, Gemini) on executable behavioral specification generation via prompting — it does not train a dedicated extractor, operates on code-side and description inputs rather than bug report runtime artifacts, and is an evaluation framework rather than a preprocessing pipeline for repair. Its benchmarking results show significant cross-instance variation in output structure and field completeness when prompting frontier LLMs for specs, validating the gap: no trained, issue-space specification extractor for repair preprocessing exists, and prompting-based spec generation is insufficiently reliable for programmatic downstream use. SpecFix (arXiv 2505.07270, May 2026) repairs ambiguous problem descriptions for LLM-based code generation benchmarks (HumanEval+, MBPP+, LiveCodeBench) via contrastive specification inference — analyzing the distribution of LLM-generated programs to identify and repair description ambiguity; SpecExtract operates on GitHub issue bug reports (not synthetic benchmark descriptions), produces structured 4-field JSON specs via supervised fine-tuning (not description repair), and serves as a preprocessing input to repair agents rather than modifying task descriptions. VibeRepair (arXiv 2602.08263, Feb 2026) translates buggy CODE into behavior specifications, repairs the spec, then synthesizes corrected code, achieving 19-23% improvement on Defects4J — code-space to spec, not text-space to spec. TraceRepair (arXiv 2604.02647, Apr 2026) uses runtime execution traces generated by instrumented code execution as shared repair constraints across a multi-agent committee, fixing 392 Defects4J defects — traces are generated during repair, not extracted from issue text before repair begins. RepoRepair (arXiv 2603.01048) generates hierarchical code documentation from source files toward the bug; its documentation is code-driven, not report-driven. SoRFT (arXiv 2502.20127, ACL 2025; https://aclanthology.org/2025.acl-long.559) fine-tunes on SWE-bench with RL to decompose the repair TASK into subtasks (file → function → line → edit), achieving 21.4% on SWE-bench Verified and 14.0% on SWE-bench Lite with a 7B model (30.8% Verified and 24.0% Lite with a 32B model) — it structures the repair pipeline, not the issue semantics. PathFix (arXiv 2510.14341) derives behavioral specs from static code execution paths — code-space and offline, not issue-space. The gap: no existing work trains a dedicated model to extract structured behavioral specifications from bug report text and embedded runtime artifacts, operating entirely in issue-space before codebase access.",
+  "approach": "We train SpecExtract, a Qwen3-Coder-30B-A3B model (Mixture-of-Experts: 30B total parameters, ~3B active per token — fine-tuning and inference cost scale with active parameters, comparable to a 3B dense model; fits on a single H100 80GB with QLoRA at ~17.5GB VRAM per Unsloth benchmarks; 2× H100 is the recommended training configuration for throughput, not minimum requirement) fine-tuned to map (bug_report_text, runtime_artifacts?) → structured JSON spec, where runtime artifacts are any combination of stack traces, error messages, test failure output, or explicit reproducer assertions present in the issue text. The model gracefully handles varying artifact availability through a masked-field training protocol: training instances are presented with random subsets of available artifacts so the model learns to produce well-formed specs from text-only, text+stack-trace, and text+test-assertion inputs. Each artifact field (stack_trace, error_message, test_assertions) is independently masked with p=0.5 at training time; masked fields are replaced with a [MISSING] token, and the model is trained to output null for those positions while filling remaining fields from whatever signals are available — not to infer missing artifacts from correlated signals.\n\n**NLP framing — structured IE for bug reports**: SpecExtract's primary NLP contribution is defining and solving a novel structured information extraction (IE) task: extracting typed behavioral specifications from semi-structured bug text under partial observability. This is analogous to NER/RE from clinical notes (symptom → diagnosis → treatment) or legal documents (party → obligation → condition): bug reports mix structured artifacts (stack frames with typed syntactic elements, assertion syntax) with unstructured prose (user complaint descriptions), and not all signal types are present in every instance. Zero-shot prompting of frontier LLMs produces inconsistent field coverage and schema adherence across the diversity of real-world bug report styles — CodeSpecBench (arXiv 2604.12268) benchmarks Claude, GPT-4, and Gemini on spec generation via prompting and documents significant cross-instance variation in output structure and field completeness, motivating a dedicated trained extractor with enforced schema. Supervised fine-tuning achieves three things zero-shot prompting cannot guarantee: (1) consistent 4-field typed JSON output regardless of input style variation; (2) graceful degradation under partial observability via the masked-field protocol ([MISSING] tokens, null output for absent fields); (3) a reproducible schema-enforced extraction interface that downstream repair backends can programmatically depend on. From an NLP perspective, SpecExtract introduces *behavioral spec extraction from bug reports* as a first-class structured IE task — separate from code summarization, issue severity classification, or defect localization — with its own schema, training corpus, and evaluation protocol.\n\n**Formal schema**: Each spec has four typed fields — (1) `affected_interface`: {module: str, signature: str|null, entry_point: str} extracted from stack frame function names and explicitly mentioned APIs; (2) `observed_behavior`: {error_type: str|null, error_message: str|null, symptom: str} from error output and user complaint; (3) `expected_behavior`: {description: str, assertions: [str]} as natural-language description plus test-style constraint strings when derivable; (4) `behavioral_delta`: str, a one-sentence expected-vs-actual summary. Worked example for a NumPy issue 'linalg.solve silently returns None for singular matrices instead of raising': {affected_interface: {module: 'numpy.linalg', entry_point: 'solve', signature: 'solve(a, b)'}, observed_behavior: {error_type: null, symptom: 'returns None for singular matrix input'}, expected_behavior: {description: 'should raise for non-invertible input', assertions: ['raises np.linalg.LinAlgError when matrix is singular']}, behavioral_delta: 'solve silently returns None instead of raising LinAlgError on singular input'}.\n\n**Training data construction (implementation-agnostic behavioral specifications)**: From SWE-bench full (2,294 instances including Verified 500 and the broader set): (1) parse `test_patch` test functions via Python AST to extract formal assertions — pytest.raises calls → error_type, assert statements → expected_behavior.assertions, decorated test function signatures → affected_interface hints; (2) extract stack traces and error strings from `problem_statement` text via regex heuristics → observed_behavior; (3) combine via LLM-assisted template fill using Qwen3-Coder-30B-A3B in a chain-of-thought extraction pass to produce coherent spec JSON; (4) validate on 200 SWE-bench Pro public instances that have non-null `requirements` and `interface` fields by computing cosine similarity (sentence-transformer) between mechanically-derived specs and human-authored requirements — target alignment ≥ 0.65 before training at scale (this threshold aligns with established semantic similarity cutoffs in information-extraction evaluation literature, where scores below 0.65 on sentence-transformer embeddings indicate insufficient semantic overlap for structural field matching); this validates the schema rather than using requirements as training targets. This is a pilot ecological validity check only — it confirms schema alignment with expert behavioral annotations on curated SWE-bench instances but cannot validate generalization to genuinely ambiguous in-the-wild reports that are not SWE-bench-adjacent; a full generalization validation would require human annotation of randomly sampled GitBugs instances and is deferred to the ICSE 2027 extended paper. Important framing on conditionality: test assertions are written alongside gold patches and encode the behavioral outcome the fix achieves. The training specs are therefore *implementation-agnostic* — they do not reveal which code to change or the implementation strategy — rather than strictly solution-independent. This distinction is explicitly addressed in the paper to avoid overclaiming.\n\n**Training data sufficiency**: The 2,294-instance corpus is appropriate for this structured extraction subtask. The output space is substantially simpler than end-to-end code repair: 4 typed fields totaling ~80-120 output tokens per instance vs. hundreds-to-thousands of tokens for complete code patches; the fixed schema and typed constraints further reduce the effective hypothesis space relative to free-form generation. Comparable structured IE tasks — slot-filling, clinical NER, biomedical relation extraction — achieve reliable generalization at 1-3k training examples when schema is fixed and input diversity is covered; the 2,294 instances span 300+ open-source repositories, covering the primary axis of variation (bug report style, domain, artifact availability). Qwen3-Coder's pretraining on code and technical text provides a strong prior for parsing stack traces and assertion syntax, further reducing the cold-start data requirement relative to a general-purpose LM.\n\nThe EMNLP 2026 ARR submission uses the 2,294-instance SWE-bench full corpus as the SFT training set; GitBugs augmentation (~3,000 pseudo-labeled instances, yielding a ~5,300-instance total corpus) is reserved for the ICSE 2027 extended paper.\n\n**Differentiation from SpecRover**: (1) issue-space — no codebase traversal needed at spec extraction time; (2) supervised learning — consistent, typed JSON output from a single forward pass (~$0.05-0.10/issue) vs. SpecRover's multi-step code traversal ($0.65/issue); (3) directly targets SpecRover's identified 51.7% ambiguous-description failure mode (Section V-A, 107/207 unresolved SWE-bench Lite tasks) by conditioning on all available runtime artifacts in the issue, not just the code side.\n\n**Integration with Agentless**: We integrate with Agentless (arXiv 2407.01489, v2 October 2024 open-source implementation) as the repair backbone for all SWE-bench-Live evaluations — it follows a fixed pipeline (hierarchical fault localization → patch generation → patch selection) with no iterative tool calls, making spec injection clean and reproducible. Confirmed from the Agentless paper's method section: the main fault-localization pipeline combines (a) LLM prompting over the repository folder tree to identify the top-N suspicious files and (b) embedding-based cosine similarity retrieval (OpenAI text-embedding-3-small via LlamaIndex) over code chunks — the union of both signal sets provides the candidate file list. BM25 appears in the Agentless paper only as the 'agentless RAG baseline' — a simpler comparison baseline adapted from the original SWE-bench paper that uses BM25 to retrieve file contents for direct LLM patch generation — and is not part of the main Agentless localization pipeline we extend. SpecExtract specs are injected at two points: (1) fault localization — we modify the LLM prompting step by prepending a structured spec header (affected_interface.module + entry_point) before the folder listing, so the LLM identifies suspicious directories with the affected interface explicitly in context; we additionally introduce a BM25 pass over file paths and module docstrings using the extracted interface tokens as a genuinely new third retrieval signal complementing Agentless's existing embedding-based similarity — BM25 exact-match on lexically-specific tokens like `numpy.linalg` or `django.db.models.QuerySet` catches files that semantic embeddings miss when the module is underrepresented in the embedder's training distribution, exactly the localization failure mode that intensifies on post-2024 SWE-bench-Live repos relative to in-distribution SWE-bench Verified; (2) patch generation — the repair LLM receives all four spec fields as an explicit behavioral constraint header in its prompt, focusing generation on the documented behavioral delta. Crucially, the BM25 queries in SpecExtract use structured extracted interface tokens (module names, function entry points from the spec JSON), not raw issue text — this provides lexically precise, distribution-shift-robust file matching that free-form issue text cannot guarantee, since issue text contains incidental mentions, synonyms, and colloquial descriptions that dilute BM25 precision.\n\n**Agentless baseline on SWE-bench-Live**: Per the SWE-bench-Live paper (arXiv 2505.23419, Table 3), Agentless resolves 11.67% (GPT-4o), 12.00% (GPT-4.1), and 13.33% (DeepSeek V3) of SWE-bench-Live Lite (300 instances) — substantially below its ~50.8% on SWE-bench Verified, reflecting the contamination-resistant, harder distribution of post-2024 issues. We run our own Agentless-direct baseline on SWE-bench-Live Lite (300 instances) using the same backbone LLM as our SpecExtract runs, establishing a clean within-experiment comparison; the published SWE-bench-Live numbers provide independent external validation of the baseline level. SpecExtract targets +4-7 percentage points improvement over the best Agentless backbone, reported as the primary experimental contribution.\n\n**Mechanistic case for the +4-7 pp improvement target**: RGFL (arXiv 2601.18044) achieves +12.8% end-to-end improvement over Agentless via per-instance LLM reasoning over candidate files at $4.4/instance — a code-space approach that always requires codebase access and uses unstructured reasoning rather than typed behavioral specs. SpecExtract's +4-7 pp target operates at a different cost-performance point: a single SFT forward pass at ~$0.05-0.10/instance, with gains from two mechanisms unavailable to RGFL: (a) BM25-anchored lexical matching on extracted interface tokens is distribution-shift-robust in a way that RGFL's embedding-based ranking signal is not — both approaches face noisier embeddings on post-2024 SWE-bench-Live repos underrepresented in embedder pretraining, but BM25 on exact module/function name tokens does not degrade under this shift; (b) behavioral delta injection at patch generation (RGFL constrains localization only). The comparison with RGFL is therefore about cost-efficiency rather than raw performance: SpecExtract targets meaningful improvement at ~$0.05-0.10/instance vs. RGFL's $4.4/instance (40-80× cheaper), making it practical as a standalone step or as a candidate front-end that reduces the candidate set RGFL must reason over. Agentless's embedding-based file localization achieves ~57% file-level Recall@1 on SWE-bench Lite (original Agentless paper), yet its end-to-end resolve rate drops ~4× from SWE-bench Verified (~50.8%) to SWE-bench-Live Lite (13.33% best case). A primary contributor to this degradation is fault localization failure on post-2024 repos that are underrepresented in embedding model training data: embedding similarity between an issue query and post-2024 codebase chunks is noisier than on in-distribution repos, because the model has not seen those module structures and naming conventions. SpecExtract's BM25 pass on extracted module/entry_point tokens addresses this directly: exact-match retrieval on tokens like `numpy.linalg` does not require the embedding model to have indexed those repository paths during pretraining and does not degrade under distribution shift. Hybrid BM25+dense retrieval is well-established to improve out-of-domain recall in code search — a two-stage pipeline combining BM25 first-pass retrieval with dense reranking improves MRR by 8.6% over dense-only on out-of-distribution queries (Revisiting Code Search in a Two-Stage Paradigm, ICSE 2023). The +4-7 pp improvement target reflects two compounding gains: (a) localization improvement from BM25-anchored interface token matching, which provides a high-precision signal robust to the post-2024 distribution shift Agentless's embedder faces; (b) generation improvement from Stage 3 behavioral constraint injection narrowing the patch candidate space to the documented behavioral delta — these gains compound because better localization provides a more focused candidate file set for patch generation.\n\n**Evaluation**: Primary eval on SWE-bench-Live Lite (300 instances, contamination-resistant, Docker-reproducible, post-2024 issues) with Agentless as backbone; per-field ablations independently zero out each spec field to quantify individual contribution to resolve rate. Statistical significance is assessed via McNemar's test on paired binary instance outcomes (SpecExtract+Agentless vs. Agentless-direct, each instance scored as resolved or not), with bootstrapped 95% CIs reported for the resolve-rate difference; at n=300, a 5 pp improvement (15 additional resolved instances) achieves McNemar p<0.05. Secondary eval: cosine-similarity validation on 200 SWE-bench Pro held-out instances (schema validity check). Comparison baselines: Agentless direct repair without spec (our own run + published 11-13% from SWE-bench-Live paper), SpecRover-equivalent prompting (ablation of supervised fine-tuning benefit), SoRFT-Qwen-7B (21.4% Verified / 14.0% Lite, structured subtask decomposition), SWE-Lego (52.6% Verified, end-to-end SFT backbone — SpecExtract as preprocessing front-end demonstrates orthogonal contribution). RGFL (arXiv 2601.18044) serves as a published reference point for reasoning-guided localization improvement (+12.8% on SWE-bench Verified at $4.4/instance); direct SWE-bench-Live comparison and combined SpecExtract+RGFL evaluation are deferred to the ICSE 2027 extended paper.\n\n**Publication scope**: The EMNLP 2026 ARR submission (auto-research mode, 6-10 days) reports results on the 2,294-instance SWE-bench full SFT corpus with SWE-bench-Live Lite 300-instance primary eval and a 2-field ablation (affected_interface vs. none, expected_behavior vs. none) — the two fields with the strongest localization and generation signal respectively. The full 5,300-instance corpus (with GitBugs augmentation) and all four per-field ablation fields constitute the ICSE 2027 extended paper.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~90-110 H100-hours (~180-220 A100-equivalent hours)",
+      "gpu_breakdown": "SFT partition (~10-14 H100-hours): Qwen3-Coder-30B-A3B QLoRA fine-tuning on 5,300 instances, 3 epochs, 2× H100 80GB recommended for throughput (single H100 80GB is technically sufficient at ~17.5GB VRAM) — MoE active-parameter efficiency reduces training cost to ~3B dense equivalent. Eval partition (~80-96 H100-hours): spec extraction inference on 5,300 instances (~4 H100-hours); SWE-bench-Live Lite main eval 300 instances × 12.5 min/instance / 4 parallel H100s ≈ 16 H100-hours; per-field ablations 4 fields × 300 instances ≈ 64 H100-hours; SWE-bench Pro validation ≈ 1 H100-hour.",
+      "gpu_utilization": "~50-60% — Docker sandbox test execution during SWE-bench-Live eval is CPU-bound; GPU idles between model inference calls",
+      "timeline": "3-5 months",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "~$216-264 (90-110h × $2.40/hr H100 SXM5 on-demand; within the 200 H100-hour hard constraint)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~135-160 H100-hours (~270-380 A100-equivalent hours)",
+      "gpu_breakdown": "SFT partition (~25-35 H100-hours): 3 fine-tuning configurations (schema variant, augmentation ablation, masked-field protocol variant). Eval partition (~110-125 H100-hours): spec extraction ~5 H100-hours; Agentless baseline run on 300 instances ≈ 16 H100-hours; SWE-bench-Live partial eval 600 instances / 4 parallel ≈ 31 H100-hours; per-field ablations on 300-instance subset × 4 fields ≈ 62 H100-hours; SWE-bench Pro validation ≈ 1 H100-hour.",
+      "gpu_utilization": "~60-70% — agent runs fine-tuning and SWE-bench-Live eval jobs continuously; human approves schema validation threshold, masked-field training protocol, retrieval bias weights, and ablation scope at daily check-ins",
+      "timeline": "5-9 weeks",
+      "team": "1 researcher, ~30 min/day check-in",
+      "claude_api_cost": "$200-400 (~2,500 orchestration turns at ~$0.10/turn Opus)",
+      "estimated_gpu_cost": "~$324-384 (135-160h × $2.40/hr H100); within the 200 H100-hour hard constraint",
+      "risk_note": "Critical unknown: whether AST-parsed test assertions produce specs that align with human behavioral descriptions (measured by cosine similarity ≥ 0.65 on 200 SWE-bench Pro validation instances). If alignment is below threshold, the spec schema needs redesign before scale-up. GitBugs pseudo-spec quality is the secondary risk — human spot-check of 100 instances recommended before augmentation scale-up."
+    },
+    "auto_research": {
+      "note": "Budget-capped auto-research only — uncapped sweeps would exceed the 200 H100-hour hard constraint. Capped to 3 fine-tuning configurations × 1 retrieval variant × 1 patch-generation prompt strategy on SWE-bench-Live Lite (300 instances) for the main configuration sweep, then ablations on the best-performing config only.",
+      "gpu_hours": "~160-180 H100-hours (budget-capped)",
+      "gpu_breakdown": "SFT partition (~30-35 H100-hours): 3 QLoRA configs on 5,300 instances. Eval partition (~130-145 H100-hours): 3-config main sweep 3 × 300 instances ≈ 48 H100-hours; per-field ablations on best config 300 × 4 fields ≈ 64 H100-hours; Agentless baseline ≈ 16 H100-hours; spec extraction inference ≈ 5 H100-hours; validation ≈ 1 H100-hour.",
+      "gpu_utilization": "~80-85% — continuous fine-tuning, inference, and SWE-bench-Live Docker eval; sandbox parallelized across 30 instances simultaneously",
+      "timeline": "6-10 days with 4 parallel H100 GPUs",
+      "team": "0 (setup only, ~3h initial configuration)",
+      "claude_api_cost": "$400-600 (~4,500 turns)",
+      "estimated_gpu_cost": "~$384-432 (160-180h × $2.40/hr H100)",
+      "speed_bottleneck": "SWE-bench-Live Docker sandbox throughput, not GPU compute; Qwen3-Coder-30B-A3B MoE inference (~3B active params) is fast and avoids multi-GPU coordination overhead that a dense 30B model would require"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline May 25, 2026 — 15 days remaining; conference October 24-29, Budapest) — NLP angle: structured information extraction from semi-structured bug text with partial observability, supervised fine-tuning motivation over zero-shot prompting, masked-field training protocol. The NLP contribution (task definition, schema, masked-field training, training corpus construction) is framed independently of the repair backbone integration; EMNLP ARR submission reports auto-research results (6-10 days): SFT on SWE-bench full 2,294-instance corpus, SWE-bench-Live Lite 300-instance primary eval, and 2-field ablation (affected_interface vs. none, expected_behavior vs. none). The full 5,300-instance corpus with all four per-field ablation fields is the ICSE 2027 extended paper.",
+    "ICSE 2027 (abstract deadline June 23, 2026; full paper ~July 2026; conference April-May 2027, Dublin) — SE angle; preferred primary target for full experimental results including GitBugs-augmented 5,300-instance corpus, SWE-bench-Live partial-set ablations, all four per-field ablation conditions, and combined SpecExtract+RGFL evaluation",
+    "NeurIPS 2026 (submission deadline expected May-June 2026) — systems and benchmarks angle; natural co-venue given SWE-bench-Live is NeurIPS 2025"
+  ],
+  "level": "solid",
+  "key_references": [
+    "SpecRover: Code Intent Extraction via LLMs (arXiv 2408.02232, ICSE 2025) — primary related work: code-space spec inference via prompting, 31% SWE-bench Lite (93/300), $0.65/issue; Section V-A 'Reasons for Failure' (see https://arxiv.org/html/2408.02232, Section V-A) categorizes 107/207 unresolved SWE-bench Lite tasks (51.7%) as 'ambiguous issue description', cases characterized as 'hard or impossible to solve' without further information, citing SWE-bench Verified as external validation for the hardness of this failure mode",
+    "SWE-bench Goes Live! (arXiv 2505.23419, NeurIPS 2025 D&B) — primary evaluation benchmark: ~1,890 contamination-resistant instances across 223 repositories, post-2024 GitHub issues, Docker-reproducible, growing at ~50 instances/month; Table 3 reports Agentless on SWE-bench-Live Lite (300 instances) at 11.67% (GPT-4o), 12.00% (GPT-4.1), 13.33% (DeepSeek V3) — establishes the Agentless-direct comparison level for our evaluation",
+    "RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models (arXiv 2601.18044, Jan 2026) — direct competitor on localization improvement: hierarchical reasoning module integrated with Agentless, reading candidate files one at a time alongside the bug report to generate free-form causal explanations; achieves file-level Hit@1 71.4%→85%, element-level Exact Match 36%→69%, +12.8% end-to-end repair success improvement on SWE-bench Verified; costs $4.4/instance (3.7× Agentless); complementary to SpecExtract: RGFL operates in code-space (requires codebase access, produces unstructured reasoning), SpecExtract operates in issue-space (no codebase access, produces typed JSON spec that can reduce the candidate set RGFL must reason over); combined SpecExtract+RGFL evaluation deferred to ICSE 2027",
+    "Agent-CoEvo: Beyond Fixed Tests: Repository-Level Issue Resolution as Coevolution of Code and Behavioral Constraints (arXiv 2604.04580, April 2026) — most directly competing design philosophy: coevolves code patches and test patches simultaneously during repair (41.33% SWE-bench Lite with DeepSeek-V3); SpecExtract's pre-extraction stance is complementary — issue-space specs reduce the initial search space before coevolution, and are pipeline-agnostic for static repair systems that do not support dynamic constraint revision",
+    "SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? (arXiv 2509.16941) — schema ecological validity validator: 731 public instances with human requirements and interface fields",
+    "SWE-Lego (arXiv 2601.01426, Jan 2026) — most competitive concurrent SFT work: 32k training instances, difficulty-based curriculum SFT, 52.6% SWE-bench Verified (58.8% with 16-sample test-time scaling) with 32B model; end-to-end repair backbone that SpecExtract can serve as a preprocessing front-end for",
+    "SWE-Fixer (ACL Findings 2025, aclanthology.org/2025.findings-acl.62/) — fine-tunes BM25+lightweight neural retrieval module on 110K GitHub issues for coarse-to-fine file retrieval, achieving 22.0%/30.2% on SWE-bench Lite/Verified (24.7%/32.8% with P2P filtering) using only two model calls per instance; complementary to SpecExtract: SWE-Fixer trains a retriever to find relevant files directly, SpecExtract trains a spec extractor to produce structured behavioral constraints (typed interface tokens) that improve BM25 query precision — SpecExtract's extracted interface tokens could serve as high-precision query inputs to SWE-Fixer's BM25 stage",
+    "Agentless: Demystifying LLM-based Software Engineering Agents (arXiv 2407.01489, v2 October 2024) — integration repair backbone: open-source fixed pipeline; confirmed from paper method section: main fault-localization pipeline uses (a) LLM prompting over repository folder tree and (b) embedding-based cosine similarity (OpenAI text-embedding-3-small via LlamaIndex) over code chunks; BM25 appears only in the Agentless paper's comparison baseline ('agentless RAG baseline' from the original SWE-bench paper) — it is not part of the main localization pipeline that SpecExtract extends; SpecExtract introduces BM25 as a new third retrieval signal using structured extracted interface tokens; ~50.8% SWE-bench Verified (Agentless-1.5), 32% SWE-bench Lite; file-level Recall@1 ~57% on SWE-bench Lite",
+    "Revisiting Code Search in a Two-Stage Paradigm (ICSE 2023, dl.acm.org/doi/pdf/10.1145/3539597.3570383) — hybrid BM25+dense code retrieval: two-stage BM25 first-pass → CodeBERT reranking improves MRR by 8.6% over dense-only on out-of-distribution queries; mechanistic support for adding BM25 as a third retrieval signal in Agentless fault localization on post-2024 SWE-bench-Live repos",
+    "CodeSpecBench: Benchmarking LLMs for Executable Behavioral Specification Generation (arXiv 2604.12268, April 2026) — evaluates prompting-based spec generation from code and descriptions using existing LLMs; documents significant cross-instance variation in output structure and field completeness when prompting frontier LLMs, directly motivating the SFT approach (consistent schema adherence requires supervised training, not just prompting); is an evaluation framework rather than a repair preprocessing pipeline — confirms both that structured spec generation is an active research area and that the trained, issue-space extractor gap remains open",
+    "SpecFix: Automated Repair of Ambiguous Problem Descriptions for LLM-Based Code Generation (arXiv 2505.07270, May 2026) — repairs ambiguous problem descriptions for code generation benchmarks (HumanEval+, MBPP+, LiveCodeBench) via contrastive specification inference; operates on synthetic benchmark descriptions rather than GitHub issue bug reports, produces repaired descriptions rather than structured 4-field specs, and targets benchmark performance improvement rather than repair preprocessing — distinct from SpecExtract in domain, method, and purpose",
+    "Specification Vibing for Automated Program Repair / VibeRepair (arXiv 2602.08263, Feb 2026) — code-space spec extraction before repair, Defects4J, 19-23% improvement",
+    "Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate / TraceRepair (arXiv 2604.02647, Apr 2026) — trace-based repair constraints during execution, Defects4J",
+    "SoRFT: Issue Resolving with Subtask-oriented Reinforced Fine-Tuning (arXiv 2502.20127, ACL 2025; https://aclanthology.org/2025.acl-long.559) — structured repair subtask decomposition with RL; SoRFT-Qwen-7B: 21.4% SWE-bench Verified / 14.0% SWE-bench Lite; SoRFT-Qwen-32B: 30.8% SWE-bench Verified / 24.0% SWE-bench Lite; key baseline for SpecExtract's supervised fine-tuning approach",
+    "On the Role of Fault Localization Context for LLM-Based Program Repair (arXiv 2604.05481) — fault localization recall analysis: documents how localization granularity and retrieval method affect end-to-end repair performance; provides empirical context for why embedding-based localization degrades on out-of-distribution repos",
+    "GitBugs: Bug Reports for Duplicate Detection, Retrieval Augmented Generation, and More (arXiv 2504.09651) — 150K+ open-licensed bug reports for training augmentation",
+    "RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair (arXiv 2603.01048)",
+    "PathFix: Automated Program Repair with Expected Path (arXiv 2510.14341)"
+  ],
+  "description": "We introduce SpecExtract, the first supervised issue-space specification extractor for program repair: a fine-tuned Qwen3-Coder-30B-A3B model (MoE, ~3B active parameters — fine-tuning and inference cost comparable to a 3B dense model; fits on a single H100 80GB at ~17.5GB VRAM with QLoRA; 2× H100 recommended for training throughput) that maps (bug_report_text, runtime_artifacts?) → a structured four-field JSON spec covering affected interface, observed behavior, expected behavior, and behavioral delta. The primary NLP contribution is defining *behavioral spec extraction from bug reports* as a novel structured information extraction (IE) task — analogous to NER/RE from clinical notes or legal documents — where heterogeneous bug text mixes structured artifacts (stack traces, assertion syntax) with unstructured prose under partial observability. Zero-shot prompting of frontier LLMs produces inconsistent field coverage across diverse bug report styles (documented by CodeSpecBench, arXiv 2604.12268), motivating supervised fine-tuning: the SFT approach delivers consistent 4-field typed JSON output regardless of input style variation, graceful degradation via masked-field training when runtime artifacts are absent, and a reproducible schema-enforced extraction interface that repair backends can programmatically depend on. The masked-field training protocol (p=0.5 per artifact field, [MISSING] token, null output for masked positions) enables graceful handling of partially-available runtime artifacts at inference time. The key methodological insight for training data construction is that failing test assertions in SWE-bench test patches encode implementation-agnostic behavioral specifications — they state what the program SHOULD do without revealing which code to change or the implementation strategy — enabling AST-level test parsing combined with problem-statement NLP extraction to construct 2,294 clean (bug_report, structured_spec) training pairs from SWE-bench. The 2,294-instance corpus is appropriate for this structured extraction subtask: the output space (4 typed fields, ~80-120 tokens/instance) is substantially simpler than end-to-end code repair, and comparable structured IE tasks achieve reliable generalization at 1-3k examples when schema is fixed and input diversity is covered by instances spanning 300+ repositories. SWE-bench Pro public requirements serve as a pilot ecological validity check (cosine similarity ≥ 0.65 on 200 held-out instances, confirming schema alignment with expert annotations), not a training target. GitBugs (150K+ open-licensed bug reports) provides ~3,000 pseudo-labeled augmentation instances for the ICSE 2027 extended paper; the EMNLP 2026 ARR submission uses the 2,294-instance SWE-bench full corpus only. Extracted specs are integrated with Agentless (arXiv 2407.01489, v2 October 2024) as the repair backbone. Confirmed from the Agentless paper's method section: the main fault-localization pipeline uses LLM prompting over the repository folder tree combined with embedding-based cosine similarity (OpenAI text-embedding-3-small via LlamaIndex) — BM25 appears in the Agentless paper only as the 'agentless RAG baseline' comparison, not the main pipeline. SpecExtract augments Agentless localization by (a) prepending a structured spec header to the LLM prompting step and (b) adding a BM25 pass over file paths and docstrings using extracted interface tokens as a genuinely new third retrieval signal — these are structured module/function tokens (e.g., `numpy.linalg`, `django.db.models.QuerySet`), not raw issue text, providing lexically precise distribution-shift-robust file matching that catches modules underrepresented in the embedder's training distribution on post-2024 SWE-bench-Live repos; at patch generation, a structured behavioral constraint prefix focuses generation on the documented delta. Primary evaluation is on SWE-bench-Live Lite (300 instances, contamination-resistant, Docker-reproducible, post-2024 issues), with a within-experiment Agentless-direct baseline (complemented by published SWE-bench-Live results at 11-13%) and a mechanistically-grounded target improvement of +4-7 percentage points at ~$0.05-0.10/instance — a different cost-performance point than RGFL (arXiv 2601.18044), which achieves +12.8% via per-instance code-space reasoning at $4.4/instance (40-80× more expensive). Statistical significance is assessed via McNemar's test on paired binary instance outcomes, with bootstrapped 95% CIs; at n=300, a 5 pp improvement achieves McNemar p<0.05. Per-field ablations measure individual spec contributions. SWE-Fixer (ACL Findings 2025) fine-tunes a retriever for file identification; SpecExtract trains a spec extractor whose typed interface tokens improve BM25 query precision — complementary approaches. Agent-CoEvo (arXiv 2604.04580, 41.33% SWE-bench Lite) represents the competing dynamic-coevolution philosophy; SpecExtract's pre-extraction stance is complementary and pipeline-agnostic. SWE-Lego (52.6% Verified with 32B) is included as an end-to-end SFT baseline to demonstrate that SpecExtract provides orthogonal gains as a preprocessing front-end. Differentiated from SpecRover (code-space prompting, $0.65/issue, 31% SWE-bench Lite) by operating in issue-space at ~$0.05-0.10/issue — directly targeting SpecRover's Section V-A identified 51.7% ambiguous-description failure mode. Compute in H100-hours: manual mode ~90-110 H100-hours (SFT ~10-14 H100-hours, eval ~80-96 H100-hours), within the 200-hour hard constraint.",
+  "project_name": "structured_spec_repair",
+  "source": "web_research"
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "729cc405-d841-42e7-8b61-73424cba633f",
+  "isSidechain": false,
+  "requestId": "req_011CatZC7nnRb9XeUsQbF2y7",
+  "type": "assistant",
+  "uuid": "4da4be47-8fce-4be4-a67b-4af5d9f85cdb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_015gZYPudpMAwySGq1gLYhdb",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2748,
+      "cache_read_input_tokens": 35714,
+      "output_tokens": 15652,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2748,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 15652,
+          "cache_read_input_tokens": 35714,
+          "cache_creation_input_tokens": 2748,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2748
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"SpecExtract: Learning Issue-Space Behavioral Specifications from Bug R…",
+  "leafUuid": "4da4be47-8fce-4be4-a67b-4af5d9f85cdb",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Structured behavioral specs from issue text for repair preprocessing",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"SpecExtract: Learning Issue-Space Behavioral Specifications from Bug R…",
+  "leafUuid": "4da4be47-8fce-4be4-a67b-4af5d9f85cdb",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Structured behavioral specs from issue text for repair preprocessing",
+  "sessionId": "fd151e9a-6fa3-4069-abc8-67ae6568c39f"
+}
+```
+
+---

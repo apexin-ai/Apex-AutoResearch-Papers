@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "41b4afb1a04e7b3d1f13",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: contrastive_trace_safety ## 运行环境 - 项目代码根目录: /root/autodl-tmp/contrastive_trace_safety ## 环境搭建 连接",
+  "task_key": "a6386736-a31f-4df6-b220-d7b42ff11685",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/a6386736-a31f-4df6-b220-d7b42ff11685.jsonl",
+    "occurrence": 1,
+    "bytes": 576945,
+    "sha256": "dd683a663d83f9da2e43f983a61c4d98ee2b8481bbfced8ad47015461b1180cc"
+  },
+  "statistics": {
+    "messages": 274,
+    "user_turns": 1,
+    "tool_calls": 80,
+    "roles": {
+      "record": 74,
+      "user": 1,
+      "assistant": 39,
+      "tool_call": 80,
+      "tool_result": 80
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "41b4afb1a04e7b3d1f13-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 272,
+      "chunks": [
+        {
+          "path": "41b4afb1a04e7b3d1f13-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "41b4afb1a04e7b3d1f13-part-0002.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-contrastive-trace-safety-root-autodl-tmp-contrastive-trace-saf-copy-4.md"
+}

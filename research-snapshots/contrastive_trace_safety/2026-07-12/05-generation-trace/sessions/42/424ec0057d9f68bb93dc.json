@@ -1,0 +1,1817 @@
+{
+  "schema_version": "1.0",
+  "id": "424ec0057d9f68bb93dc",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are helping review an ML paper. Search for these specific items: 1. **LTRR (Learning To Rank Retrievers, SIGIR 2025 ",
+  "task_key": "agent-a2423feb6edcb0601",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a2423feb6edcb0601.jsonl",
+    "occurrence": 1,
+    "bytes": 87115,
+    "sha256": "c769fa68332f107a2598ea6ba1eca53b1af4f088046beb35a8cc8faaaff74b18"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 1,
+    "tool_calls": 15,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 15,
+      "tool_result": 15
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-11T23:55:55.793Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are helping review an ML paper. Search for these specific items:\n\n1. **LTRR (Learning To Rank Retrievers, SIGIR 2025 LiveRAG, arXiv 2506.13743)** — claimed to show pairwise XGBoost outperforms neural rankers for retriever selection. Verify existence and claims.\n\n2. **BEST-Route (ICML 2025, arXiv 2506.22716)** — routes model + sampling count. Verify.\n\n3. **RouteLLM (ICLR 2025, arXiv 2406.18665)** — verify venue (claimed ICLR 2025, some sources say ICML 2025). Verify its 4 router architectures.\n\n4. **RADAR (arXiv 2509.25426)** — IRT-based routing. Verify.\n\n5. Also search for: \"granularity routing code\" or \"adaptive granularity code generation 2025 2026\" to find any concurrent work on granularity routing in the code domain.\n\n6. Search for \"FreeChunker arXiv 2510.20356\" and verify its critique of MoE-based granularity methods.\n\n7. Search for any other configuration routing papers from 2025-2026 that route over retrieval parameters (not model selection).\n\nUse WebSearch. Report findings concisely."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "ebc3868d-0b48-4422-8f63-4c4b12778e2d",
+            "agentId": "a2423feb6edcb0601",
+            "type": "user",
+            "uuid": "5d00d540-9ffd-494b-b072-1a4de50bc08b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-11T23:55:55.796Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "5d00d540-9ffd-494b-b072-1a4de50bc08b",
+                "isSidechain": true,
+                "agentId": "a2423feb6edcb0601",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "6c62efb4-78d0-4c1f-8c09-0014846dc3c6",
+                "timestamp": "2026-05-11T23:55:55.796Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-11T23:55:58.282Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for all these items in parallel. Let me first load the WebSearch tool schema."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6c62efb4-78d0-4c1f-8c09-0014846dc3c6",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011Cawgi78FxrcudaFwFMTzj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b6822863-6701-4e35-8243-053ad83e3220",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HNSygtWNzzwnPZeuFscaKo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 873,
+                "cache_read_input_tokens": 8223,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 873,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-11T23:55:58.834Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019h14iKdBtRTBwBJNihu4mi",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6822863-6701-4e35-8243-053ad83e3220",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011Cawgi78FxrcudaFwFMTzj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4c66ea97-32b5-4ca2-af46-ae777b65312b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HNSygtWNzzwnPZeuFscaKo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 873,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 97,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 873
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 97,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 873,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 873,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-11T23:55:58.836Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_019h14iKdBtRTBwBJNihu4mi",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c66ea97-32b5-4ca2-af46-ae777b65312b",
+            "isSidechain": true,
+            "promptId": "ebc3868d-0b48-4422-8f63-4c4b12778e2d",
+            "agentId": "a2423feb6edcb0601",
+            "type": "user",
+            "uuid": "b9afd20f-f7ce-483f-ad21-02a137466a9f",
+            "sourceToolAssistantUUID": "4c66ea97-32b5-4ca2-af46-ae777b65312b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-11T23:56:01.384Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me run all the searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b9afd20f-f7ce-483f-ad21-02a137466a9f",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011CawgiL8bbAvef1fPHG8bA",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d71fa56a-24dc-41d5-bfc2-f8886190d4fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TPyth922CBPBevT8F9MCu2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1414,
+                "cache_read_input_tokens": 9096,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1414,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-11T23:56:02.232Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PEga94PhPbucM1RP55sZVM",
+              "name": "WebSearch",
+              "input": {
+                "query": "LTRR Learning To Rank Retrievers arXiv 2506.13743 SIGIR 2025 LiveRAG"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d71fa56a-24dc-41d5-bfc2-f8886190d4fa",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011CawgiL8bbAvef1fPHG8bA",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "57314bc3-7d20-4afd-81ed-9f7760aaa5e6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TPyth922CBPBevT8F9MCu2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1414,
+                "cache_read_input_tokens": 9096,
+                "output_tokens": 94,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1414
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 94,
+                    "cache_read_input_tokens": 9096,
+                    "cache_creation_input_tokens": 1414,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1414,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-11T23:56:09.407Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PEga94PhPbucM1RP55sZVM",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LTRR Learning To Rank Retrievers arXiv 2506.13743 SIGIR 2025 LiveRAG\"\n\nLinks: [{\"title\":\"LTRR: Learning To Rank Retrievers for LLMs\",\"url\":\"https://arxiv.org/pdf/2506.13743\"},{\"title\":\"[2506.13743] LTRR: Learning To Rank Retrievers for LLMs\",\"url\":\"https://arxiv.org/abs/2506.13743\"},{\"title\":\"GitHub - kimdanny/Starlight-LiveRAG: SIGIR 2025 LiveRAG Spotlight; LTRR: Learning To Rank Retrievers for LLMs\",\"url\":\"https://github.com/kimdanny/Starlight-LiveRAG\"},{\"title\":\"LTRR: Learning To Rank Retrievers for LLMs - Fernando Diaz\",\"url\":\"https://841.io/doc/ltrr.pdf\"},{\"title\":\"(PDF) SIGIR 2025 -- LiveRAG Challenge Report\",\"url\":\"https://www.researchgate.net/publication/393477229_SIGIR_2025_--_LiveRAG_Challenge_Report\"},{\"title\":\"SIGIR 2025 – LiveRAG Challenge Report\",\"url\":\"https://arxiv.org/html/2507.04942v2\"},{\"title\":\"Leveraging LLMs for Unsupervised Dense Retriever Ranking | Request PDF\",\"url\":\"https://www.researchgate.net/publication/382190252_Leveraging_LLMs_for_Unsupervised_Dense_Retriever_Ranking\"},{\"title\":\"[Literature Review] LTRR: Learning To Rank Retrievers for LLMs\",\"url\":\"https://www.themoonlight.io/en/review/ltrr-learning-to-rank-retrievers-for-llms\"},{\"title\":\"GitHub - ii-research/RAG_Overview: TBA · GitHub\",\"url\":\"https://github.com/ii-research/RAG_Overview\"},{\"title\":\"RewardRank: Optimizing True Learning-to-Rank Utility\",\"url\":\"https://arxiv.org/html/2508.14180v2\"}]\n\nBased on the search results, here's what I found about LTRR:\n\n## LTRR: Learning To Rank Retrievers for LLMs\n\nLTRR is a framework that learns to rank retrievers according to their expected contribution to downstream RAG (Retrieval-Augmented Generation) performance.\n\n### Key Approach\n\nLTRR is a novel query routing approach explicitly optimized for downstream LLM utility, with ranking of retrievers based directly on the relative improvement in the LLM's generation quality compared to a no-retrieval baseline. This approach inherently addresses both retriever-selection (\"where to query\") and retrieval-necessity (\"when to query\"), as no-retrieval is explicitly included as one of the routing options.\n\n### Results\n\nLTRR algorithms, particularly those trained using pairwise XGBoost, significantly outperform the best standard single-retriever-based RAG systems in both in-distribution and some out-of-distribution evaluations. The gains are particularly substantial when training with the Answer Correctness (AC) objective and when using pairwise ranking methods, with XGBoost yielding the best results.\n\n### SIGIR 2025 LiveRAG\n\nThe work was presented at the SIGIR 2025 LiveRAG Workshop, where it was selected for a spotlight talk. As part of the SIGIR 2025 LiveRAG challenge, the system demonstrated the practical viability of the approach, achieving competitive performance in both answer correctness and faithfulness. The code has been released as an official repository of the paper.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "57314bc3-7d20-4afd-81ed-9f7760aaa5e6",
+            "isSidechain": true,
+            "promptId": "ebc3868d-0b48-4422-8f63-4c4b12778e2d",
+            "agentId": "a2423feb6edcb0601",
+            "type": "user",
+            "uuid": "305aaa2d-2afa-4ea1-9f54-da1f5163ae26",
+            "sourceToolAssistantUUID": "57314bc3-7d20-4afd-81ed-9f7760aaa5e6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-11T23:56:11.980Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FMzTgMxH7pKaw3iiWbhZC6",
+              "name": "WebSearch",
+              "input": {
+                "query": "BEST-Route ICML 2025 arXiv 2506.22716 routing model sampling"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "305aaa2d-2afa-4ea1-9f54-da1f5163ae26",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011Cawgj7JwxbRSi8iJe3JNh",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3b89a1d0-11ec-43bf-b6e9-2c5735112cab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LrFDhUsYQUfKzeQ2ZRrw29",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1003,
+                "cache_read_input_tokens": 10510,
+                "output_tokens": 75,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1003
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 75,
+                    "cache_read_input_tokens": 10510,
+                    "cache_creation_input_tokens": 1003,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1003,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-11T23:56:17.496Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FMzTgMxH7pKaw3iiWbhZC6",
+              "type": "tool_result",
+              "content": "Web search results for query: \"BEST-Route ICML 2025 arXiv 2506.22716 routing model sampling\"\n\nLinks: [{\"title\":\"[2506.22716] BEST-Route: Adaptive LLM Routing with Test-Time Optimal Compute\",\"url\":\"https://arxiv.org/abs/2506.22716\"},{\"title\":\"BEST-Route: Adaptive LLM Routing with Test-Time Optimal Compute\",\"url\":\"https://arxiv.org/html/2506.22716\"},{\"title\":\"Computation and Language Jun 2025\",\"url\":\"https://www.arxiv.org/list/cs.CL/2025-06?skip=2400&show=50\"},{\"title\":\"ICML 2025 Papers\",\"url\":\"https://icml.cc/virtual/2025/papers.html\"},{\"title\":\"Submission and Formatting Instructions for International Conference on Machine Learning (ICML 2025)\",\"url\":\"https://arxiv.org/html/2506.00772\"},{\"title\":\"GitHub - DmitryRyumin/ICML-2025-Papers: ICML 2025 Papers: Dive into cutting-edge research from the premier machine learning conference. Stay current with breakthroughs in deep learning, generative AI, optimization, reinforcement learning, and beyond. Code implementations included. ⭐ support the future of machine learning research!\",\"url\":\"https://github.com/DmitryRyumin/ICML-2025-Papers\"},{\"title\":\"Position: Machine Learning Conferences Should Establish a “Refutations and Critiques” Track\",\"url\":\"https://arxiv.org/html/2506.19882v3\"},{\"title\":\"Paper Digest: ICML 2025 Papers & Highlights – Paper Digest\",\"url\":\"https://www.paperdigest.org/2025/06/icml-2025-papers-highlights/\"},{\"title\":\"ICML 2025 Statistics - Paper Copilot\",\"url\":\"https://papercopilot.com/statistics/icml-statistics/icml-2025-statistics/\"},{\"title\":\"ICML 2025 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=ICML.cc%2F2025%2FConference\"}]\n\nBased on the search results, here's what I found about BEST-Route:\n\nBEST-Route has been accepted to ICML 2025. BEST-Route is a novel routing framework that chooses a model and the number of responses to sample from it based on query difficulty and the quality thresholds.\n\nThe core idea behind the paper is that for small models, generating multiple responses and selecting the best can enhance quality while remaining cheaper than a single large-model response, and BEST-Route leverages this idea. Prior query routing approaches generate only one response from the selected model and a single response from a small (inexpensive) model was often not good enough to beat a response from a large (expensive) model due to which they end up overusing the large model and missing out on potential cost savings.\n\nThe paper (arXiv 2506.22716) addresses the challenge of large language models being expensive to deploy at scale, with LLM query routing mitigating this by dynamically assigning queries to models of varying cost and quality to obtain a desired trade-off.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3b89a1d0-11ec-43bf-b6e9-2c5735112cab",
+            "isSidechain": true,
+            "promptId": "ebc3868d-0b48-4422-8f63-4c4b12778e2d",
+            "agentId": "a2423feb6edcb0601",
+            "type": "user",
+            "uuid": "711a4c9a-fbb9-4b7c-af0f-efc17b30c906",
+            "sourceToolAssistantUUID": "3b89a1d0-11ec-43bf-b6e9-2c5735112cab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-11T23:56:19.783Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UPLRveUex99hSus5mX3AB5",
+              "name": "WebSearch",
+              "input": {
+                "query": "RouteLLM arXiv 2406.18665 ICLR 2025 or ICML 2025 venue router architectures"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "711a4c9a-fbb9-4b7c-af0f-efc17b30c906",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011CawgjhuKLJEQHUDoaJwY7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "54a65799-2552-464d-a19e-8daff39d7284",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012snGTeSMAbiQJTSWEQ2qQH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 880,
+                "cache_read_input_tokens": 11513,
+                "output_tokens": 86,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 880
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 86,
+                    "cache_read_input_tokens": 11513,
+                    "cache_creation_input_tokens": 880,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 880,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-11T23:56:24.795Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UPLRveUex99hSus5mX3AB5",
+              "type": "tool_result",
+              "content": "Web search results for query: \"RouteLLM arXiv 2406.18665 ICLR 2025 or ICML 2025 venue router architectures\"\n\nLinks: [{\"title\":\"[2406.18665] RouteLLM: Learning to Route LLMs with Preference Data\",\"url\":\"https://arxiv.org/abs/2406.18665\"},{\"title\":\"RouteLLM: Learning to Route LLMs with Preference Data\",\"url\":\"https://arxiv.org/pdf/2406.18665\"},{\"title\":\"ICLR Poster RouteLLM: Learning to Route LLMs from Preference Data\",\"url\":\"https://iclr.cc/virtual/2025/poster/30737\"},{\"title\":\"RouteLMT: Learned Sample Routing for Hybrid LLM Translation Deployment\",\"url\":\"https://arxiv.org/html/2604.22520\"},{\"title\":\"RouteLLM: Learning to Route LLMs from Preference Data | OpenReview\",\"url\":\"https://openreview.net/forum?id=8sSqNntaMr\"},{\"title\":\"[2406.18665v1] RouteLLM: Learning to Route LLMs with Preference Data\",\"url\":\"https://arxiv.org/abs/2406.18665v1\"},{\"title\":\"[2406.18665v2] RouteLLM: Learning to Route LLMs with Preference Data\",\"url\":\"https://arxiv.org/abs/2406.18665v2\"},{\"title\":\"[2406.18665v3] RouteLLM: Learning to Route LLMs with Preference Data\",\"url\":\"https://arxiv.org/abs/2406.18665v3\"},{\"title\":\"ICL-Router: In-Context Learned Model Representations for LLM Routing\",\"url\":\"https://arxiv.org/html/2510.09719\"},{\"title\":\"ICML 2026\",\"url\":\"https://icml.cc/\"}]\n\nBased on the search results, I found relevant information about RouteLLM:\n\n## RouteLLM Paper Details\n\nRouteLLM (arXiv:2406.18665) was submitted on June 26, 2024, with the latest version (v4) revised on February 23, 2025.\n\n**Venue:** The paper was accepted to ICLR 2025 as a poster presentation, introducing a training framework for learning efficient router models that dynamically select between a stronger and weaker LLM during inference.\n\n**Main Contribution:** The paper proposes several efficient router models that dynamically select between a stronger and a weaker LLM during inference, optimizing the balance between cost and response quality, with a training framework leveraging human preference data and data augmentation techniques.\n\n**Key Results:** The evaluation on widely-recognized benchmarks shows that the approach significantly reduces costs by over 2 times in certain cases without compromising the quality of responses. Additionally, the router models demonstrate significant transfer learning capabilities, maintaining their performance even when the strong and weak models are changed.\n\nThe paper was accepted to **ICLR 2025** (not ICML 2025), as evidenced by its presence on the ICLR 2025 virtual conference program.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "54a65799-2552-464d-a19e-8daff39d7284",
+            "isSidechain": true,
+            "promptId": "ebc3868d-0b48-4422-8f63-4c4b12778e2d",
+            "agentId": "a2423feb6edcb0601",
+            "type": "user",
+            "uuid": "f35e7363-adb9-45d6-9319-70eed4ec975e",
+            "sourceToolAssistantUUID": "54a65799-2552-464d-a19e-8daff39d7284",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-11T23:56:26.832Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UpekQtXyNrvZJXxXx8ocub",
+              "name": "WebSearch",
+              "input": {
+                "query": "RADAR arXiv 2509.25426 IRT routing"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f35e7363-adb9-45d6-9319-70eed4ec975e",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011CawgkF72kgJFXqubPuEDr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "62640f0c-ca71-4ff1-a21d-b723a7ad6a2d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LQnb5fdAvTGfFKGF1nMDn7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 868,
+                "cache_read_input_tokens": 12393,
+                "output_tokens": 66,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 868
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 66,
+                    "cache_read_input_tokens": 12393,
+                    "cache_creation_input_tokens": 868,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 868,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-11T23:56:36.005Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UpekQtXyNrvZJXxXx8ocub",
+              "type": "tool_result",
+              "content": "Web search results for query: \"RADAR arXiv 2509.25426 IRT routing\"\n\nLinks: [{\"title\":\"RADAR: Reasoning-Ability and Difficulty-Aware Routing for ...\",\"url\":\"https://arxiv.org/pdf/2509.25426\"},{\"title\":\"RADAR: Reasoning–Ability and Difficulty-Aware Routing for Reasoning LLMs\",\"url\":\"https://arxiv.org/html/2509.25426\"},{\"title\":\"[2509.25426] RADAR: Reasoning-Ability and Difficulty-Aware Routing for Reasoning LLMs\",\"url\":\"https://arxiv.org/abs/2509.25426\"},{\"title\":\"IRT-Router: Effective and Interpretable Multi-LLM Routing via Item Response Theory\",\"url\":\"https://arxiv.org/html/2506.01048v2\"},{\"title\":\"RaFD: Flow-Guided Radar Detection for Robust Autonomous Driving\",\"url\":\"https://arxiv.org/html/2509.16261\"},{\"title\":\"RADAR: A rapid discovery algorithm for routes in SDN-based IoV - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/pii/S2352864824000932\"},{\"title\":\"[2509.16261] RaFD: Flow-Guided Radar Detection for Robust Autonomous Driving\",\"url\":\"https://arxiv.org/abs/2509.16261\"},{\"title\":\"Exploring Radar Data Representations in Autonomous Driving: A Comprehensive Review\",\"url\":\"https://arxiv.org/html/2312.04861v2\"},{\"title\":\"Angle-Equivariant Convolutional Neural Networks for Interference Mitigation in Automotive Radar\",\"url\":\"https://arxiv.org/html/2401.05385v1\"},{\"title\":\"[2509.12482] Towards Foundational Models for Single-Chip Radar\",\"url\":\"https://arxiv.org/abs/2509.12482\"}]\n\nBased on the search results, I found detailed information about RADAR (arXiv 2509.25426) and its use of IRT for routing:\n\n## RADAR: Reasoning-Ability and Difficulty-Aware Routing\n\nRADAR is a lightweight, interpretable, and scalable routing framework that tackles the performance and cost tradeoff through model configuration routing for different queries.\n\n### IRT-Based Approach\n\nThe key enabling ingredient in RADAR is a custom item response theory (IRT) model, a classic technique inspired by psychometrics and educational assessment. The IRT model is used to jointly estimate interpretable query difficulties and RLM abilities at different reasoning budgets, where the framework first performs a calibration step collecting evaluation responses of each {RLM, reasoning budget} configuration to a collection of queries, then models this response matrix via IRT to estimate the latent ability and difficulty parameters.\n\n### Generalization to New Queries\n\nTo make this approach generalizable to out-of-distribution (OOD) queries, the query difficulty is parametrized using a learnable vector that, when multiplied by the query embedding obtained from an off-the-shelf embedding model, yields the query difficulty.\n\n### Performance Results\n\nRADAR achieves performance of OpenAI o4-mini with high reasoning effort at 1.31% of its cost, and exhibits strong generalization to OOD queries including long-context multi-document QA despite being primarily trained on shorter queries.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "62640f0c-ca71-4ff1-a21d-b723a7ad6a2d",
+            "isSidechain": true,
+            "promptId": "ebc3868d-0b48-4422-8f63-4c4b12778e2d",
+            "agentId": "a2423feb6edcb0601",
+            "type": "user",
+            "uuid": "12fccfcc-173d-44cd-9bec-ddf75a242566",
+            "sourceToolAssistantUUID": "62640f0c-ca71-4ff1-a21d-b723a7ad6a2d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-11T23:56:39.054Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BAuDW9TweKgQqC8vgb7D87",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"adaptive granularity\" \"code generation\" routing 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12fccfcc-173d-44cd-9bec-ddf75a242566",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011Cawgm52aoKnv3A1UN12wj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f3940a91-9f2e-4d11-b54f-f191e337b7fe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ak3aq1b1p1TAvAx7kj5vrE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 894,
+                "cache_read_input_tokens": 13261,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 894,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-11T23:56:47.854Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BAuDW9TweKgQqC8vgb7D87",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"adaptive granularity\" \"code generation\" routing 2025 2026\"\n\nLinks: [{\"title\":\"Optimize the Chunking Granularity for Retrieval- ...\",\"url\":\"https://aclanthology.org/2025.coling-main.384.pdf\"},{\"title\":\"RECODE: UNIFY PLAN AND ACTION FOR UNIVERSAL GRANULARITY CONTROL\",\"url\":\"https://www.arxiv.org/pdf/2510.23564\"},{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://openreview.net/pdf/b23c35b1c6696c4e4fa1a8dd1059ec7c669a704b.pdf\"},{\"title\":\"A Comprehensive Benchmark for Routing LLMs to Explore ...\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.208.pdf\"},{\"title\":\"Adaptive multi-granularity graph attention fusion algorithm for autonomous amphibious aerial vehicle route optimization - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/pii/S2090447925005982\"},{\"title\":\"Payment Infrastructure 2026: Modular Architecture & Smart Routing | Nuvei\",\"url\":\"https://www.nuvei.com/posts/payment-infrastructure-2026-modular-architecture-smart-routing-real-time-optimization\"},{\"title\":\"GitHub - liunian-Jay/Awesome-RAG: 💡 Awesome RAG: A resource of Retrieval-Augmented Generation (RAG) for LLMs, focusing on the development of technology.\",\"url\":\"https://github.com/liunian-Jay/Awesome-RAG\"},{\"title\":\"Enhancing Code Generation for Large Language Models Using Fine-Grained Distillation | Springer Nature Link\",\"url\":\"https://link.springer.com/chapter/10.1007/978-981-95-0014-7_32\"},{\"title\":\"Adaptive granularity: Transparent integration of fine- and coarse-grain communication | International Journal of Parallel Programming\",\"url\":\"https://link.springer.com/article/10.1007/BF02699885\"},{\"title\":\"Adaptive granularity memory systems: A tradeoff between storage efficiency and throughput | IEEE Conference Publication | IEEE Xplore\",\"url\":\"https://ieeexplore.ieee.org/document/6307766/\"}]\n\nI found several relevant results for your search. Here's what the web search revealed:\n\n## Recent Research on Adaptive Granularity and Code Generation (2025-2026)\n\n**RECODE Framework (2025)**\nA 2025 research paper on RECODE presents \"full unification and adaptive granularity control\" as an essential capability for adaptive, intelligent behavior, noting that achieving this adaptive intelligence is a primary goal for LLM-based agents, yet current frameworks fall short because they operate at fixed granularities. This work addresses limitations in Code-as-Policies methods that use complete executable programs to represent agent policy but lack mechanisms to dynamically adjust the plan based on interaction with the environment.\n\n**Memory Management with Adaptive Granularity (ICLR 2026)**\nExisting methods rely on single predefined granularity for memory retrieval, limiting their ability to adaptively prioritize fine- or coarse-grained information based on query. A new approach called MemGAS utilizes multi-granularity association and adaptive selection to construct consolidated memory structures and optimize retrieval efficiency, contrasting with existing methods that focus on single-granularity memory modeling.\n\n**Code Generation Enhancement (2025)**\nRecent work proposes making granularity in reinforcement learning more nuanced for code generation, incorporating the process of generating code into reinforcement learning as a way to guide the distillation process.\n\n**Autonomous Vehicle Routing (2025-2026)**\nA Multi-Granular Graph (MGG) Attention-Fusion Algorithm has been proposed to optimize navigational mode, routing selection, and decision-making techniques by utilizing temporal data.\n\nThe search results show that adaptive granularity is an emerging area across multiple domains including agent frameworks, retrieval systems, code generation, and autonomous systems in 2025-2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f3940a91-9f2e-4d11-b54f-f191e337b7fe",
+            "isSidechain": true,
+            "promptId": "ebc3868d-0b48-4422-8f63-4c4b12778e2d",
+            "agentId": "a2423feb6edcb0601",
+            "type": "user",
+            "uuid": "e146587d-1d92-4cfd-9c20-78f3fad744de",
+            "sourceToolAssistantUUID": "f3940a91-9f2e-4d11-b54f-f191e337b7fe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-11T23:56:50.694Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LHaoyixY6wTrzfNNx5HDvD",
+              "name": "WebSearch",
+              "input": {
+                "query": "FreeChunker arXiv 2510.20356 MoE granularity critique"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e146587d-1d92-4cfd-9c20-78f3fad744de",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011Cawgmwi5gho69ZpWjSQaU",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1490c592-84aa-4d85-a0f5-18ee8627e54c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QaWF7oHPZAMCWCMKK6AwRG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1072,
+                "cache_read_input_tokens": 14155,
+                "output_tokens": 73,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1072
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 73,
+                    "cache_read_input_tokens": 14155,
+                    "cache_creation_input_tokens": 1072,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1072,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-11T23:56:56.738Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LHaoyixY6wTrzfNNx5HDvD",
+              "type": "tool_result",
+              "content": "Web search results for query: \"FreeChunker arXiv 2510.20356 MoE granularity critique\"\n\nLinks: [{\"title\":\"FreeChunker: A Cross-Granularity Chunking Framework\",\"url\":\"https://arxiv.org/html/2510.20356\"},{\"title\":\"[2510.20356] FreeChunker: A Cross-Granularity Chunking Framework\",\"url\":\"https://arxiv.org/abs/2510.20356\"},{\"title\":\"FreeChunker: A Cross-Granularity Chunking Framework | Request PDF\",\"url\":\"https://www.researchgate.net/publication/396847505_FreeChunker_A_Cross-Granularity_Chunking_Framework\"},{\"title\":\"MoE-Prism: Disentangling Monolithic Experts for Elastic MoE Services via Model-System Co-Designs\",\"url\":\"https://arxiv.org/html/2510.19366\"},{\"title\":\"ElasticMoE: An Efficient Auto Scaling Method for Mixture-of-Experts Models\",\"url\":\"https://arxiv.org/html/2510.02613v1\"},{\"title\":\"Mix-of-Granularity: Optimize the Chunking Granularity for Retrieval-Augmented Generation\",\"url\":\"https://arxiv.org/html/2406.00456v1\"},{\"title\":\"Scaling Fine-Grained MoE Beyond 50B Parameters: Empirical Evaluation and Practical Insights\",\"url\":\"https://arxiv.org/html/2506.02890v1\"},{\"title\":\"The power of fine-grained experts: Granularity boosts expressivity in Mixture of Experts\",\"url\":\"https://arxiv.org/html/2505.06839\"},{\"title\":\"Towards Stable and Effective Reinforcement Learning for Mixture-of-Experts\",\"url\":\"https://arxiv.org/html/2510.23027v1\"},{\"title\":\"GRIN: GRadient-INformed MoE\",\"url\":\"https://arxiv.org/html/2409.12136v1\"}]\n\nBased on the search results, I found relevant information about the FreeChunker paper (arXiv 2510.20356) and its critique of MoE-inspired approaches for granularity control.\n\n## Key Findings\n\n**FreeChunker's Critique of MoE Granularity:**\n\nFreeChunker identifies that MoE-inspired methods essentially aggregate existing chunkers as experts; consequently, both the quality of semantic chunking and the degree of granularity control remain fundamentally bounded by the capabilities of the underlying chunker experts.\n\n**FreeChunker's Solution:**\n\nIn FreeChunker, sentences are treated as atomic units and chunk embeddings are generated across multiple granularities simultaneously. The framework shifts from static chunk segmentation to flexible retrieval supporting arbitrary sentence combinations.\n\n**Performance Results:**\n\nExperimental evaluation on LongBench V2 demonstrates that FreeChunker possesses significant advantages in both retrieval performance and time efficiency compared to existing chunking methods.\n\nThe paper's main argument is that while MoE-inspired approaches (like Mix-of-Granularity) attempt to optimize chunking granularity by routing to different expert chunkers, they are inherently limited by the quality of those underlying chunkers. FreeChunker takes a fundamentally different approach by enabling flexible, simultaneous multi-granularity retrieval without relying on fixed chunking strategies.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1490c592-84aa-4d85-a0f5-18ee8627e54c",
+            "isSidechain": true,
+            "promptId": "ebc3868d-0b48-4422-8f63-4c4b12778e2d",
+            "agentId": "a2423feb6edcb0601",
+            "type": "user",
+            "uuid": "71dd8d77-02a5-491e-8668-32ca34b699aa",
+            "sourceToolAssistantUUID": "1490c592-84aa-4d85-a0f5-18ee8627e54c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-11T23:56:59.238Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EGftZtNG172pmWwxoSrS32",
+              "name": "WebSearch",
+              "input": {
+                "query": "configuration routing retrieval parameters 2025 2026 RAG hyperparameter routing"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "71dd8d77-02a5-491e-8668-32ca34b699aa",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011CawgnbmoHYAwqgt8fpgkY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7ed29c4a-fabf-4531-94e8-3ec0407e4553",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EXvntiLJTokgG6hZUPN33e",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 918,
+                "cache_read_input_tokens": 15227,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 918,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-11T23:57:06.645Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EGftZtNG172pmWwxoSrS32",
+              "type": "tool_result",
+              "content": "Web search results for query: \"configuration routing retrieval parameters 2025 2026 RAG hyperparameter routing\"\n\nLinks: [{\"title\":\"RAGRouter: Retrieval-Augmented Routing\",\"url\":\"https://www.emergentmind.com/topics/ragrouter\"},{\"title\":\"METIS: Fast Quality-Aware RAG Systems with Configuration Adaptation\",\"url\":\"https://www.microsoft.com/en-us/research/wp-content/uploads/2025/10/sosp25-final547.pdf\"},{\"title\":\"RAG Chunking Strategies & Embeddings Optimization: The 2026 Benchmark Guide\",\"url\":\"https://nandigamharikrishna.substack.com/p/rag-chunking-strategies-and-embeddings\"},{\"title\":\"RAG Production Guide 2026: Retrieval-Augmented Generation | Lushbinary\",\"url\":\"https://lushbinary.com/blog/rag-retrieval-augmented-generation-production-guide/\"},{\"title\":\"Agentic RAG: The 2026 Production Guide | MarsDevs\",\"url\":\"https://www.marsdevs.com/guides/agentic-rag-2026-guide\"},{\"title\":\"🧠 RAG in 2026: A Practical Blueprint for Retrieval-Augmented Generation - DEV Community\",\"url\":\"https://dev.to/suraj_khaitan_f893c243958/-rag-in-2026-a-practical-blueprint-for-retrieval-augmented-generation-16pp\"},{\"title\":\"RAG 2.0: The 2025 Guide to Advanced Retrieval-Augmented Generation - Vatsal Shah\",\"url\":\"https://vatsalshah.in/blog/the-best-2025-guide-to-rag\"},{\"title\":\"Advanced RAG Cheat Sheet And Recipes Guide | LlamaIndex\",\"url\":\"https://www.llamaindex.ai/blog/a-cheat-sheet-and-some-recipes-for-building-advanced-rag-803a9d94c41b\"},{\"title\":\"10 Best RAG Tools and Platforms: Full Comparison [2026]\",\"url\":\"https://www.meilisearch.com/blog/rag-tools\"},{\"title\":\"Advanced RAG: Techniques & Concepts | Data Science Collective\",\"url\":\"https://medium.com/data-science-collective/advanced-rag-techniques-concepts-e0b67366c5cf\"}]\n\nI've completed the web search for your query on configuration routing retrieval parameters, RAG hyperparameter routing, and recent research from 2025-2026. Here are the key findings:\n\n## RAG Routing and Hyperparameter Configuration\n\nRAGRouter refers to a class of neural architectures and accompanying training objectives for routing queries across a pool of retrieval-augmented LLMs, incorporating the effects of retrieved documents on model behavior and optimizing for both accuracy and efficiency in knowledge-intensive scenarios.\n\n### Key Hyperparameters and Configuration\n\nNotable hyperparameters include a learning rate of 5×10^-5 and 10 training epochs. Inference routing involves ranking models by cosine similarity, with a score-threshold-based extension that enables low-latency routing by traversing candidates sorted by latency and accepting the first within a user-defined margin.\n\n### Chunking Configuration\n\nChunk size is the single most impactful hyperparameter in a RAG pipeline, with NVIDIA's research finding that factoid queries perform best at 256-512 tokens, while multi-hop analytical queries benefit from 512-1,024 tokens. The practical default validated across multiple 2025-2026 benchmarks is 512 tokens with 10-20% overlap.\n\n### Recent Advances (2025-2026)\n\nAutoRAG-HP provides automatic online hyper-parameter tuning for retrieval-augmented generation. Additionally, production targets include faithfulness ≥0.9, answer relevancy ≥0.85, context precision ≥0.8.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ed29c4a-fabf-4531-94e8-3ec0407e4553",
+            "isSidechain": true,
+            "promptId": "ebc3868d-0b48-4422-8f63-4c4b12778e2d",
+            "agentId": "a2423feb6edcb0601",
+            "type": "user",
+            "uuid": "664eb479-c1d1-422a-9a5c-1e72e16972cb",
+            "sourceToolAssistantUUID": "7ed29c4a-fabf-4531-94e8-3ec0407e4553",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-11T23:57:09.013Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for more specific details on some items that need deeper investigation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "664eb479-c1d1-422a-9a5c-1e72e16972cb",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011CawgoL2nG7swNXCQV5Mfa",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cddc29df-aaa5-4fc1-b187-b2687b7cb9d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Um3k44YH8qf564J8a6Mr6E",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1134,
+                "cache_read_input_tokens": 16145,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1134,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-11T23:57:09.999Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TdNz89WGmPvrQCJjRLfnCE",
+              "name": "WebSearch",
+              "input": {
+                "query": "RouteLLM four router architectures \"similarity-weighted\" \"matrix factorization\" \"BERT\" \"causal LLM\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cddc29df-aaa5-4fc1-b187-b2687b7cb9d3",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011CawgoL2nG7swNXCQV5Mfa",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "173dbcf5-0dee-4e72-b786-53ee069d0a03",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Um3k44YH8qf564J8a6Mr6E",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1134,
+                "cache_read_input_tokens": 16145,
+                "output_tokens": 99,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1134
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 99,
+                    "cache_read_input_tokens": 16145,
+                    "cache_creation_input_tokens": 1134,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1134,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-11T23:57:16.503Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TdNz89WGmPvrQCJjRLfnCE",
+              "type": "tool_result",
+              "content": "Web search results for query: \"RouteLLM four router architectures \"similarity-weighted\" \"matrix factorization\" \"BERT\" \"causal LLM\"\"\n\nLinks: [{\"title\":\"RouteLLM: An Open-Source Framework for Cost-Effective LLM Routing - LMSYS Blog | LMSYS Org\",\"url\":\"https://www.lmsys.org/blog/2024-07-01-routellm/\"},{\"title\":\"GitHub - lm-sys/RouteLLM: A framework for serving and evaluating LLM routers - save LLM costs without compromising quality · GitHub\",\"url\":\"https://github.com/lm-sys/RouteLLM\"},{\"title\":\"RouteLLM: Learning to Route LLMs with Preference Data\",\"url\":\"https://arxiv.org/pdf/2406.18665\"},{\"title\":\"RouteLLM: Learning to Route LLMs with Preference Data | Weaviate\",\"url\":\"https://weaviate.io/papers/routellm\"},{\"title\":\"LLM Model Routing: Cut Costs 85% with Smart Model Selection | Burnwise Blog | Burnwise\",\"url\":\"https://www.burnwise.io/blog/llm-model-routing-guide\"},{\"title\":\"GitHub - nate-lrt/llm-routing: A framework for serving and evaluating LLM routers. · GitHub\",\"url\":\"https://github.com/nate-lrt/llm-routing\"},{\"title\":\"GitHub - anyscale/llm-router: Tutorial for building LLM router · GitHub\",\"url\":\"https://github.com/anyscale/llm-router\"},{\"title\":\"LLM Routing: How to Stop Paying Frontier Model Prices for Simple Queries - TianPan.co\",\"url\":\"https://tianpan.co/blog/2025-10-19-llm-routing-production\"},{\"title\":\"RouteLLM: Balancing Cost and Quality in LLM Deployments - Zilliz Learn\",\"url\":\"https://zilliz.com/learn/routellm-open-source-framework-for-navigate-cost-quality-trade-offs-in-llm-deployment\"},{\"title\":\"Research on Model Routing Technology: RouteLLM Framework and Its Application in Large Language Models - Oreate AI Blog\",\"url\":\"https://www.oreateai.com/blog/research-on-model-routing-technology-routellm-framework-and-its-application-in-large-language-models/70d015d648e55ed8ce2219c9bf9e8906\"}]\n\nBased on the search results, here's information about RouteLLM's four router architectures:\n\nRouteLLM implements four router architectures: a similarity-weighted (SW) ranking router that performs a \"weighted Elo calculation\" based on similarity, a matrix factorization model that learns a scoring function for how well a model can answer a prompt, a BERT classifier that predicts which model can provide a better response, and a causal LLM classifier that also predicts which model can provide a better response.\n\nHere's how each architecture works:\n\n**Similarity-Weighted Ranking:** This router uses a weighted Elo calculation for routing, where each vote is weighted according to how similar it is to the user's prompt.\n\n**Matrix Factorization:** This method draws inspiration from matrix factorization commonly used in recommendation systems. The main goal is to optimize a hidden scoring function s(M,q) which assigns a score to a model when it answers a query q. This score reflects how well the model performs on that query.\n\n**BERT Classifier:** This router uses a BERT classifier trained on the preference data.\n\n**Causal LLM Classifier:** This router uses a LLM-based classifier tuned on the preference data.\n\nWhen trained on augmented dataset, matrix factorization is the best-performing router, with the number of GPT-4 calls required to achieve 95% GPT-4 performance further halved at 14% of total calls, 75% cheaper than the random baseline.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "173dbcf5-0dee-4e72-b786-53ee069d0a03",
+            "isSidechain": true,
+            "promptId": "ebc3868d-0b48-4422-8f63-4c4b12778e2d",
+            "agentId": "a2423feb6edcb0601",
+            "type": "user",
+            "uuid": "fed5856a-4c1a-48b1-9787-c350578d7de2",
+            "sourceToolAssistantUUID": "173dbcf5-0dee-4e72-b786-53ee069d0a03",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-11T23:57:19.558Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CfN7dSCQicPm1rQ2nGSidH",
+              "name": "WebSearch",
+              "input": {
+                "query": "METIS RAG configuration adaptation routing retrieval parameters SOSP 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fed5856a-4c1a-48b1-9787-c350578d7de2",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011Cawgp4C4sbL4LKNhfsji5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5faba79b-4124-4ff8-83e9-45e8dc5e0e7d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015SCtaqffHVBVkaksuQaZBU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1078,
+                "cache_read_input_tokens": 17279,
+                "output_tokens": 68,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1078
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 68,
+                    "cache_read_input_tokens": 17279,
+                    "cache_creation_input_tokens": 1078,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1078,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-11T23:57:26.332Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CfN7dSCQicPm1rQ2nGSidH",
+              "type": "tool_result",
+              "content": "Web search results for query: \"METIS RAG configuration adaptation routing retrieval parameters SOSP 2025\"\n\nLinks: [{\"title\":\"METIS: Fast Quality-Aware RAG Systems with Configuration Adaptation\",\"url\":\"https://arxiv.org/pdf/2412.10543\"},{\"title\":\"METIS: Fast Quality-Aware RAG Systems with Configuration Adaptation - Microsoft Research\",\"url\":\"https://www.microsoft.com/en-us/research/publication/metis-fast-quality-aware-rag-systems-with-configuration-adaptation/\"},{\"title\":\"METIS: Fast Quality-Aware RAG Systems with Configuration Adaptation | Proceedings of the ACM SIGOPS 31st Symposium on Operating Systems Principles\",\"url\":\"https://doi.org/10.1145/3731569.3764855\"},{\"title\":\"dblp: METIS: Fast Quality-Aware RAG Systems with Configuration Adaptation.\",\"url\":\"https://dblp.org/rec/conf/sosp/Ray0GDFANJ25.html\"},{\"title\":\"[2412.10543] METIS: Fast Quality-Aware RAG Systems with Configuration Adaptation\",\"url\":\"https://arxiv.org/abs/2412.10543\"},{\"title\":\"METIS: Fast Quality-Aware RAG Systems with Configuration Adaptation | Request PDF\",\"url\":\"https://www.researchgate.net/publication/396443172_METIS_Fast_Quality-Aware_RAG_Systems_with_Configuration_Adaptation\"},{\"title\":\"METIS: Quality-Aware RAG with Configuration Adaptation and Scheduling - YouTube\",\"url\":\"https://www.youtube.com/watch?v=Ta-wOU3YJB8\"},{\"title\":\"METIS: Fast Quality-Aware RAG Systems with Configuration Adaptation | Proceedings of the ACM SIGOPS 31st Symposium on Operating Systems Principles\",\"url\":\"https://dl.acm.org/doi/10.1145/3731569.3764855\"},{\"title\":\"[2412.10543v3] METIS: Fast Quality-Aware RAG Systems with Configuration Adaptation\",\"url\":\"https://arxiv.org/abs/2412.10543v3\"},{\"title\":\"SOSP 2025 | Awesome Papers\",\"url\":\"https://paper.lingyunyang.com/reading-notes/conference/sosp-2025\"}]\n\nI found comprehensive information about METIS. Here's a summary of the search results:\n\n## METIS: Fast Quality-Aware RAG Systems with Configuration Adaptation\n\nMETIS was presented at the ACM SIGOPS 31st Symposium on Operating Systems Principles (SOSP '25) in October 13–16, 2025, in Seoul, Republic of Korea.\n\n### Core Innovation\n\nMETIS is the first RAG system that jointly schedules queries and adapts the key RAG configurations of each query, such as the number of retrieved text chunks and synthesis methods. RAG allows LLMs to generate better responses with external knowledge, but using more external knowledge often improves generation quality at the expense of response delay. Prior work either reduces response delay through better scheduling or strives to maximize quality by tuning the RAG workflow, but falls short in optimizing the tradeoff between delay and quality.\n\n### Key Features\n\nThe system uses query profiles that can effectively filter out undesirable RAG configurations. METIS picks from configurations relevant to the query profile, and is able to reduce delay by 1.48−1.56× under low load.\n\n### Performance Results\n\nCompared to state-of-the-art RAG optimization schemes, METIS reduces the generation latency by 1.64 − 2.54× without sacrificing generation quality.\n\nThe paper was authored by researchers from institutions including University of Chicago, Princeton University, and Microsoft Research.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5faba79b-4124-4ff8-83e9-45e8dc5e0e7d",
+            "isSidechain": true,
+            "promptId": "ebc3868d-0b48-4422-8f63-4c4b12778e2d",
+            "agentId": "a2423feb6edcb0601",
+            "type": "user",
+            "uuid": "9c5db195-87b8-4199-92e5-0be03b3e970a",
+            "sourceToolAssistantUUID": "5faba79b-4124-4ff8-83e9-45e8dc5e0e7d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-11T23:57:28.541Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BbeSa9UYdFzLLyzpXR6Dao",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"granularity routing\" code LLM programming adaptive 2025 arXiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9c5db195-87b8-4199-92e5-0be03b3e970a",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011CawgpnCAkLga7WvN8JDsn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9eff1a6a-957d-4fb8-ac69-9e6e033075be",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011WFSjV5R6MzCwvcv56k9Aq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 973,
+                "cache_read_input_tokens": 18357,
+                "output_tokens": 70,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 973
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 70,
+                    "cache_read_input_tokens": 18357,
+                    "cache_creation_input_tokens": 973,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 973,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-11T23:57:35.558Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BbeSa9UYdFzLLyzpXR6Dao",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"granularity routing\" code LLM programming adaptive 2025 arXiv\"\n\nLinks: [{\"title\":\"Triage: Routing Software Engineering Tasks to Cost-Effective LLM Tiers via Code Quality Signals\",\"url\":\"https://arxiv.org/html/2604.07494\"},{\"title\":\"[2508.21141] Adaptive LLM Routing under Budget Constraints\",\"url\":\"https://arxiv.org/abs/2508.21141\"},{\"title\":\"[2505.19435] Route to Reason: Adaptive Routing for LLM and Reasoning Strategy Selection\",\"url\":\"https://arxiv.org/abs/2505.19435\"},{\"title\":\"Agentic Retrieval-Augmented Generation for Financial Document Question Answering\",\"url\":\"https://arxiv.org/html/2605.05409\"},{\"title\":\"[2506.22716] BEST-Route: Adaptive LLM Routing with Test-Time Optimal Compute\",\"url\":\"https://arxiv.org/abs/2506.22716\"},{\"title\":\"Computer Science Aug 2025\",\"url\":\"https://www.arxiv.org/list/cs/2025-08?skip=10375&show=250\"},{\"title\":\"BEST-Route: Adaptive LLM Routing with Test-Time Optimal Compute\",\"url\":\"https://arxiv.org/html/2506.22716v1\"},{\"title\":\"Towards Generalized Routing: Model and Agent Orchestration for Adaptive and Efficient Inference\",\"url\":\"https://arxiv.org/html/2509.07571v1\"},{\"title\":\"[2510.12773] Dr.LLM: Dynamic Layer Routing in LLMs\",\"url\":\"https://arxiv.org/abs/2510.12773\"},{\"title\":\"AdaptiveLLM: A Framework for Selecting Optimal Cost-Efficient LLM for Code-Generation Based on CoT Length | Proceedings of the 16th International Conference on Internetware\",\"url\":\"https://dl.acm.org/doi/10.1145/3755881.3755925\"}]\n\nThe search returned several relevant papers on LLM routing and adaptive model selection from 2025. Here are the key findings:\n\n## Task-Level Routing for Code\n\nA notable approach is task-level model routing for software engineering that operates at task/issue granularity, exploiting pre-computed, domain-specific metadata unavailable to existing token- or query-level routers. This coarser task-level routing granularity selects a model tier for an entire task before generation begins.\n\n## Adaptive Routing Approaches\n\nSeveral 2025 arXiv papers address adaptive LLM routing:\n\n1. **PILOT (Preference-prior Informed LinUCB)**: This approach proposes studying LLM routing as a contextual bandit problem, enabling adaptive decision-making using bandit feedback without requiring exhaustive inference across all LLMs for all queries.\n\n2. **Route-to-Reason (RTR)**: This unified routing framework dynamically allocates both LMs and reasoning strategies according to task difficulty under budget constraints, learning compressed representations of both expert models and reasoning strategies for joint and adaptive selection at inference time.\n\n3. **BEST-Route**: This routing framework chooses a model and the number of responses to sample from it based on query difficulty and the quality thresholds.\n\n## Code Generation Routing\n\nAdaptiveLLM is a framework that dynamically selects optimal LLMs for a given coding task by automatically assessing task difficulty, using Chain-of-Thought lengths generated by reasoning models and clustering them into difficulty levels via k-means.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9eff1a6a-957d-4fb8-ac69-9e6e033075be",
+            "isSidechain": true,
+            "promptId": "ebc3868d-0b48-4422-8f63-4c4b12778e2d",
+            "agentId": "a2423feb6edcb0601",
+            "type": "user",
+            "uuid": "fe5046ba-ae47-401a-a83b-980256e4d2f3",
+            "sourceToolAssistantUUID": "9eff1a6a-957d-4fb8-ac69-9e6e033075be",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-11T23:57:37.800Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U1pSydPUPVFHxJjXLmmLtG",
+              "name": "WebSearch",
+              "input": {
+                "query": "RECODE universal granularity control code generation arXiv 2510.23564"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fe5046ba-ae47-401a-a83b-980256e4d2f3",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011CawgqTdzCi5Qb7ZsuYbv3",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "298eec66-be84-4015-9a0e-5dc1bfc7344b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C5ksyoXjbChQNnPafsU1Q2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 938,
+                "cache_read_input_tokens": 19330,
+                "output_tokens": 70,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 938
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 70,
+                    "cache_read_input_tokens": 19330,
+                    "cache_creation_input_tokens": 938,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 938,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-11T23:57:44.020Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U1pSydPUPVFHxJjXLmmLtG",
+              "type": "tool_result",
+              "content": "Web search results for query: \"RECODE universal granularity control code generation arXiv 2510.23564\"\n\nLinks: [{\"title\":\"[2510.23564] ReCode: Unify Plan and Action for Universal Granularity Control\",\"url\":\"https://arxiv.org/abs/2510.23564\"},{\"title\":\"RECODE: UNIFY PLAN AND ACTION FOR UNIVERSAL GRANULARITY CONTROL\",\"url\":\"https://www.arxiv.org/pdf/2510.23564\"},{\"title\":\"ReCode: Unify Plan and Action for Universal Granularity Control\",\"url\":\"https://arxiv.org/html/2510.23564\"},{\"title\":\"GitHub - FoundationAgents/ReCode: Next paradigm for LLM Agent. Unify plan and action through recursive code generation for adaptive, human-like decision-making. · GitHub\",\"url\":\"https://github.com/FoundationAgents/ReCode\"},{\"title\":\"ReCode: Unify Plan and Action for Universal Granularity Control | Cool Papers - Immersive Paper Discovery\",\"url\":\"https://papers.cool/arxiv/2510.23564\"},{\"title\":\"Paper page - ReCode: Unify Plan and Action for Universal Granularity Control\",\"url\":\"https://huggingface.co/papers/2510.23564\"},{\"title\":\"ReCode: Unify Plan and Action for Universal Granularity Control | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2510.23564v1\"},{\"title\":\"ReCode: Unify Plan and Action for Universal Granularity Control | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/recode-unify-plan-action-universal-granularity-control\"},{\"title\":\"ReCode: Unify Plan and Action for Universal Granularity Control | OpenReview\",\"url\":\"https://openreview.net/forum?id=h4DNjtyRRA\"},{\"title\":\"Computation and Language 2025\",\"url\":\"https://arxiv.org/list/cs.CL/2025?skip=22750&show=25\"}]\n\nHere are the results for your search:\n\n## Overview\n\nReCode (Recursive Code Generation) is a novel paradigm that unifies planning and action within a single code representation, where high-level plans are treated as abstract placeholder functions that the agent recursively decomposes into finer-grained sub-functions until reaching primitive actions.\n\n## Problem Being Addressed\n\nCurrent Large Language Model (LLM)-based agents lack the capability to operate fluidly across decision granularities due to existing paradigms that enforce a rigid separation between high-level planning and low-level action, which impairs dynamic adaptability and limits generalization.\n\n## Key Features\n\nThis recursive approach dissolves the rigid boundary between plan and action, enabling the agent to dynamically control its decision granularity. The recursive structure inherently generates rich, multi-granularity training data, enabling models to learn hierarchical decision-making processes.\n\n## Results\n\nExtensive experiments show ReCode significantly surpasses advanced baselines in inference performance and demonstrates exceptional data efficiency in training.\n\nThe paper was published on arXiv on October 27, 2025, with subsequent updates through January 2026. The code is available on GitHub at the FoundationAgents/ReCode repository.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "298eec66-be84-4015-9a0e-5dc1bfc7344b",
+            "isSidechain": true,
+            "promptId": "ebc3868d-0b48-4422-8f63-4c4b12778e2d",
+            "agentId": "a2423feb6edcb0601",
+            "type": "user",
+            "uuid": "33cd5fcd-bab2-4e93-a7b5-c5d10f9948f3",
+            "sourceToolAssistantUUID": "298eec66-be84-4015-9a0e-5dc1bfc7344b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-11T23:57:47.622Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015JUd8GcDyLDLakowDBAyfJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "routing retrieval parameters chunk size top-k embedding model selection 2025 arXiv adaptive"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33cd5fcd-bab2-4e93-a7b5-c5d10f9948f3",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011Cawgr5vo3fxLH8CD5ETs7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cbfd080b-5291-46d9-8498-429996a328b2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MximtFCtD1tZYUjasZiRVn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 869,
+                "cache_read_input_tokens": 20268,
+                "output_tokens": 71,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 869
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 71,
+                    "cache_read_input_tokens": 20268,
+                    "cache_creation_input_tokens": 869,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 869,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-11T23:57:55.434Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015JUd8GcDyLDLakowDBAyfJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"routing retrieval parameters chunk size top-k embedding model selection 2025 arXiv adaptive\"\n\nLinks: [{\"title\":\"Rethinking Chunk Size for Long-Document Retrieval: A Multi-Dataset Analysis\",\"url\":\"https://arxiv.org/html/2505.21700v2\"},{\"title\":\"On the Theoretical Limitations of Embedding-Based Retrieval\",\"url\":\"https://arxiv.org/html/2508.21038v1\"},{\"title\":\"Rethinking Chunk Size For Long-Document Retrieval\",\"url\":\"https://arxiv.org/pdf/2505.21700\"},{\"title\":\"Chunk Twice, Embed Once: A Systematic Study of Segmentation and Representation Trade-offs in Chemistry-Aware Retrieval-Augmented Generation\",\"url\":\"https://arxiv.org/html/2506.17277v1\"},{\"title\":\"smartchunk retrieval: query-aware chunk compression with ...\",\"url\":\"https://arxiv.org/pdf/2602.22225\"},{\"title\":\"Retrieval-Augmented Generation to Generate Knowledge ...\",\"url\":\"https://research.edgehill.ac.uk/ws/portalfiles/portal/100178538/applsci-15-06247.pdf\"},{\"title\":\"Optimize the Chunking Granularity for Retrieval- ...\",\"url\":\"https://aclanthology.org/2025.coling-main.384.pdf\"},{\"title\":\"ℝ^{2⁢𝑘} is Theoretically Large Enough for Embedding-based Top-𝑘 Retrieval\",\"url\":\"https://arxiv.org/html/2601.20844v2\"},{\"title\":\"A Systematic Investigation of Document Chunking Strategies and Embedding Sensitivity\",\"url\":\"https://arxiv.org/html/2603.06976\"},{\"title\":\"1 Retrieval-Augmented Generation for Large Language Models: A Survey\",\"url\":\"https://arxiv.org/pdf/2312.10997\"}]\n\nI found several relevant 2025 arXiv papers on this topic. Here are the key findings:\n\n## Recent Research on Adaptive Retrieval Parameters (2025)\n\n**Chunk Size Optimization for Long-Document Retrieval:**\nSmaller chunks (64-128 tokens) are optimal for datasets with concise, fact-based answers, whereas larger chunks (512-1024 tokens) improve retrieval in datasets requiring broader contextual understanding. Different embedding models exhibit distinct chunking sensitivities, with models like Stella benefiting from larger chunks for long-range retrieval, while Snowflake performs better with smaller chunks for fine-grained, entity-based matching.\n\n**Adaptive Multi-Level Retrieval:**\nSmartChunk introduces a planner that predicts the smallest and largest chunk sizes per query, enabling adaptive multi-level retrieval, and a Chunk Compression Encoder that produces compact embeddings for aggregated chunks. STITCH dynamically adjusts chunk sizes based on both document and query type, such as selecting larger chunks (avg. 1725 tokens) in NarrativeQA for narrative comprehension.\n\n**Content-Aware Chunking Strategies:**\n36 segmentation methods spanning fixed-size, semantic, structure-aware, hierarchical, adaptive, and LLM-assisted approaches have been benchmarked across six diverse knowledge domains using five different embedding models. Content-aware chunking significantly improves retrieval effectiveness over naive fixed-length splitting.\n\n**Routing and Semantic Retrieval:**\nMetadata routers filter results using keywords and metadata, while semantic routers leverage the query's meaning, with hybrid approaches combining both methods for robust routing, improving query clarity, retrieval precision, and adaptability.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cbfd080b-5291-46d9-8498-429996a328b2",
+            "isSidechain": true,
+            "promptId": "ebc3868d-0b48-4422-8f63-4c4b12778e2d",
+            "agentId": "a2423feb6edcb0601",
+            "type": "user",
+            "uuid": "c5141bc4-2108-4a9a-932b-d71e1d52347f",
+            "sourceToolAssistantUUID": "cbfd080b-5291-46d9-8498-429996a328b2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-11T23:58:01.345Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011n84JBRKNVRrZQwCYYJJZ8",
+              "name": "WebSearch",
+              "input": {
+                "query": "AutoRAG-HP automatic hyperparameter tuning retrieval augmented generation arXiv 2024 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c5141bc4-2108-4a9a-932b-d71e1d52347f",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011CawgrveUTvCXwzwMUfdKQ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "53152322-e631-4c66-842e-6006bbaf1592",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0195r81ajQ9VG1GfrtRtUPmL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 955,
+                "cache_read_input_tokens": 21137,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 955,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-11T23:58:07.869Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011n84JBRKNVRrZQwCYYJJZ8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AutoRAG-HP automatic hyperparameter tuning retrieval augmented generation arXiv 2024 2025\"\n\nLinks: [{\"title\":\"[2406.19251] AutoRAG-HP: Automatic Online Hyper-Parameter Tuning for Retrieval-Augmented Generation\",\"url\":\"https://arxiv.org/abs/2406.19251\"},{\"title\":\"AutoRAG-HP: Automatic Online Hyper-Parameter Tuning for Retrieval-Augmented Generation\",\"url\":\"https://arxiv.org/html/2406.19251v1\"},{\"title\":\"AutoRAG-HP: Automatic Online Hyper-Parameter Tuning for Retrieval-Augmented Generation - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.findings-emnlp.223/\"},{\"title\":\"AutoRAG-HP: Automatic Online Hyper-Parameter Tuning for Retrieval-Augmented Generation | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/autorag-hp-automatic-online-hyper-parameter-tuning\"},{\"title\":\"AutoRAG-HP: Automatic Online Hyper-Parameter Tuning for Retrieval-Augmented Generation | Request PDF\",\"url\":\"https://www.researchgate.net/publication/381770940_AutoRAG-HP_Automatic_Online_Hyper-Parameter_Tuning_for_Retrieval-Augmented_Generation\"},{\"title\":\"[PDF] AutoRAG-HP: Automatic Online Hyper-Parameter Tuning for Retrieval-Augmented Generation | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/AutoRAG-HP:-Automatic-Online-Hyper-Parameter-Tuning-Fu-Qin/758881985475e137439da465fadf968aead68c4c\"},{\"title\":\"AutoRAG-HP: Automatic Online Hyper-Parameter Tuning for Retrieval-Augmented Generation - Microsoft Research\",\"url\":\"https://www.microsoft.com/en-us/research/publication/autorag-hp-automatic-online-hyper-parameter-tuning-for-retrieval-augmented-generation/\"},{\"title\":\"AutoRAG-HP: Automatic Online Hyper-Parameter Tuning for Retrieval-Augmented Generation\",\"url\":\"https://fujia19990407.github.io/project_website/\"},{\"title\":\"AutoRAG-HP: Automatic Online Hyper-Parameter Tuning for Retrieval-Augmented Generation | OpenReview\",\"url\":\"https://openreview.net/forum?id=zbLxByF6Sg\"},{\"title\":\"AutoRAGTuner: A Declarative Framework for Automatic Optimization of RAG Pipelines\",\"url\":\"https://arxiv.org/html/2605.02967\"}]\n\nBased on the web search results, I found comprehensive information about AutoRAG-HP:\n\n## AutoRAG-HP Overview\n\nAutoRAG-HP is a framework designed to address the challenges of hyper-parameter optimization and online adaptation in Retrieval-Augmented Generation (RAG) systems, formulating the hyper-parameter tuning as an online multi-armed bandit (MAB) problem and introducing a novel two-level Hierarchical MAB (Hier-MAB) method for efficient exploration of large search spaces.\n\n## Key Features\n\nThe framework conducts extensive experiments on tuning hyper-parameters, such as top-k retrieved documents, prompt compression ratio, and embedding methods, using the ALCE-ASQA and Natural Questions datasets.\n\n## Performance Results\n\nMAB-based online learning methods can achieve Recall@5 ≈ 0.8 for scenarios with prominent gradients in search space, using only ~20% of the LLM API calls required by the Grid Search approach. Additionally, the proposed Hier-MAB approach outperforms other baselines in more challenging optimization scenarios.\n\n## Publication\n\nAutoRAG-HP was published in the Findings of the Association for Computational Linguistics: EMNLP 2024, pages 3875–3891, Miami, Florida, USA. The paper was originally posted to arXiv as arXiv paper 2406.19251 in June 2024.\n\nThe code is made available at https://aka.ms/autorag.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "53152322-e631-4c66-842e-6006bbaf1592",
+            "isSidechain": true,
+            "promptId": "ebc3868d-0b48-4422-8f63-4c4b12778e2d",
+            "agentId": "a2423feb6edcb0601",
+            "type": "user",
+            "uuid": "c72fe034-d315-423b-baa1-7b9f9c831725",
+            "sourceToolAssistantUUID": "53152322-e631-4c66-842e-6006bbaf1592",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-11T23:58:15.897Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jd25PMmg8PUTcwT9jVRsBc",
+              "name": "WebSearch",
+              "input": {
+                "query": "Mix-of-Granularity chunking RAG retrieval arXiv 2406.00456 COLING 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c72fe034-d315-423b-baa1-7b9f9c831725",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011CawgsqnoJ4cN64b8NtMfo",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dc326e38-2881-4602-8f99-aabe767d6a28",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D6SyQp4XhoP5MzEmdux3Z7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1123,
+                "cache_read_input_tokens": 22092,
+                "output_tokens": 81,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1123
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 81,
+                    "cache_read_input_tokens": 22092,
+                    "cache_creation_input_tokens": 1123,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1123,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-11T23:58:21.844Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jd25PMmg8PUTcwT9jVRsBc",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Mix-of-Granularity chunking RAG retrieval arXiv 2406.00456 COLING 2025\"\n\nLinks: [{\"title\":\"[2406.00456] Mix-of-Granularity: Optimize the Chunking Granularity for Retrieval-Augmented Generation\",\"url\":\"https://arxiv.org/abs/2406.00456\"},{\"title\":\"Mix-of-Granularity: Optimize the Chunking Granularity for Retrieval-Augmented Generation\",\"url\":\"https://arxiv.org/html/2406.00456v1\"},{\"title\":\"Optimize the Chunking Granularity for Retrieval- ...\",\"url\":\"https://aclanthology.org/2025.coling-main.384.pdf\"},{\"title\":\"GitHub - ZGChung/Mix-of-Granularity: [COLING 2025] Mix-of-Granularity paper\",\"url\":\"https://github.com/ZGChung/Mix-of-Granularity\"},{\"title\":\"Augmenting RAG with nonnegative matrix factorization-driven semantic chunking in embedding space | The Journal of Supercomputing | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s11227-026-08370-3\"},{\"title\":\"Computation and Language Jun 2024\",\"url\":\"https://web3.arxiv.org/list/cs.CL/2024-06?skip=1785&show=2000\"},{\"title\":\"Computer Science Jun 2024\",\"url\":\"https://arxiv.org/list/cs/2024-06?skip=200&show=100\"},{\"title\":\"Paper page - Mix-of-Granularity: Optimize the Chunking Granularity for Retrieval-Augmented Generation\",\"url\":\"https://huggingface.co/papers/2406.00456\"},{\"title\":\"Mix-of-Granularity: Optimize the Chunking Granularity for Retrieval-Augmented Generation - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.coling-main.384/\"},{\"title\":\"Rethinking Chunk Size for Long-Document Retrieval: A Multi-Dataset Analysis\",\"url\":\"https://arxiv.org/html/2505.21700v2\"}]\n\nBased on the search results, I found comprehensive information about the Mix-of-Granularity (MoG) paper:\n\n## Paper Overview\n\nMix-of-Granularity: Optimize the Chunking Granularity for Retrieval-Augmented Generation (arXiv:2406.00456) is a COLING 2025 conference paper by Zijie Zhong, Hanwen Liu, Xiaoya Cui, Xiaofan Zhang, and Zengchang Qin.\n\n## Core Contribution\n\nThe paper addresses the problem that retrieving from multiple knowledge sources with one fixed strategy usually leads to under-exploitation of information. To mitigate this, the authors introduce Mix-of-Granularity (MoG), a method that dynamically determines the optimal granularity of a knowledge source based on input queries using a router.\n\n## Technical Details\n\nThe router is efficiently trained with a newly proposed loss function employing soft labels. The authors further extend MoG to MoG-Graph (MoGG), where reference documents are pre-processed as graphs, enabling the retrieval of distantly situated snippets.\n\n## Results and Availability\n\nExperiments demonstrate that MoG and MoGG effectively predict optimal granularity levels, significantly enhancing the performance of the RAG system in downstream tasks. The paper link is https://arxiv.org/abs/2406.00456, and the code is available on GitHub.\n\nThe paper appears in the Proceedings of the 31st International Conference on Computational Linguistics, pages 5756–5774, Abu Dhabi, UAE.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dc326e38-2881-4602-8f99-aabe767d6a28",
+            "isSidechain": true,
+            "promptId": "ebc3868d-0b48-4422-8f63-4c4b12778e2d",
+            "agentId": "a2423feb6edcb0601",
+            "type": "user",
+            "uuid": "3334f80e-912b-474f-a5ae-57c6bf72f06a",
+            "sourceToolAssistantUUID": "dc326e38-2881-4602-8f99-aabe767d6a28",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-11T23:59:10.256Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have comprehensive information on all seven items. Here is my consolidated report:\n\n---\n\n## Findings\n\n### 1. LTRR (Learning To Rank Retrievers) -- arXiv 2506.13743\n\n**Verified.** The paper exists and was presented at the SIGIR 2025 LiveRAG Workshop (spotlight talk). The claim about pairwise XGBoost is confirmed: LTRR algorithms trained using pairwise XGBoost significantly outperform both standard single-retriever RAG systems and neural rankers, particularly when using the Answer Correctness (AC) objective. The framework includes no-retrieval as a routing option, jointly addressing retriever-selection (\"where to query\") and retrieval-necessity (\"when to query\"). Code is released at [github.com/kimdanny/Starlight-LiveRAG](https://github.com/kimdanny/Starlight-LiveRAG).\n\nSources: [arXiv page](https://arxiv.org/abs/2506.13743), [GitHub](https://github.com/kimdanny/Starlight-LiveRAG)\n\n---\n\n### 2. BEST-Route -- arXiv 2506.22716\n\n**Verified.** Accepted at ICML 2025. The paper routes over both model selection AND the number of responses to sample (sampling count), based on query difficulty and quality thresholds. The key insight is that for small models, generating multiple responses and selecting the best can beat a single large-model response at lower cost. Prior routing approaches only generated one response per model, causing over-reliance on expensive models.\n\nSources: [arXiv page](https://arxiv.org/abs/2506.22716)\n\n---\n\n### 3. RouteLLM -- arXiv 2406.18665\n\n**Venue: ICLR 2025 (confirmed, NOT ICML 2025).** The paper appears on the [ICLR 2025 virtual poster program](https://iclr.cc/virtual/2025/poster/30737) and [OpenReview under ICLR](https://openreview.net/forum?id=8sSqNntaMr).\n\n**Four router architectures confirmed:**\n1. **Similarity-Weighted (SW) Ranking** -- performs weighted Elo calculation based on prompt similarity to training examples\n2. **Matrix Factorization** -- learns a latent scoring function s(M, q) inspired by recommendation systems\n3. **BERT Classifier** -- BERT model trained on preference data to predict which model gives better responses\n4. **Causal LLM Classifier** -- LLM-based classifier fine-tuned on preference data\n\nMatrix factorization was the best-performing router when trained on augmented data, achieving 95% GPT-4 quality with only ~14% of calls routed to GPT-4.\n\nSources: [arXiv page](https://arxiv.org/abs/2406.18665), [ICLR 2025 poster](https://iclr.cc/virtual/2025/poster/30737), [LMSYS blog](https://www.lmsys.org/blog/2024-07-01-routellm/)\n\n---\n\n### 4. RADAR -- arXiv 2509.25426\n\n**Verified.** RADAR (Reasoning-Ability and Difficulty-Aware Routing) uses a custom Item Response Theory (IRT) model inspired by psychometrics to jointly estimate interpretable query difficulties and model abilities at different reasoning budgets. The calibration step collects evaluation responses of each {model, reasoning budget} configuration, then fits IRT to estimate latent parameters. For generalization to unseen queries, query difficulty is parameterized via a learnable vector multiplied by embeddings from an off-the-shelf model. Key result: achieves OpenAI o4-mini performance at high reasoning effort at only 1.31% of its cost, with strong OOD generalization.\n\nSources: [arXiv page](https://arxiv.org/abs/2509.25426)\n\n---\n\n### 5. Granularity routing in the code domain\n\n**No direct \"granularity routing for code\" paper found.** The closest concurrent works are:\n\n- **ReCode** (arXiv 2510.23564) -- \"Unify Plan and Action for Universal Granularity Control.\" Uses recursive code generation to enable agents to dynamically control decision granularity, but this is about agent planning granularity, not retrieval granularity routing for code tasks.\n- **Triage** (arXiv 2604.07494) -- Routes software engineering tasks to cost-effective LLM tiers via code quality signals, operating at task-level granularity (not retrieval parameter granularity).\n- **AdaptiveLLM** -- Selects optimal LLMs for coding tasks by assessing difficulty via Chain-of-Thought length clustering, but routes models not retrieval configurations.\n\nNo paper was found that specifically routes over retrieval granularity parameters in the code generation domain.\n\n---\n\n### 6. FreeChunker -- arXiv 2510.20356\n\n**Verified.** FreeChunker is a \"Cross-Granularity Chunking Framework.\" Its critique of MoE-based granularity methods (like Mix-of-Granularity) is confirmed: MoE-inspired methods essentially aggregate existing chunkers as experts, so both the quality of semantic chunking and the degree of granularity control remain fundamentally bounded by the capabilities of the underlying chunker experts. FreeChunker's alternative approach treats sentences as atomic units and generates chunk embeddings across multiple granularities simultaneously, enabling flexible retrieval of arbitrary sentence combinations. Evaluated on LongBench V2 with advantages in both retrieval performance and time efficiency.\n\nSources: [arXiv page](https://arxiv.org/abs/2510.20356)\n\n---\n\n### 7. Configuration routing papers (2025-2026) that route over retrieval parameters (not model selection)\n\nThree notable papers found:\n\n1. **METIS** (SOSP 2025, arXiv 2412.10543) -- Microsoft Research. The first RAG system that jointly schedules queries and adapts key RAG configurations per query (number of retrieved chunks, synthesis methods). Uses query profiles to filter undesirable configurations. Reduces generation latency by 1.64-2.54x without quality loss. Published at ACM SIGOPS 31st Symposium (SOSP '25), Seoul.\n\n2. **Mix-of-Granularity (MoG)** (COLING 2025, arXiv 2406.00456) -- Dynamically determines optimal chunking granularity per query using a trained router with soft-label loss. Extended to MoG-Graph for retrieving distantly situated snippets. This is the MoE-based approach that FreeChunker critiques.\n\n3. **AutoRAG-HP** (EMNLP 2024 Findings, arXiv 2406.19251) -- Formulates retrieval hyperparameter tuning (top-k, compression ratio, embedding methods) as an online multi-armed bandit problem. Achieves Recall@5 ~0.8 using only ~20% of API calls vs. grid search.\n\nAdditionally, **SmartChunk** (2025) introduces a planner that predicts per-query chunk sizes for adaptive multi-level retrieval, and **STITCH** dynamically adjusts chunk sizes based on document and query type.\n\nSources: [METIS](https://arxiv.org/abs/2412.10543), [Mix-of-Granularity](https://arxiv.org/abs/2406.00456), [AutoRAG-HP](https://arxiv.org/abs/2406.19251), [LTRR](https://arxiv.org/abs/2506.13743)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3334f80e-912b-474f-a5ae-57c6bf72f06a",
+            "isSidechain": true,
+            "agentId": "a2423feb6edcb0601",
+            "requestId": "req_011CawgtsayjuUoTaEAFmMfW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e8aeb57a-c064-4a3f-acee-ed72ce9775e6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "814ac75a-c3b1-4f47-9a69-4e25d98c82d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AohZ3petSkKDRUki9R7Err",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1032,
+                "cache_read_input_tokens": 23215,
+                "output_tokens": 1836,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1032
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1836,
+                    "cache_read_input_tokens": 23215,
+                    "cache_creation_input_tokens": 1032,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1032,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 36
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-helping-review-an-ml-paper-search-for-these-specific-items-1-ltrr-lear.md"
+}

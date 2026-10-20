@@ -1,0 +1,5495 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-10 (UTC).** Your job: indep
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 78
+- **Recorded user turns:** 1
+- **Tool calls:** 21
+- **Original source:** `logs/chats/exported-trajectories/account-1/82d9c4e8-d47c-4528-8ea7-a6c787abf840.jsonl`
+- **Structured JSON:** [`540bb7edcdf62af56373.json`](../../sessions/54/540bb7edcdf62af56373.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T07:07:59.677Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T07:07:59.677Z",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-10 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: NLP and Code Models.\n\nDirection: Code understanding and generation — repo-level comprehension, program repair, code reasoning, debugging, test generation, code-to-documentation, cross-language code transfer. NOT just code completion — focus on higher-level code reasoning tasks.\n\nContribution type: METHOD ONLY. Propose new training methods, retrieval-augmented code repair, or inference algorithms for code tasks. Not a new benchmark or leaderboard entry.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Code models are often evaluated zero-shot or few-shot — budget goes to SFT/LoRA if fine-tuning.\n2. Time: ≤16 days. Build on existing code models (DeepSeek-Coder-V2, StarCoder2, CodeLlama, Qwen2.5-Coder) and frameworks (aider, SWE-agent, Moatless).\n3. Eval: SWE-bench Verified, HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, CodeContests.\n\nLook for: repo-level context compression for code understanding, retrieval-augmented repair with semantic code search, code reasoning via execution feedback, cross-repo transfer learning. Avoid: simple prompt templates for code completion.\n\nTag: direction=code_models, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 4/10)\n{\n  \"title\": \"SpecExtract: Learning Issue-Space Behavioral Specifications from Bug Report Runtime Artifacts for Guided Program Repair\",\n  \"core_problem\": \"Automated repair agents fail on ambiguous bug reports not from lack of code understanding, but because unstructured issue text leaves behavioral expectations underspecified — what interface should change, what the user observed, and what correct behavior looks like are rarely made explicit. SpecRover (ICSE 2025) partially addresses this via per-instance LLM prompting that extracts specifications from CODE during codebase traversal, yet its error analysis (Section V-A, 'Reasons for Failure') identifies that 107 of its 207 unresolved SWE-bench Lite tasks (51.7%) are classified as 'ambiguous issue description' — cases the paper characterizes as 'hard or impossible to solve' without further information, citing SWE-bench Verified as external validation for why underspecified descriptions constitute an irreducible failure mode for code-space approaches. This architectural limitation is structural: code-side spec extraction can only infer specifications from code that already exists, not from behavior that is described in the issue but not yet correctly implemented. Bug reports routinely contain latent behavioral specifications in their runtime artifacts: stack traces name the affected interface, error messages describe observed behavior, and reproducer assertions encode expected behavior. No method trains a dedicated model to extract these signals from bug report text into a structured repair specification — covering affected interface, observed behavior, expected behavior, and their delta — that could constrain both fault localization and patch generation before any codebase traversal begins.\",\n  \"opportunity\": \"Failing test assertions in SWE-bench's test patches encode implementation-agnostic behavioral specifications without revealing implementation strategies: `assert result == expected_value` or `with pytest.raises(ValueError)` states precisely what the program SHOULD do, independent of WHICH code to change or HOW to change it. By mechanically converting (problem_statement + test_patch assertions + stack traces) to structured JSON spec fields using AST-level test parsing and NLP extraction on SWE-bench's 2,294 instances, we construct a training corpus of 2,294 (bug_report, structured_spec) pairs — where the spec encodes behavioral expectations derivable without knowing the implementation strategy. This avoids the critical flaw of training on SWE-bench Pro requirements, which were authored by humans with full access to the golden patch (making them solution-conditioned). SWE-bench-Live (NeurIPS 2025, arXiv 2505.23419; ~1,890 Docker-reproducible instances across 223 repositories, drawn from post-January-2024 GitHub issues, growing at ~50 instances/month) provides a clean, contamination-resistant evaluation target with no training-set overlap, replacing the officially-abandoned SWE-bench Verified. SWE-bench Pro's human-written `requirements` and `interface` fields (731 public instances) serve as an ecological validity check — we measure cosine similarity between machine-derived specs and human requirements on a held-out 200-instance slice — confirming that AST-parsed test assertions produce specs that match expert behavioral descriptions, without using requirements as training supervision.\",\n  \"landscape\": \"SpecRover (ICSE 2025, arXiv 2408.02232) is the closest prior work: given a GitHub issue, it iteratively traverses the codebase, prompting Claude 3.5 Sonnet to extract function-level summaries from visited code, producing evidence artifacts in the form {(location, intended_behavior)} at $0.65/issue and 31% on SWE-bench Lite (93/300). SpecRover operates in code-space (it visits source files to generate specs from code) and uses per-instance prompting (no fine-tuning). Our approach operates in issue-space (extracts specs from bug report text and runtime artifacts before any codebase traversal) and uses supervised fine-tuning (consistent structured output at ~$0.05-0.10/issue). These are complementary directions: SpecRover's code-space specs and our issue-space specs could ultimately be fused. Agent-CoEvo (arXiv 2604.04580, April 2026) proposes the most directly competing design philosophy: rather than pre-extracting behavioral constraints from issue text, it coevolves code patches and test patches simultaneously during repair, treating tests as dynamic constraints that are iteratively revised alongside candidate fixes. Agent-CoEvo achieves 41.33% on SWE-bench Lite (DeepSeek-V3) and 46.4% on SWT-bench Lite, outperforming Agentless-1.5 (32%) on those benchmarks. SpecExtract takes the complementary pre-extraction stance: (1) issue-space specs derived before any codebase access are reusable across repair backbones without retraining, including static pipeline systems like Agentless that do not support dynamic constraint revision during search; (2) pre-extracted specs reduce the initial search space before coevolution begins, making SpecExtract a potential front-end that improves Agent-CoEvo's starting population rather than competing with it. SWE-Lego (arXiv 2601.01426, Jan 2026) is the most directly competing concurrent SFT work: it trains on 32k high-quality task instances with error masking and a difficulty-based curriculum, achieving 52.6% on SWE-bench Verified (58.8% with test-time scaling at 16 samples) using a 32B model. SWE-Lego is an end-to-end system that produces complete code fixes; SpecExtract is a preprocessing module that extracts structured behavioral specs from bug report text before any repair attempt, and can plug into SWE-Lego or any other repair backbone as a drop-in front-end — improving fault localization precision and patch generation alignment without retraining the repair agent itself. VibeRepair (arXiv 2602.08263, Feb 2026) translates buggy CODE into behavior specifications, repairs the spec, then synthesizes corrected code, achieving 19-23% improvement on Defects4J — code-space to spec, not text-space to spec. TraceRepair (arXiv 2604.02647, Apr 2026) uses runtime execution traces generated by instrumented code execution as shared repair constraints across a multi-agent committee, fixing 392 Defects4J defects — traces are generated during repair, not extracted from issue text before repair begins. RepoRepair (arXiv 2603.01048) generates hierarchical code documentation from source files toward the bug; its documentation is code-driven, not report-driven. SoRFT (arXiv 2502.20127, ACL 2025; https://aclanthology.org/2025.acl-long.559) fine-tunes on SWE-bench with RL to decompose the repair TASK into subtasks (file → function → line → edit), achieving 21.4% on SWE-bench Verified and 14.0% on SWE-bench Lite with a 7B model (30.8% Verified and 24.0% Lite with a 32B model) — it structures the repair pipeline, not the issue semantics. PathFix (arXiv 2510.14341) derives behavioral specs from static code execution paths — code-space and offline, not issue-space. The gap: no existing work trains a dedicated model to extract structured behavioral specifications from bug report text and embedded runtime artifacts, operating entirely in issue-space before codebase access.\",\n  \"approach\": \"We train SpecExtract, a Qwen3-Coder-30B-A3B model (Mixture-of-Experts: 30B total parameters, ~3B active per token — fine-tuning and inference cost scale with active parameters, comparable to a 3B dense model; fits on a single H100 80GB with QLoRA at ~17.5GB VRAM per Unsloth benchmarks; 2× H100 is the recommended training configuration for throughput, not minimum requirement) fine-tuned to map (bug_report_text, runtime_artifacts?) → structured JSON spec, where runtime artifacts are any combination of stack traces, error messages, test failure output, or explicit reproducer assertions present in the issue text. The model gracefully handles varying artifact availability through a masked-field training protocol: training instances are presented with random subsets of available artifacts so the model learns to produce well-formed specs from text-only, text+stack-trace, and text+test-assertion inputs. **Formal schema**: Each spec has four typed fields — (1) `affected_interface`: {module: str, signature: str|null, entry_point: str} extracted from stack frame function names and explicitly mentioned APIs; (2) `observed_behavior`: {error_type: str|null, error_message: str|null, symptom: str} from error output and user complaint; (3) `expected_behavior`: {description: str, assertions: [str]} as natural-language description plus test-style constraint strings when derivable; (4) `behavioral_delta`: str, a one-sentence expected-vs-actual summary. Worked example for a NumPy issue 'linalg.solve silently returns None for singular matrices instead of raising': {affected_interface: {module: 'numpy.linalg', entry_point: 'solve', signature: 'solve(a, b)'}, observed_behavior: {error_type: null, symptom: 'returns None for singular matrix input'}, expected_behavior: {description: 'should raise for non-invertible input', assertions: ['raises np.linalg.LinAlgError when matrix is singular']}, behavioral_delta: 'solve silently returns None instead of raising LinAlgError on singular input'}. **Training data construction (implementation-agnostic behavioral specifications)**: From SWE-bench full (2,294 instances including Verified 500 and the broader set): (1) parse `test_patch` test functions via Python AST to extract formal assertions — pytest.raises calls → error_type, assert statements → expected_behavior.assertions, decorated test function signatures → affected_interface hints; (2) extract stack traces and error strings from `problem_statement` text via regex heuristics → observed_behavior; (3) combine via LLM-assisted template fill using Qwen3-Coder-30B-A3B in a chain-of-thought extraction pass to produce coherent spec JSON; (4) validate on 200 SWE-bench Pro public instances that have non-null `requirements` and `interface` fields by computing cosine similarity (sentence-transformer) between mechanically-derived specs and human-authored requirements — target alignment ≥ 0.65 before training at scale; this validates the schema rather than using requirements as training targets. Important framing on conditionality: test assertions are written alongside gold patches and encode the behavioral outcome the fix achieves. The training specs are therefore *implementation-agnostic* — they do not reveal which code to change or the implementation strategy — rather than strictly solution-independent. This distinction is explicitly addressed in the paper to avoid overclaiming. Augment with ~3,000 pseudo-labeled GitBugs instances (arXiv 2504.09651; 150K+ open-licensed bug reports from Firefox, Cassandra, VS Code) selected for stack-trace richness and LLM-derived pseudo-specs, yielding a ~5,300-instance fine-tuning corpus. **Differentiation from SpecRover**: (1) issue-space — no codebase traversal needed at spec extraction time; (2) supervised learning — consistent, typed JSON output from a single forward pass (~$0.05-0.10/issue) vs. SpecRover's multi-step code traversal ($0.65/issue); (3) directly targets SpecRover's identified 51.7% ambiguous-description failure mode (Section V-A, 107/207 unresolved SWE-bench Lite tasks) by conditioning on all available runtime artifacts in the issue, not just the code side. **Integration with Agentless**: Agentless (arXiv 2407.01489) is used as the repair backbone for all SWE-bench-Live evaluations — it follows a fixed three-stage pipeline (hierarchical fault localization → patch generation → patch selection) with no iterative tool calls, making spec injection clean and reproducible. SpecExtract specs are injected at two stages: (1) fault localization Stage 1 — BM25+embedding file retrieval is biased by prepending `affected_interface.module` and `entry_point` as a structured query prefix, pushing relevant files higher in the candidate list; (2) patch generation Stage 3 — the repair LLM receives all four spec fields as an explicit behavioral constraint header in its prompt, focusing generation on the documented delta. **Agentless baseline on SWE-bench-Live**: Per the SWE-bench-Live paper (arXiv 2505.23419, Table 3), Agentless resolves 11.67% (GPT-4o), 12.00% (GPT-4.1), and 13.33% (DeepSeek V3) of SWE-bench-Live Lite (300 instances) — substantially below its 50.8% on SWE-bench Verified, reflecting the contamination-resistant, harder distribution of post-2024 issues. These published numbers establish the Agentless-direct baseline; SpecExtract targets +4-7 percentage points improvement over the best Agentless backbone, which is reported as the primary experimental contribution. **Evaluation**: Primary eval on SWE-bench-Live Lite (300 instances, contamination-resistant, post-2024 issues) with Agentless as backbone; per-field ablations independently zero out each spec field to quantify individual contribution to resolve rate. Secondary eval: cosine-similarity validation on 200 SWE-bench Pro held-out instances (schema validity check). Comparison baselines: Agentless direct repair without spec (established at 11-13% from published SWE-bench-Live results), SpecRover-equivalent prompting (ablation of supervised fine-tuning benefit), SoRFT-Qwen-7B (21.4% Verified / 14.0% Lite, structured subtask decomposition), SWE-Lego (52.6% Verified, end-to-end SFT backbone — SpecExtract as preprocessing front-end demonstrates orthogonal contribution).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~90-110 H100-hours (~180-220 A100-equivalent hours)\",\n      \"gpu_breakdown\": \"SFT partition (~10-14 H100-hours): Qwen3-Coder-30B-A3B QLoRA fine-tuning on 5,300 instances, 3 epochs, 2× H100 80GB recommended for throughput (single H100 80GB is technically sufficient at ~17.5GB VRAM) — MoE active-parameter efficiency reduces training cost to ~3B dense equivalent. Eval partition (~80-96 H100-hours): spec extraction inference on 5,300 instances (~4 H100-hours); SWE-bench-Live Lite main eval 300 instances × 12.5 min/instance / 4 parallel H100s ≈ 16 H100-hours; per-field ablations 4 fields × 300 instances ≈ 64 H100-hours; SWE-bench Pro validation ≈ 1 H100-hour.\",\n      \"gpu_utilization\": \"~50-60% — Docker sandbox test execution during SWE-bench-Live eval is CPU-bound; GPU idles between model inference calls\",\n      \"timeline\": \"3-5 months\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"~$216-264 (90-110h × $2.40/hr H100 SXM5 on-demand; within the 200 H100-hour hard constraint)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~135-160 H100-hours (~270-380 A100-equivalent hours)\",\n      \"gpu_breakdown\": \"SFT partition (~25-35 H100-hours): 3 fine-tuning configurations (schema variant, augmentation ablation, masked-field protocol variant). Eval partition (~110-125 H100-hours): spec extraction ~5 H100-hours; Agentless baseline run on 300 instances ≈ 16 H100-hours; SWE-bench-Live partial eval 600 instances / 4 parallel ≈ 31 H100-hours; per-field ablations on 300-instance subset × 4 fields ≈ 62 H100-hours; SWE-bench Pro validation ≈ 1 H100-hour.\",\n      \"gpu_utilization\": \"~60-70% — agent runs fine-tuning and SWE-bench-Live eval jobs continuously; human approves schema validation threshold, masked-field training protocol, retrieval bias weights, and ablation scope at daily check-ins\",\n      \"timeline\": \"5-9 weeks\",\n      \"team\": \"1 researcher, ~30 min/day check-in\",\n      \"claude_api_cost\": \"$200-400 (~2,500 orchestration turns at ~$0.10/turn Opus)\",\n      \"estimated_gpu_cost\": \"~$324-384 (135-160h × $2.40/hr H100); within the 200 H100-hour hard constraint\",\n      \"risk_note\": \"Critical unknown: whether AST-parsed test assertions produce specs that align with human behavioral descriptions (measured by cosine similarity ≥ 0.65 on 200 SWE-bench Pro validation instances). If alignment is below threshold, the spec schema needs redesign before scale-up. GitBugs pseudo-spec quality is the secondary risk — human spot-check of 100 instances recommended before augmentation scale-up.\"\n    },\n    \"auto_research\": {\n      \"note\": \"Budget-capped auto-research only — uncapped sweeps would exceed the 200 H100-hour hard constraint. Capped to 3 fine-tuning configurations × 1 retrieval variant × 1 patch-generation prompt strategy on SWE-bench-Live Lite (300 instances) for the main configuration sweep, then ablations on the best-performing config only.\",\n      \"gpu_hours\": \"~160-180 H100-hours (budget-capped)\",\n      \"gpu_breakdown\": \"SFT partition (~30-35 H100-hours): 3 QLoRA configs on 5,300 instances. Eval partition (~130-145 H100-hours): 3-config main sweep 3 × 300 instances ≈ 48 H100-hours; per-field ablations on best config 300 × 4 fields ≈ 64 H100-hours; Agentless baseline ≈ 16 H100-hours; spec extraction inference ≈ 5 H100-hours; validation ≈ 1 H100-hour.\",\n      \"gpu_utilization\": \"~80-85% — continuous fine-tuning, inference, and SWE-bench-Live Docker eval; sandbox parallelized across 30 instances simultaneously\",\n      \"timeline\": \"6-10 days with 4 parallel H100 GPUs\",\n      \"team\": \"0 (setup only, ~3h initial configuration)\",\n      \"claude_api_cost\": \"$400-600 (~4,500 turns)\",\n      \"estimated_gpu_cost\": \"~$384-432 (160-180h × $2.40/hr H100)\",\n      \"speed_bottleneck\": \"SWE-bench-Live Docker sandbox throughput, not GPU compute; Qwen3-Coder-30B-A3B MoE inference (~3B active params) is fast and avoids multi-GPU coordination overhead that a dense 30B model would require\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline May 25, 2026 — 15 days remaining; conference October 24-29, Budapest) — NLP angle on structured information extraction from semi-structured bug text; realistic for a theory + pilot-scale submission with 500-instance SWE-bench Verified training and SWE-bench-Live Lite eval\",\n    \"ICSE 2027 (abstract deadline June 23, 2026; full paper ~July 2026; conference April-May 2027, Dublin) — SE angle; preferred primary target for full experimental results including SWE-bench-Live partial-set ablations\",\n    \"NeurIPS 2026 (submission deadline expected May-June 2026) — systems and benchmarks angle; natural co-venue given SWE-bench-Live is NeurIPS 2025\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"SpecRover: Code Intent Extraction via LLMs (arXiv 2408.02232, ICSE 2025) — primary related work: code-space spec inference via prompting, 31% SWE-bench Lite (93/300), $0.65/issue; Section V-A 'Reasons for Failure' categorizes 107/207 unresolved SWE-bench Lite tasks (51.7%) as 'ambiguous issue description', cases characterized as 'hard or impossible to solve' without further information, citing SWE-bench Verified as external validation for the hardness of this failure mode\",\n    \"SWE-bench Goes Live! (arXiv 2505.23419, NeurIPS 2025 D&B) — primary evaluation benchmark: ~1,890 contamination-resistant instances across 223 repositories, post-2024 GitHub issues, Docker-reproducible, growing at ~50 instances/month; Table 3 reports Agentless on SWE-bench-Live Lite (300 instances) at 11.67% (GPT-4o), 12.00% (GPT-4.1), 13.33% (DeepSeek V3) — establishes the Agentless-direct baseline for our evaluation\",\n    \"Agent-CoEvo: Beyond Fixed Tests: Repository-Level Issue Resolution as Coevolution of Code and Behavioral Constraints (arXiv 2604.04580, April 2026) — most directly competing design philosophy: coevolves code patches and test patches simultaneously during repair (41.33% SWE-bench Lite with DeepSeek-V3); SpecExtract's pre-extraction stance is complementary — issue-space specs reduce the initial search space before coevolution, and are pipeline-agnostic for static repair systems that do not support dynamic constraint revision\",\n    \"SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? (arXiv 2509.16941) — schema ecological validity validator: 731 public instances with human requirements and interface fields\",\n    \"SWE-Lego (arXiv 2601.01426, Jan 2026) — most competitive concurrent SFT work: 32k training instances, difficulty-based curriculum SFT, 52.6% SWE-bench Verified (58.8% with 16-sample test-time scaling) with 32B model; end-to-end repair backbone that SpecExtract can serve as a preprocessing front-end for\",\n    \"Agentless: Demystifying LLM-based Software Engineering Agents (arXiv 2407.01489) — integration repair backbone: open-source three-stage fixed pipeline (localization → repair → validation), ~50.8% SWE-bench Verified (Agentless-1.5), 32% SWE-bench Lite; spec injected at file localization (retrieval bias) and patch generation (behavioral constraint prefix) stages\",\n    \"Specification Vibing for Automated Program Repair / VibeRepair (arXiv 2602.08263, Feb 2026) — code-space spec extraction before repair, Defects4J, 19-23% improvement\",\n    \"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate / TraceRepair (arXiv 2604.02647, Apr 2026) — trace-based repair constraints during execution, Defects4J\",\n    \"SoRFT: Issue Resolving with Subtask-oriented Reinforced Fine-Tuning (arXiv 2502.20127, ACL 2025; https://aclanthology.org/2025.acl-long.559) — structured repair subtask decomposition with RL; SoRFT-Qwen-7B: 21.4% SWE-bench Verified / 14.0% SWE-bench Lite; SoRFT-Qwen-32B: 30.8% SWE-bench Verified / 24.0% SWE-bench Lite; key baseline for SpecExtract's supervised fine-tuning approach\",\n    \"GitBugs: Bug Reports for Duplicate Detection, Retrieval Augmented Generation, and More (arXiv 2504.09651) — 150K+ open-licensed bug reports for training augmentation\",\n    \"RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair (arXiv 2603.01048)\",\n    \"On the Role of Fault Localization Context for LLM-Based Program Repair (arXiv 2604.05481)\",\n    \"PathFix: Automated Program Repair with Expected Path (arXiv 2510.14341)\"\n  ],\n  \"description\": \"We introduce SpecExtract, the first supervised issue-space specification extractor for program repair: a fine-tuned Qwen3-Coder-30B-A3B model (MoE, ~3B active parameters — fine-tuning and inference cost comparable to a 3B dense model; fits on a single H100 80GB at ~17.5GB VRAM with QLoRA; 2× H100 recommended for training throughput) that maps (bug_report_text, runtime_artifacts?) → a structured four-field JSON spec covering affected interface, observed behavior, expected behavior, and behavioral delta. The key methodological insight is that failing test assertions in SWE-bench test patches encode implementation-agnostic behavioral specifications — they state what the program SHOULD do without revealing which code to change or the implementation strategy — enabling AST-level test parsing combined with problem-statement NLP extraction to construct 2,294 clean (bug_report, structured_spec) training pairs from SWE-bench. GitBugs (150K+ open-licensed bug reports) provides 3,000 pseudo-labeled augmentation instances, yielding a 5,300-instance fine-tuning corpus. SWE-bench Pro public requirements serve as an ecological validity check (cosine similarity ≥ 0.65 on 200 held-out instances), not a training target. Extracted specs are integrated with Agentless as the repair backbone, injected at fault localization (retrieval biased toward affected_interface.module/entry_point) and patch generation (structured behavioral constraint prefix). Primary evaluation is on SWE-bench-Live Lite (300 instances, contamination-resistant, Docker-reproducible, post-2024 issues), with the Agentless-direct baseline established at 11-13% from published SWE-bench-Live results (Table 3, arXiv 2505.23419) and a target improvement of +4-7 percentage points; per-field ablations measure individual spec contributions. Agent-CoEvo (arXiv 2604.04580, 41.33% SWE-bench Lite) represents the competing dynamic-coevolution philosophy; SpecExtract's pre-extraction stance is complementary — pipeline-agnostic and applicable to static repair systems. SWE-Lego (52.6% Verified with 32B) is included as an end-to-end SFT baseline to demonstrate that SpecExtract provides orthogonal gains as a preprocessing front-end rather than competing as a repair system. Differentiated from SpecRover (code-space prompting, $0.65/issue, 31% SWE-bench Lite) by operating in issue-space at ~$0.05-0.10/issue — directly targeting SpecRover's Section V-A identified 51.7% ambiguous-description failure mode — and from SWE-Lego by producing modular, pipeline-agnostic specs that plug into any repair backbone without retraining it. Compute in H100-hours: manual mode ~90-110 H100-hours (SFT ~10-14 H100-hours, eval ~80-96 H100-hours), within the 200-hour hard constraint.\",\n  \"project_name\": \"structured_spec_repair\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL — Training data availability: The public SWE-bench Pro HuggingFace dataset contains 731 instances from 11 repositories with copyleft licenses. The remaining 1,134 instances (held-out: 12 repos, commercial: 18 proprietary repos) are explicitly not publicly accessible. The proposal's assumption of ~1,865 training pairs is wrong by a factor of 2.5x. At 731 instances, standard fine-tuning of a 32B Qwen3-Coder model risks severe overfitting and is far too small for reliable generalization.\", \"CRITICAL — Training signal invalidity (train-test distribution mismatch): SWE-bench Pro requirements were authored by humans with full access to the golden patch AND the passing test suite, working backward from tests to specifications. They are solution-conditioned prescriptive clarifications of already-solved problems. Real-world target bug reports are solution-ignorant descriptive complaints from confused users. Fine-tuning SpecExtract on (solution-knowing-human-written-spec → structured-spec) pairs will not teach the model to extract specs from genuinely ambiguous bug reports — it will teach it to produce post-hoc rationalizations of known solutions. This fundamental mismatch is not acknowledged and cannot be patched by synthetic augmentation alone.\", \"CRITICAL — Evaluation benchmark reliability: SWE-bench Verified shows SOTA of 93.9% (Claude Mythos Preview, May 2026) with documented evidence of data contamination — OpenAI has officially stopped recommending Verified scores for meaningful comparison. Demonstrating a statistically meaningful improvement on a benchmark where frontier models may be reproducing gold patches verbatim severely weakens the paper's empirical contribution.\", \"Novelty gap — SpecRover (ICSE 2025, arXiv 2408.02232) performs iterative code intent extraction and specification inference from GitHub issue descriptions using LLM agents (not supervised training), and achieves >50% improvement in repair rate on SWE-bench at $0.65/issue. The paper's claim that 'no prior work trains a spec extractor' is technically true but misses that SpecRover occupies the same research niche via prompting. The paper must explicitly frame what the supervised training provides that SpecRover's prompting approach cannot.\", \"Compute unit mismatch vs. hard constraint: The hard constraint is ≤200 H100-hours. All estimates are given in A100-hours. H100 is ~2–3× faster than A100 for transformer fine-tuning workloads, so 200 A100-hours ≈ 67–100 H100-hours (manual, within budget), but the auto-research mode at 800 A100-hours ≈ 300–400 H100-hours exceeds the hard constraint. The paper should explicitly reconcile resource estimates in H100-hours and confirm the primary research plan stays within budget.\", \"Structured spec schema undefined: The proposal outputs 'structured specs' with fields (affected interface, pre/post-conditions, expected/actual behavior delta), but these fields are never formally defined — no JSON schema, no field type definitions, no examples of what a valid spec looks like. SWE-bench Pro requirements are freeform prose; the conversion of freeform requirements to structured JSON is the hardest step and receives no design discussion.\", \"Data leakage if evaluation pivots to SWE-bench Pro: If the proposal trains on SWE-bench Pro (public: 731 instances) and evaluates on the same benchmark, it cannot cleanly show generalization. The community will ask whether the structured spec format was reverse-engineered from the test set rather than learned from scratch.\"]\nFeedback: The core direction — using SWE-bench Pro annotations to supervise structured specification extraction — is creative and timely, but rests on a mischaracterization of what SWE-bench Pro requirements actually are and how many are publicly accessible. To revise toward 'pass': (1) **Fix the training data premise**: Acknowledge that SWE-bench Pro public set is 731 instances, not 1,865. Address the solution-conditioned nature of the requirements by designing the training task as 'given the bug report + human requirements, produce structured spec fields,' treating the requirements as an alignment target rather than pretending they were extracted from bug reports alone. (2) **Address SpecRover directly**: Add SpecRover (ICSE 2025, arXiv 2408.02232) to the related work and explicitly argue why supervised fine-tuning generalizes better than per-instance LLM prompting — e.g., lower inference cost, better calibration, consistency across bug report styles. (3) **Replace SWE-bench Verified as primary eval**: Use SWE-bench Pro public (731 instances) with a held-out split for evaluation, and add an additional out-of-distribution eval on RepoBench or DebugBench to show generalization. Explicitly argue why SWE-bench Pro's requirements-based evaluation is the right target, not the contaminated Verified leaderboard. (4) **Define the structured spec schema**: Add a formal schema definition with field types and a worked example. Show how SWE-bench Pro freeform requirements can be automatically converted to this schema via a parsing step (this becomes its own empirical contribution). (5) **Reconcile compute in H100-hours**: Convert all estimates to H100-hours and confirm manual mode (~67–100 H100-hours) is well within the 200-hour budget. Remove or prominently caveat auto-research mode since it exceeds the hard constraint.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"CRITICAL — Model naming error: 'Qwen3-Coder-14B' does not exist. Qwen3-Coder is only available in 30B-A3B (MoE, 3B active) and 480B-A35B variants. The closest viable alternatives are Qwen3-14B (dense, base Qwen3 family) or Qwen2.5-Coder-14B (prior generation). This error must be corrected with the actual model to be used, and any VRAM/compute estimates adjusted accordingly.\", \"CRITICAL — Unverifiable SpecRover failure claim: The proposal states SpecRover 'explicitly identifies that 51.7% of its unresolved SWE-bench Lite failures stem from ambiguous issue descriptions.' This specific statistic could not be verified from the SpecRover abstract or public-facing sections. If this is an inference rather than a direct quote, it must be either verified by citing the exact section, reframed as an approximation, or removed. The entire motivation chain rests on this number.\", \"SIGNIFICANT — SoRFT baseline misrepresented: The proposal states SoRFT achieves '21.4% on SWE-bench Verified with a 7B model' but SoRFT (ACL 2025) actually reports 21.4% on SWE-bench Lite, not Verified. The Verified number for SoRFT-7B is 14.0%. Using the wrong benchmark undermines the baseline comparison.\", \"SIGNIFICANT — Integration repair agent unspecified: The primary experimental claim requires running a full end-to-end repair pipeline on SWE-bench-Live (1,890 instances) that integrates the extracted spec. The proposal does not specify which agent (SWE-agent, Moatless, Agentless, custom) is used, how the spec is injected, or what its baseline resolve rate is. Without this, the compute estimate and experimental design are incomplete.\", \"SIGNIFICANT — SWE-Lego (arXiv 2601.01426) not addressed: This January 2026 SFT-for-issue-resolving paper uses 32k training instances and a comprehensive SFT curriculum for end-to-end repair. As direct related work in the SFT-for-SWE space, its omission leaves a gap the reviewer committee will flag. The differentiation should be: SpecExtract does a spec-extraction subtask (not end-to-end repair), enabling pipeline-agnostic reuse.\", \"MODERATE — Test_patch assertion conditionality overstated: The 'non-solution-conditioned' framing is the linchpin of the training data justification, but test patches are written after/alongside gold patches and specifically designed to validate the fix. In many SWE-bench instances, assertions encode precise return values or exception types only determinable by knowing the codebase implementation. The paper should more carefully scope the claim: 'behavioral-specification-level, not implementation-level conditioned' rather than 'non-solution-conditioned.'\", \"MINOR — SWE-bench-Live size outdated: The proposal states '1,565+ instances' but the live dataset now contains 1,890 tasks across 223 repositories. Update to the current figure.\", \"MINOR — Compute budget tightness for full eval: Running a repair agent on 1,890 SWE-bench-Live instances at ~10-15 minutes/issue with 4 parallel H100s consumes approximately 79-118 H100-hours for evaluation alone, leaving 0-6 H100-hours for fine-tuning in the manual mode upper estimate. Explicitly partition the budget between SFT and eval inference.\"]\nFeedback: The Round 2 revision has substantially addressed the Round 1 critical issues: the training data premise is now grounded (SWE-bench test_patch AST parsing rather than SWE-bench Pro requirements), the evaluation target is appropriate (SWE-bench-Live), compute is expressed in H100-hours with manual mode under budget, and the JSON schema is formally defined. This is genuine progress. To advance to 'pass':\n\n(1) **Fix the model name immediately**: Replace 'Qwen3-Coder-14B' with either 'Qwen3-14B' (dense, 14B params, general Qwen3 family) or 'Qwen3-Coder-30B-A3B' (MoE, only 3B active params, faster and better for code). Qwen3-Coder-30B-A3B is the more credible choice for a coding spec-extraction task — its ~3B active parameters mean fine-tuning cost is comparable to a 3B dense model despite 30B total params.\n\n(2) **Verify or remove the 51.7% SpecRover claim**: Read SpecRover Section 4 or 5 (error analysis). If the 51.7% figure is there, cite the exact table/figure. If it's an approximation, write: 'SpecRover's error analysis identifies ambiguous issue descriptions as the dominant unresolved failure mode (Section X); our estimate from their public failure logs is ~50%.' If it's not there, reframe the motivation as: 'SpecRover's code-space approach cannot address cases where the issue description itself is underspecified — a failure mode it cannot observe.'\n\n(3) **Fix the SoRFT baseline**: Change '21.4% on SWE-bench Verified' to '21.4% on SWE-bench Lite (14.0% on Verified).' This makes SoRFT a weaker baseline, which actually helps SpecExtract's positioning.\n\n(4) **Specify the integration repair agent**: Choose one concrete agent (e.g., Agentless or Moatless) as the integration vehicle for the SWE-bench-Live evaluation. Report its baseline resolve rate, then show the SpecExtract-augmented rate. Add this as 1-2 sentences in the approach section. This is the most critical missing piece for a credible empirical narrative.\n\n(5) **Add SWE-Lego differentiation**: One paragraph acknowledging SWE-Lego (arXiv 2601.01426) as concurrent SFT work, differentiating that SpecExtract is a preprocessing spec-extraction module (not an end-to-end repair system) that can be combined with any SFT-trained or prompted repair backbone, including SWE-Lego itself.\n\n(6) **Scope the conditionality claim**: In the training data section, replace 'non-solution-conditioned' with 'implementation-agnostic behavioral specifications' to reflect that while test assertions do implicitly know the fix's behavior, they do not expose the implementation strategy, making them valid targets for behavioral spec learning.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"CRITICAL — Fabricated SpecRover citation (third consecutive round): The proposal cites 'SpecRover Section V-A, Reasons for Failure' with the specific claim that 51.7% of its 207 unresolved SWE-bench Lite tasks involve ambiguous issue descriptions (107/207 instances, labeled by SWE-bench Verified human annotators). Independent verification via WebFetch of arXiv 2408.02232v3 confirms this section does not exist — SpecRover has no dedicated error analysis section categorizing failures by issue ambiguity, and contains no 51.7% figure, 107/207 count, or SWE-bench Verified annotation cross-reference. The Round 3 generator escalated from 'unverifiable' (Round 2) to 'fabricated with false specificity' by inventing the section label, count, and labeling provenance. This is an academic integrity violation that will result in desk rejection or post-acceptance retraction if submitted as-is.\", \"SIGNIFICANT — Agent-CoEvo (arXiv 2604.04580, April 2026) not addressed in landscape: This concurrent paper, 'Beyond Fixed Tests: Repository-Level Issue Resolution as Coevolution of Code and Behavioral Constraints,' proposes that behavioral constraints (tests) should be coevolved dynamically with code patches during repair rather than pre-extracted from bug reports. It evaluates on SWE-bench Lite and SWT-bench Lite and outperforms agentless baselines. This represents the most direct competing design philosophy to SpecExtract's pre-extraction approach and must be discussed — specifically, why pre-extraction from issue text before any codebase access is preferable to dynamic constraint coevolution.\", \"MODERATE — SoRFT numbers are now correct but were mishandled across three rounds: Independent verification via ACL Anthology (2025.acl-long.559) confirms SoRFT-7B achieves 21.4% on SWE-bench Verified and 14.0% on SWE-bench Lite — exactly as stated in Round 3. The Round 2 reviewer was wrong to flag these as reversed. While the numbers are now correct, three rounds of oscillation on this point suggest the generator should add a footnote citing the ACL Anthology URL to preempt reviewer confusion.\", \"MODERATE — No reported Agentless-on-SWE-bench-Live baseline: The experimental design requires establishing Agentless-direct (no spec injection) on SWE-bench-Live Lite (300 instances) as the baseline, then measuring SpecExtract-augmented Agentless. This baseline number is not reported anywhere in the proposal, making it impossible to assess whether the expected delta (e.g., +3-8 percentage points) is plausible or whether Agentless-1.5's 50.8% Verified score generalizes to the Live dataset at all. At minimum, cite the Agentless-1.5 SWE-bench-Live Lite score if published, or explicitly acknowledge this is unmeasured.\", \"MINOR — QLoRA VRAM claim is slightly oversimplified: Qwen3-Coder-30B-A3B with QLoRA requires ~17.5GB VRAM (verified via Unsloth documentation), fitting comfortably on a single H100 80GB rather than requiring 2× H100s. The 2× claim is not wrong (it enables larger batch sizes and faster throughput) but should be reframed as 'recommended configuration for efficient throughput' rather than 'minimum requirement.'\"]\nFeedback: This proposal has made genuine progress across three rounds — the model choice, Agentless integration, SWE-Lego differentiation, schema definition, and compute budget are all solid. One issue now blocks this from passing, and one new issue must be addressed:\n\n(1) **IMMEDIATE: Remove or replace the fabricated SpecRover Section V-A claim.** There is no 'Section V-A: Reasons for Failure' in SpecRover, no 51.7% figure, no 107/207 count, and no SWE-bench Verified annotation cross-reference in the paper. Replace the entire motivation chain with a defensible framing: 'SpecRover (ICSE 2025) evaluates on SWE-bench Lite and explicitly acknowledges that its code-space traversal approach cannot resolve cases where the issue description itself is underspecified — it can only infer specifications from code that exists, not from behavior that is described but not yet correctly implemented. This architectural limitation motivates an issue-space approach that operates on bug report text before codebase access.' If you want to keep a quantitative hook, look at SpecRover's SWE-bench Lite resolve rate (31%) and the known proportion of SWE-bench tasks where the issue description is classified as ambiguous by SWE-bench Verified human annotators — cite the SWE-bench Verified paper (arXiv 2410.06992) or the SWE-bench Pro paper for that annotation, not SpecRover.\n\n(2) **Add Agent-CoEvo to related work.** One paragraph: 'Agent-CoEvo (arXiv 2604.04580, April 2026) proposes coevolving code and test patches simultaneously during repair, treating tests as dynamic behavioral constraints. SpecExtract takes the complementary pre-extraction stance: issue-space specs derived before any codebase access reduce the search space for both fault localization and patch generation, and are reusable across repair backbones without retraining — including static repair systems like Agentless that do not support dynamic constraint revision.'\n\n(3) **Add Agentless-on-SWE-bench-Live baseline.** State the known or estimated Agentless-1.5 resolve rate on SWE-bench-Live Lite (or acknowledge it as an early experimental measurement to be reported in the paper). The experimental contribution is the delta, and without the baseline anchor the paper cannot make its empirical case.\n\nWith these three changes — particularly (1) — this proposal should be able to pass in Round 4.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T07:07:59.681Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T07:07:59.681Z",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840"
+}
+```
+
+---
+
+## Round 1
+
+76 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T07:07:59.716Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-10 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: NLP and Code Models.
+
+Direction: Code understanding and generation — repo-level comprehension, program repair, code reasoning, debugging, test generation, code-to-documentation, cross-language code transfer. NOT just code completion — focus on higher-level code reasoning tasks.
+
+Contribution type: METHOD ONLY. Propose new training methods, retrieval-augmented code repair, or inference algorithms for code tasks. Not a new benchmark or leaderboard entry.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Code models are often evaluated zero-shot or few-shot — budget goes to SFT/LoRA if fine-tuning.
+2. Time: ≤16 days. Build on existing code models (DeepSeek-Coder-V2, StarCoder2, CodeLlama, Qwen2.5-Coder) and frameworks (aider, SWE-agent, Moatless).
+3. Eval: SWE-bench Verified, HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, CodeContests.
+
+Look for: repo-level context compression for code understanding, retrieval-augmented repair with semantic code search, code reasoning via execution feedback, cross-repo transfer learning. Avoid: simple prompt templates for code completion.
+
+Tag: direction=code_models, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 4/10)
+{
+  "title": "SpecExtract: Learning Issue-Space Behavioral Specifications from Bug Report Runtime Artifacts for Guided Program Repair",
+  "core_problem": "Automated repair agents fail on ambiguous bug reports not from lack of code understanding, but because unstructured issue text leaves behavioral expectations underspecified — what interface should change, what the user observed, and what correct behavior looks like are rarely made explicit. SpecRover (ICSE 2025) partially addresses this via per-instance LLM prompting that extracts specifications from CODE during codebase traversal, yet its error analysis (Section V-A, 'Reasons for Failure') identifies that 107 of its 207 unresolved SWE-bench Lite tasks (51.7%) are classified as 'ambiguous issue description' — cases the paper characterizes as 'hard or impossible to solve' without further information, citing SWE-bench Verified as external validation for why underspecified descriptions constitute an irreducible failure mode for code-space approaches. This architectural limitation is structural: code-side spec extraction can only infer specifications from code that already exists, not from behavior that is described in the issue but not yet correctly implemented. Bug reports routinely contain latent behavioral specifications in their runtime artifacts: stack traces name the affected interface, error messages describe observed behavior, and reproducer assertions encode expected behavior. No method trains a dedicated model to extract these signals from bug report text into a structured repair specification — covering affected interface, observed behavior, expected behavior, and their delta — that could constrain both fault localization and patch generation before any codebase traversal begins.",
+  "opportunity": "Failing test assertions in SWE-bench's test patches encode implementation-agnostic behavioral specifications without revealing implementation strategies: `assert result == expected_value` or `with pytest.raises(ValueError)` states precisely what the program SHOULD do, independent of WHICH code to change or HOW to change it. By mechanically converting (problem_statement + test_patch assertions + stack traces) to structured JSON spec fields using AST-level test parsing and NLP extraction on SWE-bench's 2,294 instances, we construct a training corpus of 2,294 (bug_report, structured_spec) pairs — where the spec encodes behavioral expectations derivable without knowing the implementation strategy. This avoids the critical flaw of training on SWE-bench Pro requirements, which were authored by humans with full access to the golden patch (making them solution-conditioned). SWE-bench-Live (NeurIPS 2025, arXiv 2505.23419; ~1,890 Docker-reproducible instances across 223 repositories, drawn from post-January-2024 GitHub issues, growing at ~50 instances/month) provides a clean, contamination-resistant evaluation target with no training-set overlap, replacing the officially-abandoned SWE-bench Verified. SWE-bench Pro's human-written `requirements` and `interface` fields (731 public instances) serve as an ecological validity check — we measure cosine similarity between machine-derived specs and human requirements on a held-out 200-instance slice — confirming that AST-parsed test assertions produce specs that match expert behavioral descriptions, without using requirements as training supervision.",
+  "landscape": "SpecRover (ICSE 2025, arXiv 2408.02232) is the closest prior work: given a GitHub issue, it iteratively traverses the codebase, prompting Claude 3.5 Sonnet to extract function-level summaries from visited code, producing evidence artifacts in the form {(location, intended_behavior)} at $0.65/issue and 31% on SWE-bench Lite (93/300). SpecRover operates in code-space (it visits source files to generate specs from code) and uses per-instance prompting (no fine-tuning). Our approach operates in issue-space (extracts specs from bug report text and runtime artifacts before any codebase traversal) and uses supervised fine-tuning (consistent structured output at ~$0.05-0.10/issue). These are complementary directions: SpecRover's code-space specs and our issue-space specs could ultimately be fused. Agent-CoEvo (arXiv 2604.04580, April 2026) proposes the most directly competing design philosophy: rather than pre-extracting behavioral constraints from issue text, it coevolves code patches and test patches simultaneously during repair, treating tests as dynamic constraints that are iteratively revised alongside candidate fixes. Agent-CoEvo achieves 41.33% on SWE-bench Lite (DeepSeek-V3) and 46.4% on SWT-bench Lite, outperforming Agentless-1.5 (32%) on those benchmarks. SpecExtract takes the complementary pre-extraction stance: (1) issue-space specs derived before any codebase access are reusable across repair backbones without retraining, including static pipeline systems like Agentless that do not support dynamic constraint revision during search; (2) pre-extracted specs reduce the initial search space before coevolution begins, making SpecExtract a potential front-end that improves Agent-CoEvo's starting population rather than competing with it. SWE-Lego (arXiv 2601.01426, Jan 2026) is the most directly competing concurrent SFT work: it trains on 32k high-quality task instances with error masking and a difficulty-based curriculum, achieving 52.6% on SWE-bench Verified (58.8% with test-time scaling at 16 samples) using a 32B model. SWE-Lego is an end-to-end system that produces complete code fixes; SpecExtract is a preprocessing module that extracts structured behavioral specs from bug report text before any repair attempt, and can plug into SWE-Lego or any other repair backbone as a drop-in front-end — improving fault localization precision and patch generation alignment without retraining the repair agent itself. VibeRepair (arXiv 2602.08263, Feb 2026) translates buggy CODE into behavior specifications, repairs the spec, then synthesizes corrected code, achieving 19-23% improvement on Defects4J — code-space to spec, not text-space to spec. TraceRepair (arXiv 2604.02647, Apr 2026) uses runtime execution traces generated by instrumented code execution as shared repair constraints across a multi-agent committee, fixing 392 Defects4J defects — traces are generated during repair, not extracted from issue text before repair begins. RepoRepair (arXiv 2603.01048) generates hierarchical code documentation from source files toward the bug; its documentation is code-driven, not report-driven. SoRFT (arXiv 2502.20127, ACL 2025; https://aclanthology.org/2025.acl-long.559) fine-tunes on SWE-bench with RL to decompose the repair TASK into subtasks (file → function → line → edit), achieving 21.4% on SWE-bench Verified and 14.0% on SWE-bench Lite with a 7B model (30.8% Verified and 24.0% Lite with a 32B model) — it structures the repair pipeline, not the issue semantics. PathFix (arXiv 2510.14341) derives behavioral specs from static code execution paths — code-space and offline, not issue-space. The gap: no existing work trains a dedicated model to extract structured behavioral specifications from bug report text and embedded runtime artifacts, operating entirely in issue-space before codebase access.",
+  "approach": "We train SpecExtract, a Qwen3-Coder-30B-A3B model (Mixture-of-Experts: 30B total parameters, ~3B active per token — fine-tuning and inference cost scale with active parameters, comparable to a 3B dense model; fits on a single H100 80GB with QLoRA at ~17.5GB VRAM per Unsloth benchmarks; 2× H100 is the recommended training configuration for throughput, not minimum requirement) fine-tuned to map (bug_report_text, runtime_artifacts?) → structured JSON spec, where runtime artifacts are any combination of stack traces, error messages, test failure output, or explicit reproducer assertions present in the issue text. The model gracefully handles varying artifact availability through a masked-field training protocol: training instances are presented with random subsets of available artifacts so the model learns to produce well-formed specs from text-only, text+stack-trace, and text+test-assertion inputs. **Formal schema**: Each spec has four typed fields — (1) `affected_interface`: {module: str, signature: str|null, entry_point: str} extracted from stack frame function names and explicitly mentioned APIs; (2) `observed_behavior`: {error_type: str|null, error_message: str|null, symptom: str} from error output and user complaint; (3) `expected_behavior`: {description: str, assertions: [str]} as natural-language description plus test-style constraint strings when derivable; (4) `behavioral_delta`: str, a one-sentence expected-vs-actual summary. Worked example for a NumPy issue 'linalg.solve silently returns None for singular matrices instead of raising': {affected_interface: {module: 'numpy.linalg', entry_point: 'solve', signature: 'solve(a, b)'}, observed_behavior: {error_type: null, symptom: 'returns None for singular matrix input'}, expected_behavior: {description: 'should raise for non-invertible input', assertions: ['raises np.linalg.LinAlgError when matrix is singular']}, behavioral_delta: 'solve silently returns None instead of raising LinAlgError on singular input'}. **Training data construction (implementation-agnostic behavioral specifications)**: From SWE-bench full (2,294 instances including Verified 500 and the broader set): (1) parse `test_patch` test functions via Python AST to extract formal assertions — pytest.raises calls → error_type, assert statements → expected_behavior.assertions, decorated test function signatures → affected_interface hints; (2) extract stack traces and error strings from `problem_statement` text via regex heuristics → observed_behavior; (3) combine via LLM-assisted template fill using Qwen3-Coder-30B-A3B in a chain-of-thought extraction pass to produce coherent spec JSON; (4) validate on 200 SWE-bench Pro public instances that have non-null `requirements` and `interface` fields by computing cosine similarity (sentence-transformer) between mechanically-derived specs and human-authored requirements — target alignment ≥ 0.65 before training at scale; this validates the schema rather than using requirements as training targets. Important framing on conditionality: test assertions are written alongside gold patches and encode the behavioral outcome the fix achieves. The training specs are therefore *implementation-agnostic* — they do not reveal which code to change or the implementation strategy — rather than strictly solution-independent. This distinction is explicitly addressed in the paper to avoid overclaiming. Augment with ~3,000 pseudo-labeled GitBugs instances (arXiv 2504.09651; 150K+ open-licensed bug reports from Firefox, Cassandra, VS Code) selected for stack-trace richness and LLM-derived pseudo-specs, yielding a ~5,300-instance fine-tuning corpus. **Differentiation from SpecRover**: (1) issue-space — no codebase traversal needed at spec extraction time; (2) supervised learning — consistent, typed JSON output from a single forward pass (~$0.05-0.10/issue) vs. SpecRover's multi-step code traversal ($0.65/issue); (3) directly targets SpecRover's identified 51.7% ambiguous-description failure mode (Section V-A, 107/207 unresolved SWE-bench Lite tasks) by conditioning on all available runtime artifacts in the issue, not just the code side. **Integration with Agentless**: Agentless (arXiv 2407.01489) is used as the repair backbone for all SWE-bench-Live evaluations — it follows a fixed three-stage pipeline (hierarchical fault localization → patch generation → patch selection) with no iterative tool calls, making spec injection clean and reproducible. SpecExtract specs are injected at two stages: (1) fault localization Stage 1 — BM25+embedding file retrieval is biased by prepending `affected_interface.module` and `entry_point` as a structured query prefix, pushing relevant files higher in the candidate list; (2) patch generation Stage 3 — the repair LLM receives all four spec fields as an explicit behavioral constraint header in its prompt, focusing generation on the documented delta. **Agentless baseline on SWE-bench-Live**: Per the SWE-bench-Live paper (arXiv 2505.23419, Table 3), Agentless resolves 11.67% (GPT-4o), 12.00% (GPT-4.1), and 13.33% (DeepSeek V3) of SWE-bench-Live Lite (300 instances) — substantially below its 50.8% on SWE-bench Verified, reflecting the contamination-resistant, harder distribution of post-2024 issues. These published numbers establish the Agentless-direct baseline; SpecExtract targets +4-7 percentage points improvement over the best Agentless backbone, which is reported as the primary experimental contribution. **Evaluation**: Primary eval on SWE-bench-Live Lite (300 instances, contamination-resistant, post-2024 issues) with Agentless as backbone; per-field ablations independently zero out each spec field to quantify individual contribution to resolve rate. Secondary eval: cosine-similarity validation on 200 SWE-bench Pro held-out instances (schema validity check). Comparison baselines: Agentless direct repair without spec (established at 11-13% from published SWE-bench-Live results), SpecRover-equivalent prompting (ablation of supervised fine-tuning benefit), SoRFT-Qwen-7B (21.4% Verified / 14.0% Lite, structured subtask decomposition), SWE-Lego (52.6% Verified, end-to-end SFT backbone — SpecExtract as preprocessing front-end demonstrates orthogonal contribution).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~90-110 H100-hours (~180-220 A100-equivalent hours)",
+      "gpu_breakdown": "SFT partition (~10-14 H100-hours): Qwen3-Coder-30B-A3B QLoRA fine-tuning on 5,300 instances, 3 epochs, 2× H100 80GB recommended for throughput (single H100 80GB is technically sufficient at ~17.5GB VRAM) — MoE active-parameter efficiency reduces training cost to ~3B dense equivalent. Eval partition (~80-96 H100-hours): spec extraction inference on 5,300 instances (~4 H100-hours); SWE-bench-Live Lite main eval 300 instances × 12.5 min/instance / 4 parallel H100s ≈ 16 H100-hours; per-field ablations 4 fields × 300 instances ≈ 64 H100-hours; SWE-bench Pro validation ≈ 1 H100-hour.",
+      "gpu_utilization": "~50-60% — Docker sandbox test execution during SWE-bench-Live eval is CPU-bound; GPU idles between model inference calls",
+      "timeline": "3-5 months",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "~$216-264 (90-110h × $2.40/hr H100 SXM5 on-demand; within the 200 H100-hour hard constraint)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~135-160 H100-hours (~270-380 A100-equivalent hours)",
+      "gpu_breakdown": "SFT partition (~25-35 H100-hours): 3 fine-tuning configurations (schema variant, augmentation ablation, masked-field protocol variant). Eval partition (~110-125 H100-hours): spec extraction ~5 H100-hours; Agentless baseline run on 300 instances ≈ 16 H100-hours; SWE-bench-Live partial eval 600 instances / 4 parallel ≈ 31 H100-hours; per-field ablations on 300-instance subset × 4 fields ≈ 62 H100-hours; SWE-bench Pro validation ≈ 1 H100-hour.",
+      "gpu_utilization": "~60-70% — agent runs fine-tuning and SWE-bench-Live eval jobs continuously; human approves schema validation threshold, masked-field training protocol, retrieval bias weights, and ablation scope at daily check-ins",
+      "timeline": "5-9 weeks",
+      "team": "1 researcher, ~30 min/day check-in",
+      "claude_api_cost": "$200-400 (~2,500 orchestration turns at ~$0.10/turn Opus)",
+      "estimated_gpu_cost": "~$324-384 (135-160h × $2.40/hr H100); within the 200 H100-hour hard constraint",
+      "risk_note": "Critical unknown: whether AST-parsed test assertions produce specs that align with human behavioral descriptions (measured by cosine similarity ≥ 0.65 on 200 SWE-bench Pro validation instances). If alignment is below threshold, the spec schema needs redesign before scale-up. GitBugs pseudo-spec quality is the secondary risk — human spot-check of 100 instances recommended before augmentation scale-up."
+    },
+    "auto_research": {
+      "note": "Budget-capped auto-research only — uncapped sweeps would exceed the 200 H100-hour hard constraint. Capped to 3 fine-tuning configurations × 1 retrieval variant × 1 patch-generation prompt strategy on SWE-bench-Live Lite (300 instances) for the main configuration sweep, then ablations on the best-performing config only.",
+      "gpu_hours": "~160-180 H100-hours (budget-capped)",
+      "gpu_breakdown": "SFT partition (~30-35 H100-hours): 3 QLoRA configs on 5,300 instances. Eval partition (~130-145 H100-hours): 3-config main sweep 3 × 300 instances ≈ 48 H100-hours; per-field ablations on best config 300 × 4 fields ≈ 64 H100-hours; Agentless baseline ≈ 16 H100-hours; spec extraction inference ≈ 5 H100-hours; validation ≈ 1 H100-hour.",
+      "gpu_utilization": "~80-85% — continuous fine-tuning, inference, and SWE-bench-Live Docker eval; sandbox parallelized across 30 instances simultaneously",
+      "timeline": "6-10 days with 4 parallel H100 GPUs",
+      "team": "0 (setup only, ~3h initial configuration)",
+      "claude_api_cost": "$400-600 (~4,500 turns)",
+      "estimated_gpu_cost": "~$384-432 (160-180h × $2.40/hr H100)",
+      "speed_bottleneck": "SWE-bench-Live Docker sandbox throughput, not GPU compute; Qwen3-Coder-30B-A3B MoE inference (~3B active params) is fast and avoids multi-GPU coordination overhead that a dense 30B model would require"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline May 25, 2026 — 15 days remaining; conference October 24-29, Budapest) — NLP angle on structured information extraction from semi-structured bug text; realistic for a theory + pilot-scale submission with 500-instance SWE-bench Verified training and SWE-bench-Live Lite eval",
+    "ICSE 2027 (abstract deadline June 23, 2026; full paper ~July 2026; conference April-May 2027, Dublin) — SE angle; preferred primary target for full experimental results including SWE-bench-Live partial-set ablations",
+    "NeurIPS 2026 (submission deadline expected May-June 2026) — systems and benchmarks angle; natural co-venue given SWE-bench-Live is NeurIPS 2025"
+  ],
+  "level": "solid",
+  "key_references": [
+    "SpecRover: Code Intent Extraction via LLMs (arXiv 2408.02232, ICSE 2025) — primary related work: code-space spec inference via prompting, 31% SWE-bench Lite (93/300), $0.65/issue; Section V-A 'Reasons for Failure' categorizes 107/207 unresolved SWE-bench Lite tasks (51.7%) as 'ambiguous issue description', cases characterized as 'hard or impossible to solve' without further information, citing SWE-bench Verified as external validation for the hardness of this failure mode",
+    "SWE-bench Goes Live! (arXiv 2505.23419, NeurIPS 2025 D&B) — primary evaluation benchmark: ~1,890 contamination-resistant instances across 223 repositories, post-2024 GitHub issues, Docker-reproducible, growing at ~50 instances/month; Table 3 reports Agentless on SWE-bench-Live Lite (300 instances) at 11.67% (GPT-4o), 12.00% (GPT-4.1), 13.33% (DeepSeek V3) — establishes the Agentless-direct baseline for our evaluation",
+    "Agent-CoEvo: Beyond Fixed Tests: Repository-Level Issue Resolution as Coevolution of Code and Behavioral Constraints (arXiv 2604.04580, April 2026) — most directly competing design philosophy: coevolves code patches and test patches simultaneously during repair (41.33% SWE-bench Lite with DeepSeek-V3); SpecExtract's pre-extraction stance is complementary — issue-space specs reduce the initial search space before coevolution, and are pipeline-agnostic for static repair systems that do not support dynamic constraint revision",
+    "SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? (arXiv 2509.16941) — schema ecological validity validator: 731 public instances with human requirements and interface fields",
+    "SWE-Lego (arXiv 2601.01426, Jan 2026) — most competitive concurrent SFT work: 32k training instances, difficulty-based curriculum SFT, 52.6% SWE-bench Verified (58.8% with 16-sample test-time scaling) with 32B model; end-to-end repair backbone that SpecExtract can serve as a preprocessing front-end for",
+    "Agentless: Demystifying LLM-based Software Engineering Agents (arXiv 2407.01489) — integration repair backbone: open-source three-stage fixed pipeline (localization → repair → validation), ~50.8% SWE-bench Verified (Agentless-1.5), 32% SWE-bench Lite; spec injected at file localization (retrieval bias) and patch generation (behavioral constraint prefix) stages",
+    "Specification Vibing for Automated Program Repair / VibeRepair (arXiv 2602.08263, Feb 2026) — code-space spec extraction before repair, Defects4J, 19-23% improvement",
+    "Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate / TraceRepair (arXiv 2604.02647, Apr 2026) — trace-based repair constraints during execution, Defects4J",
+    "SoRFT: Issue Resolving with Subtask-oriented Reinforced Fine-Tuning (arXiv 2502.20127, ACL 2025; https://aclanthology.org/2025.acl-long.559) — structured repair subtask decomposition with RL; SoRFT-Qwen-7B: 21.4% SWE-bench Verified / 14.0% SWE-bench Lite; SoRFT-Qwen-32B: 30.8% SWE-bench Verified / 24.0% SWE-bench Lite; key baseline for SpecExtract's supervised fine-tuning approach",
+    "GitBugs: Bug Reports for Duplicate Detection, Retrieval Augmented Generation, and More (arXiv 2504.09651) — 150K+ open-licensed bug reports for training augmentation",
+    "RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair (arXiv 2603.01048)",
+    "On the Role of Fault Localization Context for LLM-Based Program Repair (arXiv 2604.05481)",
+    "PathFix: Automated Program Repair with Expected Path (arXiv 2510.14341)"
+  ],
+  "description": "We introduce SpecExtract, the first supervised issue-space specification extractor for program repair: a fine-tuned Qwen3-Coder-30B-A3B model (MoE, ~3B active parameters — fine-tuning and inference cost comparable to a 3B dense model; fits on a single H100 80GB at ~17.5GB VRAM with QLoRA; 2× H100 recommended for training throughput) that maps (bug_report_text, runtime_artifacts?) → a structured four-field JSON spec covering affected interface, observed behavior, expected behavior, and behavioral delta. The key methodological insight is that failing test assertions in SWE-bench test patches encode implementation-agnostic behavioral specifications — they state what the program SHOULD do without revealing which code to change or the implementation strategy — enabling AST-level test parsing combined with problem-statement NLP extraction to construct 2,294 clean (bug_report, structured_spec) training pairs from SWE-bench. GitBugs (150K+ open-licensed bug reports) provides 3,000 pseudo-labeled augmentation instances, yielding a 5,300-instance fine-tuning corpus. SWE-bench Pro public requirements serve as an ecological validity check (cosine similarity ≥ 0.65 on 200 held-out instances), not a training target. Extracted specs are integrated with Agentless as the repair backbone, injected at fault localization (retrieval biased toward affected_interface.module/entry_point) and patch generation (structured behavioral constraint prefix). Primary evaluation is on SWE-bench-Live Lite (300 instances, contamination-resistant, Docker-reproducible, post-2024 issues), with the Agentless-direct baseline established at 11-13% from published SWE-bench-Live results (Table 3, arXiv 2505.23419) and a target improvement of +4-7 percentage points; per-field ablations measure individual spec contributions. Agent-CoEvo (arXiv 2604.04580, 41.33% SWE-bench Lite) represents the competing dynamic-coevolution philosophy; SpecExtract's pre-extraction stance is complementary — pipeline-agnostic and applicable to static repair systems. SWE-Lego (52.6% Verified with 32B) is included as an end-to-end SFT baseline to demonstrate that SpecExtract provides orthogonal gains as a preprocessing front-end rather than competing as a repair system. Differentiated from SpecRover (code-space prompting, $0.65/issue, 31% SWE-bench Lite) by operating in issue-space at ~$0.05-0.10/issue — directly targeting SpecRover's Section V-A identified 51.7% ambiguous-description failure mode — and from SWE-Lego by producing modular, pipeline-agnostic specs that plug into any repair backbone without retraining it. Compute in H100-hours: manual mode ~90-110 H100-hours (SFT ~10-14 H100-hours, eval ~80-96 H100-hours), within the 200-hour hard constraint.",
+  "project_name": "structured_spec_repair",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL — Training data availability: The public SWE-bench Pro HuggingFace dataset contains 731 instances from 11 repositories with copyleft licenses. The remaining 1,134 instances (held-out: 12 repos, commercial: 18 proprietary repos) are explicitly not publicly accessible. The proposal's assumption of ~1,865 training pairs is wrong by a factor of 2.5x. At 731 instances, standard fine-tuning of a 32B Qwen3-Coder model risks severe overfitting and is far too small for reliable generalization.", "CRITICAL — Training signal invalidity (train-test distribution mismatch): SWE-bench Pro requirements were authored by humans with full access to the golden patch AND the passing test suite, working backward from tests to specifications. They are solution-conditioned prescriptive clarifications of already-solved problems. Real-world target bug reports are solution-ignorant descriptive complaints from confused users. Fine-tuning SpecExtract on (solution-knowing-human-written-spec → structured-spec) pairs will not teach the model to extract specs from genuinely ambiguous bug reports — it will teach it to produce post-hoc rationalizations of known solutions. This fundamental mismatch is not acknowledged and cannot be patched by synthetic augmentation alone.", "CRITICAL — Evaluation benchmark reliability: SWE-bench Verified shows SOTA of 93.9% (Claude Mythos Preview, May 2026) with documented evidence of data contamination — OpenAI has officially stopped recommending Verified scores for meaningful comparison. Demonstrating a statistically meaningful improvement on a benchmark where frontier models may be reproducing gold patches verbatim severely weakens the paper's empirical contribution.", "Novelty gap — SpecRover (ICSE 2025, arXiv 2408.02232) performs iterative code intent extraction and specification inference from GitHub issue descriptions using LLM agents (not supervised training), and achieves >50% improvement in repair rate on SWE-bench at $0.65/issue. The paper's claim that 'no prior work trains a spec extractor' is technically true but misses that SpecRover occupies the same research niche via prompting. The paper must explicitly frame what the supervised training provides that SpecRover's prompting approach cannot.", "Compute unit mismatch vs. hard constraint: The hard constraint is ≤200 H100-hours. All estimates are given in A100-hours. H100 is ~2–3× faster than A100 for transformer fine-tuning workloads, so 200 A100-hours ≈ 67–100 H100-hours (manual, within budget), but the auto-research mode at 800 A100-hours ≈ 300–400 H100-hours exceeds the hard constraint. The paper should explicitly reconcile resource estimates in H100-hours and confirm the primary research plan stays within budget.", "Structured spec schema undefined: The proposal outputs 'structured specs' with fields (affected interface, pre/post-conditions, expected/actual behavior delta), but these fields are never formally defined — no JSON schema, no field type definitions, no examples of what a valid spec looks like. SWE-bench Pro requirements are freeform prose; the conversion of freeform requirements to structured JSON is the hardest step and receives no design discussion.", "Data leakage if evaluation pivots to SWE-bench Pro: If the proposal trains on SWE-bench Pro (public: 731 instances) and evaluates on the same benchmark, it cannot cleanly show generalization. The community will ask whether the structured spec format was reverse-engineered from the test set rather than learned from scratch."]
+Feedback: The core direction — using SWE-bench Pro annotations to supervise structured specification extraction — is creative and timely, but rests on a mischaracterization of what SWE-bench Pro requirements actually are and how many are publicly accessible. To revise toward 'pass': (1) **Fix the training data premise**: Acknowledge that SWE-bench Pro public set is 731 instances, not 1,865. Address the solution-conditioned nature of the requirements by designing the training task as 'given the bug report + human requirements, produce structured spec fields,' treating the requirements as an alignment target rather than pretending they were extracted from bug reports alone. (2) **Address SpecRover directly**: Add SpecRover (ICSE 2025, arXiv 2408.02232) to the related work and explicitly argue why supervised fine-tuning generalizes better than per-instance LLM prompting — e.g., lower inference cost, better calibration, consistency across bug report styles. (3) **Replace SWE-bench Verified as primary eval**: Use SWE-bench Pro public (731 instances) with a held-out split for evaluation, and add an additional out-of-distribution eval on RepoBench or DebugBench to show generalization. Explicitly argue why SWE-bench Pro's requirements-based evaluation is the right target, not the contaminated Verified leaderboard. (4) **Define the structured spec schema**: Add a formal schema definition with field types and a worked example. Show how SWE-bench Pro freeform requirements can be automatically converted to this schema via a parsing step (this becomes its own empirical contribution). (5) **Reconcile compute in H100-hours**: Convert all estimates to H100-hours and confirm manual mode (~67–100 H100-hours) is well within the 200-hour budget. Remove or prominently caveat auto-research mode since it exceeds the hard constraint.
+
+### Round 2 review
+Verdict: revise
+Issues: ["CRITICAL — Model naming error: 'Qwen3-Coder-14B' does not exist. Qwen3-Coder is only available in 30B-A3B (MoE, 3B active) and 480B-A35B variants. The closest viable alternatives are Qwen3-14B (dense, base Qwen3 family) or Qwen2.5-Coder-14B (prior generation). This error must be corrected with the actual model to be used, and any VRAM/compute estimates adjusted accordingly.", "CRITICAL — Unverifiable SpecRover failure claim: The proposal states SpecRover 'explicitly identifies that 51.7% of its unresolved SWE-bench Lite failures stem from ambiguous issue descriptions.' This specific statistic could not be verified from the SpecRover abstract or public-facing sections. If this is an inference rather than a direct quote, it must be either verified by citing the exact section, reframed as an approximation, or removed. The entire motivation chain rests on this number.", "SIGNIFICANT — SoRFT baseline misrepresented: The proposal states SoRFT achieves '21.4% on SWE-bench Verified with a 7B model' but SoRFT (ACL 2025) actually reports 21.4% on SWE-bench Lite, not Verified. The Verified number for SoRFT-7B is 14.0%. Using the wrong benchmark undermines the baseline comparison.", "SIGNIFICANT — Integration repair agent unspecified: The primary experimental claim requires running a full end-to-end repair pipeline on SWE-bench-Live (1,890 instances) that integrates the extracted spec. The proposal does not specify which agent (SWE-agent, Moatless, Agentless, custom) is used, how the spec is injected, or what its baseline resolve rate is. Without this, the compute estimate and experimental design are incomplete.", "SIGNIFICANT — SWE-Lego (arXiv 2601.01426) not addressed: This January 2026 SFT-for-issue-resolving paper uses 32k training instances and a comprehensive SFT curriculum for end-to-end repair. As direct related work in the SFT-for-SWE space, its omission leaves a gap the reviewer committee will flag. The differentiation should be: SpecExtract does a spec-extraction subtask (not end-to-end repair), enabling pipeline-agnostic reuse.", "MODERATE — Test_patch assertion conditionality overstated: The 'non-solution-conditioned' framing is the linchpin of the training data justification, but test patches are written after/alongside gold patches and specifically designed to validate the fix. In many SWE-bench instances, assertions encode precise return values or exception types only determinable by knowing the codebase implementation. The paper should more carefully scope the claim: 'behavioral-specification-level, not implementation-level conditioned' rather than 'non-solution-conditioned.'", "MINOR — SWE-bench-Live size outdated: The proposal states '1,565+ instances' but the live dataset now contains 1,890 tasks across 223 repositories. Update to the current figure.", "MINOR — Compute budget tightness for full eval: Running a repair agent on 1,890 SWE-bench-Live instances at ~10-15 minutes/issue with 4 parallel H100s consumes approximately 79-118 H100-hours for evaluation alone, leaving 0-6 H100-hours for fine-tuning in the manual mode upper estimate. Explicitly partition the budget between SFT and eval inference."]
+Feedback: The Round 2 revision has substantially addressed the Round 1 critical issues: the training data premise is now grounded (SWE-bench test_patch AST parsing rather than SWE-bench Pro requirements), the evaluation target is appropriate (SWE-bench-Live), compute is expressed in H100-hours with manual mode under budget, and the JSON schema is formally defined. This is genuine progress. To advance to 'pass':
+
+(1) **Fix the model name immediately**: Replace 'Qwen3-Coder-14B' with either 'Qwen3-14B' (dense, 14B params, general Qwen3 family) or 'Qwen3-Coder-30B-A3B' (MoE, only 3B active params, faster and better for code). Qwen3-Coder-30B-A3B is the more credible choice for a coding spec-extraction task — its ~3B active parameters mean fine-tuning cost is comparable to a 3B dense model despite 30B total params.
+
+(2) **Verify or remove the 51.7% SpecRover claim**: Read SpecRover Section 4 or 5 (error analysis). If the 51.7% figure is there, cite the exact table/figure. If it's an approximation, write: 'SpecRover's error analysis identifies ambiguous issue descriptions as the dominant unresolved failure mode (Section X); our estimate from their public failure logs is ~50%.' If it's not there, reframe the motivation as: 'SpecRover's code-space approach cannot address cases where the issue description itself is underspecified — a failure mode it cannot observe.'
+
+(3) **Fix the SoRFT baseline**: Change '21.4% on SWE-bench Verified' to '21.4% on SWE-bench Lite (14.0% on Verified).' This makes SoRFT a weaker baseline, which actually helps SpecExtract's positioning.
+
+(4) **Specify the integration repair agent**: Choose one concrete agent (e.g., Agentless or Moatless) as the integration vehicle for the SWE-bench-Live evaluation. Report its baseline resolve rate, then show the SpecExtract-augmented rate. Add this as 1-2 sentences in the approach section. This is the most critical missing piece for a credible empirical narrative.
+
+(5) **Add SWE-Lego differentiation**: One paragraph acknowledging SWE-Lego (arXiv 2601.01426) as concurrent SFT work, differentiating that SpecExtract is a preprocessing spec-extraction module (not an end-to-end repair system) that can be combined with any SFT-trained or prompted repair backbone, including SWE-Lego itself.
+
+(6) **Scope the conditionality claim**: In the training data section, replace 'non-solution-conditioned' with 'implementation-agnostic behavioral specifications' to reflect that while test assertions do implicitly know the fix's behavior, they do not expose the implementation strategy, making them valid targets for behavioral spec learning.
+
+### Round 3 review
+Verdict: revise
+Issues: ["CRITICAL — Fabricated SpecRover citation (third consecutive round): The proposal cites 'SpecRover Section V-A, Reasons for Failure' with the specific claim that 51.7% of its 207 unresolved SWE-bench Lite tasks involve ambiguous issue descriptions (107/207 instances, labeled by SWE-bench Verified human annotators). Independent verification via WebFetch of arXiv 2408.02232v3 confirms this section does not exist — SpecRover has no dedicated error analysis section categorizing failures by issue ambiguity, and contains no 51.7% figure, 107/207 count, or SWE-bench Verified annotation cross-reference. The Round 3 generator escalated from 'unverifiable' (Round 2) to 'fabricated with false specificity' by inventing the section label, count, and labeling provenance. This is an academic integrity violation that will result in desk rejection or post-acceptance retraction if submitted as-is.", "SIGNIFICANT — Agent-CoEvo (arXiv 2604.04580, April 2026) not addressed in landscape: This concurrent paper, 'Beyond Fixed Tests: Repository-Level Issue Resolution as Coevolution of Code and Behavioral Constraints,' proposes that behavioral constraints (tests) should be coevolved dynamically with code patches during repair rather than pre-extracted from bug reports. It evaluates on SWE-bench Lite and SWT-bench Lite and outperforms agentless baselines. This represents the most direct competing design philosophy to SpecExtract's pre-extraction approach and must be discussed — specifically, why pre-extraction from issue text before any codebase access is preferable to dynamic constraint coevolution.", "MODERATE — SoRFT numbers are now correct but were mishandled across three rounds: Independent verification via ACL Anthology (2025.acl-long.559) confirms SoRFT-7B achieves 21.4% on SWE-bench Verified and 14.0% on SWE-bench Lite — exactly as stated in Round 3. The Round 2 reviewer was wrong to flag these as reversed. While the numbers are now correct, three rounds of oscillation on this point suggest the generator should add a footnote citing the ACL Anthology URL to preempt reviewer confusion.", "MODERATE — No reported Agentless-on-SWE-bench-Live baseline: The experimental design requires establishing Agentless-direct (no spec injection) on SWE-bench-Live Lite (300 instances) as the baseline, then measuring SpecExtract-augmented Agentless. This baseline number is not reported anywhere in the proposal, making it impossible to assess whether the expected delta (e.g., +3-8 percentage points) is plausible or whether Agentless-1.5's 50.8% Verified score generalizes to the Live dataset at all. At minimum, cite the Agentless-1.5 SWE-bench-Live Lite score if published, or explicitly acknowledge this is unmeasured.", "MINOR — QLoRA VRAM claim is slightly oversimplified: Qwen3-Coder-30B-A3B with QLoRA requires ~17.5GB VRAM (verified via Unsloth documentation), fitting comfortably on a single H100 80GB rather than requiring 2× H100s. The 2× claim is not wrong (it enables larger batch sizes and faster throughput) but should be reframed as 'recommended configuration for efficient throughput' rather than 'minimum requirement.'"]
+Feedback: This proposal has made genuine progress across three rounds — the model choice, Agentless integration, SWE-Lego differentiation, schema definition, and compute budget are all solid. One issue now blocks this from passing, and one new issue must be addressed:
+
+(1) **IMMEDIATE: Remove or replace the fabricated SpecRover Section V-A claim.** There is no 'Section V-A: Reasons for Failure' in SpecRover, no 51.7% figure, no 107/207 count, and no SWE-bench Verified annotation cross-reference in the paper. Replace the entire motivation chain with a defensible framing: 'SpecRover (ICSE 2025) evaluates on SWE-bench Lite and explicitly acknowledges that its code-space traversal approach cannot resolve cases where the issue description itself is underspecified — it can only infer specifications from code that exists, not from behavior that is described but not yet correctly implemented. This architectural limitation motivates an issue-space approach that operates on bug report text before codebase access.' If you want to keep a quantitative hook, look at SpecRover's SWE-bench Lite resolve rate (31%) and the known proportion of SWE-bench tasks where the issue description is classified as ambiguous by SWE-bench Verified human annotators — cite the SWE-bench Verified paper (arXiv 2410.06992) or the SWE-bench Pro paper for that annotation, not SpecRover.
+
+(2) **Add Agent-CoEvo to related work.** One paragraph: 'Agent-CoEvo (arXiv 2604.04580, April 2026) proposes coevolving code and test patches simultaneously during repair, treating tests as dynamic behavioral constraints. SpecExtract takes the complementary pre-extraction stance: issue-space specs derived before any codebase access reduce the search space for both fault localization and patch generation, and are reusable across repair backbones without retraining — including static repair systems like Agentless that do not support dynamic constraint revision.'
+
+(3) **Add Agentless-on-SWE-bench-Live baseline.** State the known or estimated Agentless-1.5 resolve rate on SWE-bench-Live Lite (or acknowledge it as an early experimental measurement to be reported in the paper). The experimental contribution is the delta, and without the baseline anchor the paper cannot make its empirical case.
+
+With these three changes — particularly (1) — this proposal should be able to pass in Round 4.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "0ae2fe40-3e49-4d42-83c0-5142286fb04d",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T07:07:59.711Z_
+
+```json
+{
+  "parentUuid": "0ae2fe40-3e49-4d42-83c0-5142286fb04d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "eaf0c5ac-a85d-492d-8a82-b44a6f4329fd",
+  "timestamp": "2026-05-10T07:07:59.711Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T07:07:59.711Z_
+
+```json
+{
+  "parentUuid": "eaf0c5ac-a85d-492d-8a82-b44a6f4329fd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "00d991b3-9691-4d23-b9de-86db886b4cb0",
+  "timestamp": "2026-05-10T07:07:59.711Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "00d991b3-9691-4d23-b9de-86db886b4cb0",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Issue-space behavioral spec extraction for code repair",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T07:08:19.542Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully analyze this Round 4 review of "SpecExtract" - I need to independently verify the claims made in the proposal, check for remaining issues from previous rounds, and search for any new competing work.
+
+Key issues from previous rounds:
+1. CRITICAL (Round 3): Fabricated SpecRover Section V-A claim with 51.7% figure
+2. SIGNIFICANT (Round 3): Agent-CoEvo not addressed
+3. MODERATE (Round 3): No Agentless-on-SWE-bench-Live baseline
+4. MINOR (Round 3): QLoRA VRAM claim
+
+
+5. The Round 4 proposal repeats the same SpecRover 51.7% claim verbatim, still citing the fabricated Section V-A reference without any correction or acknowledgment of the issue raised in Round 3. The remaining critical issue is the fabricated SpecRover claim that's persisted through every review round—this is a serious academic integrity problem that needs to be resolved. I'm now going to independently verify the SpecRover paper and the SWE-bench-Live baseline claims to confirm what's actually stated versus what's being claimed in the proposal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "00d991b3-9691-4d23-b9de-86db886b4cb0",
+  "isSidechain": false,
+  "requestId": "req_011CatU3Fam1XFY22huqQ369",
+  "type": "assistant",
+  "uuid": "f8394907-4e63-464b-abff-4989b9736d3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_018YnhkdyA1Cdj88DgMcU8ZA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20330,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 896,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20330,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 896,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 20330,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20330
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T07:08:19.549Z_
+
+I'll conduct independent verification of the Round 4 proposal's claims. Let me search across multiple dimensions simultaneously.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8394907-4e63-464b-abff-4989b9736d3c",
+  "isSidechain": false,
+  "requestId": "req_011CatU3Fam1XFY22huqQ369",
+  "type": "assistant",
+  "uuid": "2e21196f-a258-4ccd-9423-6ea07c774afd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_018YnhkdyA1Cdj88DgMcU8ZA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20330,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 896,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20330,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 896,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 20330,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20330
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T07:08:19.956Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01D9AybLsQgth79iLLuU43sL`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e21196f-a258-4ccd-9423-6ea07c774afd",
+  "isSidechain": false,
+  "requestId": "req_011CatU3Fam1XFY22huqQ369",
+  "type": "assistant",
+  "uuid": "21bd3e20-a9e3-4609-a723-d811811c8ea2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_018YnhkdyA1Cdj88DgMcU8ZA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20330,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 896,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20330,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 896,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 20330,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20330
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T07:08:19.962Z_
+
+<details><summary>↩ Tool result · `toolu_01D9AybLsQgth79iLLuU43sL`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21bd3e20-a9e3-4609-a723-d811811c8ea2",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "64a92337-2643-471c-a4a8-89e9ee408b21",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "21bd3e20-a9e3-4609-a723-d811811c8ea2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-10T07:08:24.313Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me run multiple searches in parallel to verify the key claims in the proposal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64a92337-2643-471c-a4a8-89e9ee408b21",
+  "isSidechain": false,
+  "requestId": "req_011CatU4jjCreurFHhowfG9e",
+  "type": "assistant",
+  "uuid": "bbd82341-8dd8-40a1-b01b-e8dbcbb22d0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013DgVrf4S3fUmDhWnFRmxC7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1916,
+      "cache_read_input_tokens": 31961,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1916,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 31961,
+          "cache_creation_input_tokens": 1916,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1916
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-10T07:08:25.507Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FkweRL7sk7q7oBcJvF9C72`</summary>
+
+```json
+{
+  "query": "SpecRover arXiv 2408.02232 ICSE 2025 error analysis failure modes ambiguous issue description"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bbd82341-8dd8-40a1-b01b-e8dbcbb22d0e",
+  "isSidechain": false,
+  "requestId": "req_011CatU4jjCreurFHhowfG9e",
+  "type": "assistant",
+  "uuid": "5c2f3ab2-6ef7-4288-9e7e-ea68d3cf6530",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013DgVrf4S3fUmDhWnFRmxC7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1916,
+      "cache_read_input_tokens": 31961,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1916,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 31961,
+          "cache_creation_input_tokens": 1916,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1916
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T07:08:26.406Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012V5B2Ytr7E791WS8h71kc2`</summary>
+
+```json
+{
+  "query": "SWE-bench-Live arXiv 2505.23419 Agentless baseline results 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c2f3ab2-6ef7-4288-9e7e-ea68d3cf6530",
+  "isSidechain": false,
+  "requestId": "req_011CatU4jjCreurFHhowfG9e",
+  "type": "assistant",
+  "uuid": "59df1fec-e788-418a-83c9-1a2ff474ebb1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013DgVrf4S3fUmDhWnFRmxC7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1916,
+      "cache_read_input_tokens": 31961,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1916,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 31961,
+          "cache_creation_input_tokens": 1916,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1916
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-10T07:08:26.950Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SPgWemBMwNrJ5kJNsxVDFX`</summary>
+
+```json
+{
+  "query": "Agent-CoEvo arXiv 2604.04580 code behavioral constraints coevolution SWE-bench 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59df1fec-e788-418a-83c9-1a2ff474ebb1",
+  "isSidechain": false,
+  "requestId": "req_011CatU4jjCreurFHhowfG9e",
+  "type": "assistant",
+  "uuid": "49c0509e-fa3b-481a-8cdb-af9447bb5472",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013DgVrf4S3fUmDhWnFRmxC7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1916,
+      "cache_read_input_tokens": 31961,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1916,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 31961,
+          "cache_creation_input_tokens": 1916,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1916
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-10T07:08:32.857Z_
+
+<details><summary>↩ Tool result · `toolu_012V5B2Ytr7E791WS8h71kc2`</summary>
+
+```text
+Web search results for query: "SWE-bench-Live arXiv 2505.23419 Agentless baseline results 2026"
+
+Links: [{"title":"[2505.23419] SWE-bench Goes Live!","url":"https://arxiv.org/abs/2505.23419"},{"title":"SWE-bench Goes Live!","url":"https://arxiv.org/html/2505.23419v2"},{"title":"arXiv:2505.23419v2 [cs.SE] 1 Jun 2025 SWE-bench Goes Live! Linghao Zhang","url":"https://arxiv.org/pdf/2505.23419"},{"title":"GitHub - microsoft/SWE-bench-Live: [NeurIPS 2025 D&B] 🚀 SWE-bench Goes Live!","url":"https://github.com/microsoft/SWE-bench-Live"},{"title":"[2505.23419v2] SWE-bench Goes Live!","url":"https://arxiv.org/abs/2505.23419v2"},{"title":"Paper page - SWE-bench Goes Live!","url":"https://huggingface.co/papers/2505.23419"},{"title":"arXiv:2505.23419v1 [cs.SE] 29 May 2025 SWE-bench Goes Live! Linghao Zhang1∗","url":"https://arxiv.org/pdf/2505.23419v1"},{"title":"SWE-Universe: Scale Real-World Verifiable Environments to Millions","url":"https://arxiv.org/html/2602.02361v1"},{"title":"SWE-EVO: Benchmarking Coding Agents in Long-Horizon Software Evolution Scenarios","url":"https://arxiv.org/html/2512.18470v5"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"}]
+
+Based on the search results, here's what I found about SWE-bench-Live (arXiv 2505.23419) and the Agentless baseline results:
+
+## SWE-bench-Live Overview
+
+SWE-bench-Live is a live-updatable benchmark with an initial release of 1,319 tasks derived from real GitHub issues created since 2024, spanning 93 repositories.
+
+## Agentless Baseline Evaluation
+
+For Agentless evaluation, the pipeline consists of two main stages: issue localization and patch generation, with the reranking stage based on regression testing omitted due to infrastructure limitations, so both stages produce a single sample without reranking.
+
+For Agentless, both the number of localization samples and repair samples are set to 1, with LLM temperature set to 0.8 during the localization phase and 0.0 for all other phases.
+
+## Models Tested
+
+The agents were tested using four recent state-of-the-art LLMs: GPT-4o (gpt-4o-2024-11-20), GPT-4.1 (gpt-4.1-2025-04-14), Claude 3.7 Sonnet (claude-3-7-sonnet-20250219), and DeepSeek V3 (DeepSeek-V3-0324).
+
+The paper itself is available at arxiv.org/abs/2505.23419, and you can access the GitHub repository and leaderboard for more detailed results on specific model performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "59df1fec-e788-418a-83c9-1a2ff474ebb1",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "ca45ebab-79eb-4fa0-a68b-aadb2f990b6b",
+  "toolUseResult": {
+    "query": "SWE-bench-Live arXiv 2505.23419 Agentless baseline results 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EyswBLwcfA8TYZhY8BSXzu",
+        "content": [
+          {
+            "title": "[2505.23419] SWE-bench Goes Live!",
+            "url": "https://arxiv.org/abs/2505.23419"
+          },
+          {
+            "title": "SWE-bench Goes Live!",
+            "url": "https://arxiv.org/html/2505.23419v2"
+          },
+          {
+            "title": "arXiv:2505.23419v2 [cs.SE] 1 Jun 2025 SWE-bench Goes Live! Linghao Zhang",
+            "url": "https://arxiv.org/pdf/2505.23419"
+          },
+          {
+            "title": "GitHub - microsoft/SWE-bench-Live: [NeurIPS 2025 D&B] 🚀 SWE-bench Goes Live!",
+            "url": "https://github.com/microsoft/SWE-bench-Live"
+          },
+          {
+            "title": "[2505.23419v2] SWE-bench Goes Live!",
+            "url": "https://arxiv.org/abs/2505.23419v2"
+          },
+          {
+            "title": "Paper page - SWE-bench Goes Live!",
+            "url": "https://huggingface.co/papers/2505.23419"
+          },
+          {
+            "title": "arXiv:2505.23419v1 [cs.SE] 29 May 2025 SWE-bench Goes Live! Linghao Zhang1∗",
+            "url": "https://arxiv.org/pdf/2505.23419v1"
+          },
+          {
+            "title": "SWE-Universe: Scale Real-World Verifiable Environments to Millions",
+            "url": "https://arxiv.org/html/2602.02361v1"
+          },
+          {
+            "title": "SWE-EVO: Benchmarking Coding Agents in Long-Horizon Software Evolution Scenarios",
+            "url": "https://arxiv.org/html/2512.18470v5"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SWE-bench-Live (arXiv 2505.23419) and the Agentless baseline results:\n\n## SWE-bench-Live Overview\n\nSWE-bench-Live is a live-updatable benchmark with an initial release of 1,319 tasks derived from real GitHub issues created since 2024, spanning 93 repositories.\n\n## Agentless Baseline Evaluation\n\nFor Agentless evaluation, the pipeline consists of two main stages: issue localization and patch generation, with the reranking stage based on regression testing omitted due to infrastructure limitations, so both stages produce a single sample without reranking.\n\nFor Agentless, both the number of localization samples and repair samples are set to 1, with LLM temperature set to 0.8 during the localization phase and 0.0 for all other phases.\n\n## Models Tested\n\nThe agents were tested using four recent state-of-the-art LLMs: GPT-4o (gpt-4o-2024-11-20), GPT-4.1 (gpt-4.1-2025-04-14), Claude 3.7 Sonnet (claude-3-7-sonnet-20250219), and DeepSeek V3 (DeepSeek-V3-0324).\n\nThe paper itself is available at arxiv.org/abs/2505.23419, and you can access the GitHub repository and leaderboard for more detailed results on specific model performance."
+    ],
+    "durationSeconds": 6.448002097000004
+  },
+  "sourceToolAssistantUUID": "59df1fec-e788-418a-83c9-1a2ff474ebb1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T07:08:33.181Z_
+
+<details><summary>↩ Tool result · `toolu_01FkweRL7sk7q7oBcJvF9C72`</summary>
+
+```text
+Web search results for query: "SpecRover arXiv 2408.02232 ICSE 2025 error analysis failure modes ambiguous issue description"
+
+Links: [{"title":"[2408.02232] SpecRover: Code Intent Extraction via LLMs","url":"https://arxiv.org/abs/2408.02232"},{"title":"SpecRover: Code Intent Extraction via LLMs *Joint first authors, ordered alphabetically.","url":"https://arxiv.org/html/arXiv:2408.02232"},{"title":"SpecRover: Code Intent Extraction via LLMs (ICSE 2025 - Research Track) - ICSE 2025","url":"https://conf.researchr.org/details/icse-2025/icse-2025-research-track/68/SpecRover-Code-Intent-Extraction-via-LLMs"},{"title":"Software Engineering Aug 2024","url":"https://www.arxiv.org/list/cs.SE/2024-08?skip=10&show=2000"},{"title":"publications | Yuntong Zhang","url":"https://yuntongzhang.github.io/publications/"},{"title":"SpecRover: Code Intent Extraction via LLMs Haifeng Ruan* Yuntong Zhang*","url":"https://arxiv.org/pdf/2408.02232"},{"title":"SpecRover: Code Intent Extraction via LLMs | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/specrover-code-intent-extraction-via-llms"},{"title":"SpecRover: Code Intent Extraction via LLMs","url":"https://www.computer.org/csdl/proceedings-article/icse/2025/056900a617/251mFZysrIc"},{"title":"GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥","url":"https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation"},{"title":"Accepted at International Conference on Software Engineering (ICSE) 2025 A Large-Scale Study of Model Integration in ML-Enabled Software Systems","url":"https://arxiv.org/html/2408.06226"}]
+
+Based on the search results, I found information about SpecRover (arXiv 2408.02232), which is accepted at ICSE 2025. Here's what I found:
+
+## SpecRover Overview
+
+SpecRover conducts iterative code search accompanied by specification inference to infer intent from both project structure and behavior, given a GitHub issue to be resolved in a software project. The approach is built on the open-source LLM agent AutoCodeRover.
+
+## Key Contributions
+
+In an evaluation on the full SWE-Bench consisting of 2294 GitHub issues, it shows more than 50% improvement in efficacy over AutoCodeRover. Compared to open-source agents available, the work shows modest cost ($0.65 per issue) in resolving an average GitHub issue in SWE-Bench lite.
+
+## Specification Inference and Reviewer Feedback
+
+In the process of code search, SpecRover calculates and deposits specifications of classes/methods which would have allowed for remediation of the observable error, capturing intended program behavior, and these specifications gathered from code search are deposited along with generated tests to a reviewer agent, which studies the specifications, generated tests, and natural language requirements to guide the patching.
+
+The reviewer agent provides feedback that includes a binary decision of whether the patch and reproducer test are correct respectively, along with an explanation for the decisions.
+
+However, the search results do not contain specific information about error analysis, failure modes, or ambiguous issue descriptions in the SpecRover paper. To find those specific details, you may want to access the full PDF of the paper directly from arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5c2f3ab2-6ef7-4288-9e7e-ea68d3cf6530",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "a0bab7d5-11ce-49eb-a648-da3ec2f92b84",
+  "toolUseResult": {
+    "query": "SpecRover arXiv 2408.02232 ICSE 2025 error analysis failure modes ambiguous issue description",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LS5fZTtD1PEv19M4tFveJZ",
+        "content": [
+          {
+            "title": "[2408.02232] SpecRover: Code Intent Extraction via LLMs",
+            "url": "https://arxiv.org/abs/2408.02232"
+          },
+          {
+            "title": "SpecRover: Code Intent Extraction via LLMs *Joint first authors, ordered alphabetically.",
+            "url": "https://arxiv.org/html/arXiv:2408.02232"
+          },
+          {
+            "title": "SpecRover: Code Intent Extraction via LLMs (ICSE 2025 - Research Track) - ICSE 2025",
+            "url": "https://conf.researchr.org/details/icse-2025/icse-2025-research-track/68/SpecRover-Code-Intent-Extraction-via-LLMs"
+          },
+          {
+            "title": "Software Engineering Aug 2024",
+            "url": "https://www.arxiv.org/list/cs.SE/2024-08?skip=10&show=2000"
+          },
+          {
+            "title": "publications | Yuntong Zhang",
+            "url": "https://yuntongzhang.github.io/publications/"
+          },
+          {
+            "title": "SpecRover: Code Intent Extraction via LLMs Haifeng Ruan* Yuntong Zhang*",
+            "url": "https://arxiv.org/pdf/2408.02232"
+          },
+          {
+            "title": "SpecRover: Code Intent Extraction via LLMs | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/specrover-code-intent-extraction-via-llms"
+          },
+          {
+            "title": "SpecRover: Code Intent Extraction via LLMs",
+            "url": "https://www.computer.org/csdl/proceedings-article/icse/2025/056900a617/251mFZysrIc"
+          },
+          {
+            "title": "GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥",
+            "url": "https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation"
+          },
+          {
+            "title": "Accepted at International Conference on Software Engineering (ICSE) 2025 A Large-Scale Study of Model Integration in ML-Enabled Software Systems",
+            "url": "https://arxiv.org/html/2408.06226"
+          }
+        ]
+      },
+      "Based on the search results, I found information about SpecRover (arXiv 2408.02232), which is accepted at ICSE 2025. Here's what I found:\n\n## SpecRover Overview\n\nSpecRover conducts iterative code search accompanied by specification inference to infer intent from both project structure and behavior, given a GitHub issue to be resolved in a software project. The approach is built on the open-source LLM agent AutoCodeRover.\n\n## Key Contributions\n\nIn an evaluation on the full SWE-Bench consisting of 2294 GitHub issues, it shows more than 50% improvement in efficacy over AutoCodeRover. Compared to open-source agents available, the work shows modest cost ($0.65 per issue) in resolving an average GitHub issue in SWE-Bench lite.\n\n## Specification Inference and Reviewer Feedback\n\nIn the process of code search, SpecRover calculates and deposits specifications of classes/methods which would have allowed for remediation of the observable error, capturing intended program behavior, and these specifications gathered from code search are deposited along with generated tests to a reviewer agent, which studies the specifications, generated tests, and natural language requirements to guide the patching.\n\nThe reviewer agent provides feedback that includes a binary decision of whether the patch and reproducer test are correct respectively, along with an explanation for the decisions.\n\nHowever, the search results do not contain specific information about error analysis, failure modes, or ambiguous issue descriptions in the SpecRover paper. To find those specific details, you may want to access the full PDF of the paper directly from arXiv."
+    ],
+    "durationSeconds": 7.667235205999997
+  },
+  "sourceToolAssistantUUID": "5c2f3ab2-6ef7-4288-9e7e-ea68d3cf6530",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-10T07:08:33.623Z_
+
+<details><summary>↩ Tool result · `toolu_01SPgWemBMwNrJ5kJNsxVDFX`</summary>
+
+```text
+Web search results for query: "Agent-CoEvo arXiv 2604.04580 code behavioral constraints coevolution SWE-bench 2026"
+
+Links: [{"title":"Beyond Fixed Tests: Repository-Level Issue Resolution as Coevolution of Code and Behavioral Constraints","url":"https://arxiv.org/html/2604.04580"},{"title":"COEVO: Co-Evolutionary Framework for Joint Functional Correctness and PPA Optimization in LLM-Based RTL Generation","url":"https://arxiv.org/html/2604.15001"},{"title":"[2604.15001] COEVO: Co-Evolutionary Framework for Joint Functional Correctness and PPA Optimization in LLM-Based RTL Generation","url":"https://arxiv.org/abs/2604.15001"},{"title":"An agent-based cooperative co-evolutionary framework for optimizing the production planning of energy supply chains under uncertainty scenarios - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0925527324002561"},{"title":"GitHub - Gen-Verse/GenEnv: GenEnv: Difficulty-Aligned Co-Evolution Between LLM Agents and Environment Simulators · GitHub","url":"https://github.com/Gen-Verse/GenEnv"},{"title":"GenEnv: Difficulty-Aligned Co-Evolution Between LLM Agents and Environment Simulators","url":"https://arxiv.org/html/2512.19682v1"},{"title":"Agent-based brain modeling by means of hierarchical cooperative coevolution - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/19239349/"},{"title":"CoEvolve: Training LLM Agents via Agent-Data Mutual Evolution","url":"https://arxiv.org/html/2604.15840"},{"title":"A Learning-Based Cooperative Coevolution Framework for Heterogeneous Large-Scale Global Optimization","url":"https://arxiv.org/html/2604.01241v1"},{"title":"[2604.08840] Modelling the coevolution of opinion dynamics and decision making in social dilemmas","url":"https://arxiv.org/abs/2604.08840"}]
+
+Based on the web search results, I found the paper you're looking for:
+
+Agent-CoEvo is an arXiv paper (2604.04580) published on April 6, 2026, authored by researchers from Beihang University and Beijing Tokfinity Technology Co., Ltd.
+
+**Overview:**
+
+The paper argues that repository-level issue resolution is fundamentally not optimization under fixed tests, but search over evolving behavioral constraints, and proposes Agent-CoEvo, a coevolutionary multi-agent framework in which candidate code patches and test patches are jointly explored and iteratively refined.
+
+**Key Approach:**
+
+Rather than treating tests as immutable oracles, the framework models them as dynamic constraints that both guide and are revised by the repair process. Through mutual evaluation and semantic recombination, code and test candidates progressively narrow the space of behavior consistent with the issue description.
+
+**Evaluation:**
+
+Agent-CoEvo was evaluated on SWE-bench Lite and SWT-bench Lite, consistently outperforming state-of-the-art agent-based and agentless baselines in both repair success and test reproduction quality.
+
+The paper is available at the arXiv link: https://arxiv.org/html/2604.04580
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "49c0509e-fa3b-481a-8cdb-af9447bb5472",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "200e8052-3d63-405f-addf-2ee67e9fda39",
+  "toolUseResult": {
+    "query": "Agent-CoEvo arXiv 2604.04580 code behavioral constraints coevolution SWE-bench 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RJU5hPpcFjPxkF6R7KTVVS",
+        "content": [
+          {
+            "title": "Beyond Fixed Tests: Repository-Level Issue Resolution as Coevolution of Code and Behavioral Constraints",
+            "url": "https://arxiv.org/html/2604.04580"
+          },
+          {
+            "title": "COEVO: Co-Evolutionary Framework for Joint Functional Correctness and PPA Optimization in LLM-Based RTL Generation",
+            "url": "https://arxiv.org/html/2604.15001"
+          },
+          {
+            "title": "[2604.15001] COEVO: Co-Evolutionary Framework for Joint Functional Correctness and PPA Optimization in LLM-Based RTL Generation",
+            "url": "https://arxiv.org/abs/2604.15001"
+          },
+          {
+            "title": "An agent-based cooperative co-evolutionary framework for optimizing the production planning of energy supply chains under uncertainty scenarios - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0925527324002561"
+          },
+          {
+            "title": "GitHub - Gen-Verse/GenEnv: GenEnv: Difficulty-Aligned Co-Evolution Between LLM Agents and Environment Simulators · GitHub",
+            "url": "https://github.com/Gen-Verse/GenEnv"
+          },
+          {
+            "title": "GenEnv: Difficulty-Aligned Co-Evolution Between LLM Agents and Environment Simulators",
+            "url": "https://arxiv.org/html/2512.19682v1"
+          },
+          {
+            "title": "Agent-based brain modeling by means of hierarchical cooperative coevolution - PubMed",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/19239349/"
+          },
+          {
+            "title": "CoEvolve: Training LLM Agents via Agent-Data Mutual Evolution",
+            "url": "https://arxiv.org/html/2604.15840"
+          },
+          {
+            "title": "A Learning-Based Cooperative Coevolution Framework for Heterogeneous Large-Scale Global Optimization",
+            "url": "https://arxiv.org/html/2604.01241v1"
+          },
+          {
+            "title": "[2604.08840] Modelling the coevolution of opinion dynamics and decision making in social dilemmas",
+            "url": "https://arxiv.org/abs/2604.08840"
+          }
+        ]
+      },
+      "Based on the web search results, I found the paper you're looking for:\n\nAgent-CoEvo is an arXiv paper (2604.04580) published on April 6, 2026, authored by researchers from Beihang University and Beijing Tokfinity Technology Co., Ltd.\n\n**Overview:**\n\nThe paper argues that repository-level issue resolution is fundamentally not optimization under fixed tests, but search over evolving behavioral constraints, and proposes Agent-CoEvo, a coevolutionary multi-agent framework in which candidate code patches and test patches are jointly explored and iteratively refined.\n\n**Key Approach:**\n\nRather than treating tests as immutable oracles, the framework models them as dynamic constraints that both guide and are revised by the repair process. Through mutual evaluation and semantic recombination, code and test candidates progressively narrow the space of behavior consistent with the issue description.\n\n**Evaluation:**\n\nAgent-CoEvo was evaluated on SWE-bench Lite and SWT-bench Lite, consistently outperforming state-of-the-art agent-based and agentless baselines in both repair success and test reproduction quality.\n\nThe paper is available at the arXiv link: https://arxiv.org/html/2604.04580"
+    ],
+    "durationSeconds": 6.670874389999997
+  },
+  "sourceToolAssistantUUID": "49c0509e-fa3b-481a-8cdb-af9447bb5472",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "200e8052-3d63-405f-addf-2ee67e9fda39",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Issue-space behavioral spec extraction for code repair",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840"
+}
+```
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-10T07:08:36.394Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now let me fetch the SpecRover paper to verify if Section V-A "Reasons for Failure" with the 51.7% figure exists.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "200e8052-3d63-405f-addf-2ee67e9fda39",
+  "isSidechain": false,
+  "requestId": "req_011CatU5joSvq5rPdx3x6deK",
+  "type": "assistant",
+  "uuid": "49ba7222-1141-4840-9c37-f940368e567b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011rRt5SnV1oeXvr5QzfAXmF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2945,
+      "cache_read_input_tokens": 33877,
+      "output_tokens": 383,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2945,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 383,
+          "cache_read_input_tokens": 33877,
+          "cache_creation_input_tokens": 2945,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2945
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-10T07:08:38.902Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QTPV1dzttJdTV4Czrdb6ok`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2408.02232",
+  "prompt": "Find any error analysis section, failure mode analysis, or statistics about ambiguous issue descriptions. Specifically look for: Section V-A \"Reasons for Failure\", 51.7%, 107/207 count, ambiguous issue description failure mode, SWE-bench Verified annotation cross-reference."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "49ba7222-1141-4840-9c37-f940368e567b",
+  "isSidechain": false,
+  "requestId": "req_011CatU5joSvq5rPdx3x6deK",
+  "type": "assistant",
+  "uuid": "d48e12b4-c9c0-4793-aac3-ae1526b68108",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011rRt5SnV1oeXvr5QzfAXmF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2945,
+      "cache_read_input_tokens": 33877,
+      "output_tokens": 383,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2945,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 383,
+          "cache_read_input_tokens": 33877,
+          "cache_creation_input_tokens": 2945,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2945
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-10T07:08:41.527Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Qjpc6YM7NjunDhjJBCmAjz`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2505.23419v2",
+  "prompt": "Find the Agentless baseline results on SWE-bench-Live Lite (300 instances). Look for Table 3 or any table reporting Agentless resolve rates with GPT-4o, GPT-4.1, DeepSeek V3. Report exact percentages."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d48e12b4-c9c0-4793-aac3-ae1526b68108",
+  "isSidechain": false,
+  "requestId": "req_011CatU5joSvq5rPdx3x6deK",
+  "type": "assistant",
+  "uuid": "a2ca86ed-e918-4fc5-990f-db45b73e1dc5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011rRt5SnV1oeXvr5QzfAXmF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2945,
+      "cache_read_input_tokens": 33877,
+      "output_tokens": 383,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2945,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 383,
+          "cache_read_input_tokens": 33877,
+          "cache_creation_input_tokens": 2945,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2945
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-10T07:08:41.806Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018ecADnXdRtFDiGr7atVayG`</summary>
+
+```json
+{
+  "query": "SWE-bench Verified \"ambiguous issue\" failure analysis percentage 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a2ca86ed-e918-4fc5-990f-db45b73e1dc5",
+  "isSidechain": false,
+  "requestId": "req_011CatU5joSvq5rPdx3x6deK",
+  "type": "assistant",
+  "uuid": "117625fb-5aaa-4419-95bc-dae95de099e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011rRt5SnV1oeXvr5QzfAXmF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2945,
+      "cache_read_input_tokens": 33877,
+      "output_tokens": 383,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2945,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 383,
+          "cache_read_input_tokens": 33877,
+          "cache_creation_input_tokens": 2945,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2945
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-10T07:08:44.399Z_
+
+<details><summary>↩ Tool result · `toolu_01Qjpc6YM7NjunDhjJBCmAjz`</summary>
+
+```text
+# Agentless Baseline Results on SWE-bench-Live Lite
+
+Based on Table 3 in the paper, here are the Agentless resolved rates on the 300-instance Lite subset:
+
+- **GPT-4o**: 11.67%
+- **GPT-4.1**: 12.00%
+- **DeepSeek V3**: 13.33%
+
+The table also shows patch application rates (ranging from 68-91.67%) and localization success rates (30-40.67%) for these same model-agent combinations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a2ca86ed-e918-4fc5-990f-db45b73e1dc5",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "1ec14fe7-81ef-46cb-8e7b-2513df0a6d00",
+  "toolUseResult": {
+    "bytes": 264188,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Agentless Baseline Results on SWE-bench-Live Lite\n\nBased on Table 3 in the paper, here are the Agentless resolved rates on the 300-instance Lite subset:\n\n- **GPT-4o**: 11.67%\n- **GPT-4.1**: 12.00%\n- **DeepSeek V3**: 13.33%\n\nThe table also shows patch application rates (ranging from 68-91.67%) and localization success rates (30-40.67%) for these same model-agent combinations.",
+    "durationMs": 2870,
+    "url": "https://arxiv.org/html/2505.23419v2"
+  },
+  "sourceToolAssistantUUID": "a2ca86ed-e918-4fc5-990f-db45b73e1dc5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-10T07:08:46.548Z_
+
+<details><summary>↩ Tool result · `toolu_01QTPV1dzttJdTV4Czrdb6ok`</summary>
+
+```text
+# Analysis Request Response
+
+Based on the provided arXiv page content for paper 2408.02232 (SpecRover), I cannot locate the specific error analysis section you're requesting.
+
+The abstract and metadata visible on this page do not contain:
+- A dedicated "Reasons for Failure" section (Section V-A)
+- The 51.7% or 107/207 statistics you mentioned
+- Discussion of ambiguous issue description failure modes
+- References to SWE-bench Verified annotations
+
+**Why:** The content provided only includes the arXiv abstract, submission history, and navigation elements—not the paper's full body, which would contain detailed failure analysis sections typically found in the Results or Discussion portions.
+
+**To access this information**, you would need to:
+1. View the full PDF or HTML version of the paper (linked on the page)
+2. Search within the complete document for Section V-A or the specific statistics mentioned
+
+The abstract does note the paper addresses "specification inference" and evaluates on "SWE-Bench consisting of 2294 GitHub issues," but the granular failure mode data you seek isn't visible in this abstract view.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d48e12b4-c9c0-4793-aac3-ae1526b68108",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "cde798f3-827d-495f-8c44-e59d6a674ab1",
+  "toolUseResult": {
+    "bytes": 47578,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis Request Response\n\nBased on the provided arXiv page content for paper 2408.02232 (SpecRover), I cannot locate the specific error analysis section you're requesting.\n\nThe abstract and metadata visible on this page do not contain:\n- A dedicated \"Reasons for Failure\" section (Section V-A)\n- The 51.7% or 107/207 statistics you mentioned\n- Discussion of ambiguous issue description failure modes\n- References to SWE-bench Verified annotations\n\n**Why:** The content provided only includes the arXiv abstract, submission history, and navigation elements—not the paper's full body, which would contain detailed failure analysis sections typically found in the Results or Discussion portions.\n\n**To access this information**, you would need to:\n1. View the full PDF or HTML version of the paper (linked on the page)\n2. Search within the complete document for Section V-A or the specific statistics mentioned\n\nThe abstract does note the paper addresses \"specification inference\" and evaluates on \"SWE-Bench consisting of 2294 GitHub issues,\" but the granular failure mode data you seek isn't visible in this abstract view.",
+    "durationMs": 7641,
+    "url": "https://arxiv.org/abs/2408.02232"
+  },
+  "sourceToolAssistantUUID": "d48e12b4-c9c0-4793-aac3-ae1526b68108",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-10T07:08:48.671Z_
+
+<details><summary>↩ Tool result · `toolu_018ecADnXdRtFDiGr7atVayG`</summary>
+
+```text
+Web search results for query: "SWE-bench Verified "ambiguous issue" failure analysis percentage 2024 2025"
+
+Links: [{"title":"SWE-bench Verified | Epoch AI","url":"https://epoch.ai/benchmarks/swe-bench-verified"},{"title":"SWE-bench Verified Issues Benchmark","url":"https://www.emergentmind.com/topics/swe-bench-verified-issues"},{"title":"SWE-bench Verified","url":"https://www.vals.ai/benchmarks/swebench"},{"title":"What skills does SWE-bench Verified evaluate? | Epoch AI","url":"https://epoch.ai/blog/what-skills-does-swe-bench-verified-evaluate"},{"title":"arXiv:2509.16941v2 [cs.SE] 14 Nov 2025 SWE-Bench Pro: Can AI Agents Solve","url":"https://arxiv.org/pdf/2509.16941"},{"title":"Introducing SWE-bench Verified | OpenAI","url":"https://openai.com/index/introducing-swe-bench-verified/"},{"title":"GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub","url":"https://github.com/SWE-bench/SWE-bench"},{"title":"SWE-Bench-Verified Benchmark","url":"https://www.emergentmind.com/topics/swe-bench-verified-f1d87e7f-d600-4831-973d-249d445ba3d0"},{"title":"Why SWE-bench Verified no longer measures frontier coding capabilities | OpenAI","url":"https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/"},{"title":"What those AI benchmark numbers mean | ngrok blog","url":"https://ngrok.com/blog/ai-benchmarks"}]
+
+Based on the web search results, here are the key findings regarding ambiguous issue failure analysis and error rates in SWE-bench Verified:
+
+## Error Rate Estimates
+
+The rate of flawed or problematic instances in SWE-bench Verified is estimated to be relatively low, between 5% and 10%.
+
+## Recent Quality Audits (2025-2026)
+
+More recent analysis has revealed higher concerns:
+
+- 59.4% of 138 problems audited by OpenAI contained material issues in test design and/or problem description, rendering them extremely difficult or impossible even for the most capable model or human to solve.
+
+- After filtering out problematic cases, the effective resolution rate on SWE-Bench-Verified drops sharply — from a leaderboard rate of 22.4% down to 10.0% when only unambiguously correct fixes are counted.
+
+## Specific Failure Categories
+
+Research has identified several failure modes including:
+- Many issue statements remain under-specified or ambiguous regarding semantic edge cases.
+- Solution leakage occurs in approximately 33.04% of resolved instances, whereby the issue report or its discussion contains the solution code.
+
+The search results indicate that while the initial curation process aimed for a 5-10% error rate, subsequent audits in 2024-2026 have uncovered significantly higher percentages of problematic issues when examined more rigorously.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "117625fb-5aaa-4419-95bc-dae95de099e5",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "f0366ade-9895-490f-b052-f43fc497f864",
+  "toolUseResult": {
+    "query": "SWE-bench Verified \"ambiguous issue\" failure analysis percentage 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0124oQeuD3fdWcKyq7QnLFJk",
+        "content": [
+          {
+            "title": "SWE-bench Verified | Epoch AI",
+            "url": "https://epoch.ai/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "SWE-bench Verified Issues Benchmark",
+            "url": "https://www.emergentmind.com/topics/swe-bench-verified-issues"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.vals.ai/benchmarks/swebench"
+          },
+          {
+            "title": "What skills does SWE-bench Verified evaluate? | Epoch AI",
+            "url": "https://epoch.ai/blog/what-skills-does-swe-bench-verified-evaluate"
+          },
+          {
+            "title": "arXiv:2509.16941v2 [cs.SE] 14 Nov 2025 SWE-Bench Pro: Can AI Agents Solve",
+            "url": "https://arxiv.org/pdf/2509.16941"
+          },
+          {
+            "title": "Introducing SWE-bench Verified | OpenAI",
+            "url": "https://openai.com/index/introducing-swe-bench-verified/"
+          },
+          {
+            "title": "GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub",
+            "url": "https://github.com/SWE-bench/SWE-bench"
+          },
+          {
+            "title": "SWE-Bench-Verified Benchmark",
+            "url": "https://www.emergentmind.com/topics/swe-bench-verified-f1d87e7f-d600-4831-973d-249d445ba3d0"
+          },
+          {
+            "title": "Why SWE-bench Verified no longer measures frontier coding capabilities | OpenAI",
+            "url": "https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/"
+          },
+          {
+            "title": "What those AI benchmark numbers mean | ngrok blog",
+            "url": "https://ngrok.com/blog/ai-benchmarks"
+          }
+        ]
+      },
+      "Based on the web search results, here are the key findings regarding ambiguous issue failure analysis and error rates in SWE-bench Verified:\n\n## Error Rate Estimates\n\nThe rate of flawed or problematic instances in SWE-bench Verified is estimated to be relatively low, between 5% and 10%.\n\n## Recent Quality Audits (2025-2026)\n\nMore recent analysis has revealed higher concerns:\n\n- 59.4% of 138 problems audited by OpenAI contained material issues in test design and/or problem description, rendering them extremely difficult or impossible even for the most capable model or human to solve.\n\n- After filtering out problematic cases, the effective resolution rate on SWE-Bench-Verified drops sharply — from a leaderboard rate of 22.4% down to 10.0% when only unambiguously correct fixes are counted.\n\n## Specific Failure Categories\n\nResearch has identified several failure modes including:\n- Many issue statements remain under-specified or ambiguous regarding semantic edge cases.\n- Solution leakage occurs in approximately 33.04% of resolved instances, whereby the issue report or its discussion contains the solution code.\n\nThe search results indicate that while the initial curation process aimed for a 5-10% error rate, subsequent audits in 2024-2026 have uncovered significantly higher percentages of problematic issues when examined more rigorously."
+    ],
+    "durationSeconds": 6.861795192999998
+  },
+  "sourceToolAssistantUUID": "117625fb-5aaa-4419-95bc-dae95de099e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-10T07:08:55.701Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent. Key findings so far:
+
+1. **SpecRover Section V-A "Reasons for Failure" claim**: The arXiv abstract page doesn't have this. I need to check the full paper HTML. Let me try to fetch the HTML version.
+
+2. **SWE-bench-Live Agentless baseline**: CONFIRMED - Table 3 shows GPT-4o: 11.67%, GPT-4.1: 12.00%, DeepSeek V3: 13.33% on SWE-bench-Live Lite (300 instances). This matches what the proposal claims. ✓
+
+
+3. **SWE-bench Verified contamination**: OpenAI has officially stopped recommending Verified for frontier model comparison, which the proposal notes. Now I need to pull the actual SpecRover HTML paper to verify that Section V-A claim.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0366ade-9895-490f-b052-f43fc497f864",
+  "isSidechain": false,
+  "requestId": "req_011CatU6rCh56pLhps2Bxfe4",
+  "type": "assistant",
+  "uuid": "511fa62f-69e8-49f4-9535-dc9ae7b256f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01RECrz6Mqefi2F7ZELHPkZY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1659,
+      "cache_read_input_tokens": 36822,
+      "output_tokens": 496,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1659,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 496,
+          "cache_read_input_tokens": 36822,
+          "cache_creation_input_tokens": 1659,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1659
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-10T07:08:57.693Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VSLgNqNJq5L5kvQ7F6DyFp`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/arXiv:2408.02232",
+  "prompt": "Search for any section about failure analysis, error analysis, or reasons for failure. Specifically look for: Section V-A, \"ambiguous issue description\", 51.7%, 107 instances, 207 instances, ambiguous cases, hard cases, SWE-bench Verified annotation. Report the exact section names and any statistics about failure modes."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "511fa62f-69e8-49f4-9535-dc9ae7b256f0",
+  "isSidechain": false,
+  "requestId": "req_011CatU6rCh56pLhps2Bxfe4",
+  "type": "assistant",
+  "uuid": "59293056-604a-4284-9355-c48eceed3538",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01RECrz6Mqefi2F7ZELHPkZY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1659,
+      "cache_read_input_tokens": 36822,
+      "output_tokens": 496,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1659,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 496,
+          "cache_read_input_tokens": 36822,
+          "cache_creation_input_tokens": 1659,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1659
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-10T07:08:58.290Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KpkENeLbvXX3UQvaXV9xoQ`</summary>
+
+```json
+{
+  "query": "SpecRover \"ambiguous issue\" OR \"reasons for failure\" OR \"error analysis\" site:arxiv.org 2408.02232"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59293056-604a-4284-9355-c48eceed3538",
+  "isSidechain": false,
+  "requestId": "req_011CatU6rCh56pLhps2Bxfe4",
+  "type": "assistant",
+  "uuid": "88b704e0-d4b4-4314-be2a-3bf4624a45d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01RECrz6Mqefi2F7ZELHPkZY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1659,
+      "cache_read_input_tokens": 36822,
+      "output_tokens": 496,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1659,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 496,
+          "cache_read_input_tokens": 36822,
+          "cache_creation_input_tokens": 1659,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1659
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-10T07:08:59.146Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AypUT34KkdHYTbas1JDMwG`</summary>
+
+```json
+{
+  "query": "issue-space specification extraction bug report program repair 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88b704e0-d4b4-4314-be2a-3bf4624a45d5",
+  "isSidechain": false,
+  "requestId": "req_011CatU6rCh56pLhps2Bxfe4",
+  "type": "assistant",
+  "uuid": "62dc2c14-624a-4834-a524-10b6e4adf193",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01RECrz6Mqefi2F7ZELHPkZY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1659,
+      "cache_read_input_tokens": 36822,
+      "output_tokens": 496,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1659,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 496,
+          "cache_read_input_tokens": 36822,
+          "cache_creation_input_tokens": 1659,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1659
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-10T07:09:02.053Z_
+
+<details><summary>↩ Tool result · `toolu_01VSLgNqNJq5L5kvQ7F6DyFp`</summary>
+
+```text
+# Failure Analysis in SpecRover
+
+## Section Location
+The failure analysis appears in **Section V-A: RQ1: Overall Efficacy of Task Resolving**, under the subsection "Reasons for Failure."
+
+## Failure Breakdown Statistics
+
+SpecRover's analysis examined 207 unresolved tasks from SWE-Bench Lite, categorizing failures into three types:
+
+1. **Ambiguous issue descriptions**: 107 cases (51.7%)
+   - Labeled by SWE-bench Verified as "hard or impossible to solve without further information"
+
+2. **Incorrect fix location**: 61 cases (29.5%)
+   - The most significant improvement opportunity identified
+
+3. **Incorrect code modification**: 39 cases (18.8%)
+   - Mostly involved correct patch concepts with wrong implementation details
+
+## Key Insight
+
+The paper notes that "SpecRover can potentially have significant improvement by leveraging more fix localization techniques" since fix location errors exceeded code modification errors by nearly 1.6x. For the code modification failures, developers could likely improve results by incorporating enhanced test generation methods.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "59293056-604a-4284-9355-c48eceed3538",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "97d80a7c-2fc6-41ce-82be-f1a6fe011d7b",
+  "toolUseResult": {
+    "bytes": 184431,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Failure Analysis in SpecRover\n\n## Section Location\nThe failure analysis appears in **Section V-A: RQ1: Overall Efficacy of Task Resolving**, under the subsection \"Reasons for Failure.\"\n\n## Failure Breakdown Statistics\n\nSpecRover's analysis examined 207 unresolved tasks from SWE-Bench Lite, categorizing failures into three types:\n\n1. **Ambiguous issue descriptions**: 107 cases (51.7%)\n   - Labeled by SWE-bench Verified as \"hard or impossible to solve without further information\"\n\n2. **Incorrect fix location**: 61 cases (29.5%)\n   - The most significant improvement opportunity identified\n\n3. **Incorrect code modification**: 39 cases (18.8%)\n   - Mostly involved correct patch concepts with wrong implementation details\n\n## Key Insight\n\nThe paper notes that \"SpecRover can potentially have significant improvement by leveraging more fix localization techniques\" since fix location errors exceeded code modification errors by nearly 1.6x. For the code modification failures, developers could likely improve results by incorporating enhanced test generation methods.",
+    "durationMs": 4356,
+    "url": "https://arxiv.org/html/arXiv:2408.02232"
+  },
+  "sourceToolAssistantUUID": "59293056-604a-4284-9355-c48eceed3538",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-10T07:09:03.261Z_
+
+<details><summary>↩ Tool result · `toolu_01KpkENeLbvXX3UQvaXV9xoQ`</summary>
+
+```text
+Web search results for query: "SpecRover "ambiguous issue" OR "reasons for failure" OR "error analysis" site:arxiv.org 2408.02232"
+
+Links: [{"title":"[2408.10270] SEAL: Systematic Error Analysis for Value ALignment","url":"https://arxiv.org/abs/2408.10270"},{"title":"An Interactive Pipeline for Semantic Error Analysis of NLP ...","url":"https://arxiv.org/pdf/2203.04408"},{"title":"Structured Backward Error Analysis for Double Saddle Point Problems","url":"https://arxiv.org/pdf/2408.14019"},{"title":"SEAL: Systematic Error Analysis for Value ALignment","url":"https://arxiv.org/html/2408.10270"},{"title":"[2408.05943] Closed-Loop Designed Open-Loop Control of Quantum Systems: An Error Analysis","url":"https://arxiv.org/abs/2408.05943"},{"title":"[2408.06085] Stability and error analysis of pressure-correction scheme for the Navier-Stokes-Planck-Nernst-Poisson equations","url":"https://arxiv.org/abs/2408.06085"},{"title":"Opening the Black Box of 3D Reconstruction Error Analysis with VECTOR","url":"https://arxiv.org/html/2408.03503"},{"title":"Closed-Loop Designed Open-Loop Control of Quantum Systems: An Error Analysis","url":"https://arxiv.org/html/2408.05943"},{"title":"Weak backward error analysis for Langevin process","url":"https://arxiv.org/pdf/1310.2599"},{"title":"Error analysis of an L2-type method on graded meshes for semilinear subdiffusion equations","url":"https://arxiv.org/html/2408.03420"}]
+
+The search results did not return any papers specifically about SpecRover with the arXiv ID 2408.02232. The results show various error analysis papers from August 2024 on different topics, but none match the SpecRover paper you're looking for.
+
+It appears the search query with the site restriction and specific operators may not have returned the intended paper. If you're looking for information about SpecRover (arXiv 2408.02232), you might want to try:
+- Searching directly for the arXiv ID: "2408.02232"
+- Searching for "SpecRover" without the restrictive operators
+- Visiting arxiv.org/abs/2408.02232 directly
+
+Would you like me to try a different search approach?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "88b704e0-d4b4-4314-be2a-3bf4624a45d5",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "c8c367d7-23e7-4b73-8be3-d9cd2028b0ea",
+  "toolUseResult": {
+    "query": "SpecRover \"ambiguous issue\" OR \"reasons for failure\" OR \"error analysis\" site:arxiv.org 2408.02232",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CmgAdqwaCggzYTARLRiw71",
+        "content": [
+          {
+            "title": "[2408.10270] SEAL: Systematic Error Analysis for Value ALignment",
+            "url": "https://arxiv.org/abs/2408.10270"
+          },
+          {
+            "title": "An Interactive Pipeline for Semantic Error Analysis of NLP ...",
+            "url": "https://arxiv.org/pdf/2203.04408"
+          },
+          {
+            "title": "Structured Backward Error Analysis for Double Saddle Point Problems",
+            "url": "https://arxiv.org/pdf/2408.14019"
+          },
+          {
+            "title": "SEAL: Systematic Error Analysis for Value ALignment",
+            "url": "https://arxiv.org/html/2408.10270"
+          },
+          {
+            "title": "[2408.05943] Closed-Loop Designed Open-Loop Control of Quantum Systems: An Error Analysis",
+            "url": "https://arxiv.org/abs/2408.05943"
+          },
+          {
+            "title": "[2408.06085] Stability and error analysis of pressure-correction scheme for the Navier-Stokes-Planck-Nernst-Poisson equations",
+            "url": "https://arxiv.org/abs/2408.06085"
+          },
+          {
+            "title": "Opening the Black Box of 3D Reconstruction Error Analysis with VECTOR",
+            "url": "https://arxiv.org/html/2408.03503"
+          },
+          {
+            "title": "Closed-Loop Designed Open-Loop Control of Quantum Systems: An Error Analysis",
+            "url": "https://arxiv.org/html/2408.05943"
+          },
+          {
+            "title": "Weak backward error analysis for Langevin process",
+            "url": "https://arxiv.org/pdf/1310.2599"
+          },
+          {
+            "title": "Error analysis of an L2-type method on graded meshes for semilinear subdiffusion equations",
+            "url": "https://arxiv.org/html/2408.03420"
+          }
+        ]
+      },
+      "The search results did not return any papers specifically about SpecRover with the arXiv ID 2408.02232. The results show various error analysis papers from August 2024 on different topics, but none match the SpecRover paper you're looking for.\n\nIt appears the search query with the site restriction and specific operators may not have returned the intended paper. If you're looking for information about SpecRover (arXiv 2408.02232), you might want to try:\n- Searching directly for the arXiv ID: \"2408.02232\"\n- Searching for \"SpecRover\" without the restrictive operators\n- Visiting arxiv.org/abs/2408.02232 directly\n\nWould you like me to try a different search approach?"
+    ],
+    "durationSeconds": 4.96926455
+  },
+  "sourceToolAssistantUUID": "88b704e0-d4b4-4314-be2a-3bf4624a45d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-10T07:09:06.671Z_
+
+<details><summary>↩ Tool result · `toolu_01AypUT34KkdHYTbas1JDMwG`</summary>
+
+```text
+Web search results for query: "issue-space specification extraction bug report program repair 2025 2026 arXiv"
+
+Links: [{"title":"Gradient-Based Program Repair: Fixing Bugs in Continuous Program Spaces","url":"https://arxiv.org/html/2505.17703v3"},{"title":"Enhancing Repository-Level Software Repair via Repository-Aware Knowledge Graphs","url":"https://arxiv.org/html/2503.21710v1"},{"title":"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v1"},{"title":"GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥","url":"https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation"},{"title":"[2503.21710] Enhancing repository-level software repair via repository-aware knowledge graphs","url":"https://arxiv.org/abs/2503.21710"},{"title":"[2505.17703] Gradient-Based Program Repair: Fixing Bugs in Continuous Program Spaces","url":"https://arxiv.org/abs/2505.17703"},{"title":"Evaluating Agent-based Program Repair at Google","url":"https://arxiv.org/html/2501.07531v1"},{"title":"[2412.03905] Integrating Various Software Artifacts for Better LLM-based Bug Localization and Program Repair","url":"https://arxiv.org/abs/2412.03905"},{"title":"Past, Present, and Future of Bug Tracking in the Generative AI Era","url":"https://arxiv.org/html/2510.08005v3"},{"title":"Fixing 7,400 Bugs for 1$: Cheap Crash-Site Program Repair","url":"https://arxiv.org/html/2505.13103v2"}]
+
+Based on the web search results, I found several recent arXiv papers related to bug report analysis, program repair, and specification extraction from 2025-2026:
+
+## Key Findings
+
+**Program Repair and Bug Fixing:**
+
+Automatic program repair seeks to generate correct code from buggy programs, with most approaches searching the correct program in a discrete, symbolic space of source code tokens. A new paradigm called Gradient-Based Program Repair (GBPR) reframes program repair as continuous optimization in a differentiable numerical program space by compiling symbolic programs into differentiable numerical representations.
+
+**Repository-Level Software Repair:**
+
+Repository-level software repair faces challenges in bridging semantic gaps between issue descriptions and code patches, with existing approaches hindered by semantic ambiguities, limited understanding of structural context, and insufficient reasoning capabilities. KGCompass proposes a repository-aware knowledge graph that accurately links repository artifacts (issues and pull requests) and codebase entities (files, classes, and functions).
+
+**Bug Report Enhancement and Specification Extraction:**
+
+Recent studies have leveraged LLM capabilities to enhance bug report quality, with LLM-driven approaches semantically analyzing bug reports to detect missing fields and suggest enhancements for incomplete or ambiguous descriptions.
+
+**Survey on LLM-Based APR:**
+
+Large language models are reshaping automated program repair, with recent 63 LLM-based APR systems published from January 2022 to June 2025 categorized into four paradigms.
+
+These papers collectively address specification extraction from bug reports, issue-space analysis, and various approaches to automated program repair from 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "62dc2c14-624a-4834-a524-10b6e4adf193",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "9a23efc1-bd94-48d6-ba06-316908b13adb",
+  "toolUseResult": {
+    "query": "issue-space specification extraction bug report program repair 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012N2CEh7NL7EYgGBv1SvdfB",
+        "content": [
+          {
+            "title": "Gradient-Based Program Repair: Fixing Bugs in Continuous Program Spaces",
+            "url": "https://arxiv.org/html/2505.17703v3"
+          },
+          {
+            "title": "Enhancing Repository-Level Software Repair via Repository-Aware Knowledge Graphs",
+            "url": "https://arxiv.org/html/2503.21710v1"
+          },
+          {
+            "title": "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v1"
+          },
+          {
+            "title": "GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥",
+            "url": "https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation"
+          },
+          {
+            "title": "[2503.21710] Enhancing repository-level software repair via repository-aware knowledge graphs",
+            "url": "https://arxiv.org/abs/2503.21710"
+          },
+          {
+            "title": "[2505.17703] Gradient-Based Program Repair: Fixing Bugs in Continuous Program Spaces",
+            "url": "https://arxiv.org/abs/2505.17703"
+          },
+          {
+            "title": "Evaluating Agent-based Program Repair at Google",
+            "url": "https://arxiv.org/html/2501.07531v1"
+          },
+          {
+            "title": "[2412.03905] Integrating Various Software Artifacts for Better LLM-based Bug Localization and Program Repair",
+            "url": "https://arxiv.org/abs/2412.03905"
+          },
+          {
+            "title": "Past, Present, and Future of Bug Tracking in the Generative AI Era",
+            "url": "https://arxiv.org/html/2510.08005v3"
+          },
+          {
+            "title": "Fixing 7,400 Bugs for 1$: Cheap Crash-Site Program Repair",
+            "url": "https://arxiv.org/html/2505.13103v2"
+          }
+        ]
+      },
+      "Based on the web search results, I found several recent arXiv papers related to bug report analysis, program repair, and specification extraction from 2025-2026:\n\n## Key Findings\n\n**Program Repair and Bug Fixing:**\n\nAutomatic program repair seeks to generate correct code from buggy programs, with most approaches searching the correct program in a discrete, symbolic space of source code tokens. A new paradigm called Gradient-Based Program Repair (GBPR) reframes program repair as continuous optimization in a differentiable numerical program space by compiling symbolic programs into differentiable numerical representations.\n\n**Repository-Level Software Repair:**\n\nRepository-level software repair faces challenges in bridging semantic gaps between issue descriptions and code patches, with existing approaches hindered by semantic ambiguities, limited understanding of structural context, and insufficient reasoning capabilities. KGCompass proposes a repository-aware knowledge graph that accurately links repository artifacts (issues and pull requests) and codebase entities (files, classes, and functions).\n\n**Bug Report Enhancement and Specification Extraction:**\n\nRecent studies have leveraged LLM capabilities to enhance bug report quality, with LLM-driven approaches semantically analyzing bug reports to detect missing fields and suggest enhancements for incomplete or ambiguous descriptions.\n\n**Survey on LLM-Based APR:**\n\nLarge language models are reshaping automated program repair, with recent 63 LLM-based APR systems published from January 2022 to June 2025 categorized into four paradigms.\n\nThese papers collectively address specification extraction from bug reports, issue-space analysis, and various approaches to automated program repair from 2025-2026."
+    ],
+    "durationSeconds": 7.522695988999993
+  },
+  "sourceToolAssistantUUID": "62dc2c14-624a-4834-a524-10b6e4adf193",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-10T07:09:06.675Z_
+
+```json
+{
+  "parentUuid": "9a23efc1-bd94-48d6-ba06-316908b13adb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "cf906b47-291f-4f7f-a34f-819ac73a2bcd",
+  "timestamp": "2026-05-10T07:09:06.675Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "cf906b47-291f-4f7f-a34f-819ac73a2bcd",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Issue-space behavioral spec extraction for code repair",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840"
+}
+```
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-10T07:09:33.532Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Very interesting! The WebFetch of the SpecRover HTML paper DID find the failure analysis section! The result says:
+
+"The failure analysis appears in **Section V-A: RQ1: Overall Efficacy of Task Resolving**, under the subsection 'Reasons for Failure.'
+
+SpecRover's analysis examined 207 unresolved tasks from SWE-Bench Lite, categorizing failures into three types:
+1. **Ambiguous issue descriptions**: 107 cases (51.7%) - Labeled by SWE-bench Verified as 'hard or impossible to solve without further information'
+
+
+2. **Incorrect fix location**: 61 cases (29.5%)
+3. **Incorrect code modification**: 39 cases (18.8%)"
+
+So the SpecRover 51.7% figure actually IS in the paper, which directly contradicts the Round 3 reviewer's claim that it was fabricated. But this is strange—the Round 3 reviewer also used WebFetch to verify the same arXiv paper and concluded the statistic was made up. I need to figure out what's happening here, because both can't be true.
+
+The Round 3 reviewer found no dedicated error analysis section with those specific numbers, but my current WebFetch is pulling up exactly that content in "Section V-A: RQ1: Overall Efficacy of Task Resolving" with a "Reasons for Failure" subsection containing the 51.7%/107/207 breakdown. Either the reviewer was mistaken, or there's something off with how the WebFetch results are being interpreted. Let me dig deeper into whether this is actually what the paper contains or if the tool is misrepresenting the content. The fetched HTML version of the SpecRover paper confirms the exact details from the proposal: Section V-A contains the failure analysis showing 107 of 207 unresolved tasks (51.7%) classified as ambiguous issue descriptions. The section name, numbers, and categorization all match what was claimed, so this verification appears solid. The Round 3 reviewer also independently confirmed these findings through WebFetch, which strengthens the credibility of the claim.
+
+However, I'm now wondering if there's a version mismatch—the reviewer checked v3 of the arXiv paper while I accessed the non-versioned HTML. There's also a risk that WebFetch could be hallucinating confirmation based on the specific numbers I included in my query. Let me try fetching the PDF directly to get a cleaner, more reliable verification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cf906b47-291f-4f7f-a34f-819ac73a2bcd",
+  "isSidechain": false,
+  "requestId": "req_011CatU8BrumZxuUgJFdPkNi",
+  "type": "assistant",
+  "uuid": "8d0d9c4c-f4a0-4453-b85e-a62f22369dd1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_016FTR7Khg5tgVb6i4Z7UF4s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2432,
+      "cache_read_input_tokens": 38481,
+      "output_tokens": 1405,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2432,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1405,
+          "cache_read_input_tokens": 38481,
+          "cache_creation_input_tokens": 2432,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2432
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-10T07:09:33.534Z_
+
+The WebFetch found the SpecRover Section V-A claim. Let me verify this more carefully and also check other key claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d0d9c4c-f4a0-4453-b85e-a62f22369dd1",
+  "isSidechain": false,
+  "requestId": "req_011CatU8BrumZxuUgJFdPkNi",
+  "type": "assistant",
+  "uuid": "1d70758c-b23d-4c10-b49d-a9bca5d053ab",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_016FTR7Khg5tgVb6i4Z7UF4s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2432,
+      "cache_read_input_tokens": 38481,
+      "output_tokens": 1405,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2432,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1405,
+          "cache_read_input_tokens": 38481,
+          "cache_creation_input_tokens": 2432,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2432
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-10T07:09:36.189Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01HDDg71RN1hXA62nx8wSojY`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/pdf/2408.02232",
+  "prompt": "What are the section names in the evaluation section? List all section headings. What failure analysis statistics are reported? Does the paper have a \"Reasons for Failure\" subsection with 107/207 instances classified as ambiguous issue descriptions? What is the exact number of unresolved SWE-bench Lite tasks analyzed?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d70758c-b23d-4c10-b49d-a9bca5d053ab",
+  "isSidechain": false,
+  "requestId": "req_011CatU8BrumZxuUgJFdPkNi",
+  "type": "assistant",
+  "uuid": "cdee1d89-3be6-43dc-b744-362e21c6c1eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_016FTR7Khg5tgVb6i4Z7UF4s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2432,
+      "cache_read_input_tokens": 38481,
+      "output_tokens": 1405,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2432,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1405,
+          "cache_read_input_tokens": 38481,
+          "cache_creation_input_tokens": 2432,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2432
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-10T07:09:36.234Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LHFrJWNfenkBnkWCLeSC7D`</summary>
+
+```json
+{
+  "query": "SpecExtract structured specification extraction bug report fine-tuning program repair arXiv 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cdee1d89-3be6-43dc-b744-362e21c6c1eb",
+  "isSidechain": false,
+  "requestId": "req_011CatU8BrumZxuUgJFdPkNi",
+  "type": "assistant",
+  "uuid": "e3590d3d-a6b5-49c8-b220-816fac82b4d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_016FTR7Khg5tgVb6i4Z7UF4s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2432,
+      "cache_read_input_tokens": 38481,
+      "output_tokens": 1405,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2432,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1405,
+          "cache_read_input_tokens": 38481,
+          "cache_creation_input_tokens": 2432,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2432
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-10T07:09:36.576Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01D6PJzhGF3ypdc7dDGYroUa`</summary>
+
+```json
+{
+  "query": "Qwen3-Coder-30B-A3B MoE model QLoRA fine-tuning VRAM requirements 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3590d3d-a6b5-49c8-b220-816fac82b4d2",
+  "isSidechain": false,
+  "requestId": "req_011CatU8BrumZxuUgJFdPkNi",
+  "type": "assistant",
+  "uuid": "0dd47bdf-8c44-43fb-a2f1-097e639886ca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_016FTR7Khg5tgVb6i4Z7UF4s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2432,
+      "cache_read_input_tokens": 38481,
+      "output_tokens": 1405,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2432,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1405,
+          "cache_read_input_tokens": 38481,
+          "cache_creation_input_tokens": 2432,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2432
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-10T07:09:39.296Z_
+
+<details><summary>↩ Tool result · `toolu_01HDDg71RN1hXA62nx8wSojY`</summary>
+
+```text
+I apologize, but the content you've provided appears to be raw PDF binary data (encoded streams) rather than readable text. The material shows compressed PDF object streams with FlateDecode filters, making it impossible for me to extract the specific section names, failure analysis statistics, or subsection details you're asking about.
+
+To help you find:
+- Section names in the evaluation section
+- Failure analysis statistics
+- Whether a "Reasons for Failure" subsection exists with the 107/207 classification
+- The exact number of unresolved SWE-bench Lite tasks
+
+I would need the PDF converted to readable text format or a direct link to the paper. If you can provide the document in text format or share the PDF title and authors, I'd be happy to help locate these specific details.
+
+[Binary content (application/pdf, 766.1KB) also saved to /home/ubuntu/.claude-account-1/projects/-/82d9c4e8-d47c-4528-8ea7-a6c787abf840/tool-results/webfetch-1778396976208-s7fr9z.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cdee1d89-3be6-43dc-b744-362e21c6c1eb",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "b388a252-0cf9-4c2f-83ca-4b0ce7ce1b12",
+  "toolUseResult": {
+    "bytes": 784488,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I apologize, but the content you've provided appears to be raw PDF binary data (encoded streams) rather than readable text. The material shows compressed PDF object streams with FlateDecode filters, making it impossible for me to extract the specific section names, failure analysis statistics, or subsection details you're asking about.\n\nTo help you find:\n- Section names in the evaluation section\n- Failure analysis statistics\n- Whether a \"Reasons for Failure\" subsection exists with the 107/207 classification\n- The exact number of unresolved SWE-bench Lite tasks\n\nI would need the PDF converted to readable text format or a direct link to the paper. If you can provide the document in text format or share the PDF title and authors, I'd be happy to help locate these specific details.\n\n[Binary content (application/pdf, 766.1KB) also saved to /home/ubuntu/.claude-account-1/projects/-/82d9c4e8-d47c-4528-8ea7-a6c787abf840/tool-results/webfetch-1778396976208-s7fr9z.pdf]",
+    "durationMs": 3101,
+    "url": "https://arxiv.org/pdf/2408.02232"
+  },
+  "sourceToolAssistantUUID": "cdee1d89-3be6-43dc-b744-362e21c6c1eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-10T07:09:42.408Z_
+
+<details><summary>↩ Tool result · `toolu_01LHFrJWNfenkBnkWCLeSC7D`</summary>
+
+```text
+Web search results for query: "SpecExtract structured specification extraction bug report fine-tuning program repair arXiv 2025 2026"
+
+Links: [{"title":"Automated Repair of Ambiguous Problem Descriptions for LLM-Based Code Generation","url":"https://arxiv.org/html/2505.07270"},{"title":"Bugs: specextract - CIAO 4.18","url":"https://cxc.harvard.edu/ciao/bugs/specextract.html"},{"title":"[2408.02232] SpecRover: Code Intent Extraction via LLMs","url":"https://arxiv.org/abs/2408.02232"},{"title":"1 Synthetic Code Surgery: Repairing Bugs and Vulnerabilities with LLMs","url":"https://arxiv.org/pdf/2505.07372"},{"title":"GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4APR"},{"title":"GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4SE"},{"title":"[2602.08263] Specification Vibing for Automated Program Repair","url":"https://arxiv.org/abs/2602.08263"},{"title":"iFixR: Bug Report driven Program Repair","url":"https://arxiv.org/pdf/1907.05620"},{"title":"From Bugs to Benchmarks: A Comprehensive Survey of Software Defect Datasets","url":"https://arxiv.org/html/2504.17977"},{"title":"A Systematic Literature Review on Large Language Models","url":"https://arxiv.org/pdf/2405.01466"}]
+
+Based on the search results, I found relevant information about specification-based program repair research. The most closely related paper I found is:
+
+**VibeRepair** - A specification-centric automated program repair technique that addresses the limitation of code-centric LLM-driven APR methods. VibeRepair first translates buggy code into a structured behavior specification that captures the program's intended runtime behavior, then infers and repairs specification misalignments, and finally synthesizes code strictly guided by the corrected behavior specification. This paper was published on arXiv in February 2026 (arXiv:2602.08263).
+
+Additionally, the search results show several related works on specification extraction and program repair:
+
+- **SpecRover: Code Intent Extraction via LLMs** - A 2024 paper on specification extraction (arXiv:2408.02232)
+- **SpecGen: Automated generation of formal program specifications via large language models** - A 2024 paper on specification generation (arXiv:2401.08807)
+
+However, I did not find a paper specifically titled "SpecExtract" with the exact combination of topics you mentioned (structured specification extraction, bug report, fine-tuning, program repair) in the search results. The results show extensive research on LLM-based automated program repair with various specification and extraction techniques, but not the specific paper with that exact title.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e3590d3d-a6b5-49c8-b220-816fac82b4d2",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "e9753b7a-ead7-462e-a4d1-f30b2fd087c6",
+  "toolUseResult": {
+    "query": "SpecExtract structured specification extraction bug report fine-tuning program repair arXiv 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QGxJytsxGQDWSvVLBwGRPe",
+        "content": [
+          {
+            "title": "Automated Repair of Ambiguous Problem Descriptions for LLM-Based Code Generation",
+            "url": "https://arxiv.org/html/2505.07270"
+          },
+          {
+            "title": "Bugs: specextract - CIAO 4.18",
+            "url": "https://cxc.harvard.edu/ciao/bugs/specextract.html"
+          },
+          {
+            "title": "[2408.02232] SpecRover: Code Intent Extraction via LLMs",
+            "url": "https://arxiv.org/abs/2408.02232"
+          },
+          {
+            "title": "1 Synthetic Code Surgery: Repairing Bugs and Vulnerabilities with LLMs",
+            "url": "https://arxiv.org/pdf/2505.07372"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4APR"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4SE"
+          },
+          {
+            "title": "[2602.08263] Specification Vibing for Automated Program Repair",
+            "url": "https://arxiv.org/abs/2602.08263"
+          },
+          {
+            "title": "iFixR: Bug Report driven Program Repair",
+            "url": "https://arxiv.org/pdf/1907.05620"
+          },
+          {
+            "title": "From Bugs to Benchmarks: A Comprehensive Survey of Software Defect Datasets",
+            "url": "https://arxiv.org/html/2504.17977"
+          },
+          {
+            "title": "A Systematic Literature Review on Large Language Models",
+            "url": "https://arxiv.org/pdf/2405.01466"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about specification-based program repair research. The most closely related paper I found is:\n\n**VibeRepair** - A specification-centric automated program repair technique that addresses the limitation of code-centric LLM-driven APR methods. VibeRepair first translates buggy code into a structured behavior specification that captures the program's intended runtime behavior, then infers and repairs specification misalignments, and finally synthesizes code strictly guided by the corrected behavior specification. This paper was published on arXiv in February 2026 (arXiv:2602.08263).\n\nAdditionally, the search results show several related works on specification extraction and program repair:\n\n- **SpecRover: Code Intent Extraction via LLMs** - A 2024 paper on specification extraction (arXiv:2408.02232)\n- **SpecGen: Automated generation of formal program specifications via large language models** - A 2024 paper on specification generation (arXiv:2401.08807)\n\nHowever, I did not find a paper specifically titled \"SpecExtract\" with the exact combination of topics you mentioned (structured specification extraction, bug report, fine-tuning, program repair) in the search results. The results show extensive research on LLM-based automated program repair with various specification and extraction techniques, but not the specific paper with that exact title."
+    ],
+    "durationSeconds": 6.1709129119999995
+  },
+  "sourceToolAssistantUUID": "e3590d3d-a6b5-49c8-b220-816fac82b4d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-10T07:09:43.717Z_
+
+<details><summary>↩ Tool result · `toolu_01D6PJzhGF3ypdc7dDGYroUa`</summary>
+
+```text
+Web search results for query: "Qwen3-Coder-30B-A3B MoE model QLoRA fine-tuning VRAM requirements 2026"
+
+Links: [{"title":"Qwen3-Coder 30B: Hardware Requirements & Performance Guide","url":"https://www.arsturn.com/blog/running-qwen3-coder-30b-at-full-context-memory-requirements-performance-tips"},{"title":"Qwen3 - How to Run & Fine-tune | Unsloth Documentation","url":"https://unsloth.ai/docs/models/tutorials/qwen3-how-to-run-and-fine-tune"},{"title":"Fine-tuning Qwen/Qwen3-VL-30B-A3B-Instruct-FP8 with QLoRA on DGX Spark - DGX Spark / GB10 - NVIDIA Developer Forums","url":"https://forums.developer.nvidia.com/t/fine-tuning-qwen-qwen3-vl-30b-a3b-instruct-fp8-with-qlora-on-dgx-spark/351329"},{"title":"Qwen3-30B-A3B: Specifications and GPU VRAM Requirements","url":"https://apxml.com/models/qwen3-30b-a3b"},{"title":"Qwen 3 GPU Requirements — Original Family (0.6B–235B) VRAM Guide (2026) | Will It Run AI Blog","url":"https://willitrunai.com/blog/qwen-3-gpu-requirements"},{"title":"qwen3-coder:30b","url":"https://ollama.com/library/qwen3-coder:30b"},{"title":"Fine-Tuning Qwen/Qwen3-VL-30B-A3B MoE Architecture with LoRA | by Shaaf Salman | Medium","url":"https://medium.com/@ishaafsalman/fine-tuning-qwen-qwen3-vl-30b-a3b-moe-architecture-with-lora-2365359e870f"},{"title":"Qwen/Qwen3-Coder-30B-A3B-Instruct · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct"},{"title":"Qwen/Qwen3-30B-A3B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-30B-A3B"},{"title":"Qwen3-Coder: How to Run Locally | Unsloth Documentation","url":"https://unsloth.ai/docs/models/tutorials/qwen3-coder-how-to-run-locally"}]
+
+Based on the search results, here's what I found regarding QLoRA fine-tuning VRAM requirements for the Qwen3-Coder-30B-A3B MoE model:
+
+## QLoRA Fine-tuning VRAM Requirements
+
+You can fine-tune the 30B MoE model on a card with just 17.5GB of VRAM using QLoRA (Quantized Low-Rank Adaptation), which involves loading the model in 4-bit, freezing most of it, and then training small, low-rank "adapter" layers.
+
+Qwen3-30B-A3B works on just 17.5GB VRAM with Unsloth.
+
+## Important Considerations
+
+The 30B-A3B fits in 17.5GB VRAM, but you may lack RAM or disk space since the full 16-bit model must be downloaded and converted to 4-bit on the fly for QLoRA fine-tuning.
+
+In an MoE model, it's generally not a good idea to fine-tune the router layer that decides which experts to use, and Unsloth disables this by default.
+
+## Recent Updates
+
+Fine-tuning support includes the 2026 Faster MOE update for the 30B-A3B and 235B-A22B models.
+
+The 17.5GB requirement puts this model within reach of many consumer-grade GPUs (like RTX 4080 Super, RTX 4090, or similar), making it relatively accessible for fine-tuning compared to larger models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0dd47bdf-8c44-43fb-a2f1-097e639886ca",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "69b64216-4369-4e5a-9f73-424ba59ac60b",
+  "toolUseResult": {
+    "query": "Qwen3-Coder-30B-A3B MoE model QLoRA fine-tuning VRAM requirements 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DZuF5JHY1pK6axzdKFeGhj",
+        "content": [
+          {
+            "title": "Qwen3-Coder 30B: Hardware Requirements & Performance Guide",
+            "url": "https://www.arsturn.com/blog/running-qwen3-coder-30b-at-full-context-memory-requirements-performance-tips"
+          },
+          {
+            "title": "Qwen3 - How to Run & Fine-tune | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/tutorials/qwen3-how-to-run-and-fine-tune"
+          },
+          {
+            "title": "Fine-tuning Qwen/Qwen3-VL-30B-A3B-Instruct-FP8 with QLoRA on DGX Spark - DGX Spark / GB10 - NVIDIA Developer Forums",
+            "url": "https://forums.developer.nvidia.com/t/fine-tuning-qwen-qwen3-vl-30b-a3b-instruct-fp8-with-qlora-on-dgx-spark/351329"
+          },
+          {
+            "title": "Qwen3-30B-A3B: Specifications and GPU VRAM Requirements",
+            "url": "https://apxml.com/models/qwen3-30b-a3b"
+          },
+          {
+            "title": "Qwen 3 GPU Requirements — Original Family (0.6B–235B) VRAM Guide (2026) | Will It Run AI Blog",
+            "url": "https://willitrunai.com/blog/qwen-3-gpu-requirements"
+          },
+          {
+            "title": "qwen3-coder:30b",
+            "url": "https://ollama.com/library/qwen3-coder:30b"
+          },
+          {
+            "title": "Fine-Tuning Qwen/Qwen3-VL-30B-A3B MoE Architecture with LoRA | by Shaaf Salman | Medium",
+            "url": "https://medium.com/@ishaafsalman/fine-tuning-qwen-qwen3-vl-30b-a3b-moe-architecture-with-lora-2365359e870f"
+          },
+          {
+            "title": "Qwen/Qwen3-Coder-30B-A3B-Instruct · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct"
+          },
+          {
+            "title": "Qwen/Qwen3-30B-A3B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B"
+          },
+          {
+            "title": "Qwen3-Coder: How to Run Locally | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/tutorials/qwen3-coder-how-to-run-locally"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding QLoRA fine-tuning VRAM requirements for the Qwen3-Coder-30B-A3B MoE model:\n\n## QLoRA Fine-tuning VRAM Requirements\n\nYou can fine-tune the 30B MoE model on a card with just 17.5GB of VRAM using QLoRA (Quantized Low-Rank Adaptation), which involves loading the model in 4-bit, freezing most of it, and then training small, low-rank \"adapter\" layers.\n\nQwen3-30B-A3B works on just 17.5GB VRAM with Unsloth.\n\n## Important Considerations\n\nThe 30B-A3B fits in 17.5GB VRAM, but you may lack RAM or disk space since the full 16-bit model must be downloaded and converted to 4-bit on the fly for QLoRA fine-tuning.\n\nIn an MoE model, it's generally not a good idea to fine-tune the router layer that decides which experts to use, and Unsloth disables this by default.\n\n## Recent Updates\n\nFine-tuning support includes the 2026 Faster MOE update for the 30B-A3B and 235B-A22B models.\n\nThe 17.5GB requirement puts this model within reach of many consumer-grade GPUs (like RTX 4080 Super, RTX 4090, or similar), making it relatively accessible for fine-tuning compared to larger models."
+    ],
+    "durationSeconds": 7.138669609999997
+  },
+  "sourceToolAssistantUUID": "0dd47bdf-8c44-43fb-a2f1-097e639886ca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-10T07:09:58.457Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me analyze what I found:
+
+1. **SpecRover Section V-A claim**: The WebFetch of the HTML paper found the section with the exact stats mentioned (107/207 = 51.7%). However, the Round 3 reviewer claimed it was fabricated. My WebFetch confirmed it exists. This is a significant finding - the Round 3 reviewer may have been wrong, OR the WebFetch is hallucinating based on my prompt.
+
+Let me try to fetch the HTML paper with a more neutral prompt to see if I can confirm the section independently.
+
+2. **SWE-bench-Live Agentless baseline**: Confirmed - GPT-4o: 11.67%, GPT-4.1: 12.00%, DeepSeek V3: 13.33%. 
+
+The proposal cites these correctly. ✓
+
+3. **Qwen3-Coder-30B-A3B QLoRA VRAM**: Confirmed - 17.5GB VRAM for QLoRA. The proposal states this correctly. ✓
+
+4. **No competing work found**: No paper named "SpecExtract" exists (this is the paper being proposed, not an existing paper).
+
+Now I need to verify whether SWE-bench-Live is actually a NeurIPS 2025 paper and check if SWE-Lego (arXiv 2601.01426) exists.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69b64216-4369-4e5a-9f73-424ba59ac60b",
+  "isSidechain": false,
+  "requestId": "req_011CatUAuV1225yceSP1xTKH",
+  "type": "assistant",
+  "uuid": "93e4ff11-548b-4cb5-8625-54f6822244be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01DvnGtQnKgwg2VBnwegjefF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3622,
+      "cache_read_input_tokens": 40913,
+      "output_tokens": 649,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3622,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 649,
+          "cache_read_input_tokens": 40913,
+          "cache_creation_input_tokens": 3622,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3622
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-10T07:09:59.624Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01NeCDzPcdqW461VUPCGaVm2`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/arXiv:2408.02232",
+  "prompt": "List ALL section and subsection headings in the paper. What sections exist? Look specifically for any \"RQ1\", \"Reasons for Failure\", \"Error Analysis\", or \"failure\" related sections. Do NOT assume - only report what you can directly see in the HTML content."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93e4ff11-548b-4cb5-8625-54f6822244be",
+  "isSidechain": false,
+  "requestId": "req_011CatUAuV1225yceSP1xTKH",
+  "type": "assistant",
+  "uuid": "32673435-70fc-4fd2-b956-79badcc95324",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01DvnGtQnKgwg2VBnwegjefF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3622,
+      "cache_read_input_tokens": 40913,
+      "output_tokens": 649,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3622,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 649,
+          "cache_read_input_tokens": 40913,
+          "cache_creation_input_tokens": 3622,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3622
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-10T07:10:00.381Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MxvtrueADMkjKzrH9WMQVZ`</summary>
+
+```json
+{
+  "query": "SWE-Lego arXiv 2601.01426 SFT program repair SWE-bench Verified results 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32673435-70fc-4fd2-b956-79badcc95324",
+  "isSidechain": false,
+  "requestId": "req_011CatUAuV1225yceSP1xTKH",
+  "type": "assistant",
+  "uuid": "64be85aa-65bf-44ad-a9d4-b06a83473333",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01DvnGtQnKgwg2VBnwegjefF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3622,
+      "cache_read_input_tokens": 40913,
+      "output_tokens": 649,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3622,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 649,
+          "cache_read_input_tokens": 40913,
+          "cache_creation_input_tokens": 3622,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3622
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-10T07:10:01.003Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XTN4uANRgGyS9VwX83VnJv`</summary>
+
+```json
+{
+  "query": "SoRFT arXiv 2502.20127 ACL 2025 SWE-bench Verified Lite results subtask reinforced fine-tuning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64be85aa-65bf-44ad-a9d4-b06a83473333",
+  "isSidechain": false,
+  "requestId": "req_011CatUAuV1225yceSP1xTKH",
+  "type": "assistant",
+  "uuid": "a7a79707-5ec3-4605-9677-19a04f74eb2f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01DvnGtQnKgwg2VBnwegjefF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3622,
+      "cache_read_input_tokens": 40913,
+      "output_tokens": 649,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3622,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 649,
+          "cache_read_input_tokens": 40913,
+          "cache_creation_input_tokens": 3622,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3622
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "a7a79707-5ec3-4605-9677-19a04f74eb2f",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Issue-space behavioral spec extraction for code repair",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840"
+}
+```
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-10T07:10:04.544Z_
+
+<details><summary>↩ Tool result · `toolu_01NeCDzPcdqW461VUPCGaVm2`</summary>
+
+```text
+# Section and Subsection Headings in SpecRover Paper
+
+## Main Sections
+
+1. **Introduction (I)**
+2. **Motivating Example (II)**
+3. **Methodology (III)**
+   - Overview (III-A)
+   - Function Summary: Specification from Program (III-B)
+   - Reviewer Feedback: Reconciling Specifications (III-C)
+   - Patch Selection (III-D)
+   - Evidence (III-E)
+
+4. **Experimental Setup (IV)**
+   - Benchmark
+   - Baselines and Evaluation Metrics
+   - Implementation and Parameters
+   - Randomness of LLMs
+   - Manual Inspection of Results
+
+5. **Evaluation (V)**
+   - RQ1: Overall Efficacy of Task Resolving (V-A)
+   - RQ2: Utility of autonomous SE, confidence in results (V-B)
+   - RQ3: Quality of Specifications produced (V-C)
+     - Function Summaries (V-C1)
+     - Reviewer Feedback (V-C2)
+       - Reviewer Feedback as Summary
+       - Tolerance of Incorrect Tests
+
+6. **Case Study: Security Vulnerability Repair (VI)**
+7. **Related Work (VII)**
+8. **Perspectives (VIII)**
+
+## Failure Analysis
+
+Under **RQ1**, a subsection titled "Reasons for Failure" explicitly documents three categories of unresolved tasks: ambiguous issue descriptions (51.7%), incorrect fix locations (29.5%), and incorrect code modifications (18.8%).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "32673435-70fc-4fd2-b956-79badcc95324",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "eaaba790-dd2b-46e2-a516-02405a32f239",
+  "toolUseResult": {
+    "bytes": 184431,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Section and Subsection Headings in SpecRover Paper\n\n## Main Sections\n\n1. **Introduction (I)**\n2. **Motivating Example (II)**\n3. **Methodology (III)**\n   - Overview (III-A)\n   - Function Summary: Specification from Program (III-B)\n   - Reviewer Feedback: Reconciling Specifications (III-C)\n   - Patch Selection (III-D)\n   - Evidence (III-E)\n\n4. **Experimental Setup (IV)**\n   - Benchmark\n   - Baselines and Evaluation Metrics\n   - Implementation and Parameters\n   - Randomness of LLMs\n   - Manual Inspection of Results\n\n5. **Evaluation (V)**\n   - RQ1: Overall Efficacy of Task Resolving (V-A)\n   - RQ2: Utility of autonomous SE, confidence in results (V-B)\n   - RQ3: Quality of Specifications produced (V-C)\n     - Function Summaries (V-C1)\n     - Reviewer Feedback (V-C2)\n       - Reviewer Feedback as Summary\n       - Tolerance of Incorrect Tests\n\n6. **Case Study: Security Vulnerability Repair (VI)**\n7. **Related Work (VII)**\n8. **Perspectives (VIII)**\n\n## Failure Analysis\n\nUnder **RQ1**, a subsection titled \"Reasons for Failure\" explicitly documents three categories of unresolved tasks: ambiguous issue descriptions (51.7%), incorrect fix locations (29.5%), and incorrect code modifications (18.8%).",
+    "durationMs": 4916,
+    "url": "https://arxiv.org/html/arXiv:2408.02232"
+  },
+  "sourceToolAssistantUUID": "32673435-70fc-4fd2-b956-79badcc95324",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-10T07:10:09.118Z_
+
+<details><summary>↩ Tool result · `toolu_01MxvtrueADMkjKzrH9WMQVZ`</summary>
+
+```text
+Web search results for query: "SWE-Lego arXiv 2601.01426 SFT program repair SWE-bench Verified results 2026"
+
+Links: [{"title":"[2601.01426] SWE-Lego: Pushing the Limits of Supervised Fine-tuning for Software Issue Resolving","url":"https://arxiv.org/abs/2601.01426"},{"title":"GitHub - SWE-Lego/SWE-Lego: SWE-Lego: Pushing the Limits of Supervised Fine-tuning for Software Issue Resolving","url":"https://github.com/SWE-Lego/SWE-Lego"},{"title":"SWE-Lego: Pushing the Limits of Supervised Fine-tuning for Software Issue Resolving","url":"https://arxiv.org/html/2601.01426"},{"title":"SWE-Lego/SWE-Lego-Synthetic-Data · Datasets at Hugging Face","url":"https://huggingface.co/datasets/SWE-Lego/SWE-Lego-Synthetic-Data"},{"title":"Paper page - SWE-Lego: Pushing the Limits of Supervised Fine-tuning for Software Issue Resolving","url":"https://huggingface.co/papers/2601.01426"},{"title":"GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥","url":"https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation"},{"title":"[2601.18044] RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models","url":"https://arxiv.org/abs/2601.18044"},{"title":"HomePage","url":"https://chaofantao.top/"},{"title":"SCANet: Correcting LEGO Assembly Errors with Self-Correct Assembly Network","url":"https://arxiv.org/html/2403.18195v1"},{"title":"Learner-Tailored Program Repair: A Solution Generator with Iterative Edit-Driven Retrieval Enhancement","url":"https://arxiv.org/html/2601.08545.pdf"}]
+
+Based on the search results, here's what I found about SWE-Lego:
+
+## Overview
+SWE-Lego is a supervised fine-tuning (SFT) recipe designed to achieve state-of-the-art performance in software engineering (SWE) issue resolving.
+
+## Key Components
+SWE-Lego comprises three core building blocks: 1) the SWE-Lego dataset, a collection of 32k high-quality task instances and 18k validated trajectories, combining real and synthetic data to complement each other in both quality and quantity; 2) a refined SFT procedure with error masking and a difficulty-based curriculum, which demonstrably improves action quality and overall performance.
+
+## Performance Results
+Empirical results show that with these two building bricks alone, the SFT can push SWE-Lego models to state-of-the-art performance among open-source models of comparable size on SWE-bench Verified: SWE-Lego-Qwen3-8B reaches 42.2%, and SWE-Lego-Qwen3-32B attains 52.6%.
+
+## Test-Time Scaling
+The work further evaluates and improves test-time scaling (TTS) built upon the SFT foundation. Based on a well-trained verifier, SWE-Lego models can be significantly boosted—for example, 42.2% to 49.6% and 52.6% to 58.8% under TTS@16 for the 8B and 32B models, respectively.
+
+## Open-Source Release
+The researchers have open-sourced everything—their dataset, code, and training scripts.
+
+The paper was submitted to arXiv on January 4, 2026, with the identifier 2601.01426.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "64be85aa-65bf-44ad-a9d4-b06a83473333",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "e12c65fe-0705-44c0-805f-df898b2c7bfe",
+  "toolUseResult": {
+    "query": "SWE-Lego arXiv 2601.01426 SFT program repair SWE-bench Verified results 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014kwunuWVXNrc4ut3txHMnm",
+        "content": [
+          {
+            "title": "[2601.01426] SWE-Lego: Pushing the Limits of Supervised Fine-tuning for Software Issue Resolving",
+            "url": "https://arxiv.org/abs/2601.01426"
+          },
+          {
+            "title": "GitHub - SWE-Lego/SWE-Lego: SWE-Lego: Pushing the Limits of Supervised Fine-tuning for Software Issue Resolving",
+            "url": "https://github.com/SWE-Lego/SWE-Lego"
+          },
+          {
+            "title": "SWE-Lego: Pushing the Limits of Supervised Fine-tuning for Software Issue Resolving",
+            "url": "https://arxiv.org/html/2601.01426"
+          },
+          {
+            "title": "SWE-Lego/SWE-Lego-Synthetic-Data · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/SWE-Lego/SWE-Lego-Synthetic-Data"
+          },
+          {
+            "title": "Paper page - SWE-Lego: Pushing the Limits of Supervised Fine-tuning for Software Issue Resolving",
+            "url": "https://huggingface.co/papers/2601.01426"
+          },
+          {
+            "title": "GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥",
+            "url": "https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation"
+          },
+          {
+            "title": "[2601.18044] RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models",
+            "url": "https://arxiv.org/abs/2601.18044"
+          },
+          {
+            "title": "HomePage",
+            "url": "https://chaofantao.top/"
+          },
+          {
+            "title": "SCANet: Correcting LEGO Assembly Errors with Self-Correct Assembly Network",
+            "url": "https://arxiv.org/html/2403.18195v1"
+          },
+          {
+            "title": "Learner-Tailored Program Repair: A Solution Generator with Iterative Edit-Driven Retrieval Enhancement",
+            "url": "https://arxiv.org/html/2601.08545.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SWE-Lego:\n\n## Overview\nSWE-Lego is a supervised fine-tuning (SFT) recipe designed to achieve state-of-the-art performance in software engineering (SWE) issue resolving.\n\n## Key Components\nSWE-Lego comprises three core building blocks: 1) the SWE-Lego dataset, a collection of 32k high-quality task instances and 18k validated trajectories, combining real and synthetic data to complement each other in both quality and quantity; 2) a refined SFT procedure with error masking and a difficulty-based curriculum, which demonstrably improves action quality and overall performance.\n\n## Performance Results\nEmpirical results show that with these two building bricks alone, the SFT can push SWE-Lego models to state-of-the-art performance among open-source models of comparable size on SWE-bench Verified: SWE-Lego-Qwen3-8B reaches 42.2%, and SWE-Lego-Qwen3-32B attains 52.6%.\n\n## Test-Time Scaling\nThe work further evaluates and improves test-time scaling (TTS) built upon the SFT foundation. Based on a well-trained verifier, SWE-Lego models can be significantly boosted—for example, 42.2% to 49.6% and 52.6% to 58.8% under TTS@16 for the 8B and 32B models, respectively.\n\n## Open-Source Release\nThe researchers have open-sourced everything—their dataset, code, and training scripts.\n\nThe paper was submitted to arXiv on January 4, 2026, with the identifier 2601.01426."
+    ],
+    "durationSeconds": 8.733717821000013
+  },
+  "sourceToolAssistantUUID": "64be85aa-65bf-44ad-a9d4-b06a83473333",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-10T07:10:14.627Z_
+
+<details><summary>↩ Tool result · `toolu_01XTN4uANRgGyS9VwX83VnJv`</summary>
+
+```text
+Web search results for query: "SoRFT arXiv 2502.20127 ACL 2025 SWE-bench Verified Lite results subtask reinforced fine-tuning"
+
+Links: [{"title":"[2502.20127] SoRFT: Issue Resolving with Subtask-oriented Reinforced Fine-Tuning","url":"https://arxiv.org/abs/2502.20127"},{"title":"SoRFT: Issue Resolving with Subtask-oriented Reinforced Fine-Tuning","url":"https://arxiv.org/html/2502.20127"},{"title":"What’s in a Benchmark? The Case of SWE-Bench in Automated Program Repair","url":"https://arxiv.org/pdf/2602.04449"},{"title":"The SWE-Bench Illusion: When State-of-the-Art LLMs Remember Instead of Reason","url":"https://arxiv.org/html/2506.12286v3"},{"title":"SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?","url":"https://arxiv.org/html/2509.16941"},{"title":"Rigorous Evaluation of Coding Agents on SWE-Bench","url":"https://aclanthology.org/2025.acl-long.189.pdf"},{"title":"SWE-Bench Verified Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/swe-bench-verified"},{"title":"SWE-Bench-CL: Continual Learning for Coding Agents","url":"https://arxiv.org/html/2507.00014v1"},{"title":"GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub","url":"https://github.com/SWE-bench/SWE-bench"},{"title":"[2505.23419] SWE-bench Goes Live!","url":"https://arxiv.org/abs/2505.23419"}]
+
+Based on the search results, I found information about SoRFT (Subtask-oriented Reinforced Fine-Tuning) from arXiv paper 2502.20127:
+
+## Overview
+
+SoRFT is a novel training approach that decomposes issue resolving into structured subtasks: file localization, function localization, line localization, and code edit generation.
+
+## Methodology
+
+SoRFT consists of two training stages: (1) rejection-sampled supervised fine-tuning, where Chain of Thought (CoT) data is filtered using ground-truth before fine-tuning the LLM, and (2) rule-based reinforcement learning, which leverages PPO with ground-truth based rewards.
+
+## Results
+
+The SoRFT-trained model achieves state-of-the-art (SOTA) performance among open-source models, resolving 21.4% of issues on SWE-Bench Verified with SoRFT-Qwen-7B.
+
+The experimental results demonstrate that SoRFT significantly enhances issue-resolving performance, improves model generalization, and provides a cost-efficient alternative to commercial models.
+
+The paper addresses a key problem: mainstream issue-resolving frameworks predominantly rely on commercial models, leading to high costs and privacy concerns, while existing training approaches for issue resolving struggle with poor generalization and fail to fully leverage open-source development resources.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a7a79707-5ec3-4605-9677-19a04f74eb2f",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "03a64c25-0d37-4e57-881c-c8b99fc2c7ac",
+  "toolUseResult": {
+    "query": "SoRFT arXiv 2502.20127 ACL 2025 SWE-bench Verified Lite results subtask reinforced fine-tuning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019FsBTBEA4m2KEpvwdbQUFo",
+        "content": [
+          {
+            "title": "[2502.20127] SoRFT: Issue Resolving with Subtask-oriented Reinforced Fine-Tuning",
+            "url": "https://arxiv.org/abs/2502.20127"
+          },
+          {
+            "title": "SoRFT: Issue Resolving with Subtask-oriented Reinforced Fine-Tuning",
+            "url": "https://arxiv.org/html/2502.20127"
+          },
+          {
+            "title": "What’s in a Benchmark? The Case of SWE-Bench in Automated Program Repair",
+            "url": "https://arxiv.org/pdf/2602.04449"
+          },
+          {
+            "title": "The SWE-Bench Illusion: When State-of-the-Art LLMs Remember Instead of Reason",
+            "url": "https://arxiv.org/html/2506.12286v3"
+          },
+          {
+            "title": "SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?",
+            "url": "https://arxiv.org/html/2509.16941"
+          },
+          {
+            "title": "Rigorous Evaluation of Coding Agents on SWE-Bench",
+            "url": "https://aclanthology.org/2025.acl-long.189.pdf"
+          },
+          {
+            "title": "SWE-Bench Verified Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "SWE-Bench-CL: Continual Learning for Coding Agents",
+            "url": "https://arxiv.org/html/2507.00014v1"
+          },
+          {
+            "title": "GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub",
+            "url": "https://github.com/SWE-bench/SWE-bench"
+          },
+          {
+            "title": "[2505.23419] SWE-bench Goes Live!",
+            "url": "https://arxiv.org/abs/2505.23419"
+          }
+        ]
+      },
+      "Based on the search results, I found information about SoRFT (Subtask-oriented Reinforced Fine-Tuning) from arXiv paper 2502.20127:\n\n## Overview\n\nSoRFT is a novel training approach that decomposes issue resolving into structured subtasks: file localization, function localization, line localization, and code edit generation.\n\n## Methodology\n\nSoRFT consists of two training stages: (1) rejection-sampled supervised fine-tuning, where Chain of Thought (CoT) data is filtered using ground-truth before fine-tuning the LLM, and (2) rule-based reinforcement learning, which leverages PPO with ground-truth based rewards.\n\n## Results\n\nThe SoRFT-trained model achieves state-of-the-art (SOTA) performance among open-source models, resolving 21.4% of issues on SWE-Bench Verified with SoRFT-Qwen-7B.\n\nThe experimental results demonstrate that SoRFT significantly enhances issue-resolving performance, improves model generalization, and provides a cost-efficient alternative to commercial models.\n\nThe paper addresses a key problem: mainstream issue-resolving frameworks predominantly rely on commercial models, leading to high costs and privacy concerns, while existing training approaches for issue resolving struggle with poor generalization and fail to fully leverage open-source development resources."
+    ],
+    "durationSeconds": 13.621798019000009
+  },
+  "sourceToolAssistantUUID": "a7a79707-5ec3-4605-9677-19a04f74eb2f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-10T07:10:46.506Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Very important findings now:
+
+1. **SpecRover Section V-A claim**: The WebFetch of the HTML paper confirmed:
+   - Section V-A IS called "RQ1: Overall Efficacy of Task Resolving"
+   - Under this section, there IS a subsection called "Reasons for Failure"
+   - It documents: ambiguous issue descriptions (51.7%), incorrect fix locations (29.5%), incorrect code modifications (18.8%)
+   
+   So the Round 3 reviewer was WRONG to call this fabricated! The claim is actually true and verifiable.
+   
+2. **SWE-Lego and SoRFT results**: I'm verifying the performance metrics cited in the proposal. SWE-Lego-Qwen3-32B does reach 52.6% on SWE-bench Verified with TTS@16 at 58.8%, which checks out. For SoRFT, I found that SoRFT-Qwen-7B achieves 21.4% on SWE-bench Verified, though the Round 2 reviewer had disputed this claim.
+
+3. **Checking the SoRFT discrepancy**: The proposal lists SoRFT-Qwen-7B at 21.4% SWE-bench Verified and 14.0% SWE-bench Lite, with the 32B model at 30.8% Verified and 24.0% Lite. But the Round 2 reviewer argued that 21.4% was actually the Lite score, not Verified, and the Round 3 reviewer appears to have independently verified this through the ACL Anthology paper.
+
+Wait, but the search result I just found confirms SoRFT-7B achieves 21.4% on SWE-bench Verified, which matches what's in the current proposal. So the Round 2 reviewer's concern was incorrect — the numbers are stated correctly.
+
+Now I need to verify the other claims in the proposal. Let me check the SWE-bench-Live classification as NeurIPS 2025 D&B and confirm the 300 instances figure for the Lite subset.
+
+I should also verify the GitBugs dataset claim about 150K+ open-licensed bug reports, and whether there's any competing work with SpecExtract that's been overlooked.
+
+There are a few more key facts to validate: Does SWE-bench Pro actually contain 731 public instances, and is the SWE-bench-Live paper described accurately? I've already confirmed SpecRover's 51.7% performance, the Agentless baseline numbers, and the Qwen3-Coder VRAM requirements, so those are solid.
+
+Now I need to check whether SWE-bench Verified was truly "officially abandoned," verify the NeurIPS 2025 designation for SWE-bench-Live, and assess if the 16-day timeline claim is plausible. Let me search for any recent competing papers I might have missed and double-check the novelty claims.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "03a64c25-0d37-4e57-881c-c8b99fc2c7ac",
+  "isSidechain": false,
+  "requestId": "req_011CatUDBeehDCVeyHq7tTXN",
+  "type": "assistant",
+  "uuid": "d0b14893-0de6-4b38-8473-1ab064dd4706",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_016muemRgvKar1u8Mc8cjfN8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2942,
+      "cache_read_input_tokens": 44535,
+      "output_tokens": 1276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1276,
+          "cache_read_input_tokens": 44535,
+          "cache_creation_input_tokens": 2942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-10T07:10:46.646Z_
+
+The SpecRover Section V-A claim is actually verified in the HTML paper. Let me now check competing work and remaining claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0b14893-0de6-4b38-8473-1ab064dd4706",
+  "isSidechain": false,
+  "requestId": "req_011CatUDBeehDCVeyHq7tTXN",
+  "type": "assistant",
+  "uuid": "e6a601ab-12b5-4311-8903-828d70da9efa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_016muemRgvKar1u8Mc8cjfN8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2942,
+      "cache_read_input_tokens": 44535,
+      "output_tokens": 1276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1276,
+          "cache_read_input_tokens": 44535,
+          "cache_creation_input_tokens": 2942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-10T07:10:47.432Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GuFC7vbxDUJMc2P818cP9t`</summary>
+
+```json
+{
+  "query": "structured specification extraction issue text bug report supervised fine-tuning program repair 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6a601ab-12b5-4311-8903-828d70da9efa",
+  "isSidechain": false,
+  "requestId": "req_011CatUDBeehDCVeyHq7tTXN",
+  "type": "assistant",
+  "uuid": "30aaa641-f44c-4776-9d09-d37e0483a5f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_016muemRgvKar1u8Mc8cjfN8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2942,
+      "cache_read_input_tokens": 44535,
+      "output_tokens": 1276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1276,
+          "cache_read_input_tokens": 44535,
+          "cache_creation_input_tokens": 2942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-10T07:10:47.664Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0131XBJF8ThAUi8h4ZLjtrX8`</summary>
+
+```json
+{
+  "query": "SWE-bench Verified \"no longer\" recommended OpenAI abandoned contamination 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30aaa641-f44c-4776-9d09-d37e0483a5f8",
+  "isSidechain": false,
+  "requestId": "req_011CatUDBeehDCVeyHq7tTXN",
+  "type": "assistant",
+  "uuid": "ecbf5a7e-7d8f-406f-93e9-03abd1b43899",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_016muemRgvKar1u8Mc8cjfN8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2942,
+      "cache_read_input_tokens": 44535,
+      "output_tokens": 1276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1276,
+          "cache_read_input_tokens": 44535,
+          "cache_creation_input_tokens": 2942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-10T07:10:47.828Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017buzwRtLSPhzQTtQMtmnwP`</summary>
+
+```json
+{
+  "query": "GitBugs arXiv 2504.09651 bug reports open-licensed 150K dataset"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ecbf5a7e-7d8f-406f-93e9-03abd1b43899",
+  "isSidechain": false,
+  "requestId": "req_011CatUDBeehDCVeyHq7tTXN",
+  "type": "assistant",
+  "uuid": "b67898de-0b63-4dba-bc37-be1a0a67953a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_016muemRgvKar1u8Mc8cjfN8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2942,
+      "cache_read_input_tokens": 44535,
+      "output_tokens": 1276,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1276,
+          "cache_read_input_tokens": 44535,
+          "cache_creation_input_tokens": 2942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-10T07:10:52.903Z_
+
+<details><summary>↩ Tool result · `toolu_017buzwRtLSPhzQTtQMtmnwP`</summary>
+
+```text
+Web search results for query: "GitBugs arXiv 2504.09651 bug reports open-licensed 150K dataset"
+
+Links: [{"title":"GitBugs: Bug Reports for Duplicate Detection, Retrieval Augmented Generation, Triage, and More","url":"https://arxiv.org/html/2504.09651"},{"title":"[2504.09651] GitBugs: Bug Reports for Duplicate Detection, Retrieval Augmented Generation, Triage, and More","url":"https://arxiv.org/abs/2504.09651"},{"title":"GitBugs: Bug Reports for Duplicate Detection, Retrieval ...","url":"https://arxiv.org/pdf/2504.09651"},{"title":"GitBugs: Bug Reports for Duplicate Detection, Retrieval Augmented Generation, and More","url":"https://arxiv.org/html/2504.09651v2"},{"title":"GitBugs: Bug Reports for Duplicate Detection, Retrieval Augmented Generation, Triage, and More | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2504.09651"},{"title":"GitHub - av9ash/gitbugs: Bugs from some popular projects on github.","url":"https://github.com/av9ash/gitbugs"},{"title":"GitBugs | Kaggle","url":"https://www.kaggle.com/datasets/av9ash/gitbugs"},{"title":"Data sets for Vibe Coding Workshop for Leaders · GitHub","url":"https://gist.github.com/realgenekim/40d4c33f8881ccb03f3cbb4b84c75e13"},{"title":"From Bugs to Benchmarks: A Comprehensive Survey of Software Defect Datasets","url":"https://arxiv.org/pdf/2504.17977"},{"title":"[2504.18806] BugsRepo: A Comprehensive Curated Dataset of Bug Reports, Comments and Contributors Information from Bugzilla","url":"https://arxiv.org/abs/2504.18806"}]
+
+I found detailed information about GitBugs. Here's what the search revealed:
+
+GitBugs is a comprehensive and up-to-date dataset comprising over 150,000 bug reports from nine actively maintained open-source projects, including Firefox, Cassandra, and VS Code. GitBugs aggregates data from Github, Bugzilla and Jira issue trackers, offering standardized categorical fields for classification tasks and predefined train/test splits for duplicate bug detection.
+
+The GitBugs dataset aggregates bug reports from nine well-established open-source software projects: Cassandra, Firefox, Hadoop, HBase, Mozilla Core, VS Code, Seamonkey, Spark, and Thunderbird. These projects span multiple domains including distributed systems, browsers, IDEs, and cloud infrastructure.
+
+GitBugs supports various software engineering research tasks, including duplicate detection, retrieval augmented generation, resolution prediction, automated triaging, and temporal analysis. The openly licensed dataset provides a valuable cross-project resource for benchmarking and advancing automated bug report analysis.
+
+Access the data and code at https://github.com/av9ash/gitbugs/.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b67898de-0b63-4dba-bc37-be1a0a67953a",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "7fbe183d-66cf-48d7-8a0e-fe7daf279491",
+  "toolUseResult": {
+    "query": "GitBugs arXiv 2504.09651 bug reports open-licensed 150K dataset",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01H2ndB1ycdYJu2QW9Z5t3RN",
+        "content": [
+          {
+            "title": "GitBugs: Bug Reports for Duplicate Detection, Retrieval Augmented Generation, Triage, and More",
+            "url": "https://arxiv.org/html/2504.09651"
+          },
+          {
+            "title": "[2504.09651] GitBugs: Bug Reports for Duplicate Detection, Retrieval Augmented Generation, Triage, and More",
+            "url": "https://arxiv.org/abs/2504.09651"
+          },
+          {
+            "title": "GitBugs: Bug Reports for Duplicate Detection, Retrieval ...",
+            "url": "https://arxiv.org/pdf/2504.09651"
+          },
+          {
+            "title": "GitBugs: Bug Reports for Duplicate Detection, Retrieval Augmented Generation, and More",
+            "url": "https://arxiv.org/html/2504.09651v2"
+          },
+          {
+            "title": "GitBugs: Bug Reports for Duplicate Detection, Retrieval Augmented Generation, Triage, and More | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/arxiv/2504.09651"
+          },
+          {
+            "title": "GitHub - av9ash/gitbugs: Bugs from some popular projects on github.",
+            "url": "https://github.com/av9ash/gitbugs"
+          },
+          {
+            "title": "GitBugs | Kaggle",
+            "url": "https://www.kaggle.com/datasets/av9ash/gitbugs"
+          },
+          {
+            "title": "Data sets for Vibe Coding Workshop for Leaders · GitHub",
+            "url": "https://gist.github.com/realgenekim/40d4c33f8881ccb03f3cbb4b84c75e13"
+          },
+          {
+            "title": "From Bugs to Benchmarks: A Comprehensive Survey of Software Defect Datasets",
+            "url": "https://arxiv.org/pdf/2504.17977"
+          },
+          {
+            "title": "[2504.18806] BugsRepo: A Comprehensive Curated Dataset of Bug Reports, Comments and Contributors Information from Bugzilla",
+            "url": "https://arxiv.org/abs/2504.18806"
+          }
+        ]
+      },
+      "I found detailed information about GitBugs. Here's what the search revealed:\n\nGitBugs is a comprehensive and up-to-date dataset comprising over 150,000 bug reports from nine actively maintained open-source projects, including Firefox, Cassandra, and VS Code. GitBugs aggregates data from Github, Bugzilla and Jira issue trackers, offering standardized categorical fields for classification tasks and predefined train/test splits for duplicate bug detection.\n\nThe GitBugs dataset aggregates bug reports from nine well-established open-source software projects: Cassandra, Firefox, Hadoop, HBase, Mozilla Core, VS Code, Seamonkey, Spark, and Thunderbird. These projects span multiple domains including distributed systems, browsers, IDEs, and cloud infrastructure.\n\nGitBugs supports various software engineering research tasks, including duplicate detection, retrieval augmented generation, resolution prediction, automated triaging, and temporal analysis. The openly licensed dataset provides a valuable cross-project resource for benchmarking and advancing automated bug report analysis.\n\nAccess the data and code at https://github.com/av9ash/gitbugs/."
+    ],
+    "durationSeconds": 5.072471533000003
+  },
+  "sourceToolAssistantUUID": "b67898de-0b63-4dba-bc37-be1a0a67953a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "7fbe183d-66cf-48d7-8a0e-fe7daf279491",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Issue-space behavioral spec extraction for code repair",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840"
+}
+```
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-10T07:10:55.388Z_
+
+<details><summary>↩ Tool result · `toolu_01GuFC7vbxDUJMc2P818cP9t`</summary>
+
+```text
+Web search results for query: "structured specification extraction issue text bug report supervised fine-tuning program repair 2025 2026 arXiv"
+
+Links: [{"title":"GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4APR"},{"title":"A Systematic Literature Review on Large Language Models for Automated Program Repair","url":"https://arxiv.org/html/2405.01466v4"},{"title":"GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4SE"},{"title":"The Impact of Fine-tuning Large Language Models on Automated Program Repair","url":"https://arxiv.org/html/2507.19909v1"},{"title":"[2507.19909] The Impact of Fine-tuning Large Language Models on Automated Program Repair","url":"https://arxiv.org/abs/2507.19909"},{"title":"Impact of Code Language Models on Automated Program Repair Nan Jiang","url":"https://arxiv.org/pdf/2302.05020"},{"title":"Enhanced automated code vulnerability repair using large language models - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0952197624014490"},{"title":"A Soft Prompt-Enhanced Device Knowledge Extraction Method for Embedded System Requirements Elicitation | Request PDF","url":"https://www.researchgate.net/publication/401187399_A_Soft_Prompt-Enhanced_Device_Knowledge_Extraction_Method_for_Embedded_System_Requirements_Elicitation"},{"title":"Computer Science May 2025","url":"https://www.arxiv.org/list/cs/2025-05?skip=525&show=2000"},{"title":"GitHub - lbnlp/NERRE: Code and data for the publication \"Structured information extraction from scientific text with large language models\" by Dagdelen & Dunn et al. · GitHub","url":"https://github.com/lbnlp/NERRE"}]
+
+Based on the search results, I found several relevant papers and resources related to your query about structured specification extraction, issue text, bug reports, supervised fine-tuning, and program repair from 2025-2026:
+
+## Key Findings:
+
+**Recent Survey and Reviews:**
+
+Encoder-decoder models such as CodeT5, PLBART, and UniXcoder continue to play an important role, particularly in studies that rely on fine-tuning for task-specific adaptation, and they remain foundational for sequence-to-sequence repair tasks requiring explicit supervision.
+
+**Fine-tuning Studies (2025-2026):**
+
+A recent arXiv paper titled "The Impact of Fine-tuning Large Language Models on Automated Program Repair" investigates how Large Language Models have gained popularity in APR tool chains, and that fine-tuning techniques have been developed to adapt pre-trained LLMs to specific tasks such as APR and enhance their performance at far lower computational costs than training from scratch, with the study empirically investigating the impact of various fine-tuning techniques on the performance of LLMs used for APR.
+
+**Related Research Areas:**
+
+The field demonstrates a gradual evolution from specialized fine-tuned encoder-decoder architectures toward general-purpose and prompt-driven LLMs, reflecting the continuous pursuit of scalability, flexibility, and autonomy in APR.
+
+Additionally, there is a GitHub repository for extracting structured relational data as JSON documents from complex scientific text, with particular application to materials science.
+
+The search results show active research in 2025-2026 on combining supervised fine-tuning approaches with program repair tasks, though the specific combination of all your query terms may require more targeted searches on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "30aaa641-f44c-4776-9d09-d37e0483a5f8",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "cbd44e23-d1b7-45d9-b35d-9ddc511206eb",
+  "toolUseResult": {
+    "query": "structured specification extraction issue text bug report supervised fine-tuning program repair 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013yjQfBtQ54F3vH7HWvhWWg",
+        "content": [
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4APR"
+          },
+          {
+            "title": "A Systematic Literature Review on Large Language Models for Automated Program Repair",
+            "url": "https://arxiv.org/html/2405.01466v4"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4SE"
+          },
+          {
+            "title": "The Impact of Fine-tuning Large Language Models on Automated Program Repair",
+            "url": "https://arxiv.org/html/2507.19909v1"
+          },
+          {
+            "title": "[2507.19909] The Impact of Fine-tuning Large Language Models on Automated Program Repair",
+            "url": "https://arxiv.org/abs/2507.19909"
+          },
+          {
+            "title": "Impact of Code Language Models on Automated Program Repair Nan Jiang",
+            "url": "https://arxiv.org/pdf/2302.05020"
+          },
+          {
+            "title": "Enhanced automated code vulnerability repair using large language models - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0952197624014490"
+          },
+          {
+            "title": "A Soft Prompt-Enhanced Device Knowledge Extraction Method for Embedded System Requirements Elicitation | Request PDF",
+            "url": "https://www.researchgate.net/publication/401187399_A_Soft_Prompt-Enhanced_Device_Knowledge_Extraction_Method_for_Embedded_System_Requirements_Elicitation"
+          },
+          {
+            "title": "Computer Science May 2025",
+            "url": "https://www.arxiv.org/list/cs/2025-05?skip=525&show=2000"
+          },
+          {
+            "title": "GitHub - lbnlp/NERRE: Code and data for the publication \"Structured information extraction from scientific text with large language models\" by Dagdelen & Dunn et al. · GitHub",
+            "url": "https://github.com/lbnlp/NERRE"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and resources related to your query about structured specification extraction, issue text, bug reports, supervised fine-tuning, and program repair from 2025-2026:\n\n## Key Findings:\n\n**Recent Survey and Reviews:**\n\nEncoder-decoder models such as CodeT5, PLBART, and UniXcoder continue to play an important role, particularly in studies that rely on fine-tuning for task-specific adaptation, and they remain foundational for sequence-to-sequence repair tasks requiring explicit supervision.\n\n**Fine-tuning Studies (2025-2026):**\n\nA recent arXiv paper titled \"The Impact of Fine-tuning Large Language Models on Automated Program Repair\" investigates how Large Language Models have gained popularity in APR tool chains, and that fine-tuning techniques have been developed to adapt pre-trained LLMs to specific tasks such as APR and enhance their performance at far lower computational costs than training from scratch, with the study empirically investigating the impact of various fine-tuning techniques on the performance of LLMs used for APR.\n\n**Related Research Areas:**\n\nThe field demonstrates a gradual evolution from specialized fine-tuned encoder-decoder architectures toward general-purpose and prompt-driven LLMs, reflecting the continuous pursuit of scalability, flexibility, and autonomy in APR.\n\nAdditionally, there is a GitHub repository for extracting structured relational data as JSON documents from complex scientific text, with particular application to materials science.\n\nThe search results show active research in 2025-2026 on combining supervised fine-tuning approaches with program repair tasks, though the specific combination of all your query terms may require more targeted searches on arXiv."
+    ],
+    "durationSeconds": 7.950909386999992
+  },
+  "sourceToolAssistantUUID": "30aaa641-f44c-4776-9d09-d37e0483a5f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-10T07:10:56.901Z_
+
+<details><summary>↩ Tool result · `toolu_0131XBJF8ThAUi8h4ZLjtrX8`</summary>
+
+```text
+Web search results for query: "SWE-bench Verified "no longer" recommended OpenAI abandoned contamination 2025 2026"
+
+Links: [{"title":"Why SWE-bench Verified no longer measures frontier coding capabilities | OpenAI","url":"https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/"},{"title":"⚡️The End of SWE-Bench Verified — Mia Glaese & Olivia Watkins, OpenAI Frontier Evals & Human Data","url":"https://www.latent.space/p/swe-bench-dead"},{"title":"OpenAI Developers on X: \"The standard for frontier coding evals is changing with model maturity. We now recommend reporting SWE-bench Pro and are sharing more detail on why we’re no longer reporting SWE-bench Verified as we work with the industry to establish stronger coding eval standards. SWE-bench\" / X","url":"https://x.com/OpenAIDevs/status/2026002219909427270"},{"title":"OpenAI Abandons SWE-bench Verified After Finding 59% of Failed Tests Were Flawed","url":"https://blockchain.news/news/openai-abandons-swe-bench-verified-contamination-flawed-tests"},{"title":"Is SWE-bench Verified Contaminated? OpenAI Shifts to SWE-bench Pro | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/news/swe-bench-contamination-debate"},{"title":"Why SWE-bench Verified no longer measures frontier coding capabilities | daily.dev","url":"https://app.daily.dev/posts/why-swe-bench-verified-no-longer-measures-frontier-coding-capabilities-yitnqurmf"},{"title":"OpenAI moves beyond SWE-bench Verified as coding benchmarks saturate","url":"https://tessl.io/blog/openai-moves-beyond-swe-bench-verified-as-coding-benchmarks-saturate/"},{"title":"OpenAI o3 SWE-Bench Score: What Engineers Aren't Told","url":"https://neuralwired.com/2026/04/13/openai-o3-swe-bench-benchmark/"},{"title":"SWE-Bench Verified's Sudden Fall: How OpenAI Exposed Flaws in AI Coding's Top Metric","url":"https://www.webpronews.com/swe-bench-verifieds-sudden-fall-how-openai-exposed-flaws-in-ai-codings-top-metric/"},{"title":"Why we no longer evaluate SWE-bench Verified - DEV Community","url":"https://dev.to/jgnoncelogic/why-we-no-longer-evaluate-swe-bench-verified-59gc"}]
+
+Based on the search results, I found comprehensive information about OpenAI's decision regarding SWE-bench Verified. Here's what happened:
+
+## SWE-bench Verified Deprecated
+
+SWE-bench Verified is increasingly contaminated and mismeasures frontier coding progress. OpenAI now recommends reporting SWE-bench Pro and is no longer reporting SWE-bench Verified as it works with the industry to establish stronger coding eval standards.
+
+## Key Issues Identified
+
+OpenAI conducted a thorough audit and identified two critical problems:
+
+1. **Flawed Tests**: An audit of 138 problems that OpenAI o3 consistently failed found that 59.4% contain flawed test cases — either too narrow (enforcing specific implementation details) or too wide (testing functionality not described in the problem).
+
+2. **Training Data Contamination**: Contamination analysis shows all tested frontier models (GPT-5.2, Claude Opus 4.5, Gemini 3 Flash) can reproduce exact gold patches and verbatim problem details, indicating training data exposure. All tested frontier models could reproduce original human-written solutions or quote verbatim problem details they should never have seen.
+
+## Recommended Alternative
+
+OpenAI recommends SWE-bench Pro. According to recent data from February 26, 2026, models scoring 80% on Verified dropped to roughly 23% on Pro—a benchmark designed to resist contamination.
+
+The announcement was made in February 2026, marking a significant shift in how frontier coding capabilities should be evaluated.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ecbf5a7e-7d8f-406f-93e9-03abd1b43899",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "5d86c219-4c63-417a-b4a0-c7cac0a53755",
+  "toolUseResult": {
+    "query": "SWE-bench Verified \"no longer\" recommended OpenAI abandoned contamination 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Xd8c4tNojfDTs6Sjt6kcXj",
+        "content": [
+          {
+            "title": "Why SWE-bench Verified no longer measures frontier coding capabilities | OpenAI",
+            "url": "https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/"
+          },
+          {
+            "title": "⚡️The End of SWE-Bench Verified — Mia Glaese & Olivia Watkins, OpenAI Frontier Evals & Human Data",
+            "url": "https://www.latent.space/p/swe-bench-dead"
+          },
+          {
+            "title": "OpenAI Developers on X: \"The standard for frontier coding evals is changing with model maturity. We now recommend reporting SWE-bench Pro and are sharing more detail on why we’re no longer reporting SWE-bench Verified as we work with the industry to establish stronger coding eval standards. SWE-bench\" / X",
+            "url": "https://x.com/OpenAIDevs/status/2026002219909427270"
+          },
+          {
+            "title": "OpenAI Abandons SWE-bench Verified After Finding 59% of Failed Tests Were Flawed",
+            "url": "https://blockchain.news/news/openai-abandons-swe-bench-verified-contamination-flawed-tests"
+          },
+          {
+            "title": "Is SWE-bench Verified Contaminated? OpenAI Shifts to SWE-bench Pro | CodeSOTA | CodeSOTA",
+            "url": "https://www.codesota.com/news/swe-bench-contamination-debate"
+          },
+          {
+            "title": "Why SWE-bench Verified no longer measures frontier coding capabilities | daily.dev",
+            "url": "https://app.daily.dev/posts/why-swe-bench-verified-no-longer-measures-frontier-coding-capabilities-yitnqurmf"
+          },
+          {
+            "title": "OpenAI moves beyond SWE-bench Verified as coding benchmarks saturate",
+            "url": "https://tessl.io/blog/openai-moves-beyond-swe-bench-verified-as-coding-benchmarks-saturate/"
+          },
+          {
+            "title": "OpenAI o3 SWE-Bench Score: What Engineers Aren't Told",
+            "url": "https://neuralwired.com/2026/04/13/openai-o3-swe-bench-benchmark/"
+          },
+          {
+            "title": "SWE-Bench Verified's Sudden Fall: How OpenAI Exposed Flaws in AI Coding's Top Metric",
+            "url": "https://www.webpronews.com/swe-bench-verifieds-sudden-fall-how-openai-exposed-flaws-in-ai-codings-top-metric/"
+          },
+          {
+            "title": "Why we no longer evaluate SWE-bench Verified - DEV Community",
+            "url": "https://dev.to/jgnoncelogic/why-we-no-longer-evaluate-swe-bench-verified-59gc"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about OpenAI's decision regarding SWE-bench Verified. Here's what happened:\n\n## SWE-bench Verified Deprecated\n\nSWE-bench Verified is increasingly contaminated and mismeasures frontier coding progress. OpenAI now recommends reporting SWE-bench Pro and is no longer reporting SWE-bench Verified as it works with the industry to establish stronger coding eval standards.\n\n## Key Issues Identified\n\nOpenAI conducted a thorough audit and identified two critical problems:\n\n1. **Flawed Tests**: An audit of 138 problems that OpenAI o3 consistently failed found that 59.4% contain flawed test cases — either too narrow (enforcing specific implementation details) or too wide (testing functionality not described in the problem).\n\n2. **Training Data Contamination**: Contamination analysis shows all tested frontier models (GPT-5.2, Claude Opus 4.5, Gemini 3 Flash) can reproduce exact gold patches and verbatim problem details, indicating training data exposure. All tested frontier models could reproduce original human-written solutions or quote verbatim problem details they should never have seen.\n\n## Recommended Alternative\n\nOpenAI recommends SWE-bench Pro. According to recent data from February 26, 2026, models scoring 80% on Verified dropped to roughly 23% on Pro—a benchmark designed to resist contamination.\n\nThe announcement was made in February 2026, marking a significant shift in how frontier coding capabilities should be evaluated."
+    ],
+    "durationSeconds": 9.233957161
+  },
+  "sourceToolAssistantUUID": "ecbf5a7e-7d8f-406f-93e9-03abd1b43899",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65 · 2026-05-10T07:10:56.906Z_
+
+```json
+{
+  "parentUuid": "5d86c219-4c63-417a-b4a0-c7cac0a53755",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "cd3971dc-9346-4a63-b349-a72172f74e20",
+  "timestamp": "2026-05-10T07:10:56.906Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-10T07:11:08.900Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good findings:
+
+1. **SpecRover Section V-A**: Now verified - the section DOES exist in the paper with the exact statistics (107/207 = 51.7% ambiguous issue descriptions). The Round 3 reviewer was WRONG to call this fabricated.
+
+2. **SWE-bench Verified abandonment**: Confirmed - OpenAI announced in February 2026 that they no longer recommend SWE-bench Verified. The proposal says SWE-bench-Live "replacing the officially-abandoned SWE-bench Verified." This is correct. ✓
+
+
+3. **GitBugs and SoRFT results**: Both confirmed - GitBugs contains 150K+ open-licensed bug reports from major projects, and SoRFT-7B achieves the stated 21.4% on SWE-bench Verified. ✓
+
+Now I need to check for any competing papers that might have been overlooked, particularly around SWE-bench Pro and other recent benchmarks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd3971dc-9346-4a63-b349-a72172f74e20",
+  "isSidechain": false,
+  "requestId": "req_011CatUGJQXzAfddLGhQCsU3",
+  "type": "assistant",
+  "uuid": "ecb5df3e-a7b8-433f-97f3-e4abb5452615",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_015beeZMA6pLBdMBx9VmsK8j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 800,
+      "cache_creation_input_tokens": 3448,
+      "cache_read_input_tokens": 47477,
+      "output_tokens": 462,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3448,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 800,
+          "output_tokens": 462,
+          "cache_read_input_tokens": 47477,
+          "cache_creation_input_tokens": 3448,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3448
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-10T07:11:09.464Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011FcLkyqKoCPCrqxAXcF9HX`</summary>
+
+```json
+{
+  "query": "bug report runtime artifacts specification extraction structured JSON fine-tuning 2025 2026 program repair NLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ecb5df3e-a7b8-433f-97f3-e4abb5452615",
+  "isSidechain": false,
+  "requestId": "req_011CatUGJQXzAfddLGhQCsU3",
+  "type": "assistant",
+  "uuid": "ba1090c0-807a-4b44-a84d-1d1a4d3285c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_015beeZMA6pLBdMBx9VmsK8j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 800,
+      "cache_creation_input_tokens": 3448,
+      "cache_read_input_tokens": 47477,
+      "output_tokens": 462,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3448,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 800,
+          "output_tokens": 462,
+          "cache_read_input_tokens": 47477,
+          "cache_creation_input_tokens": 3448,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3448
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-10T07:11:09.619Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015TuqduM7Vc13odKQFvwf7N`</summary>
+
+```json
+{
+  "query": "SWE-bench Pro arXiv 2509.16941 requirements interface fields public instances 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ba1090c0-807a-4b44-a84d-1d1a4d3285c5",
+  "isSidechain": false,
+  "requestId": "req_011CatUGJQXzAfddLGhQCsU3",
+  "type": "assistant",
+  "uuid": "b00bab13-024e-467d-afb8-b4206c0aa113",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_015beeZMA6pLBdMBx9VmsK8j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 800,
+      "cache_creation_input_tokens": 3448,
+      "cache_read_input_tokens": 47477,
+      "output_tokens": 462,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3448,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 800,
+          "output_tokens": 462,
+          "cache_read_input_tokens": 47477,
+          "cache_creation_input_tokens": 3448,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3448
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-10T07:11:17.117Z_
+
+<details><summary>↩ Tool result · `toolu_015TuqduM7Vc13odKQFvwf7N`</summary>
+
+```text
+Web search results for query: "SWE-bench Pro arXiv 2509.16941 requirements interface fields public instances 2025"
+
+Links: [{"title":"[2509.16941] SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?","url":"https://arxiv.org/abs/2509.16941"},{"title":"Paper page - SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?","url":"https://huggingface.co/papers/2509.16941"},{"title":"arXiv:2509.16941v2 [cs.SE] 14 Nov 2025 SWE-Bench Pro: Can AI Agents Solve","url":"https://arxiv.org/pdf/2509.16941"},{"title":"SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?","url":"https://arxiv.org/html/2509.16941"},{"title":"[PDF] SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? | Semantic Scholar","url":"https://www.semanticscholar.org/paper/SWE-Bench-Pro:-Can-AI-Agents-Solve-Long-Horizon-Deng-Da/4b83aa6340be8e0e59309d37ac4a3c9ae1ece14e"},{"title":"Introducing SWE-bench Verified | OpenAI","url":"https://openai.com/index/introducing-swe-bench-verified/"},{"title":"SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? | by Dixon | Medium","url":"https://medium.com/@huguosuo/swe-bench-pro-can-ai-agents-solve-long-horizon-software-engineering-tasks-d9fae3f3c353"},{"title":"SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? | OpenReview","url":"https://openreview.net/forum?id=9R2iUHhVfr"},{"title":"SWE-EVO: Benchmarking Coding Agents in Long-Horizon Software Evolution Scenarios","url":"https://arxiv.org/html/2512.18470v2"},{"title":"SWE-bench Verified","url":"https://www.swebench.com/verified.html"}]
+
+Based on my web search results, I found information about SWE-Bench Pro (arXiv 2509.16941), though the specific details about "requirements interface fields" and "public instances" require me to clarify what I found:
+
+## SWE-Bench Pro Overview
+
+SWE-Bench Pro is a substantially more challenging benchmark that builds upon the best practices of SWE-BENCH, but is explicitly designed to capture realistic, complex, enterprise-level problems beyond the scope of SWE-BENCH.
+
+## Benchmark Structure and Public Instances
+
+SWE-BENCH PRO contains 1,865 problems sourced from a diverse set of 41 actively maintained repositories spanning business applications, B2B services, and developer tools.
+
+The benchmark is partitioned into a public set with open access to problems sourced from 11 repositories, a held-out set of 12 repositories and a commercial set of 18 proprietary repositories where we have formal partnership agreements with early-stage startups.
+
+## Task Characteristics
+
+The benchmark features long-horizon tasks that may require hours to days for a professional software engineer to complete, often involving patches across multiple files and substantial code modification.
+
+However, the search results do not contain specific details about "requirements interface fields" in a technical specification sense. If you're looking for more detailed information about the data structure or specific fields in the benchmark, you may need to access the full paper at arxiv.org/abs/2509.16941 or the accompanying project page.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b00bab13-024e-467d-afb8-b4206c0aa113",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "cb04b5af-c581-461b-b43d-7bdece1c5469",
+  "toolUseResult": {
+    "query": "SWE-bench Pro arXiv 2509.16941 requirements interface fields public instances 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BUXimtNbucSqdoyzFhqhjq",
+        "content": [
+          {
+            "title": "[2509.16941] SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?",
+            "url": "https://arxiv.org/abs/2509.16941"
+          },
+          {
+            "title": "Paper page - SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?",
+            "url": "https://huggingface.co/papers/2509.16941"
+          },
+          {
+            "title": "arXiv:2509.16941v2 [cs.SE] 14 Nov 2025 SWE-Bench Pro: Can AI Agents Solve",
+            "url": "https://arxiv.org/pdf/2509.16941"
+          },
+          {
+            "title": "SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?",
+            "url": "https://arxiv.org/html/2509.16941"
+          },
+          {
+            "title": "[PDF] SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/SWE-Bench-Pro:-Can-AI-Agents-Solve-Long-Horizon-Deng-Da/4b83aa6340be8e0e59309d37ac4a3c9ae1ece14e"
+          },
+          {
+            "title": "Introducing SWE-bench Verified | OpenAI",
+            "url": "https://openai.com/index/introducing-swe-bench-verified/"
+          },
+          {
+            "title": "SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? | by Dixon | Medium",
+            "url": "https://medium.com/@huguosuo/swe-bench-pro-can-ai-agents-solve-long-horizon-software-engineering-tasks-d9fae3f3c353"
+          },
+          {
+            "title": "SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? | OpenReview",
+            "url": "https://openreview.net/forum?id=9R2iUHhVfr"
+          },
+          {
+            "title": "SWE-EVO: Benchmarking Coding Agents in Long-Horizon Software Evolution Scenarios",
+            "url": "https://arxiv.org/html/2512.18470v2"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.swebench.com/verified.html"
+          }
+        ]
+      },
+      "Based on my web search results, I found information about SWE-Bench Pro (arXiv 2509.16941), though the specific details about \"requirements interface fields\" and \"public instances\" require me to clarify what I found:\n\n## SWE-Bench Pro Overview\n\nSWE-Bench Pro is a substantially more challenging benchmark that builds upon the best practices of SWE-BENCH, but is explicitly designed to capture realistic, complex, enterprise-level problems beyond the scope of SWE-BENCH.\n\n## Benchmark Structure and Public Instances\n\nSWE-BENCH PRO contains 1,865 problems sourced from a diverse set of 41 actively maintained repositories spanning business applications, B2B services, and developer tools.\n\nThe benchmark is partitioned into a public set with open access to problems sourced from 11 repositories, a held-out set of 12 repositories and a commercial set of 18 proprietary repositories where we have formal partnership agreements with early-stage startups.\n\n## Task Characteristics\n\nThe benchmark features long-horizon tasks that may require hours to days for a professional software engineer to complete, often involving patches across multiple files and substantial code modification.\n\nHowever, the search results do not contain specific details about \"requirements interface fields\" in a technical specification sense. If you're looking for more detailed information about the data structure or specific fields in the benchmark, you may need to access the full paper at arxiv.org/abs/2509.16941 or the accompanying project page."
+    ],
+    "durationSeconds": 7.4947408770000035
+  },
+  "sourceToolAssistantUUID": "b00bab13-024e-467d-afb8-b4206c0aa113",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-10T07:11:19.192Z_
+
+<details><summary>↩ Tool result · `toolu_011FcLkyqKoCPCrqxAXcF9HX`</summary>
+
+```text
+Web search results for query: "bug report runtime artifacts specification extraction structured JSON fine-tuning 2025 2026 program repair NLP"
+
+Links: [{"title":"Detecting non-natural language artifacts for de-noising bug reports | Automated Software Engineering","url":"https://link.springer.com/article/10.1007/s10515-022-00350-0"},{"title":"GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4SE"},{"title":"ImproBR: Bug Report Improver Using LLMs","url":"https://arxiv.org/html/2604.26142"},{"title":"Bug Fixing with Broader Context: Enhancing LLM-Based Program Repair via Layered Knowledge Injection","url":"https://arxiv.org/html/2506.24015v1"},{"title":"An empirical evaluation of pre-trained large language models for repairing declarative formal specifications | Empirical Software Engineering | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10664-025-10687-1"},{"title":"CodeLLMPaper/data/papers/labels/program_repair.md at main · PurCL/CodeLLMPaper","url":"https://github.com/PurCL/CodeLLMPaper/blob/main/data/papers/labels/program_repair.md"},{"title":"GitHub - mangiucugna/json_repair: Repair malformed JSON from LLMs, APIs, logs, and user input in Python. · GitHub","url":"https://github.com/mangiucugna/json_repair"},{"title":"(PDF) Detecting non-natural language artifacts for de-noising bug reports","url":"https://www.researchgate.net/publication/362905667_Detecting_non-natural_language_artifacts_for_de-noising_bug_reports"},{"title":"jaison - npm","url":"https://www.npmjs.com/package/jaison"},{"title":"Identifying non-natural language artifacts in bug reports Thomas Hirsch","url":"https://arxiv.org/pdf/2110.01336"}]
+
+Based on the web search results, I found several relevant papers and resources related to bug reports, runtime artifacts, specification extraction, structured JSON, fine-tuning, program repair, and NLP. Here's what the search revealed:
+
+## Key Research Areas Found:
+
+**Bug Report Improvement and Extraction:**
+AstroBR (Mahmud et al., 2025) utilizes LLMs to identify and extract steps-to-reproduce (S2Rs) from bug reports and map them to GUI interactions within the program to improve S2R quality. Acharya and Ginde (2025) explore instruction fine-tuning of open-source LLMs to transform unstructured bug reports, with fine-tuned Qwen 2.5 achieving a CTQRS score of 77%, outperforming GPT-4o in 3-shot learning (75%).
+
+**Artifact Detection in Bug Reports:**
+Issue tickets often contain artifacts such as code snippets, log outputs and stack traces, which not only inflate the issue ticket sizes, but also can constitute a real problem for some NLP approaches. A machine learning based approach classifies textual content into natural language and non-natural language artifacts at line level.
+
+**Program Repair with LLMs:**
+A layered knowledge injection approach begins by injecting local bug-related information (e.g., buggy function, error message, GitHub issue description), and for bugs that remain unresolved, proceeds to inject repository-level context, including related files, structural dependencies, and recent commit history.
+
+**Structured JSON Response Generation:**
+Multi-agent frameworks and recent versions of OpenAI's LLM have introduced function calling, which enables users to provide function descriptions to the LLM, and the LLM responds with a structured response (i.e., JSON data containing the requisite arguments for invoking any available functions).
+
+These findings show active research in 2025-2026 on leveraging fine-tuned LLMs and structured extraction techniques for improving bug reports and automated program repair.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ba1090c0-807a-4b44-a84d-1d1a4d3285c5",
+  "isSidechain": false,
+  "promptId": "7570592a-f67e-49a7-893f-07b6ec6e15b5",
+  "type": "user",
+  "uuid": "ad99c990-1ce2-4a93-aa04-2ca8cd993617",
+  "toolUseResult": {
+    "query": "bug report runtime artifacts specification extraction structured JSON fine-tuning 2025 2026 program repair NLP",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HYZSfFykUkLL8RAX2mFA2X",
+        "content": [
+          {
+            "title": "Detecting non-natural language artifacts for de-noising bug reports | Automated Software Engineering",
+            "url": "https://link.springer.com/article/10.1007/s10515-022-00350-0"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4SE"
+          },
+          {
+            "title": "ImproBR: Bug Report Improver Using LLMs",
+            "url": "https://arxiv.org/html/2604.26142"
+          },
+          {
+            "title": "Bug Fixing with Broader Context: Enhancing LLM-Based Program Repair via Layered Knowledge Injection",
+            "url": "https://arxiv.org/html/2506.24015v1"
+          },
+          {
+            "title": "An empirical evaluation of pre-trained large language models for repairing declarative formal specifications | Empirical Software Engineering | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10664-025-10687-1"
+          },
+          {
+            "title": "CodeLLMPaper/data/papers/labels/program_repair.md at main · PurCL/CodeLLMPaper",
+            "url": "https://github.com/PurCL/CodeLLMPaper/blob/main/data/papers/labels/program_repair.md"
+          },
+          {
+            "title": "GitHub - mangiucugna/json_repair: Repair malformed JSON from LLMs, APIs, logs, and user input in Python. · GitHub",
+            "url": "https://github.com/mangiucugna/json_repair"
+          },
+          {
+            "title": "(PDF) Detecting non-natural language artifacts for de-noising bug reports",
+            "url": "https://www.researchgate.net/publication/362905667_Detecting_non-natural_language_artifacts_for_de-noising_bug_reports"
+          },
+          {
+            "title": "jaison - npm",
+            "url": "https://www.npmjs.com/package/jaison"
+          },
+          {
+            "title": "Identifying non-natural language artifacts in bug reports Thomas Hirsch",
+            "url": "https://arxiv.org/pdf/2110.01336"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers and resources related to bug reports, runtime artifacts, specification extraction, structured JSON, fine-tuning, program repair, and NLP. Here's what the search revealed:\n\n## Key Research Areas Found:\n\n**Bug Report Improvement and Extraction:**\nAstroBR (Mahmud et al., 2025) utilizes LLMs to identify and extract steps-to-reproduce (S2Rs) from bug reports and map them to GUI interactions within the program to improve S2R quality. Acharya and Ginde (2025) explore instruction fine-tuning of open-source LLMs to transform unstructured bug reports, with fine-tuned Qwen 2.5 achieving a CTQRS score of 77%, outperforming GPT-4o in 3-shot learning (75%).\n\n**Artifact Detection in Bug Reports:**\nIssue tickets often contain artifacts such as code snippets, log outputs and stack traces, which not only inflate the issue ticket sizes, but also can constitute a real problem for some NLP approaches. A machine learning based approach classifies textual content into natural language and non-natural language artifacts at line level.\n\n**Program Repair with LLMs:**\nA layered knowledge injection approach begins by injecting local bug-related information (e.g., buggy function, error message, GitHub issue description), and for bugs that remain unresolved, proceeds to inject repository-level context, including related files, structural dependencies, and recent commit history.\n\n**Structured JSON Response Generation:**\nMulti-agent frameworks and recent versions of OpenAI's LLM have introduced function calling, which enables users to provide function descriptions to the LLM, and the LLM responds with a structured response (i.e., JSON data containing the requisite arguments for invoking any available functions).\n\nThese findings show active research in 2025-2026 on leveraging fine-tuned LLMs and structured extraction techniques for improving bug reports and automated program repair."
+    ],
+    "durationSeconds": 9.723883459000005
+  },
+  "sourceToolAssistantUUID": "ba1090c0-807a-4b44-a84d-1d1a4d3285c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ad99c990-1ce2-4a93-aa04-2ca8cd993617",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Issue-space behavioral spec extraction for code repair",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840"
+}
+```
+
+---
+
+### Assistant
+
+_source line 73 · 2026-05-10T07:12:58.212Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Important findings:
+
+1. **SWE-bench Pro**: The proposal says "731 public instances" but the search found that "SWE-BENCH PRO contains 1,865 problems... partitioned into a public set with open access to problems sourced from 11 repositories, a held-out set of 12 repositories and a commercial set of 18 proprietary repositories." The proposal says 731 public instances from 11 repos - this might be correct as the 731 are from the 11 public repositories out of the 1,865 total. Let me check more carefully.
+   
+   Actually, both the Round 1 issue and Round 4 proposal consistently reference the same 731 public instances from 11 repositories with copyleft licenses, and the search results confirm this public subset exists, so the number checks out.
+
+2. **No competing "SpecExtract" paper found**: The idea appears to be genuinely novel - I haven't found any existing work with that specific approach.
+
+3. **Instruction fine-tuning for bug report transformation**: I found related work where Acharya and Ginde (2025) use instruction fine-tuning on open-source LLMs to improve unstructured bug reports, with fine-tuned Qwen 2.5 achieving 77% CTQRS compared to GPT-4o's 75%, but this focuses on report quality rather than spec extraction for repair.
+
+4. **ImproBR (arXiv 2604.26142)**: This is a bug report improver using LLMs that could be relevant, so I should examine it more closely.
+
+Now I'm consolidating my findings to assess the Round 4 proposal and reviewing what critical issues from previous rounds were actually addressed.
+
+The 51.7% ambiguous issue descriptions claim is now verified—I found the HTML version of the paper confirming Section V-A documents exactly 107 out of 207 cases, so the Round 3 reviewer was incorrect to call this fabricated. Agent-CoEvo appears in both the landscape and references as expected. The Agentless baseline numbers on SWE-bench-Live check out with Table 3 showing the exact percentages cited. The QLoRA VRAM estimate of ~17.5GB is accurate, and the clarification that 2× H100 is recommended rather than required is correct.
+
+Now I'm noticing a few remaining issues: the proposal cites "Section V-A, 'Reasons for Failure'" when the actual structure has that as a subsection under "Section V-A: RQ1: Overall Efficacy of Task Resolving"—it's a minor citation formatting issue but the substance is right. For SWE-bench-Live, the proposal mentions ~1,890 Docker-reproducible instances, but I'm seeing 1,319 tasks in the initial v1, though the paper grows at roughly 50 instances per month so the higher number could be accurate in a later version. I need to verify the SWE-bench Verified evaluation details against the actual paper.
+
+The bigger concern is that while the proposal uses SWE-bench Verified for comparison, that benchmark is officially abandoned, which limits the relevance of those numbers even though the proposal primarily relies on SWE-bench-Live. There's also a precision issue: OpenAI's February 2026 abandonment announcement recommended SWE-bench Pro as the replacement, not SWE-bench-Live, so the proposal could be clearer about which benchmark is actually the successor. Finally, the 16-day timeline to EMNLP 2026 ARR (May 25 deadline) seems tight for completing a full SFT pipeline plus evaluation, and I'm trying to work through whether the data construction, AST parsing, and other steps are realistically feasible in that window. LP extraction)
+- LLM-assisted spec construction: 1-2 days (already done via API)
+- SFT training: 1-2 days (10-14 H100-hours)
+- Eval on SWE-bench-Live: Several days of infrastructure setup + compute
+- Writing: concurrent with experiments
+
+This is EXTREMELY tight. It's arguably unrealistic to complete a full experimental paper in 16 days.
+
+However, the user's constraint says "≤16 days" and they presumably know their timeline. The proposal addresses this by noting "realistic for a theory + pilot-scale submission with 500-instance SWE-bench Verified training and SWE-bench-Live Lite eval."
+
+6. **Novelty of the core idea**: After extensive search, I found no paper that specifically does supervised fine-tuning for structured spec extraction from bug report text (issue-space approach). The closest work uses prompting or operates in code-space instead, so this specific combination appears genuinely novel.
+
+7. **SWE-bench-Live NeurIPS 2025 classification**: Confirmed it was accepted at NeurIPS 2025 D&B (Datasets and Benchmarks). ✓
+
+8. **Compute budget**: Both manual mode (~90-110 H100-hours) and auto-research mode (~160-180 H100-hours) fit comfortably within the 200-hour constraint. ✓
+
+9. **Target venue appropriateness**: EMNLP 2026 seems like a strong fit for this NLP-focused work.
+
+10. **Critical inconsistency in the proposal**: There's a mismatch between what the proposal claims and what's actually described. The framing mentions "500-instance SWE-bench Verified training" as a pilot-scale approach, but the actual Round 4 training data uses the full SWE-bench dataset (2,294 instances via AST parsing), not the smaller Verified subset. This discrepancy needs clarification—either the proposal should stick with the smaller pilot dataset or acknowledge that it's actually doing full-scale training.
+
+Actually, maybe the intent is to use a 500-instance subset as a quick pilot to hit the EMNLP deadline, then scale up to the full dataset for ICSE 2027.
+
+Now I'm checking the SWE-bench Pro numbers — the proposal mentions 731 public instances, and my search shows SWE-bench Pro has 1,865 problems total with a public set from 11 repositories, so 731 seems like a reasonable subset from those repos.
+
+Looking at what's been verified so far: the SpecRover 51.7% claim checks out, along with the Agent-CoEvo baseline, agentless approach, Qwen3-Coder model, QLoRA memory requirements, and SoRFT numbers. Now I'm identifying the remaining issues to flag.
+
+There's an internal inconsistency where the venue description mentions "500-instance SWE-bench Verified training" but the actual approach uses 2,294 SWE-bench instances plus 3,000 GitBugs instances. The claim about "replacing officially-abandoned SWE-bench Verified" is also imprecise since OpenAI recommends SWE-bench Pro as the replacement rather than SWE-bench-Live. The 16-day timeline for completing a full experimental paper with SFT and evaluation seems extremely compressed — the paper should clarify whether this is a pilot result or acknowledge the tight constraints. Finally, the "SWE-bench Goes Live" paper's instance count varies depending on the version, with v1 having 1,319 instances versus the ~1,890 mentioned.
+
+Looking at the corrections from the previous round, the SpecRover 51.7% statistic that was labeled "fabricated" actually checks out when verified independently — that's a significant vindication of the proposal's claims. The Round 4 version has addressed most of the earlier concerns: the SpecRover claim is defensible, Agent-CoEvo is handled, and an agentless baseline is included. What remains are mostly moderate to minor issues around the pilot scale inconsistency, the imprecise replacement framing, and timeline feasibility. The core contribution is genuinely novel since no existing work applies supervised fine-tuning to issue-space structured spec extraction, and the motivation around addressing SpecRover's failure modes is solid.
+
+For scoring: Novelty lands at 4/5 because while spec extraction from bug reports isn't entirely new, the specific combination of SFT with structured JSON in issue-space is the real differentiator. Feasibility is 3.5/5 — the compute budget works out, but squeezing the full implementation into 16 days is extremely tight and the data construction pipeline has multiple potential failure points. Clarity rates 4/5 with the formal schema and worked examples making the approach clear and well-differentiated from related work. Impact comes in at 3.5/5 since it's a useful preprocessing module but only represents an incremental improvement over Agentless, and whether we actually hit that +4-7% gain on SWE-bench-Live is still uncertain.
+
+That puts the average around 3.75/5, which falls short of the 4.0 threshold. The timeline concern is real — 16 days for a full experimental paper is genuinely unrealistic. There's also an internal inconsistency about what's actually being proposed for EMNLP, and the claim about replacing SWE-bench Verified needs more precision.
+
+Actually, reconsidering the feasibility score: the compute is within budget, the model is verified and ready, data sources check out, and the Agentless integration is straightforward. The timeline is the real constraint here, but the user set that as a given and the proposal acknowledges it, so maybe I'm being too harsh on feasibility.
+
+Looking at the actual compute requirements — data construction is mostly automated through AST parsing and regex with some LLM assistance, SFT runs about 10-14 H100-hours, and evaluation takes 80-96 H100-hours. That's tight for 16 days but not impossible if execution is clean. EMNLP can work with pilot results anyway.
+
+There's something important I need to flag: the SpecRover Section V-A claim that was called fabricated in Round 3 was actually verified in the paper. The reviewer got this wrong, and the generator's been defending against a false accusation for three rounds now. That's significant context for this evaluation.
+
+The real remaining issues are the internal inconsistency between the 500-instance pilot and 2,294 training instances in the venue description, plus some precision gaps in the framing.
+
+These are fixable problems, but they're worth noting. I'm leaning toward a revise verdict with those specific inconsistencies flagged.
+
+Actually, stepping back — this is round 4 of 10, and the proposal has genuinely progressed. The main critical issue from earlier rounds turns out to be verifiable. What's left are relatively minor: the venue description inconsistency and some precision about SWE-bench Verified. The core concept is novel, feasible, well-designed, and appropriately scoped.
+
+But I need to think through the scoring carefully. Novelty is solid at 4/5 — this is genuinely novel work doing supervised fine-tuning for issue-space spec extraction in program repair, clearly differentiated from SpecRover's prompting approach.
+
+Feasibility lands at 3.5/5. The compute budget works, data sources check out, the model choice is confirmed, and Agentless integration is well-specified. The real constraint is that 16-day timeline being extremely tight for full implementation, and there's an untested assumption about whether AST-parsed test assertions actually produce specs that align with human descriptions at that 0.65 cosine similarity threshold.
+
+Clarity is strong at 4.5/5 with the formal schema, worked example, and clear differentiation from related work all present.
+
+Impact comes in at 3.5/5—the projected 4-7% improvement over Agentless is meaningful but not transformative, though the modular, pipeline-agnostic approach is genuinely useful. EMNLP's NLP track is the right fit.
+
+That averages to 3.875, falling short of the 4.0 threshold. The main blockers are the compressed timeline for SFT experiments, the venue description inconsistency, and the unjustified 0.65 cosine similarity target for schema validation.
+
+I'm leaning toward "revise" with targeted guidance: clarify what's actually feasible in 16 days, resolve the venue description issue, and highlight that the SpecRover claim has been validated—the Round 3 fabrication concern was unfounded. Most of the work holds up; these are refinement-level issues now, not fundamental problems. The feedback should be encouraging while staying appropriately rigorous. The scoring threshold is 4.0. With scores of 4, 3.5, 4.5, 3.5 = 3.875, this falls short. The feasibility (3.5) and impact (3.5) are the main culprits—the tight timeline and modest impact claims are concerning.
+
+So my verdict is to revise. There are several issues to address: the EMNLP submission has an internal inconsistency about scope (mentions 500-instance pilot but the full approach uses 5,300 total instances), the 16-day timeline for a complete experimental paper with SFT and SWE-bench-Live evaluation is extremely tight and needs clearer acknowledgment of what's realistic for the ARR deadline, and the language around "replacing SWE-bench Verified" is slightly off—OpenAI actually recommends SWE-bench Pro as the replacement, not SWE-bench-Live. On a positive note, I should flag that the SpecRover Section V-A claim about the 51.7% success rate is actually verified in the paper, so the Round 3 reviewer's "fabricated" accusation was incorrect and worth noting for the next submission.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ad99c990-1ce2-4a93-aa04-2ca8cd993617",
+  "isSidechain": false,
+  "requestId": "req_011CatUHwit8GHcqFTZap8gN",
+  "type": "assistant",
+  "uuid": "c8e11585-289b-448d-ab00-5b8e311805ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_017ZP3YEc2afDCTAMWKJywtM",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 975,
+      "cache_creation_input_tokens": 2304,
+      "cache_read_input_tokens": 50925,
+      "output_tokens": 7006,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2304,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 975,
+          "output_tokens": 7006,
+          "cache_read_input_tokens": 50925,
+          "cache_creation_input_tokens": 2304,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2304
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-10T07:13:42.449Z_
+
+Now I have enough information to formulate my verdict. Let me compile my findings.
+
+**Key verified findings:**
+1. **SpecRover Section V-A claim (CRITICAL UPDATE)**: WebFetch of `arxiv.org/html/arXiv:2408.02232` confirmed the HTML paper DOES contain Section V-A "RQ1: Overall Efficacy of Task Resolving" with a "Reasons for Failure" subsection documenting 107/207 = 51.7% ambiguous issue descriptions. The Round 3 reviewer's "fabricated" accusation was incorrect.
+2. **SWE-bench-Live Agentless baseline**: Confirmed via Table 3 — GPT-4o: 11.67%, GPT-4.1: 12.00%, DeepSeek V3: 13.33%. ✓
+3. **Qwen3-Coder-30B-A3B QLoRA VRAM**: Confirmed at ~17.5GB via Unsloth. ✓
+4. **SWE-Lego**: Confirmed — 52.6% Verified (32B), 58.8% with TTS@16. ✓
+5. **SoRFT-7B**: Confirmed at 21.4% on SWE-bench Verified. ✓
+6. **GitBugs**: Confirmed — 150K+ bug reports, open-licensed. ✓
+7. **SWE-bench Verified abandonment**: Confirmed by OpenAI February 2026. ✓
+8. **No competing "SpecExtract" paper found**: The core idea remains novel.
+9. **Internal inconsistency found**: EMNLP venue description says "500-instance SWE-bench Verified training" but the main approach uses 2,294 SWE-bench instances + 3,000 GitBugs = 5,300 corpus.
+10. **SWE-bench Pro public instances**: Confirmed as partitioned into public (11 repos), held-out (12 repos), commercial (18 repos) — 731 figure is plausible for the 11 public repositories.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {
+      "score": 4,
+      "rationale": "No existing work trains a supervised model for structured issue-space spec extraction from bug report text as a preprocessing front-end for repair; differentiation from SpecRover (code-space prompting), SWE-Lego (end-to-end SFT), Agent-CoEvo (dynamic coevolution), VibeRepair (code-to-spec), and TraceRepair (runtime trace during repair) is well-argued and verifiably distinct. The core insight of using AST-parsed test assertions as implementation-agnostic behavioral specs is clever and not obviously anticipated by prior work."
+    },
+    "feasibility": {
+      "score": 3,
+      "rationale": "Compute budget (90-110 H100-hours manual) is within the 200-hour constraint, all models and datasets are verified as available, and the Agentless integration is clearly specified. However, the 16-day wall-clock deadline for EMNLP ARR (May 25) is extremely aggressive for completing data construction (AST parsing + NLP extraction + LLM-assisted spec fill on 5,300 instances), SFT (10-14 H100-hours), SWE-bench-Live eval infrastructure setup (Docker environment, Agentless pipeline), ablations, and paper writing — realistically only a skeleton pilot can be done, but what constitutes a complete 'pilot' submission is undefined."
+    },
+    "clarity": {
+      "score": 4,
+      "rationale": "Formal JSON schema with typed fields, a worked NumPy example, explicit Agentless injection points, per-field ablation design, and H100-hour compute breakdown are all present; the landscape section is comprehensive with accurate positioning against Agent-CoEvo and SWE-Lego. One internal inconsistency reduces clarity: the EMNLP venue description says '500-instance SWE-bench Verified training' while the main approach uses the full 5,300-instance corpus."
+    },
+    "impact": {
+      "score": 3,
+      "rationale": "The modular, pipeline-agnostic design is a genuine contribution — SpecExtract can plug into any repair backbone without retraining, which is a structural advantage over monolithic SFT systems. However, the primary empirical claim (+4-7 percentage points on SWE-bench-Live Lite over a 11-13% baseline) is modest in absolute terms and the target journal/conference will ask whether a 17-20% resolve rate on a clean benchmark justifies publication without stronger analysis of WHICH bug report types benefit most."
+    }
+  },
+  "issues": [
+    "IMPORTANT CORRECTION — SpecRover Section V-A claim is VERIFIED, not fabricated: Independent WebFetch of the HTML version of arXiv:2408.02232 (https://arxiv.org/html/arXiv:2408.02232) confirms the paper contains Section V-A 'RQ1: Overall Efficacy of Task Resolving' with a subsection 'Reasons for Failure' that explicitly documents 107/207 unresolved SWE-bench Lite tasks (51.7%) classified as ambiguous issue descriptions. The Round 3 reviewer's 'fabricated' accusation was incorrect. The generator should add a footnote or parenthetical citing the HTML URL to preempt any residual reviewer confusion, since the accusation has been raised three consecutive rounds.",
+    "SIGNIFICANT — Internal inconsistency in EMNLP pilot scope: The EMNLP venue description states 'realistic for a theory + pilot-scale submission with 500-instance SWE-bench Verified training and SWE-bench-Live Lite eval,' but the main approach uses 2,294 SWE-bench instances + 3,000 GitBugs pseudo-labeled instances = 5,300 corpus. These are in direct conflict. Either (a) define the EMNLP submission as explicitly scoped to a pilot — SFT on SWE-bench Verified 500 subset, SWE-bench-Live Lite 300-instance eval, no GitBugs augmentation — and state this clearly in the approach section, or (b) remove the '500-instance Verified' framing from the venue description and commit to the full corpus with the understanding that compute and eval must finish within 16 days.",
+    "MODERATE — 16-day deadline is unrealistically framed without explicit pilot scope: Building the 5,300-instance training corpus (AST parsing + NLP regex + LLM-assisted spec fill), SFT (10-14 H100-hours), establishing Agentless-SWE-bench-Live Docker infrastructure, running the full 300-instance eval + 4-field ablations (80-96 H100-hours), and writing the paper cannot realistically be completed in 16 days by 1-2 researchers. The submission plan should explicitly acknowledge that the EMNLP ARR submission will report pilot-scale results (e.g., SFT on 500-instance Verified subset, 100-instance SWE-bench-Live Lite eval) with the full-scale results reserved for ICSE 2027 as the primary venue.",
+    "MODERATE — 'Replacing the officially-abandoned SWE-bench Verified' is imprecise: OpenAI's February 2026 announcement recommends SWE-bench Pro as the frontier evaluation replacement — not SWE-bench-Live. SWE-bench-Live is the appropriate replacement for contamination-resistant research evaluation, which is the correct positioning for this paper, but the phrasing implies SWE-bench-Live is the community standard replacement for Verified, which overstates its current adoption. Reframe as: 'As SWE-bench Verified saturates with contamination concerns, SWE-bench-Live (NeurIPS 2025) provides contamination-resistant evaluation on post-2024 issues — the appropriate target for research contributions that train on SWE-bench data.'",
+    "MINOR — Cosine similarity threshold (≥ 0.65) for schema validation is stated without justification: The proposal requires AST-parsed test assertions to achieve ≥ 0.65 cosine similarity with SWE-bench Pro human requirements on 200 held-out instances. This threshold determines whether the schema is redesigned before scale-up, making it a critical gating decision. Add one sentence explaining why 0.65 is the right threshold (e.g., 'consistent with semantic similarity thresholds in information extraction literature where 0.65 distinguishes semantically related from unrelated pairs')."
+  ],
+  "feedback": "The SpecRover Section V-A claim has been independently verified as correct — the HTML paper confirms the 107/207 (51.7%) ambiguous issue description statistics in the 'Reasons for Failure' subsection of Section V-A. After three rounds of false accusations, add a parenthetical citing the HTML URL (https://arxiv.org/html/arXiv:2408.02232) to preempt any residual reviewer skepticism. To reach 'pass' in Round 5: (1) **Fix the pilot/full scope inconsistency**: Choose one coherent story for EMNLP. The most defensible is a pilot submission — SFT on SWE-bench Verified 500-instance subset, primary eval on 100-150 SWE-bench-Live Lite instances (not 300), 2-field ablation (affected_interface vs. none, expected_behavior vs. none). Remove the '500-instance SWE-bench Verified training' from the venue description and put it in the approach section as the EMNLP pilot plan. State that the full 5,300-instance corpus + 300-instance eval is the ICSE 2027 primary submission. (2) **Fix the SWE-bench Verified replacement framing**: Change 'replacing the officially-abandoned SWE-bench Verified' to 'providing contamination-resistant evaluation as SWE-bench Verified saturates at frontier.' (3) **Justify the 0.65 cosine similarity threshold** in one sentence. With these changes, the proposal will have resolved all substantive issues from rounds 1-4 and should be ready to pass.",
+  "reason": "Major prior-round issues are resolved (SpecRover claim verified, Agent-CoEvo addressed, Agentless baseline confirmed); two internal inconsistencies remain — the pilot vs. full-corpus scope conflict for EMNLP and the SWE-bench Verified replacement framing — that prevent a clean pass."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8e11585-289b-448d-ab00-5b8e311805ef",
+  "isSidechain": false,
+  "requestId": "req_011CatUHwit8GHcqFTZap8gN",
+  "type": "assistant",
+  "uuid": "96d9dd34-9891-4037-bcb4-9045fc25ff4b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_017ZP3YEc2afDCTAMWKJywtM",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 975,
+      "cache_creation_input_tokens": 2304,
+      "cache_read_input_tokens": 50925,
+      "output_tokens": 7006,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2304,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 975,
+          "output_tokens": 7006,
+          "cache_read_input_tokens": 50925,
+          "cache_creation_input_tokens": 2304,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2304
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "96d9dd34-9891-4037-bcb4-9045fc25ff4b",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Issue-space behavioral spec extraction for code repair",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "96d9dd34-9891-4037-bcb4-9045fc25ff4b",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 78_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Issue-space behavioral spec extraction for code repair",
+  "sessionId": "82d9c4e8-d47c-4528-8ea7-a6c787abf840"
+}
+```
+
+---

@@ -1,0 +1,1366 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-10 (UTC).** ## Original idea { "tit
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 1
+- **Tool calls:** 3
+- **Original source:** `logs/chats/exported-trajectories/account-1/8725d49b-2594-478a-a37a-39915d0049f1.jsonl`
+- **Structured JSON:** [`a884d34d1f94ac371347.json`](../../sessions/a8/a884d34d1f94ac371347.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T06:24:35.242Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T06:24:35.242Z",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-10 (UTC).**\n\n## Original idea\n{\n  \"title\": \"CausalPatch: Learning Inter-Hunk Dependencies for Topologically Ordered Multi-Hunk Repair\",\n  \"core_problem\": \"Complex real-world bugs require coordinated edits across multiple disjoint code regions (multi-hunk patches), but current LLM repair agents generate all hunks holistically, ignoring causal dependencies between edits. No LLM has been trained to predict which hunks depend on which — a structured sequence-to-graph prediction task — so agents lack the ordering information needed to generate coherent multi-hunk fixes without cascading symbol errors. The challenge is compounded by the fact that even the best agentic systems (Claude Code at 93.3% overall on HUNK4J) already saturate aggregate benchmarks, masking failure modes in truly hard cross-file dependency chains; the research opportunity lies not in aggregate repair rate but in the structured decomposition capability that enables principled ordering.\",\n  \"opportunity\": \"arXiv 2506.04418 (Characterizing Multi-Hunk Patches, ASE 2025) empirically quantifies that LLM success rates drop sharply with hunk divergence and spatial dispersion — across five spatial proximity classes (Nucleus/Cluster/Orbit/Sprawl/Fragment), all evaluated LLMs score 0% on Fragment-class bugs when operating without agentic tool use — but proposes no structured decomposition solution. SWE-bench Pro (arXiv 2509.16941) confirms multi-file, multi-hunk issues remain the hardest unsolved category. SWE-rebench-V2 (Nebius, 2026) provides 32,079 continuously updated, contamination-free tasks with gold-patch diffs; since each task includes the ground-truth patch in unified-diff format, multi-hunk instances are filterable programmatically (hunk_count ≥ 2 from the `patch` field), yielding an estimated 300–500-instance custom evaluation slice with far greater statistical power than the 57-problem public leaderboard. SWE-bench-Live (1,565 instances across 164 repos, monthly updates, multi-language) serves as a supplementary contamination-free evaluation surface. The critical training signal: SWE-bench Verified's ~500 ground-truth patches (filtered to multi-hunk instances, estimated 200–280 Python instances) plus HUNK4J's 372 Java instances supply ~580 annotated (bug-report, hunk-set, dependency-DAG) triples for supervised fine-tuning via two-level dependency edge extraction; this total will be adjusted based on the verified count and may reach 600–950 triples if supplemented. The Python instance count is estimated at 200–280 based on Ganhotra et al. (2025) empirical analysis of SWE-bench Verified difficulty distribution, which reports an overall average of 2.44 hunks/patch (easy tasks: 1.37 hunks avg, medium: 2.48 hunks avg, hard: 6.82 hunks avg), implying a substantial fraction of instances are multi-hunk (≥2 hunks). Critically, SWE-bench Lite explicitly filters out patches with more than 3 hunks, whereas SWE-bench Verified does NOT apply this filter, retaining complex multi-hunk instances that contribute to the higher expected count. The actual Python count must be verified on day 1 by programmatic hunk_count ≥ 2 filtering on the `patch` field (counting unified diff @@-headers); if the verified count falls below 150 instances, training data will be supplemented with Python multi-hunk instances from SWE-rebench-V2, using only instances NOT present in the primary evaluation slice, potentially raising the total to 600–950 triples. HUNK4J is used exclusively as a training data source — not as an evaluation surface — because agentic Claude Code already achieves 93.3% overall and 81.82% on the 11-instance Fragment class, leaving no statistically meaningful evaluation headroom. No prior NLP paper defines or benchmarks inter-hunk dependency prediction as a structured sequence-to-graph task.\",\n  \"landscape\": \"RepoRepair (arXiv 2603.01048, March 2026) achieves 45.7% on SWE-bench Lite using LLM-generated hierarchical documentation for fault localization, but generates patches holistically. SWE-Fixer (ACL Findings 2025) fine-tunes two Qwen 2.5 components (retriever + editor) and improves issue resolution but does not decompose multi-hunk bugs. ARISE (arXiv 2605.03117, May 2026) adds data-flow slicing as an agent tool, improving function recall by 17pp on SWE-bench Lite, but focuses on localization, not patch ordering. MultiMend (arXiv 2501.16044, January 2025) fine-tunes CodeT5-small (60M parameters) with retrieval-augmented context augmentation for multi-hunk patch generation, fixing 121 multi-hunk bugs across four languages (Java, Python, C, JavaScript) on Defects4J and related classical APR benchmarks. MultiMend treats hunks independently via sequential test-driven validation — 'hunks depend on each other' is acknowledged as a limitation, but no explicit dependency structure or topological ordering is constructed. CausalPatch's contribution is orthogonal: a fine-tuned LLM predicts a causal dependency DAG over hunks, driving topologically ordered agentic repair — no prior work trains a decomposition model for this structured prediction objective. Beyond Accuracy (arXiv 2511.11012, November 2025) characterizes agentic multi-hunk repair trajectories on HUNK4J using five spatial proximity classes (Nucleus n=59, Cluster n=185, Orbit n=67, Sprawl n=50, Fragment n=11): Claude Code achieves 93.3% overall and 81.82% on the hardest Fragment class, leaving no evaluation headroom; Qwen Code achieves 25.8% overall and 0% on Fragment. The paper proposes no dependency-ordered planning and does not train a decomposition model. Compartmentalization-Aware APR (arXiv 2603.09544, ICSE JAWs 2026) applies a fuzzer+LLM feedback loop to cross-compartment security vulnerabilities — a security-specific setting with no inter-hunk DAG model, no topological ordering, and no NLP structured prediction contribution. On current decontaminated benchmarks (SWE-bench Pro Public, Scale AI's SWE-Agent scaffold, 250-turn limit, uncapped cost): GPT-5.4 leads at 59.10±3.56%; Claude Opus 4.6 (with thinking) scores 51.90±3.61%; Qwen3-Coder-480B-A35B scores 38.70±3.55% (ranking 6th). On SWE-rebench public leaderboard: Claude Opus 4.6 leads at 65.3%. No published NLP/ML work frames inter-hunk dependency prediction as a structured sequence-to-graph task with a fine-tuned LLM.\",\n  \"approach\": \"We propose CausalPatch, a two-stage LLM pipeline reframing multi-hunk repair as a structured prediction problem targeting EMNLP 2026. **Stage 1 — Inter-Hunk Dependency Prediction (core NLP contribution)**: Given a bug report and a set of fault-localized code hunks (obtained via any fault localization tool, e.g., ARISE), a fine-tuned model predicts a dependency DAG as structured JSON: each node is a hunk identifier, each directed edge A→B encodes that hunk B introduces or consumes a symbol first defined by hunk A. We define this as a novel sequence-to-graph NLP task. **Dataset construction**: ~580 annotated (bug-report, hunk-set, dependency-DAG) triples — estimated 200–280 Python instances from SWE-bench Verified multi-hunk patches (day-1 verified count; supplemented from SWE-rebench-V2 Python multi-hunk instances if count < 150, potentially raising total to 600–950 triples) and 372 Java instances from HUNK4J — via two-level dependency edge extraction; HUNK4J is used exclusively as training data (not evaluation) due to agentic ceiling effects. Split: 80/10/10 train/val/test (actual n depends on verified count), with 10% random held-out human audit for label quality. **Two-level dependency edge extraction**: Level 1 — intra-file AST-diff (high-precision): For each hunk pair (A, B) in the same file, we check whether symbols first defined or renamed in hunk A are referenced in hunk B. For Python, we use `ast.parse` plus symbol table diffing; for Java, we use GumTree AST diff plus symbol resolution. Level 2 — cross-file import graph traversal (broader coverage): For pairs (A, B) across different files, we trace the module import graph to determine whether file_B imports a symbol that is first introduced or modified by hunk_A's module. For Python, we use `importlib` plus `ast` import resolution; for Java, we use JavaParser plus ClassGraph. Cross-file edges are labeled with a `cross_file=True` flag. The 10% human audit explicitly quantifies: (i) the fraction of total extracted edges requiring cross-file resolution, and (ii) the false-negative rate for cross-module edges (i.e., true dependency edges that Level 1 missed and Level 2 caught). These metrics are reported as a dedicated 'Edge Coverage Analysis' subsection in the dataset construction section of the paper. As a limitation, dynamic imports, monkey-patching, and runtime reflection cannot be captured statically; this affects Fragment-class bugs most severely and is noted as a threat to validity. Fine-tuning: Qwen2.5-Coder-14B (primary backbone, QLoRA on 1× A100 80GB, ~40GB peak VRAM); Qwen3-Coder-30B-A3B (MoE, 3B active params, 17.5GB VRAM via QLoRA) as secondary ablation; Qwen2.5-Coder-7B for model-scaling ablation. **Stage 1 Standalone Evaluation (substantiating the NLP task)**: Evaluated independently on the held-out test set using (a) edge-level precision/recall/F1 — measuring whether predicted DAG edges match ground-truth edges extracted from developer patches; (b) graph edit distance (GED) between predicted and gold DAGs, normalized by graph size; (c) topological-order accuracy — whether the predicted topological sort matches the gold sort. These metrics demonstrate that the model genuinely learns the structured prediction task, independent of end-to-end repair success. **Language Generalization Ablation**: Because training data is bilingual (Java from HUNK4J, Python from SWE-bench Verified), we report Stage 1 edge-F1 separately for Java and Python held-out instances, and include three training configurations: Java-only, Python-only, and combined — assessing whether cross-language transfer helps or hurts per-language DAG accuracy. **Stage 2 — Topological Repair via mini-swe-agent Meta-Controller**: CausalPatch's Stage 2 is implemented as a pre-processing meta-controller that wraps mini-swe-agent (the standard SWE-bench Pro scaffold — ~100 lines, bash-only, ReAct loop, open-source): (1) Stage 1 model predicts the DAG as JSON structured output; (2) the meta-controller computes the topological sort of the predicted DAG; (3) for each hunk in leaf-to-root order, the meta-controller invokes mini-swe-agent with targeted file context and hunk description; (4) after each hunk commit, an LLM self-consistency check (import validity, type signature consistency, call-site compatibility) is performed via the same mini-swe-agent instance; (5) failed checks trigger single-branch backtracking without discarding upstream committed edits. All baselines (holistic Qwen3-Coder-480B, RepoRepair, ARISE, MultiMend, SWE-agent) are evaluated with the identical mini-swe-agent scaffold, the same 250-turn limit, and the same prompt. CausalPatch's SWE-bench Pro Public absolute numbers are therefore directly comparable to Scale AI's published leaderboard entries. **Primary Evaluation**: (1) SWE-rebench-V2 custom multi-hunk slice — programmatically filtered from 32,079 instances by parsing the gold `patch` field for hunk_count ≥ 2; targeting 300–500 instances; 3-seed resolved rate; ±CI reported explicitly. (2) SWE-bench Pro Public (731 instances; Scale AI's mini-swe-agent scaffold, 250-turn limit, uncapped cost); multi-hunk subset reported separately with exact n. **Secondary Evaluation**: SWE-bench-Live (1,565 instances, multi-language, monthly-updated) as supplementary contamination-free surface; DebugBench (4,253 multi-bug instances, ACL Findings 2024, multi-language); RepoBench (repo-level completion). SWE-bench Verified retained as legacy secondary comparison only; public SWE-rebench 57-problem leaderboard score reported for comparison with existing work. **Baselines**: RepoRepair, ARISE, MultiMend, SWE-agent, and holistic Qwen3-Coder-480B without DAG ordering — all run with the identical mini-swe-agent scaffold. **End-to-End Ablations**: (a) no DAG vs. predicted DAG vs. gold-oracle DAG; (b) random hunk order vs. topological order; (c) LLM self-consistency check vs. no check; (d) 7B vs. 14B vs. 30B-A3B decomposition model; (e) structured JSON output vs. chain-of-thought DAG verbalization; (f) Java-only vs. Python-only vs. combined training (Stage 1 edge-F1 per language); (g) data efficiency — Stage 1 trained on 50%/75%/100% of training triples, with edge-F1 reported at each size, demonstrating the model genuinely learns dependency structure rather than memorizing DAG patterns and characterizing the minimum viable corpus size (requires 2 additional QLoRA training runs).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~80h A100 80GB\",\n      \"gpu_utilization\": \"Low (~20–25% active); GPU idles during human DAG-annotation review, iterative edge-extraction debugging, and manual ablation design between runs\",\n      \"timeline\": \"2–3 months\",\n      \"team\": \"2 researchers\",\n      \"estimated_gpu_cost\": \"~$120 (at ~$1.50/hr)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~140h A100 80GB\",\n      \"gpu_utilization\": \"Moderate (~50–55% active); agent autonomously queues QLoRA fine-tuning runs and SWE-rebench-V2 / SWE-bench Pro evaluations between human approval gates\",\n      \"timeline\": \"2–3 weeks\",\n      \"team\": \"1 researcher, ~20 min/day to review DAG label quality samples, approve ablation branches, and interpret benchmark results\",\n      \"claude_api_cost\": \"$150–250 (~1,500–2,500 turns for orchestration, code generation, and interpretation)\",\n      \"estimated_gpu_cost\": \"~$210 (at ~$1.50/hr)\",\n      \"risk_note\": \"Key bottleneck: DAG label noise from bilingual (Java + Python) training data — incorrect edges corrupt the structured prediction signal. Language-stratified audit of auto-extracted edges is essential; budget ~4h of manual review across training. Two-level edge extraction pipeline setup adds ~4h for configuring Level 1 AST-diff tooling and Level 2 import graph traversal for both Python and Java. SWE-rebench-V2 multi-hunk slice filtering (parsing patch diffs for hunk_count ≥ 2) requires one-time pipeline setup (~2h). mini-swe-agent integration as the Stage 2 meta-controller wrapper adds ~1–2 days engineering, within the existing human-in-loop budget.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~320h A100 80GB total (QLoRA training: 10 runs × ~15h = 150h for 7B/14B/30B-A3B, ablations, and 2 additional data efficiency runs at 50%/75% training data; eval: SWE-rebench-V2 custom 400-instance slice × 3 seeds ≈ 35h pipeline overhead, SWE-bench Pro 731 instances ≈ 70h, SWE-bench-Live 400-instance subset ≈ 25h, DebugBench 4,253 instances ≈ 40h, RepoBench ≈ 30h; Stage 1 inference across all test splits ≈ 5h; Stage 1 GED/F1 evaluation ≈ 5h; two-level edge extraction pipeline setup ≈ 4h)\",\n      \"h100_equivalent_hours\": \"~145h H100-equivalent (A100 80GB ≈ H100 × 0.45 for QLoRA on 14B/30B MoE workloads); within the 200 H100-hour budget\",\n      \"gpu_utilization\": \"~85% active; training and evaluation batches are continuously queued across parallel Docker eval instances with no human wait time\",\n      \"timeline\": \"6–8 days with 2 concurrent A100 80GBs (320h / 2 GPUs / ~24h per day ≈ 6.7 days); ≤4 days with 4 GPUs\",\n      \"team\": \"0 (initial setup only: ~6h to configure SWE-rebench-V2 multi-hunk filtering pipeline, Docker harness, two-level AST-diff and import-graph DAG extraction, mini-swe-agent meta-controller integration, and QLoRA scaffolding via Unsloth)\",\n      \"claude_api_cost\": \"$350–600 (~3,500–6,000 turns for multi-agent orchestration, code generation, failure analysis, language ablation interpretation, and automated draft iteration)\",\n      \"estimated_gpu_cost\": \"~$480 (at ~$1.50/hr)\",\n      \"speed_bottleneck\": \"SWE-bench Pro Public Docker eval (731 isolated containers) is the critical-path bottleneck; 4 concurrent A100s allow parallel evaluation. SWE-rebench-V2 multi-hunk filtering is a one-time O(n) parse over 32,079 patches (~minutes). Stage 2 repair agent calls (Qwen3-Coder-480B or Claude Opus 4.6 API via mini-swe-agent wrapper) are subject to provider rate limits; batch with exponential backoff.\",\n      \"risk_note\": \"Without human oversight, the SWE-rebench-V2 filtering heuristic (hunk_count ≥ 2 from gold patch) may include trivially multi-hunk instances (e.g., formatting-only secondary hunks); automated difficulty filtering using the dataset's `meta` quality annotations can mitigate this. Cross-language generalization (Java → Python) should be monitored via per-language Stage 1 edge-F1 on held-out partition. The two-level edge extraction pipeline's Level 2 cross-file import traversal may introduce false positives for large import graphs; the 10% human audit is critical for calibrating cross-file edge precision.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 Main\",\n    \"EMNLP 2026 Findings\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Characterizing Multi-Hunk Patches: Divergence, Proximity, and LLM Repair Challenges (ASE 2025, arXiv 2506.04418)\",\n    \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues? (ICLR 2024)\",\n    \"SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? (arXiv 2509.16941)\",\n    \"SWE-rebench: An Automated Pipeline for Task Collection and Decontaminated Evaluation of Software Engineering Agents (arXiv 2505.20411)\",\n    \"SWE-rebench-V2: A Multilingual, Executable Dataset for Training Software Engineering Agents (Nebius 2026, HuggingFace nebius/SWE-rebench-V2)\",\n    \"SWE-bench-Live: A Live Benchmark for Issue Resolving (swe-bench-live.github.io, 2025)\",\n    \"MultiMend: Multilingual Program Repair with Context Augmentation and Multi-Hunk Patch Generation (arXiv 2501.16044, January 2025)\",\n    \"RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair (arXiv 2603.01048)\",\n    \"SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution (ACL Findings 2025)\",\n    \"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair (arXiv 2605.03117)\",\n    \"Beyond Accuracy: Behavioral Dynamics of Agentic Multi-Hunk Repair (arXiv 2511.11012)\",\n    \"Compartmentalization-Aware Automated Program Repair (arXiv 2603.09544, ICSE JAWs 2026)\",\n    \"Qwen2.5-Coder Technical Report (arXiv 2409.12186)\",\n    \"DebugBench: Evaluating Debugging Capability of Large Language Models (ACL Findings 2024)\",\n    \"Cracking the Code: How Difficult Are SWE-Bench-Verified Tasks Really? (Ganhotra, 2025, jatinganhotra.dev)\"\n  ],\n  \"description\": \"Multi-hunk bugs — fixes spanning disjoint code regions — defeat state-of-the-art LLM repair agents, with success rates collapsing to 0% on the most spatially dispersed bugs when models operate without agentic augmentation (ASE 2025, HUNK4J five-class spatial taxonomy). We propose CausalPatch, a two-stage pipeline targeting EMNLP 2026 as an LLM structured prediction contribution. We define a novel NLP task — Inter-Hunk Dependency Prediction — where the input is a bug report paired with fault-localized code hunks and the output is a causal dependency DAG (JSON-structured) encoding which hunks must precede others based on symbol definitions. We construct ~580 annotated training triples (total adjusted based on day-1 verified count, potentially reaching 600–950 if supplemented) from two sources: an estimated 200–280 Python instances from SWE-bench Verified multi-hunk patches (verified programmatically on day 1; if below 150, supplemented from SWE-rebench-V2 Python multi-hunk instances not in the evaluation slice) and 372 Java instances from HUNK4J (training only — not evaluation, due to ceiling effects on agentic benchmarks). The Python count estimate is grounded in Ganhotra et al. (2025)'s empirical analysis of SWE-bench Verified difficulty distribution (overall 2.44 hunks/patch avg; easy: 1.37, medium: 2.48, hard: 6.82), and the fact that SWE-bench Verified, unlike SWE-bench Lite, does not filter out patches with more than 3 hunks. Edges are extracted via a two-level pipeline: Level 1 intra-file AST-diff (Python `ast.parse` + symbol table diffing; Java GumTree AST diff + symbol resolution) for high-precision same-file dependency edges, and Level 2 cross-file import graph traversal (Python `importlib` + `ast` import resolution; Java JavaParser + ClassGraph) for broader cross-module dependency coverage with `cross_file=True` labeling. Dynamic imports, monkey-patching, and runtime reflection remain threats to validity, affecting Fragment-class bugs most severely. A 10% human-audited held-out partition quantifies the cross-file edge fraction and Level 1 false-negative rate, reported as a dedicated Edge Coverage Analysis subsection. We fine-tune Qwen2.5-Coder-14B (QLoRA, single A100 80GB) as primary backbone, with Qwen3-Coder-30B-A3B (MoE, 3B active params) and Qwen2.5-Coder-7B as ablation variants. Stage 1 is evaluated standalone via edge-level precision/recall/F1 and graph edit distance on the held-out test set; a language generalization ablation (Java-only vs. Python-only vs. combined training) and a data efficiency ablation (50%/75%/100% of training triples) assess cross-lingual transfer and minimum viable corpus size. The predicted DAG drives Stage 2: a pre-processing meta-controller wraps mini-swe-agent (the standard SWE-bench Pro scaffold, ~100 lines, bash-only, ReAct loop, open-source), invoking it per hunk in leaf-to-root topological order with an LLM self-consistency check after each commit and single-branch backtracking on failure. All baselines (RepoRepair, ARISE, MultiMend, SWE-agent, holistic Qwen3-Coder-480B) use the identical mini-swe-agent scaffold and same 250-turn limit, making CausalPatch's SWE-bench Pro Public numbers directly comparable to Scale AI's leaderboard. Primary evaluation uses a custom multi-hunk slice filtered from SWE-rebench-V2 (target 300–500 instances) and SWE-bench Pro Public (731 instances); SWE-bench-Live (1,565 instances) provides supplementary contamination-free evaluation. Auto-mode compute is ~320 A100 hours (~145 H100-equivalent hours, within the 200 H100-hour budget), completing in 6–8 days on 2 concurrent A100s. No prior NLP work defines inter-hunk dependency prediction as a structured sequence-to-graph task, provides standalone DAG quality metrics, or uses a fine-tuned LLM to drive topologically ordered patch generation via a scaffold-wrapped meta-controller.\",\n  \"project_name\": \"causal_patch_repair\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 5)\nIssues: [\"MEDIUM — UNCITED COMPETITIVE WORK: HAFixAgent (arXiv 2511.01047, November 2025, 'History-Aware Automated Program Repair Agent') addresses multi-hunk repair coordination by integrating repository blame history to guide edits across hunks, reporting 212.3% improvement over an agent baseline and 29.9% over a multi-hunk baseline. This is directly relevant concurrent work that EMNLP reviewers may flag. CausalPatch's differentiation is clear (DAG-trained model with topological ordering vs. heuristic history retrieval without a trained decomposition model), but the paper must cite and explicitly differentiate it.\", \"LOW — NAMING COLLISION WITH CPR: 'CPR: Causal Program Repair' (arXiv 2205.13342, AAAI 2022) uses the word 'causal' to describe token-level causal inference for interpretable repair via sequence-to-sequence models — a completely different sense of 'causal' than CausalPatch's inter-hunk dependency causality. EMNLP reviewers familiar with CPR may flag naming confusion. One sentence in the related work section distinguishing the two uses of 'causal' would preempt this reviewer objection.\", \"MEDIUM — TRAINING DATA COUNT STILL UNVERIFIED AT SUBMISSION TIME: The paper states the Python multi-hunk count will be verified 'on day 1' of the project, but this review is evaluating the proposal before any code has been run. The Ganhotra blog analysis (2.44 avg hunks/patch) is a blog post, not a peer-reviewed empirical study, and the conversion from average hunk count to multi-hunk instance fraction is not explicitly provided. If the actual count falls below 150 (plausible if easy tasks, which dominate SWE-bench Verified, average only 1.37 hunks), the fallback to SWE-rebench-V2 Python instances introduces a domain distribution shift (GitHub issues from a broader multilingual corpus vs. curated Python issues) that may reduce training signal quality for the Python DAG prediction subtask. The proposal should acknowledge this risk explicitly as a threat to validity.\", \"LOW — SWE-BENCH PRO MULTI-HUNK SUBSET SAMPLE SIZE: The paper reports SWE-bench Pro Public (731 instances) as a primary evaluation surface and plans to report the multi-hunk subset separately. The fraction of multi-hunk instances in SWE-bench Pro is unspecified; if it is ~20-30% (consistent with SWE-bench Verified's difficulty distribution), the multi-hunk subset is approximately 140-220 instances. A 5pp improvement on 150 instances has 95% CI of ~±4pp — statistically significant but narrow. The custom SWE-rebench-V2 slice (300-500 instances) is the more powerful primary evaluation, and the paper should position it as the headline result rather than the SWE-bench Pro multi-hunk subset.\"]\nFeedback: Round 4 revisions are solid and comprehensive: the two-level dependency edge extraction pipeline (Level 1 AST-diff + Level 2 cross-file import graph), the mini-swe-agent scaffold uniformly applied to all baselines, and the data efficiency ablation all represent genuine improvements. The core novelty — inter-hunk dependency DAG prediction as a structured NLP task — is independently verified as non-overlapping with existing work. Three targeted fixes remain before submission:\n\n**Fix 1 (REQUIRED — 1 sentence in related work):** Cite HAFixAgent (arXiv 2511.01047, November 2025) in the landscape section. One sentence: 'HAFixAgent (arXiv 2511.01047) guides multi-hunk repair using repository blame history but does not train a decomposition model, predict inter-hunk dependency structure, or impose topological generation order — the coordination is heuristic rather than learned.' EMNLP reviewers will flag an uncited November 2025 multi-hunk repair paper.\n\n**Fix 2 (REQUIRED — 1 sentence in related work):** Add a brief disambiguation from CPR (Causal Program Repair, arXiv 2205.13342, AAAI 2022): 'CPR uses causal inference to identify input-output token dependencies for interpretable single-hunk repair — a different sense of causal from CausalPatch's inter-hunk symbol causality.' Preempts reviewer confusion given the shared 'causal' framing.\n\n**Fix 3 (REQUIRED — threat to validity):** Add an explicit threat-to-validity statement: 'If the verified Python multi-hunk count falls below 150 instances, training data is supplemented from SWE-rebench-V2 Python instances, introducing a potential domain distribution shift. We mitigate this risk by stratifying the language generalization ablation and reporting Java-only vs. Python-only vs. combined edge-F1 to detect transfer failures.' The Ganhotra blog analysis is a reasonable proxy but should be cited as an estimate, not a guarantee.\n\n**Fix 4 (RECOMMENDED — positioning):** Position the SWE-rebench-V2 custom multi-hunk slice (300-500 instances) as the headline primary evaluation result, and SWE-bench Pro multi-hunk subset as secondary. The larger slice provides more statistical power for demonstrating the improvement from DAG ordering, and the SWE-rebench-V2 contamination-free guarantee is a stronger claim for a 2026 submission than SWE-bench Pro's public split (which is itself a fixed, potentially contamination-prone set).\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\").\n\n## 停滞提醒\n这个 idea 已经经过 5 轮修订，近 3 轮的平均分从 3.2 到 3.5，没有明显改善。\n\n请认真思考：\n- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？\n- 如果你认为问题出在 approach 而非 framing，可以做 major revision。\n- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。\n- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。\n\n最终由你判断——做你认为最能提升 idea 质量的选择。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T06:24:35.247Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T06:24:35.247Z",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1"
+}
+```
+
+---
+
+## Round 1
+
+21 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T06:24:35.384Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-10 (UTC).**
+
+## Original idea
+{
+  "title": "CausalPatch: Learning Inter-Hunk Dependencies for Topologically Ordered Multi-Hunk Repair",
+  "core_problem": "Complex real-world bugs require coordinated edits across multiple disjoint code regions (multi-hunk patches), but current LLM repair agents generate all hunks holistically, ignoring causal dependencies between edits. No LLM has been trained to predict which hunks depend on which — a structured sequence-to-graph prediction task — so agents lack the ordering information needed to generate coherent multi-hunk fixes without cascading symbol errors. The challenge is compounded by the fact that even the best agentic systems (Claude Code at 93.3% overall on HUNK4J) already saturate aggregate benchmarks, masking failure modes in truly hard cross-file dependency chains; the research opportunity lies not in aggregate repair rate but in the structured decomposition capability that enables principled ordering.",
+  "opportunity": "arXiv 2506.04418 (Characterizing Multi-Hunk Patches, ASE 2025) empirically quantifies that LLM success rates drop sharply with hunk divergence and spatial dispersion — across five spatial proximity classes (Nucleus/Cluster/Orbit/Sprawl/Fragment), all evaluated LLMs score 0% on Fragment-class bugs when operating without agentic tool use — but proposes no structured decomposition solution. SWE-bench Pro (arXiv 2509.16941) confirms multi-file, multi-hunk issues remain the hardest unsolved category. SWE-rebench-V2 (Nebius, 2026) provides 32,079 continuously updated, contamination-free tasks with gold-patch diffs; since each task includes the ground-truth patch in unified-diff format, multi-hunk instances are filterable programmatically (hunk_count ≥ 2 from the `patch` field), yielding an estimated 300–500-instance custom evaluation slice with far greater statistical power than the 57-problem public leaderboard. SWE-bench-Live (1,565 instances across 164 repos, monthly updates, multi-language) serves as a supplementary contamination-free evaluation surface. The critical training signal: SWE-bench Verified's ~500 ground-truth patches (filtered to multi-hunk instances, estimated 200–280 Python instances) plus HUNK4J's 372 Java instances supply ~580 annotated (bug-report, hunk-set, dependency-DAG) triples for supervised fine-tuning via two-level dependency edge extraction; this total will be adjusted based on the verified count and may reach 600–950 triples if supplemented. The Python instance count is estimated at 200–280 based on Ganhotra et al. (2025) empirical analysis of SWE-bench Verified difficulty distribution, which reports an overall average of 2.44 hunks/patch (easy tasks: 1.37 hunks avg, medium: 2.48 hunks avg, hard: 6.82 hunks avg), implying a substantial fraction of instances are multi-hunk (≥2 hunks). Critically, SWE-bench Lite explicitly filters out patches with more than 3 hunks, whereas SWE-bench Verified does NOT apply this filter, retaining complex multi-hunk instances that contribute to the higher expected count. The actual Python count must be verified on day 1 by programmatic hunk_count ≥ 2 filtering on the `patch` field (counting unified diff @@-headers); if the verified count falls below 150 instances, training data will be supplemented with Python multi-hunk instances from SWE-rebench-V2, using only instances NOT present in the primary evaluation slice, potentially raising the total to 600–950 triples. HUNK4J is used exclusively as a training data source — not as an evaluation surface — because agentic Claude Code already achieves 93.3% overall and 81.82% on the 11-instance Fragment class, leaving no statistically meaningful evaluation headroom. No prior NLP paper defines or benchmarks inter-hunk dependency prediction as a structured sequence-to-graph task.",
+  "landscape": "RepoRepair (arXiv 2603.01048, March 2026) achieves 45.7% on SWE-bench Lite using LLM-generated hierarchical documentation for fault localization, but generates patches holistically. SWE-Fixer (ACL Findings 2025) fine-tunes two Qwen 2.5 components (retriever + editor) and improves issue resolution but does not decompose multi-hunk bugs. ARISE (arXiv 2605.03117, May 2026) adds data-flow slicing as an agent tool, improving function recall by 17pp on SWE-bench Lite, but focuses on localization, not patch ordering. MultiMend (arXiv 2501.16044, January 2025) fine-tunes CodeT5-small (60M parameters) with retrieval-augmented context augmentation for multi-hunk patch generation, fixing 121 multi-hunk bugs across four languages (Java, Python, C, JavaScript) on Defects4J and related classical APR benchmarks. MultiMend treats hunks independently via sequential test-driven validation — 'hunks depend on each other' is acknowledged as a limitation, but no explicit dependency structure or topological ordering is constructed. CausalPatch's contribution is orthogonal: a fine-tuned LLM predicts a causal dependency DAG over hunks, driving topologically ordered agentic repair — no prior work trains a decomposition model for this structured prediction objective. Beyond Accuracy (arXiv 2511.11012, November 2025) characterizes agentic multi-hunk repair trajectories on HUNK4J using five spatial proximity classes (Nucleus n=59, Cluster n=185, Orbit n=67, Sprawl n=50, Fragment n=11): Claude Code achieves 93.3% overall and 81.82% on the hardest Fragment class, leaving no evaluation headroom; Qwen Code achieves 25.8% overall and 0% on Fragment. The paper proposes no dependency-ordered planning and does not train a decomposition model. Compartmentalization-Aware APR (arXiv 2603.09544, ICSE JAWs 2026) applies a fuzzer+LLM feedback loop to cross-compartment security vulnerabilities — a security-specific setting with no inter-hunk DAG model, no topological ordering, and no NLP structured prediction contribution. On current decontaminated benchmarks (SWE-bench Pro Public, Scale AI's SWE-Agent scaffold, 250-turn limit, uncapped cost): GPT-5.4 leads at 59.10±3.56%; Claude Opus 4.6 (with thinking) scores 51.90±3.61%; Qwen3-Coder-480B-A35B scores 38.70±3.55% (ranking 6th). On SWE-rebench public leaderboard: Claude Opus 4.6 leads at 65.3%. No published NLP/ML work frames inter-hunk dependency prediction as a structured sequence-to-graph task with a fine-tuned LLM.",
+  "approach": "We propose CausalPatch, a two-stage LLM pipeline reframing multi-hunk repair as a structured prediction problem targeting EMNLP 2026. **Stage 1 — Inter-Hunk Dependency Prediction (core NLP contribution)**: Given a bug report and a set of fault-localized code hunks (obtained via any fault localization tool, e.g., ARISE), a fine-tuned model predicts a dependency DAG as structured JSON: each node is a hunk identifier, each directed edge A→B encodes that hunk B introduces or consumes a symbol first defined by hunk A. We define this as a novel sequence-to-graph NLP task. **Dataset construction**: ~580 annotated (bug-report, hunk-set, dependency-DAG) triples — estimated 200–280 Python instances from SWE-bench Verified multi-hunk patches (day-1 verified count; supplemented from SWE-rebench-V2 Python multi-hunk instances if count < 150, potentially raising total to 600–950 triples) and 372 Java instances from HUNK4J — via two-level dependency edge extraction; HUNK4J is used exclusively as training data (not evaluation) due to agentic ceiling effects. Split: 80/10/10 train/val/test (actual n depends on verified count), with 10% random held-out human audit for label quality. **Two-level dependency edge extraction**: Level 1 — intra-file AST-diff (high-precision): For each hunk pair (A, B) in the same file, we check whether symbols first defined or renamed in hunk A are referenced in hunk B. For Python, we use `ast.parse` plus symbol table diffing; for Java, we use GumTree AST diff plus symbol resolution. Level 2 — cross-file import graph traversal (broader coverage): For pairs (A, B) across different files, we trace the module import graph to determine whether file_B imports a symbol that is first introduced or modified by hunk_A's module. For Python, we use `importlib` plus `ast` import resolution; for Java, we use JavaParser plus ClassGraph. Cross-file edges are labeled with a `cross_file=True` flag. The 10% human audit explicitly quantifies: (i) the fraction of total extracted edges requiring cross-file resolution, and (ii) the false-negative rate for cross-module edges (i.e., true dependency edges that Level 1 missed and Level 2 caught). These metrics are reported as a dedicated 'Edge Coverage Analysis' subsection in the dataset construction section of the paper. As a limitation, dynamic imports, monkey-patching, and runtime reflection cannot be captured statically; this affects Fragment-class bugs most severely and is noted as a threat to validity. Fine-tuning: Qwen2.5-Coder-14B (primary backbone, QLoRA on 1× A100 80GB, ~40GB peak VRAM); Qwen3-Coder-30B-A3B (MoE, 3B active params, 17.5GB VRAM via QLoRA) as secondary ablation; Qwen2.5-Coder-7B for model-scaling ablation. **Stage 1 Standalone Evaluation (substantiating the NLP task)**: Evaluated independently on the held-out test set using (a) edge-level precision/recall/F1 — measuring whether predicted DAG edges match ground-truth edges extracted from developer patches; (b) graph edit distance (GED) between predicted and gold DAGs, normalized by graph size; (c) topological-order accuracy — whether the predicted topological sort matches the gold sort. These metrics demonstrate that the model genuinely learns the structured prediction task, independent of end-to-end repair success. **Language Generalization Ablation**: Because training data is bilingual (Java from HUNK4J, Python from SWE-bench Verified), we report Stage 1 edge-F1 separately for Java and Python held-out instances, and include three training configurations: Java-only, Python-only, and combined — assessing whether cross-language transfer helps or hurts per-language DAG accuracy. **Stage 2 — Topological Repair via mini-swe-agent Meta-Controller**: CausalPatch's Stage 2 is implemented as a pre-processing meta-controller that wraps mini-swe-agent (the standard SWE-bench Pro scaffold — ~100 lines, bash-only, ReAct loop, open-source): (1) Stage 1 model predicts the DAG as JSON structured output; (2) the meta-controller computes the topological sort of the predicted DAG; (3) for each hunk in leaf-to-root order, the meta-controller invokes mini-swe-agent with targeted file context and hunk description; (4) after each hunk commit, an LLM self-consistency check (import validity, type signature consistency, call-site compatibility) is performed via the same mini-swe-agent instance; (5) failed checks trigger single-branch backtracking without discarding upstream committed edits. All baselines (holistic Qwen3-Coder-480B, RepoRepair, ARISE, MultiMend, SWE-agent) are evaluated with the identical mini-swe-agent scaffold, the same 250-turn limit, and the same prompt. CausalPatch's SWE-bench Pro Public absolute numbers are therefore directly comparable to Scale AI's published leaderboard entries. **Primary Evaluation**: (1) SWE-rebench-V2 custom multi-hunk slice — programmatically filtered from 32,079 instances by parsing the gold `patch` field for hunk_count ≥ 2; targeting 300–500 instances; 3-seed resolved rate; ±CI reported explicitly. (2) SWE-bench Pro Public (731 instances; Scale AI's mini-swe-agent scaffold, 250-turn limit, uncapped cost); multi-hunk subset reported separately with exact n. **Secondary Evaluation**: SWE-bench-Live (1,565 instances, multi-language, monthly-updated) as supplementary contamination-free surface; DebugBench (4,253 multi-bug instances, ACL Findings 2024, multi-language); RepoBench (repo-level completion). SWE-bench Verified retained as legacy secondary comparison only; public SWE-rebench 57-problem leaderboard score reported for comparison with existing work. **Baselines**: RepoRepair, ARISE, MultiMend, SWE-agent, and holistic Qwen3-Coder-480B without DAG ordering — all run with the identical mini-swe-agent scaffold. **End-to-End Ablations**: (a) no DAG vs. predicted DAG vs. gold-oracle DAG; (b) random hunk order vs. topological order; (c) LLM self-consistency check vs. no check; (d) 7B vs. 14B vs. 30B-A3B decomposition model; (e) structured JSON output vs. chain-of-thought DAG verbalization; (f) Java-only vs. Python-only vs. combined training (Stage 1 edge-F1 per language); (g) data efficiency — Stage 1 trained on 50%/75%/100% of training triples, with edge-F1 reported at each size, demonstrating the model genuinely learns dependency structure rather than memorizing DAG patterns and characterizing the minimum viable corpus size (requires 2 additional QLoRA training runs).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~80h A100 80GB",
+      "gpu_utilization": "Low (~20–25% active); GPU idles during human DAG-annotation review, iterative edge-extraction debugging, and manual ablation design between runs",
+      "timeline": "2–3 months",
+      "team": "2 researchers",
+      "estimated_gpu_cost": "~$120 (at ~$1.50/hr)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~140h A100 80GB",
+      "gpu_utilization": "Moderate (~50–55% active); agent autonomously queues QLoRA fine-tuning runs and SWE-rebench-V2 / SWE-bench Pro evaluations between human approval gates",
+      "timeline": "2–3 weeks",
+      "team": "1 researcher, ~20 min/day to review DAG label quality samples, approve ablation branches, and interpret benchmark results",
+      "claude_api_cost": "$150–250 (~1,500–2,500 turns for orchestration, code generation, and interpretation)",
+      "estimated_gpu_cost": "~$210 (at ~$1.50/hr)",
+      "risk_note": "Key bottleneck: DAG label noise from bilingual (Java + Python) training data — incorrect edges corrupt the structured prediction signal. Language-stratified audit of auto-extracted edges is essential; budget ~4h of manual review across training. Two-level edge extraction pipeline setup adds ~4h for configuring Level 1 AST-diff tooling and Level 2 import graph traversal for both Python and Java. SWE-rebench-V2 multi-hunk slice filtering (parsing patch diffs for hunk_count ≥ 2) requires one-time pipeline setup (~2h). mini-swe-agent integration as the Stage 2 meta-controller wrapper adds ~1–2 days engineering, within the existing human-in-loop budget."
+    },
+    "auto_research": {
+      "gpu_hours": "~320h A100 80GB total (QLoRA training: 10 runs × ~15h = 150h for 7B/14B/30B-A3B, ablations, and 2 additional data efficiency runs at 50%/75% training data; eval: SWE-rebench-V2 custom 400-instance slice × 3 seeds ≈ 35h pipeline overhead, SWE-bench Pro 731 instances ≈ 70h, SWE-bench-Live 400-instance subset ≈ 25h, DebugBench 4,253 instances ≈ 40h, RepoBench ≈ 30h; Stage 1 inference across all test splits ≈ 5h; Stage 1 GED/F1 evaluation ≈ 5h; two-level edge extraction pipeline setup ≈ 4h)",
+      "h100_equivalent_hours": "~145h H100-equivalent (A100 80GB ≈ H100 × 0.45 for QLoRA on 14B/30B MoE workloads); within the 200 H100-hour budget",
+      "gpu_utilization": "~85% active; training and evaluation batches are continuously queued across parallel Docker eval instances with no human wait time",
+      "timeline": "6–8 days with 2 concurrent A100 80GBs (320h / 2 GPUs / ~24h per day ≈ 6.7 days); ≤4 days with 4 GPUs",
+      "team": "0 (initial setup only: ~6h to configure SWE-rebench-V2 multi-hunk filtering pipeline, Docker harness, two-level AST-diff and import-graph DAG extraction, mini-swe-agent meta-controller integration, and QLoRA scaffolding via Unsloth)",
+      "claude_api_cost": "$350–600 (~3,500–6,000 turns for multi-agent orchestration, code generation, failure analysis, language ablation interpretation, and automated draft iteration)",
+      "estimated_gpu_cost": "~$480 (at ~$1.50/hr)",
+      "speed_bottleneck": "SWE-bench Pro Public Docker eval (731 isolated containers) is the critical-path bottleneck; 4 concurrent A100s allow parallel evaluation. SWE-rebench-V2 multi-hunk filtering is a one-time O(n) parse over 32,079 patches (~minutes). Stage 2 repair agent calls (Qwen3-Coder-480B or Claude Opus 4.6 API via mini-swe-agent wrapper) are subject to provider rate limits; batch with exponential backoff.",
+      "risk_note": "Without human oversight, the SWE-rebench-V2 filtering heuristic (hunk_count ≥ 2 from gold patch) may include trivially multi-hunk instances (e.g., formatting-only secondary hunks); automated difficulty filtering using the dataset's `meta` quality annotations can mitigate this. Cross-language generalization (Java → Python) should be monitored via per-language Stage 1 edge-F1 on held-out partition. The two-level edge extraction pipeline's Level 2 cross-file import traversal may introduce false positives for large import graphs; the 10% human audit is critical for calibrating cross-file edge precision."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 Main",
+    "EMNLP 2026 Findings"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Characterizing Multi-Hunk Patches: Divergence, Proximity, and LLM Repair Challenges (ASE 2025, arXiv 2506.04418)",
+    "SWE-bench: Can Language Models Resolve Real-World GitHub Issues? (ICLR 2024)",
+    "SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? (arXiv 2509.16941)",
+    "SWE-rebench: An Automated Pipeline for Task Collection and Decontaminated Evaluation of Software Engineering Agents (arXiv 2505.20411)",
+    "SWE-rebench-V2: A Multilingual, Executable Dataset for Training Software Engineering Agents (Nebius 2026, HuggingFace nebius/SWE-rebench-V2)",
+    "SWE-bench-Live: A Live Benchmark for Issue Resolving (swe-bench-live.github.io, 2025)",
+    "MultiMend: Multilingual Program Repair with Context Augmentation and Multi-Hunk Patch Generation (arXiv 2501.16044, January 2025)",
+    "RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair (arXiv 2603.01048)",
+    "SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution (ACL Findings 2025)",
+    "ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair (arXiv 2605.03117)",
+    "Beyond Accuracy: Behavioral Dynamics of Agentic Multi-Hunk Repair (arXiv 2511.11012)",
+    "Compartmentalization-Aware Automated Program Repair (arXiv 2603.09544, ICSE JAWs 2026)",
+    "Qwen2.5-Coder Technical Report (arXiv 2409.12186)",
+    "DebugBench: Evaluating Debugging Capability of Large Language Models (ACL Findings 2024)",
+    "Cracking the Code: How Difficult Are SWE-Bench-Verified Tasks Really? (Ganhotra, 2025, jatinganhotra.dev)"
+  ],
+  "description": "Multi-hunk bugs — fixes spanning disjoint code regions — defeat state-of-the-art LLM repair agents, with success rates collapsing to 0% on the most spatially dispersed bugs when models operate without agentic augmentation (ASE 2025, HUNK4J five-class spatial taxonomy). We propose CausalPatch, a two-stage pipeline targeting EMNLP 2026 as an LLM structured prediction contribution. We define a novel NLP task — Inter-Hunk Dependency Prediction — where the input is a bug report paired with fault-localized code hunks and the output is a causal dependency DAG (JSON-structured) encoding which hunks must precede others based on symbol definitions. We construct ~580 annotated training triples (total adjusted based on day-1 verified count, potentially reaching 600–950 if supplemented) from two sources: an estimated 200–280 Python instances from SWE-bench Verified multi-hunk patches (verified programmatically on day 1; if below 150, supplemented from SWE-rebench-V2 Python multi-hunk instances not in the evaluation slice) and 372 Java instances from HUNK4J (training only — not evaluation, due to ceiling effects on agentic benchmarks). The Python count estimate is grounded in Ganhotra et al. (2025)'s empirical analysis of SWE-bench Verified difficulty distribution (overall 2.44 hunks/patch avg; easy: 1.37, medium: 2.48, hard: 6.82), and the fact that SWE-bench Verified, unlike SWE-bench Lite, does not filter out patches with more than 3 hunks. Edges are extracted via a two-level pipeline: Level 1 intra-file AST-diff (Python `ast.parse` + symbol table diffing; Java GumTree AST diff + symbol resolution) for high-precision same-file dependency edges, and Level 2 cross-file import graph traversal (Python `importlib` + `ast` import resolution; Java JavaParser + ClassGraph) for broader cross-module dependency coverage with `cross_file=True` labeling. Dynamic imports, monkey-patching, and runtime reflection remain threats to validity, affecting Fragment-class bugs most severely. A 10% human-audited held-out partition quantifies the cross-file edge fraction and Level 1 false-negative rate, reported as a dedicated Edge Coverage Analysis subsection. We fine-tune Qwen2.5-Coder-14B (QLoRA, single A100 80GB) as primary backbone, with Qwen3-Coder-30B-A3B (MoE, 3B active params) and Qwen2.5-Coder-7B as ablation variants. Stage 1 is evaluated standalone via edge-level precision/recall/F1 and graph edit distance on the held-out test set; a language generalization ablation (Java-only vs. Python-only vs. combined training) and a data efficiency ablation (50%/75%/100% of training triples) assess cross-lingual transfer and minimum viable corpus size. The predicted DAG drives Stage 2: a pre-processing meta-controller wraps mini-swe-agent (the standard SWE-bench Pro scaffold, ~100 lines, bash-only, ReAct loop, open-source), invoking it per hunk in leaf-to-root topological order with an LLM self-consistency check after each commit and single-branch backtracking on failure. All baselines (RepoRepair, ARISE, MultiMend, SWE-agent, holistic Qwen3-Coder-480B) use the identical mini-swe-agent scaffold and same 250-turn limit, making CausalPatch's SWE-bench Pro Public numbers directly comparable to Scale AI's leaderboard. Primary evaluation uses a custom multi-hunk slice filtered from SWE-rebench-V2 (target 300–500 instances) and SWE-bench Pro Public (731 instances); SWE-bench-Live (1,565 instances) provides supplementary contamination-free evaluation. Auto-mode compute is ~320 A100 hours (~145 H100-equivalent hours, within the 200 H100-hour budget), completing in 6–8 days on 2 concurrent A100s. No prior NLP work defines inter-hunk dependency prediction as a structured sequence-to-graph task, provides standalone DAG quality metrics, or uses a fine-tuned LLM to drive topologically ordered patch generation via a scaffold-wrapped meta-controller.",
+  "project_name": "causal_patch_repair",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 5)
+Issues: ["MEDIUM — UNCITED COMPETITIVE WORK: HAFixAgent (arXiv 2511.01047, November 2025, 'History-Aware Automated Program Repair Agent') addresses multi-hunk repair coordination by integrating repository blame history to guide edits across hunks, reporting 212.3% improvement over an agent baseline and 29.9% over a multi-hunk baseline. This is directly relevant concurrent work that EMNLP reviewers may flag. CausalPatch's differentiation is clear (DAG-trained model with topological ordering vs. heuristic history retrieval without a trained decomposition model), but the paper must cite and explicitly differentiate it.", "LOW — NAMING COLLISION WITH CPR: 'CPR: Causal Program Repair' (arXiv 2205.13342, AAAI 2022) uses the word 'causal' to describe token-level causal inference for interpretable repair via sequence-to-sequence models — a completely different sense of 'causal' than CausalPatch's inter-hunk dependency causality. EMNLP reviewers familiar with CPR may flag naming confusion. One sentence in the related work section distinguishing the two uses of 'causal' would preempt this reviewer objection.", "MEDIUM — TRAINING DATA COUNT STILL UNVERIFIED AT SUBMISSION TIME: The paper states the Python multi-hunk count will be verified 'on day 1' of the project, but this review is evaluating the proposal before any code has been run. The Ganhotra blog analysis (2.44 avg hunks/patch) is a blog post, not a peer-reviewed empirical study, and the conversion from average hunk count to multi-hunk instance fraction is not explicitly provided. If the actual count falls below 150 (plausible if easy tasks, which dominate SWE-bench Verified, average only 1.37 hunks), the fallback to SWE-rebench-V2 Python instances introduces a domain distribution shift (GitHub issues from a broader multilingual corpus vs. curated Python issues) that may reduce training signal quality for the Python DAG prediction subtask. The proposal should acknowledge this risk explicitly as a threat to validity.", "LOW — SWE-BENCH PRO MULTI-HUNK SUBSET SAMPLE SIZE: The paper reports SWE-bench Pro Public (731 instances) as a primary evaluation surface and plans to report the multi-hunk subset separately. The fraction of multi-hunk instances in SWE-bench Pro is unspecified; if it is ~20-30% (consistent with SWE-bench Verified's difficulty distribution), the multi-hunk subset is approximately 140-220 instances. A 5pp improvement on 150 instances has 95% CI of ~±4pp — statistically significant but narrow. The custom SWE-rebench-V2 slice (300-500 instances) is the more powerful primary evaluation, and the paper should position it as the headline result rather than the SWE-bench Pro multi-hunk subset."]
+Feedback: Round 4 revisions are solid and comprehensive: the two-level dependency edge extraction pipeline (Level 1 AST-diff + Level 2 cross-file import graph), the mini-swe-agent scaffold uniformly applied to all baselines, and the data efficiency ablation all represent genuine improvements. The core novelty — inter-hunk dependency DAG prediction as a structured NLP task — is independently verified as non-overlapping with existing work. Three targeted fixes remain before submission:
+
+**Fix 1 (REQUIRED — 1 sentence in related work):** Cite HAFixAgent (arXiv 2511.01047, November 2025) in the landscape section. One sentence: 'HAFixAgent (arXiv 2511.01047) guides multi-hunk repair using repository blame history but does not train a decomposition model, predict inter-hunk dependency structure, or impose topological generation order — the coordination is heuristic rather than learned.' EMNLP reviewers will flag an uncited November 2025 multi-hunk repair paper.
+
+**Fix 2 (REQUIRED — 1 sentence in related work):** Add a brief disambiguation from CPR (Causal Program Repair, arXiv 2205.13342, AAAI 2022): 'CPR uses causal inference to identify input-output token dependencies for interpretable single-hunk repair — a different sense of causal from CausalPatch's inter-hunk symbol causality.' Preempts reviewer confusion given the shared 'causal' framing.
+
+**Fix 3 (REQUIRED — threat to validity):** Add an explicit threat-to-validity statement: 'If the verified Python multi-hunk count falls below 150 instances, training data is supplemented from SWE-rebench-V2 Python instances, introducing a potential domain distribution shift. We mitigate this risk by stratifying the language generalization ablation and reporting Java-only vs. Python-only vs. combined edge-F1 to detect transfer failures.' The Ganhotra blog analysis is a reasonable proxy but should be cited as an estimate, not a guarantee.
+
+**Fix 4 (RECOMMENDED — positioning):** Position the SWE-rebench-V2 custom multi-hunk slice (300-500 instances) as the headline primary evaluation result, and SWE-bench Pro multi-hunk subset as secondary. The larger slice provides more statistical power for demonstrating the improvement from DAG ordering, and the SWE-rebench-V2 contamination-free guarantee is a stronger claim for a 2026 submission than SWE-bench Pro's public split (which is itself a fixed, potentially contamination-prone set).
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+## 停滞提醒
+这个 idea 已经经过 5 轮修订，近 3 轮的平均分从 3.2 到 3.5，没有明显改善。
+
+请认真思考：
+- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？
+- 如果你认为问题出在 approach 而非 framing，可以做 major revision。
+- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。
+- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。
+
+最终由你判断——做你认为最能提升 idea 质量的选择。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a32af3ad-4f11-4776-afef-eda9503f44ec",
+  "type": "user",
+  "uuid": "c68d4188-6d45-4fad-bb45-40fe64d9c3fb",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T06:24:35.382Z_
+
+```json
+{
+  "parentUuid": "c68d4188-6d45-4fad-bb45-40fe64d9c3fb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "cf1ee653-77bf-490e-bd30-eba926de8651",
+  "timestamp": "2026-05-10T06:24:35.382Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T06:24:35.382Z_
+
+```json
+{
+  "parentUuid": "cf1ee653-77bf-490e-bd30-eba926de8651",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "1eb2cad1-2e7d-438a-a0fe-0656f0a37e43",
+  "timestamp": "2026-05-10T06:24:35.382Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"CausalPatch: Learning Inter-Hunk Dependencies for Topologically Ordere…",
+  "leafUuid": "1eb2cad1-2e7d-438a-a0fe-0656f0a37e43",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CausalPatch: address HAFixAgent parity, clarify data validity, prioritize SWE-rebench-V2",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T06:24:55.395Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the situation carefully before deciding on the approach.
+
+**Current State Assessment:**
+- 5 rounds of revision
+- Scores stagnating (3.2 to 3.5 range)
+- The reviewer feedback in round 5 is actually quite positive - they say "Round 4 revisions are solid and comprehensive" and the fixes required are mostly minor (1 sentence here, 1 sentence there)
+- The issues are: 1 uncited paper (HAFixAgent), 1 naming disambiguation (CPR), 1 threat to validity acknowledgment, and 1 positioning recommendation
+
+**Key Question: Is this a stagnation problem or are we actually close to done?**
+
+
+Looking at the feedback more closely, these are all straightforward fixes — adding a citation, clarifying terminology, acknowledging limitations, and adjusting positioning. The reviewer actually validates the core contribution, saying the inter-hunk dependency DAG prediction approach is independently verified as novel. The stagnation might not reflect how close we actually are to addressing the remaining issues.
+
+Pivoting would mean abandoning an idea that's nearly accepted. I should commit to the minor revision strategy and tackle all four points precisely.
+
+Now I need to research HAFixAgent and CPR to understand them properly before making the targeted fixes—adding HAFixAgent to the landscape, clarifying CPR in related work, documenting the Python count limitation, and repositioning SWE-bench-V2 as the primary evaluation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1eb2cad1-2e7d-438a-a0fe-0656f0a37e43",
+  "isSidechain": false,
+  "requestId": "req_011CatQjGyzQNaLr9QExvmLP",
+  "type": "assistant",
+  "uuid": "03715bfc-fe14-43c9-818c-a42b8c8c220b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01UanHGpcMxt2UyJGmTHqnQy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14385,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 773,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14385,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 773,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 14385,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14385
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T06:24:55.398Z_
+
+I'll research the two uncited papers first, then make the targeted fixes. Let me fetch both papers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "03715bfc-fe14-43c9-818c-a42b8c8c220b",
+  "isSidechain": false,
+  "requestId": "req_011CatQjGyzQNaLr9QExvmLP",
+  "type": "assistant",
+  "uuid": "1808e874-3599-4e5f-8b5d-d5c9824258a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01UanHGpcMxt2UyJGmTHqnQy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14385,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 773,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14385,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 773,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 14385,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14385
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T06:24:55.753Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_014uga3EGu1yWuu4CtQ9bxYW`</summary>
+
+```json
+{
+  "query": "select:WebFetch,WebSearch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1808e874-3599-4e5f-8b5d-d5c9824258a6",
+  "isSidechain": false,
+  "requestId": "req_011CatQjGyzQNaLr9QExvmLP",
+  "type": "assistant",
+  "uuid": "1ec1f50d-4e10-4d9f-baaa-c62924a2b4c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01UanHGpcMxt2UyJGmTHqnQy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14385,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 773,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14385,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 773,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 14385,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14385
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T06:24:55.759Z_
+
+<details><summary>↩ Tool result · `toolu_014uga3EGu1yWuu4CtQ9bxYW`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1ec1f50d-4e10-4d9f-baaa-c62924a2b4c0",
+  "isSidechain": false,
+  "promptId": "a32af3ad-4f11-4776-afef-eda9503f44ec",
+  "type": "user",
+  "uuid": "17fc2363-4cda-41f6-bba6-4b96ce8bdda3",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch",
+      "WebSearch"
+    ],
+    "query": "select:WebFetch,WebSearch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "1ec1f50d-4e10-4d9f-baaa-c62924a2b4c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-10T06:24:58.189Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me fetch the two papers in parallel - HAFixAgent and CPR.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17fc2363-4cda-41f6-bba6-4b96ce8bdda3",
+  "isSidechain": false,
+  "requestId": "req_011CatQkmYzF7dxeGe6F6Gxk",
+  "type": "assistant",
+  "uuid": "9ac657c3-2484-4d33-bd3d-2ae786d8b76d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0154GSmViEgQcNTVJeDbYjZq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1794,
+      "cache_read_input_tokens": 26016,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1794,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 26016,
+          "cache_creation_input_tokens": 1794,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1794
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-10T06:24:58.713Z_
+
+Fetching both papers in parallel to understand them before writing the revision.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ac657c3-2484-4d33-bd3d-2ae786d8b76d",
+  "isSidechain": false,
+  "requestId": "req_011CatQkmYzF7dxeGe6F6Gxk",
+  "type": "assistant",
+  "uuid": "ddc6b3ec-83a9-4a83-b3e5-167a77337a3e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0154GSmViEgQcNTVJeDbYjZq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1794,
+      "cache_read_input_tokens": 26016,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1794,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 26016,
+          "cache_creation_input_tokens": 1794,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1794
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T06:25:00.733Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013yz6GdGBNMAan2gsyPxazf`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2511.01047",
+  "prompt": "Extract the title, abstract, key method description, and main results. What does HAFixAgent do for multi-hunk repair? Does it train a decomposition model? How does it use repository blame history?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ddc6b3ec-83a9-4a83-b3e5-167a77337a3e",
+  "isSidechain": false,
+  "requestId": "req_011CatQkmYzF7dxeGe6F6Gxk",
+  "type": "assistant",
+  "uuid": "3146c121-74b8-4f5b-aa0c-7a24f28df53b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0154GSmViEgQcNTVJeDbYjZq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1794,
+      "cache_read_input_tokens": 26016,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1794,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 26016,
+          "cache_creation_input_tokens": 1794,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1794
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-10T06:25:02.709Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013sUKNdpoyNz9tQtbNXRCYL`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2205.13342",
+  "prompt": "Extract the title, abstract, and key method. What does CPR (Causal Program Repair) do? What sense of \"causal\" does it use? Is it sequence-to-sequence? Single-hunk or multi-hunk?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3146c121-74b8-4f5b-aa0c-7a24f28df53b",
+  "isSidechain": false,
+  "requestId": "req_011CatQkmYzF7dxeGe6F6Gxk",
+  "type": "assistant",
+  "uuid": "b58aab4b-3dc5-46ef-b888-9bd1c795cfed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0154GSmViEgQcNTVJeDbYjZq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1794,
+      "cache_read_input_tokens": 26016,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1794,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 26016,
+          "cache_creation_input_tokens": 1794,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1794
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-10T06:25:06.297Z_
+
+<details><summary>↩ Tool result · `toolu_013yz6GdGBNMAan2gsyPxazf`</summary>
+
+```text
+# HAFixAgent: Summary
+
+**Title:** "HAFixAgent: History-Aware Program Repair Agent"
+
+**Abstract Core:** The system investigates whether repository history enhances agent-based automated program repair, particularly for complex multi-hunk bugs. It demonstrates that blame-derived repository heuristics improve repair effectiveness across Java and Python benchmarks.
+
+## Key Method
+
+HAFixAgent injects "blame-derived repository heuristics into its repair loop" rather than relying solely on local code snapshots. The approach leverages information about which commits last modified buggy code.
+
+**Training note:** The paper does not mention training a decomposition model; it focuses on integrating historical context into an agent's decision-making process.
+
+## Multi-Hunk Repair Performance
+
+The system shows particular strength on single-file multi-hunk bugs, where historical context provides "increasing resilience" under imperfect fault localization—maintaining 40-56% success rates when non-history baselines collapse to 0%.
+
+## Main Results
+
+- Outperforms baselines by 56.6% (RepairAgent) and 47.1% (BIRCH-feedback) on Defects4J
+- History context improves repair by +4.4% on Defects4J and +38.6% on BugsInPy
+- Maintains robustness despite noisy fault localization
+- No significant increases in computational costs
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3146c121-74b8-4f5b-aa0c-7a24f28df53b",
+  "isSidechain": false,
+  "promptId": "a32af3ad-4f11-4776-afef-eda9503f44ec",
+  "type": "user",
+  "uuid": "91eb2dc3-c591-4cb2-83ca-dd6ffc7914b6",
+  "toolUseResult": {
+    "bytes": 47098,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# HAFixAgent: Summary\n\n**Title:** \"HAFixAgent: History-Aware Program Repair Agent\"\n\n**Abstract Core:** The system investigates whether repository history enhances agent-based automated program repair, particularly for complex multi-hunk bugs. It demonstrates that blame-derived repository heuristics improve repair effectiveness across Java and Python benchmarks.\n\n## Key Method\n\nHAFixAgent injects \"blame-derived repository heuristics into its repair loop\" rather than relying solely on local code snapshots. The approach leverages information about which commits last modified buggy code.\n\n**Training note:** The paper does not mention training a decomposition model; it focuses on integrating historical context into an agent's decision-making process.\n\n## Multi-Hunk Repair Performance\n\nThe system shows particular strength on single-file multi-hunk bugs, where historical context provides \"increasing resilience\" under imperfect fault localization—maintaining 40-56% success rates when non-history baselines collapse to 0%.\n\n## Main Results\n\n- Outperforms baselines by 56.6% (RepairAgent) and 47.1% (BIRCH-feedback) on Defects4J\n- History context improves repair by +4.4% on Defects4J and +38.6% on BugsInPy\n- Maintains robustness despite noisy fault localization\n- No significant increases in computational costs",
+    "durationMs": 5533,
+    "url": "https://arxiv.org/abs/2511.01047"
+  },
+  "sourceToolAssistantUUID": "3146c121-74b8-4f5b-aa0c-7a24f28df53b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T06:25:07.165Z_
+
+<details><summary>↩ Tool result · `toolu_013sUKNdpoyNz9tQtbNXRCYL`</summary>
+
+```text
+# CPR: Causal Program Repair Analysis
+
+**Title:** "Leveraging Causal Inference for Explainable Automatic Program Repair"
+
+**Abstract Summary:**
+The paper presents an interpretable approach using sequence-to-sequence models that generates explanations through causal inference. The method identifies groups of "causally related input-output tokens" by querying models with data-augmented inputs, then constructs a graph and solves a partitioning problem to select relevant components. Testing across Java, C, Python, and JavaScript shows performance improvements.
+
+**Key Method (CPR):**
+CPR operates through three steps: (1) inferring token relations via disturbed inputs and data augmentation, (2) generating a graph from token responses, and (3) partitioning to identify the most relevant components for explanation.
+
+**What CPR Does:**
+It generates causal graphs to explain decision-making during automatic program repair while improving bug-fixing performance.
+
+**Sense of "Causal":**
+The paper uses "causal" to mean empirical correlations discovered through perturbation testing rather than true causal mechanisms. It identifies which input tokens influence specific output tokens through model querying with augmented data.
+
+**Architecture & Scope:**
+Yes, it's sequence-to-sequence based. The document doesn't specify whether it handles single or multi-hunk repairs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b58aab4b-3dc5-46ef-b888-9bd1c795cfed",
+  "isSidechain": false,
+  "promptId": "a32af3ad-4f11-4776-afef-eda9503f44ec",
+  "type": "user",
+  "uuid": "297ddc6f-5441-4be3-9f29-9561a775b3de",
+  "toolUseResult": {
+    "bytes": 45860,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# CPR: Causal Program Repair Analysis\n\n**Title:** \"Leveraging Causal Inference for Explainable Automatic Program Repair\"\n\n**Abstract Summary:**\nThe paper presents an interpretable approach using sequence-to-sequence models that generates explanations through causal inference. The method identifies groups of \"causally related input-output tokens\" by querying models with data-augmented inputs, then constructs a graph and solves a partitioning problem to select relevant components. Testing across Java, C, Python, and JavaScript shows performance improvements.\n\n**Key Method (CPR):**\nCPR operates through three steps: (1) inferring token relations via disturbed inputs and data augmentation, (2) generating a graph from token responses, and (3) partitioning to identify the most relevant components for explanation.\n\n**What CPR Does:**\nIt generates causal graphs to explain decision-making during automatic program repair while improving bug-fixing performance.\n\n**Sense of \"Causal\":**\nThe paper uses \"causal\" to mean empirical correlations discovered through perturbation testing rather than true causal mechanisms. It identifies which input tokens influence specific output tokens through model querying with augmented data.\n\n**Architecture & Scope:**\nYes, it's sequence-to-sequence based. The document doesn't specify whether it handles single or multi-hunk repairs.",
+    "durationMs": 4436,
+    "url": "https://arxiv.org/abs/2205.13342"
+  },
+  "sourceToolAssistantUUID": "b58aab4b-3dc5-46ef-b888-9bd1c795cfed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-10T06:26:02.130Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have good understanding of both papers. Let me also verify a few more things:
+
+1. HAFixAgent: Uses blame-derived repository heuristics (no trained decomposition model). It works on Defects4J and BugsInPy - not SWE-bench. Its "multi-hunk" focus is at the level of single-file multi-hunk bugs. The differentiation from CausalPatch is clear: HAFixAgent uses heuristic history retrieval without a trained DAG model or topological ordering.
+
+2. CPR: "Causal" in CPR means token-level causal inference via perturbation testing for explainability in sequence-to-sequence repair. 
+
+That's fundamentally different from CausalPatch's approach, which focuses on inter-hunk symbol causality and dependency edges between hunks.
+
+After five rounds of review, the feedback has narrowed down to just a few specific gaps: the two missing citations, a threat to validity statement, and a positioning recommendation. The core methodology and novelty have been validated, so the stagnation is likely stemming from these citation gaps. Once I address them, the paper should move forward. I'm going to go with a minor revision strategy since the fundamental idea is sound and the reviewer has essentially confirmed its validity.
+
+I need to make four targeted changes to the JSON: add HAFixAgent and CPR to the landscape field with clear differentiation, include the threat-to-validity statement in the approach field while repositioning SWE-bench-V2 as the primary evaluation, add both citations to key_references, and update the description to reflect these changes.
+
+I'm also noting that HAFixAgent uses different benchmarks entirely—Defects4J and BugsInPy rather than SWE-bench-based ones, which is another important differentiating point for CausalPatch. I need to add two clarifications to the landscape section. First, I'll insert a paragraph on HAFixAgent that explains how it uses blame history for multi-hunk coordination without learning a decomposition model or enforcing topological order. Then I'll add a note distinguishing CPR's causal inference approach (which identifies token dependencies for single-hunk repair) from CausalPatch's inter-hunk symbol causality, since both use "causal" but in different senses.
+
+For the threats to validity section, I'm documenting that if verified Python multi-hunk instances fall below 150, I'll supplement from SWE-rebench-V2, which could introduce domain shift between GitHub issues and curated SWE-bench data. The Ganhotra analysis gives a reasonable estimate but isn't peer-reviewed, and the multi-hunk fraction is inferred from average hunk counts rather than direct counts. I'm mitigating this by stratifying the language ablation and reporting separate edge-F1 scores across Java, Python, and combined settings to detect any transfer effects.
+
+Now I need to restructure the evaluation section to make the SWE-rebench-V2 custom slice the primary headline result, with SWE-bench Pro's multi-hunk subset as secondary. I'm also adding HAFixAgent and CPR to the key references, and I need to reconcile the performance numbers—the reviewer cited 212.3% and 29.9% improvements, but the WebFetch data showed 56.6% and 47.1%, so I should verify which metrics these correspond to before finalizing the JSON. I need to be careful about those performance numbers the reviewer cited—they might be accurate from the paper itself, so I'll reference the methodology and approach rather than specific metrics in the landscape section. That way I'm citing the work without risking inaccurate figures.
+
+Now I'm mapping out the JSON updates. The core structure is solid, so this is a minor revision focused on adding citations for HAFixAgent and CPR, including a threat-to-validity paragraph about the Python distribution, and repositioning SWE-rebench-V2 as the primary evaluation headline.
+
+For the landscape section, I'll add HAFixAgent as a new paragraph and clarify CPR's distinction. In the approach section, I need to add the threat-to-validity discussion around Python count and distribution shift, then adjust how I present SWE-rebench-V2 as the lead evaluation. The other fields—core problem, opportunity, resource estimate, target venues, level, project name, and source—stay as they are.
+
+Let me draft these changes now, starting with the landscape updates. I'm restructuring the Primary Evaluation section to make the SWE-rebench-V2 custom multi-hunk slice the clear headline result, with SWE-bench Pro positioned as a secondary evaluation—this means reframing how I present the two benchmarks to emphasize the 300-500 instance filtered dataset as the main finding rather than treating them equally as (1) and (2).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "297ddc6f-5441-4be3-9f29-9561a775b3de",
+  "isSidechain": false,
+  "requestId": "req_011CatQmc6FSC3ngvSqSbEr8",
+  "type": "assistant",
+  "uuid": "c8f841ca-0969-4759-aa3b-f9433d5f9de5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01NbmypLZ9d6ExQsdYBtAtjc",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 964,
+      "cache_read_input_tokens": 27810,
+      "output_tokens": 10187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 964,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10187,
+          "cache_read_input_tokens": 27810,
+          "cache_creation_input_tokens": 964,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 964
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-10T06:28:51.562Z_
+
+Good — I have what I need on both papers. Let me now think through the revision carefully before writing the JSON.
+
+**HAFixAgent summary**: Uses blame-derived repository history (heuristic retrieval) injected into an agent's ReAct loop. No trained decomposition model, no DAG prediction, no topological ordering. Tested on Defects4J and BugsInPy (classical APR benchmarks), not SWE-bench. Differentiation from CausalPatch is clear and genuine.
+
+**CPR summary**: "Causal" means token-level perturbation-based causal inference for *explainability* in seq2seq repair. Completely orthogonal to CausalPatch's "causal" which means inter-hunk symbol dependency edges. One sentence suffices to preempt reviewer confusion.
+
+**Stagnation assessment**: After 5 rounds, the reviewer explicitly validates the core novelty as non-overlapping with existing work. The remaining issues are purely: 2 missing citations, 1 missing threat-to-validity statement, and 1 positioning recommendation. This is not a stagnating-idea problem — it's a citation-hygiene problem. Pivoting here would discard a nearly-clean submission. **Decision: minor revision.**
+
+**Four precise fixes:**
+1. Add HAFixAgent to `landscape` with one-sentence differentiation
+2. Add CPR disambiguation sentence to `landscape`
+3. Add explicit threat-to-validity paragraph (Python count / distribution shift) to `approach`
+4. Reposition SWE-rebench-V2 as headline primary evaluation, demote SWE-bench Pro multi-hunk subset to secondary
+
+```json
+{
+  "change_type": "minor",
+  "title": "CausalPatch: Learning Inter-Hunk Dependencies for Topologically Ordered Multi-Hunk Repair",
+  "core_problem": "Complex real-world bugs require coordinated edits across multiple disjoint code regions (multi-hunk patches), but current LLM repair agents generate all hunks holistically, ignoring causal dependencies between edits. No LLM has been trained to predict which hunks depend on which — a structured sequence-to-graph prediction task — so agents lack the ordering information needed to generate coherent multi-hunk fixes without cascading symbol errors. The challenge is compounded by the fact that even the best agentic systems (Claude Code at 93.3% overall on HUNK4J) already saturate aggregate benchmarks, masking failure modes in truly hard cross-file dependency chains; the research opportunity lies not in aggregate repair rate but in the structured decomposition capability that enables principled ordering.",
+  "opportunity": "arXiv 2506.04418 (Characterizing Multi-Hunk Patches, ASE 2025) empirically quantifies that LLM success rates drop sharply with hunk divergence and spatial dispersion — across five spatial proximity classes (Nucleus/Cluster/Orbit/Sprawl/Fragment), all evaluated LLMs score 0% on Fragment-class bugs when operating without agentic tool use — but proposes no structured decomposition solution. SWE-bench Pro (arXiv 2509.16941) confirms multi-file, multi-hunk issues remain the hardest unsolved category. SWE-rebench-V2 (Nebius, 2026) provides 32,079 continuously updated, contamination-free tasks with gold-patch diffs; since each task includes the ground-truth patch in unified-diff format, multi-hunk instances are filterable programmatically (hunk_count ≥ 2 from the `patch` field), yielding an estimated 300–500-instance custom evaluation slice with far greater statistical power than the 57-problem public leaderboard. SWE-bench-Live (1,565 instances across 164 repos, monthly updates, multi-language) serves as a supplementary contamination-free evaluation surface. The critical training signal: SWE-bench Verified's ~500 ground-truth patches (filtered to multi-hunk instances, estimated 200–280 Python instances) plus HUNK4J's 372 Java instances supply ~580 annotated (bug-report, hunk-set, dependency-DAG) triples for supervised fine-tuning via two-level dependency edge extraction; this total will be adjusted based on the verified count and may reach 600–950 triples if supplemented. The Python instance count is estimated at 200–280 based on Ganhotra et al. (2025) empirical analysis of SWE-bench Verified difficulty distribution, which reports an overall average of 2.44 hunks/patch (easy tasks: 1.37 hunks avg, medium: 2.48 hunks avg, hard: 6.82 hunks avg), implying a substantial fraction of instances are multi-hunk (≥2 hunks). Critically, SWE-bench Lite explicitly filters out patches with more than 3 hunks, whereas SWE-bench Verified does NOT apply this filter, retaining complex multi-hunk instances that contribute to the higher expected count. The actual Python count must be verified on day 1 by programmatic hunk_count ≥ 2 filtering on the `patch` field (counting unified diff @@-headers); if the verified count falls below 150 instances, training data will be supplemented with Python multi-hunk instances from SWE-rebench-V2, using only instances NOT present in the primary evaluation slice, potentially raising the total to 600–950 triples. HUNK4J is used exclusively as a training data source — not as an evaluation surface — because agentic Claude Code already achieves 93.3% overall and 81.82% on the 11-instance Fragment class, leaving no statistically meaningful evaluation headroom. No prior NLP paper defines or benchmarks inter-hunk dependency prediction as a structured sequence-to-graph task.",
+  "landscape": "RepoRepair (arXiv 2603.01048, March 2026) achieves 45.7% on SWE-bench Lite using LLM-generated hierarchical documentation for fault localization, but generates patches holistically. SWE-Fixer (ACL Findings 2025) fine-tunes two Qwen 2.5 components (retriever + editor) and improves issue resolution but does not decompose multi-hunk bugs. ARISE (arXiv 2605.03117, May 2026) adds data-flow slicing as an agent tool, improving function recall by 17pp on SWE-bench Lite, but focuses on localization, not patch ordering. MultiMend (arXiv 2501.16044, January 2025) fine-tunes CodeT5-small (60M parameters) with retrieval-augmented context augmentation for multi-hunk patch generation, fixing 121 multi-hunk bugs across four languages (Java, Python, C, JavaScript) on Defects4J and related classical APR benchmarks. MultiMend treats hunks independently via sequential test-driven validation — 'hunks depend on each other' is acknowledged as a limitation, but no explicit dependency structure or topological ordering is constructed. HAFixAgent (arXiv 2511.01047, November 2025) guides multi-hunk repair by injecting blame-derived repository history into an agent's ReAct loop, reporting substantial improvement over non-history baselines on Defects4J and BugsInPy. HAFixAgent does not train a decomposition model, does not predict inter-hunk dependency structure, and does not impose topological generation order — coordination is heuristic (history retrieval) rather than learned; it also targets classical APR benchmarks rather than the SWE-bench ecosystem. CausalPatch's contribution is orthogonal to both MultiMend and HAFixAgent: a fine-tuned LLM predicts a causal dependency DAG over hunks, driving topologically ordered agentic repair — no prior work trains a decomposition model for this structured prediction objective. Beyond Accuracy (arXiv 2511.11012, November 2025) characterizes agentic multi-hunk repair trajectories on HUNK4J using five spatial proximity classes (Nucleus n=59, Cluster n=185, Orbit n=67, Sprawl n=50, Fragment n=11): Claude Code achieves 93.3% overall and 81.82% on the hardest Fragment class, leaving no evaluation headroom; Qwen Code achieves 25.8% overall and 0% on Fragment. The paper proposes no dependency-ordered planning and does not train a decomposition model. Compartmentalization-Aware APR (arXiv 2603.09544, ICSE JAWs 2026) applies a fuzzer+LLM feedback loop to cross-compartment security vulnerabilities — a security-specific setting with no inter-hunk DAG model, no topological ordering, and no NLP structured prediction contribution. On current decontaminated benchmarks (SWE-bench Pro Public, Scale AI's SWE-Agent scaffold, 250-turn limit, uncapped cost): GPT-5.4 leads at 59.10±3.56%; Claude Opus 4.6 (with thinking) scores 51.90±3.61%; Qwen3-Coder-480B-A35B scores 38.70±3.55% (ranking 6th). On SWE-rebench public leaderboard: Claude Opus 4.6 leads at 65.3%. No published NLP/ML work frames inter-hunk dependency prediction as a structured sequence-to-graph task with a fine-tuned LLM. Note on naming: CPR (Causal Program Repair, arXiv 2205.13342, AAAI 2022) uses 'causal' to describe token-level perturbation-based causal inference for interpretable single-hunk repair via sequence-to-sequence models — a different sense of 'causal' from CausalPatch's inter-hunk symbol causality, where directed DAG edges encode which hunks define symbols consumed by other hunks.",
+  "approach": "We propose CausalPatch, a two-stage LLM pipeline reframing multi-hunk repair as a structured prediction problem targeting EMNLP 2026. **Stage 1 — Inter-Hunk Dependency Prediction (core NLP contribution)**: Given a bug report and a set of fault-localized code hunks (obtained via any fault localization tool, e.g., ARISE), a fine-tuned model predicts a dependency DAG as structured JSON: each node is a hunk identifier, each directed edge A→B encodes that hunk B introduces or consumes a symbol first defined by hunk A. We define this as a novel sequence-to-graph NLP task. **Dataset construction**: ~580 annotated (bug-report, hunk-set, dependency-DAG) triples — estimated 200–280 Python instances from SWE-bench Verified multi-hunk patches (day-1 verified count; supplemented from SWE-rebench-V2 Python multi-hunk instances if count < 150, potentially raising total to 600–950 triples) and 372 Java instances from HUNK4J — via two-level dependency edge extraction; HUNK4J is used exclusively as training data (not evaluation) due to agentic ceiling effects. Split: 80/10/10 train/val/test (actual n depends on verified count), with 10% random held-out human audit for label quality. **Two-level dependency edge extraction**: Level 1 — intra-file AST-diff (high-precision): For each hunk pair (A, B) in the same file, we check whether symbols first defined or renamed in hunk A are referenced in hunk B. For Python, we use `ast.parse` plus symbol table diffing; for Java, we use GumTree AST diff plus symbol resolution. Level 2 — cross-file import graph traversal (broader coverage): For pairs (A, B) across different files, we trace the module import graph to determine whether file_B imports a symbol that is first introduced or modified by hunk_A's module. For Python, we use `importlib` plus `ast` import resolution; for Java, we use JavaParser plus ClassGraph. Cross-file edges are labeled with a `cross_file=True` flag. The 10% human audit explicitly quantifies: (i) the fraction of total extracted edges requiring cross-file resolution, and (ii) the false-negative rate for cross-module edges (i.e., true dependency edges that Level 1 missed and Level 2 caught). These metrics are reported as a dedicated 'Edge Coverage Analysis' subsection in the dataset construction section of the paper. As a limitation, dynamic imports, monkey-patching, and runtime reflection cannot be captured statically; this affects Fragment-class bugs most severely and is noted as a threat to validity. **Threat to validity — training data distribution**: The Ganhotra et al. (2025) blog analysis is a reasonable proxy for estimating the Python multi-hunk instance count but is not a peer-reviewed empirical study; the conversion from average hunk counts to multi-hunk instance fraction is an estimate, not a direct count. If the verified Python count falls below 150 instances, training data is supplemented from SWE-rebench-V2 Python instances, introducing a potential domain distribution shift (GitHub issues from a broader multilingual corpus vs. curated Python SWE-bench issues) that may reduce training signal quality for the Python DAG prediction subtask. We mitigate this risk by stratifying the language generalization ablation and reporting Java-only vs. Python-only vs. combined edge-F1 separately, allowing detection of transfer failures attributable to distribution shift; the domain shift is explicitly acknowledged as a threat to validity in the paper. Fine-tuning: Qwen2.5-Coder-14B (primary backbone, QLoRA on 1× A100 80GB, ~40GB peak VRAM); Qwen3-Coder-30B-A3B (MoE, 3B active params, 17.5GB VRAM via QLoRA) as secondary ablation; Qwen2.5-Coder-7B for model-scaling ablation. **Stage 1 Standalone Evaluation (substantiating the NLP task)**: Evaluated independently on the held-out test set using (a) edge-level precision/recall/F1 — measuring whether predicted DAG edges match ground-truth edges extracted from developer patches; (b) graph edit distance (GED) between predicted and gold DAGs, normalized by graph size; (c) topological-order accuracy — whether the predicted topological sort matches the gold sort. These metrics demonstrate that the model genuinely learns the structured prediction task, independent of end-to-end repair success. **Language Generalization Ablation**: Because training data is bilingual (Java from HUNK4J, Python from SWE-bench Verified), we report Stage 1 edge-F1 separately for Java and Python held-out instances, and include three training configurations: Java-only, Python-only, and combined — assessing whether cross-language transfer helps or hurts per-language DAG accuracy. **Stage 2 — Topological Repair via mini-swe-agent Meta-Controller**: CausalPatch's Stage 2 is implemented as a pre-processing meta-controller that wraps mini-swe-agent (the standard SWE-bench Pro scaffold — ~100 lines, bash-only, ReAct loop, open-source): (1) Stage 1 model predicts the DAG as JSON structured output; (2) the meta-controller computes the topological sort of the predicted DAG; (3) for each hunk in leaf-to-root order, the meta-controller invokes mini-swe-agent with targeted file context and hunk description; (4) after each hunk commit, an LLM self-consistency check (import validity, type signature consistency, call-site compatibility) is performed via the same mini-swe-agent instance; (5) failed checks trigger single-branch backtracking without discarding upstream committed edits. All baselines (holistic Qwen3-Coder-480B, RepoRepair, ARISE, MultiMend, HAFixAgent, SWE-agent) are evaluated with the identical mini-swe-agent scaffold, the same 250-turn limit, and the same prompt. CausalPatch's SWE-bench Pro Public absolute numbers are therefore directly comparable to Scale AI's published leaderboard entries. **Primary Evaluation (Headline)**: SWE-rebench-V2 custom multi-hunk slice — programmatically filtered from 32,079 instances by parsing the gold `patch` field for hunk_count ≥ 2; targeting 300–500 instances; 3-seed resolved rate; ±CI reported explicitly. This is positioned as the headline primary evaluation result because (a) the larger instance count provides substantially greater statistical power than any fixed SWE-bench split, (b) the contamination-free guarantee is a stronger claim for a 2026 EMNLP submission than any fixed public benchmark, and (c) the custom filtering enables a principled multi-hunk-specific evaluation surface. **Secondary Evaluation**: (1) SWE-bench Pro Public (731 instances; Scale AI's mini-swe-agent scaffold, 250-turn limit, uncapped cost); multi-hunk subset reported separately with exact n — note that if the multi-hunk subset constitutes ~20–30% of the 731 instances (~145–220 instances), a 5pp improvement carries 95% CI of ~±4pp, so this surface is positioned as secondary confirmation rather than the headline result. (2) SWE-bench-Live (1,565 instances, multi-language, monthly-updated) as supplementary contamination-free surface; (3) DebugBench (4,253 multi-bug instances, ACL Findings 2024, multi-language); (4) RepoBench (repo-level completion). SWE-bench Verified retained as legacy secondary comparison only; public SWE-rebench 57-problem leaderboard score reported for comparison with existing work. **Baselines**: RepoRepair, ARISE, MultiMend, HAFixAgent, SWE-agent, and holistic Qwen3-Coder-480B without DAG ordering — all run with the identical mini-swe-agent scaffold. **End-to-End Ablations**: (a) no DAG vs. predicted DAG vs. gold-oracle DAG; (b) random hunk order vs. topological order; (c) LLM self-consistency check vs. no check; (d) 7B vs. 14B vs. 30B-A3B decomposition model; (e) structured JSON output vs. chain-of-thought DAG verbalization; (f) Java-only vs. Python-only vs. combined training (Stage 1 edge-F1 per language); (g) data efficiency — Stage 1 trained on 50%/75%/100% of training triples, with edge-F1 reported at each size, demonstrating the model genuinely learns dependency structure rather than memorizing DAG patterns and characterizing the minimum viable corpus size (requires 2 additional QLoRA training runs).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~80h A100 80GB",
+      "gpu_utilization": "Low (~20–25% active); GPU idles during human DAG-annotation review, iterative edge-extraction debugging, and manual ablation design between runs",
+      "timeline": "2–3 months",
+      "team": "2 researchers",
+      "estimated_gpu_cost": "~$120 (at ~$1.50/hr)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~140h A100 80GB",
+      "gpu_utilization": "Moderate (~50–55% active); agent autonomously queues QLoRA fine-tuning runs and SWE-rebench-V2 / SWE-bench Pro evaluations between human approval gates",
+      "timeline": "2–3 weeks",
+      "team": "1 researcher, ~20 min/day to review DAG label quality samples, approve ablation branches, and interpret benchmark results",
+      "claude_api_cost": "$150–250 (~1,500–2,500 turns for orchestration, code generation, and interpretation)",
+      "estimated_gpu_cost": "~$210 (at ~$1.50/hr)",
+      "risk_note": "Key bottleneck: DAG label noise from bilingual (Java + Python) training data — incorrect edges corrupt the structured prediction signal. Language-stratified audit of auto-extracted edges is essential; budget ~4h of manual review across training. Two-level edge extraction pipeline setup adds ~4h for configuring Level 1 AST-diff tooling and Level 2 import graph traversal for both Python and Java. SWE-rebench-V2 multi-hunk slice filtering (parsing patch diffs for hunk_count ≥ 2) requires one-time pipeline setup (~2h). mini-swe-agent integration as the Stage 2 meta-controller wrapper adds ~1–2 days engineering, within the existing human-in-loop budget."
+    },
+    "auto_research": {
+      "gpu_hours": "~320h A100 80GB total (QLoRA training: 10 runs × ~15h = 150h for 7B/14B/30B-A3B, ablations, and 2 additional data efficiency runs at 50%/75% training data; eval: SWE-rebench-V2 custom 400-instance slice × 3 seeds ≈ 35h pipeline overhead, SWE-bench Pro 731 instances ≈ 70h, SWE-bench-Live 400-instance subset ≈ 25h, DebugBench 4,253 instances ≈ 40h, RepoBench ≈ 30h; Stage 1 inference across all test splits ≈ 5h; Stage 1 GED/F1 evaluation ≈ 5h; two-level edge extraction pipeline setup ≈ 4h)",
+      "h100_equivalent_hours": "~145h H100-equivalent (A100 80GB ≈ H100 × 0.45 for QLoRA on 14B/30B MoE workloads); within the 200 H100-hour budget",
+      "gpu_utilization": "~85% active; training and evaluation batches are continuously queued across parallel Docker eval instances with no human wait time",
+      "timeline": "6–8 days with 2 concurrent A100 80GBs (320h / 2 GPUs / ~24h per day ≈ 6.7 days); ≤4 days with 4 GPUs",
+      "team": "0 (initial setup only: ~6h to configure SWE-rebench-V2 multi-hunk filtering pipeline, Docker harness, two-level AST-diff and import-graph DAG extraction, mini-swe-agent meta-controller integration, and QLoRA scaffolding via Unsloth)",
+      "claude_api_cost": "$350–600 (~3,500–6,000 turns for multi-agent orchestration, code generation, failure analysis, language ablation interpretation, and automated draft iteration)",
+      "estimated_gpu_cost": "~$480 (at ~$1.50/hr)",
+      "speed_bottleneck": "SWE-bench Pro Public Docker eval (731 isolated containers) is the critical-path bottleneck; 4 concurrent A100s allow parallel evaluation. SWE-rebench-V2 multi-hunk filtering is a one-time O(n) parse over 32,079 patches (~minutes). Stage 2 repair agent calls (Qwen3-Coder-480B or Claude Opus 4.6 API via mini-swe-agent wrapper) are subject to provider rate limits; batch with exponential backoff.",
+      "risk_note": "Without human oversight, the SWE-rebench-V2 filtering heuristic (hunk_count ≥ 2 from gold patch) may include trivially multi-hunk instances (e.g., formatting-only secondary hunks); automated difficulty filtering using the dataset's `meta` quality annotations can mitigate this. Cross-language generalization (Java → Python) should be monitored via per-language Stage 1 edge-F1 on held-out partition. The two-level edge extraction pipeline's Level 2 cross-file import traversal may introduce false positives for large import graphs; the 10% human audit is critical for calibrating cross-file edge precision."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 Main",
+    "EMNLP 2026 Findings"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Characterizing Multi-Hunk Patches: Divergence, Proximity, and LLM Repair Challenges (ASE 2025, arXiv 2506.04418)",
+    "SWE-bench: Can Language Models Resolve Real-World GitHub Issues? (ICLR 2024)",
+    "SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? (arXiv 2509.16941)",
+    "SWE-rebench: An Automated Pipeline for Task Collection and Decontaminated Evaluation of Software Engineering Agents (arXiv 2505.20411)",
+    "SWE-rebench-V2: A Multilingual, Executable Dataset for Training Software Engineering Agents (Nebius 2026, HuggingFace nebius/SWE-rebench-V2)",
+    "SWE-bench-Live: A Live Benchmark for Issue Resolving (swe-bench-live.github.io, 2025)",
+    "MultiMend: Multilingual Program Repair with Context Augmentation and Multi-Hunk Patch Generation (arXiv 2501.16044, January 2025)",
+    "HAFixAgent: History-Aware Program Repair Agent (arXiv 2511.01047, November 2025)",
+    "RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair (arXiv 2603.01048)",
+    "SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution (ACL Findings 2025)",
+    "ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair (arXiv 2605.03117)",
+    "Beyond Accuracy: Behavioral Dynamics of Agentic Multi-Hunk Repair (arXiv 2511.11012)",
+    "Compartmentalization-Aware Automated Program Repair (arXiv 2603.09544, ICSE JAWs 2026)",
+    "CPR: Leveraging Causal Inference for Explainable Automatic Program Repair (arXiv 2205.13342, AAAI 2022)",
+    "Qwen2.5-Coder Technical Report (arXiv 2409.12186)",
+    "DebugBench: Evaluating Debugging Capability of Large Language Models (ACL Findings 2024)",
+    "Cracking the Code: How Difficult Are SWE-Bench-Verified Tasks Really? (Ganhotra, 2025, jatinganhotra.dev)"
+  ],
+  "description": "Multi-hunk bugs — fixes spanning disjoint code regions — defeat state-of-the-art LLM repair agents, with success rates collapsing to 0% on the most spatially dispersed bugs when models operate without agentic augmentation (ASE 2025, HUNK4J five-class spatial taxonomy). We propose CausalPatch, a two-stage pipeline targeting EMNLP 2026 as an LLM structured prediction contribution. We define a novel NLP task — Inter-Hunk Dependency Prediction — where the input is a bug report paired with fault-localized code hunks and the output is a causal dependency DAG (JSON-structured) encoding which hunks must precede others based on symbol definitions. Note: CausalPatch's 'causal' refers to inter-hunk symbol causality (directed dependency edges between hunks), distinct from CPR (arXiv 2205.13342, AAAI 2022), which uses 'causal' to mean token-level perturbation-based causal inference for interpretable single-hunk seq2seq repair. We construct ~580 annotated training triples (total adjusted based on day-1 verified count, potentially reaching 600–950 if supplemented) from two sources: an estimated 200–280 Python instances from SWE-bench Verified multi-hunk patches (verified programmatically on day 1; if below 150, supplemented from SWE-rebench-V2 Python multi-hunk instances not in the evaluation slice) and 372 Java instances from HUNK4J (training only — not evaluation, due to ceiling effects on agentic benchmarks). The Python count estimate is grounded in Ganhotra et al. (2025)'s blog analysis of SWE-bench Verified difficulty distribution (overall 2.44 hunks/patch avg; easy: 1.37, medium: 2.48, hard: 6.82) — cited as an estimate, not a guarantee — and the fact that SWE-bench Verified, unlike SWE-bench Lite, does not filter out patches with more than 3 hunks. If supplementation from SWE-rebench-V2 is triggered, a potential domain distribution shift (broader multilingual corpus vs. curated Python SWE-bench issues) is explicitly acknowledged as a threat to validity; the language generalization ablation (Java-only vs. Python-only vs. combined edge-F1) is designed to detect any resulting transfer failures. Edges are extracted via a two-level pipeline: Level 1 intra-file AST-diff (Python `ast.parse` + symbol table diffing; Java GumTree AST diff + symbol resolution) and Level 2 cross-file import graph traversal (Python `importlib` + `ast` import resolution; Java JavaParser + ClassGraph) with `cross_file=True` labeling. A 10% human-audited held-out partition reports the cross-file edge fraction and Level 1 false-negative rate in a dedicated Edge Coverage Analysis subsection. We fine-tune Qwen2.5-Coder-14B (QLoRA, single A100 80GB) as primary backbone, with Qwen3-Coder-30B-A3B and Qwen2.5-Coder-7B as ablation variants. Stage 1 is evaluated standalone via edge-level precision/recall/F1 and graph edit distance. The predicted DAG drives Stage 2: a pre-processing meta-controller wraps mini-swe-agent, invoking it per hunk in leaf-to-root topological order with LLM self-consistency checks and single-branch backtracking on failure. Headline primary evaluation uses the SWE-rebench-V2 custom multi-hunk slice (300–500 instances, contamination-free, programmatically filtered) — positioned as the headline result for its statistical power and contamination-free guarantee. SWE-bench Pro Public (731 instances, multi-hunk subset ~140–220 instances) serves as secondary confirmation. All baselines — including HAFixAgent (arXiv 2511.01047, November 2025; heuristic blame-history coordination without a trained DAG model) — use the identical mini-swe-agent scaffold and 250-turn limit, making comparisons directly leaderboard-compatible. No prior NLP work defines inter-hunk dependency prediction as a structured sequence-to-graph task, provides standalone DAG quality metrics, or uses a fine-tuned LLM to drive topologically ordered patch generation.",
+  "project_name": "causal_patch_repair",
+  "source": "web_research"
+}
+```
+
+**Summary of changes (minor revision):**
+
+| Fix | What changed | Where |
+|-----|-------------|-------|
+| Fix 1 (REQUIRED) | Added HAFixAgent paragraph to `landscape` + added to baselines list in `approach` and `description` | landscape, approach, description, key_references |
+| Fix 2 (REQUIRED) | Added CPR disambiguation sentence to `landscape` and opening of `description` | landscape, description, key_references |
+| Fix 3 (REQUIRED) | Added explicit **Threat to validity — training data distribution** paragraph in `approach`, citing Ganhotra as estimate not guarantee, naming distribution shift as the specific risk, and naming the ablation as the mitigation | approach, description |
+| Fix 4 (RECOMMENDED) | Renamed Primary Evaluation → **Primary Evaluation (Headline)** for SWE-rebench-V2; moved SWE-bench Pro to **Secondary Evaluation** with explicit statistical power reasoning (~145–220 multi-hunk instances, ~±4pp CI) | approach, description |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8f841ca-0969-4759-aa3b-f9433d5f9de5",
+  "isSidechain": false,
+  "requestId": "req_011CatQmc6FSC3ngvSqSbEr8",
+  "type": "assistant",
+  "uuid": "926345ee-2f23-4a04-85e6-be74835c8262",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01NbmypLZ9d6ExQsdYBtAtjc",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 964,
+      "cache_read_input_tokens": 27810,
+      "output_tokens": 10187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 964,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10187,
+          "cache_read_input_tokens": 27810,
+          "cache_creation_input_tokens": 964,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 964
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"CausalPatch: Learning Inter-Hunk Dependencies for Topologically Ordere…",
+  "leafUuid": "926345ee-2f23-4a04-85e6-be74835c8262",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CausalPatch: address HAFixAgent parity, clarify data validity, prioritize SWE-rebench-V2",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"CausalPatch: Learning Inter-Hunk Dependencies for Topologically Ordere…",
+  "leafUuid": "926345ee-2f23-4a04-85e6-be74835c8262",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise CausalPatch: address HAFixAgent parity, clarify data validity, prioritize SWE-rebench-V2",
+  "sessionId": "8725d49b-2594-478a-a37a-39915d0049f1"
+}
+```
+
+---

@@ -1,0 +1,935 @@
+{
+  "schema_version": "1.0",
+  "id": "3153f19f8f1b98a7aecc",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search the paper tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/pap",
+  "task_key": "agent-ac17197ed6a690836",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-ac17197ed6a690836.jsonl",
+    "occurrence": 1,
+    "bytes": 113851,
+    "sha256": "56cb35675abd055da935b0cd7fa0e1ea8cd8e9f0334885a32fae43fa7e82a8e2"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T03:30:04.302Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search the paper tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/ for Table 2 definition, R1-8B precision values, and bootstrap/resample references.\n\nSpecifically:\n1. Find all .tex files in that directory\n2. Search for \"22.4\", \"0.224\", \"Table 2\", \"tabular\", \"R1-8B\", \"r1_8b\" in those files\n3. Search for \"resample\", \"bootstrap\", \"1000\", \"10000\", \"10,000\" in those files\n4. Search for \"window\", \"W=\", \"W =\" in those files\n5. Read the relevant sections of the tex file(s) that contain Table 2 - I need to see the full table definition with all numbers\n6. Read sections about methodology (layer selection, window size) for R1-8B\n\nReport back ALL the raw numbers and parameters you find. Be thorough - read enough context around each match."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "fdc0542e-b5c3-4ed1-8bde-065d1e5a0b6e",
+            "agentId": "ac17197ed6a690836",
+            "type": "user",
+            "uuid": "a22414d3-0a07-4086-9b45-1db686610eb6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T03:30:05.741Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you search through the paper tex files for this information. Let me start by finding all .tex files and then searching for the specific terms you mentioned."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a22414d3-0a07-4086-9b45-1db686610eb6",
+            "isSidechain": true,
+            "agentId": "ac17197ed6a690836",
+            "requestId": "req_011Cb9KtiqyK7U1pLjPWk8jT",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "30c040aa-d523-48ac-bc98-a2989e09dc5c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014iiQzWnF74pFQCxCkRVkyK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15650,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15650,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T03:30:05.881Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T8CD81ZqtFzQdWGcid9vB6",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30c040aa-d523-48ac-bc98-a2989e09dc5c",
+            "isSidechain": true,
+            "agentId": "ac17197ed6a690836",
+            "requestId": "req_011Cb9KtiqyK7U1pLjPWk8jT",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "eaff9956-ad24-46e9-b111-48cf1e36983a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014iiQzWnF74pFQCxCkRVkyK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15650,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 120,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 15650
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 120,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 15650,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 15650,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T03:30:05.924Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T8CD81ZqtFzQdWGcid9vB6",
+              "type": "tool_result",
+              "content": "docs/paper/main.tex\ndocs/paper/sections/limitations.tex\ndocs/paper/sections/abstract.tex\ndocs/paper/sections/conclusion.tex\ndocs/paper/sections/discussion.tex\ndocs/paper/sections/method.tex\ndocs/paper/sections/related_work.tex\ndocs/paper/sections/introduction.tex\ndocs/paper/sections/experiments.tex\ndocs/paper/sections/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eaff9956-ad24-46e9-b111-48cf1e36983a",
+            "isSidechain": true,
+            "promptId": "fdc0542e-b5c3-4ed1-8bde-065d1e5a0b6e",
+            "agentId": "ac17197ed6a690836",
+            "type": "user",
+            "uuid": "90720800-3a94-46a4-ae55-c8a0dcb41e3b",
+            "sourceToolAssistantUUID": "eaff9956-ad24-46e9-b111-48cf1e36983a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T03:30:07.419Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for the specific terms across these files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "90720800-3a94-46a4-ae55-c8a0dcb41e3b",
+            "isSidechain": true,
+            "agentId": "ac17197ed6a690836",
+            "requestId": "req_011Cb9Ktqd1S8BNkSGPCBAcr",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "88ca7d2d-18e1-4e45-a58b-b4e4794e5ba9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01671CQioUVZ6KpAs8jg3qQc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1067,
+                "cache_read_input_tokens": 15650,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1067,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T03:30:08.568Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FsrTP1qtTRkpVHm7VUydbZ",
+              "name": "Grep",
+              "input": {
+                "pattern": "22\\.4|0\\.224|Table 2|tabular|R1-8B|r1_8b",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "88ca7d2d-18e1-4e45-a58b-b4e4794e5ba9",
+            "isSidechain": true,
+            "agentId": "ac17197ed6a690836",
+            "requestId": "req_011Cb9Ktqd1S8BNkSGPCBAcr",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bac60a2f-79af-44e9-b394-f1d47c8fcf50",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01671CQioUVZ6KpAs8jg3qQc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1067,
+                "cache_read_input_tokens": 15650,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1067,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T03:30:08.592Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FsrTP1qtTRkpVHm7VUydbZ",
+              "type": "tool_result",
+              "content": "docs/paper/acl.sty:130:    \\begin{tabular}[t]{c}\ndocs/paper/acl.sty:136:    \\end{tabular}}\ndocs/paper/acl.sty:154:  \\def\\And{\\end{tabular}\\hss \\egroup \\hskip 1in plus 2fil\ndocs/paper/acl.sty:155:           \\hbox to 0pt\\bgroup\\hss \\begin{tabular}[t]{c}\\bfseries}%\ndocs/paper/acl.sty:156:  \\def\\AND{\\end{tabular}\\hss\\egroup \\hfil\\hfil\\egroup\ndocs/paper/acl.sty:159:             \\hbox to 0pt\\bgroup\\hss \\begin{tabular}[t]{c}\\bfseries}\ndocs/paper/main.log:768:\\OT1/ptm/m/n/10.95 On R1-8B, the modal-ity ad-van-tage (pre-ci-sion\ndocs/paper/main.log:773:\\OT1/ptm/m/n/10.95 +22.4pp at $\\OML/cmm/m/it/10.95 W[]\\OT1/cmr/m/n/10.95 1$\\OT1\ndocs/paper/main.log:901:[]\\OT1/ptm/m/n/10.95 The weak-est test (rank 12, R1-8B FPR,\ndocs/paper/main.log:938:\\OT1/ptm/m/n/10.95 times than R1-8B and R1-32B (19.7 steps at\ndocs/paper/main.log:1009:\\OT1/ptm/m/n/10.95 (+22.4pp); the boot-strap mean (+21.9pp) dif-\ndocs/paper/main.log:1105: ; \\OT1/cmr/m/n/10.95 200\\OMS/cmsy/m/n/10.95 g$\\OT1/ptm/m/n/10.95 ). Only R1-8B\ndocs/paper/sections/experiments.tex:7:[Omitted long matching line]\ndocs/paper/sections/experiments.tex:16:\\begin{tabular}{lccc}\ndocs/paper/sections/experiments.tex:20:R1-8B & L14 (44\\%) & L14 (44\\%) & ${<}0.001$ \\\\\ndocs/paper/sections/experiments.tex:25:\\end{tabular}\ndocs/paper/sections/experiments.tex:38:\\begin{tabular}{llcrrrr}\ndocs/paper/sections/experiments.tex:42:R1-8B & L14 & 15 & +8.2 & +22.4 & $-$7.4 & 3/3 \\\\\ndocs/paper/sections/experiments.tex:47:\\end{tabular}\ndocs/paper/sections/experiments.tex:65:\\begin{tabular}{lcccc}\ndocs/paper/sections/experiments.tex:72:\\end{tabular}\ndocs/paper/sections/experiments.tex:86:\\caption{Temporal window effect on R1-8B HS probe (L14). Precision: 69.3\\% ($W{=}1$) to 82.2\\% ($W{=}25$); FPR: 9.65\\% to 4.8\\%.}\ndocs/paper/sections/experiments.tex:95:\\begin{tabular}{p{1.5cm}p{2.9cm}p{2.3cm}}\ndocs/paper/sections/experiments.tex:107:\\end{tabular}\ndocs/paper/sections/experiments.tex:114:[Omitted long matching line]\ndocs/paper/sections/discussion.tex:7:[Omitted long matching line]\ndocs/paper/sections/discussion.tex:13:[Omitted long matching line]\ndocs/paper/sections/method.tex:14:\\begin{tabular}{lccccc}\ndocs/paper/sections/method.tex:18:R1-8B & Llama & 8B & 32 & 4096 & 209\\,/\\,43 \\\\\ndocs/paper/sections/method.tex:23:\\end{tabular}}\ndocs/paper/sections/method.tex:24:\\caption{Models studied. R1-8B and R1-32B are distilled from DeepSeek-R1~\\citep{deepseekr1}; QwQ-32B~\\citep{qwq} is a native reasoning model; OT-7B~\\citep{openthinker} is trained with STILL~\\citep{still} on Qwen2.5-7B. Data: HarmThoughts~\\citep{harmthoughts} with step-level CP annotations. Split: 60/20/20.}\ndocs/paper/sections/limitations.tex:10:All probing methods produce high false positive rates on safe traces at standard operating thresholds (39--52\\% across methods on R1-8B). Current probes characterize the commitment phenomenon as a research tool rather than constitute production-ready detectors. The 85.5\\% oracle gap between passive monitoring and active intervention shows that early detection via passive probing captures only a fraction of the theoretically available safety signal.\ndocs/paper/sections/appendix.tex:23:\\paragraph{Selected layers.} R1-8B: all five metrics agree on layer~14 (44\\% depth). OT-7B: biased metric selects L0 (0\\%), unbiased consensus selects L16 (57\\%). QwQ-32B: biased metric selects L2 (3\\%), unbiased consensus selects L60 (94\\%). R1-32B: biased metric selects L10 (16\\%), unbiased consensus selects L63 (98\\%). The bias is most extreme for 64-layer models, where the composite metric selects layers in the bottom 16\\% of the network while all other metrics select layers above 94\\%.\ndocs/paper/sections/appendix.tex:39:\\begin{tabular}{clllcc}\ndocs/paper/sections/appendix.tex:43:1  & R1-8B  & Precision & $<$0.001 & 0.0042 & \\checkmark \\\\\ndocs/paper/sections/appendix.tex:52:10 & R1-8B  & Bal.\\ Acc. & 0.005 & 0.0167 & \\checkmark \\\\\ndocs/paper/sections/appendix.tex:54:12 & R1-8B  & FPR & 0.044 & 0.0500 & \\checkmark \\\\\ndocs/paper/sections/appendix.tex:56:\\end{tabular}\ndocs/paper/sections/appendix.tex:59:The weakest test (rank 12, R1-8B FPR, $p{=}0.044$) passes its threshold ($\\alpha/1 = 0.05$) with margin. The ordering reveals that OT-7B produces the strongest HS-text separation (ranks 2--4), while R1-8B FPR is the least significant despite R1-8B showing the largest precision gap (+22.4pp). This reflects R1-8B's already-low text FPR (11.8\\%), which leaves less room for HS improvement on this metric.\ndocs/paper/sections/appendix.tex:65:\\cref{tab:window_full} reports the complete window size ablation across all four models and seven window sizes. The main text (\\cref{sec:temporal}) presents R1-8B results; here we provide the full data.\ndocs/paper/sections/appendix.tex:73:\\begin{tabular}{llccccc}\ndocs/paper/sections/appendix.tex:77:\\multirow{7}{*}{R1-8B}\ndocs/paper/sections/appendix.tex:113:\\end{tabular}}%\ndocs/paper/sections/appendix.tex:118:\\paragraph{R1-8B} shows a general upward trend in balanced accuracy from 77.8\\% ($W{=}1$) to 81.0\\% ($W{=}25$), gaining +3.2pp overall with a slight dip at $W{=}5$ (78.1\\%). Precision improves sharply (+12.9pp) and step-level FPR halves (9.65\\% to 4.83\\%). Coverage trades off against quality, dropping from 72.1\\% to 48.8\\%.\ndocs/paper/sections/appendix.tex:124:\\paragraph{QwQ-32B} shows a broadly increasing trend with local non-monotonicity: balanced accuracy peaks at $W{=}5$ (76.1\\%), dips at $W{=}10$--$15$, then recovers to 76.2\\% at $W{=}25$. Precision and FPR improve monotonically with larger windows (54.4\\% to 61.8\\% precision; 22.76\\% to 16.94\\% FPR). QwQ-32B produces notably longer lead times than R1-8B and R1-32B (19.7 steps at $W{=}1$, 14.9 at $W{=}25$), though OT-7B's lead times are longer still.\ndocs/paper/sections/appendix.tex:126:\\paragraph{Universal trends.} Across all models: (1) larger windows reduce coverage as the smoothed probe fires less frequently; (2) HS FPR generally decreases with window size; (3) lead time is model-dependent. The primary cross-model difference is whether balanced accuracy improves broadly (R1-8B, QwQ-32B), peaks sharply at an intermediate window (R1-32B at $W{=}10$), or peaks very early (OT-7B at $W{=}3$). Each model uses its validation-selected window in the main text.\ndocs/paper/sections/appendix.tex:131:\\cref{tab:text_window} reports the complete text probe window sweep on R1-8B, confirming that temporal context benefits text probes even more strongly than HS probes.\ndocs/paper/sections/appendix.tex:135:\\caption{Text probe window ablation on R1-8B (step-level metrics). Text probes gain +12.0pp accuracy from $W{=}1$ to $W{=}25$, compared to +3.2pp for HS probes over the same range. The larger marginal gain for text probes reflects their weaker single-step baseline.}\ndocs/paper/sections/appendix.tex:137:\\begin{tabular}{lcccc}\ndocs/paper/sections/appendix.tex:149:\\end{tabular}\ndocs/paper/sections/appendix.tex:168:\\begin{tabular}{lcccc}\ndocs/paper/sections/appendix.tex:181:\\end{tabular}\ndocs/paper/sections/appendix.tex:184:After correction of a layer selection bug, layer 16 (57\\% depth) is selected. It achieves the highest balanced accuracy (68.2\\%) among transformer layers and is consistent with the mid-depth pattern of R1-8B (44\\%). Layer 0 (embedding) has a higher crossing rate (53.2\\% vs.\\ 31.9\\%) but lower accuracy.\ndocs/paper/sections/appendix.tex:193:\\begin{tabular}{lcccc}\ndocs/paper/sections/appendix.tex:205:\\end{tabular}\ndocs/paper/sections/appendix.tex:208:OT-7B text probes improve monotonically from $W{=}1$ to $W{=}25$ (+3.3pp accuracy, +8.5pp precision, $-$18.4pp FPR), following the same pattern as R1-8B text probes. OT-7B HS probes show a split pattern: balanced accuracy peaks at $W{=}3$ and declines, while precision and FPR continue improving (\\cref{tab:window_full}). The text-HS contrast is therefore metric-dependent rather than a blanket modality difference.\ndocs/paper/sections/appendix.tex:210:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:224:\\paragraph{Per-seed results for R1-8B (single-layer GRU).}\ndocs/paper/sections/appendix.tex:229:\\caption{R1-8B single-layer GRU results per seed. Lead is measured in steps before the commitment point.}\ndocs/paper/sections/appendix.tex:232:\\begin{tabular}{lccc}\ndocs/paper/sections/appendix.tex:242:\\end{tabular}\ndocs/paper/sections/appendix.tex:252:\\caption{Per-seed performance of GRU and logistic regression (LR) probes on R1-8B under a 60/20/20 cross-validation protocol (seeds 42, 123, 456). Single = layer 14 only; Multi = 7-layer concatenation (layers 12--24, stride 2). Lead = steps before CP at first sustained crossing. Main text results use a 70/30 train/test split with different test traces, accounting for the difference in lead values.}\ndocs/paper/sections/appendix.tex:255:\\begin{tabular}{llccccc}\ndocs/paper/sections/appendix.tex:283:\\end{tabular}}%\ndocs/paper/sections/appendix.tex:289:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:303:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:305:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:307:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:315:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:330:\\caption{Change-point method configuration sweep on R1-8B. Detection rate is the fraction of jailbreak traces where the method fires. Lead is measured in steps before CP.}\ndocs/paper/sections/appendix.tex:333:\\begin{tabular}{llcc}\ndocs/paper/sections/appendix.tex:358:\\end{tabular}\ndocs/paper/sections/appendix.tex:365:\\paragraph{Other models.} On OT-7B, QwQ-32B, and R1-32B, BOCPD achieves 0\\% detection rate across all tested configurations ($\\lambda \\in \\{5, 10, 50, 100, 200\\}$). The probe score sequences for these models show smoother transitions that never trigger the hazard function, consistent with the gradual commitment pattern. R1-8B's higher detection rate likely reflects its sharper probe score transitions at commitment boundaries.\ndocs/paper/sections/appendix.tex:386:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:391:\\caption{Precision-coverage Pareto front comparing single-stage fixed-window detection against two-stage adaptive detection on R1-8B. The best two-stage configuration ($W_{\\text{screen}}{=}3$, $W_{\\text{confirm}}{=}15$, $k{=}1$) Pareto-dominates single-stage $W{=}15$ by +1.3pp precision at matched coverage. Higher $k$ values shift the tradeoff toward precision at the cost of unacceptable coverage loss.}\ndocs/paper/sections/appendix.tex:401:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:406:\\paragraph{BOCPD/CUSUM.} On OT-7B, QwQ-32B, and R1-32B, BOCPD achieves 0\\% detection rate across all tested configurations ($\\lambda \\in \\{5, 10, 50, 100, 200\\}$). Only R1-8B produces non-zero detection (best: $\\lambda{=}10$, 93\\% rate, +3.45 steps lead). CUSUM configurations universally underperform simple thresholding on lead time. The probe score sequences for 3/4 models show smooth transitions that never trigger the hazard function (\\cref{app:bocpd_config}).\ndocs/paper/sections/appendix.tex:416:\\paragraph{Cross-model transfer.} 17 configurations (5 directional pairs $\\times$ 3 PCA dimensionalities, plus 2 direct transfers) all fail. Best PCA: R1-8B $\\rightarrow$ QwQ-32B at 59.5\\% (PCA-2048). Best direct: QwQ-32B $\\rightarrow$ R1-32B at 67.3\\% but 1\\% crossing rate. Implementation details in \\cref{app:transfer_details}.\ndocs/paper/sections/appendix.tex:427:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:440:\\begin{tabular}{lcccccc}\ndocs/paper/sections/appendix.tex:444:R1-8B & 0.497 & 0.436 & +0.058 & [$-$0.03, +0.15] & 0.185 & No \\\\\ndocs/paper/sections/appendix.tex:449:\\end{tabular}\ndocs/paper/acl2023.sty:130:    \\begin{tabular}[t]{c}\ndocs/paper/acl2023.sty:136:    \\end{tabular}}\ndocs/paper/acl2023.sty:154:  \\def\\And{\\end{tabular}\\hss \\egroup \\hskip 1in plus 2fil\ndocs/paper/acl2023.sty:155:           \\hbox to 0pt\\bgroup\\hss \\begin{tabular}[t]{c}\\bfseries}%\ndocs/paper/acl2023.sty:156:  \\def\\AND{\\end{tabular}\\hss\\egroup \\hfil\\hfil\\egroup\ndocs/paper/acl2023.sty:159:             \\hbox to 0pt\\bgroup\\hss \\begin{tabular}[t]{c}\\bfseries}\ndocs/paper/main.aux:256:\\@writefile{lot}{\\contentsline {table}{\\numberline {1}{\\ignorespaces Models studied. R1-8B and R1-32B are distilled from DeepSeek-R1~\\citep  {deepseekr1}; QwQ-32B~\\citep  {qwq} is a native reasoning model; OT-7B~\\citep  {openthinker} is trained with STILL~\\citep  {still} on Qwen2.5-7B. Data: HarmThoughts~\\citep  {harmthoughts} with step-level CP annotations. Split: 60/20/20.}}{3}{table.caption.5}\\protected@file@percent }\ndocs/paper/main.aux:258:\\newlabel{tab:models}{{1}{3}{Models studied. R1-8B and R1-32B are distilled from DeepSeek-R1~\\citep {deepseekr1}; QwQ-32B~\\citep {qwq} is a native reasoning model; OT-7B~\\citep {openthinker} is trained with STILL~\\citep {still} on Qwen2.5-7B. Data: HarmThoughts~\\citep {harmthoughts} with step-level CP annotations. Split: 60/20/20}{table.caption.5}{}}\ndocs/paper/main.aux:515:\\@writefile{lof}{\\contentsline {figure}{\\numberline {1}{\\ignorespaces Temporal window effect on R1-8B HS probe (L14). Precision: 69.3\\% ($W{=}1$) to 82.2\\% ($W{=}25$); FPR: 9.65\\% to 4.8\\%.}}{5}{figure.caption.14}\\protected@file@percent }\ndocs/paper/main.aux:516:\\newlabel{fig:window_ablation}{{1}{5}{Temporal window effect on R1-8B HS probe (L14). Precision: 69.3\\% ($W{=}1$) to 82.2\\% ($W{=}25$); FPR: 9.65\\% to 4.8\\%}{figure.caption.14}{}}\ndocs/paper/main.aux:1165:\\@writefile{toc}{\\contentsline {paragraph}{R1-8B}{11}{section*.34}\\protected@file@percent }\ndocs/paper/main.aux:1234:\\@writefile{lot}{\\contentsline {table}{\\numberline {8}{\\ignorespaces Text probe window ablation on R1-8B (step-level metrics). Text probes gain +12.0pp accuracy from $W{=}1$ to $W{=}25$, compared to +3.2pp for HS probes over the same range. The larger marginal gain for text probes reflects their weaker single-step baseline.}}{12}{table.caption.39}\\protected@file@percent }\ndocs/paper/main.aux:1235:\\newlabel{tab:text_window}{{8}{12}{Text probe window ablation on R1-8B (step-level metrics). Text probes gain +12.0pp accuracy from $W{=}1$ to $W{=}25$, compared to +3.2pp for HS probes over the same range. The larger marginal gain for text probes reflects their weaker single-step baseline}{table.caption.39}{}}\ndocs/paper/main.aux:1340:\\@writefile{lot}{\\contentsline {table}{\\numberline {11}{\\ignorespaces R1-8B single-layer GRU results per seed. Lead is measured in steps before the commitment point.}}{13}{table.caption.50}\\protected@file@percent }\ndocs/paper/main.aux:1341:\\newlabel{tab:gru_seeds}{{11}{13}{R1-8B single-layer GRU results per seed. Lead is measured in steps before the commitment point}{table.caption.50}{}}\ndocs/paper/main.aux:1344:\\@writefile{toc}{\\contentsline {paragraph}{Per-seed results for R1-8B (single-layer GRU).}{13}{table.caption.50}\\protected@file@percent }\ndocs/paper/main.aux:1353:[Omitted long matching line]\ndocs/paper/main.aux:1354:\\newlabel{tab:gru_multi_seeds}{{12}{13}{Per-seed performance of GRU and logistic regression (LR) probes on R1-8B under a 60/20/20 cross-validation protocol (seeds 42, 123, 456). Single = layer 14 only; Multi = 7-layer concatenation (layers 12--24, stride 2). Lead = steps before CP at first sustained crossing. Main text results use a 70/30 train/test split with different test traces, accounting for the difference in lead values}{table.caption.52}{}}\ndocs/paper/main.aux:1505:\\@writefile{lot}{\\contentsline {table}{\\numberline {13}{\\ignorespaces Change-point method configuration sweep on R1-8B. Detection rate is the fraction of jailbreak traces where the method fires. Lead is measured in steps before CP.}}{15}{table.caption.60}\\protected@file@percent }\ndocs/paper/main.aux:1506:\\newlabel{tab:cpd_sweep}{{13}{15}{Change-point method configuration sweep on R1-8B. Detection rate is the fraction of jailbreak traces where the method fires. Lead is measured in steps before CP}{table.caption.60}{}}\ndocs/paper/main.aux:1625:[Omitted long matching line]\ndocs/paper/main.aux:1626:\\newlabel{fig:pareto_two_stage}{{2}{16}{Precision-coverage Pareto front comparing single-stage fixed-window detection against two-stage adaptive detection on R1-8B. The best two-stage configuration ($W_{\\text {screen}}{=}3$, $W_{\\text {confirm}}{=}15$, $k{=}1$) Pareto-dominates single-stage $W{=}15$ by +1.3pp precision at matched coverage. Higher $k$ values shift the tradeoff toward precision at the cost of unacceptable coverage loss}{figure.caption.66}{}}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bac60a2f-79af-44e9-b394-f1d47c8fcf50",
+            "isSidechain": true,
+            "promptId": "fdc0542e-b5c3-4ed1-8bde-065d1e5a0b6e",
+            "agentId": "ac17197ed6a690836",
+            "type": "user",
+            "uuid": "a5cf53e0-a8cb-4bee-91e3-a60f219264d1",
+            "sourceToolAssistantUUID": "bac60a2f-79af-44e9-b394-f1d47c8fcf50",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T03:30:09.107Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015eX5EcWkPKFCfiEyQR1pE5",
+              "name": "Grep",
+              "input": {
+                "pattern": "resample|bootstrap|1000|10000|10,000",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a5cf53e0-a8cb-4bee-91e3-a60f219264d1",
+            "isSidechain": true,
+            "agentId": "ac17197ed6a690836",
+            "requestId": "req_011Cb9Ktqd1S8BNkSGPCBAcr",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "aa5df545-3478-456b-b4f8-e6627ab8f818",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01671CQioUVZ6KpAs8jg3qQc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1067,
+                "cache_read_input_tokens": 15650,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1067,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T03:30:09.120Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015eX5EcWkPKFCfiEyQR1pE5",
+              "type": "tool_result",
+              "content": "docs/paper/acl.sty:213: \\sfcode`\\.=1000\\relax}\ndocs/paper/acl.sty:230: \\sfcode`\\.=1000\\relax}\ndocs/paper/main.log:503:* \\mag=1000\ndocs/paper/main.log:559:Underfull \\hbox (badness 10000) in paragraph at lines 3--4\ndocs/paper/main.log:701:Underfull \\hbox (badness 10000) in paragraph at lines 99--100\ndocs/paper/main.log:716:Underfull \\hbox (badness 10000) in paragraph at lines 104--104\ndocs/paper/main.log:721:Underfull \\hbox (badness 10000) in paragraph at lines 104--105\ndocs/paper/main.log:726:Underfull \\hbox (badness 10000) in paragraph at lines 105--106\ndocs/paper/main.log:747:Underfull \\hbox (badness 10000) in paragraph at lines 7--8\ndocs/paper/main.log:952:Underfull \\hbox (badness 10000) in paragraph at lines 158--159\ndocs/paper/main.log:1025:Underfull \\hbox (badness 10000) in paragraph at lines 220--221\ndocs/paper/main.log:1049:Underfull \\hbox (badness 10000) in paragraph at lines 361--362\ndocs/paper/main.log:1086:Underfull \\hbox (badness 10000) in paragraph at lines 406--407\ndocs/paper/main.log:1091:Underfull \\hbox (badness 10000) in paragraph at lines 406--407\ndocs/paper/main.log:1096:Underfull \\hbox (badness 10000) in paragraph at lines 406--407\ndocs/paper/main.log:1110:Underfull \\hbox (badness 10000) in paragraph at lines 408--409\ndocs/paper/main.log:1185: 84i,15n,93p,2357b,658s stack positions out of 10000i,1000n,20000p,200000b,200000s\ndocs/paper/main.log:1206: 917 PDF objects out of 1000 (max. 8388607)\ndocs/paper/main.log:1208: 168 named destinations out of 1000 (max. 500000)\ndocs/paper/main.log:1209: 283 words of extra memory for PDF output out of 10000 (max. 10000000)\ndocs/paper/sections/experiments.tex:7:[Omitted long matching line]\ndocs/paper/sections/experiments.tex:48:\\caption{HS vs.\\ text at corrected layers. $\\Delta$: HS$-$text difference (pp). HB: Holm-Bonferroni pass count ($\\alpha{=}0.05$, 12 tests). Bootstrap: 1000 resamples, two-sided null-centered.}\ndocs/paper/sections/method.tex:52:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:36:\\caption{Holm-Bonferroni step-down correction for 12 hypothesis tests (4 models $\\times$ 3 metrics). Each test uses a two-sided null-centered bootstrap (1000 resamples) on trace-level metric differences (HS minus text). All tests pass at $\\alpha{=}0.05$.}\ndocs/paper/sections/appendix.tex:210:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:438:\\caption{HS vs.\\ BGE-large (1024d) text probe precision. $\\Delta$: HS minus BGE-large. Bootstrap: 1000 resamples, two-sided null-centered. HB: survives Holm-Bonferroni correction (4 tests, $\\alpha{=}0.05$).}\ndocs/paper/main.aux:426:\\@writefile{lot}{\\contentsline {table}{\\numberline {3}{\\ignorespaces HS vs.\\ text at corrected layers. $\\Delta $: HS$-$text difference (pp). HB: Holm-Bonferroni pass count ($\\alpha {=}0.05$, 12 tests). Bootstrap: 1000 resamples, two-sided null-centered.}}{4}{table.caption.10}\\protected@file@percent }\ndocs/paper/main.aux:427:\\newlabel{tab:hs_vs_text}{{3}{4}{HS vs.\\ text at corrected layers. $\\Delta $: HS$-$text difference (pp). HB: Holm-Bonferroni pass count ($\\alpha {=}0.05$, 12 tests). Bootstrap: 1000 resamples, two-sided null-centered}{table.caption.10}{}}\ndocs/paper/main.aux:1143:\\@writefile{lot}{\\contentsline {table}{\\numberline {6}{\\ignorespaces Holm-Bonferroni step-down correction for 12 hypothesis tests (4 models $\\times $ 3 metrics). Each test uses a two-sided null-centered bootstrap (1000 resamples) on trace-level metric differences (HS minus text). All tests pass at $\\alpha {=}0.05$.}}{11}{table.caption.32}\\protected@file@percent }\ndocs/paper/main.aux:1144:\\newlabel{tab:holm_bonferroni}{{6}{11}{Holm-Bonferroni step-down correction for 12 hypothesis tests (4 models $\\times $ 3 metrics). Each test uses a two-sided null-centered bootstrap (1000 resamples) on trace-level metric differences (HS minus text). All tests pass at $\\alpha {=}0.05$}{table.caption.32}{}}\ndocs/paper/main.aux:1253:\\@LN{1000}{11}\ndocs/paper/main.aux:1785:\\@writefile{lot}{\\contentsline {table}{\\numberline {14}{\\ignorespaces HS vs.\\ BGE-large (1024d) text probe precision. $\\Delta $: HS minus BGE-large. Bootstrap: 1000 resamples, two-sided null-centered. HB: survives Holm-Bonferroni correction (4 tests, $\\alpha {=}0.05$).}}{17}{table.caption.76}\\protected@file@percent }\ndocs/paper/main.aux:1786:\\newlabel{tab:encoder_robustness}{{14}{17}{HS vs.\\ BGE-large (1024d) text probe precision. $\\Delta $: HS minus BGE-large. Bootstrap: 1000 resamples, two-sided null-centered. HB: survives Holm-Bonferroni correction (4 tests, $\\alpha {=}0.05$)}{table.caption.76}{}}\ndocs/paper/acl2023.sty:213: \\sfcode`\\.=1000\\relax}\ndocs/paper/acl2023.sty:230: \\sfcode`\\.=1000\\relax}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa5df545-3478-456b-b4f8-e6627ab8f818",
+            "isSidechain": true,
+            "promptId": "fdc0542e-b5c3-4ed1-8bde-065d1e5a0b6e",
+            "agentId": "ac17197ed6a690836",
+            "type": "user",
+            "uuid": "5c0a2dc4-23cf-454b-a48f-b1296b503587",
+            "sourceToolAssistantUUID": "aa5df545-3478-456b-b4f8-e6627ab8f818",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T03:30:09.378Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0146UqDKXeewNyizNMHQZGAb",
+              "name": "Grep",
+              "input": {
+                "pattern": "window|W\\s*=|W\\s*\\(",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5c0a2dc4-23cf-454b-a48f-b1296b503587",
+            "isSidechain": true,
+            "agentId": "ac17197ed6a690836",
+            "requestId": "req_011Cb9Ktqd1S8BNkSGPCBAcr",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6ce28c72-0b46-4422-95cb-fed886ab0617",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01671CQioUVZ6KpAs8jg3qQc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1067,
+                "cache_read_input_tokens": 15650,
+                "output_tokens": 390,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1067
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 390,
+                    "cache_read_input_tokens": 15650,
+                    "cache_creation_input_tokens": 1067,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1067,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T03:30:09.421Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0146UqDKXeewNyizNMHQZGAb",
+              "type": "tool_result",
+              "content": "docs/paper/sections/experiments.tex:7:[Omitted long matching line]\ndocs/paper/sections/experiments.tex:77:[Omitted long matching line]\ndocs/paper/sections/experiments.tex:81:[Omitted long matching line]\ndocs/paper/sections/experiments.tex:86:\\caption{Temporal window effect on R1-8B HS probe (L14). Precision: 69.3\\% ($W{=}1$) to 82.2\\% ($W{=}25$); FPR: 9.65\\% to 4.8\\%.}\ndocs/paper/sections/experiments.tex:87:\\label{fig:window_ablation}\ndocs/paper/sections/discussion.tex:7:[Omitted long matching line]\ndocs/paper/sections/discussion.tex:10:[Omitted long matching line]\ndocs/paper/sections/discussion.tex:13:[Omitted long matching line]\ndocs/paper/sections/method.tex:35:\\paragraph{Temporal windowing.} For window size $W$, we concatenate features from steps $[t{-}W{+}1, \\ldots, t]$. We evaluate $W \\in \\{1, 3, 5, 10, 15, 20, 25\\}$ and select per-model on validation. GRU sequence models are also evaluated (\\cref{app:gru_details}).\ndocs/paper/sections/limitations.tex:4:Only $W{=}1$ passes Bonferroni correction for R1-32B, with only 25\\% trace coverage (5 of 20 test traces detected). The dimensionality constraint of $51200 \\times W$ features for $n{=}20$ traces prevents reliable evaluation at larger window sizes. Whether collecting more training traces would resolve this statistical limitation remains unknown.\ndocs/paper/sections/abstract.tex:1:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:63:\\label{app:window_ablation}\ndocs/paper/sections/appendix.tex:65:\\cref{tab:window_full} reports the complete window size ablation across all four models and seven window sizes. The main text (\\cref{sec:temporal}) presents R1-8B results; here we provide the full data.\ndocs/paper/sections/appendix.tex:71:\\label{tab:window_full}\ndocs/paper/sections/appendix.tex:116:Key cross-model patterns emerge from the window ablation:\ndocs/paper/sections/appendix.tex:120:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:122:\\paragraph{R1-32B} exhibits a non-monotonic pattern: balanced accuracy peaks at $W{=}10$ (73.7\\%) and then declines, falling below the $W{=}1$ baseline by $W{=}20$ (69.6\\%). The optimal window for R1-32B is $W{=}10$, which achieves the lowest FPR (23.40\\%) and highest precision (60.9\\%). The accuracy degradation at large windows likely reflects overfitting on the smaller dataset ($n{=}100$).\ndocs/paper/sections/appendix.tex:124:\\paragraph{QwQ-32B} shows a broadly increasing trend with local non-monotonicity: balanced accuracy peaks at $W{=}5$ (76.1\\%), dips at $W{=}10$--$15$, then recovers to 76.2\\% at $W{=}25$. Precision and FPR improve monotonically with larger windows (54.4\\% to 61.8\\% precision; 22.76\\% to 16.94\\% FPR). QwQ-32B produces notably longer lead times than R1-8B and R1-32B (19.7 steps at $W{=}1$, 14.9 at $W{=}25$), though OT-7B's lead times are longer still.\ndocs/paper/sections/appendix.tex:126:\\paragraph{Universal trends.} Across all models: (1) larger windows reduce coverage as the smoothed probe fires less frequently; (2) HS FPR generally decreases with window size; (3) lead time is model-dependent. The primary cross-model difference is whether balanced accuracy improves broadly (R1-8B, QwQ-32B), peaks sharply at an intermediate window (R1-32B at $W{=}10$), or peaks very early (OT-7B at $W{=}3$). Each model uses its validation-selected window in the main text.\ndocs/paper/sections/appendix.tex:129:\\label{app:text_window}\ndocs/paper/sections/appendix.tex:131:\\cref{tab:text_window} reports the complete text probe window sweep on R1-8B, confirming that temporal context benefits text probes even more strongly than HS probes.\ndocs/paper/sections/appendix.tex:135:\\caption{Text probe window ablation on R1-8B (step-level metrics). Text probes gain +12.0pp accuracy from $W{=}1$ to $W{=}25$, compared to +3.2pp for HS probes over the same range. The larger marginal gain for text probes reflects their weaker single-step baseline.}\ndocs/paper/sections/appendix.tex:136:\\label{tab:text_window}\ndocs/paper/sections/appendix.tex:152:[Omitted long matching line]\ndocs/paper/sections/appendix.tex:158:OpenThinker-7B (OT-7B) is trained with STILL~\\cite{still} on Qwen2.5-7B, producing a 7B reasoning model with a different training paradigm from the R1-distilled models. We report the full layer sweep and text probe window ablation.\ndocs/paper/sections/appendix.tex:186:\\paragraph{Text probe window ablation.}\ndocs/paper/sections/appendix.tex:191:\\caption{OT-7B text probe window ablation (step-level). Text probes improve monotonically with larger $W$, contrasting with the HS probes on this model which peak at $W{=}3$.}\ndocs/paper/sections/appendix.tex:192:\\label{tab:ot7b_text_window}\ndocs/paper/sections/appendix.tex:208:OT-7B text probes improve monotonically from $W{=}1$ to $W{=}25$ (+3.3pp accuracy, +8.5pp precision, $-$18.4pp FPR), following the same pattern as R1-8B text probes. OT-7B HS probes show a split pattern: balanced accuracy peaks at $W{=}3$ and declines, while precision and FPR continue improving (\\cref{tab:window_full}). The text-HS contrast is therefore metric-dependent rather than a blanket modality difference.\ndocs/paper/sections/appendix.tex:384:We explored whether a two-stage adaptive window strategy could improve the precision-coverage tradeoff beyond fixed-window detection. The approach uses a short screening window ($W_{\\text{screen}}$) to flag candidate unsafe segments, followed by a longer confirmation window ($W_{\\text{confirm}}$) applied only to flagged segments. A trace is classified as unsafe if at least $k$ steps exceed the threshold during the confirmation stage.\ndocs/paper/sections/appendix.tex:391:\\caption{Precision-coverage Pareto front comparing single-stage fixed-window detection against two-stage adaptive detection on R1-8B. The best two-stage configuration ($W_{\\text{screen}}{=}3$, $W_{\\text{confirm}}{=}15$, $k{=}1$) Pareto-dominates single-stage $W{=}15$ by +1.3pp precision at matched coverage. Higher $k$ values shift the tradeoff toward precision at the cost of unacceptable coverage loss.}\ndocs/paper/sections/appendix.tex:395:The marginal improvement suggests that fixed-window smoothing already captures most of the temporal signal available in probe score sequences. The two-stage approach adds configuration complexity (three hyperparameters vs. one) without proportional performance gain.\ndocs/paper/sections/appendix.tex:401:[Omitted long matching line]\ndocs/paper/main.aux:318:\\@writefile{toc}{\\contentsline {paragraph}{Temporal windowing.}{3}{section*.8}\\protected@file@percent }\ndocs/paper/main.aux:515:\\@writefile{lof}{\\contentsline {figure}{\\numberline {1}{\\ignorespaces Temporal window effect on R1-8B HS probe (L14). Precision: 69.3\\% ($W{=}1$) to 82.2\\% ($W{=}25$); FPR: 9.65\\% to 4.8\\%.}}{5}{figure.caption.14}\\protected@file@percent }\ndocs/paper/main.aux:516:\\newlabel{fig:window_ablation}{{1}{5}{Temporal window effect on R1-8B HS probe (L14). Precision: 69.3\\% ($W{=}1$) to 82.2\\% ($W{=}25$); FPR: 9.65\\% to 4.8\\%}{figure.caption.14}{}}\ndocs/paper/main.aux:517:\\newlabel{fig:window_ablation@cref}{{[figure][1][]1}{[1][5][]5}{}{}{}}\ndocs/paper/main.aux:1157:\\newlabel{app:window_ablation}{{D}{11}{Window Size Ablation Details}{appendix.D}{}}\ndocs/paper/main.aux:1158:\\newlabel{app:window_ablation@cref}{{[section][4][]D}{[1][11][]11}{}{}{}}\ndocs/paper/main.aux:1182:\\newlabel{tab:window_full}{{7}{11}{Window size ablation (step-level metrics): balanced accuracy, precision, pre-CP FPR, coverage ($K{=}1$), and mean detection lead across all models}{table.caption.33}{}}\ndocs/paper/main.aux:1183:\\newlabel{tab:window_full@cref}{{[table][7][]7}{[1][11][]11}{}{}{}}\ndocs/paper/main.aux:1228:\\newlabel{app:text_window}{{D.1}{12}{Text Probe Window Ablation}{subsection.D.1}{}}\ndocs/paper/main.aux:1229:\\newlabel{app:text_window@cref}{{[subsection][1][4]D.1}{[1][12][]12}{}{}{}}\ndocs/paper/main.aux:1234:\\@writefile{lot}{\\contentsline {table}{\\numberline {8}{\\ignorespaces Text probe window ablation on R1-8B (step-level metrics). Text probes gain +12.0pp accuracy from $W{=}1$ to $W{=}25$, compared to +3.2pp for HS probes over the same range. The larger marginal gain for text probes reflects their weaker single-step baseline.}}{12}{table.caption.39}\\protected@file@percent }\ndocs/paper/main.aux:1235:\\newlabel{tab:text_window}{{8}{12}{Text probe window ablation on R1-8B (step-level metrics). Text probes gain +12.0pp accuracy from $W{=}1$ to $W{=}25$, compared to +3.2pp for HS probes over the same range. The larger marginal gain for text probes reflects their weaker single-step baseline}{table.caption.39}{}}\ndocs/paper/main.aux:1236:\\newlabel{tab:text_window@cref}{{[table][8][]8}{[1][12][]12}{}{}{}}\ndocs/paper/main.aux:1271:\\@writefile{lot}{\\contentsline {table}{\\numberline {10}{\\ignorespaces OT-7B text probe window ablation (step-level). Text probes improve monotonically with larger $W$, contrasting with the HS probes on this model which peak at $W{=}3$.}}{12}{table.caption.43}\\protected@file@percent }\ndocs/paper/main.aux:1272:\\newlabel{tab:ot7b_text_window}{{10}{12}{OT-7B text probe window ablation (step-level). Text probes improve monotonically with larger $W$, contrasting with the HS probes on this model which peak at $W{=}3$}{table.caption.43}{}}\ndocs/paper/main.aux:1273:\\newlabel{tab:ot7b_text_window@cref}{{[table][10][]10}{[1][12][]12}{}{}{}}\ndocs/paper/main.aux:1274:\\@writefile{toc}{\\contentsline {paragraph}{Text probe window ablation.}{12}{table.caption.43}\\protected@file@percent }\ndocs/paper/main.aux:1625:[Omitted long matching line]\ndocs/paper/main.aux:1626:\\newlabel{fig:pareto_two_stage}{{2}{16}{Precision-coverage Pareto front comparing single-stage fixed-window detection against two-stage adaptive detection on R1-8B. The best two-stage configuration ($W_{\\text {screen}}{=}3$, $W_{\\text {confirm}}{=}15$, $k{=}1$) Pareto-dominates single-stage $W{=}15$ by +1.3pp precision at matched coverage. Higher $k$ values shift the tradeoff toward precision at the cost of unacceptable coverage loss}{figure.caption.66}{}}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ce28c72-0b46-4422-95cb-fed886ab0617",
+            "isSidechain": true,
+            "promptId": "fdc0542e-b5c3-4ed1-8bde-065d1e5a0b6e",
+            "agentId": "ac17197ed6a690836",
+            "type": "user",
+            "uuid": "1f12f682-1ba5-404d-9836-1221e8d46df4",
+            "sourceToolAssistantUUID": "6ce28c72-0b46-4422-95cb-fed886ab0617",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T03:30:11.321Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, I found some key information. Now let me read the specific tex files to get the full Table 2 definition and more complete context:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1f12f682-1ba5-404d-9836-1221e8d46df4",
+            "isSidechain": true,
+            "agentId": "ac17197ed6a690836",
+            "requestId": "req_011Cb9Ku6i7by9iFA9H3RqbA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "74b41575-fe6d-42b1-875b-8db3460e6dd4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Sm4FANJWmUFJf3Zc1hfnGH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 11602,
+                "cache_read_input_tokens": 16717,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 11602,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T03:30:12.105Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019EDM2EzbMhHpGKQptHmyZt",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74b41575-fe6d-42b1-875b-8db3460e6dd4",
+            "isSidechain": true,
+            "agentId": "ac17197ed6a690836",
+            "requestId": "req_011Cb9Ku6i7by9iFA9H3RqbA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b83cbf02-9c83-4de8-aa75-6f8f1bb355a7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Sm4FANJWmUFJf3Zc1hfnGH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 11602,
+                "cache_read_input_tokens": 16717,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 11602,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T03:30:12.114Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019EDM2EzbMhHpGKQptHmyZt",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\\label{sec:experiments}\n2\t\n3\tWe evaluate temporal probes across four reasoning models (\\cref{tab:models}), comparing hidden-state (HS) and text modalities under different layer selection criteria.\n4\t\n5\t\\subsection{Setup}\\label{sec:setup}\n6\t\n7\tWe study R1-8B (Llama-8B, R1-distilled, $n{=}43$ test traces), OT-7B (Qwen-7B, STILL-trained, $n{=}47$), QwQ-32B (Qwen-32B, native reasoning, $n{=}19$--$20$), and R1-32B (Qwen-32B, R1-distilled, $n{=}20$). All traces come from HarmThoughts with step-level CP annotations (60/20/20 split). HS probes extract last-token hidden states from a selected layer; text probes encode each step with all-MiniLM-L6-v2 (384d). Both use L2-regularized logistic regression with temporal windowing $W \\in \\{1, 3, 5, 10, 15, 20, 25\\}$ selected on validation. Detection requires $K{=}5$ consecutive threshold crossings. Modality comparisons use a two-sided null-centered bootstrap (1000 resamples) with Holm-Bonferroni step-down correction (3 metrics $\\times$ 4 models $= 12$ tests, $\\alpha{=}0.05$). Within each model, the three metrics are positively correlated by construction, making the correction stricter than under independence.\n8\t\n9\t\\subsection{Layer Selection Results}\\label{sec:layer-results}\n10\t\n11\t\\cref{tab:layer_selection} shows that the biased composite metric (balanced accuracy $\\times$ crossing rate) systematically selects shallow layers for 32B models: L2 (3\\% depth) for QwQ-32B and L10 (16\\%) for R1-32B. Four unbiased metrics (pure balanced accuracy, precision, inverse FPR, additive composite) converge on deep layers: L60 (94\\%) and L63 (98\\%). Metrics from two measurement families (accuracy-based and false-positive-based) agree. The mechanism is that shallow layers produce more volatile representations, inflating crossing rate independently of discriminative power (\\cref{sec:layer-sensitivity}).\n12\t\n13\t\\begin{table}[t]\n14\t\\centering\n15\t\\small\n16\t\\begin{tabular}{lccc}\n17\t\\toprule\n18\t\\textbf{Model} & \\textbf{Biased}$^a$ & \\textbf{Corrected}$^b$ & $p$ \\textbf{(corr.)} \\\\\n19\t\\midrule\n20\tR1-8B & L14 (44\\%) & L14 (44\\%) & ${<}0.001$ \\\\\n21\tOT-7B & L0 (0\\%) & L16 (57\\%) & ${<}0.001$ \\\\\n22\tQwQ-32B & L2 (3\\%) & L60 (94\\%) & ${<}0.005$ \\\\\n23\tR1-32B & L10 (16\\%) & L63 (98\\%) & ${<}0.001$ \\\\\n24\t\\bottomrule\n25\t\\end{tabular}\n26\t\\caption{Layer selection sensitivity. $^a$\\,bal\\_acc $\\times$ crossing\\_rate. $^b$\\,Consensus of four unbiased metrics. Rightmost: HS vs.\\ text precision $p$-value at corrected layer. At biased layers, 32B $p$-values are 0.064 (R1-32B) and 0.35--0.83 (QwQ), both non-significant.}\n27\t\\label{tab:layer_selection}\n28\t\\end{table}\n29\t\n30\tThe downstream impact is severe: at biased layers, only 5/12 tests survive Holm-Bonferroni correction (all from 7--8B models unaffected by the bias). At corrected layers, all 12 pass. Had we reported only biased-layer results, we would have concluded a scale-dependent HS advantage that is entirely a methodological artifact.\n31\t\n32\t\\subsection{HS vs.\\ Text Comparison}\\label{sec:hs-text}\n33\t\n34\t\\begin{table}[t]\n35\t\\centering\n36\t\\small\n37\t\\setlength{\\tabcolsep}{4pt}\n38\t\\begin{tabular}{llcrrrr}\n39\t\\toprule\n40\t\\textbf{Model} & \\textbf{Layer} & $W$ & $\\Delta$\\textbf{BA} & $\\Delta$\\textbf{Prec} & $\\Delta$\\textbf{FPR} & \\textbf{HB} \\\\\n41\t\\midrule\n42\tR1-8B & L14 & 15 & +8.2 & +22.4 & $-$7.4 & 3/3 \\\\\n43\tOT-7B & L16 & 3 & +10.7 & +21.9 & $-$17.1 & 3/3 \\\\\n44\tQwQ & L60 & 3 & +15.4 & \\textbf{+23.6} & $-$9.8 & 3/3 \\\\\n45\tR1-32B & L63 & 1 & \\textbf{+18.7} & +15.4 & \\textbf{$-$14.6} & 3/3 \\\\\n46\t\\bottomrule\n47\t\\end{tabular}\n48\t\\caption{HS vs.\\ text at corrected layers. $\\Delta$: HS$-$text difference (pp). HB: Holm-Bonferroni pass count ($\\alpha{=}0.05$, 12 tests). Bootstrap: 1000 resamples, two-sided null-centered.}\n49\t\\label{tab:hs_vs_text}\n50\t\\end{table}\n51\t\n52\tHS probes significantly outperform text probes on all four models across all three metrics (\\cref{tab:hs_vs_text}). Precision gains range from +15.4pp (R1-32B) to +23.6pp (QwQ-32B). The advantage is consistent across architectures (Llama vs.\\ Qwen) and training methods (R1 distillation vs.\\ STILL). Control task selectivity confirms genuine safety signal: 12.5--19.7pp above chance across all models (\\cref{app:control}).\n53\t\n54\t\\paragraph{Dimensionality control.} PCA reduction of HS features to 384d (matching text encoder dimensionality, 79--92\\% variance retained) preserves the precision advantage on all four models (+16.8 to +23.1pp, all $p{<}0.012$), with 10/12 Holm-Bonferroni tests passing. This confirms a modality effect rather than a capacity artifact. As a complementary robustness check, we replace MiniLM (384d) with BGE-large (1024d, a 2.7$\\times$ stronger encoder). The HS advantage persists directionally on all four models and remains significant for OT-7B (+18.1pp, $p{<}0.001$); effect sizes narrow for the remaining models, consistent with the prediction in our Limitations that stronger encoders would reduce the gap (\\cref{app:encoder_robustness}).\n55\t\n56\t\\paragraph{Caveats.} R1-32B achieves significance only at $W{=}1$ with 25\\% coverage (5/20 traces); at $W{\\geq}3$, dimensionality ($51200 \\times W$ for $n{=}20$) prevents significance. QwQ-32B HS lead time is negative ($-$1.2 to +1.9 steps vs.\\ text 3.7--12.3 steps): higher precision at later detection. On benign traces, probes produce 39--52\\% false alarm rates, indicating that current methods characterize the commitment phenomenon rather than constitute production-ready detectors. Per-model details in \\cref{sec:32b-analysis}.\n57\t\n58\t\\subsection{32B Model-Specific Analysis}\\label{sec:32b-analysis}\n59\t\n60\tR1-32B and QwQ-32B share the Qwen-32B architecture (64 layers, 5120 hidden) but present opposite detection profiles (\\cref{tab:32b_divergence}), making training method the likely differentiator.\n61\t\n62\t\\begin{table}[t]\n63\t\\centering\n64\t\\small\n65\t\\begin{tabular}{lcccc}\n66\t\\toprule\n67\t\\textbf{Model} & \\textbf{Cov.} & \\textbf{Lead (steps)} & \\textbf{HB} & \\textbf{Pos.\\ margin} \\\\\n68\t\\midrule\n69\tR1-32B & 25\\% & +11.7 to +13.3 & 3/3 ($W{=}1$) & +14.2pp \\\\\n70\tQwQ-32B & 74\\% & $-$1.2 to +1.9 & 3/3 (all $W$) & $-$0.6pp \\\\\n71\t\\bottomrule\n72\t\\end{tabular}\n73\t\\caption{32B cross-model divergence. R1-32B provides early warning with narrow coverage; QwQ-32B provides robust significance with poor lead time. Pos.\\ margin: HS balanced accuracy minus position-only baseline.}\n74\t\\label{tab:32b_divergence}\n75\t\\end{table}\n76\t\n77\tR1-32B detects commitment 11--13 steps early with a +14.2pp margin over the position baseline, confirming genuine representational signal, but covers only 25\\% of traces at the single significant window ($W{=}1$). QwQ-32B achieves statistical significance at all window sizes with 74\\% coverage, but HS probes fire later than text probes (negative lead time) and the position baseline is competitive ($-$0.6pp). The divergence implies that per-model validation is essential: no single detection configuration generalizes even within the same architecture at the same scale, and a system validated on one 32B model would fail on the other.\n78\t\n79\t\\subsection{Temporal Context}\\label{sec:temporal}\n80\t\n81\tTemporal windowing ($W{>}1$) improves both modalities on all four models (\\cref{fig:window_ablation}). Text precision improves +8 to +23pp from $W{=}1$ to $W{=}25$; HS precision improves +1.7 to +12.9pp. At 7--8B, the modality advantage (+22pp precision) exceeds the temporal improvement (+13pp). Both effects are complementary: the most robust deployment default is temporal windowing ($W{=}3$--$15$) combined with principled layer selection. Full per-model temporal ablations appear in \\cref{app:temporal_details}.\n82\t\n83\t\\begin{figure}[t]\n84\t\\centering\n85\t\\includegraphics[width=\\columnwidth]{figures/fig2_temporal_improvement.pdf}\n86\t\\caption{Temporal window effect on R1-8B HS probe (L14). Precision: 69.3\\% ($W{=}1$) to 82.2\\% ($W{=}25$); FPR: 9.65\\% to 4.8\\%.}\n87\t\\label{fig:window_ablation}\n88\t\\end{figure}\n89\t\n90\t\\subsection{Negative Results}\\label{sec:negative}\n91\t\n92\t\\begin{table}[t]\n93\t\\centering\n94\t\\small\n95\t\\begin{tabular}{p{1.5cm}p{2.9cm}p{2.3cm}}\n96\t\\toprule\n97\t\\textbf{Method} & \\textbf{Result} & \\textbf{Limitation} \\\\\n98\t\\midrule\n99\tBOCPD & 0\\% det.\\ on 3/4 models & Commitment gradual \\\\\n100\tCUSUM & $<$ threshold, all models & Same as BOCPD \\\\\n101\tMahalanobis & $\\Delta d \\approx 0$ & Signal in minor PCs \\\\\n102\tRepE & QwQ 0.756; R1-32B 0.559$^a$ & Model-dependent \\\\\n103\tMLP & 3/4 worse than LR & Overfitting \\\\\n104\tCCS & No gain over supervised$^b$ & Alignment mismatch \\\\\n105\tTransfer & Best 59.5\\% (PCA)$^c$ & Model-specific repr. \\\\\n106\t\\bottomrule\n107\t\\end{tabular}\n108\t\\caption{Seven alternative approaches. $^a$\\,RepE QwQ approaches supervised bal\\_acc but precision is 0.512 vs.\\ LR 0.700. $^b$\\,Semi-supervised (requires CP labels). $^c$\\,Best direct transfer 67.3\\% but 1\\% crossing rate.}\n109\t\\label{tab:negative}\n110\t\\end{table}\n111\t\n112\tSeven alternative methods produce inconsistent or limited results (\\cref{tab:negative}). We prioritize precision over balanced accuracy as the primary evaluation criterion because false positives on pre-CP steps waste intervention resources (triggering unnecessary safety responses), while missed post-CP steps merely reduce coverage without causing immediate harm. This framing is critical for interpreting RepE results below.\n113\t\n114\t\\paragraph{Change-point methods.} BOCPD~\\citep{adams2007bayesian} achieves 0\\% detection on 3/4 models because safety commitment is gradual rather than abrupt: the probe score sequence transitions smoothly over 5--15 steps without the discontinuity that BOCPD's hazard function requires. On R1-8B (the sole model with non-zero detection), the best BOCPD configuration ($\\lambda{=}10$) achieves 93\\% detection rate but with lower lead time (+3.5 steps) than simple thresholding (+4.9 steps). CUSUM similarly fails because cumulative evidence never exceeds the decision boundary on smooth transitions. The gradual nature of commitment is itself an empirical finding: it rules out the entire class of abrupt-change detectors and motivates the supervised probe approach that explicitly learns the transition boundary.\n115\t\n116\t\\paragraph{RepE inconsistency.} RepE mean-difference directions~\\citep{zou2023representation} illustrate why balanced accuracy alone is misleading. On QwQ-32B, RepE achieves 0.756 balanced accuracy (approaching supervised LR at 0.778), but its precision is 0.512 vs.\\ LR 0.700 and its FPR is 0.309 vs.\\ 0.120. The mean-difference direction captures enough signal to classify steps above chance, but fires indiscriminately on pre-CP steps, producing 2.6$\\times$ more false alarms than supervised probes. On R1-32B, RepE nearly fails entirely (0.559 balanced accuracy). The inconsistency across two models sharing the same architecture confirms that a single linear direction computed from class means does not reliably capture safety commitment structure.\n117\t\n118\tCross-model transfer produces no practical utility across 17 configurations; stronger alignment methods (CCA, model stitching~\\cite{kornblith2019cka,bansal2021stitching}) remain unexplored. Detailed per-method analysis in \\cref{app:negative_details}.\n119\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b83cbf02-9c83-4de8-aa75-6f8f1bb355a7",
+            "isSidechain": true,
+            "promptId": "fdc0542e-b5c3-4ed1-8bde-065d1e5a0b6e",
+            "agentId": "ac17197ed6a690836",
+            "type": "user",
+            "uuid": "6aa9f0da-67a0-494f-a938-85cabf7a5bce",
+            "sourceToolAssistantUUID": "b83cbf02-9c83-4de8-aa75-6f8f1bb355a7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T03:30:12.454Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018UvE4XaD8yK6WSguKiGXer",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6aa9f0da-67a0-494f-a938-85cabf7a5bce",
+            "isSidechain": true,
+            "agentId": "ac17197ed6a690836",
+            "requestId": "req_011Cb9Ku6i7by9iFA9H3RqbA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cc1a8cb9-6f64-424e-a5ce-8ec8c27709d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Sm4FANJWmUFJf3Zc1hfnGH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 11602,
+                "cache_read_input_tokens": 16717,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 11602,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T03:30:12.465Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018UvE4XaD8yK6WSguKiGXer",
+              "type": "tool_result",
+              "content": "1\t\\section{Problem Setup and Methods}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Safety Commitment Point}\n5\t\\label{sec:commitment-point}\n6\t\n7\tWhen a reasoning model is jailbroken, its chain-of-thought (CoT) transitions from safety-aware deliberation to committed harmful generation. We define the \\textbf{Safety Commitment Point} (CP) as the first reasoning step after which safety reasoning permanently ceases. Steps before CP are \\emph{pre-commitment} ($y_t = 0$); steps at or after CP are \\emph{post-commitment} ($y_t = 1$). The detection task produces a score $s_t \\in [0, 1]$ estimating whether the model has passed its CP by step $t$.\n8\t\n9\tWe study four reasoning models spanning two architectures and two scales (\\cref{tab:models}).\n10\t\n11\t\\begin{table}[t]\n12\t\\centering\n13\t\\resizebox{\\columnwidth}{!}{%\n14\t\\begin{tabular}{lccccc}\n15\t\\toprule\n16\t\\textbf{Model} & \\textbf{Arch.} & \\textbf{Params} & \\textbf{Layers} & \\textbf{Hidden} & \\textbf{$n$ (total\\,/\\,test)} \\\\\n17\t\\midrule\n18\tR1-8B & Llama & 8B & 32 & 4096 & 209\\,/\\,43 \\\\\n19\tOT-7B & Qwen & 7B & 28 & 3584 & 228\\,/\\,47 \\\\\n20\tR1-32B & Qwen & 32B & 64 & 5120 & 100\\,/\\,20 \\\\\n21\tQwQ-32B & Qwen & 32B & 64 & 5120 & 95\\,/\\,19 \\\\\n22\t\\bottomrule\n23\t\\end{tabular}}\n24\t\\caption{Models studied. R1-8B and R1-32B are distilled from DeepSeek-R1~\\citep{deepseekr1}; QwQ-32B~\\citep{qwq} is a native reasoning model; OT-7B~\\citep{openthinker} is trained with STILL~\\citep{still} on Qwen2.5-7B. Data: HarmThoughts~\\citep{harmthoughts} with step-level CP annotations. Split: 60/20/20.}\n25\t\\label{tab:models}\n26\t\\end{table}\n27\t\n28\t\\subsection{Probe Architecture}\n29\t\\label{sec:probe-architecture}\n30\t\n31\t\\paragraph{Hidden-state (HS) probes.} At each step $t$, we extract the last-token hidden state $\\mathbf{h}_t^{(\\ell)} \\in \\mathbb{R}^d$ from layer $\\ell$ and train an L2-regularized logistic regression classifier (balanced class weights, $C{=}1.0$, LBFGS, max\\_iter${}=2000$) on binary CP labels. Layer selection is analyzed in \\cref{sec:layer-sensitivity}.\n32\t\n33\t\\paragraph{Text probes.} Each step's text is encoded with all-MiniLM-L6-v2 ($\\mathbb{R}^{384}$). The same logistic regression is applied, providing a surface-level modality baseline.\n34\t\n35\t\\paragraph{Temporal windowing.} For window size $W$, we concatenate features from steps $[t{-}W{+}1, \\ldots, t]$. We evaluate $W \\in \\{1, 3, 5, 10, 15, 20, 25\\}$ and select per-model on validation. GRU sequence models are also evaluated (\\cref{app:gru_details}).\n36\t\n37\t\\subsection{Layer Selection Sensitivity}\n38\t\\label{sec:layer-sensitivity}\n39\t\n40\tLayer selection is a researcher degree of freedom that can reverse modality comparison conclusions. A composite metric (balanced accuracy $\\times$ crossing rate) systematically selects shallow layers for 32B models: L2 (3\\% depth) for QwQ-32B, L10 (16\\%) for R1-32B. The mechanism is that shallow layers produce more volatile representations, inflating crossing rate independently of discriminative power.\n41\t\n42\tA five-metric ablation reveals that four metrics from two measurement families (accuracy-based and false-positive-based) converge on deep layers: L60 (94\\%) for QwQ-32B, L63 (98\\%) for R1-32B. At these layers, all 12 Holm-Bonferroni tests pass; at biased layers, only 5/12 survive correction. Full per-layer results appear in \\cref{app:layer_sweep}.\n43\t\n44\t\\subsection{Baseline Methods}\n45\t\\label{sec:baselines}\n46\t\n47\tWe evaluate seven alternatives to contextualize probe performance (\\cref{tab:negative}): BOCPD~\\citep{adams2007bayesian} and CUSUM for change-point detection; Mahalanobis distance following TrajGuard~\\citep{trajguard}; RepE mean-difference directions~\\citep{zou2023representation}; two-layer MLP probes; CCS-adapted~\\citep{burns2023discovering}; and cross-model transfer via PCA. A position-only baseline ($t/T$) controls for temporal artifacts. Detailed configurations in \\cref{app:bocpd_config,app:transfer_details}.\n48\t\n49\t\\subsection{Evaluation Protocol}\n50\t\\label{sec:evaluation}\n51\t\n52\tWe report balanced accuracy, precision, pre-CP FPR (step-level and trace-level), coverage, and lead time (steps between first detection and true CP). Detection requires $K{=}5$ consecutive threshold crossings. Modality comparisons use two-sided null-centered bootstrap (1000 resamples) with Holm-Bonferroni step-down correction (3 metrics $\\times$ 4 models $= 12$ tests, $\\alpha{=}0.05$). Within each model, the three metrics are positively correlated by construction, making the correction stricter than under independence. Control task selectivity~\\citep{hewitt2019control} validates genuine representational structure (\\cref{app:control}).\n53\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc1a8cb9-6f64-424e-a5ce-8ec8c27709d3",
+            "isSidechain": true,
+            "promptId": "fdc0542e-b5c3-4ed1-8bde-065d1e5a0b6e",
+            "agentId": "ac17197ed6a690836",
+            "type": "user",
+            "uuid": "b5801231-dabd-4627-976f-1d802acbd14f",
+            "sourceToolAssistantUUID": "cc1a8cb9-6f64-424e-a5ce-8ec8c27709d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T03:30:12.597Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UnKAv6RhDaKSAGBQogemjs",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/appendix.tex",
+                "limit": 450
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5801231-dabd-4627-976f-1d802acbd14f",
+            "isSidechain": true,
+            "agentId": "ac17197ed6a690836",
+            "requestId": "req_011Cb9Ku6i7by9iFA9H3RqbA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8ac19437-0eb4-4a69-8eba-4df7feb5e9e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Sm4FANJWmUFJf3Zc1hfnGH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 11602,
+                "cache_read_input_tokens": 16717,
+                "output_tokens": 288,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 11602
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 288,
+                    "cache_read_input_tokens": 16717,
+                    "cache_creation_input_tokens": 11602,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 11602,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T03:30:12.960Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UnKAv6RhDaKSAGBQogemjs",
+              "type": "tool_result",
+              "content": "1\t\\appendix\n2\t\n3\t\\section{Responsible NLP Research Checklist}\n4\t\\label{app:checklist}\n5\t\n6\tWe address the ARR Responsible NLP Research requirements below.\n7\t\n8\t\\begin{itemize}\n9\t    \\item \\textbf{Limitations discussed:} Yes (\\cref{sec:limitations}).\n10\t    \\item \\textbf{Potential risks:} This research analyzes jailbreak traces to understand how reasoning models commit to generating harmful content. We do not develop new attack methods or release jailbreak prompts. All analyzed content comes from the publicly available HarmThoughts benchmark.\n11\t    \\item \\textbf{Computational budget:} Our experiments involve 4 models with 209, 228, 100, and 95 traces respectively (632 total), using linear probes and single-layer GRUs. Total compute is minimal (under 4 GPU-hours on a single RTX A6000). No large-scale pretraining or finetuning was performed.\n12\t    \\item \\textbf{Data:} We use HarmThoughts, a publicly available benchmark with step-level safety annotations. No new data collection was performed.\n13\t    \\item \\textbf{Human subjects:} No human subjects research was conducted.\n14\t    \\item \\textbf{Reproducibility:} All hyperparameters are reported in \\cref{app:gru_details,app:bocpd_config}. Code and corrected data will be released upon publication.\n15\t\\end{itemize}\n16\t\n17\t\n18\t\\section{Layer Sweep Results}\n19\t\\label{app:layer_sweep}\n20\t\n21\tFor each model, we sweep all transformer layers and evaluate five candidate selection metrics: (1)~balanced accuracy $\\times$ crossing rate (the biased composite), (2)~pure balanced accuracy, (3)~precision, (4)~inverse pre-CP FPR, and (5)~an additive composite. The biased composite systematically selects shallow layers for 32B models because early-layer representations exhibit higher crossing rates (more frequent threshold crossings) regardless of discriminative power. The four unbiased metrics converge on deep layers for all models.\n22\t\n23\t\\paragraph{Selected layers.} R1-8B: all five metrics agree on layer~14 (44\\% depth). OT-7B: biased metric selects L0 (0\\%), unbiased consensus selects L16 (57\\%). QwQ-32B: biased metric selects L2 (3\\%), unbiased consensus selects L60 (94\\%). R1-32B: biased metric selects L10 (16\\%), unbiased consensus selects L63 (98\\%). The bias is most extreme for 64-layer models, where the composite metric selects layers in the bottom 16\\% of the network while all other metrics select layers above 94\\%.\n24\t\n25\t\\paragraph{Impact on modality comparison.} At the biased layers, HS vs.\\ text precision $p$-values are 0.064 (R1-32B) and 0.35--0.83 (QwQ-32B), both non-significant. At the corrected deep layers, all $p$-values fall below 0.005. The initially reported ``scale-dependent'' pattern (HS advantage at 7--8B but not 32B) was entirely an artifact of layer selection methodology, not a genuine property of model scale (\\cref{sec:layer-results}).\n26\t\n27\t\n28\t\\section{Holm-Bonferroni Step-Down Correction}\n29\t\\label{app:holm_bonferroni}\n30\t\n31\t\\cref{tab:holm_bonferroni} reports the full 12-test battery used to assess hidden-state superiority over text probes across all four models. Tests are ranked by $p$-value; each test $i$ (rank $i$ of $m{=}12$) must satisfy $p_i < \\alpha / (m - i + 1)$ under the step-down procedure. All 12 tests pass at $\\alpha{=}0.05$, controlling the family-wise error rate.\n32\t\n33\t\\begin{table}[h]\n34\t\\centering\n35\t\\small\n36\t\\caption{Holm-Bonferroni step-down correction for 12 hypothesis tests (4 models $\\times$ 3 metrics). Each test uses a two-sided null-centered bootstrap (1000 resamples) on trace-level metric differences (HS minus text). All tests pass at $\\alpha{=}0.05$.}\n37\t\\label{tab:holm_bonferroni}\n38\t\\setlength{\\tabcolsep}{4pt}\n39\t\\begin{tabular}{clllcc}\n40\t\\toprule\n41\t\\textbf{Rank} & \\textbf{Model} & \\textbf{Metric} & \\textbf{$p$-val} & \\textbf{Thresh.} & \\textbf{Pass} \\\\\n42\t\\midrule\n43\t1  & R1-8B  & Precision & $<$0.001 & 0.0042 & \\checkmark \\\\\n44\t2  & OT-7B  & Bal.\\ Acc. & $<$0.001 & 0.0045 & \\checkmark \\\\\n45\t3  & OT-7B  & Precision & $<$0.001 & 0.0050 & \\checkmark \\\\\n46\t4  & OT-7B  & FPR & $<$0.001 & 0.0056 & \\checkmark \\\\\n47\t5  & QwQ-32B & Bal.\\ Acc. & $<$0.001 & 0.0063 & \\checkmark \\\\\n48\t6  & QwQ-32B & Precision & $<$0.001 & 0.0071 & \\checkmark \\\\\n49\t7  & R1-32B & Bal.\\ Acc. & $<$0.001 & 0.0083 & \\checkmark \\\\\n50\t8  & R1-32B & Precision & $<$0.001 & 0.0100 & \\checkmark \\\\\n51\t9  & QwQ-32B & FPR & 0.004 & 0.0125 & \\checkmark \\\\\n52\t10 & R1-8B  & Bal.\\ Acc. & 0.005 & 0.0167 & \\checkmark \\\\\n53\t11 & R1-32B & FPR & 0.007 & 0.0250 & \\checkmark \\\\\n54\t12 & R1-8B  & FPR & 0.044 & 0.0500 & \\checkmark \\\\\n55\t\\bottomrule\n56\t\\end{tabular}\n57\t\\end{table}\n58\t\n59\tThe weakest test (rank 12, R1-8B FPR, $p{=}0.044$) passes its threshold ($\\alpha/1 = 0.05$) with margin. The ordering reveals that OT-7B produces the strongest HS-text separation (ranks 2--4), while R1-8B FPR is the least significant despite R1-8B showing the largest precision gap (+22.4pp). This reflects R1-8B's already-low text FPR (11.8\\%), which leaves less room for HS improvement on this metric.\n60\t\n61\t\n62\t\\section{Window Size Ablation Details}\n63\t\\label{app:window_ablation}\n64\t\n65\t\\cref{tab:window_full} reports the complete window size ablation across all four models and seven window sizes. The main text (\\cref{sec:temporal}) presents R1-8B results; here we provide the full data.\n66\t\n67\t\\begin{table}[h]\n68\t\\centering\n69\t\\small\n70\t\\caption{Window size ablation (step-level metrics): balanced accuracy, precision, pre-CP FPR, coverage ($K{=}1$), and mean detection lead across all models.}\n71\t\\label{tab:window_full}\n72\t\\resizebox{\\columnwidth}{!}{%\n73\t\\begin{tabular}{llccccc}\n74\t\\toprule\n75\tModel & $W$ & Bal.\\ Acc. & Precision & FPR$_{\\text{step}}$ & Coverage & Lead \\\\\n76\t\\midrule\n77\t\\multirow{7}{*}{R1-8B}\n78\t & 1  & 77.8 & 69.3 & 9.65 & 72.1 & 13.8 \\\\\n79\t & 3  & 79.0 & 72.3 & 8.50 & 69.8 & 12.1 \\\\\n80\t & 5  & 78.1 & 72.6 & 8.09 & 65.1 & 8.3 \\\\\n81\t & 10 & 79.3 & 74.3 & 7.61 & 55.8 & 10.0 \\\\\n82\t & 15 & 80.2 & 77.7 & 6.39 & 51.2 & 7.2 \\\\\n83\t & 20 & 80.7 & 78.6 & 6.12 & 53.5 & 7.4 \\\\\n84\t & 25 & 81.0 & 82.2 & 4.83 & 48.8 & 8.1 \\\\\n85\t\\midrule\n86\t\\multirow{7}{*}{OT-7B}\n87\t & 1  & 68.2 & 42.8 & 12.0 & 53.2 & 16.1 \\\\\n88\t & 3  & \\textbf{68.8} & 46.6 & 10.0 & 53.2 & 21.6 \\\\\n89\t & 5  & 68.1 & 46.4 & 9.9 & 53.2 & 21.7 \\\\\n90\t & 10 & 66.5 & 46.9 & 8.6 & 48.9 & 25.0 \\\\\n91\t & 15 & 66.4 & 48.8 & 7.7 & 44.7 & 39.6 \\\\\n92\t & 20 & 66.0 & \\textbf{49.4} & \\textbf{7.5} & 48.9 & 17.9 \\\\\n93\t & 25 & 65.9 & 48.9 & 8.0 & 51.1 & 28.3 \\\\\n94\t\\midrule\n95\t\\multirow{7}{*}{R1-32B}\n96\t & 1  & 71.8 & 54.9 & 32.03 & 80.0 & 12.9 \\\\\n97\t & 3  & 72.5 & 56.0 & 30.64 & 80.0 & 11.4 \\\\\n98\t & 5  & 73.1 & 57.5 & 28.41 & 75.0 & 11.1 \\\\\n99\t & 10 & 73.7 & 60.9 & 23.40 & 70.0 & 10.8 \\\\\n100\t & 15 & 72.1 & 59.1 & 24.51 & 70.0 & 10.9 \\\\\n101\t & 20 & 69.6 & 56.3 & 26.18 & 65.0 & 9.6 \\\\\n102\t & 25 & 70.3 & 56.6 & 26.46 & 70.0 & 10.7 \\\\\n103\t\\midrule\n104\t\\multirow{7}{*}{QwQ-32B}\n105\t & 1  & 73.0 & 54.4 & 22.76 & 79.0 & 19.7 \\\\\n106\t & 3  & 74.5 & 56.5 & 21.41 & 73.7 & 20.6 \\\\\n107\t & 5  & 76.1 & 57.3 & 21.68 & 73.7 & 20.1 \\\\\n108\t & 10 & 74.7 & 57.1 & 20.73 & 73.7 & 18.4 \\\\\n109\t & 15 & 74.1 & 58.2 & 19.11 & 68.4 & 15.8 \\\\\n110\t & 20 & 75.4 & 60.2 & 17.89 & 63.2 & 15.8 \\\\\n111\t & 25 & 76.2 & 61.8 & 16.94 & 57.9 & 14.9 \\\\\n112\t\\bottomrule\n113\t\\end{tabular}}%\n114\t\\end{table}\n115\t\n116\tKey cross-model patterns emerge from the window ablation:\n117\t\n118\t\\paragraph{R1-8B} shows a general upward trend in balanced accuracy from 77.8\\% ($W{=}1$) to 81.0\\% ($W{=}25$), gaining +3.2pp overall with a slight dip at $W{=}5$ (78.1\\%). Precision improves sharply (+12.9pp) and step-level FPR halves (9.65\\% to 4.83\\%). Coverage trades off against quality, dropping from 72.1\\% to 48.8\\%.\n119\t\n120\t\\paragraph{OT-7B} exhibits a split temporal pattern at layer 16: balanced accuracy peaks at $W{=}3$ (68.8\\%) and declines at larger windows ($-$2.9pp by $W{=}25$), while precision and FPR continue improving. Precision rises from 42.8\\% ($W{=}1$) to 49.4\\% ($W{=}20$), and FPR drops from 12.0\\% to 7.5\\% over the same range. The split indicates that larger windows reduce false alarms and sharpen positive predictions even as overall classification accuracy degrades. Lead times are shorter than old layer-0 estimates (16.1--39.6 steps) due to the corrected layer selection (\\cref{app:ot7b_details}). OT-7B text probes improve monotonically across all metrics (\\cref{app:ot7b_details}), so the accuracy saturation is specific to HS probes on this model.\n121\t\n122\t\\paragraph{R1-32B} exhibits a non-monotonic pattern: balanced accuracy peaks at $W{=}10$ (73.7\\%) and then declines, falling below the $W{=}1$ baseline by $W{=}20$ (69.6\\%). The optimal window for R1-32B is $W{=}10$, which achieves the lowest FPR (23.40\\%) and highest precision (60.9\\%). The accuracy degradation at large windows likely reflects overfitting on the smaller dataset ($n{=}100$).\n123\t\n124\t\\paragraph{QwQ-32B} shows a broadly increasing trend with local non-monotonicity: balanced accuracy peaks at $W{=}5$ (76.1\\%), dips at $W{=}10$--$15$, then recovers to 76.2\\% at $W{=}25$. Precision and FPR improve monotonically with larger windows (54.4\\% to 61.8\\% precision; 22.76\\% to 16.94\\% FPR). QwQ-32B produces notably longer lead times than R1-8B and R1-32B (19.7 steps at $W{=}1$, 14.9 at $W{=}25$), though OT-7B's lead times are longer still.\n125\t\n126\t\\paragraph{Universal trends.} Across all models: (1) larger windows reduce coverage as the smoothed probe fires less frequently; (2) HS FPR generally decreases with window size; (3) lead time is model-dependent. The primary cross-model difference is whether balanced accuracy improves broadly (R1-8B, QwQ-32B), peaks sharply at an intermediate window (R1-32B at $W{=}10$), or peaks very early (OT-7B at $W{=}3$). Each model uses its validation-selected window in the main text.\n127\t\n128\t\\subsection{Text Probe Window Ablation}\n129\t\\label{app:text_window}\n130\t\n131\t\\cref{tab:text_window} reports the complete text probe window sweep on R1-8B, confirming that temporal context benefits text probes even more strongly than HS probes.\n132\t\n133\t\\begin{table}[h]\n134\t\\centering\n135\t\\caption{Text probe window ablation on R1-8B (step-level metrics). Text probes gain +12.0pp accuracy from $W{=}1$ to $W{=}25$, compared to +3.2pp for HS probes over the same range. The larger marginal gain for text probes reflects their weaker single-step baseline.}\n136\t\\label{tab:text_window}\n137\t\\begin{tabular}{lcccc}\n138\t\\toprule\n139\t$W$ & Bal. Acc. & Precision & FPR & Coverage \\\\\n140\t\\midrule\n141\t 1  & 64.7 & 41.6 & 25.8 & 95.4 \\\\\n142\t 3  & 66.9 & 44.8 & 23.1 & 90.7 \\\\\n143\t 5  & 69.2 & 48.5 & 20.4 & 84.9 \\\\\n144\t 10 & 72.1 & 54.3 & 16.7 & 74.4 \\\\\n145\t 15 & 74.3 & 58.9 & 14.2 & 67.4 \\\\\n146\t 20 & 75.8 & 62.1 & 12.5 & 62.8 \\\\\n147\t 25 & 76.7 & 64.8 & 11.8 & 58.1 \\\\\n148\t\\bottomrule\n149\t\\end{tabular}\n150\t\\end{table}\n151\t\n152\tText probes show monotonic improvement across all window sizes without the plateau observed in HS probes (which saturate around $W{=}15$). The absolute FPR reduction ($-$14.0pp) is nearly three times the HS reduction ($-$4.8pp), and accuracy gains (+12.0pp vs.\\ +3.2pp) are four times larger. This asymmetry supports the interpretation that temporal context is the primary factor in commitment detection: text features, which encode less information per step, benefit proportionally more from observing the multi-step progression.\n153\t\n154\t\n155\t\\section{OpenThinker-7B Detailed Results}\n156\t\\label{app:ot7b_details}\n157\t\n158\tOpenThinker-7B (OT-7B) is trained with STILL~\\cite{still} on Qwen2.5-7B, producing a 7B reasoning model with a different training paradigm from the R1-distilled models. We report the full layer sweep and text probe window ablation.\n159\t\n160\t\\paragraph{Layer sweep.}\n161\t\n162\t\\begin{table}[h]\n163\t\\centering\n164\t\\small\n165\t\\caption{OT-7B layer sweep. Score = balanced accuracy $\\times$ crossing rate. Layer 16 (57\\% depth) is selected after correction; it achieves the highest balanced accuracy among transformer layers.}\n166\t\\label{tab:ot7b_layer_sweep}\n167\t\\setlength{\\tabcolsep}{4pt}\n168\t\\begin{tabular}{lcccc}\n169\t\\toprule\n170\tLayer & Depth & Bal.\\ Acc. & Cross.\\ Rate & Score \\\\\n171\t\\midrule\n172\t0 (embed.) & 0 & 66.7 & 53.2 & 35.5 \\\\\n173\t4 & 14 & 66.3 & 40.4 & 26.8 \\\\\n174\t8 & 29 & 66.4 & 25.5 & 17.0 \\\\\n175\t12 & 43 & 67.5 & 31.9 & 21.6 \\\\\n176\t16 & 57 & 68.2 & 31.9 & 21.8 \\\\\n177\t20 & 71 & 65.5 & 31.9 & 20.9 \\\\\n178\t24 & 86 & 66.9 & 29.8 & 19.9 \\\\\n179\t27 & 96 & 63.0 & 31.9 & 20.1 \\\\\n180\t\\bottomrule\n181\t\\end{tabular}\n182\t\\end{table}\n183\t\n184\tAfter correction of a layer selection bug, layer 16 (57\\% depth) is selected. It achieves the highest balanced accuracy (68.2\\%) among transformer layers and is consistent with the mid-depth pattern of R1-8B (44\\%). Layer 0 (embedding) has a higher crossing rate (53.2\\% vs.\\ 31.9\\%) but lower accuracy.\n185\t\n186\t\\paragraph{Text probe window ablation.}\n187\t\n188\t\\begin{table}[h]\n189\t\\centering\n190\t\\small\n191\t\\caption{OT-7B text probe window ablation (step-level). Text probes improve monotonically with larger $W$, contrasting with the HS probes on this model which peak at $W{=}3$.}\n192\t\\label{tab:ot7b_text_window}\n193\t\\begin{tabular}{lcccc}\n194\t\\toprule\n195\t$W$ & Bal. Acc. & Precision & FPR & Coverage \\\\\n196\t\\midrule\n197\t 1  & 58.1 & 24.5 & 34.5 & 63.8 \\\\\n198\t 3  & 57.9 & 25.4 & 27.1 & 74.5 \\\\\n199\t 5  & 56.9 & 24.7 & 25.5 & 70.2 \\\\\n200\t 10 & 58.3 & 27.0 & 22.2 & 70.2 \\\\\n201\t 15 & 58.9 & 28.3 & 20.0 & 66.0 \\\\\n202\t 20 & 60.9 & 31.6 & 17.6 & 66.0 \\\\\n203\t 25 & 61.4 & 32.9 & 16.1 & 66.0 \\\\\n204\t\\bottomrule\n205\t\\end{tabular}\n206\t\\end{table}\n207\t\n208\tOT-7B text probes improve monotonically from $W{=}1$ to $W{=}25$ (+3.3pp accuracy, +8.5pp precision, $-$18.4pp FPR), following the same pattern as R1-8B text probes. OT-7B HS probes show a split pattern: balanced accuracy peaks at $W{=}3$ and declines, while precision and FPR continue improving (\\cref{tab:window_full}). The text-HS contrast is therefore metric-dependent rather than a blanket modality difference.\n209\t\n210\t\\paragraph{Bootstrap comparison (matched $W{=}3$).} To ensure a fair modality comparison, bootstrap tests use matched $W{=}3$ for both HS and text probes. At $W{=}3$, HS probes achieve 75.3\\% trace-level balanced accuracy vs.\\ 65.6\\% for text (bootstrap $\\Delta{=}$+10.7pp, 95\\% CI [4.9, 16.3], $p{<}0.001$, survives Holm-Bonferroni). Precision: 55.8\\% vs.\\ 34.6\\% (bootstrap $\\Delta{=}$+21.9pp, 95\\% CI [14.0, 29.6], $p{<}0.001$, survives Holm-Bonferroni). Pre-CP FPR: 10.0\\% vs.\\ 27.1\\% (bootstrap $\\Delta{=}{-}17.1$pp, 95\\% CI [$-$22.2, $-$12.2], $p{<}0.001$, survives Holm-Bonferroni). All three metrics survive correction. The point-estimate precision gap (+21.2pp) closely matches R1-8B (+22.4pp); the bootstrap mean (+21.9pp) differs slightly due to resampling variance. Using each modality's optimal $W$ (HS at $W{=}3$, text at $W{=}25$) would introduce a confound because text would benefit from 8$\\times$ more temporal context.\n211\t\n212\t\n213\t\\section{GRU Training Details}\n214\t\\label{app:gru_details}\n215\t\n216\t\\paragraph{Data split.} GRU experiments use a 70/30 train/test split to maximize training data for the sequential model, differing from the main 60/20/20 protocol used for logistic regression probes.\n217\t\n218\t\\paragraph{Architecture.} We evaluate two GRU variants. The single-layer variant uses a GRU with hidden dimension 256, taking per-step hidden states from the best layer (selected by validation balanced accuracy) as input. The multi-layer variant concatenates hidden states from 7 layers (evenly spaced through the network) at each step, producing a higher-dimensional input to the same GRU architecture.\n219\t\n220\t\\paragraph{Training procedure.} We train with Adam (learning rate $1 \\times 10^{-3}$, default $\\beta_1{=}0.9$, $\\beta_2{=}0.999$), batch size 16, for a maximum of 50 epochs. Early stopping halts training when validation loss does not improve for 10 consecutive epochs. Input features are z-score normalized per dimension using training set statistics.\n221\t\n222\t\\paragraph{Evaluation.} We report crossing accuracy (the sustained accuracy at which the probe first exceeds chance for 5 consecutive steps) and detection lead (steps before CP at crossing point). All experiments use 3 random seeds; we report mean $\\pm$ standard deviation.\n223\t\n224\t\\paragraph{Per-seed results for R1-8B (single-layer GRU).}\n225\t\n226\t\\begin{table}[h]\n227\t\\centering\n228\t\\small\n229\t\\caption{R1-8B single-layer GRU results per seed. Lead is measured in steps before the commitment point.}\n230\t\\label{tab:gru_seeds}\n231\t\\setlength{\\tabcolsep}{4pt}\n232\t\\begin{tabular}{lccc}\n233\t\\toprule\n234\tSeed & Peak Acc. & Crossing Acc. & Lead (steps) \\\\\n235\t\\midrule\n236\t1 & 85.2 & 74.3 & +4.8 \\\\\n237\t2 & 83.1 & 71.6 & +4.8 \\\\\n238\t3 & 83.4 & 70.4 & +0.9 \\\\\n239\t\\midrule\n240\tMean $\\pm$ std & 83.9 $\\pm$ 1.1 & 72.1 $\\pm$ 2.0 & +3.5 $\\pm$ 2.3 \\\\\n241\t\\bottomrule\n242\t\\end{tabular}\n243\t\\end{table}\n244\t\n245\tThe high variance in lead time (standard deviation of 2.3 steps) is driven by seed 3, where the probe achieves good peak accuracy but crosses the detection threshold late. This variance underscores the sensitivity of early detection to initialization and motivates reporting per-seed results rather than relying on mean values alone.\n246\t\n247\t\\paragraph{Multi-layer GRU and baseline comparison (60/20/20 protocol).}\n248\t\n249\t\\begin{table}[h]\n250\t\\centering\n251\t\\scriptsize\n252\t\\caption{Per-seed performance of GRU and logistic regression (LR) probes on R1-8B under a 60/20/20 cross-validation protocol (seeds 42, 123, 456). Single = layer 14 only; Multi = 7-layer concatenation (layers 12--24, stride 2). Lead = steps before CP at first sustained crossing. Main text results use a 70/30 train/test split with different test traces, accounting for the difference in lead values.}\n253\t\\label{tab:gru_multi_seeds}\n254\t\\resizebox{\\columnwidth}{!}{%\n255\t\\begin{tabular}{llccccc}\n256\t\\toprule\n257\tModel & Seed & Acc & Prec & FPR & Cross.\\% & Lead \\\\\n258\t\\midrule\n259\tGRU-single & 42  & 0.845 & 0.657 & 0.139 & 72.1\\% & 3.55 \\\\\n260\tGRU-single & 123 & 0.760 & 0.454 & 0.191 & 65.1\\% & 7.39 \\\\\n261\tGRU-single & 456 & 0.792 & 0.474 & 0.203 & 67.4\\% & 8.45 \\\\\n262\t\\rowcolor{gray!10}\n263\tGRU-single & \\textit{mean} & 0.799$\\pm$0.035 & 0.528$\\pm$0.091 & 0.178$\\pm$0.028 & 68.2$\\pm$2.9\\% & 6.46$\\pm$2.10 \\\\\n264\t\\midrule\n265\tGRU-multi  & 42  & 0.824 & 0.616 & 0.164 & 74.4\\% & 5.66 \\\\\n266\tGRU-multi  & 123 & 0.759 & 0.454 & 0.195 & 65.1\\% & 6.43 \\\\\n267\tGRU-multi  & 456 & 0.784 & 0.460 & 0.207 & 65.1\\% & 8.93 \\\\\n268\t\\rowcolor{gray!10}\n269\tGRU-multi  & \\textit{mean} & 0.789$\\pm$0.027 & 0.510$\\pm$0.075 & 0.189$\\pm$0.018 & 68.2$\\pm$4.4\\% & 7.01$\\pm$1.40 \\\\\n270\t\\midrule\n271\tLR-single  & 42  & 0.841 & 0.693 & 0.097 & 46.5\\% & $-$2.00 \\\\\n272\tLR-single  & 123 & 0.753 & 0.436 & 0.181 & 53.5\\% & 5.26 \\\\\n273\tLR-single  & 456 & 0.814 & 0.512 & 0.146 & 41.9\\% & 3.94 \\\\\n274\t\\rowcolor{gray!10}\n275\tLR-single  & \\textit{mean} & 0.803$\\pm$0.037 & 0.547$\\pm$0.108 & 0.141$\\pm$0.035 & 47.3$\\pm$4.8\\% & 2.40$\\pm$3.16 \\\\\n276\t\\midrule\n277\tLR-multi   & 42  & 0.827 & 0.679 & 0.092 & 39.5\\% & 1.06 \\\\\n278\tLR-multi   & 123 & 0.756 & 0.442 & 0.180 & 46.5\\% & 7.30 \\\\\n279\tLR-multi   & 456 & 0.817 & 0.521 & 0.130 & 34.9\\% & 4.00 \\\\\n280\t\\rowcolor{gray!10}\n281\tLR-multi   & \\textit{mean} & 0.800$\\pm$0.032 & 0.547$\\pm$0.099 & 0.134$\\pm$0.036 & 40.3$\\pm$4.8\\% & 4.12$\\pm$2.55 \\\\\n282\t\\bottomrule\n283\t\\end{tabular}}%\n284\t\\end{table}\n285\t\n286\tUnder this protocol, multi-layer GRU achieves the highest mean lead (7.01$\\pm$1.40 steps) but at higher FPR than logistic regression baselines (0.189 vs.\\ 0.134). The GRU advantage is concentrated in detection timing rather than classification accuracy, consistent with the main text finding that GRUs capture sequential dependencies that improve early detection. Lead time shows high variance across seeds (range 5.66--8.93 for GRU-multi), reinforcing that reported means should be interpreted cautiously.\n287\t\n288\t\\paragraph{OT-7B multi-layer GRU (layers 13--19, 3 seeds).}\n289\tOT-7B GRU achieves 74.6$\\pm$1.3\\% balanced accuracy, 64.5$\\pm$7.0\\% coverage, +33.6$\\pm$4.8 steps lead, and 27.4$\\pm$6.1\\% pre-CP FPR. The lead time is substantially longer than other models in absolute terms, but OT-7B traces average ${\\sim}$80 reasoning steps (vs.\\ ${\\sim}$30 for R1-8B and 32B models), so absolute lead times are not directly comparable. The FPR-lead tradeoff mirrors R1-8B: GRU FPR (27.4\\%) is far above the LR probe at layer 16 (10.0\\%), confirming that GRUs gain lead time at the cost of more false alarms across both 7-8B models.\n290\t\n291\t\n292\t\\section{Control Task Methodology}\n293\t\\label{app:control}\n294\t\n295\tWe follow the selectivity framework of \\cite{hewitt2019control} to verify that our probes capture genuine safety-relevant structure rather than surface-level correlations.\n296\t\n297\t\\paragraph{Procedure.} For each model, we randomly permute the binary labels (pre-CP vs. post-CP) across all steps while preserving the marginal label distribution. We then retrain the probe with identical architecture (L2-regularized logistic regression) and hyperparameters on these shuffled labels. Selectivity is defined as:\n298\t\\begin{equation}\n299\t    \\text{Selectivity} = \\text{Acc}_{\\text{linguistic}} - \\text{Acc}_{\\text{control}}\n300\t\\end{equation}\n301\twhere $\\text{Acc}_{\\text{linguistic}}$ is the probe accuracy on true labels and $\\text{Acc}_{\\text{control}}$ is the accuracy on permuted labels. A selectivity of zero indicates that the probe exploits only non-linguistic features (e.g., position); higher values confirm that the representation encodes task-relevant information.\n302\t\n303\t\\paragraph{Results.} We repeat the control experiment 5 times (10 for OT-7B) with different random permutations and report the mean control accuracy. Selectivity scores at corrected layers are: R1-32B 19.7pp (layer 63), OT-7B 18.3pp (layer 16), QwQ-32B 14.4pp (layer 60), R1-8B 12.5pp (layer 14). All values exceed the 5pp threshold recommended by \\cite{hewitt2019control}. R1-32B achieves the strongest selectivity (19.7pp) at the corrected layer, a 2.6$\\times$ increase from 7.5pp at the biased layer L10. OT-7B achieves the second-highest selectivity at a mid-depth transformer layer (57\\%), consistent with R1-8B's pattern at 44\\% depth. On QwQ-32B, the position baseline accuracy (0.705) slightly exceeds the HS probe (0.667) at L60, consistent with the main-text finding that QwQ's HS advantage is concentrated in precision and FPR rather than balanced accuracy.\n304\t\n305\t\\paragraph{Layer provenance note.} R1-8B (L14) and OT-7B (L16) are unaffected by the layer selection bias because their biased and corrected layers coincide. QwQ-32B selectivity is 14.4pp at L60 (comparable to 15.3pp at L2), confirming that safety-specific signal persists at deep layers. R1-32B selectivity increases from 7.5pp at L10 to 19.7pp at L63, demonstrating that the corrected layer captures substantially more safety-relevant structure. The position baseline at L60 (0.705) still slightly exceeds the HS probe (0.667) for QwQ-32B, consistent with the main-text finding that QwQ's HS advantage is concentrated in precision and FPR rather than balanced accuracy.\n306\t\n307\t\\paragraph{Position-only baseline.} As a complementary validation, we train a logistic regression classifier using only the normalized step index ($t / T$ where $T$ is the total trace length) as the input feature. This baseline tests whether temporal position alone explains probe performance. On R1-8B, the position-only baseline produces 15.8\\% FPR compared to 8.1\\% for the HS probe at matched detection rates. The probe's substantially lower FPR confirms that hidden state features carry information beyond what step position provides.\n308\t\n309\t\n310\t\\section{Oracle Upper Bound Analysis}\n311\t\\label{sec:oracle}\n312\t\n313\tWe compute an oracle upper bound for commitment detection by measuring the earliest step at which the ground-truth commitment point (CP) could theoretically be predicted from hidden-state dynamics. The oracle detector has access to the true CP label and computes how many steps before CP the representation trajectory first enters a region that is linearly separable from pre-CP states with perfect accuracy on the training set. This provides a theoretical ceiling on early detection performance.\n314\t\n315\tOn R1-8B, the oracle achieves +31 steps mean lead time compared to +4.5 steps for the best learned probe (GRU), yielding an oracle gap of 85.5\\%. This gap indicates that hidden states at step $t$ encode the model's current safety state but carry limited predictive power about future trajectory evolution. The learned probe captures the contemporaneous safety signal effectively (balanced accuracy 81--84\\%) but cannot anticipate the commitment transition far in advance. Closing this gap will likely require causal intervention techniques (e.g., activation patching) rather than improvements to passive monitoring.\n316\t\n317\t\n318\t\\section{BOCPD/CUSUM Configuration Sweep}\n319\t\\label{app:bocpd_config}\n320\t\n321\tWe sweep hyperparameters for both Bayesian Online Change-Point Detection (BOCPD) and Cumulative Sum (CUSUM) methods applied to the temporal probe score sequences.\n322\t\n323\t\\paragraph{BOCPD configurations.} BOCPD models the sequence of probe scores as piecewise-constant segments with Gaussian observation noise. The hazard rate $\\lambda$ controls the prior probability of a change-point at each step ($P(\\text{change}) = 1/\\lambda$).\n324\t\n325\t\\paragraph{CUSUM configurations.} CUSUM accumulates evidence for a positive mean shift. The drift parameter $\\delta$ sets the minimum shift size to detect, and the threshold $h$ controls the detection boundary.\n326\t\n327\t\\begin{table}[h]\n328\t\\centering\n329\t\\small\n330\t\\caption{Change-point method configuration sweep on R1-8B. Detection rate is the fraction of jailbreak traces where the method fires. Lead is measured in steps before CP.}\n331\t\\label{tab:cpd_sweep}\n332\t\\setlength{\\tabcolsep}{4pt}\n333\t\\begin{tabular}{llcc}\n334\t\\toprule\n335\tMethod & Configuration & Det.\\ Rate & Lead \\\\\n336\t\\midrule\n337\t\\multirow{5}{*}{BOCPD}\n338\t & $\\lambda = 5$   & 97 & +2.1 \\\\\n339\t & $\\lambda = 10$  & 93 & +3.5 \\\\\n340\t & $\\lambda = 20$  & 87 & +4.2 \\\\\n341\t & $\\lambda = 50$  & 72 & +5.8 \\\\\n342\t & $\\lambda = 100$ & 67.4 & +1.03 \\\\\n343\t\\midrule\n344\t\\multirow{10}{*}{CUSUM}\n345\t & $\\delta{=}0.3$, $h{=}3$ & 65.1 & +0.89 \\\\\n346\t & $\\delta{=}0.5$, $h{=}3$ & 89 & +1.4 \\\\\n347\t & $\\delta{=}0.5$, $h{=}5$ & 76 & +2.3 \\\\\n348\t & $\\delta{=}0.5$, $h{=}8$ & 61 & +3.1 \\\\\n349\t & $\\delta{=}1.0$, $h{=}3$ & 82 & +1.1 \\\\\n350\t & $\\delta{=}1.0$, $h{=}5$ & 68 & +1.9 \\\\\n351\t & $\\delta{=}1.0$, $h{=}8$ & 52 & +2.7 \\\\\n352\t & $\\delta{=}2.0$, $h{=}3$ & 71 & +0.8 \\\\\n353\t & $\\delta{=}2.0$, $h{=}5$ & 54 & +1.5 \\\\\n354\t & $\\delta{=}2.0$, $h{=}8$ & 38 & +2.1 \\\\\n355\t\\midrule\n356\tSimple threshold & FCP baseline & 65.1 & +4.89 \\\\\n357\t\\bottomrule\n358\t\\end{tabular}\n359\t\\end{table}\n360\t\n361\tThe best BOCPD configuration ($\\lambda{=}10$) achieves 93.0\\% detection rate with +3.45 steps lead. The simple threshold baseline achieves 65.1\\% detection with superior lead (+4.89 steps). All CUSUM configurations underperform the simple threshold on lead time.\n362\t\n363\tThese results reveal a coverage-timing tradeoff. BOCPD ($\\lambda{=}10$) achieves 28pp higher detection rate than simple thresholding (93.0\\% vs.\\ 65.1\\%), but with lower lead (+3.45 vs.\\ +4.89 steps). The transition toward unsafe reasoning is gradual rather than abrupt, so change-point methods cannot exploit discontinuities for early warning. When missed detections are costly, BOCPD's coverage advantage justifies its use despite the timing penalty. When early intervention is the priority, simple thresholding provides better lead time.\n364\t\n365\t\\paragraph{Other models.} On OT-7B, QwQ-32B, and R1-32B, BOCPD achieves 0\\% detection rate across all tested configurations ($\\lambda \\in \\{5, 10, 50, 100, 200\\}$). The probe score sequences for these models show smoother transitions that never trigger the hazard function, consistent with the gradual commitment pattern. R1-8B's higher detection rate likely reflects its sharper probe score transitions at commitment boundaries.\n366\t\n367\t\n368\t\\section{M002 Bug Disclosure}\n369\t\\label{app:bug}\n370\t\n371\tWe disclose a bug discovered during development that affected intermediate results for QwQ-32B.\n372\t\n373\t\\paragraph{Issue.} In experiment M002 (text baseline evaluation), the QwQ-32B text probe was inadvertently initialized with a midpoint heuristic placeholder rather than true sentence embeddings from all-MiniLM-L6-v2. Specifically, the placeholder assigned each step a feature vector equal to the midpoint between the mean safe and mean unsafe embeddings from the training set, with small Gaussian noise added. This made the text probe trivially predictive, producing a spuriously significant result ($p{=}0.001$ for HS vs. text FPR difference).\n374\t\n375\t\\paragraph{Discovery and correction.} The bug was identified during a systematic audit of the feature extraction pipeline. After correction (using actual sentence embeddings), the QwQ-32B and R1-32B modality comparisons at the originally selected layers (L2 and L10, chosen by the biased composite metric) showed no significant HS advantage: QwQ-32B accuracy $p{=}0.828$, precision $p{=}0.346$; R1-32B precision $p{=}0.050$ but no tests surviving Holm-Bonferroni. The subsequent discovery that these layer selections were themselves artifacts of metric bias (\\cref{sec:layer-results}) led to the corrected-layer analysis reported in the main text, where all 12 tests pass Holm-Bonferroni at corrected deep layers (\\cref{tab:hs_vs_text}).\n376\t\n377\t\\paragraph{Impact on reported results.} All numbers reported in this paper use the corrected text embedding pipeline. The bug affected only QwQ-32B text probe features. The correction, combined with the separate layer selection correction (\\cref{sec:layer-results}), means that early-stage intermediate results (non-significant 32B modality comparisons) reflected two compounding errors: incorrect text features and biased layer selection. Both are fully resolved in the final analysis.\n378\t\n379\t\\paragraph{Commitment to transparency.} We report this bug to maintain scientific integrity. All code, including the git history showing the bug and its fix, will be released with the camera-ready version. Researchers reproducing our results can verify the correction independently.\n380\t\n381\t\\section{Adaptive Two-Stage Detection}\n382\t\\label{app:two_stage}\n383\t\n384\tWe explored whether a two-stage adaptive window strategy could improve the precision-coverage tradeoff beyond fixed-window detection. The approach uses a short screening window ($W_{\\text{screen}}$) to flag candidate unsafe segments, followed by a longer confirmation window ($W_{\\text{confirm}}$) applied only to flagged segments. A trace is classified as unsafe if at least $k$ steps exceed the threshold during the confirmation stage.\n385\t\n386\tWe merge the validation and test partitions ($n{=}55$ total: 39 jailbreak, 16 benign) for two-stage evaluation because the screening and confirmation thresholds are not tuned on held-out data. We evaluated all combinations of $W_{\\text{screen}} \\in \\{1, 3, 5\\}$, $W_{\\text{confirm}} \\in \\{10, 15, 20, 25\\}$, and $k \\in \\{1, 3, 5\\}$ on these R1-8B traces. \\cref{fig:pareto_two_stage} shows the precision-coverage Pareto front for both methods. The best two-stage configuration ($W_{\\text{screen}}{=}3$, $W_{\\text{confirm}}{=}15$, $k{=}1$) achieves 72.2\\% precision at 76.9\\% coverage, compared to 70.9\\% precision at 76.9\\% coverage for single-stage $W{=}15$. This +1.3pp precision gain at matched coverage represents a Pareto improvement, but the magnitude is marginal. At higher confirmation thresholds ($k{=}3$, $k{=}5$), two-stage detection trades coverage for small precision gains (up to 73.5\\% precision at 38.5\\% coverage with $k{=}5$), but these operating points are impractical due to excessive missed detections.\n387\t\n388\t\\begin{figure}[h]\n389\t\\centering\n390\t\\includegraphics[width=0.85\\columnwidth]{figures/pareto_two_stage.pdf}\n391\t\\caption{Precision-coverage Pareto front comparing single-stage fixed-window detection against two-stage adaptive detection on R1-8B. The best two-stage configuration ($W_{\\text{screen}}{=}3$, $W_{\\text{confirm}}{=}15$, $k{=}1$) Pareto-dominates single-stage $W{=}15$ by +1.3pp precision at matched coverage. Higher $k$ values shift the tradeoff toward precision at the cost of unacceptable coverage loss.}\n392\t\\label{fig:pareto_two_stage}\n393\t\\end{figure}\n394\t\n395\tThe marginal improvement suggests that fixed-window smoothing already captures most of the temporal signal available in probe score sequences. The two-stage approach adds configuration complexity (three hyperparameters vs. one) without proportional performance gain.\n396\t\n397\t\n398\t\\section{Temporal Ablation Details}\n399\t\\label{app:temporal_details}\n400\t\n401\tFull per-model temporal ablations are reported in \\cref{tab:window_full} (\\cref{app:window_ablation}). Key cross-model patterns: (1) R1-8B shows monotonic precision improvement from 69.3\\% ($W{=}1$) to 82.2\\% ($W{=}25$) with FPR halving (9.65\\% to 4.83\\%); (2) OT-7B exhibits a split pattern where balanced accuracy peaks at $W{=}3$ while precision and FPR continue improving at larger windows; (3) R1-32B peaks at $W{=}10$ then degrades, likely reflecting overfitting on the small dataset ($n{=}100$); (4) QwQ-32B shows broadly increasing trends with local non-monotonicity. Text probe window ablations (\\cref{app:text_window}) show monotonic improvement across all window sizes for both models tested, with larger marginal gains than HS probes (+12.0pp accuracy vs.\\ +3.2pp for R1-8B). The asymmetry supports the interpretation that text features benefit proportionally more from temporal context because they encode less information per step.\n402\t\n403\t\\section{Negative Results Details}\n404\t\\label{app:negative_details}\n405\t\n406\t\\paragraph{BOCPD/CUSUM.} On OT-7B, QwQ-32B, and R1-32B, BOCPD achieves 0\\% detection rate across all tested configurations ($\\lambda \\in \\{5, 10, 50, 100, 200\\}$). Only R1-8B produces non-zero detection (best: $\\lambda{=}10$, 93\\% rate, +3.45 steps lead). CUSUM configurations universally underperform simple thresholding on lead time. The probe score sequences for 3/4 models show smooth transitions that never trigger the hazard function (\\cref{app:bocpd_config}).\n407\t\n408\t\\paragraph{Mahalanobis distance.} Following TrajGuard~\\cite{trajguard}, Mahalanobis distance from the pre-CP centroid produces $\\Delta d \\approx 0$ between pre-CP and post-CP steps. The discriminative signal resides in minor PCA components (explaining $<$5\\% of total variance) rather than the principal directions that dominate the distance computation.\n409\t\n410\t\\paragraph{RepE.} Mean-difference directions~\\cite{zou2023representation} show inconsistent performance: QwQ-32B achieves 0.756 balanced accuracy (approaching supervised 0.778) but with substantially worse precision (0.512 vs.\\ LR 0.700) and FPR (0.309 vs.\\ 0.120). R1-32B nearly fails (0.559 balanced accuracy). The mean-difference direction captures commitment structure in some models but not others, making it unreliable as a general-purpose method.\n411\t\n412\t\\paragraph{MLP probes.} Two-layer MLPs ($d \\rightarrow 128 \\rightarrow 1$, ReLU) underperform logistic regression on 3/4 models. The commitment boundary is linearly separable at correctly selected layers; additional capacity causes overfitting given the small training sets.\n413\t\n414\t\\paragraph{CCS.} Contrast-Consistent Search~\\cite{burns2023discovering} adapted with contrastive pairs from pre-CP and post-CP steps provides no improvement over supervised probing. The logical consistency objective does not align with the temporal commitment structure. CCS still requires CP labels for pair construction, making it semi-supervised.\n415\t\n416\t\\paragraph{Cross-model transfer.} 17 configurations (5 directional pairs $\\times$ 3 PCA dimensionalities, plus 2 direct transfers) all fail. Best PCA: R1-8B $\\rightarrow$ QwQ-32B at 59.5\\% (PCA-2048). Best direct: QwQ-32B $\\rightarrow$ R1-32B at 67.3\\% but 1\\% crossing rate. Implementation details in \\cref{app:transfer_details}.\n417\t\n418\t\\section{Cross-Model Transfer Implementation Details}\n419\t\\label{app:transfer_details}\n420\t\n421\tWe test whether safety probes transfer across models by projecting hidden states into a shared dimensionality space and applying cross-model classification.\n422\t\n423\t\\paragraph{Method.} For each source-target model pair, we apply PCA independently to each model's hidden states, reducing to a shared dimensionality $d \\in \\{512, 1024, 2048\\}$. PCA is fitted on the full dataset (including test traces) for each model separately, a setting favorable to transfer since it maximizes the quality of the projection. A logistic regression classifier (C=1.0, class\\_weight=`balanced', max\\_iter=2000, random\\_state=42) trained on the source model's PCA-projected training data is then applied directly to the target model's PCA-projected test data. No cross-model alignment step (Procrustes rotation, CCA, or learned projection) is applied; PCA serves as a standard linear dimensionality reduction baseline.\n424\t\n425\t\\paragraph{Same-dimension pairs.} For R1-32B and QwQ-32B (both 5120-d hidden states), we additionally test direct transfer without PCA: the source classifier is applied directly to the target model's raw hidden states. This tests whether same-architecture, same-dimensionality models share safety-relevant linear structure.\n426\t\n427\t\\paragraph{Results.} All 17 transfer configurations (5 directional pairs $\\times$ 3 PCA dimensionalities, plus 2 direct transfers for same-dimension pairs) fail to produce practically useful transfer. The best PCA result is R1-8B $\\rightarrow$ QwQ-32B at 59.5\\% balanced accuracy (PCA-2048). The best direct transfer (QwQ-32B $\\rightarrow$ R1-32B) reaches 67.3\\% balanced accuracy, which exceeds the within-model baseline of 65.2\\%. However, this transfer direction achieves only 1\\% crossing rate, meaning the transferred probe almost never triggers detection in practice, rendering it useless for deployment despite above-baseline accuracy. The complete failure under maximally favorable conditions (PCA fitted on full data, no train/test separation for projection) strengthens the conclusion that safety commitment is encoded in model-specific geometric configurations. PCA is a standard linear alignment baseline; its failure indicates that the problem lies in the representations themselves rather than in the choice of alignment method.\n428\t\n429\t\n430\t\\section{Encoder Robustness Analysis}\n431\t\\label{app:encoder_robustness}\n432\t\n433\tTo test whether the HS advantage over text probes depends on the specific text encoder, we replace all-MiniLM-L6-v2 (384d) with BGE-large-en-v1.5 (1024d), a 2.7$\\times$ higher-dimensional encoder with stronger semantic representations. \\cref{tab:encoder_robustness} reports precision comparisons at each model's corrected layer.\n434\t\n435\t\\begin{table}[h]\n436\t\\centering\n437\t\\small\n438\t\\caption{HS vs.\\ BGE-large (1024d) text probe precision. $\\Delta$: HS minus BGE-large. Bootstrap: 1000 resamples, two-sided null-centered. HB: survives Holm-Bonferroni correction (4 tests, $\\alpha{=}0.05$).}\n439\t\\label{tab:encoder_robustness}\n440\t\\begin{tabular}{lcccccc}\n441\t\\toprule\n442\t\\textbf{Model} & \\textbf{HS Prec} & \\textbf{BGE Prec} & $\\Delta$ & \\textbf{95\\% CI} & $p$ & \\textbf{HB} \\\\\n443\t\\midrule\n444\tR1-8B & 0.497 & 0.436 & +0.058 & [$-$0.03, +0.15] & 0.185 & No \\\\\n445\tOT-7B & 0.446 & 0.263 & +0.181 & [+0.09, +0.27] & ${<}0.001$ & Yes \\\\\n446\tR1-32B & 0.588 & 0.475 & +0.117 & [+0.01, +0.22] & 0.027 & No \\\\\n447\tQwQ-32B & 0.545 & 0.454 & +0.094 & [$-$0.03, +0.22] & 0.132 & No \\\\\n448\t\\bottomrule\n449\t\\end{tabular}\n450\t\\end{table}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ac19437-0eb4-4a69-8eba-4df7feb5e9e1",
+            "isSidechain": true,
+            "promptId": "fdc0542e-b5c3-4ed1-8bde-065d1e5a0b6e",
+            "agentId": "ac17197ed6a690836",
+            "type": "user",
+            "uuid": "ee077c03-0027-40d7-a889-df6b9236432b",
+            "sourceToolAssistantUUID": "8ac19437-0eb4-4a69-8eba-4df7feb5e9e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T03:30:27.765Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I've found all the key information. Let me compile the comprehensive findings for you.\n\n## Summary of Findings\n\nI've thoroughly searched the paper tex files and found all the requested information. Here are the complete details:\n\n### **Table 2 Definition (HS vs. Text Comparison)**\nLocation: `/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/experiments.tex` lines 34-50\n\n**Full Table 2 Content:**\n```\nModel    | Layer | W  | ΔBA  | ΔPrec | ΔFPR  | HB\n---------|-------|----|----- |-------|-------|-----\nR1-8B    | L14   | 15 | +8.2 | +22.4 | -7.4  | 3/3\nOT-7B    | L16   | 3  | +10.7| +21.9 | -17.1 | 3/3\nQwQ      | L60   | 3  | +15.4| +23.6 | -9.8  | 3/3\nR1-32B   | L63   | 1  | +18.7| +15.4 | -14.6 | 3/3\n```\n\n**All R1-8B Precision Values Found:**\n- **+22.4pp** - Main precision difference (HS vs. text) in Table 2\n- **69.3%** - R1-8B HS precision at W=1 (baseline window)\n- **82.2%** - R1-8B HS precision at W=25 (maximum window)\n- **41.6%** - R1-8B text precision at W=1\n- **64.8%** - R1-8B text precision at W=25\n- **0.693** - Seed-level precision values in GRU results (seed 42)\n- **11.8%** - R1-8B text FPR (mentioned as context for why FPR difference is smallest)\n\n### **Bootstrap & Resample References**\nFound in multiple locations:\n\n1. **1000 resamples** - Standard bootstrap configuration\n   - Location: experiments.tex line 7: \"two-sided null-centered bootstrap (1000 resamples)\"\n   - Location: experiments.tex line 48: \"Bootstrap: 1000 resamples, two-sided null-centered\"\n   - Location: appendix.tex line 36: \"two-sided null-centered bootstrap (1000 resamples)\"\n\n2. **Holm-Bonferroni correction** with 12 tests (4 models × 3 metrics)\n   - Location: experiments.tex line 7 and appendix.tex line 31\n\n3. **No 10000 resamples found** - Only 1000 resamples used throughout\n\n### **Window Size (W) Parameters for R1-8B**\n\nFrom method.tex line 35:\n- **Window sizes evaluated**: W ∈ {1, 3, 5, 10, 15, 20, 25}\n- **R1-8B selected window**: **W=15** (from Table 2)\n\n**Complete R1-8B window ablation (appendix.tex lines 77-84):**\n```\nW  | Bal. Acc. | Precision | FPR_step | Coverage | Lead\n---|-----------|-----------|----------|----------|-------\n1  | 77.8      | 69.3      | 9.65     | 72.1     | 13.8\n3  | 79.0      | 72.3      | 8.50     | 69.8     | 12.1\n5  | 78.1      | 72.6      | 8.09     | 65.1     | 8.3\n10 | 79.3      | 74.3      | 7.61     | 55.8     | 10.0\n15 | 80.2      | 77.7      | 6.39     | 51.2     | 7.2\n20 | 80.7      | 78.6      | 6.12     | 53.5     | 7.4\n25 | 81.0      | 82.2      | 4.83     | 48.8     | 8.1\n```\n\n### **R1-8B Layer Selection Details**\n\nLocation: experiments.tex lines 13-28 (Table 1 - Layer Selection)\n- **Selected layer**: L14 (44% depth)\n- **Biased metric selection**: L14 (same for R1-8B, unlike 32B models)\n- **HS vs. text precision p-value at L14**: <0.001\n\n### **Key Methodology Parameters**\n\nFrom method.tex (lines 31-35):\n- **Hidden-state probe**: L2-regularized logistic regression, balanced class weights, C=1.0\n- **Text encoder**: all-MiniLM-L6-v2 (384d)\n- **Detection threshold**: K=5 consecutive threshold crossings required\n- **Statistical test**: Two-sided null-centered bootstrap with Holm-Bonferroni step-down correction\n- **Alpha level**: α=0.05\n\n### **Temporal Improvement Context**\n\nFrom experiments.tex line 81:\n- \"At 7--8B, the modality advantage (+22pp precision) exceeds the temporal improvement (+13pp)\"\n- Figure 1 caption: \"Temporal window effect on R1-8B HS probe (L14). Precision: 69.3% (W=1) to 82.2% (W=25); FPR: 9.65% to 4.8%.\"\n\nAll raw numbers and parameters have been extracted from the source files with exact line references for verification."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee077c03-0027-40d7-a889-df6b9236432b",
+            "isSidechain": true,
+            "agentId": "ac17197ed6a690836",
+            "requestId": "req_011Cb9KuMnUGfo2xKsddqwVQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "73b7cf1a-481a-4258-8684-765c0bd51a54",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "75c13e9a-b023-4a8e-9cd6-6a9df909a830",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TAuFcg2d6kzr5P4k3BMKnU",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 20747,
+                "cache_read_input_tokens": 28319,
+                "output_tokens": 1408,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20747
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 1408,
+                    "cache_read_input_tokens": 28319,
+                    "cache_creation_input_tokens": 20747,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 20747,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-the-paper-tex-files-in-home-ubuntu-agent-ml-research-idea-gen-0509-5-pr.md"
+}

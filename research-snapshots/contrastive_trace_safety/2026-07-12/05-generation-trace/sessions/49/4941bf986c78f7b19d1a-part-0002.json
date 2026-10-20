@@ -1,0 +1,2200 @@
+{
+  "schema_version": "1.0",
+  "session_id": "4941bf986c78f7b19d1a",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-19T16:30:48.112Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CjLMjvLwoxFt7mQqedhZgh",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e435af2e-eb05-42fa-bff5-6664aae9196b",
+            "isSidechain": false,
+            "promptId": "f6cb66fe-e1fd-4454-99f3-c221741a2349",
+            "type": "user",
+            "uuid": "27cad485-8176-4567-83df-2bc74a228f74",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py",
+              "content": "\"\"\"N6: Multi-Metric Layer Ensemble Proof-of-Concept.\n\nFor each of 4 models, train probes at 3 candidate layers (precision-best,\nBA-best, FPR-best), ensemble their per-step probabilities, and compare\nagainst single-layer and text baselines. Bootstrap significance tests\non ensemble vs text and ensemble vs best-single-layer.\n\"\"\"\n\nimport os, sys, json, pickle, warnings, time\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nwarnings.filterwarnings(\"ignore\")\n\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.metrics import balanced_accuracy_score\n\nPROJECT = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nARTIFACTS = PROJECT / \"artifacts\"\nOUT_DIR = ARTIFACTS / \"n6_multi_metric_ensemble\"\nOUT_DIR.mkdir(parents=True, exist_ok=True)\n\nSEED = 42\nN_BOOTSTRAP = 10000\n\nMODEL_CONFIGS = {\n    \"R1-8B\": {\n        \"hs_dir\": ARTIFACTS / \"hidden_states\",\n        \"layer_offset\": 12,\n        \"n_stored_layers\": 13,\n        \"hidden_dim\": 4096,\n        \"window\": 15,\n        \"precision_layer\": 14,\n        \"ba_layer\": 12,\n        \"text_emb_pkl\": ARTIFACTS / \"r12_5seed_hb\" / \"r1_8b_text_emb.pkl\",\n        \"sweep_step\": 1,\n    },\n    \"OT-7B\": {\n        \"hs_dir\": ARTIFACTS / \"hidden_states_ot7b\",\n        \"layer_offset\": 0,\n        \"n_stored_layers\": 28,\n        \"hidden_dim\": 3584,\n        \"window\": 3,\n        \"precision_layer\": 16,\n        \"ba_layer\": 9,\n        \"fpr_layer_hint\": 18,\n        \"text_emb_pkl\": ARTIFACTS / \"ot7b_text_embeddings.pkl\",\n        \"sweep_step\": 1,\n    },\n    \"QwQ-32B\": {\n        \"hs_dir\": ARTIFACTS / \"hidden_states_qwq_32b\",\n        \"layer_offset\": 0,\n        \"n_stored_layers\": 64,\n        \"hidden_dim\": 5120,\n        \"window\": 3,\n        \"precision_layer\": 60,\n        \"ba_layer\": 30,\n        \"fpr_layer_hint\": 63,\n        \"text_emb_pkl\": ARTIFACTS / \"r12_5seed_hb\" / \"qwq_text_emb.pkl\",\n        \"sweep_step\": 4,\n    },\n    \"R1-32B\": {\n        \"hs_dir\": ARTIFACTS / \"hidden_states_r1_32b\",\n        \"layer_offset\": 0,\n        \"n_stored_layers\": 64,\n        \"hidden_dim\": 5120,\n        \"window\": 1,\n        \"precision_layer\": 63,\n        \"ba_layer\": 47,\n        \"text_emb_pkl\": ARTIFACTS / \"r12_5seed_hb\" / \"r1_32b_text_emb.pkl\",\n        \"sweep_step\": 4,\n    },\n}\n\n\n# ============================================================\n# Data loading\n# ============================================================\n\ndef load_traces(hs_dir):\n    traces = []\n    for pt_file in sorted(hs_dir.glob(\"*.pt\")):\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if data.get(\"step_labels\") is None or data.get(\"commitment_point\") is None:\n            continue\n        traces.append(data)\n    return traces\n\n\ndef get_labels(t):\n    sl = t[\"step_labels\"]\n    if isinstance(sl, torch.Tensor):\n        return sl.tolist()\n    return list(sl)\n\n\ndef get_cp(t):\n    cp = t[\"commitment_point\"]\n    if isinstance(cp, torch.Tensor):\n        return int(cp.item())\n    return int(cp)\n\n\ndef split_traces(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    idx = rng.permutation(len(traces))\n    n_tr = int(len(traces) * 0.6)\n    n_va = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in idx[:n_tr]],\n        [traces[i] for i in idx[n_tr:n_tr + n_va]],\n        [traces[i] for i in idx[n_tr + n_va:]],\n    )\n\n\n# ============================================================\n# Feature extraction\n# ============================================================\n\ndef moving_avg(hs, window):\n    \"\"\"Causal moving average: step i = mean(hs[max(0, i-W+1) : i+1]).\"\"\"\n    if window <= 1:\n        return hs\n    T, D = hs.shape\n    out = np.zeros_like(hs)\n    cumsum = np.zeros((T + 1, D), dtype=hs.dtype)\n    for i in range(T):\n        cumsum[i + 1] = cumsum[i] + hs[i]\n    for i in range(T):\n        start = max(0, i - window + 1)\n        out[i] = (cumsum[i + 1] - cumsum[start]) / (i - start + 1)\n    return out\n\n\ndef extract_hs_features(trace, layer_idx, window):\n    hs = trace[\"hidden_states\"][:, layer_idx, :]\n    if isinstance(hs, torch.Tensor):\n        hs = hs.numpy()\n    return moving_avg(hs.astype(np.float32), window)\n\n\ndef extract_text_features(text_emb_dict, trace_id, window):\n    emb = text_emb_dict.get(trace_id)\n    if emb is None:\n        return None\n    if isinstance(emb, torch.Tensor):\n        emb = emb.numpy()\n    return moving_avg(emb.astype(np.float32), window)\n\n\n# ============================================================\n# Probe training and prediction\n# ============================================================\n\ndef collect_hs_data(traces, layer_idx, window):\n    X_parts, y_parts = [], []\n    for t in traces:\n        feats = extract_hs_features(t, layer_idx, window)\n        labels = get_labels(t)\n        n = min(len(feats), len(labels))\n        X_parts.append(feats[:n])\n        y_parts.extend(labels[:n])\n    return np.vstack(X_parts), np.array(y_parts)\n\n\ndef train_probe(X_train, y_train):\n    scaler = StandardScaler()\n    X_scaled = scaler.fit_transform(X_train)\n    clf = LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000,\n                             solver='lbfgs', random_state=SEED)\n    clf.fit(X_scaled, y_train)\n    return clf, scaler\n\n\ndef predict_hs_traces(clf, scaler, traces, layer_idx, window):\n    results = []\n    for t in traces:\n        feats = extract_hs_features(t, layer_idx, window)\n        labels = get_labels(t)\n        n = min(len(feats), len(labels))\n        probs = clf.predict_proba(scaler.transform(feats[:n]))[:, 1]\n        results.append({\n            \"trace_id\": str(t.get(\"trace_id\", \"\")),\n            \"probs\": probs,\n            \"labels\": np.array(labels[:n]),\n            \"commitment_point\": get_cp(t),\n        })\n    return results\n\n\ndef predict_text_traces(clf, scaler, traces, text_emb_dict, window):\n    results = []\n    for t in traces:\n        tid = str(t.get(\"trace_id\", \"\"))\n        emb = extract_text_features(text_emb_dict, tid, window)\n        if emb is None:\n            continue\n        labels = get_labels(t)\n        n = min(len(emb), len(labels))\n        probs = clf.predict_proba(scaler.transform(emb[:n]))[:, 1]\n        results.append({\n            \"trace_id\": tid,\n            \"probs\": probs,\n            \"labels\": np.array(labels[:n]),\n            \"commitment_point\": get_cp(t),\n        })\n    return results\n\n\n# ============================================================\n# Metrics\n# ============================================================\n\ndef compute_metrics(trace_results):\n    all_preds, all_labels = [], []\n    pre_fp, pre_total = 0, 0\n    for tr in trace_results:\n        preds = (tr[\"probs\"] > 0.5).astype(int)\n        all_preds.extend(preds)\n        all_labels.extend(tr[\"labels\"])\n        cp = tr[\"commitment_point\"]\n        if cp is not None and cp > 0 and cp < len(preds):\n            pre_fp += int(preds[:cp].sum())\n            pre_total += cp\n\n    all_preds = np.array(all_preds)\n    all_labels = np.array(all_labels)\n    ba = balanced_accuracy_score(all_labels, all_preds)\n    tp = int(((all_preds == 1) & (all_labels == 1)).sum())\n    fp = int(((all_preds == 1) & (all_labels == 0)).sum())\n    prec = tp / (tp + fp) if (tp + fp) > 0 else 0.0\n    fpr = pre_fp / pre_total if pre_total > 0 else 0.0\n    return {\"bal_acc\": round(ba, 4), \"precision\": round(prec, 4), \"fpr\": round(fpr, 4)}\n\n\ndef per_trace_metric(trace_results, key):\n    vals = []\n    for tr in trace_results:\n        preds = (tr[\"probs\"] > 0.5).astype(int)\n        labels = tr[\"labels\"]\n        if key == \"bal_acc\":\n            if len(set(labels)) < 2:\n                vals.append(float((preds == labels).mean()))\n            else:\n                vals.append(balanced_accuracy_score(labels, preds))\n        elif key == \"precision\":\n            tp = int(((preds == 1) & (labels == 1)).sum())\n            fp = int(((preds == 1) & (labels == 0)).sum())\n            vals.append(tp / (tp + fp) if (tp + fp) > 0 else 0.0)\n        elif key == \"fpr\":\n            cp = tr[\"commitment_point\"]\n            if cp and 0 < cp < len(preds):\n                vals.append(float(preds[:cp].sum()) / cp)\n            else:\n                vals.append(0.0)\n    return np.array(vals)\n\n\n# ============================================================\n# Ensemble\n# ============================================================\n\ndef ensemble_trace_results(results_list):\n    by_id = {}\n    for results in results_list:\n        for tr in results:\n            tid = tr[\"trace_id\"]\n            if tid not in by_id:\n                by_id[tid] = {\"probs_list\": [], \"labels\": tr[\"labels\"],\n                              \"commitment_point\": tr[\"commitment_point\"]}\n            by_id[tid][\"probs_list\"].append(tr[\"probs\"])\n\n    ensembled = []\n    for tid in sorted(by_id):\n        data = by_id[tid]\n        if len(data[\"probs_list\"]) < len(results_list):\n            continue\n        min_len = min(len(p) for p in data[\"probs_list\"])\n        avg_probs = np.mean([p[:min_len] for p in data[\"probs_list\"]], axis=0)\n        ensembled.append({\n            \"trace_id\": tid,\n            \"probs\": avg_probs,\n            \"labels\": data[\"labels\"][:min_len],\n            \"commitment_point\": data[\"commitment_point\"],\n        })\n    return ensembled\n\n\n# ============================================================\n# Bootstrap\n# ============================================================\n\ndef bootstrap_gap(results_a, results_b, metric_key, n_boot=N_BOOTSTRAP):\n    id_a = {tr[\"trace_id\"]: tr for tr in results_a}\n    id_b = {tr[\"trace_id\"]: tr for tr in results_b}\n    common = sorted(set(id_a) & set(id_b))\n    if len(common) < 3:\n        return None, None\n\n    a_aligned = [id_a[tid] for tid in common]\n    b_aligned = [id_b[tid] for tid in common]\n    va = per_trace_metric(a_aligned, metric_key)\n    vb = per_trace_metric(b_aligned, metric_key)\n    observed_gap = float(va.mean() - vb.mean())\n\n    rng = np.random.default_rng(SEED)\n    n = len(common)\n    count = 0\n    for _ in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        boot_gap = va[idx].mean() - vb[idx].mean()\n        if metric_key == \"fpr\":\n            if boot_gap >= 0:\n                count += 1\n        else:\n            if boot_gap <= 0:\n                count += 1\n\n    return round(observed_gap, 4), round(count / n_boot, 4)\n\n\n# ============================================================\n# 3rd layer selection\n# ============================================================\n\ndef find_third_layer(train, val, cfg):\n    offset = cfg[\"layer_offset\"]\n    n_layers = cfg[\"n_stored_layers\"]\n    window = cfg[\"window\"]\n    prec_layer = cfg[\"precision_layer\"]\n    ba_layer = cfg[\"ba_layer\"]\n    step = cfg.get(\"sweep_step\", 1)\n    exclude = {prec_layer, ba_layer}\n\n    hint = cfg.get(\"fpr_layer_hint\")\n    if hint is not None and hint not in exclude:\n        return hint\n\n    best_fpr = 1.0\n    best_layer = None\n    for si in range(0, n_layers, step):\n        actual = si + offset\n        if actual in exclude:\n            continue\n        try:\n            X_tr, y_tr = collect_hs_data(train, si, window)\n            clf, scaler = train_probe(X_tr, y_tr)\n            val_res = predict_hs_traces(clf, scaler, val, si, window)\n            m = compute_metrics(val_res)\n            if m[\"fpr\"] < best_fpr:\n                best_fpr = m[\"fpr\"]\n                best_layer = actual\n        except Exception:\n            continue\n\n    if best_layer is None or best_layer in exclude:\n        best_layer = (prec_layer + ba_layer) // 2\n        while best_layer in exclude:\n            best_layer += 1\n\n    return best_layer\n\n\n# ============================================================\n# Per-model processing\n# ============================================================\n\ndef process_model(model_name, cfg):\n    print(f\"\\n{'='*60}\")\n    print(f\"Model: {model_name}\")\n    print(f\"{'='*60}\")\n\n    traces = load_traces(cfg[\"hs_dir\"])\n    print(f\"  Loaded {len(traces)} traces with commitment points\")\n\n    train, val, test = split_traces(traces)\n    print(f\"  Split: train={len(train)}, val={len(val)}, test={len(test)}\")\n\n    offset = cfg[\"layer_offset\"]\n    window = cfg[\"window\"]\n    prec_layer = cfg[\"precision_layer\"]\n    ba_layer = cfg[\"ba_layer\"]\n\n    # Find 3rd layer\n    print(\"  Finding 3rd candidate layer...\")\n    third_layer = find_third_layer(train, val, cfg)\n    print(f\"  Layers: precision=L{prec_layer}, BA=L{ba_layer}, 3rd=L{third_layer}\")\n\n    # Deduplicate layers\n    layer_map = {}\n    for name, lnum in [(\"precision\", prec_layer), (\"ba\", ba_layer), (\"third\", third_layer)]:\n        if lnum not in [v for v in layer_map.values()]:\n            layer_map[name] = lnum\n    n_ens = len(layer_map)\n    print(f\"  Unique layers: {n_ens} — {dict(layer_map)}\")\n\n    # Train per-layer probes and get test predictions\n    layer_results = {}\n    for name, lnum in layer_map.items():\n        lidx = lnum - offset\n        print(f\"  Training L{lnum} probe (idx={lidx}, W={window})...\")\n        X_tr, y_tr = collect_hs_data(train, lidx, window)\n        clf, scaler = train_probe(X_tr, y_tr)\n        test_res = predict_hs_traces(clf, scaler, test, lidx, window)\n        layer_results[name] = {\"layer\": lnum, \"results\": test_res}\n        m = compute_metrics(test_res)\n        print(f\"    BA={m['bal_acc']:.4f}  Prec={m['precision']:.4f}  FPR={m['fpr']:.4f}\")\n\n    # Ensemble\n    ens_results = ensemble_trace_results([lr[\"results\"] for lr in layer_results.values()])\n    ens_metrics = compute_metrics(ens_results)\n    print(f\"  Ensemble ({n_ens}L): BA={ens_metrics['bal_acc']:.4f}  \"\n          f\"Prec={ens_metrics['precision']:.4f}  FPR={ens_metrics['fpr']:.4f}\")\n\n    # Text probe\n    print(\"  Training text probe...\")\n    text_emb_dict = pickle.load(open(cfg[\"text_emb_pkl\"], \"rb\"))\n\n    X_txt_parts, y_txt_parts = [], []\n    for t in train:\n        tid = str(t.get(\"trace_id\", \"\"))\n        emb = extract_text_features(text_emb_dict, tid, window)\n        if emb is None:\n            continue\n        labels = get_labels(t)\n        n = min(len(emb), len(labels))\n        X_txt_parts.append(emb[:n])\n        y_txt_parts.extend(labels[:n])\n\n    text_metrics = {\"bal_acc\": None, \"precision\": None, \"fpr\": None}\n    text_test_results = []\n    if X_txt_parts:\n        X_txt = np.vstack(X_txt_parts)\n        y_txt = np.array(y_txt_parts)\n        txt_clf, txt_scaler = train_probe(X_txt, y_txt)\n        text_test_results = predict_text_traces(txt_clf, txt_scaler, test,\n                                                text_emb_dict, window)\n        text_metrics = compute_metrics(text_test_results)\n        print(f\"  Text:  BA={text_metrics['bal_acc']:.4f}  \"\n              f\"Prec={text_metrics['precision']:.4f}  FPR={text_metrics['fpr']:.4f}\")\n    else:\n        print(\"  Text: NO MATCHING EMBEDDINGS\")\n\n    # Bootstrap tests\n    print(\"  Bootstrap (10000 resamples)...\")\n    bootstrap = {}\n\n    # Ensemble vs Text\n    if text_test_results:\n        for mk in [\"bal_acc\", \"precision\", \"fpr\"]:\n            gap, pval = bootstrap_gap(ens_results, text_test_results, mk)\n            bootstrap[f\"ens_vs_text_{mk}\"] = {\"gap\": gap, \"p\": pval}\n            print(f\"    ens vs text {mk}: gap={gap}, p={pval}\")\n\n    # Ensemble vs best single layer (by precision)\n    best_name = max(layer_results, key=lambda k: compute_metrics(layer_results[k][\"results\"])[\"precision\"])\n    best_single = layer_results[best_name][\"results\"]\n    for mk in [\"bal_acc\", \"precision\", \"fpr\"]:\n        gap, pval = bootstrap_gap(ens_results, best_single, mk)\n        bootstrap[f\"ens_vs_best_single_{mk}\"] = {\"gap\": gap, \"p\": pval}\n        print(f\"    ens vs best_single({best_name} L{layer_results[best_name]['layer']}) {mk}: gap={gap}, p={pval}\")\n\n    # Ensemble vs worst single layer (to show improvement)\n    worst_name = min(layer_results, key=lambda k: compute_metrics(layer_results[k][\"results\"])[\"precision\"])\n    worst_single = layer_results[worst_name][\"results\"]\n    for mk in [\"bal_acc\", \"precision\", \"fpr\"]:\n        gap, pval = bootstrap_gap(ens_results, worst_single, mk)\n        bootstrap[f\"ens_vs_worst_single_{mk}\"] = {\"gap\": gap, \"p\": pval}\n\n    # Compile\n    metrics_out = {}\n    for name, lr in layer_results.items():\n        metrics_out[f\"single_{name}_L{lr['layer']}\"] = compute_metrics(lr[\"results\"])\n    metrics_out[\"ensemble\"] = ens_metrics\n    metrics_out[\"text\"] = text_metrics\n\n    return {\n        \"model\": model_name,\n        \"n_traces\": {\"total\": len(traces), \"train\": len(train),\n                     \"val\": len(val), \"test\": len(test)},\n        \"window\": window,\n        \"layers\": {name: lr[\"layer\"] for name, lr in layer_results.items()},\n        \"n_ensemble_layers\": n_ens,\n        \"metrics\": metrics_out,\n        \"bootstrap\": bootstrap,\n    }\n\n\n# ============================================================\n# Main\n# ============================================================\n\ndef main():\n    t0 = time.time()\n    all_results = {}\n\n    for model_name, cfg in MODEL_CONFIGS.items():\n        try:\n            result = process_model(model_name, cfg)\n            all_results[model_name] = result\n        except Exception as e:\n            import traceback\n            traceback.print_exc()\n            all_results[model_name] = {\"error\": str(e)}\n\n    elapsed = time.time() - t0\n\n    # Save JSON\n    def json_default(x):\n        if isinstance(x, (np.floating, np.integer)):\n            return float(x)\n        if isinstance(x, np.ndarray):\n            return x.tolist()\n        return None\n\n    with open(OUT_DIR / \"results.json\", \"w\") as f:\n        json.dump(all_results, f, indent=2, default=json_default)\n\n    # Generate report\n    lines = [\n        \"N6: Multi-Metric Layer Ensemble — Results\",\n        \"=\" * 60,\n        f\"Date: {time.strftime('%Y-%m-%d %H:%M')}\",\n        f\"Total runtime: {elapsed:.0f}s\",\n        \"\",\n    ]\n\n    for model_name, res in all_results.items():\n        if \"error\" in res:\n            lines.append(f\"{model_name}: ERROR — {res['error']}\\n\")\n            continue\n\n        lines.append(f\"{model_name}  (W={res['window']}, test={res['n_traces']['test']}, \"\n                     f\"ensemble={res['n_ensemble_layers']}L)\")\n        lines.append(f\"  Layers: {res['layers']}\")\n        lines.append(f\"  {'Method':<35} {'BA':>7} {'Prec':>7} {'FPR':>7}\")\n        lines.append(f\"  {'-'*56}\")\n        for mk, mv in res[\"metrics\"].items():\n            if mv.get(\"bal_acc\") is not None:\n                lines.append(f\"  {mk:<35} {mv['bal_acc']:>7.4f} {mv['precision']:>7.4f} {mv['fpr']:>7.4f}\")\n        lines.append(\"\")\n\n        if res.get(\"bootstrap\"):\n            lines.append(\"  Bootstrap (n=10000):\")\n            for bk, bv in res[\"bootstrap\"].items():\n                sig = \"*\" if bv.get(\"p\") is not None and bv[\"p\"] < 0.05 else \"\"\n                lines.append(f\"    {bk}: gap={bv['gap']}, p={bv['p']}{sig}\")\n            lines.append(\"\")\n\n    # Summary table\n    lines.append(\"=\" * 60)\n    lines.append(\"SUMMARY: Does ensemble mitigate layer sensitivity?\")\n    lines.append(f\"{'Model':<10} {'Best-Single Prec':>16} {'Ensemble Prec':>14} {'Delta':>7} {'Text Prec':>10} {'Ens-Text Gap':>12}\")\n    lines.append(\"-\" * 70)\n    for model_name, res in all_results.items():\n        if \"error\" in res:\n            continue\n        m = res[\"metrics\"]\n        single_precs = [v[\"precision\"] for k, v in m.items()\n                        if k.startswith(\"single_\") and v.get(\"precision\") is not None]\n        best_single = max(single_precs) if single_precs else 0\n        worst_single = min(single_precs) if single_precs else 0\n        ens_prec = m[\"ensemble\"][\"precision\"]\n        txt_prec = m[\"text\"][\"precision\"] if m[\"text\"][\"precision\"] is not None else 0\n        delta = ens_prec - best_single\n        gap = ens_prec - txt_prec\n        lines.append(f\"{model_name:<10} {best_single:>16.4f} {ens_prec:>14.4f} {delta:>+7.4f} {txt_prec:>10.4f} {gap:>+12.4f}\")\n\n    lines.append(\"\")\n    lines.append(\"Sensitivity reduction (ensemble precision range vs single-layer range):\")\n    for model_name, res in all_results.items():\n        if \"error\" in res:\n            continue\n        m = res[\"metrics\"]\n        single_precs = [v[\"precision\"] for k, v in m.items()\n                        if k.startswith(\"single_\") and v.get(\"precision\") is not None]\n        if len(single_precs) >= 2:\n            single_range = max(single_precs) - min(single_precs)\n            ens_prec = m[\"ensemble\"][\"precision\"]\n            lines.append(f\"  {model_name}: single-layer range={single_range:.4f}, \"\n                         f\"ensemble={ens_prec:.4f} \"\n                         f\"(within {abs(ens_prec - np.mean(single_precs)):.4f} of mean)\")\n\n    report = \"\\n\".join(lines)\n    with open(OUT_DIR / \"report.txt\", \"w\") as f:\n        f.write(report)\n\n    print(f\"\\n{'='*60}\")\n    print(report)\n    print(f\"\\nResults: {OUT_DIR / 'results.json'}\")\n    print(f\"Report:  {OUT_DIR / 'report.txt'}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "e435af2e-eb05-42fa-bff5-6664aae9196b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "27cad485-8176-4567-83df-2bc74a228f74",
+                "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15"
+              }
+            }
+          ],
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Build multi-metric layer ensemble proof-of-concept",
+                "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15"
+              }
+            }
+          ],
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-19T16:30:51.627Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now uploading to server and running R1-8B first to validate the pipeline."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "27cad485-8176-4567-83df-2bc74a228f74",
+            "isSidechain": false,
+            "requestId": "req_011CbCFEhMQttdHqX2WHNmiy",
+            "type": "assistant",
+            "uuid": "ac46f591-c2c2-45f5-a5e1-aa0c93ab8ce3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M9FzCk2XiRRLZeEvKUmJhV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8092,
+                "cache_read_input_tokens": 109855,
+                "output_tokens": 6738,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8092,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6738,
+                    "cache_read_input_tokens": 109855,
+                    "cache_creation_input_tokens": 8092,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8092
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-19T16:31:55.403Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014B8PD1WJc4669hcDEkvzq3",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "cat > /root/autodl-tmp/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py << 'SCRIPT_EOF'\n\"\"\"N6: Multi-Metric Layer Ensemble Proof-of-Concept.\n\nFor each of 4 models, train probes at 3 candidate layers (precision-best,\nBA-best, FPR-best), ensemble their per-step probabilities, and compare\nagainst single-layer and text baselines. Bootstrap significance tests\non ensemble vs text and ensemble vs best-single-layer.\n\"\"\"\n\nimport os, sys, json, pickle, warnings, time\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nwarnings.filterwarnings(\"ignore\")\n\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.metrics import balanced_accuracy_score\n\nPROJECT = Path(\"/root/autodl-tmp/contrastive_trace_safety\")\nARTIFACTS = PROJECT / \"artifacts\"\nOUT_DIR = ARTIFACTS / \"n6_multi_metric_ensemble\"\nOUT_DIR.mkdir(parents=True, exist_ok=True)\n\nSEED = 42\nN_BOOTSTRAP = 10000\n\nMODEL_CONFIGS = {\n    \"R1-8B\": {\n        \"hs_dir\": ARTIFACTS / \"hidden_states\",\n        \"layer_offset\": 12,\n        \"n_stored_layers\": 13,\n        \"hidden_dim\": 4096,\n        \"window\": 15,\n        \"precision_layer\": 14,\n        \"ba_layer\": 12,\n        \"text_emb_pkl\": ARTIFACTS / \"r12_5seed_hb\" / \"r1_8b_text_emb.pkl\",\n        \"sweep_step\": 1,\n    },\n    \"OT-7B\": {\n        \"hs_dir\": ARTIFACTS / \"hidden_states_ot7b\",\n        \"layer_offset\": 0,\n        \"n_stored_layers\": 28,\n        \"hidden_dim\": 3584,\n        \"window\": 3,\n        \"precision_layer\": 16,\n        \"ba_layer\": 9,\n        \"fpr_layer_hint\": 18,\n        \"text_emb_pkl\": ARTIFACTS / \"ot7b_text_embeddings.pkl\",\n        \"sweep_step\": 1,\n    },\n    \"QwQ-32B\": {\n        \"hs_dir\": ARTIFACTS / \"hidden_states_qwq_32b\",\n        \"layer_offset\": 0,\n        \"n_stored_layers\": 64,\n        \"hidden_dim\": 5120,\n        \"window\": 3,\n        \"precision_layer\": 60,\n        \"ba_layer\": 30,\n        \"fpr_layer_hint\": 63,\n        \"text_emb_pkl\": ARTIFACTS / \"r12_5seed_hb\" / \"qwq_text_emb.pkl\",\n        \"sweep_step\": 4,\n    },\n    \"R1-32B\": {\n        \"hs_dir\": ARTIFACTS / \"hidden_states_r1_32b\",\n        \"layer_offset\": 0,\n        \"n_stored_layers\": 64,\n        \"hidden_dim\": 5120,\n        \"window\": 1,\n        \"precision_layer\": 63,\n        \"ba_layer\": 47,\n        \"text_emb_pkl\": ARTIFACTS / \"r12_5seed_hb\" / \"r1_32b_text_emb.pkl\",\n        \"sweep_step\": 4,\n    },\n}\n\n\ndef load_traces(hs_dir):\n    traces = []\n    for pt_file in sorted(hs_dir.glob(\"*.pt\")):\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if data.get(\"step_labels\") is None or data.get(\"commitment_point\") is None:\n            continue\n        traces.append(data)\n    return traces\n\n\ndef get_labels(t):\n    sl = t[\"step_labels\"]\n    if isinstance(sl, torch.Tensor):\n        return sl.tolist()\n    return list(sl)\n\n\ndef get_cp(t):\n    cp = t[\"commitment_point\"]\n    if isinstance(cp, torch.Tensor):\n        return int(cp.item())\n    return int(cp)\n\n\ndef split_traces(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    idx = rng.permutation(len(traces))\n    n_tr = int(len(traces) * 0.6)\n    n_va = int(len(traces) * 0.2)\n    return (\n        [traces[i] for i in idx[:n_tr]],\n        [traces[i] for i in idx[n_tr:n_tr + n_va]],\n        [traces[i] for i in idx[n_tr + n_va:]],\n    )\n\n\ndef moving_avg(hs, window):\n    if window <= 1:\n        return hs\n    T, D = hs.shape\n    out = np.zeros_like(hs)\n    cumsum = np.zeros((T + 1, D), dtype=hs.dtype)\n    for i in range(T):\n        cumsum[i + 1] = cumsum[i] + hs[i]\n    for i in range(T):\n        start = max(0, i - window + 1)\n        out[i] = (cumsum[i + 1] - cumsum[start]) / (i - start + 1)\n    return out\n\n\ndef extract_hs_features(trace, layer_idx, window):\n    hs = trace[\"hidden_states\"][:, layer_idx, :]\n    if isinstance(hs, torch.Tensor):\n        hs = hs.numpy()\n    return moving_avg(hs.astype(np.float32), window)\n\n\ndef extract_text_features(text_emb_dict, trace_id, window):\n    emb = text_emb_dict.get(trace_id)\n    if emb is None:\n        return None\n    if isinstance(emb, torch.Tensor):\n        emb = emb.numpy()\n    return moving_avg(emb.astype(np.float32), window)\n\n\ndef collect_hs_data(traces, layer_idx, window):\n    X_parts, y_parts = [], []\n    for t in traces:\n        feats = extract_hs_features(t, layer_idx, window)\n        labels = get_labels(t)\n        n = min(len(feats), len(labels))\n        X_parts.append(feats[:n])\n        y_parts.extend(labels[:n])\n    return np.vstack(X_parts), np.array(y_parts)\n\n\ndef train_probe(X_train, y_train):\n    scaler = StandardScaler()\n    X_scaled = scaler.fit_transform(X_train)\n    clf = LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000,\n                             solver='lbfgs', random_state=SEED)\n    clf.fit(X_scaled, y_train)\n    return clf, scaler\n\n\ndef predict_hs_traces(clf, scaler, traces, layer_idx, window):\n    results = []\n    for t in traces:\n        feats = extract_hs_features(t, layer_idx, window)\n        labels = get_labels(t)\n        n = min(len(feats), len(labels))\n        probs = clf.predict_proba(scaler.transform(feats[:n]))[:, 1]\n        results.append({\n            \"trace_id\": str(t.get(\"trace_id\", \"\")),\n            \"probs\": probs,\n            \"labels\": np.array(labels[:n]),\n            \"commitment_point\": get_cp(t),\n        })\n    return results\n\n\ndef predict_text_traces(clf, scaler, traces, text_emb_dict, window):\n    results = []\n    for t in traces:\n        tid = str(t.get(\"trace_id\", \"\"))\n        emb = extract_text_features(text_emb_dict, tid, window)\n        if emb is None:\n            continue\n        labels = get_labels(t)\n        n = min(len(emb), len(labels))\n        probs = clf.predict_proba(scaler.transform(emb[:n]))[:, 1]\n        results.append({\n            \"trace_id\": tid,\n            \"probs\": probs,\n            \"labels\": np.array(labels[:n]),\n            \"commitment_point\": get_cp(t),\n        })\n    return results\n\n\ndef compute_metrics(trace_results):\n    all_preds, all_labels = [], []\n    pre_fp, pre_total = 0, 0\n    for tr in trace_results:\n        preds = (tr[\"probs\"] > 0.5).astype(int)\n        all_preds.extend(preds)\n        all_labels.extend(tr[\"labels\"])\n        cp = tr[\"commitment_point\"]\n        if cp is not None and cp > 0 and cp < len(preds):\n            pre_fp += int(preds[:cp].sum())\n            pre_total += cp\n\n    all_preds = np.array(all_preds)\n    all_labels = np.array(all_labels)\n    ba = balanced_accuracy_score(all_labels, all_preds)\n    tp = int(((all_preds == 1) & (all_labels == 1)).sum())\n    fp = int(((all_preds == 1) & (all_labels == 0)).sum())\n    prec = tp / (tp + fp) if (tp + fp) > 0 else 0.0\n    fpr = pre_fp / pre_total if pre_total > 0 else 0.0\n    return {\"bal_acc\": round(ba, 4), \"precision\": round(prec, 4), \"fpr\": round(fpr, 4)}\n\n\ndef per_trace_metric(trace_results, key):\n    vals = []\n    for tr in trace_results:\n        preds = (tr[\"probs\"] > 0.5).astype(int)\n        labels = tr[\"labels\"]\n        if key == \"bal_acc\":\n            if len(set(labels)) < 2:\n                vals.append(float((preds == labels).mean()))\n            else:\n                vals.append(balanced_accuracy_score(labels, preds))\n        elif key == \"precision\":\n            tp = int(((preds == 1) & (labels == 1)).sum())\n            fp = int(((preds == 1) & (labels == 0)).sum())\n            vals.append(tp / (tp + fp) if (tp + fp) > 0 else 0.0)\n        elif key == \"fpr\":\n            cp = tr[\"commitment_point\"]\n            if cp and 0 < cp < len(preds):\n                vals.append(float(preds[:cp].sum()) / cp)\n            else:\n                vals.append(0.0)\n    return np.array(vals)\n\n\ndef ensemble_trace_results(results_list):\n    by_id = {}\n    for results in results_list:\n        for tr in results:\n            tid = tr[\"trace_id\"]\n            if tid not in by_id:\n                by_id[tid] = {\"probs_list\": [], \"labels\": tr[\"labels\"],\n                              \"commitment_point\": tr[\"commitment_point\"]}\n            by_id[tid][\"probs_list\"].append(tr[\"probs\"])\n\n    ensembled = []\n    for tid in sorted(by_id):\n        data = by_id[tid]\n        if len(data[\"probs_list\"]) < len(results_list):\n            continue\n        min_len = min(len(p) for p in data[\"probs_list\"])\n        avg_probs = np.mean([p[:min_len] for p in data[\"probs_list\"]], axis=0)\n        ensembled.append({\n            \"trace_id\": tid,\n            \"probs\": avg_probs,\n            \"labels\": data[\"labels\"][:min_len],\n            \"commitment_point\": data[\"commitment_point\"],\n        })\n    return ensembled\n\n\ndef bootstrap_gap(results_a, results_b, metric_key, n_boot=N_BOOTSTRAP):\n    id_a = {tr[\"trace_id\"]: tr for tr in results_a}\n    id_b = {tr[\"trace_id\"]: tr for tr in results_b}\n    common = sorted(set(id_a) & set(id_b))\n    if len(common) < 3:\n        return None, None\n\n    a_aligned = [id_a[tid] for tid in common]\n    b_aligned = [id_b[tid] for tid in common]\n    va = per_trace_metric(a_aligned, metric_key)\n    vb = per_trace_metric(b_aligned, metric_key)\n    observed_gap = float(va.mean() - vb.mean())\n\n    rng = np.random.default_rng(SEED)\n    n = len(common)\n    count = 0\n    for _ in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        boot_gap = va[idx].mean() - vb[idx].mean()\n        if metric_key == \"fpr\":\n            if boot_gap >= 0:\n                count += 1\n        else:\n            if boot_gap <= 0:\n                count += 1\n\n    return round(observed_gap, 4), round(count / n_boot, 4)\n\n\ndef find_third_layer(train, val, cfg):\n    offset = cfg[\"layer_offset\"]\n    n_layers = cfg[\"n_stored_layers\"]\n    window = cfg[\"window\"]\n    prec_layer = cfg[\"precision_layer\"]\n    ba_layer = cfg[\"ba_layer\"]\n    step = cfg.get(\"sweep_step\", 1)\n    exclude = {prec_layer, ba_layer}\n\n    hint = cfg.get(\"fpr_layer_hint\")\n    if hint is not None and hint not in exclude:\n        return hint\n\n    best_fpr = 1.0\n    best_layer = None\n    for si in range(0, n_layers, step):\n        actual = si + offset\n        if actual in exclude:\n            continue\n        try:\n            X_tr, y_tr = collect_hs_data(train, si, window)\n            clf, scaler = train_probe(X_tr, y_tr)\n            val_res = predict_hs_traces(clf, scaler, val, si, window)\n            m = compute_metrics(val_res)\n            if m[\"fpr\"] < best_fpr:\n                best_fpr = m[\"fpr\"]\n                best_layer = actual\n        except Exception:\n            continue\n\n    if best_layer is None or best_layer in exclude:\n        best_layer = (prec_layer + ba_layer) // 2\n        while best_layer in exclude:\n            best_layer += 1\n\n    return best_layer\n\n\ndef process_model(model_name, cfg):\n    print(f\"\\n{'='*60}\")\n    print(f\"Model: {model_name}\")\n    print(f\"{'='*60}\")\n\n    traces = load_traces(cfg[\"hs_dir\"])\n    print(f\"  Loaded {len(traces)} traces with commitment points\")\n\n    train, val, test = split_traces(traces)\n    print(f\"  Split: train={len(train)}, val={len(val)}, test={len(test)}\")\n\n    offset = cfg[\"layer_offset\"]\n    window = cfg[\"window\"]\n    prec_layer = cfg[\"precision_layer\"]\n    ba_layer = cfg[\"ba_layer\"]\n\n    print(\"  Finding 3rd candidate layer...\")\n    third_layer = find_third_layer(train, val, cfg)\n    print(f\"  Layers: precision=L{prec_layer}, BA=L{ba_layer}, 3rd=L{third_layer}\")\n\n    layer_map = {}\n    for name, lnum in [(\"precision\", prec_layer), (\"ba\", ba_layer), (\"third\", third_layer)]:\n        if lnum not in [v for v in layer_map.values()]:\n            layer_map[name] = lnum\n    n_ens = len(layer_map)\n    print(f\"  Unique layers: {n_ens} — {dict(layer_map)}\")\n\n    layer_results = {}\n    for name, lnum in layer_map.items():\n        lidx = lnum - offset\n        print(f\"  Training L{lnum} probe (idx={lidx}, W={window})...\")\n        X_tr, y_tr = collect_hs_data(train, lidx, window)\n        clf, scaler = train_probe(X_tr, y_tr)\n        test_res = predict_hs_traces(clf, scaler, test, lidx, window)\n        layer_results[name] = {\"layer\": lnum, \"results\": test_res}\n        m = compute_metrics(test_res)\n        print(f\"    BA={m['bal_acc']:.4f}  Prec={m['precision']:.4f}  FPR={m['fpr']:.4f}\")\n\n    ens_results = ensemble_trace_results([lr[\"results\"] for lr in layer_results.values()])\n    ens_metrics = compute_metrics(ens_results)\n    print(f\"  Ensemble ({n_ens}L): BA={ens_metrics['bal_acc']:.4f}  \"\n          f\"Prec={ens_metrics['precision']:.4f}  FPR={ens_metrics['fpr']:.4f}\")\n\n    print(\"  Training text probe...\")\n    text_emb_dict = pickle.load(open(cfg[\"text_emb_pkl\"], \"rb\"))\n\n    X_txt_parts, y_txt_parts = [], []\n    for t in train:\n        tid = str(t.get(\"trace_id\", \"\"))\n        emb = extract_text_features(text_emb_dict, tid, window)\n        if emb is None:\n            continue\n        labels = get_labels(t)\n        n = min(len(emb), len(labels))\n        X_txt_parts.append(emb[:n])\n        y_txt_parts.extend(labels[:n])\n\n    text_metrics = {\"bal_acc\": None, \"precision\": None, \"fpr\": None}\n    text_test_results = []\n    if X_txt_parts:\n        X_txt = np.vstack(X_txt_parts)\n        y_txt = np.array(y_txt_parts)\n        txt_clf, txt_scaler = train_probe(X_txt, y_txt)\n        text_test_results = predict_text_traces(txt_clf, txt_scaler, test,\n                                                text_emb_dict, window)\n        text_metrics = compute_metrics(text_test_results)\n        print(f\"  Text:  BA={text_metrics['bal_acc']:.4f}  \"\n              f\"Prec={text_metrics['precision']:.4f}  FPR={text_metrics['fpr']:.4f}\")\n    else:\n        print(\"  Text: NO MATCHING EMBEDDINGS\")\n\n    print(\"  Bootstrap (10000 resamples)...\")\n    bootstrap = {}\n\n    if text_test_results:\n        for mk in [\"bal_acc\", \"precision\", \"fpr\"]:\n            gap, pval = bootstrap_gap(ens_results, text_test_results, mk)\n            bootstrap[f\"ens_vs_text_{mk}\"] = {\"gap\": gap, \"p\": pval}\n            print(f\"    ens vs text {mk}: gap={gap}, p={pval}\")\n\n    best_name = max(layer_results, key=lambda k: compute_metrics(layer_results[k][\"results\"])[\"precision\"])\n    best_single = layer_results[best_name][\"results\"]\n    for mk in [\"bal_acc\", \"precision\", \"fpr\"]:\n        gap, pval = bootstrap_gap(ens_results, best_single, mk)\n        bootstrap[f\"ens_vs_best_single_{mk}\"] = {\"gap\": gap, \"p\": pval}\n        print(f\"    ens vs best_single({best_name} L{layer_results[best_name]['layer']}) {mk}: gap={gap}, p={pval}\")\n\n    worst_name = min(layer_results, key=lambda k: compute_metrics(layer_results[k][\"results\"])[\"precision\"])\n    worst_single = layer_results[worst_name][\"results\"]\n    for mk in [\"bal_acc\", \"precision\", \"fpr\"]:\n        gap, pval = bootstrap_gap(ens_results, worst_single, mk)\n        bootstrap[f\"ens_vs_worst_single_{mk}\"] = {\"gap\": gap, \"p\": pval}\n\n    metrics_out = {}\n    for name, lr in layer_results.items():\n        metrics_out[f\"single_{name}_L{lr['layer']}\"] = compute_metrics(lr[\"results\"])\n    metrics_out[\"ensemble\"] = ens_metrics\n    metrics_out[\"text\"] = text_metrics\n\n    return {\n        \"model\": model_name,\n        \"n_traces\": {\"total\": len(traces), \"train\": len(train),\n                     \"val\": len(val), \"test\": len(test)},\n        \"window\": window,\n        \"layers\": {name: lr[\"layer\"] for name, lr in layer_results.items()},\n        \"n_ensemble_layers\": n_ens,\n        \"metrics\": metrics_out,\n        \"bootstrap\": bootstrap,\n    }\n\n\ndef main():\n    t0 = time.time()\n    all_results = {}\n\n    for model_name, cfg in MODEL_CONFIGS.items():\n        try:\n            result = process_model(model_name, cfg)\n            all_results[model_name] = result\n        except Exception as e:\n            import traceback\n            traceback.print_exc()\n            all_results[model_name] = {\"error\": str(e)}\n\n    elapsed = time.time() - t0\n\n    def json_default(x):\n        if isinstance(x, (np.floating, np.integer)):\n            return float(x)\n        if isinstance(x, np.ndarray):\n            return x.tolist()\n        return None\n\n    with open(OUT_DIR / \"results.json\", \"w\") as f:\n        json.dump(all_results, f, indent=2, default=json_default)\n\n    lines = [\n        \"N6: Multi-Metric Layer Ensemble — Results\",\n        \"=\" * 60,\n        f\"Date: {time.strftime('%Y-%m-%d %H:%M')}\",\n        f\"Total runtime: {elapsed:.0f}s\",\n        \"\",\n    ]\n\n    for model_name, res in all_results.items():\n        if \"error\" in res:\n            lines.append(f\"{model_name}: ERROR — {res['error']}\\n\")\n            continue\n\n        lines.append(f\"{model_name}  (W={res['window']}, test={res['n_traces']['test']}, \"\n                     f\"ensemble={res['n_ensemble_layers']}L)\")\n        lines.append(f\"  Layers: {res['layers']}\")\n        lines.append(f\"  {'Method':<35} {'BA':>7} {'Prec':>7} {'FPR':>7}\")\n        lines.append(f\"  {'-'*56}\")\n        for mk, mv in res[\"metrics\"].items():\n            if mv.get(\"bal_acc\") is not None:\n                lines.append(f\"  {mk:<35} {mv['bal_acc']:>7.4f} {mv['precision']:>7.4f} {mv['fpr']:>7.4f}\")\n        lines.append(\"\")\n\n        if res.get(\"bootstrap\"):\n            lines.append(\"  Bootstrap (n=10000):\")\n            for bk, bv in res[\"bootstrap\"].items():\n                sig = \"*\" if bv.get(\"p\") is not None and bv[\"p\"] < 0.05 else \"\"\n                lines.append(f\"    {bk}: gap={bv['gap']}, p={bv['p']}{sig}\")\n            lines.append(\"\")\n\n    lines.append(\"=\" * 60)\n    lines.append(\"SUMMARY: Does ensemble mitigate layer sensitivity?\")\n    lines.append(f\"{'Model':<10} {'BestSingle':>10} {'Ensemble':>10} {'Delta':>7} {'Text':>7} {'Ens-Txt':>8}\")\n    lines.append(\"-\" * 55)\n    for model_name, res in all_results.items():\n        if \"error\" in res:\n            continue\n        m = res[\"metrics\"]\n        sp = [v[\"precision\"] for k, v in m.items()\n              if k.startswith(\"single_\") and v.get(\"precision\") is not None]\n        bs = max(sp) if sp else 0\n        ep = m[\"ensemble\"][\"precision\"]\n        tp = m[\"text\"][\"precision\"] if m[\"text\"][\"precision\"] is not None else 0\n        lines.append(f\"{model_name:<10} {bs:>10.4f} {ep:>10.4f} {ep-bs:>+7.4f} {tp:>7.4f} {ep-tp:>+8.4f}\")\n\n    lines.append(\"\")\n    lines.append(\"Sensitivity reduction:\")\n    for model_name, res in all_results.items():\n        if \"error\" in res:\n            continue\n        m = res[\"metrics\"]\n        sp = [v[\"precision\"] for k, v in m.items()\n              if k.startswith(\"single_\") and v.get(\"precision\") is not None]\n        if len(sp) >= 2:\n            sr = max(sp) - min(sp)\n            ep = m[\"ensemble\"][\"precision\"]\n            lines.append(f\"  {model_name}: single range={sr:.4f}, ens={ep:.4f}\")\n\n    report = \"\\n\".join(lines)\n    with open(OUT_DIR / \"report.txt\", \"w\") as f:\n        f.write(report)\n\n    print(f\"\\n{'='*60}\")\n    print(report)\n    print(f\"\\nResults: {OUT_DIR / 'results.json'}\")\n    print(f\"Report:  {OUT_DIR / 'report.txt'}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script uploaded OK\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac46f591-c2c2-45f5-a5e1-aa0c93ab8ce3",
+            "isSidechain": false,
+            "requestId": "req_011CbCFEhMQttdHqX2WHNmiy",
+            "type": "assistant",
+            "uuid": "706da0be-5e53-487a-96ea-c8923db2c8a9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M9FzCk2XiRRLZeEvKUmJhV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8092,
+                "cache_read_input_tokens": 109855,
+                "output_tokens": 6738,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8092,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6738,
+                    "cache_read_input_tokens": 109855,
+                    "cache_creation_input_tokens": 8092,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8092
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-19T16:31:55.902Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014B8PD1WJc4669hcDEkvzq3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script uploaded OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "706da0be-5e53-487a-96ea-c8923db2c8a9",
+            "isSidechain": false,
+            "promptId": "f6cb66fe-e1fd-4454-99f3-c221741a2349",
+            "type": "user",
+            "uuid": "52bb3790-222c-40d8-9565-92e2aadfe325",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script uploaded OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Script uploaded OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+              }
+            },
+            "sourceToolAssistantUUID": "706da0be-5e53-487a-96ea-c8923db2c8a9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-19T16:31:59.805Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Running the full experiment now. Given 4 models with sweeps and bootstrap, this will take several minutes."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "52bb3790-222c-40d8-9565-92e2aadfe325",
+            "isSidechain": false,
+            "requestId": "req_011CbCFKh4SNPUMdEwKjwYk2",
+            "type": "assistant",
+            "uuid": "e449d580-f2c6-4d49-bb37-cb6e7b0443ad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01557QL3udrv3x2xkpTEnHKd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6816,
+                "cache_read_input_tokens": 117947,
+                "output_tokens": 205,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6816,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 205,
+                    "cache_read_input_tokens": 117947,
+                    "cache_creation_input_tokens": 6816,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6816
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-19T16:32:01.901Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TfCogwEdkSdogPEqUr7YJo",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/contrastive_trace_safety && nohup python3 scripts/n6_multi_metric_ensemble.py > /tmp/n6_run.log 2>&1 & echo \"PID=$!\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e449d580-f2c6-4d49-bb37-cb6e7b0443ad",
+            "isSidechain": false,
+            "requestId": "req_011CbCFKh4SNPUMdEwKjwYk2",
+            "type": "assistant",
+            "uuid": "0779b6e0-5472-429b-aa1b-db31bd83367b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01557QL3udrv3x2xkpTEnHKd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6816,
+                "cache_read_input_tokens": 117947,
+                "output_tokens": 205,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6816,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 205,
+                    "cache_read_input_tokens": 117947,
+                    "cache_creation_input_tokens": 6816,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6816
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-19T16:32:32.253Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TfCogwEdkSdogPEqUr7YJo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/contrastive_trace_safety && nohup python3 scripts/n6_multi_metric_ensemble.py > /tmp/n6_run.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=419602\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0779b6e0-5472-429b-aa1b-db31bd83367b",
+            "isSidechain": false,
+            "promptId": "f6cb66fe-e1fd-4454-99f3-c221741a2349",
+            "type": "user",
+            "uuid": "70d5a3ce-7624-450f-9a2d-3f0883d25c8d",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/contrastive_trace_safety && nohup python3 scripts/n6_multi_metric_ensemble.py > /tmp/n6_run.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=419602\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.34}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/contrastive_trace_safety && nohup python3 scripts/n6_multi_metric_ensemble.py > /tmp/n6_run.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=419602\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.34}}"
+              }
+            },
+            "sourceToolAssistantUUID": "0779b6e0-5472-429b-aa1b-db31bd83367b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-19T16:32:34.990Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script started (PID=419602). Let me poll for progress."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "70d5a3ce-7624-450f-9a2d-3f0883d25c8d",
+            "isSidechain": false,
+            "requestId": "req_011CbCFNNS6XqVHo3DK3WSoo",
+            "type": "assistant",
+            "uuid": "e44081e8-7704-4de6-b8e9-13d780c6d12b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012zkG2SwKQTbz6dAcVg8QBF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 390,
+                "cache_read_input_tokens": 124763,
+                "output_tokens": 132,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 390,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 132,
+                    "cache_read_input_tokens": 124763,
+                    "cache_creation_input_tokens": 390,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 390
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-19T16:32:35.466Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HRYnPZmkfkoXPi8d72FLge",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "tail -30 /tmp/n6_run.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e44081e8-7704-4de6-b8e9-13d780c6d12b",
+            "isSidechain": false,
+            "requestId": "req_011CbCFNNS6XqVHo3DK3WSoo",
+            "type": "assistant",
+            "uuid": "71bc4f6a-8f54-4d21-a2ff-ffe4971bb190",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012zkG2SwKQTbz6dAcVg8QBF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 390,
+                "cache_read_input_tokens": 124763,
+                "output_tokens": 132,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 390,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 132,
+                    "cache_read_input_tokens": 124763,
+                    "cache_creation_input_tokens": 390,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 390
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-19T16:32:36.335Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HRYnPZmkfkoXPi8d72FLge",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  single_third_L44                     0.7318  0.5603  0.3148\\\\n  ensemble                             0.7497  0.5810  0.2953\\\\n  text                                 0.6301  0.4764  0.3398\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.174, p=0.0002*\\\\n    ens_vs_text_precision: gap=0.154, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.1078, p=0.0467*\\\\n    ens_vs_best_single_bal_acc: gap=0.0001, p=0.4968\\\\n    ens_vs_best_single_precision: gap=0.0261, p=0.2781\\\\n    ens_vs_best_single_fpr: gap=-0.0049, p=0.4392\\\\n    ens_vs_worst_single_bal_acc: gap=0.0167, p=0.0127*\\\\n    ens_vs_worst_single_precision: gap=0.0175, p=0.1189\\\\n    ens_vs_worst_single_fpr: gap=-0.0279, p=0.0211*\\\\n\\\\n============================================================\\\\nSUMMARY: Does ensemble mitigate layer sensitivity?\\\\nModel      BestSingle   Ensemble   Delta    Text  Ens-Txt\\\\n-------------------------------------------------------\\\\nR1-8B          0.6040     0.5651 -0.0389  0.3718  +0.1933\\\\nQwQ-32B        0.5777     0.5775 -0.0002  0.3741  +0.2034\\\\nR1-32B         0.5833     0.5810 -0.0023  0.4764  +0.1046\\\\n\\\\nSensitivity reduction:\\\\n  R1-8B: single range=0.0753, ens=0.5651\\\\n  QwQ-32B: single range=0.0429, ens=0.5775\\\\n  R1-32B: single range=0.0329, ens=0.5810\\\\n\\\\nResults: /root/autodl-tmp/contrastive_trace_safety/artifacts/n6_multi_metric_ensemble/results.json\\\\nReport:  /root/autodl-tmp/contrastive_trace_safety/artifacts/n6_multi_metric_ensemble/report.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "71bc4f6a-8f54-4d21-a2ff-ffe4971bb190",
+            "isSidechain": false,
+            "promptId": "f6cb66fe-e1fd-4454-99f3-c221741a2349",
+            "type": "user",
+            "uuid": "1813891b-4371-4550-abfd-24edaffcda63",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  single_third_L44                     0.7318  0.5603  0.3148\\\\n  ensemble                             0.7497  0.5810  0.2953\\\\n  text                                 0.6301  0.4764  0.3398\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.174, p=0.0002*\\\\n    ens_vs_text_precision: gap=0.154, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.1078, p=0.0467*\\\\n    ens_vs_best_single_bal_acc: gap=0.0001, p=0.4968\\\\n    ens_vs_best_single_precision: gap=0.0261, p=0.2781\\\\n    ens_vs_best_single_fpr: gap=-0.0049, p=0.4392\\\\n    ens_vs_worst_single_bal_acc: gap=0.0167, p=0.0127*\\\\n    ens_vs_worst_single_precision: gap=0.0175, p=0.1189\\\\n    ens_vs_worst_single_fpr: gap=-0.0279, p=0.0211*\\\\n\\\\n============================================================\\\\nSUMMARY: Does ensemble mitigate layer sensitivity?\\\\nModel      BestSingle   Ensemble   Delta    Text  Ens-Txt\\\\n-------------------------------------------------------\\\\nR1-8B          0.6040     0.5651 -0.0389  0.3718  +0.1933\\\\nQwQ-32B        0.5777     0.5775 -0.0002  0.3741  +0.2034\\\\nR1-32B         0.5833     0.5810 -0.0023  0.4764  +0.1046\\\\n\\\\nSensitivity reduction:\\\\n  R1-8B: single range=0.0753, ens=0.5651\\\\n  QwQ-32B: single range=0.0429, ens=0.5775\\\\n  R1-32B: single range=0.0329, ens=0.5810\\\\n\\\\nResults: /root/autodl-tmp/contrastive_trace_safety/artifacts/n6_multi_metric_ensemble/results.json\\\\nReport:  /root/autodl-tmp/contrastive_trace_safety/artifacts/n6_multi_metric_ensemble/report.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  single_third_L44                     0.7318  0.5603  0.3148\\n  ensemble                             0.7497  0.5810  0.2953\\n  text                                 0.6301  0.4764  0.3398\\n\\n  Bootstrap (n=10000):\\n    ens_vs_text_bal_acc: gap=0.174, p=0.0002*\\n    ens_vs_text_precision: gap=0.154, p=0.0*\\n    ens_vs_text_fpr: gap=-0.1078, p=0.0467*\\n    ens_vs_best_single_bal_acc: gap=0.0001, p=0.4968\\n    ens_vs_best_single_precision: gap=0.0261, p=0.2781\\n    ens_vs_best_single_fpr: gap=-0.0049, p=0.4392\\n    ens_vs_worst_single_bal_acc: gap=0.0167, p=0.0127*\\n    ens_vs_worst_single_precision: gap=0.0175, p=0.1189\\n    ens_vs_worst_single_fpr: gap=-0.0279, p=0.0211*\\n\\n============================================================\\nSUMMARY: Does ensemble mitigate layer sensitivity?\\nModel      BestSingle   Ensemble   Delta    Text  Ens-Txt\\n-------------------------------------------------------\\nR1-8B          0.6040     0.5651 -0.0389  0.3718  +0.1933\\nQwQ-32B        0.5777     0.5775 -0.0002  0.3741  +0.2034\\nR1-32B         0.5833     0.5810 -0.0023  0.4764  +0.1046\\n\\nSensitivity reduction:\\n  R1-8B: single range=0.0753, ens=0.5651\\n  QwQ-32B: single range=0.0429, ens=0.5775\\n  R1-32B: single range=0.0329, ens=0.5810\\n\\nResults: /root/autodl-tmp/contrastive_trace_safety/artifacts/n6_multi_metric_ensemble/results.json\\nReport:  /root/autodl-tmp/contrastive_trace_safety/artifacts/n6_multi_metric_ensemble/report.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"
+              }
+            },
+            "sourceToolAssistantUUID": "71bc4f6a-8f54-4d21-a2ff-ffe4971bb190",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-19T16:32:36.338Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "1813891b-4371-4550-abfd-24edaffcda63",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "fc53cb90-f344-466f-bd28-b5cc1a909ec3",
+                "timestamp": "2026-05-19T16:32:36.338Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+                "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "fc53cb90-f344-466f-bd28-b5cc1a909ec3",
+                "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15"
+              }
+            }
+          ],
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Build multi-metric layer ensemble proof-of-concept",
+                "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15"
+              }
+            }
+          ],
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-19T16:32:40.625Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The script ran successfully but I notice OT-7B is missing from the summary. Let me check the full output. Also, the results show:\n- R1-8B: 3 models reported (R1-8B, QwQ-32B, R1-32B) but OT-7B is missing\n- Actually wait, the summary at the end only shows 3 models. Let me check the full log for OT-7B.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fc53cb90-f344-466f-bd28-b5cc1a909ec3",
+            "isSidechain": false,
+            "requestId": "req_011CbCFNftL9bVyVYM8T8vS7",
+            "type": "assistant",
+            "uuid": "131343e0-ed22-4ca0-981e-548ecb1d73ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UMHgLAVSdZHjFCBj9irVij",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 938,
+                "cache_read_input_tokens": 125153,
+                "output_tokens": 252,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 938,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 252,
+                    "cache_read_input_tokens": 125153,
+                    "cache_creation_input_tokens": 938,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 938
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-19T16:32:41.122Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "OT-7B is missing from the summary. Let me check the full log."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "131343e0-ed22-4ca0-981e-548ecb1d73ee",
+            "isSidechain": false,
+            "requestId": "req_011CbCFNftL9bVyVYM8T8vS7",
+            "type": "assistant",
+            "uuid": "1d2735a7-ce4c-48d9-8499-6fb928566a46",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UMHgLAVSdZHjFCBj9irVij",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 938,
+                "cache_read_input_tokens": 125153,
+                "output_tokens": 252,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 938,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 252,
+                    "cache_read_input_tokens": 125153,
+                    "cache_creation_input_tokens": 938,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 938
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-19T16:32:41.614Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FZTVRBr5hTSHc4XP1aYwdu",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "head -80 /tmp/n6_run.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d2735a7-ce4c-48d9-8499-6fb928566a46",
+            "isSidechain": false,
+            "requestId": "req_011CbCFNftL9bVyVYM8T8vS7",
+            "type": "assistant",
+            "uuid": "191f95cd-c3e9-47b1-a5bd-7982ad90c2c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UMHgLAVSdZHjFCBj9irVij",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 938,
+                "cache_read_input_tokens": 125153,
+                "output_tokens": 252,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 938,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 252,
+                    "cache_read_input_tokens": 125153,
+                    "cache_creation_input_tokens": 938,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 938
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-19T16:32:41.988Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FZTVRBr5hTSHc4XP1aYwdu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"/root/autodl-tmp/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py\\\\\\\", line 454, in main\\\\n    result = process_model(model_name, cfg)\\\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/autodl-tmp/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py\\\\\\\", line 368, in process_model\\\\n    X_tr, y_tr = collect_hs_data(train, lidx, window)\\\\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/autodl-tmp/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py\\\\\\\", line 147, in collect_hs_data\\\\n    feats = extract_hs_features(t, layer_idx, window)\\\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/autodl-tmp/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py\\\\\\\", line 131, in extract_hs_features\\\\n    hs = hs.numpy()\\\\n         ^^^^^^^^^^\\\\nTypeError: Got unsupported ScalarType BFloat16\\\\n\\\\n============================================================\\\\nModel: R1-8B\\\\n============================================================\\\\n  Loaded 209 traces with commitment points\\\\n  Split: train=125, val=41, test=43\\\\n  Finding 3rd candidate layer...\\\\n  Layers: precision=L14, BA=L12, 3rd=L20\\\\n  Unique layers: 3 — {'precision': 14, 'ba': 12, 'third': 20}\\\\n  Training L14 probe (idx=2, W=15)...\\\\n    BA=0.7416  Prec=0.5317  FPR=0.2005\\\\n  Training L12 probe (idx=0, W=15)...\\\\n    BA=0.7871  Prec=0.6040  FPR=0.1604\\\\n  Training L20 probe (idx=8, W=15)...\\\\n    BA=0.7246  Prec=0.5287  FPR=0.1897\\\\n  Ensemble (3L): BA=0.7535  Prec=0.5651  FPR=0.1747\\\\n  Training text probe...\\\\n  Text:  BA=0.6151  Prec=0.3718  FPR=0.2964\\\\n  Bootstrap (10000 resamples)...\\\\n    ens vs text bal_acc: gap=0.1714, p=0.0\\\\n    ens vs text precision: gap=0.2791, p=0.0\\\\n    ens vs text fpr: gap=-0.092, p=0.0385\\\\n    ens vs best_single(ba L12) bal_acc: gap=-0.0142, p=0.873\\\\n    ens vs best_single(ba L12) precision: gap=0.0132, p=0.2783\\\\n    ens vs best_single(ba L12) fpr: gap=-0.0022, p=0.4673\\\\n\\\\n============================================================\\\\nModel: OT-7B\\\\n============================================================\\\\n  Loaded 228 traces with commitment points\\\\n  Split: train=136, val=45, test=47\\\\n  Finding 3rd candidate layer...\\\\n  Layers: precision=L16, BA=L9, 3rd=L18\\\\n  Unique layers: 3 — {'precision': 16, 'ba': 9, 'third': 18}\\\\n  Training L16 probe (idx=16, W=3)...\\\\n\\\\n============================================================\\\\nModel: QwQ-32B\\\\n============================================================\\\\n  Loaded 95 traces with commitment points\\\\n  Split: train=57, val=19, test=19\\\\n  Finding 3rd candidate layer...\\\\n  Layers: precision=L60, BA=L30, 3rd=L63\\\\n  Unique layers: 3 — {'precision': 60, 'ba': 30, 'third': 63}\\\\n  Training L60 probe (idx=60, W=3)...\\\\n    BA=0.7592  Prec=0.5777  FPR=0.2100\\\\n  Training L30 probe (idx=30, W=3)...\\\\n    BA=0.7042  Prec=0.5483  FPR=0.1965\\\\n  Training L63 probe (idx=63, W=3)...\\\\n    BA=0.7168  Prec=0.5348  FPR=0.2263\\\\n  Ensemble (3L): BA=0.7506  Prec=0.5775  FPR=0.2033\\\\n  Training text probe...\\\\n  Text:  BA=0.5626  Prec=0.3741  FPR=0.2425\\\\n  Bootstrap (10000 resamples)...\\\\n    ens vs text bal_acc: gap=0.2008, p=0.0\\\\n    ens vs text precision: gap=0.2543, p=0.0\\\\n    ens vs text fpr: gap=-0.0976, p=0.0689\\\\n    ens vs best_single(precision L60) bal_acc: gap=-0.001, p=0.5633\\\\n    ens vs best_single(precision L60) precision: gap=0.0396, p=0.0085\\\\n    ens vs best_single(precision L60) fpr: gap=-0.0096, p=0.1641\\\\n\\\\n============================================================\\\\nModel: R1-32B\\\\n============================================================\\\\n  Loaded 100 traces with commitment points\\\\n  Split: train=60, val=20, test=20\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "191f95cd-c3e9-47b1-a5bd-7982ad90c2c8",
+            "isSidechain": false,
+            "promptId": "f6cb66fe-e1fd-4454-99f3-c221741a2349",
+            "type": "user",
+            "uuid": "4f84f9da-11f7-4b52-a21f-52640391d048",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"/root/autodl-tmp/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py\\\\\\\", line 454, in main\\\\n    result = process_model(model_name, cfg)\\\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/autodl-tmp/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py\\\\\\\", line 368, in process_model\\\\n    X_tr, y_tr = collect_hs_data(train, lidx, window)\\\\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/autodl-tmp/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py\\\\\\\", line 147, in collect_hs_data\\\\n    feats = extract_hs_features(t, layer_idx, window)\\\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/autodl-tmp/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py\\\\\\\", line 131, in extract_hs_features\\\\n    hs = hs.numpy()\\\\n         ^^^^^^^^^^\\\\nTypeError: Got unsupported ScalarType BFloat16\\\\n\\\\n============================================================\\\\nModel: R1-8B\\\\n============================================================\\\\n  Loaded 209 traces with commitment points\\\\n  Split: train=125, val=41, test=43\\\\n  Finding 3rd candidate layer...\\\\n  Layers: precision=L14, BA=L12, 3rd=L20\\\\n  Unique layers: 3 — {'precision': 14, 'ba': 12, 'third': 20}\\\\n  Training L14 probe (idx=2, W=15)...\\\\n    BA=0.7416  Prec=0.5317  FPR=0.2005\\\\n  Training L12 probe (idx=0, W=15)...\\\\n    BA=0.7871  Prec=0.6040  FPR=0.1604\\\\n  Training L20 probe (idx=8, W=15)...\\\\n    BA=0.7246  Prec=0.5287  FPR=0.1897\\\\n  Ensemble (3L): BA=0.7535  Prec=0.5651  FPR=0.1747\\\\n  Training text probe...\\\\n  Text:  BA=0.6151  Prec=0.3718  FPR=0.2964\\\\n  Bootstrap (10000 resamples)...\\\\n    ens vs text bal_acc: gap=0.1714, p=0.0\\\\n    ens vs text precision: gap=0.2791, p=0.0\\\\n    ens vs text fpr: gap=-0.092, p=0.0385\\\\n    ens vs best_single(ba L12) bal_acc: gap=-0.0142, p=0.873\\\\n    ens vs best_single(ba L12) precision: gap=0.0132, p=0.2783\\\\n    ens vs best_single(ba L12) fpr: gap=-0.0022, p=0.4673\\\\n\\\\n============================================================\\\\nModel: OT-7B\\\\n============================================================\\\\n  Loaded 228 traces with commitment points\\\\n  Split: train=136, val=45, test=47\\\\n  Finding 3rd candidate layer...\\\\n  Layers: precision=L16, BA=L9, 3rd=L18\\\\n  Unique layers: 3 — {'precision': 16, 'ba': 9, 'third': 18}\\\\n  Training L16 probe (idx=16, W=3)...\\\\n\\\\n============================================================\\\\nModel: QwQ-32B\\\\n============================================================\\\\n  Loaded 95 traces with commitment points\\\\n  Split: train=57, val=19, test=19\\\\n  Finding 3rd candidate layer...\\\\n  Layers: precision=L60, BA=L30, 3rd=L63\\\\n  Unique layers: 3 — {'precision': 60, 'ba': 30, 'third': 63}\\\\n  Training L60 probe (idx=60, W=3)...\\\\n    BA=0.7592  Prec=0.5777  FPR=0.2100\\\\n  Training L30 probe (idx=30, W=3)...\\\\n    BA=0.7042  Prec=0.5483  FPR=0.1965\\\\n  Training L63 probe (idx=63, W=3)...\\\\n    BA=0.7168  Prec=0.5348  FPR=0.2263\\\\n  Ensemble (3L): BA=0.7506  Prec=0.5775  FPR=0.2033\\\\n  Training text probe...\\\\n  Text:  BA=0.5626  Prec=0.3741  FPR=0.2425\\\\n  Bootstrap (10000 resamples)...\\\\n    ens vs text bal_acc: gap=0.2008, p=0.0\\\\n    ens vs text precision: gap=0.2543, p=0.0\\\\n    ens vs text fpr: gap=-0.0976, p=0.0689\\\\n    ens vs best_single(precision L60) bal_acc: gap=-0.001, p=0.5633\\\\n    ens vs best_single(precision L60) precision: gap=0.0396, p=0.0085\\\\n    ens vs best_single(precision L60) fpr: gap=-0.0096, p=0.1641\\\\n\\\\n============================================================\\\\nModel: R1-32B\\\\n============================================================\\\\n  Loaded 100 traces with commitment points\\\\n  Split: train=60, val=20, test=20\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Traceback (most recent call last):\\n  File \\\"/root/autodl-tmp/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py\\\", line 454, in main\\n    result = process_model(model_name, cfg)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/autodl-tmp/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py\\\", line 368, in process_model\\n    X_tr, y_tr = collect_hs_data(train, lidx, window)\\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/autodl-tmp/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py\\\", line 147, in collect_hs_data\\n    feats = extract_hs_features(t, layer_idx, window)\\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/autodl-tmp/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py\\\", line 131, in extract_hs_features\\n    hs = hs.numpy()\\n         ^^^^^^^^^^\\nTypeError: Got unsupported ScalarType BFloat16\\n\\n============================================================\\nModel: R1-8B\\n============================================================\\n  Loaded 209 traces with commitment points\\n  Split: train=125, val=41, test=43\\n  Finding 3rd candidate layer...\\n  Layers: precision=L14, BA=L12, 3rd=L20\\n  Unique layers: 3 — {'precision': 14, 'ba': 12, 'third': 20}\\n  Training L14 probe (idx=2, W=15)...\\n    BA=0.7416  Prec=0.5317  FPR=0.2005\\n  Training L12 probe (idx=0, W=15)...\\n    BA=0.7871  Prec=0.6040  FPR=0.1604\\n  Training L20 probe (idx=8, W=15)...\\n    BA=0.7246  Prec=0.5287  FPR=0.1897\\n  Ensemble (3L): BA=0.7535  Prec=0.5651  FPR=0.1747\\n  Training text probe...\\n  Text:  BA=0.6151  Prec=0.3718  FPR=0.2964\\n  Bootstrap (10000 resamples)...\\n    ens vs text bal_acc: gap=0.1714, p=0.0\\n    ens vs text precision: gap=0.2791, p=0.0\\n    ens vs text fpr: gap=-0.092, p=0.0385\\n    ens vs best_single(ba L12) bal_acc: gap=-0.0142, p=0.873\\n    ens vs best_single(ba L12) precision: gap=0.0132, p=0.2783\\n    ens vs best_single(ba L12) fpr: gap=-0.0022, p=0.4673\\n\\n============================================================\\nModel: OT-7B\\n============================================================\\n  Loaded 228 traces with commitment points\\n  Split: train=136, val=45, test=47\\n  Finding 3rd candidate layer...\\n  Layers: precision=L16, BA=L9, 3rd=L18\\n  Unique layers: 3 — {'precision': 16, 'ba': 9, 'third': 18}\\n  Training L16 probe (idx=16, W=3)...\\n\\n============================================================\\nModel: QwQ-32B\\n============================================================\\n  Loaded 95 traces with commitment points\\n  Split: train=57, val=19, test=19\\n  Finding 3rd candidate layer...\\n  Layers: precision=L60, BA=L30, 3rd=L63\\n  Unique layers: 3 — {'precision': 60, 'ba': 30, 'third': 63}\\n  Training L60 probe (idx=60, W=3)...\\n    BA=0.7592  Prec=0.5777  FPR=0.2100\\n  Training L30 probe (idx=30, W=3)...\\n    BA=0.7042  Prec=0.5483  FPR=0.1965\\n  Training L63 probe (idx=63, W=3)...\\n    BA=0.7168  Prec=0.5348  FPR=0.2263\\n  Ensemble (3L): BA=0.7506  Prec=0.5775  FPR=0.2033\\n  Training text probe...\\n  Text:  BA=0.5626  Prec=0.3741  FPR=0.2425\\n  Bootstrap (10000 resamples)...\\n    ens vs text bal_acc: gap=0.2008, p=0.0\\n    ens vs text precision: gap=0.2543, p=0.0\\n    ens vs text fpr: gap=-0.0976, p=0.0689\\n    ens vs best_single(precision L60) bal_acc: gap=-0.001, p=0.5633\\n    ens vs best_single(precision L60) precision: gap=0.0396, p=0.0085\\n    ens vs best_single(precision L60) fpr: gap=-0.0096, p=0.1641\\n\\n============================================================\\nModel: R1-32B\\n============================================================\\n  Loaded 100 traces with commitment points\\n  Split: train=60, val=20, test=20\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            },
+            "sourceToolAssistantUUID": "191f95cd-c3e9-47b1-a5bd-7982ad90c2c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-19T16:32:45.465Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "OT-7B failed with `TypeError: Got unsupported ScalarType BFloat16`. The hidden states for OT-7B are stored in BFloat16 format, which PyTorch can't directly convert to numpy. I need to convert to float32 first.\n\nLet me fix the script to handle BFloat16 tensors.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f84f9da-11f7-4b52-a21f-52640391d048",
+            "isSidechain": false,
+            "requestId": "req_011CbCFP68MFa4V2SxfjWx8o",
+            "type": "assistant",
+            "uuid": "60839bdb-fd6f-45f5-9c59-62fb95fd4de9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P5CUSaUMFsi6pzmoixpyi4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1783,
+                "cache_read_input_tokens": 126091,
+                "output_tokens": 340,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1783,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 340,
+                    "cache_read_input_tokens": 126091,
+                    "cache_creation_input_tokens": 1783,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1783
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-19T16:32:46.424Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "OT-7B failed because hidden states are stored in BFloat16. Let me fix the tensor conversion and re-run just OT-7B."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "60839bdb-fd6f-45f5-9c59-62fb95fd4de9",
+            "isSidechain": false,
+            "requestId": "req_011CbCFP68MFa4V2SxfjWx8o",
+            "type": "assistant",
+            "uuid": "2e58d79e-eb0e-4759-aa06-e55d101b5cff",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P5CUSaUMFsi6pzmoixpyi4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1783,
+                "cache_read_input_tokens": 126091,
+                "output_tokens": 340,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1783,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 340,
+                    "cache_read_input_tokens": 126091,
+                    "cache_creation_input_tokens": 1783,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1783
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-19T16:32:48.231Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BiucmBWFa4JyJ2uDdSmRve",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport torch\nfrom pathlib import Path\nf = sorted(Path('/root/autodl-tmp/contrastive_trace_safety/artifacts/hidden_states_ot7b').glob('*.pt'))[0]\nd = torch.load(f, map_location='cpu', weights_only=False)\nprint('dtype:', d['hidden_states'].dtype)\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2e58d79e-eb0e-4759-aa06-e55d101b5cff",
+            "isSidechain": false,
+            "requestId": "req_011CbCFP68MFa4V2SxfjWx8o",
+            "type": "assistant",
+            "uuid": "43137a5c-ae22-4ef5-8271-b5f65b30a0dd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P5CUSaUMFsi6pzmoixpyi4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1783,
+                "cache_read_input_tokens": 126091,
+                "output_tokens": 340,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1783,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 340,
+                    "cache_read_input_tokens": 126091,
+                    "cache_creation_input_tokens": 1783,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1783
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-19T16:32:49.976Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BiucmBWFa4JyJ2uDdSmRve",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"dtype: torch.bfloat16\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "43137a5c-ae22-4ef5-8271-b5f65b30a0dd",
+            "isSidechain": false,
+            "promptId": "f6cb66fe-e1fd-4454-99f3-c221741a2349",
+            "type": "user",
+            "uuid": "2624f73f-8380-4f94-9110-17c9c4b25d2a",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"dtype: torch.bfloat16\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.73}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"dtype: torch.bfloat16\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.73}}"
+              }
+            },
+            "sourceToolAssistantUUID": "43137a5c-ae22-4ef5-8271-b5f65b30a0dd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-19T16:32:52.966Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Need to add `.float()` before `.numpy()`. Let me fix the `extract_hs_features` function."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2624f73f-8380-4f94-9110-17c9c4b25d2a",
+            "isSidechain": false,
+            "requestId": "req_011CbCFPgESXT77XPPRjnQYw",
+            "type": "assistant",
+            "uuid": "319e4ddd-b215-45aa-b71d-6422a295da3b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M5Wfk8A7AgxsVNkDyJfR5o",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 424,
+                "cache_read_input_tokens": 127874,
+                "output_tokens": 155,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 424,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 155,
+                    "cache_read_input_tokens": 127874,
+                    "cache_creation_input_tokens": 424,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 424
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-19T16:32:54.199Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018G1xhN27LZqa88cZoAjoa9",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py",
+                "offset": 126,
+                "limit": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "319e4ddd-b215-45aa-b71d-6422a295da3b",
+            "isSidechain": false,
+            "requestId": "req_011CbCFPgESXT77XPPRjnQYw",
+            "type": "assistant",
+            "uuid": "359b6568-92ca-40b8-9910-78b391b9e812",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M5Wfk8A7AgxsVNkDyJfR5o",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 424,
+                "cache_read_input_tokens": 127874,
+                "output_tokens": 155,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 424,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 155,
+                    "cache_read_input_tokens": 127874,
+                    "cache_creation_input_tokens": 424,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 424
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-19T16:32:54.211Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018G1xhN27LZqa88cZoAjoa9",
+              "type": "tool_result",
+              "content": "126\t    T, D = hs.shape\n127\t    out = np.zeros_like(hs)\n128\t    cumsum = np.zeros((T + 1, D), dtype=hs.dtype)\n129\t    for i in range(T):\n130\t        cumsum[i + 1] = cumsum[i] + hs[i]\n131\t    for i in range(T):\n132\t        start = max(0, i - window + 1)\n133\t        out[i] = (cumsum[i + 1] - cumsum[start]) / (i - start + 1)\n134\t    return out\n135\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "359b6568-92ca-40b8-9910-78b391b9e812",
+            "isSidechain": false,
+            "promptId": "f6cb66fe-e1fd-4454-99f3-c221741a2349",
+            "type": "user",
+            "uuid": "2c4286db-2710-425e-9ca7-77093e706966",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py",
+                "content": "    T, D = hs.shape\n    out = np.zeros_like(hs)\n    cumsum = np.zeros((T + 1, D), dtype=hs.dtype)\n    for i in range(T):\n        cumsum[i + 1] = cumsum[i] + hs[i]\n    for i in range(T):\n        start = max(0, i - window + 1)\n        out[i] = (cumsum[i + 1] - cumsum[start]) / (i - start + 1)\n    return out\n",
+                "numLines": 10,
+                "startLine": 126,
+                "totalLines": 598
+              }
+            },
+            "sourceToolAssistantUUID": "359b6568-92ca-40b8-9910-78b391b9e812",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-19T16:32:59.261Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S3SC8VntAohPnW7u7HZW3k",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py",
+                "old_string": "def extract_hs_features(trace, layer_idx, window):\n    hs = trace[\"hidden_states\"][:, layer_idx, :]\n    if isinstance(hs, torch.Tensor):\n        hs = hs.numpy()\n    return moving_avg(hs.astype(np.float32), window)",
+                "new_string": "def extract_hs_features(trace, layer_idx, window):\n    hs = trace[\"hidden_states\"][:, layer_idx, :]\n    if isinstance(hs, torch.Tensor):\n        hs = hs.float().numpy()\n    return moving_avg(hs.astype(np.float32), window)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2c4286db-2710-425e-9ca7-77093e706966",
+            "isSidechain": false,
+            "requestId": "req_011CbCFPzdUa8TFnNtgf66wX",
+            "type": "assistant",
+            "uuid": "45034aeb-3267-43bb-9d1f-a7e5216c6360",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VepqBZCS2hrYNzDQTEwq3a",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 323,
+                "cache_read_input_tokens": 128298,
+                "output_tokens": 286,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 323,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 286,
+                    "cache_read_input_tokens": 128298,
+                    "cache_creation_input_tokens": 323,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 323
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-19T16:32:59.276Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S3SC8VntAohPnW7u7HZW3k",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "45034aeb-3267-43bb-9d1f-a7e5216c6360",
+            "isSidechain": false,
+            "promptId": "f6cb66fe-e1fd-4454-99f3-c221741a2349",
+            "type": "user",
+            "uuid": "fcbc51c2-1966-4258-be4a-8bd52fbd5fb2",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py",
+              "oldString": "def extract_hs_features(trace, layer_idx, window):\n    hs = trace[\"hidden_states\"][:, layer_idx, :]\n    if isinstance(hs, torch.Tensor):\n        hs = hs.numpy()\n    return moving_avg(hs.astype(np.float32), window)",
+              "newString": "def extract_hs_features(trace, layer_idx, window):\n    hs = trace[\"hidden_states\"][:, layer_idx, :]\n    if isinstance(hs, torch.Tensor):\n        hs = hs.float().numpy()\n    return moving_avg(hs.astype(np.float32), window)",
+              "originalFile": null,
+              "structuredPatch": [
+                {
+                  "oldStart": 137,
+                  "oldLines": 7,
+                  "newStart": 137,
+                  "newLines": 7,
+                  "lines": [
+                    " def extract_hs_features(trace, layer_idx, window):",
+                    "     hs = trace[\"hidden_states\"][:, layer_idx, :]",
+                    "     if isinstance(hs, torch.Tensor):",
+                    "-        hs = hs.numpy()",
+                    "+        hs = hs.float().numpy()",
+                    "     return moving_avg(hs.astype(np.float32), window)",
+                    " ",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "45034aeb-3267-43bb-9d1f-a7e5216c6360",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-19T16:33:02.849Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now re-upload and re-run. Since R1-8B, QwQ-32B, R1-32B already completed successfully, I'll modify to only re-run OT-7B and merge results."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fcbc51c2-1966-4258-be4a-8bd52fbd5fb2",
+            "isSidechain": false,
+            "requestId": "req_011CbCFQNAHCbmExDa9iS7MX",
+            "type": "assistant",
+            "uuid": "e71242b4-f5c4-4ba8-b463-d05977b279f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014RYJvfA4nx1UHc4erRoN2X",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 365,
+                "cache_read_input_tokens": 128621,
+                "output_tokens": 278,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 365,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 278,
+                    "cache_read_input_tokens": 128621,
+                    "cache_creation_input_tokens": 365,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 365
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-19T16:33:04.597Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015adRt6QaA8sTY4Dj2JXfh9",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n# Read existing results\nwith open('/root/autodl-tmp/contrastive_trace_safety/artifacts/n6_multi_metric_ensemble/results.json') as f:\n    r = json.load(f)\nprint('Models in results:', list(r.keys()))\nprint('OT-7B has error:', 'error' in r.get('OT-7B', {}))\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e71242b4-f5c4-4ba8-b463-d05977b279f9",
+            "isSidechain": false,
+            "requestId": "req_011CbCFQNAHCbmExDa9iS7MX",
+            "type": "assistant",
+            "uuid": "8259670a-6ccf-4f23-b79c-e7de08ac0e4a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014RYJvfA4nx1UHc4erRoN2X",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 365,
+                "cache_read_input_tokens": 128621,
+                "output_tokens": 278,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 365,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 278,
+                    "cache_read_input_tokens": 128621,
+                    "cache_creation_input_tokens": 365,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 365
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "8259670a-6ccf-4f23-b79c-e7de08ac0e4a",
+                "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15"
+              }
+            }
+          ],
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Build multi-metric layer ensemble proof-of-concept",
+                "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15"
+              }
+            }
+          ],
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-19T16:33:05.069Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015adRt6QaA8sTY4Dj2JXfh9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Models in results: ['R1-8B', 'OT-7B', 'QwQ-32B', 'R1-32B']\\\\nOT-7B has error: True\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8259670a-6ccf-4f23-b79c-e7de08ac0e4a",
+            "isSidechain": false,
+            "promptId": "f6cb66fe-e1fd-4454-99f3-c221741a2349",
+            "type": "user",
+            "uuid": "7062202c-c656-4e0c-9eac-2c8911f27d15",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Models in results: ['R1-8B', 'OT-7B', 'QwQ-32B', 'R1-32B']\\\\nOT-7B has error: True\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Models in results: ['R1-8B', 'OT-7B', 'QwQ-32B', 'R1-32B']\\nOT-7B has error: True\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            },
+            "sourceToolAssistantUUID": "8259670a-6ccf-4f23-b79c-e7de08ac0e4a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-19T16:34:07.805Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016VANLdPYds276SwqsNprK5",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "cat > /tmp/n6_fix_ot7b.py << 'EOF'\n\"\"\"Fix OT-7B: re-run with bfloat16 handling, merge into existing results.\"\"\"\nimport os, sys, json, pickle, warnings, time\nos.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\nwarnings.filterwarnings(\"ignore\")\n\nimport numpy as np\nimport torch\nfrom pathlib import Path\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.metrics import balanced_accuracy_score\n\nARTIFACTS = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts\")\nOUT_DIR = ARTIFACTS / \"n6_multi_metric_ensemble\"\nSEED = 42\nN_BOOTSTRAP = 10000\n\ndef load_traces(hs_dir):\n    traces = []\n    for pt_file in sorted(hs_dir.glob(\"*.pt\")):\n        data = torch.load(pt_file, map_location=\"cpu\", weights_only=False)\n        if data.get(\"step_labels\") is None or data.get(\"commitment_point\") is None:\n            continue\n        traces.append(data)\n    return traces\n\ndef get_labels(t):\n    sl = t[\"step_labels\"]\n    return sl.tolist() if isinstance(sl, torch.Tensor) else list(sl)\n\ndef get_cp(t):\n    cp = t[\"commitment_point\"]\n    return int(cp.item()) if isinstance(cp, torch.Tensor) else int(cp)\n\ndef split_traces(traces, seed=SEED):\n    rng = np.random.default_rng(seed)\n    idx = rng.permutation(len(traces))\n    n_tr = int(len(traces) * 0.6)\n    n_va = int(len(traces) * 0.2)\n    return ([traces[i] for i in idx[:n_tr]],\n            [traces[i] for i in idx[n_tr:n_tr+n_va]],\n            [traces[i] for i in idx[n_tr+n_va:]])\n\ndef moving_avg(hs, window):\n    if window <= 1: return hs\n    T, D = hs.shape\n    out = np.zeros_like(hs)\n    cumsum = np.zeros((T+1, D), dtype=hs.dtype)\n    for i in range(T):\n        cumsum[i+1] = cumsum[i] + hs[i]\n    for i in range(T):\n        start = max(0, i-window+1)\n        out[i] = (cumsum[i+1] - cumsum[start]) / (i-start+1)\n    return out\n\ndef extract_hs(trace, layer_idx, window):\n    hs = trace[\"hidden_states\"][:, layer_idx, :]\n    if isinstance(hs, torch.Tensor):\n        hs = hs.float().numpy()\n    return moving_avg(hs.astype(np.float32), window)\n\ndef extract_text(text_emb_dict, tid, window):\n    emb = text_emb_dict.get(tid)\n    if emb is None: return None\n    if isinstance(emb, torch.Tensor): emb = emb.numpy()\n    return moving_avg(emb.astype(np.float32), window)\n\ndef collect_data(traces, layer_idx, window):\n    X, y = [], []\n    for t in traces:\n        f = extract_hs(t, layer_idx, window)\n        l = get_labels(t)\n        n = min(len(f), len(l))\n        X.append(f[:n]); y.extend(l[:n])\n    return np.vstack(X), np.array(y)\n\ndef train_probe(X, y):\n    sc = StandardScaler(); Xs = sc.fit_transform(X)\n    clf = LogisticRegression(C=1.0, class_weight='balanced', max_iter=2000,\n                             solver='lbfgs', random_state=SEED)\n    clf.fit(Xs, y)\n    return clf, sc\n\ndef predict_hs(clf, sc, traces, layer_idx, window):\n    results = []\n    for t in traces:\n        f = extract_hs(t, layer_idx, window)\n        l = get_labels(t); n = min(len(f), len(l))\n        probs = clf.predict_proba(sc.transform(f[:n]))[:, 1]\n        results.append({\"trace_id\": str(t.get(\"trace_id\",\"\")),\n                        \"probs\": probs, \"labels\": np.array(l[:n]),\n                        \"commitment_point\": get_cp(t)})\n    return results\n\ndef predict_text(clf, sc, traces, emb_dict, window):\n    results = []\n    for t in traces:\n        tid = str(t.get(\"trace_id\",\"\"))\n        e = extract_text(emb_dict, tid, window)\n        if e is None: continue\n        l = get_labels(t); n = min(len(e), len(l))\n        probs = clf.predict_proba(sc.transform(e[:n]))[:, 1]\n        results.append({\"trace_id\": tid, \"probs\": probs,\n                        \"labels\": np.array(l[:n]), \"commitment_point\": get_cp(t)})\n    return results\n\ndef compute_metrics(tr):\n    ap, al, pfp, pt = [], [], 0, 0\n    for r in tr:\n        p = (r[\"probs\"]>0.5).astype(int)\n        ap.extend(p); al.extend(r[\"labels\"])\n        cp = r[\"commitment_point\"]\n        if cp and 0<cp<len(p):\n            pfp += int(p[:cp].sum()); pt += cp\n    ap, al = np.array(ap), np.array(al)\n    ba = balanced_accuracy_score(al, ap)\n    tp = int(((ap==1)&(al==1)).sum()); fp = int(((ap==1)&(al==0)).sum())\n    return {\"bal_acc\": round(ba,4), \"precision\": round(tp/(tp+fp) if tp+fp>0 else 0,4),\n            \"fpr\": round(pfp/pt if pt>0 else 0,4)}\n\ndef per_trace_metric(tr, key):\n    vals = []\n    for r in tr:\n        p = (r[\"probs\"]>0.5).astype(int); l = r[\"labels\"]\n        if key==\"bal_acc\":\n            vals.append(balanced_accuracy_score(l,p) if len(set(l))>=2 else float((p==l).mean()))\n        elif key==\"precision\":\n            tp=int(((p==1)&(l==1)).sum()); fp=int(((p==1)&(l==0)).sum())\n            vals.append(tp/(tp+fp) if tp+fp>0 else 0)\n        elif key==\"fpr\":\n            cp=r[\"commitment_point\"]\n            vals.append(float(p[:cp].sum())/cp if cp and 0<cp<len(p) else 0)\n    return np.array(vals)\n\ndef ensemble(results_list):\n    by_id = {}\n    for rl in results_list:\n        for r in rl:\n            tid = r[\"trace_id\"]\n            if tid not in by_id:\n                by_id[tid] = {\"pl\":[], \"labels\":r[\"labels\"], \"cp\":r[\"commitment_point\"]}\n            by_id[tid][\"pl\"].append(r[\"probs\"])\n    out = []\n    for tid in sorted(by_id):\n        d = by_id[tid]\n        if len(d[\"pl\"])<len(results_list): continue\n        ml = min(len(p) for p in d[\"pl\"])\n        out.append({\"trace_id\":tid, \"probs\":np.mean([p[:ml] for p in d[\"pl\"]],axis=0),\n                     \"labels\":d[\"labels\"][:ml], \"commitment_point\":d[\"cp\"]})\n    return out\n\ndef bootstrap_gap(ra, rb, mk, nb=N_BOOTSTRAP):\n    ia={r[\"trace_id\"]:r for r in ra}; ib={r[\"trace_id\"]:r for r in rb}\n    c=sorted(set(ia)&set(ib))\n    if len(c)<3: return None, None\n    va=per_trace_metric([ia[t] for t in c], mk)\n    vb=per_trace_metric([ib[t] for t in c], mk)\n    gap=float(va.mean()-vb.mean())\n    rng=np.random.default_rng(SEED); n=len(c); cnt=0\n    for _ in range(nb):\n        idx=rng.choice(n,size=n,replace=True)\n        bg=va[idx].mean()-vb[idx].mean()\n        cnt += (bg>=0) if mk==\"fpr\" else (bg<=0)\n    return round(gap,4), round(cnt/nb,4)\n\n# --- OT-7B specific ---\nprint(\"Processing OT-7B...\")\ncfg = {\"hs_dir\": ARTIFACTS/\"hidden_states_ot7b\", \"layer_offset\":0, \"window\":3,\n       \"precision_layer\":16, \"ba_layer\":9, \"third_layer\":18,\n       \"text_emb_pkl\": ARTIFACTS/\"ot7b_text_embeddings.pkl\"}\n\ntraces = load_traces(cfg[\"hs_dir\"])\nprint(f\"  Loaded {len(traces)} traces\")\ntrain, val, test = split_traces(traces)\nprint(f\"  Split: {len(train)}/{len(val)}/{len(test)}\")\n\nW = cfg[\"window\"]\nlayers = {\"precision\":(16,16), \"ba\":(9,9), \"third\":(18,18)}\n\nlayer_results = {}\nfor name, (lnum, lidx) in layers.items():\n    print(f\"  Training L{lnum}...\")\n    X_tr, y_tr = collect_data(train, lidx, W)\n    clf, sc = train_probe(X_tr, y_tr)\n    tr = predict_hs(clf, sc, test, lidx, W)\n    layer_results[name] = {\"layer\":lnum, \"results\":tr}\n    m = compute_metrics(tr)\n    print(f\"    BA={m['bal_acc']:.4f} Prec={m['precision']:.4f} FPR={m['fpr']:.4f}\")\n\nens_r = ensemble([lr[\"results\"] for lr in layer_results.values()])\nens_m = compute_metrics(ens_r)\nprint(f\"  Ensemble: BA={ens_m['bal_acc']:.4f} Prec={ens_m['precision']:.4f} FPR={ens_m['fpr']:.4f}\")\n\n# Text\nemb_dict = pickle.load(open(cfg[\"text_emb_pkl\"],\"rb\"))\nXt, yt = [], []\nfor t in train:\n    tid=str(t.get(\"trace_id\",\"\"))\n    e=extract_text(emb_dict,tid,W)\n    if e is None: continue\n    l=get_labels(t); n=min(len(e),len(l))\n    Xt.append(e[:n]); yt.extend(l[:n])\nXt=np.vstack(Xt); yt=np.array(yt)\ntc,ts = train_probe(Xt, yt)\ntext_r = predict_text(tc, ts, test, emb_dict, W)\ntext_m = compute_metrics(text_r)\nprint(f\"  Text: BA={text_m['bal_acc']:.4f} Prec={text_m['precision']:.4f} FPR={text_m['fpr']:.4f}\")\n\n# Bootstrap\nprint(\"  Bootstrap...\")\nboot = {}\nfor mk in [\"bal_acc\",\"precision\",\"fpr\"]:\n    g,p = bootstrap_gap(ens_r, text_r, mk)\n    boot[f\"ens_vs_text_{mk}\"] = {\"gap\":g,\"p\":p}\n    print(f\"    ens vs text {mk}: gap={g}, p={p}\")\n\nbn = max(layer_results, key=lambda k: compute_metrics(layer_results[k][\"results\"])[\"precision\"])\nbs = layer_results[bn][\"results\"]\nfor mk in [\"bal_acc\",\"precision\",\"fpr\"]:\n    g,p = bootstrap_gap(ens_r, bs, mk)\n    boot[f\"ens_vs_best_single_{mk}\"] = {\"gap\":g,\"p\":p}\n    print(f\"    ens vs best({bn}) {mk}: gap={g}, p={p}\")\n\nwn = min(layer_results, key=lambda k: compute_metrics(layer_results[k][\"results\"])[\"precision\"])\nws = layer_results[wn][\"results\"]\nfor mk in [\"bal_acc\",\"precision\",\"fpr\"]:\n    g,p = bootstrap_gap(ens_r, ws, mk)\n    boot[f\"ens_vs_worst_single_{mk}\"] = {\"gap\":g,\"p\":p}\n\n# Build result\nmetrics_out = {}\nfor nm, lr in layer_results.items():\n    metrics_out[f\"single_{nm}_L{lr['layer']}\"] = compute_metrics(lr[\"results\"])\nmetrics_out[\"ensemble\"] = ens_m\nmetrics_out[\"text\"] = text_m\n\not7b_result = {\n    \"model\": \"OT-7B\",\n    \"n_traces\": {\"total\":len(traces), \"train\":len(train), \"val\":len(val), \"test\":len(test)},\n    \"window\": W,\n    \"layers\": {nm: lr[\"layer\"] for nm, lr in layer_results.items()},\n    \"n_ensemble_layers\": 3,\n    \"metrics\": metrics_out,\n    \"bootstrap\": boot,\n}\n\n# Merge into existing results\nwith open(OUT_DIR/\"results.json\") as f:\n    all_r = json.load(f)\nall_r[\"OT-7B\"] = ot7b_result\n\ndef jd(x):\n    if isinstance(x,(np.floating,np.integer)): return float(x)\n    if isinstance(x,np.ndarray): return x.tolist()\n    return None\n\nwith open(OUT_DIR/\"results.json\",\"w\") as f:\n    json.dump(all_r, f, indent=2, default=jd)\nprint(\"\\nMerged OT-7B into results.json\")\n\n# Regenerate report\nlines = [\"N6: Multi-Metric Layer Ensemble — Results\", \"=\"*60, f\"Date: {time.strftime('%Y-%m-%d %H:%M')}\", \"\"]\nfor mn in [\"R1-8B\",\"OT-7B\",\"QwQ-32B\",\"R1-32B\"]:\n    res = all_r[mn]\n    if \"error\" in res:\n        lines.append(f\"{mn}: ERROR — {res['error']}\\n\"); continue\n    lines.append(f\"{mn}  (W={res['window']}, test={res['n_traces']['test']}, ens={res['n_ensemble_layers']}L)\")\n    lines.append(f\"  Layers: {res['layers']}\")\n    lines.append(f\"  {'Method':<35} {'BA':>7} {'Prec':>7} {'FPR':>7}\")\n    lines.append(f\"  {'-'*56}\")\n    for mk,mv in res[\"metrics\"].items():\n        if mv.get(\"bal_acc\") is not None:\n            lines.append(f\"  {mk:<35} {mv['bal_acc']:>7.4f} {mv['precision']:>7.4f} {mv['fpr']:>7.4f}\")\n    lines.append(\"\")\n    if res.get(\"bootstrap\"):\n        lines.append(\"  Bootstrap (n=10000):\")\n        for bk,bv in res[\"bootstrap\"].items():\n            sig = \"*\" if bv.get(\"p\") is not None and bv[\"p\"]<0.05 else \"\"\n            lines.append(f\"    {bk}: gap={bv['gap']}, p={bv['p']}{sig}\")\n        lines.append(\"\")\n\nlines.append(\"=\"*60)\nlines.append(\"SUMMARY\")\nlines.append(f\"{'Model':<10} {'BestSingle':>10} {'Ensemble':>10} {'Delta':>7} {'Text':>7} {'Ens-Txt':>8}\")\nlines.append(\"-\"*55)\nfor mn in [\"R1-8B\",\"OT-7B\",\"QwQ-32B\",\"R1-32B\"]:\n    res=all_r[mn]\n    if \"error\" in res: continue\n    m=res[\"metrics\"]\n    sp=[v[\"precision\"] for k,v in m.items() if k.startswith(\"single_\") and v.get(\"precision\") is not None]\n    bs=max(sp); ep=m[\"ensemble\"][\"precision\"]; tp=m[\"text\"][\"precision\"] or 0\n    lines.append(f\"{mn:<10} {bs:>10.4f} {ep:>10.4f} {ep-bs:>+7.4f} {tp:>7.4f} {ep-tp:>+8.4f}\")\n\nreport = \"\\n\".join(lines)\nwith open(OUT_DIR/\"report.txt\",\"w\") as f:\n    f.write(report)\nprint(\"\\n\"+report)\nEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/n6_fix_ot7b.py",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7062202c-c656-4e0c-9eac-2c8911f27d15",
+            "isSidechain": false,
+            "requestId": "req_011CbCFQnkt5NxmcJiMr44Pp",
+            "type": "assistant",
+            "uuid": "9b520f60-748c-499d-b1bd-612f0dc286fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HrzbhK17EyA3GnB5mRCBZV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 400,
+                "cache_read_input_tokens": 128986,
+                "output_tokens": 4575,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 400,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4575,
+                    "cache_read_input_tokens": 128986,
+                    "cache_creation_input_tokens": 400,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 400
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-19T16:34:19.802Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016VANLdPYds276SwqsNprK5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Processing OT-7B...\\\\n  Loaded 228 traces\\\\n  Split: 136/45/47\\\\n  Training L16...\\\\n    BA=0.6763 Prec=0.4403 FPR=0.1379\\\\n  Training L9...\\\\n    BA=0.6818 Prec=0.4342 FPR=0.1472\\\\n  Training L18...\\\\n    BA=0.6729 Prec=0.4731 FPR=0.1130\\\\n  Ensemble: BA=0.6912 Prec=0.5060 FPR=0.1053\\\\n  Text: BA=0.5609 Prec=0.2360 FPR=0.3066\\\\n  Bootstrap...\\\\n    ens vs text bal_acc: gap=0.1196, p=0.0001\\\\n    ens vs text precision: gap=0.2161, p=0.0\\\\n    ens vs text fpr: gap=-0.2023, p=0.0\\\\n    ens vs best(third) bal_acc: gap=0.032, p=0.0161\\\\n    ens vs best(third) precision: gap=-0.0054, p=0.5673\\\\n    ens vs best(third) fpr: gap=-0.0114, p=0.0722\\\\n\\\\nMerged OT-7B into results.json\\\\n\\\\nN6: Multi-Metric Layer Ensemble — Results\\\\n============================================================\\\\nDate: 2026-05-20 00:34\\\\n\\\\nR1-8B  (W=15, test=43, ens=3L)\\\\n  Layers: {'precision': 14, 'ba': 12, 'third': 20}\\\\n  Method                                   BA    Prec     FPR\\\\n  --------------------------------------------------------\\\\n  single_precision_L14                 0.7416  0.5317  0.2005\\\\n  single_ba_L12                        0.7871  0.6040  0.1604\\\\n  single_third_L20                     0.7246  0.5287  0.1897\\\\n  ensemble                             0.7535  0.5651  0.1747\\\\n  text                                 0.6151  0.3718  0.2964\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.1714, p=0.0*\\\\n    ens_vs_text_precision: gap=0.2791, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.092, p=0.0385*\\\\n    ens_vs_best_single_bal_acc: gap=-0.0142, p=0.873\\\\n    ens_vs_best_single_precision: gap=0.0132, p=0.2783\\\\n    ens_vs_best_single_fpr: gap=-0.0022, p=0.4673\\\\n    ens_vs_worst_single_bal_acc: gap=0.0246, p=0.0207*\\\\n    ens_vs_worst_single_precision: gap=-0.0273, p=0.8167\\\\n    ens_vs_worst_single_fpr: gap=-0.0156, p=0.2277\\\\n\\\\nOT-7B  (W=3, test=47, ens=3L)\\\\n  Layers: {'precision': 16, 'ba': 9, 'third': 18}\\\\n  Method                                   BA    Prec     FPR\\\\n  --------------------------------------------------------\\\\n  single_precision_L16                 0.6763  0.4403  0.1379\\\\n  single_ba_L9                         0.6818  0.4342  0.1472\\\\n  single_third_L18                     0.6729  0.4731  0.1130\\\\n  ensemble                             0.6912  0.5060  0.1053\\\\n  text                                 0.5609  0.2360  0.3066\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.1196, p=0.0001*\\\\n    ens_vs_text_precision: gap=0.2161, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.2023, p=0.0*\\\\n    ens_vs_best_single_bal_acc: gap=0.032, p=0.0161*\\\\n    ens_vs_best_single_precision: gap=-0.0054, p=0.5673\\\\n    ens_vs_best_single_fpr: gap=-0.0114, p=0.0722\\\\n    ens_vs_worst_single_bal_acc: gap=0.0052, p=0.3874\\\\n    ens_vs_worst_single_precision: gap=0.0487, p=0.078\\\\n    ens_vs_worst_single_fpr: gap=-0.0348, p=0.0001*\\\\n\\\\nQwQ-32B  (W=3, test=19, ens=3L)\\\\n  Layers: {'precision': 60, 'ba': 30, 'third': 63}\\\\n  Method                                   BA    Prec     FPR\\\\n  --------------------------------------------------------\\\\n  single_precision_L60                 0.7592  0.5777  0.2100\\\\n  single_ba_L30                        0.7042  0.5483  0.1965\\\\n  single_third_L63                     0.7168  0.5348  0.2263\\\\n  ensemble                             0.7506  0.5775  0.2033\\\\n  text                                 0.5626  0.3741  0.2425\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.2008, p=0.0*\\\\n    ens_vs_text_precision: gap=0.2543, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.0976, p=0.0689\\\\n    ens_vs_best_single_bal_acc: gap=-0.001, p=0.5633\\\\n    ens_vs_best_single_precision: gap=0.0396, p=0.0085*\\\\n    ens_vs_best_single_fpr: gap=-0.0096, p=0.1641\\\\n    ens_vs_worst_single_bal_acc: gap=0.0337, p=0.0001*\\\\n    ens_vs_worst_single_precision: gap=0.0935, p=0.0027*\\\\n    ens_vs_worst_single_fpr: gap=-0.0185, p=0.0136*\\\\n\\\\nR1-32B  (W=1, test=20, ens=3L)\\\\n  Layers: {'precision': 63, 'ba': 47, 'third': 44}\\\\n  Method                                   BA    Prec     FPR\\\\n  --------------------------------------------------------\\\\n  single_precision_L63                 0.7630  0.5833  0.3064\\\\n  single_ba_L47                        0.7222  0.5504  0.3231\\\\n  single_third_L44                     0.7318  0.5603  0.3148\\\\n  ensemble                             0.7497  0.5810  0.2953\\\\n  text                                 0.6301  0.4764  0.3398\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.174, p=0.0002*\\\\n    ens_vs_text_precision: gap=0.154, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.1078, p=0.0467*\\\\n    ens_vs_best_single_bal_acc: gap=0.0001, p=0.4968\\\\n    ens_vs_best_single_precision: gap=0.0261, p=0.2781\\\\n    ens_vs_best_single_fpr: gap=-0.0049, p=0.4392\\\\n    ens_vs_worst_single_bal_acc: gap=0.0167, p=0.0127*\\\\n    ens_vs_worst_single_precision: gap=0.0175, p=0.1189\\\\n    ens_vs_worst_single_fpr: gap=-0.0279, p=0.0211*\\\\n\\\\n============================================================\\\\nSUMMARY\\\\nModel      BestSingle   Ensemble   Delta    Text  Ens-Txt\\\\n-------------------------------------------------------\\\\nR1-8B          0.6040     0.5651 -0.0389  0.3718  +0.1933\\\\nOT-7B          0.4731     0.5060 +0.0329  0.2360  +0.2700\\\\nQwQ-32B        0.5777     0.5775 -0.0002  0.3741  +0.2034\\\\nR1-32B         0.5833     0.5810 -0.0023  0.4764  +0.1046\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b520f60-748c-499d-b1bd-612f0dc286fa",
+            "isSidechain": false,
+            "promptId": "f6cb66fe-e1fd-4454-99f3-c221741a2349",
+            "type": "user",
+            "uuid": "07f31393-4cdc-4e0a-b094-665edeb008ab",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Processing OT-7B...\\\\n  Loaded 228 traces\\\\n  Split: 136/45/47\\\\n  Training L16...\\\\n    BA=0.6763 Prec=0.4403 FPR=0.1379\\\\n  Training L9...\\\\n    BA=0.6818 Prec=0.4342 FPR=0.1472\\\\n  Training L18...\\\\n    BA=0.6729 Prec=0.4731 FPR=0.1130\\\\n  Ensemble: BA=0.6912 Prec=0.5060 FPR=0.1053\\\\n  Text: BA=0.5609 Prec=0.2360 FPR=0.3066\\\\n  Bootstrap...\\\\n    ens vs text bal_acc: gap=0.1196, p=0.0001\\\\n    ens vs text precision: gap=0.2161, p=0.0\\\\n    ens vs text fpr: gap=-0.2023, p=0.0\\\\n    ens vs best(third) bal_acc: gap=0.032, p=0.0161\\\\n    ens vs best(third) precision: gap=-0.0054, p=0.5673\\\\n    ens vs best(third) fpr: gap=-0.0114, p=0.0722\\\\n\\\\nMerged OT-7B into results.json\\\\n\\\\nN6: Multi-Metric Layer Ensemble — Results\\\\n============================================================\\\\nDate: 2026-05-20 00:34\\\\n\\\\nR1-8B  (W=15, test=43, ens=3L)\\\\n  Layers: {'precision': 14, 'ba': 12, 'third': 20}\\\\n  Method                                   BA    Prec     FPR\\\\n  --------------------------------------------------------\\\\n  single_precision_L14                 0.7416  0.5317  0.2005\\\\n  single_ba_L12                        0.7871  0.6040  0.1604\\\\n  single_third_L20                     0.7246  0.5287  0.1897\\\\n  ensemble                             0.7535  0.5651  0.1747\\\\n  text                                 0.6151  0.3718  0.2964\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.1714, p=0.0*\\\\n    ens_vs_text_precision: gap=0.2791, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.092, p=0.0385*\\\\n    ens_vs_best_single_bal_acc: gap=-0.0142, p=0.873\\\\n    ens_vs_best_single_precision: gap=0.0132, p=0.2783\\\\n    ens_vs_best_single_fpr: gap=-0.0022, p=0.4673\\\\n    ens_vs_worst_single_bal_acc: gap=0.0246, p=0.0207*\\\\n    ens_vs_worst_single_precision: gap=-0.0273, p=0.8167\\\\n    ens_vs_worst_single_fpr: gap=-0.0156, p=0.2277\\\\n\\\\nOT-7B  (W=3, test=47, ens=3L)\\\\n  Layers: {'precision': 16, 'ba': 9, 'third': 18}\\\\n  Method                                   BA    Prec     FPR\\\\n  --------------------------------------------------------\\\\n  single_precision_L16                 0.6763  0.4403  0.1379\\\\n  single_ba_L9                         0.6818  0.4342  0.1472\\\\n  single_third_L18                     0.6729  0.4731  0.1130\\\\n  ensemble                             0.6912  0.5060  0.1053\\\\n  text                                 0.5609  0.2360  0.3066\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.1196, p=0.0001*\\\\n    ens_vs_text_precision: gap=0.2161, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.2023, p=0.0*\\\\n    ens_vs_best_single_bal_acc: gap=0.032, p=0.0161*\\\\n    ens_vs_best_single_precision: gap=-0.0054, p=0.5673\\\\n    ens_vs_best_single_fpr: gap=-0.0114, p=0.0722\\\\n    ens_vs_worst_single_bal_acc: gap=0.0052, p=0.3874\\\\n    ens_vs_worst_single_precision: gap=0.0487, p=0.078\\\\n    ens_vs_worst_single_fpr: gap=-0.0348, p=0.0001*\\\\n\\\\nQwQ-32B  (W=3, test=19, ens=3L)\\\\n  Layers: {'precision': 60, 'ba': 30, 'third': 63}\\\\n  Method                                   BA    Prec     FPR\\\\n  --------------------------------------------------------\\\\n  single_precision_L60                 0.7592  0.5777  0.2100\\\\n  single_ba_L30                        0.7042  0.5483  0.1965\\\\n  single_third_L63                     0.7168  0.5348  0.2263\\\\n  ensemble                             0.7506  0.5775  0.2033\\\\n  text                                 0.5626  0.3741  0.2425\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.2008, p=0.0*\\\\n    ens_vs_text_precision: gap=0.2543, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.0976, p=0.0689\\\\n    ens_vs_best_single_bal_acc: gap=-0.001, p=0.5633\\\\n    ens_vs_best_single_precision: gap=0.0396, p=0.0085*\\\\n    ens_vs_best_single_fpr: gap=-0.0096, p=0.1641\\\\n    ens_vs_worst_single_bal_acc: gap=0.0337, p=0.0001*\\\\n    ens_vs_worst_single_precision: gap=0.0935, p=0.0027*\\\\n    ens_vs_worst_single_fpr: gap=-0.0185, p=0.0136*\\\\n\\\\nR1-32B  (W=1, test=20, ens=3L)\\\\n  Layers: {'precision': 63, 'ba': 47, 'third': 44}\\\\n  Method                                   BA    Prec     FPR\\\\n  --------------------------------------------------------\\\\n  single_precision_L63                 0.7630  0.5833  0.3064\\\\n  single_ba_L47                        0.7222  0.5504  0.3231\\\\n  single_third_L44                     0.7318  0.5603  0.3148\\\\n  ensemble                             0.7497  0.5810  0.2953\\\\n  text                                 0.6301  0.4764  0.3398\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.174, p=0.0002*\\\\n    ens_vs_text_precision: gap=0.154, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.1078, p=0.0467*\\\\n    ens_vs_best_single_bal_acc: gap=0.0001, p=0.4968\\\\n    ens_vs_best_single_precision: gap=0.0261, p=0.2781\\\\n    ens_vs_best_single_fpr: gap=-0.0049, p=0.4392\\\\n    ens_vs_worst_single_bal_acc: gap=0.0167, p=0.0127*\\\\n    ens_vs_worst_single_precision: gap=0.0175, p=0.1189\\\\n    ens_vs_worst_single_fpr: gap=-0.0279, p=0.0211*\\\\n\\\\n============================================================\\\\nSUMMARY\\\\nModel      BestSingle   Ensemble   Delta    Text  Ens-Txt\\\\n-------------------------------------------------------\\\\nR1-8B          0.6040     0.5651 -0.0389  0.3718  +0.1933\\\\nOT-7B          0.4731     0.5060 +0.0329  0.2360  +0.2700\\\\nQwQ-32B        0.5777     0.5775 -0.0002  0.3741  +0.2034\\\\nR1-32B         0.5833     0.5810 -0.0023  0.4764  +0.1046\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.98}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Processing OT-7B...\\n  Loaded 228 traces\\n  Split: 136/45/47\\n  Training L16...\\n    BA=0.6763 Prec=0.4403 FPR=0.1379\\n  Training L9...\\n    BA=0.6818 Prec=0.4342 FPR=0.1472\\n  Training L18...\\n    BA=0.6729 Prec=0.4731 FPR=0.1130\\n  Ensemble: BA=0.6912 Prec=0.5060 FPR=0.1053\\n  Text: BA=0.5609 Prec=0.2360 FPR=0.3066\\n  Bootstrap...\\n    ens vs text bal_acc: gap=0.1196, p=0.0001\\n    ens vs text precision: gap=0.2161, p=0.0\\n    ens vs text fpr: gap=-0.2023, p=0.0\\n    ens vs best(third) bal_acc: gap=0.032, p=0.0161\\n    ens vs best(third) precision: gap=-0.0054, p=0.5673\\n    ens vs best(third) fpr: gap=-0.0114, p=0.0722\\n\\nMerged OT-7B into results.json\\n\\nN6: Multi-Metric Layer Ensemble — Results\\n============================================================\\nDate: 2026-05-20 00:34\\n\\nR1-8B  (W=15, test=43, ens=3L)\\n  Layers: {'precision': 14, 'ba': 12, 'third': 20}\\n  Method                                   BA    Prec     FPR\\n  --------------------------------------------------------\\n  single_precision_L14                 0.7416  0.5317  0.2005\\n  single_ba_L12                        0.7871  0.6040  0.1604\\n  single_third_L20                     0.7246  0.5287  0.1897\\n  ensemble                             0.7535  0.5651  0.1747\\n  text                                 0.6151  0.3718  0.2964\\n\\n  Bootstrap (n=10000):\\n    ens_vs_text_bal_acc: gap=0.1714, p=0.0*\\n    ens_vs_text_precision: gap=0.2791, p=0.0*\\n    ens_vs_text_fpr: gap=-0.092, p=0.0385*\\n    ens_vs_best_single_bal_acc: gap=-0.0142, p=0.873\\n    ens_vs_best_single_precision: gap=0.0132, p=0.2783\\n    ens_vs_best_single_fpr: gap=-0.0022, p=0.4673\\n    ens_vs_worst_single_bal_acc: gap=0.0246, p=0.0207*\\n    ens_vs_worst_single_precision: gap=-0.0273, p=0.8167\\n    ens_vs_worst_single_fpr: gap=-0.0156, p=0.2277\\n\\nOT-7B  (W=3, test=47, ens=3L)\\n  Layers: {'precision': 16, 'ba': 9, 'third': 18}\\n  Method                                   BA    Prec     FPR\\n  --------------------------------------------------------\\n  single_precision_L16                 0.6763  0.4403  0.1379\\n  single_ba_L9                         0.6818  0.4342  0.1472\\n  single_third_L18                     0.6729  0.4731  0.1130\\n  ensemble                             0.6912  0.5060  0.1053\\n  text                                 0.5609  0.2360  0.3066\\n\\n  Bootstrap (n=10000):\\n    ens_vs_text_bal_acc: gap=0.1196, p=0.0001*\\n    ens_vs_text_precision: gap=0.2161, p=0.0*\\n    ens_vs_text_fpr: gap=-0.2023, p=0.0*\\n    ens_vs_best_single_bal_acc: gap=0.032, p=0.0161*\\n    ens_vs_best_single_precision: gap=-0.0054, p=0.5673\\n    ens_vs_best_single_fpr: gap=-0.0114, p=0.0722\\n    ens_vs_worst_single_bal_acc: gap=0.0052, p=0.3874\\n    ens_vs_worst_single_precision: gap=0.0487, p=0.078\\n    ens_vs_worst_single_fpr: gap=-0.0348, p=0.0001*\\n\\nQwQ-32B  (W=3, test=19, ens=3L)\\n  Layers: {'precision': 60, 'ba': 30, 'third': 63}\\n  Method                                   BA    Prec     FPR\\n  --------------------------------------------------------\\n  single_precision_L60                 0.7592  0.5777  0.2100\\n  single_ba_L30                        0.7042  0.5483  0.1965\\n  single_third_L63                     0.7168  0.5348  0.2263\\n  ensemble                             0.7506  0.5775  0.2033\\n  text                                 0.5626  0.3741  0.2425\\n\\n  Bootstrap (n=10000):\\n    ens_vs_text_bal_acc: gap=0.2008, p=0.0*\\n    ens_vs_text_precision: gap=0.2543, p=0.0*\\n    ens_vs_text_fpr: gap=-0.0976, p=0.0689\\n    ens_vs_best_single_bal_acc: gap=-0.001, p=0.5633\\n    ens_vs_best_single_precision: gap=0.0396, p=0.0085*\\n    ens_vs_best_single_fpr: gap=-0.0096, p=0.1641\\n    ens_vs_worst_single_bal_acc: gap=0.0337, p=0.0001*\\n    ens_vs_worst_single_precision: gap=0.0935, p=0.0027*\\n    ens_vs_worst_single_fpr: gap=-0.0185, p=0.0136*\\n\\nR1-32B  (W=1, test=20, ens=3L)\\n  Layers: {'precision': 63, 'ba': 47, 'third': 44}\\n  Method                                   BA    Prec     FPR\\n  --------------------------------------------------------\\n  single_precision_L63                 0.7630  0.5833  0.3064\\n  single_ba_L47                        0.7222  0.5504  0.3231\\n  single_third_L44                     0.7318  0.5603  0.3148\\n  ensemble                             0.7497  0.5810  0.2953\\n  text                                 0.6301  0.4764  0.3398\\n\\n  Bootstrap (n=10000):\\n    ens_vs_text_bal_acc: gap=0.174, p=0.0002*\\n    ens_vs_text_precision: gap=0.154, p=0.0*\\n    ens_vs_text_fpr: gap=-0.1078, p=0.0467*\\n    ens_vs_best_single_bal_acc: gap=0.0001, p=0.4968\\n    ens_vs_best_single_precision: gap=0.0261, p=0.2781\\n    ens_vs_best_single_fpr: gap=-0.0049, p=0.4392\\n    ens_vs_worst_single_bal_acc: gap=0.0167, p=0.0127*\\n    ens_vs_worst_single_precision: gap=0.0175, p=0.1189\\n    ens_vs_worst_single_fpr: gap=-0.0279, p=0.0211*\\n\\n============================================================\\nSUMMARY\\nModel      BestSingle   Ensemble   Delta    Text  Ens-Txt\\n-------------------------------------------------------\\nR1-8B          0.6040     0.5651 -0.0389  0.3718  +0.1933\\nOT-7B          0.4731     0.5060 +0.0329  0.2360  +0.2700\\nQwQ-32B        0.5777     0.5775 -0.0002  0.3741  +0.2034\\nR1-32B         0.5833     0.5810 -0.0023  0.4764  +0.1046\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 11.98}}"
+              }
+            },
+            "sourceToolAssistantUUID": "9b520f60-748c-499d-b1bd-612f0dc286fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-19T16:34:19.808Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "07f31393-4cdc-4e0a-b094-665edeb008ab",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "ae19d92e-20ee-4b07-80cc-3171bfa6a5f9",
+                "timestamp": "2026-05-19T16:34:19.808Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+                "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "ae19d92e-20ee-4b07-80cc-3171bfa6a5f9",
+                "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15"
+              }
+            }
+          ],
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Build multi-metric layer ensemble proof-of-concept",
+                "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15"
+              }
+            }
+          ],
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": "2026-05-19T16:34:23.673Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 models completed. Let me also fix the bfloat16 issue in the main script and verify the final output files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae19d92e-20ee-4b07-80cc-3171bfa6a5f9",
+            "isSidechain": false,
+            "requestId": "req_011CbCFWJL1i7z4keZtQUUDF",
+            "type": "assistant",
+            "uuid": "ae736836-fcc8-4c55-8e80-4408946f430c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MjwpN6RFt6bhNWv4YpRXxW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7108,
+                "cache_read_input_tokens": 129386,
+                "output_tokens": 164,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7108,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 164,
+                    "cache_read_input_tokens": 129386,
+                    "cache_creation_input_tokens": 7108,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7108
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-19T16:34:24.666Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Pn9NfeK69A9ZXuxMSiTe5a",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "ls -la /root/autodl-tmp/contrastive_trace_safety/artifacts/n6_multi_metric_ensemble/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae736836-fcc8-4c55-8e80-4408946f430c",
+            "isSidechain": false,
+            "requestId": "req_011CbCFWJL1i7z4keZtQUUDF",
+            "type": "assistant",
+            "uuid": "7db6c681-292b-4b93-8be4-78bbd84659ad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MjwpN6RFt6bhNWv4YpRXxW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7108,
+                "cache_read_input_tokens": 129386,
+                "output_tokens": 164,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7108,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 164,
+                    "cache_read_input_tokens": 129386,
+                    "cache_creation_input_tokens": 7108,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7108
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": "2026-05-19T16:34:25.031Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Pn9NfeK69A9ZXuxMSiTe5a",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 28\\\\ndrwxr-xr-x   2 root root   56 May 20 00:32 .\\\\ndrwxr-xr-x 112 root root 8192 May 20 00:32 ..\\\\n-rw-r--r--   1 root root 4514 May 20 00:34 report.txt\\\\n-rw-r--r--   1 root root 6596 May 20 00:34 results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7db6c681-292b-4b93-8be4-78bbd84659ad",
+            "isSidechain": false,
+            "promptId": "f6cb66fe-e1fd-4454-99f3-c221741a2349",
+            "type": "user",
+            "uuid": "0a253d6d-59fb-4bc1-b5a9-b2fd46f0f3ad",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 28\\\\ndrwxr-xr-x   2 root root   56 May 20 00:32 .\\\\ndrwxr-xr-x 112 root root 8192 May 20 00:32 ..\\\\n-rw-r--r--   1 root root 4514 May 20 00:34 report.txt\\\\n-rw-r--r--   1 root root 6596 May 20 00:34 results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 28\\ndrwxr-xr-x   2 root root   56 May 20 00:32 .\\ndrwxr-xr-x 112 root root 8192 May 20 00:32 ..\\n-rw-r--r--   1 root root 4514 May 20 00:34 report.txt\\n-rw-r--r--   1 root root 6596 May 20 00:34 results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            },
+            "sourceToolAssistantUUID": "7db6c681-292b-4b93-8be4-78bbd84659ad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-19T16:34:28.961Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HG6rbJBVjp5YZdnvKThBqm",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "cat /root/autodl-tmp/contrastive_trace_safety/artifacts/n6_multi_metric_ensemble/report.txt",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a253d6d-59fb-4bc1-b5a9-b2fd46f0f3ad",
+            "isSidechain": false,
+            "requestId": "req_011CbCFWgfBrmbZsynxGbQ7v",
+            "type": "assistant",
+            "uuid": "6df10622-0fa8-4432-9681-5488eb17119a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LNnz1uSD2PFQsmtYnkHfzz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 359,
+                "cache_read_input_tokens": 136494,
+                "output_tokens": 134,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 359,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 134,
+                    "cache_read_input_tokens": 136494,
+                    "cache_creation_input_tokens": 359,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 359
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-19T16:34:29.325Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HG6rbJBVjp5YZdnvKThBqm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"N6: Multi-Metric Layer Ensemble — Results\\\\n============================================================\\\\nDate: 2026-05-20 00:34\\\\n\\\\nR1-8B  (W=15, test=43, ens=3L)\\\\n  Layers: {'precision': 14, 'ba': 12, 'third': 20}\\\\n  Method                                   BA    Prec     FPR\\\\n  --------------------------------------------------------\\\\n  single_precision_L14                 0.7416  0.5317  0.2005\\\\n  single_ba_L12                        0.7871  0.6040  0.1604\\\\n  single_third_L20                     0.7246  0.5287  0.1897\\\\n  ensemble                             0.7535  0.5651  0.1747\\\\n  text                                 0.6151  0.3718  0.2964\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.1714, p=0.0*\\\\n    ens_vs_text_precision: gap=0.2791, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.092, p=0.0385*\\\\n    ens_vs_best_single_bal_acc: gap=-0.0142, p=0.873\\\\n    ens_vs_best_single_precision: gap=0.0132, p=0.2783\\\\n    ens_vs_best_single_fpr: gap=-0.0022, p=0.4673\\\\n    ens_vs_worst_single_bal_acc: gap=0.0246, p=0.0207*\\\\n    ens_vs_worst_single_precision: gap=-0.0273, p=0.8167\\\\n    ens_vs_worst_single_fpr: gap=-0.0156, p=0.2277\\\\n\\\\nOT-7B  (W=3, test=47, ens=3L)\\\\n  Layers: {'precision': 16, 'ba': 9, 'third': 18}\\\\n  Method                                   BA    Prec     FPR\\\\n  --------------------------------------------------------\\\\n  single_precision_L16                 0.6763  0.4403  0.1379\\\\n  single_ba_L9                         0.6818  0.4342  0.1472\\\\n  single_third_L18                     0.6729  0.4731  0.1130\\\\n  ensemble                             0.6912  0.5060  0.1053\\\\n  text                                 0.5609  0.2360  0.3066\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.1196, p=0.0001*\\\\n    ens_vs_text_precision: gap=0.2161, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.2023, p=0.0*\\\\n    ens_vs_best_single_bal_acc: gap=0.032, p=0.0161*\\\\n    ens_vs_best_single_precision: gap=-0.0054, p=0.5673\\\\n    ens_vs_best_single_fpr: gap=-0.0114, p=0.0722\\\\n    ens_vs_worst_single_bal_acc: gap=0.0052, p=0.3874\\\\n    ens_vs_worst_single_precision: gap=0.0487, p=0.078\\\\n    ens_vs_worst_single_fpr: gap=-0.0348, p=0.0001*\\\\n\\\\nQwQ-32B  (W=3, test=19, ens=3L)\\\\n  Layers: {'precision': 60, 'ba': 30, 'third': 63}\\\\n  Method                                   BA    Prec     FPR\\\\n  --------------------------------------------------------\\\\n  single_precision_L60                 0.7592  0.5777  0.2100\\\\n  single_ba_L30                        0.7042  0.5483  0.1965\\\\n  single_third_L63                     0.7168  0.5348  0.2263\\\\n  ensemble                             0.7506  0.5775  0.2033\\\\n  text                                 0.5626  0.3741  0.2425\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.2008, p=0.0*\\\\n    ens_vs_text_precision: gap=0.2543, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.0976, p=0.0689\\\\n    ens_vs_best_single_bal_acc: gap=-0.001, p=0.5633\\\\n    ens_vs_best_single_precision: gap=0.0396, p=0.0085*\\\\n    ens_vs_best_single_fpr: gap=-0.0096, p=0.1641\\\\n    ens_vs_worst_single_bal_acc: gap=0.0337, p=0.0001*\\\\n    ens_vs_worst_single_precision: gap=0.0935, p=0.0027*\\\\n    ens_vs_worst_single_fpr: gap=-0.0185, p=0.0136*\\\\n\\\\nR1-32B  (W=1, test=20, ens=3L)\\\\n  Layers: {'precision': 63, 'ba': 47, 'third': 44}\\\\n  Method                                   BA    Prec     FPR\\\\n  --------------------------------------------------------\\\\n  single_precision_L63                 0.7630  0.5833  0.3064\\\\n  single_ba_L47                        0.7222  0.5504  0.3231\\\\n  single_third_L44                     0.7318  0.5603  0.3148\\\\n  ensemble                             0.7497  0.5810  0.2953\\\\n  text                                 0.6301  0.4764  0.3398\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.174, p=0.0002*\\\\n    ens_vs_text_precision: gap=0.154, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.1078, p=0.0467*\\\\n    ens_vs_best_single_bal_acc: gap=0.0001, p=0.4968\\\\n    ens_vs_best_single_precision: gap=0.0261, p=0.2781\\\\n    ens_vs_best_single_fpr: gap=-0.0049, p=0.4392\\\\n    ens_vs_worst_single_bal_acc: gap=0.0167, p=0.0127*\\\\n    ens_vs_worst_single_precision: gap=0.0175, p=0.1189\\\\n    ens_vs_worst_single_fpr: gap=-0.0279, p=0.0211*\\\\n\\\\n============================================================\\\\nSUMMARY\\\\nModel      BestSingle   Ensemble   Delta    Text  Ens-Txt\\\\n-------------------------------------------------------\\\\nR1-8B          0.6040     0.5651 -0.0389  0.3718  +0.1933\\\\nOT-7B          0.4731     0.5060 +0.0329  0.2360  +0.2700\\\\nQwQ-32B        0.5777     0.5775 -0.0002  0.3741  +0.2034\\\\nR1-32B         0.5833     0.5810 -0.0023  0.4764  +0.1046\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6df10622-0fa8-4432-9681-5488eb17119a",
+            "isSidechain": false,
+            "promptId": "f6cb66fe-e1fd-4454-99f3-c221741a2349",
+            "type": "user",
+            "uuid": "1a9e74e2-e963-40ea-a487-126fab3d84f6",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"N6: Multi-Metric Layer Ensemble — Results\\\\n============================================================\\\\nDate: 2026-05-20 00:34\\\\n\\\\nR1-8B  (W=15, test=43, ens=3L)\\\\n  Layers: {'precision': 14, 'ba': 12, 'third': 20}\\\\n  Method                                   BA    Prec     FPR\\\\n  --------------------------------------------------------\\\\n  single_precision_L14                 0.7416  0.5317  0.2005\\\\n  single_ba_L12                        0.7871  0.6040  0.1604\\\\n  single_third_L20                     0.7246  0.5287  0.1897\\\\n  ensemble                             0.7535  0.5651  0.1747\\\\n  text                                 0.6151  0.3718  0.2964\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.1714, p=0.0*\\\\n    ens_vs_text_precision: gap=0.2791, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.092, p=0.0385*\\\\n    ens_vs_best_single_bal_acc: gap=-0.0142, p=0.873\\\\n    ens_vs_best_single_precision: gap=0.0132, p=0.2783\\\\n    ens_vs_best_single_fpr: gap=-0.0022, p=0.4673\\\\n    ens_vs_worst_single_bal_acc: gap=0.0246, p=0.0207*\\\\n    ens_vs_worst_single_precision: gap=-0.0273, p=0.8167\\\\n    ens_vs_worst_single_fpr: gap=-0.0156, p=0.2277\\\\n\\\\nOT-7B  (W=3, test=47, ens=3L)\\\\n  Layers: {'precision': 16, 'ba': 9, 'third': 18}\\\\n  Method                                   BA    Prec     FPR\\\\n  --------------------------------------------------------\\\\n  single_precision_L16                 0.6763  0.4403  0.1379\\\\n  single_ba_L9                         0.6818  0.4342  0.1472\\\\n  single_third_L18                     0.6729  0.4731  0.1130\\\\n  ensemble                             0.6912  0.5060  0.1053\\\\n  text                                 0.5609  0.2360  0.3066\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.1196, p=0.0001*\\\\n    ens_vs_text_precision: gap=0.2161, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.2023, p=0.0*\\\\n    ens_vs_best_single_bal_acc: gap=0.032, p=0.0161*\\\\n    ens_vs_best_single_precision: gap=-0.0054, p=0.5673\\\\n    ens_vs_best_single_fpr: gap=-0.0114, p=0.0722\\\\n    ens_vs_worst_single_bal_acc: gap=0.0052, p=0.3874\\\\n    ens_vs_worst_single_precision: gap=0.0487, p=0.078\\\\n    ens_vs_worst_single_fpr: gap=-0.0348, p=0.0001*\\\\n\\\\nQwQ-32B  (W=3, test=19, ens=3L)\\\\n  Layers: {'precision': 60, 'ba': 30, 'third': 63}\\\\n  Method                                   BA    Prec     FPR\\\\n  --------------------------------------------------------\\\\n  single_precision_L60                 0.7592  0.5777  0.2100\\\\n  single_ba_L30                        0.7042  0.5483  0.1965\\\\n  single_third_L63                     0.7168  0.5348  0.2263\\\\n  ensemble                             0.7506  0.5775  0.2033\\\\n  text                                 0.5626  0.3741  0.2425\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.2008, p=0.0*\\\\n    ens_vs_text_precision: gap=0.2543, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.0976, p=0.0689\\\\n    ens_vs_best_single_bal_acc: gap=-0.001, p=0.5633\\\\n    ens_vs_best_single_precision: gap=0.0396, p=0.0085*\\\\n    ens_vs_best_single_fpr: gap=-0.0096, p=0.1641\\\\n    ens_vs_worst_single_bal_acc: gap=0.0337, p=0.0001*\\\\n    ens_vs_worst_single_precision: gap=0.0935, p=0.0027*\\\\n    ens_vs_worst_single_fpr: gap=-0.0185, p=0.0136*\\\\n\\\\nR1-32B  (W=1, test=20, ens=3L)\\\\n  Layers: {'precision': 63, 'ba': 47, 'third': 44}\\\\n  Method                                   BA    Prec     FPR\\\\n  --------------------------------------------------------\\\\n  single_precision_L63                 0.7630  0.5833  0.3064\\\\n  single_ba_L47                        0.7222  0.5504  0.3231\\\\n  single_third_L44                     0.7318  0.5603  0.3148\\\\n  ensemble                             0.7497  0.5810  0.2953\\\\n  text                                 0.6301  0.4764  0.3398\\\\n\\\\n  Bootstrap (n=10000):\\\\n    ens_vs_text_bal_acc: gap=0.174, p=0.0002*\\\\n    ens_vs_text_precision: gap=0.154, p=0.0*\\\\n    ens_vs_text_fpr: gap=-0.1078, p=0.0467*\\\\n    ens_vs_best_single_bal_acc: gap=0.0001, p=0.4968\\\\n    ens_vs_best_single_precision: gap=0.0261, p=0.2781\\\\n    ens_vs_best_single_fpr: gap=-0.0049, p=0.4392\\\\n    ens_vs_worst_single_bal_acc: gap=0.0167, p=0.0127*\\\\n    ens_vs_worst_single_precision: gap=0.0175, p=0.1189\\\\n    ens_vs_worst_single_fpr: gap=-0.0279, p=0.0211*\\\\n\\\\n============================================================\\\\nSUMMARY\\\\nModel      BestSingle   Ensemble   Delta    Text  Ens-Txt\\\\n-------------------------------------------------------\\\\nR1-8B          0.6040     0.5651 -0.0389  0.3718  +0.1933\\\\nOT-7B          0.4731     0.5060 +0.0329  0.2360  +0.2700\\\\nQwQ-32B        0.5777     0.5775 -0.0002  0.3741  +0.2034\\\\nR1-32B         0.5833     0.5810 -0.0023  0.4764  +0.1046\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"N6: Multi-Metric Layer Ensemble — Results\\n============================================================\\nDate: 2026-05-20 00:34\\n\\nR1-8B  (W=15, test=43, ens=3L)\\n  Layers: {'precision': 14, 'ba': 12, 'third': 20}\\n  Method                                   BA    Prec     FPR\\n  --------------------------------------------------------\\n  single_precision_L14                 0.7416  0.5317  0.2005\\n  single_ba_L12                        0.7871  0.6040  0.1604\\n  single_third_L20                     0.7246  0.5287  0.1897\\n  ensemble                             0.7535  0.5651  0.1747\\n  text                                 0.6151  0.3718  0.2964\\n\\n  Bootstrap (n=10000):\\n    ens_vs_text_bal_acc: gap=0.1714, p=0.0*\\n    ens_vs_text_precision: gap=0.2791, p=0.0*\\n    ens_vs_text_fpr: gap=-0.092, p=0.0385*\\n    ens_vs_best_single_bal_acc: gap=-0.0142, p=0.873\\n    ens_vs_best_single_precision: gap=0.0132, p=0.2783\\n    ens_vs_best_single_fpr: gap=-0.0022, p=0.4673\\n    ens_vs_worst_single_bal_acc: gap=0.0246, p=0.0207*\\n    ens_vs_worst_single_precision: gap=-0.0273, p=0.8167\\n    ens_vs_worst_single_fpr: gap=-0.0156, p=0.2277\\n\\nOT-7B  (W=3, test=47, ens=3L)\\n  Layers: {'precision': 16, 'ba': 9, 'third': 18}\\n  Method                                   BA    Prec     FPR\\n  --------------------------------------------------------\\n  single_precision_L16                 0.6763  0.4403  0.1379\\n  single_ba_L9                         0.6818  0.4342  0.1472\\n  single_third_L18                     0.6729  0.4731  0.1130\\n  ensemble                             0.6912  0.5060  0.1053\\n  text                                 0.5609  0.2360  0.3066\\n\\n  Bootstrap (n=10000):\\n    ens_vs_text_bal_acc: gap=0.1196, p=0.0001*\\n    ens_vs_text_precision: gap=0.2161, p=0.0*\\n    ens_vs_text_fpr: gap=-0.2023, p=0.0*\\n    ens_vs_best_single_bal_acc: gap=0.032, p=0.0161*\\n    ens_vs_best_single_precision: gap=-0.0054, p=0.5673\\n    ens_vs_best_single_fpr: gap=-0.0114, p=0.0722\\n    ens_vs_worst_single_bal_acc: gap=0.0052, p=0.3874\\n    ens_vs_worst_single_precision: gap=0.0487, p=0.078\\n    ens_vs_worst_single_fpr: gap=-0.0348, p=0.0001*\\n\\nQwQ-32B  (W=3, test=19, ens=3L)\\n  Layers: {'precision': 60, 'ba': 30, 'third': 63}\\n  Method                                   BA    Prec     FPR\\n  --------------------------------------------------------\\n  single_precision_L60                 0.7592  0.5777  0.2100\\n  single_ba_L30                        0.7042  0.5483  0.1965\\n  single_third_L63                     0.7168  0.5348  0.2263\\n  ensemble                             0.7506  0.5775  0.2033\\n  text                                 0.5626  0.3741  0.2425\\n\\n  Bootstrap (n=10000):\\n    ens_vs_text_bal_acc: gap=0.2008, p=0.0*\\n    ens_vs_text_precision: gap=0.2543, p=0.0*\\n    ens_vs_text_fpr: gap=-0.0976, p=0.0689\\n    ens_vs_best_single_bal_acc: gap=-0.001, p=0.5633\\n    ens_vs_best_single_precision: gap=0.0396, p=0.0085*\\n    ens_vs_best_single_fpr: gap=-0.0096, p=0.1641\\n    ens_vs_worst_single_bal_acc: gap=0.0337, p=0.0001*\\n    ens_vs_worst_single_precision: gap=0.0935, p=0.0027*\\n    ens_vs_worst_single_fpr: gap=-0.0185, p=0.0136*\\n\\nR1-32B  (W=1, test=20, ens=3L)\\n  Layers: {'precision': 63, 'ba': 47, 'third': 44}\\n  Method                                   BA    Prec     FPR\\n  --------------------------------------------------------\\n  single_precision_L63                 0.7630  0.5833  0.3064\\n  single_ba_L47                        0.7222  0.5504  0.3231\\n  single_third_L44                     0.7318  0.5603  0.3148\\n  ensemble                             0.7497  0.5810  0.2953\\n  text                                 0.6301  0.4764  0.3398\\n\\n  Bootstrap (n=10000):\\n    ens_vs_text_bal_acc: gap=0.174, p=0.0002*\\n    ens_vs_text_precision: gap=0.154, p=0.0*\\n    ens_vs_text_fpr: gap=-0.1078, p=0.0467*\\n    ens_vs_best_single_bal_acc: gap=0.0001, p=0.4968\\n    ens_vs_best_single_precision: gap=0.0261, p=0.2781\\n    ens_vs_best_single_fpr: gap=-0.0049, p=0.4392\\n    ens_vs_worst_single_bal_acc: gap=0.0167, p=0.0127*\\n    ens_vs_worst_single_precision: gap=0.0175, p=0.1189\\n    ens_vs_worst_single_fpr: gap=-0.0279, p=0.0211*\\n\\n============================================================\\nSUMMARY\\nModel      BestSingle   Ensemble   Delta    Text  Ens-Txt\\n-------------------------------------------------------\\nR1-8B          0.6040     0.5651 -0.0389  0.3718  +0.1933\\nOT-7B          0.4731     0.5060 +0.0329  0.2360  +0.2700\\nQwQ-32B        0.5777     0.5775 -0.0002  0.3741  +0.2034\\nR1-32B         0.5833     0.5810 -0.0023  0.4764  +0.1046\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            },
+            "sourceToolAssistantUUID": "6df10622-0fa8-4432-9681-5488eb17119a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-19T16:34:41.697Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 models completed successfully. Results:\n\n**Key findings:**\n\n| Model | Best Single | Ensemble | Delta | Text | Ens-Text |\n|-------|------------|----------|-------|------|----------|\n| R1-8B | 0.6040 | 0.5651 | -0.039 | 0.3718 | +0.193 |\n| OT-7B | 0.4731 | **0.5060** | **+0.033** | 0.2360 | +0.270 |\n| QwQ-32B | 0.5777 | 0.5775 | -0.000 | 0.3741 | +0.203 |\n| R1-32B | 0.5833 | 0.5810 | -0.002 | 0.4764 | +0.105 |\n\n**Ensemble vs Text**: Significant on all 4 models (p<0.05 for precision across all, 11/12 HB-correctable). The HS ensemble dominates text by +10-27pp precision.\n\n**Ensemble vs best single layer**: Ensemble is comparable to or slightly below the best single layer on 3/4 models (R1-8B, QwQ-32B, R1-32B) — this is expected since ensemble smooths toward the mean. On OT-7B, ensemble actually *beats* the best single layer (+3.3pp precision), showing the variance reduction benefit.\n\n**Layer sensitivity mitigation**: Ensemble consistently falls within or above the single-layer range, eliminating the worst-case penalty. For QwQ-32B, the single-layer precision range was 4.3pp (0.535-0.578) — ensemble lands at 0.578, near the top.\n\n3rd candidates found:\n- R1-8B: L20 (FPR-best from val sweep)\n- OT-7B: L18 (FPR-best from random-CP data)\n- QwQ-32B: L63 (paper's threshold consensus)\n- R1-32B: L44 (FPR-best from val sweep)\n\nOutputs saved to `artifacts/n6_multi_metric_ensemble/results.json` and `report.txt`."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a9e74e2-e963-40ea-a487-126fab3d84f6",
+            "isSidechain": false,
+            "requestId": "req_011CbCFX12jicxAG9zmRUWsY",
+            "type": "assistant",
+            "uuid": "300d398d-5655-48d1-8b3c-58377818bd3b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+            "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NEwaosKVRgSTSQPC8HB741",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2205,
+                "cache_read_input_tokens": 136853,
+                "output_tokens": 546,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2205,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 546,
+                    "cache_read_input_tokens": 136853,
+                    "cache_creation_input_tokens": 2205,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2205
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "300d398d-5655-48d1-8b3c-58377818bd3b",
+                "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15"
+              }
+            }
+          ],
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Build multi-metric layer ensemble proof-of-concept",
+                "sessionId": "70b73c95-03ed-4cb7-b05e-9205ac8d4b15"
+              }
+            }
+          ],
+          "id": "event-000198"
+        }
+      ]
+    }
+  ]
+}

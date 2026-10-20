@@ -1,0 +1,4849 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-11 (UTC).** ## Original idea { "tit
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 70
+- **Recorded user turns:** 1
+- **Tool calls:** 21
+- **Original source:** `logs/chats/exported-trajectories/account-3/45e4cbcd-20b9-482e-a8b4-50469acc4366.jsonl`
+- **Structured JSON:** [`da8c63587f76799a6679.json`](../../sessions/da/da8c63587f76799a6679.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-11T23:08:26.326Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-11T23:08:26.326Z",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-11 (UTC).**\n\n## Original idea\n{\n  \"title\": \"When Do Code Semantics Help? Learned Trace Filtering for LLM-Based Program Repair\",\n  \"core_problem\": \"Execution traces provide rich runtime diagnostic information, yet 'Do Code Semantics Help?' (EMNLP 2025 Findings) found that naively integrating trace information has limited benefit — traces boost Code LLM prediction confidence without improving correctness. We hypothesize that the issue is not trace utility but trace noise: fixed-format trace representations include irrelevant execution state that pollutes the context window. Can a lightweight learned filter identify diagnostically-relevant trace segments, transforming traces from a noisy signal into a genuine repair advantage?\",\n  \"opportunity\": \"'Do Code Semantics Help?' (EMNLP 2025 Findings) tested five trace formats (NExT, SemCoder, CodeExecutor, Concise, Scratchpad) and found that Concise — the most aggressively hand-filtered format — performed best, while richer formats hurt. This reveals a clear gradient: more filtering → better results, but all formats tested were hand-designed and static. TraceCoder (ICSE 2026) showed traces improve Pass@1 by 34.43% on moderate-complexity programs but degrade on complex ones. 'Debugging Code World Models' (arXiv 2602.07672) identified token-budget exhaustion from long traces as the dominant failure mode. The context compression study (arXiv 2604.13725) demonstrated that learned compression (continuous latent vectors) can beat full context by 28.3% on code tasks — suggesting compression acts as a noise filter, not just a space saver. SWEzze (arXiv 2603.28119) proved that a 0.6B learned model achieves 6x compression of static code context with 5-9% repair improvement via Oracle-guided Code Distillation. Nobody has applied learned, context-adaptive compression to dynamic execution traces — all existing trace work uses fixed formats or heuristic extraction. This gap is especially notable because the 'Do Code Semantics Help?' finding that fixed compression helps already implies learned, adaptive compression should help more.\",\n  \"landscape\": \"TraceFixer (Bouzenia et al., arXiv 2304.12743, 2023) trains a CodeT5-based model on (partial trace excerpt, correct state) pairs for single-line Python repair, achieving 13-20% improvement over code-only baselines — but requires user-specified correct program states and uses fixed trace excerpts, not learned filtering. TraceCoder (ICSE 2026) adds fine-grained runtime tracing with a multi-agent framework and rollback mechanism, achieving 34.43% Pass@1 improvement but suffering exponential scaling on complex programs. TraceRepair (arXiv 2604.02647, Apr 2026) uses a probe agent for heuristic variable snapshot capture with multi-agent debate, fixing 392 Defects4J bugs but relying on hand-designed extraction rules. 'Towards Effectively Leveraging Execution Traces for Program Repair' (arXiv 2505.04441, May 2025) found that LLM-optimized trace formats outperform raw traces but all tested formats are hand-designed. 'Do Code Semantics Help?' (EMNLP Findings 2025) conducted the most comprehensive study, testing five trace representations across repair, synthesis, and reasoning tasks — finding limited utility from raw traces but crucially showing that the most compressed format (Concise) works best. SWEzze (arXiv 2603.28119, Mar 2026) trains Qwen3-Reranker-0.6B via Oracle-guided Code Distillation (genetic search + hierarchical delta debugging) for static code context compression, achieving 6x compression with 5-9% resolution improvement — the closest methodological analog, but operates on static code only. The April 2026 context compression study (arXiv 2604.13725) shows learned compression can surpass full context by 28.3% on repository-level code tasks. LDB (ACL 2024) segments programs into basic blocks at fixed granularity. Execution Tuning (arXiv 2503.05703, Feb 2025) trains models on traces for understanding, not compression. 'Less is More' (AAAI 2025) compresses loop traces via ellipsis patterns — a useful heuristic but not learned. The Precise Debugging Benchmark (arXiv 2604.17338, Apr 2026) evaluates whether models genuinely debug or simply regenerate, providing a complementary evaluation lens.\",\n  \"approach\": \"We propose Diagnostic Trace Distillation (DTD), adapting SWEzze's Oracle-guided Code Distillation from static code context to dynamic execution traces, with the explicit goal of resolving the negative findings from 'Do Code Semantics Help?' by replacing fixed trace formats with learned, context-adaptive filtering. Phase 1 (Oracle Trace Filtering — data construction): For buggy Python programs from SWE-bench Verified (500 instances) and BugsInPy (493 bugs), we collect execution traces using VizTracer (leveraging Python's sys.monitoring on 3.12+). We parse traces into structural segments (function-level call subtrees, loop iteration groups, and exception propagation chains). A teacher model (DeepSeek-V4-Flash, $0.14/M input tokens) performs pointwise relevance scoring: given (issue description, buggy code, trace segment), it outputs a binary keep/drop label indicating whether the segment contains repair-relevant diagnostic information. We validate teacher quality on a 200-instance subset using DeepSeek-V4-Pro. This direct-scoring approach avoids the expensive iterative delta-debugging used in SWEzze's OCD for Phase 1, cutting API costs from thousands to ~$150-300. Phase 2 (Student Distillation): We QLoRA-fine-tune Qwen3-Reranker-0.6B (same architecture as SWEzze's student, LoRA rank=16, α=32) on the teacher-labeled (trace-segment, buggy-code, issue) → keep/drop dataset. The student is a pointwise classifier, not a generative model — it scores each trace segment for diagnostic relevance. At inference, segments scoring below a learned threshold are dropped, achieving 5-8x trace compression. The 0.6B model runs in <1s per program on a single GPU. Phase 3 (Evaluation): We evaluate with three repair LLMs (DeepSeek-V4-Pro, Claude Sonnet 4.6, Qwen3-Coder-Next via API) across five conditions: (a) no trace, (b) full trace, (c) DTD-filtered trace, (d) Concise format (best fixed format from 'Do Code Semantics Help?'), (e) random trace sampling at matched compression ratio. We stratify results by trace complexity: short (<2K tokens), medium (2-8K), long (>8K). The key hypothesis is that DTD-filtered traces outperform all fixed formats in the >8K regime where 'Do Code Semantics Help?' showed raw traces fail. Benchmarks: SWE-bench Verified (500, real-world Python), BugsInPy (493, real-world Python), DebugBench Python subset (~250, controlled bug types), and HumanEval/MBPP with bug injection (~500, for direct comparison with 'Do Code Semantics Help?' setup).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~60h H100 (trace collection ~8h, student QLoRA training ~10h, repair evaluation ~35h, ablations ~7h)\",\n      \"gpu_utilization\": \"~40-50%; idle during result analysis and trace format iteration\",\n      \"timeline\": \"3-4 weeks\",\n      \"team\": \"1-2 researchers\",\n      \"api_cost\": \"$400-700 (Phase 1 teacher scoring via DeepSeek-V4-Flash ~$150-250, repair evaluation via DeepSeek-V4-Pro/Claude APIs ~$250-450)\",\n      \"estimated_gpu_cost\": \"$90-150 (60h × $1.50-2.50/hr spot H100)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~100h H100 (systematic sweeps over compression thresholds, trace segmentation granularities, and student hyperparameters)\",\n      \"gpu_utilization\": \"~65-75%; agent queues experiments, human gates major decisions\",\n      \"timeline\": \"12-16 days\",\n      \"team\": \"1 researcher, ~20-30min/day reviewing agent proposals\",\n      \"claude_api_cost\": \"$150-300 (~2000-4000 turns for experiment orchestration and analysis)\",\n      \"api_cost\": \"$500-900 (Phase 1 teacher scoring ~$200-300, repair evaluation ~$300-600)\",\n      \"estimated_gpu_cost\": \"$150-250 (100h × $1.50-2.50/hr spot H100)\",\n      \"risk_note\": \"Teacher scoring quality is the key bottleneck — validate on 200-instance subset before scaling; if teacher keep/drop labels have <70% agreement with oracle (ground-truth-fix-informed) labels, switch to iterative delta-debugging for the hard cases\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~180h H100 (full ablation matrix: 2 student sizes × 3 segmentation granularities × 5 compression ratios × 3 repair LLMs, plus trace format comparisons)\",\n      \"gpu_utilization\": \"~85-90%; continuous experiment queuing\",\n      \"timeline\": \"10-14 days with 2× H100; 14-16 days with 1× H100\",\n      \"team\": \"0 (initial setup + final review only)\",\n      \"claude_api_cost\": \"$300-600 (~4000-8000 turns)\",\n      \"api_cost\": \"$800-1500 (Phase 1 scoring ~$250-400, comprehensive repair evaluation across 3 LLMs × 5 conditions × 4 benchmarks ~$550-1100)\",\n      \"estimated_gpu_cost\": \"$270-450 (180h × $1.50-2.50/hr spot H100)\",\n      \"speed_bottleneck\": \"Repair API rate limits across 3 provider APIs; trace collection is fast (<8h) and student training is cheap (~10h per run at 0.6B)\",\n      \"risk_note\": \"Without human judgment, agent may over-optimize compression threshold on SWE-bench at the expense of generalization to DebugBench; cross-benchmark validation checkpoints partially mitigate this\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR May 25, 2026 — PRIMARY, 'NLP and Code Models' track)\",\n    \"AAAI 2027 (expected ~Aug 2026, TBA)\",\n    \"ICLR 2027 (expected ~Sep/Oct 2026, TBA)\",\n    \"ICSE 2027 (abstract ~Jun 23, 2026)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models (Findings of EMNLP 2025)\",\n    \"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code (ICSE 2026)\",\n    \"TraceFixer: Execution Trace-Driven Program Repair (Bouzenia et al., arXiv 2304.12743, 2023)\",\n    \"Compressing Code Context for LLM-based Issue Resolution [SWEzze] (arXiv 2603.28119, 2026)\",\n    \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs (KnowledgeNLP@ACL 2025)\",\n    \"Debugging Code World Models (arXiv 2602.07672, 2026)\",\n    \"On the Effectiveness of Context Compression for Repository-Level Tasks: An Empirical Investigation (arXiv 2604.13725, 2026)\",\n    \"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate [TraceRepair] (arXiv 2604.02647, 2026)\",\n    \"Debug like a Human: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step (Findings of ACL 2024)\",\n    \"What I Cannot Execute, I Do Not Understand: Training and Evaluating LLMs on Program Execution Traces (arXiv 2503.05703, 2025)\",\n    \"Less is More: Adaptive Program Repair with Bug Localization and Preference Learning (AAAI 2025)\",\n    \"LongCodeZip: Compress Long Context for Code Language Models (ASE 2025)\",\n    \"Precise Debugging Benchmark: Is Your Model Debugging or Regenerating? (arXiv 2604.17338, 2026)\"\n  ],\n  \"description\": \"We propose Diagnostic Trace Distillation (DTD), a method that trains a 0.6B model to filter execution traces for LLM-based program repair, directly addressing the negative findings of 'Do Code Semantics Help?' (EMNLP 2025 Findings). That study found raw execution traces have limited utility for Code LLMs — but crucially, the most aggressively filtered format (Concise) performed best, suggesting the issue is trace noise, not trace utility. DTD replaces fixed trace formats with learned, context-adaptive filtering: adapting SWEzze's Oracle-guided Code Distillation from static code to dynamic traces, we train a DeepSeek-V4-Flash teacher to score trace segments for repair relevance, then distill into Qwen3-Reranker-0.6B (same architecture as SWEzze) via QLoRA for fast inference. The student performs pointwise keep/drop classification on trace segments, achieving 5-8x compression while preserving fault-localization signals. We use VizTracer for Python trace collection, eliminating the Java tooling complexity of Defects4J. Evaluation spans SWE-bench Verified (500), BugsInPy (493), DebugBench Python subset (~250), and HumanEval/MBPP with bug injection (~500) — enabling direct comparison with 'Do Code Semantics Help?' across all five trace formats and three complexity tiers. The key hypothesis is falsifiable: DTD-filtered traces should outperform all fixed formats specifically in the >8K token regime where raw traces fail. TraceFixer (2023) requires user-specified correct states and uses fixed excerpts; TraceCoder (2026) and TraceRepair (2026) use heuristic extraction — none employ learned filtering. Total compute: ≤180 H100-hours; timeline: 10-16 days. Primary target: EMNLP 2026 ARR May cycle ('NLP and Code Models' track).\",\n  \"project_name\": \"trace_distill_repair\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 2)\nIssues: [\"MISSING COMPETITOR (HIGH): Squeez (arXiv 2604.04979, Apr 2026) trains Qwen 3.5 2B with LoRA to perform task-conditioned pruning of coding agent tool outputs — including stack traces, build logs, and test output — achieving 92% token removal with 0.86 recall. This is conceptually very close to DTD's learned trace filtering. The generator must cite this work and explicitly differentiate: DTD targets structured execution traces (variable states, function calls, control flow) with semantic segmentation, while Squeez handles heterogeneous tool outputs at line-level granularity without trace-specific structure awareness.\", \"MISSING COMPETITOR (HIGH): SWE-Pruner (arXiv 2601.16746, Jan 2026) trains a 0.6B model on 61K synthetic data for self-adaptive, task-aware code context pruning, achieving 23-54% token reduction on SWE-bench Verified. Uses the same model size as DTD's student. Must be cited alongside SWEzze to show the broader learned-compression-for-code landscape.\", \"OVERSTATED CLAIM (MEDIUM): The proposal repeatedly claims 'Concise — the most aggressively filtered format — performed best' from 'Do Code Semantics Help?'. My reading of the paper shows SemCoder is 'the best choice for program repair tasks,' while Concise only 'achieved Pass@1 no worse than w/o trace in 11 out of 14 cases' at inference. The distinction matters: Concise is 'not harmful' rather than 'best.' The paper's central argument that 'more filtering → better results' is weakened by this mischaracterization.\", \"MISSING BENCHMARKS (MEDIUM): The user specified CrossCodeEval, RepoBench, and CodeContests as required benchmarks. The proposal drops all three. CrossCodeEval and RepoBench test repo-level code understanding and would directly demonstrate DTD's value for code comprehension beyond repair. At minimum, one cross-repo benchmark should be included.\", \"SWE-BENCH CONTAMINATION (LOW): OpenAI stopped reporting SWE-bench Verified scores after finding frontier model contamination. While this doesn't invalidate using the benchmark (especially for measuring relative improvement from trace compression), the paper should acknowledge this limitation and emphasize that BugsInPy and DebugBench serve as less-contaminated secondary benchmarks.\", \"MANUAL TIMELINE MISMATCH (LOW): Manual mode estimates 3-4 weeks but only 14 days remain before ARR deadline. This mode is not viable for the stated target.\"]\nFeedback: The revision substantially improved from Round 1 — dropping Defects4J, using a 0.6B student, simplifying Phase 1 to direct teacher scoring, and centering the paper on 'Do Code Semantics Help?' are all correct moves. The remaining issues are addressable:\n\n1. **Cite and differentiate from Squeez and SWE-Pruner**: These are the two closest competitors. Position DTD as follows: SWEzze compresses static code context, SWE-Pruner prunes static code context with task-awareness, Squeez prunes heterogeneous tool outputs at line level. DTD uniquely targets *structured execution traces* with *semantic segmentation* (function-level subtrees, loop groups, exception chains) — none of the prior work exploits the inherent structure of execution traces for repair-relevant filtering. Include both as baselines: run Squeez on raw traces and show that trace-structure-aware segmentation outperforms generic line-level pruning.\n\n2. **Fix the 'Concise is best' claim**: Reframe as: 'Concise was the only format that consistently avoided degradation (11/14 cases), while richer formats like SemCoder achieved the best repair performance but at the cost of unreliability across configurations. This suggests that *reliability through noise reduction* matters more than *peak performance through richer semantics* — exactly what learned filtering should provide.'\n\n3. **Add one cross-repo benchmark**: Include RepoBench or CrossCodeEval to satisfy the user's requirements and demonstrate DTD's value beyond single-file repair. This also strengthens the EMNLP framing (code understanding, not just repair).\n\n4. **Drop manual mode from timeline discussion**: Focus the paper's feasibility on HIL (12-16 days) and auto (10-14 days) modes, since manual mode doesn't fit the deadline.\n\n5. **Acknowledge SWE-bench contamination**: One sentence in limitations noting OpenAI's contamination findings and citing BugsInPy/DebugBench as cleaner secondary benchmarks.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-11T23:08:26.330Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-11T23:08:26.330Z",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366"
+}
+```
+
+---
+
+## Round 1
+
+68 recorded events
+
+### User
+
+_source line 3 · 2026-05-11T23:08:26.361Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-11 (UTC).**
+
+## Original idea
+{
+  "title": "When Do Code Semantics Help? Learned Trace Filtering for LLM-Based Program Repair",
+  "core_problem": "Execution traces provide rich runtime diagnostic information, yet 'Do Code Semantics Help?' (EMNLP 2025 Findings) found that naively integrating trace information has limited benefit — traces boost Code LLM prediction confidence without improving correctness. We hypothesize that the issue is not trace utility but trace noise: fixed-format trace representations include irrelevant execution state that pollutes the context window. Can a lightweight learned filter identify diagnostically-relevant trace segments, transforming traces from a noisy signal into a genuine repair advantage?",
+  "opportunity": "'Do Code Semantics Help?' (EMNLP 2025 Findings) tested five trace formats (NExT, SemCoder, CodeExecutor, Concise, Scratchpad) and found that Concise — the most aggressively hand-filtered format — performed best, while richer formats hurt. This reveals a clear gradient: more filtering → better results, but all formats tested were hand-designed and static. TraceCoder (ICSE 2026) showed traces improve Pass@1 by 34.43% on moderate-complexity programs but degrade on complex ones. 'Debugging Code World Models' (arXiv 2602.07672) identified token-budget exhaustion from long traces as the dominant failure mode. The context compression study (arXiv 2604.13725) demonstrated that learned compression (continuous latent vectors) can beat full context by 28.3% on code tasks — suggesting compression acts as a noise filter, not just a space saver. SWEzze (arXiv 2603.28119) proved that a 0.6B learned model achieves 6x compression of static code context with 5-9% repair improvement via Oracle-guided Code Distillation. Nobody has applied learned, context-adaptive compression to dynamic execution traces — all existing trace work uses fixed formats or heuristic extraction. This gap is especially notable because the 'Do Code Semantics Help?' finding that fixed compression helps already implies learned, adaptive compression should help more.",
+  "landscape": "TraceFixer (Bouzenia et al., arXiv 2304.12743, 2023) trains a CodeT5-based model on (partial trace excerpt, correct state) pairs for single-line Python repair, achieving 13-20% improvement over code-only baselines — but requires user-specified correct program states and uses fixed trace excerpts, not learned filtering. TraceCoder (ICSE 2026) adds fine-grained runtime tracing with a multi-agent framework and rollback mechanism, achieving 34.43% Pass@1 improvement but suffering exponential scaling on complex programs. TraceRepair (arXiv 2604.02647, Apr 2026) uses a probe agent for heuristic variable snapshot capture with multi-agent debate, fixing 392 Defects4J bugs but relying on hand-designed extraction rules. 'Towards Effectively Leveraging Execution Traces for Program Repair' (arXiv 2505.04441, May 2025) found that LLM-optimized trace formats outperform raw traces but all tested formats are hand-designed. 'Do Code Semantics Help?' (EMNLP Findings 2025) conducted the most comprehensive study, testing five trace representations across repair, synthesis, and reasoning tasks — finding limited utility from raw traces but crucially showing that the most compressed format (Concise) works best. SWEzze (arXiv 2603.28119, Mar 2026) trains Qwen3-Reranker-0.6B via Oracle-guided Code Distillation (genetic search + hierarchical delta debugging) for static code context compression, achieving 6x compression with 5-9% resolution improvement — the closest methodological analog, but operates on static code only. The April 2026 context compression study (arXiv 2604.13725) shows learned compression can surpass full context by 28.3% on repository-level code tasks. LDB (ACL 2024) segments programs into basic blocks at fixed granularity. Execution Tuning (arXiv 2503.05703, Feb 2025) trains models on traces for understanding, not compression. 'Less is More' (AAAI 2025) compresses loop traces via ellipsis patterns — a useful heuristic but not learned. The Precise Debugging Benchmark (arXiv 2604.17338, Apr 2026) evaluates whether models genuinely debug or simply regenerate, providing a complementary evaluation lens.",
+  "approach": "We propose Diagnostic Trace Distillation (DTD), adapting SWEzze's Oracle-guided Code Distillation from static code context to dynamic execution traces, with the explicit goal of resolving the negative findings from 'Do Code Semantics Help?' by replacing fixed trace formats with learned, context-adaptive filtering. Phase 1 (Oracle Trace Filtering — data construction): For buggy Python programs from SWE-bench Verified (500 instances) and BugsInPy (493 bugs), we collect execution traces using VizTracer (leveraging Python's sys.monitoring on 3.12+). We parse traces into structural segments (function-level call subtrees, loop iteration groups, and exception propagation chains). A teacher model (DeepSeek-V4-Flash, $0.14/M input tokens) performs pointwise relevance scoring: given (issue description, buggy code, trace segment), it outputs a binary keep/drop label indicating whether the segment contains repair-relevant diagnostic information. We validate teacher quality on a 200-instance subset using DeepSeek-V4-Pro. This direct-scoring approach avoids the expensive iterative delta-debugging used in SWEzze's OCD for Phase 1, cutting API costs from thousands to ~$150-300. Phase 2 (Student Distillation): We QLoRA-fine-tune Qwen3-Reranker-0.6B (same architecture as SWEzze's student, LoRA rank=16, α=32) on the teacher-labeled (trace-segment, buggy-code, issue) → keep/drop dataset. The student is a pointwise classifier, not a generative model — it scores each trace segment for diagnostic relevance. At inference, segments scoring below a learned threshold are dropped, achieving 5-8x trace compression. The 0.6B model runs in <1s per program on a single GPU. Phase 3 (Evaluation): We evaluate with three repair LLMs (DeepSeek-V4-Pro, Claude Sonnet 4.6, Qwen3-Coder-Next via API) across five conditions: (a) no trace, (b) full trace, (c) DTD-filtered trace, (d) Concise format (best fixed format from 'Do Code Semantics Help?'), (e) random trace sampling at matched compression ratio. We stratify results by trace complexity: short (<2K tokens), medium (2-8K), long (>8K). The key hypothesis is that DTD-filtered traces outperform all fixed formats in the >8K regime where 'Do Code Semantics Help?' showed raw traces fail. Benchmarks: SWE-bench Verified (500, real-world Python), BugsInPy (493, real-world Python), DebugBench Python subset (~250, controlled bug types), and HumanEval/MBPP with bug injection (~500, for direct comparison with 'Do Code Semantics Help?' setup).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~60h H100 (trace collection ~8h, student QLoRA training ~10h, repair evaluation ~35h, ablations ~7h)",
+      "gpu_utilization": "~40-50%; idle during result analysis and trace format iteration",
+      "timeline": "3-4 weeks",
+      "team": "1-2 researchers",
+      "api_cost": "$400-700 (Phase 1 teacher scoring via DeepSeek-V4-Flash ~$150-250, repair evaluation via DeepSeek-V4-Pro/Claude APIs ~$250-450)",
+      "estimated_gpu_cost": "$90-150 (60h × $1.50-2.50/hr spot H100)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~100h H100 (systematic sweeps over compression thresholds, trace segmentation granularities, and student hyperparameters)",
+      "gpu_utilization": "~65-75%; agent queues experiments, human gates major decisions",
+      "timeline": "12-16 days",
+      "team": "1 researcher, ~20-30min/day reviewing agent proposals",
+      "claude_api_cost": "$150-300 (~2000-4000 turns for experiment orchestration and analysis)",
+      "api_cost": "$500-900 (Phase 1 teacher scoring ~$200-300, repair evaluation ~$300-600)",
+      "estimated_gpu_cost": "$150-250 (100h × $1.50-2.50/hr spot H100)",
+      "risk_note": "Teacher scoring quality is the key bottleneck — validate on 200-instance subset before scaling; if teacher keep/drop labels have <70% agreement with oracle (ground-truth-fix-informed) labels, switch to iterative delta-debugging for the hard cases"
+    },
+    "auto_research": {
+      "gpu_hours": "~180h H100 (full ablation matrix: 2 student sizes × 3 segmentation granularities × 5 compression ratios × 3 repair LLMs, plus trace format comparisons)",
+      "gpu_utilization": "~85-90%; continuous experiment queuing",
+      "timeline": "10-14 days with 2× H100; 14-16 days with 1× H100",
+      "team": "0 (initial setup + final review only)",
+      "claude_api_cost": "$300-600 (~4000-8000 turns)",
+      "api_cost": "$800-1500 (Phase 1 scoring ~$250-400, comprehensive repair evaluation across 3 LLMs × 5 conditions × 4 benchmarks ~$550-1100)",
+      "estimated_gpu_cost": "$270-450 (180h × $1.50-2.50/hr spot H100)",
+      "speed_bottleneck": "Repair API rate limits across 3 provider APIs; trace collection is fast (<8h) and student training is cheap (~10h per run at 0.6B)",
+      "risk_note": "Without human judgment, agent may over-optimize compression threshold on SWE-bench at the expense of generalization to DebugBench; cross-benchmark validation checkpoints partially mitigate this"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR May 25, 2026 — PRIMARY, 'NLP and Code Models' track)",
+    "AAAI 2027 (expected ~Aug 2026, TBA)",
+    "ICLR 2027 (expected ~Sep/Oct 2026, TBA)",
+    "ICSE 2027 (abstract ~Jun 23, 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models (Findings of EMNLP 2025)",
+    "TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code (ICSE 2026)",
+    "TraceFixer: Execution Trace-Driven Program Repair (Bouzenia et al., arXiv 2304.12743, 2023)",
+    "Compressing Code Context for LLM-based Issue Resolution [SWEzze] (arXiv 2603.28119, 2026)",
+    "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs (KnowledgeNLP@ACL 2025)",
+    "Debugging Code World Models (arXiv 2602.07672, 2026)",
+    "On the Effectiveness of Context Compression for Repository-Level Tasks: An Empirical Investigation (arXiv 2604.13725, 2026)",
+    "Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate [TraceRepair] (arXiv 2604.02647, 2026)",
+    "Debug like a Human: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step (Findings of ACL 2024)",
+    "What I Cannot Execute, I Do Not Understand: Training and Evaluating LLMs on Program Execution Traces (arXiv 2503.05703, 2025)",
+    "Less is More: Adaptive Program Repair with Bug Localization and Preference Learning (AAAI 2025)",
+    "LongCodeZip: Compress Long Context for Code Language Models (ASE 2025)",
+    "Precise Debugging Benchmark: Is Your Model Debugging or Regenerating? (arXiv 2604.17338, 2026)"
+  ],
+  "description": "We propose Diagnostic Trace Distillation (DTD), a method that trains a 0.6B model to filter execution traces for LLM-based program repair, directly addressing the negative findings of 'Do Code Semantics Help?' (EMNLP 2025 Findings). That study found raw execution traces have limited utility for Code LLMs — but crucially, the most aggressively filtered format (Concise) performed best, suggesting the issue is trace noise, not trace utility. DTD replaces fixed trace formats with learned, context-adaptive filtering: adapting SWEzze's Oracle-guided Code Distillation from static code to dynamic traces, we train a DeepSeek-V4-Flash teacher to score trace segments for repair relevance, then distill into Qwen3-Reranker-0.6B (same architecture as SWEzze) via QLoRA for fast inference. The student performs pointwise keep/drop classification on trace segments, achieving 5-8x compression while preserving fault-localization signals. We use VizTracer for Python trace collection, eliminating the Java tooling complexity of Defects4J. Evaluation spans SWE-bench Verified (500), BugsInPy (493), DebugBench Python subset (~250), and HumanEval/MBPP with bug injection (~500) — enabling direct comparison with 'Do Code Semantics Help?' across all five trace formats and three complexity tiers. The key hypothesis is falsifiable: DTD-filtered traces should outperform all fixed formats specifically in the >8K token regime where raw traces fail. TraceFixer (2023) requires user-specified correct states and uses fixed excerpts; TraceCoder (2026) and TraceRepair (2026) use heuristic extraction — none employ learned filtering. Total compute: ≤180 H100-hours; timeline: 10-16 days. Primary target: EMNLP 2026 ARR May cycle ('NLP and Code Models' track).",
+  "project_name": "trace_distill_repair",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 2)
+Issues: ["MISSING COMPETITOR (HIGH): Squeez (arXiv 2604.04979, Apr 2026) trains Qwen 3.5 2B with LoRA to perform task-conditioned pruning of coding agent tool outputs — including stack traces, build logs, and test output — achieving 92% token removal with 0.86 recall. This is conceptually very close to DTD's learned trace filtering. The generator must cite this work and explicitly differentiate: DTD targets structured execution traces (variable states, function calls, control flow) with semantic segmentation, while Squeez handles heterogeneous tool outputs at line-level granularity without trace-specific structure awareness.", "MISSING COMPETITOR (HIGH): SWE-Pruner (arXiv 2601.16746, Jan 2026) trains a 0.6B model on 61K synthetic data for self-adaptive, task-aware code context pruning, achieving 23-54% token reduction on SWE-bench Verified. Uses the same model size as DTD's student. Must be cited alongside SWEzze to show the broader learned-compression-for-code landscape.", "OVERSTATED CLAIM (MEDIUM): The proposal repeatedly claims 'Concise — the most aggressively filtered format — performed best' from 'Do Code Semantics Help?'. My reading of the paper shows SemCoder is 'the best choice for program repair tasks,' while Concise only 'achieved Pass@1 no worse than w/o trace in 11 out of 14 cases' at inference. The distinction matters: Concise is 'not harmful' rather than 'best.' The paper's central argument that 'more filtering → better results' is weakened by this mischaracterization.", "MISSING BENCHMARKS (MEDIUM): The user specified CrossCodeEval, RepoBench, and CodeContests as required benchmarks. The proposal drops all three. CrossCodeEval and RepoBench test repo-level code understanding and would directly demonstrate DTD's value for code comprehension beyond repair. At minimum, one cross-repo benchmark should be included.", "SWE-BENCH CONTAMINATION (LOW): OpenAI stopped reporting SWE-bench Verified scores after finding frontier model contamination. While this doesn't invalidate using the benchmark (especially for measuring relative improvement from trace compression), the paper should acknowledge this limitation and emphasize that BugsInPy and DebugBench serve as less-contaminated secondary benchmarks.", "MANUAL TIMELINE MISMATCH (LOW): Manual mode estimates 3-4 weeks but only 14 days remain before ARR deadline. This mode is not viable for the stated target."]
+Feedback: The revision substantially improved from Round 1 — dropping Defects4J, using a 0.6B student, simplifying Phase 1 to direct teacher scoring, and centering the paper on 'Do Code Semantics Help?' are all correct moves. The remaining issues are addressable:
+
+1. **Cite and differentiate from Squeez and SWE-Pruner**: These are the two closest competitors. Position DTD as follows: SWEzze compresses static code context, SWE-Pruner prunes static code context with task-awareness, Squeez prunes heterogeneous tool outputs at line level. DTD uniquely targets *structured execution traces* with *semantic segmentation* (function-level subtrees, loop groups, exception chains) — none of the prior work exploits the inherent structure of execution traces for repair-relevant filtering. Include both as baselines: run Squeez on raw traces and show that trace-structure-aware segmentation outperforms generic line-level pruning.
+
+2. **Fix the 'Concise is best' claim**: Reframe as: 'Concise was the only format that consistently avoided degradation (11/14 cases), while richer formats like SemCoder achieved the best repair performance but at the cost of unreliability across configurations. This suggests that *reliability through noise reduction* matters more than *peak performance through richer semantics* — exactly what learned filtering should provide.'
+
+3. **Add one cross-repo benchmark**: Include RepoBench or CrossCodeEval to satisfy the user's requirements and demonstrate DTD's value beyond single-file repair. This also strengthens the EMNLP framing (code understanding, not just repair).
+
+4. **Drop manual mode from timeline discussion**: Focus the paper's feasibility on HIL (12-16 days) and auto (10-14 days) modes, since manual mode doesn't fit the deadline.
+
+5. **Acknowledge SWE-bench contamination**: One sentence in limitations noting OpenAI's contamination findings and citing BugsInPy/DebugBench as cleaner secondary benchmarks.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "aba3693a-8595-491b-b6af-3fbbfc44f899",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-11T23:08:26.360Z_
+
+```json
+{
+  "parentUuid": "aba3693a-8595-491b-b6af-3fbbfc44f899",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "92ccddbb-1cc0-48e2-8af5-466c86f949c0",
+  "timestamp": "2026-05-11T23:08:26.360Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-11T23:08:26.360Z_
+
+```json
+{
+  "parentUuid": "92ccddbb-1cc0-48e2-8af5-466c86f949c0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "e0bb1870-2a64-4693-a67f-1ccef531caf0",
+  "timestamp": "2026-05-11T23:08:26.360Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"When Do Code Semantics Help? Learned Trace Filtering for LLM-Based Pro…",
+  "leafUuid": "e0bb1870-2a64-4693-a67f-1ccef531caf0",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learned trace filtering for adaptive program repair",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-11T23:08:37.326Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully and plan my research approach.
+
+The reviewer has 6 issues:
+1. **MISSING COMPETITOR (HIGH)**: Squeez (arXiv 2604.04979) - learned pruning of coding agent tool outputs
+2. **MISSING COMPETITOR (HIGH)**: SWE-Pruner (arXiv 2601.16746) - 0.6B model for code context pruning
+3. **OVERSTATED CLAIM (MEDIUM)**: Mischaracterization of "Concise is best" from "Do Code Semantics Help?"
+4. **MISSING BENCHMARKS (MEDIUM)**: CrossCodeEval, RepoBench, CodeContests were required but dropped
+
+
+5. **SWE-BENCH CONTAMINATION (LOW)**: Acknowledge contamination issues
+6. **MANUAL TIMELINE MISMATCH (LOW)**: Manual mode doesn't fit deadline
+
+I need to dig into the research on these missing papers and benchmarks to understand what I'm working with before making revisions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e0bb1870-2a64-4693-a67f-1ccef531caf0",
+  "isSidechain": false,
+  "requestId": "req_011Cawd65SCuLiRa1vYUbazA",
+  "type": "assistant",
+  "uuid": "bd1aea3f-4278-4960-9720-df7b27f3b04d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J9LPsCGtquPJKLxfSSE3Fx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11033,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 356,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11033,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 356,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11033,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11033
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-11T23:08:37.655Z_
+
+I'll research each reviewer issue systematically before revising. Let me start by fetching the schemas for web tools, then search for the key papers and benchmarks mentioned.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd1aea3f-4278-4960-9720-df7b27f3b04d",
+  "isSidechain": false,
+  "requestId": "req_011Cawd65SCuLiRa1vYUbazA",
+  "type": "assistant",
+  "uuid": "f505108b-32b1-4426-9a5e-04dc8577d256",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J9LPsCGtquPJKLxfSSE3Fx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11033,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 356,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11033,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 356,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11033,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11033
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-11T23:08:37.936Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VRbkxhKSgQrGetvQpZn73h`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f505108b-32b1-4426-9a5e-04dc8577d256",
+  "isSidechain": false,
+  "requestId": "req_011Cawd65SCuLiRa1vYUbazA",
+  "type": "assistant",
+  "uuid": "91a95e91-fd94-4933-a706-91620b36f356",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J9LPsCGtquPJKLxfSSE3Fx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11033,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 356,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11033,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 356,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11033,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11033
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-11T23:08:37.942Z_
+
+<details><summary>↩ Tool result · `toolu_01VRbkxhKSgQrGetvQpZn73h`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "91a95e91-fd94-4933-a706-91620b36f356",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "afab2fd8-1e71-4c5b-8a6f-00a7c2c75a1c",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "91a95e91-fd94-4933-a706-91620b36f356",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-11T23:08:42.635Z_
+
+Now let me research all the key issues in parallel — the two missing competitors (Squeez and SWE-Pruner), the "Do Code Semantics Help?" paper's actual claims, and the required benchmarks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "afab2fd8-1e71-4c5b-8a6f-00a7c2c75a1c",
+  "isSidechain": false,
+  "requestId": "req_011Cawd6vNXSppTG9aGy7E81",
+  "type": "assistant",
+  "uuid": "0c4e90d5-6c48-4a47-9bd1-8e6b6254b968",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2paoq5d25CfDFnYYDwQzC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1376,
+      "cache_read_input_tokens": 22874,
+      "output_tokens": 127,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1376,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 127,
+          "cache_read_input_tokens": 22874,
+          "cache_creation_input_tokens": 1376,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1376
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-11T23:08:43.337Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S4Q2rfRMeoktcgLv3G41ws`</summary>
+
+```json
+{
+  "query": "Squeez arXiv 2604.04979 task-conditioned pruning coding agent tool outputs 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c4e90d5-6c48-4a47-9bd1-8e6b6254b968",
+  "isSidechain": false,
+  "requestId": "req_011Cawd6vNXSppTG9aGy7E81",
+  "type": "assistant",
+  "uuid": "0b984bb6-edd6-4411-805c-350d36958eb8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2paoq5d25CfDFnYYDwQzC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1376,
+      "cache_read_input_tokens": 22874,
+      "output_tokens": 127,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1376,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 127,
+          "cache_read_input_tokens": 22874,
+          "cache_creation_input_tokens": 1376,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1376
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-11T23:08:50.805Z_
+
+<details><summary>↩ Tool result · `toolu_01S4Q2rfRMeoktcgLv3G41ws`</summary>
+
+```text
+Web search results for query: "Squeez arXiv 2604.04979 task-conditioned pruning coding agent tool outputs 2026"
+
+Links: [{"title":"Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents","url":"https://arxiv.org/html/2604.04979"},{"title":"[2604.04979] Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents","url":"https://arxiv.org/abs/2604.04979"},{"title":"Paper page - Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents","url":"https://huggingface.co/papers/2604.04979"},{"title":"GitHub - KRLabsOrg/squeez: Squeeze verbose LLM agent tool output down to only the relevant lines · GitHub","url":"https://github.com/KRLabsOrg/squeez"},{"title":"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://arxiv.org/html/2601.16746"},{"title":"[2601.16746] SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://arxiv.org/abs/2601.16746"},{"title":"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://www.arxiv.org/pdf/2601.16746"},{"title":"Beyond Resolution Rates: Behavioral Drivers of Coding Agent Success and Failure","url":"https://arxiv.org/html/2604.02547v1"},{"title":"Agent Psychometrics: Task-Level Performance Prediction in Agentic Coding Benchmarks","url":"https://arxiv.org/html/2604.00594v1"},{"title":"SkillMOO: Multi-Objective Optimization of Agent Skills for Software Engineering","url":"https://arxiv.org/html/2604.09297"}]
+
+Based on the search results, I found comprehensive information about the paper you're looking for:
+
+## Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents
+
+Squeez addresses the problem that coding agents repeatedly consume long tool observations even though only a small fraction of each observation matters for the next step.
+
+### Core Approach
+The work studies task-conditioned tool-output pruning: given a focused query and one tool output, return the smallest verbatim evidence block the agent should inspect next.
+
+### Benchmark and Dataset
+The researchers introduce a benchmark of 11,477 examples built from SWE-bench repository interactions and synthetic multi-ecosystem tool outputs, with a manually curated 618-example test set.
+
+### Results
+The authors fine-tune Qwen 3.5 2B with LoRA and compare it against larger zero-shot models and heuristic pruning baselines. Their model reaches 0.86 recall and 0.80 F1 while removing 92% of input tokens, outperforming zero-shot Qwen 3.5 35B A3B by 11 recall points and all heuristic baselines by a wide margin.
+
+### Author and Availability
+The paper is authored by Ádám Kovács from KR Labs. The model and evaluation code are available on GitHub, and the released model and dataset are available on Hugging Face. The model works as a CLI pipe, a Python library, or a vLLM server and can be integrated into coding agents with one line of config.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0b984bb6-edd6-4411-805c-350d36958eb8",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "5ea33cb6-0d1e-4d4c-a47b-043cfb0f2ee0",
+  "toolUseResult": {
+    "query": "Squeez arXiv 2604.04979 task-conditioned pruning coding agent tool outputs 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018YNxeQ8zTjR7wBjkuq8kqp",
+        "content": [
+          {
+            "title": "Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents",
+            "url": "https://arxiv.org/html/2604.04979"
+          },
+          {
+            "title": "[2604.04979] Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents",
+            "url": "https://arxiv.org/abs/2604.04979"
+          },
+          {
+            "title": "Paper page - Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents",
+            "url": "https://huggingface.co/papers/2604.04979"
+          },
+          {
+            "title": "GitHub - KRLabsOrg/squeez: Squeeze verbose LLM agent tool output down to only the relevant lines · GitHub",
+            "url": "https://github.com/KRLabsOrg/squeez"
+          },
+          {
+            "title": "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://arxiv.org/html/2601.16746"
+          },
+          {
+            "title": "[2601.16746] SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://arxiv.org/abs/2601.16746"
+          },
+          {
+            "title": "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://www.arxiv.org/pdf/2601.16746"
+          },
+          {
+            "title": "Beyond Resolution Rates: Behavioral Drivers of Coding Agent Success and Failure",
+            "url": "https://arxiv.org/html/2604.02547v1"
+          },
+          {
+            "title": "Agent Psychometrics: Task-Level Performance Prediction in Agentic Coding Benchmarks",
+            "url": "https://arxiv.org/html/2604.00594v1"
+          },
+          {
+            "title": "SkillMOO: Multi-Objective Optimization of Agent Skills for Software Engineering",
+            "url": "https://arxiv.org/html/2604.09297"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the paper you're looking for:\n\n## Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents\n\nSqueez addresses the problem that coding agents repeatedly consume long tool observations even though only a small fraction of each observation matters for the next step.\n\n### Core Approach\nThe work studies task-conditioned tool-output pruning: given a focused query and one tool output, return the smallest verbatim evidence block the agent should inspect next.\n\n### Benchmark and Dataset\nThe researchers introduce a benchmark of 11,477 examples built from SWE-bench repository interactions and synthetic multi-ecosystem tool outputs, with a manually curated 618-example test set.\n\n### Results\nThe authors fine-tune Qwen 3.5 2B with LoRA and compare it against larger zero-shot models and heuristic pruning baselines. Their model reaches 0.86 recall and 0.80 F1 while removing 92% of input tokens, outperforming zero-shot Qwen 3.5 35B A3B by 11 recall points and all heuristic baselines by a wide margin.\n\n### Author and Availability\nThe paper is authored by Ádám Kovács from KR Labs. The model and evaluation code are available on GitHub, and the released model and dataset are available on Hugging Face. The model works as a CLI pipe, a Python library, or a vLLM server and can be integrated into coding agents with one line of config."
+    ],
+    "durationSeconds": 7.463232532000002
+  },
+  "sourceToolAssistantUUID": "0b984bb6-edd6-4411-805c-350d36958eb8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-11T23:08:53.957Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UnYoduiSsoAEQWkETuPt7S`</summary>
+
+```json
+{
+  "query": "SWE-Pruner arXiv 2601.16746 self-adaptive context pruning coding agents 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ea33cb6-0d1e-4d4c-a47b-043cfb0f2ee0",
+  "isSidechain": false,
+  "requestId": "req_011Cawd7s7bbcpzxLfwvFwS8",
+  "type": "assistant",
+  "uuid": "17382317-babf-4b27-a3f7-e4dd66cf1a27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JKszduvbdt9F6cUMAtCYU9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 993,
+      "cache_read_input_tokens": 24250,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 993,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 24250,
+          "cache_creation_input_tokens": 993,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 993
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-11T23:09:04.047Z_
+
+<details><summary>↩ Tool result · `toolu_01UnYoduiSsoAEQWkETuPt7S`</summary>
+
+```text
+Web search results for query: "SWE-Pruner arXiv 2601.16746 self-adaptive context pruning coding agents 2026"
+
+Links: [{"title":"[2601.16746] SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://arxiv.org/abs/2601.16746"},{"title":"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://arxiv.org/html/2601.16746v1"},{"title":"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://www.arxiv.org/pdf/2601.16746"},{"title":"GitHub - Ayanami1314/swe-pruner · GitHub","url":"https://github.com/Ayanami1314/swe-pruner"},{"title":"(PDF) SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://www.researchgate.net/publication/400071923_SWE-Pruner_Self-Adaptive_Context_Pruning_for_Coding_Agents"},{"title":"Paper page - SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://huggingface.co/papers/2601.16746"},{"title":"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents | alphaXiv","url":"https://www.alphaxiv.org/overview/2601.16746"},{"title":"Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents","url":"https://arxiv.org/html/2604.04979"},{"title":"ayanami-kitasan/code-pruner · Hugging Face","url":"https://huggingface.co/ayanami-kitasan/code-pruner"},{"title":"Software Engineering on X: \"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents Yuhang Wang, Yuling Shi, Mo Yang, Rongrui Zhang, Shilin He, Heng Lian, Yuting Chen, Siyu Ye, Kai Cai, Xiaodong Gu https://t.co/7gw9yLhyMf [𝚌𝚜.𝚂𝙴 𝚌𝚜.𝙲𝙻] https://t.co/kRlOYQc5jb\" / X","url":"https://x.com/ComputerPapers/status/2015694356875727079"}]
+
+I found the paper! Here are the search results for **SWE-Pruner** (arXiv 2601.16746):
+
+## Overview
+
+SWE-Pruner is a self-adaptive context pruning framework tailored for coding agents. LLM agents have demonstrated remarkable capabilities in software development, but their performance is hampered by long interaction contexts, which incur high API costs and latency.
+
+## Key Innovation
+
+Drawing inspiration from how human programmers "selectively skim" source code during development and debugging, SWE-Pruner performs task-aware adaptive pruning for long contexts. Given the current task, the agent formulates an explicit goal (e.g., "focus on error handling") as a hint to guide the pruning targets.
+
+## Problem It Addresses
+
+While various context compression approaches such as LongLLMLingua have emerged to tackle this challenge, they typically rely on fixed metrics such as PPL, ignoring the task-specific nature of code understanding. As a result, they frequently disrupt syntactic and logical structure and fail to retain critical implementation details.
+
+## Impact
+
+SWE-Pruner can save 20~40% of your Claude Code cost without sacrificing performance.
+
+## Paper Details
+
+- **ArXiv ID:** 2601.16746
+- **Submitted:** January 23, 2026
+- **Latest Version:** February 4, 2026
+- **Authors:** Yuhang Wang, Yuling Shi, Mo Yang, Rongrui Zhang, Shilin He, Heng Lian, Yuting Chen, Siyu Ye, Kai Cai, Xiaodong Gu
+- **Code:** Available on [GitHub](https://github.com/Ayanami1314/swe-pruner) and [PyPI](https://pypi.org/project/swe-pruner/)
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "17382317-babf-4b27-a3f7-e4dd66cf1a27",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "83b27e45-4ff5-4b04-a4ab-b9c2d4b2ed33",
+  "toolUseResult": {
+    "query": "SWE-Pruner arXiv 2601.16746 self-adaptive context pruning coding agents 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01T8YnAabLxqb1TQYzng6kfk",
+        "content": [
+          {
+            "title": "[2601.16746] SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://arxiv.org/abs/2601.16746"
+          },
+          {
+            "title": "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://arxiv.org/html/2601.16746v1"
+          },
+          {
+            "title": "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://www.arxiv.org/pdf/2601.16746"
+          },
+          {
+            "title": "GitHub - Ayanami1314/swe-pruner · GitHub",
+            "url": "https://github.com/Ayanami1314/swe-pruner"
+          },
+          {
+            "title": "(PDF) SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://www.researchgate.net/publication/400071923_SWE-Pruner_Self-Adaptive_Context_Pruning_for_Coding_Agents"
+          },
+          {
+            "title": "Paper page - SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://huggingface.co/papers/2601.16746"
+          },
+          {
+            "title": "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2601.16746"
+          },
+          {
+            "title": "Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents",
+            "url": "https://arxiv.org/html/2604.04979"
+          },
+          {
+            "title": "ayanami-kitasan/code-pruner · Hugging Face",
+            "url": "https://huggingface.co/ayanami-kitasan/code-pruner"
+          },
+          {
+            "title": "Software Engineering on X: \"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents Yuhang Wang, Yuling Shi, Mo Yang, Rongrui Zhang, Shilin He, Heng Lian, Yuting Chen, Siyu Ye, Kai Cai, Xiaodong Gu https://t.co/7gw9yLhyMf [𝚌𝚜.𝚂𝙴 𝚌𝚜.𝙲𝙻] https://t.co/kRlOYQc5jb\" / X",
+            "url": "https://x.com/ComputerPapers/status/2015694356875727079"
+          }
+        ]
+      },
+      "I found the paper! Here are the search results for **SWE-Pruner** (arXiv 2601.16746):\n\n## Overview\n\nSWE-Pruner is a self-adaptive context pruning framework tailored for coding agents. LLM agents have demonstrated remarkable capabilities in software development, but their performance is hampered by long interaction contexts, which incur high API costs and latency.\n\n## Key Innovation\n\nDrawing inspiration from how human programmers \"selectively skim\" source code during development and debugging, SWE-Pruner performs task-aware adaptive pruning for long contexts. Given the current task, the agent formulates an explicit goal (e.g., \"focus on error handling\") as a hint to guide the pruning targets.\n\n## Problem It Addresses\n\nWhile various context compression approaches such as LongLLMLingua have emerged to tackle this challenge, they typically rely on fixed metrics such as PPL, ignoring the task-specific nature of code understanding. As a result, they frequently disrupt syntactic and logical structure and fail to retain critical implementation details.\n\n## Impact\n\nSWE-Pruner can save 20~40% of your Claude Code cost without sacrificing performance.\n\n## Paper Details\n\n- **ArXiv ID:** 2601.16746\n- **Submitted:** January 23, 2026\n- **Latest Version:** February 4, 2026\n- **Authors:** Yuhang Wang, Yuling Shi, Mo Yang, Rongrui Zhang, Shilin He, Heng Lian, Yuting Chen, Siyu Ye, Kai Cai, Xiaodong Gu\n- **Code:** Available on [GitHub](https://github.com/Ayanami1314/swe-pruner) and [PyPI](https://pypi.org/project/swe-pruner/)"
+    ],
+    "durationSeconds": 10.085663796999997
+  },
+  "sourceToolAssistantUUID": "17382317-babf-4b27-a3f7-e4dd66cf1a27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-11T23:09:07.731Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QbvwF672uDJ55MNvSi5Zae`</summary>
+
+```json
+{
+  "query": "\"Do Code Semantics Help\" EMNLP 2025 execution trace SemCoder Concise program repair findings"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83b27e45-4ff5-4b04-a4ab-b9c2d4b2ed33",
+  "isSidechain": false,
+  "requestId": "req_011Cawd8qj356i2sERN34oxf",
+  "type": "assistant",
+  "uuid": "ddf38366-d8f7-4e3a-952b-258fdb2d284c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G3tw9NdLyqAEnNNQYipXJo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1191,
+      "cache_read_input_tokens": 25243,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1191,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 25243,
+          "cache_creation_input_tokens": 1191,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1191
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-11T23:09:15.184Z_
+
+<details><summary>↩ Tool result · `toolu_01QbvwF672uDJ55MNvSi5Zae`</summary>
+
+```text
+Web search results for query: ""Do Code Semantics Help" EMNLP 2025 execution trace SemCoder Concise program repair findings"
+
+Links: [{"title":"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models - ACL Anthology","url":"https://aclanthology.org/2025.findings-emnlp.548/"},{"title":"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models","url":"https://arxiv.org/html/2509.11686"},{"title":"Do Code Semantics Help? A Comprehensive Study on ...","url":"https://aclanthology.org/2025.findings-emnlp.548.pdf"},{"title":"[2509.11686] Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models","url":"https://arxiv.org/abs/2509.11686"},{"title":"Do Code Semantics Help? A Comprehensive Study on Execution","url":"https://arxiv.org/pdf/2509.11686"},{"title":"[2509.11686v3] Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models","url":"https://arxiv.org/abs/2509.11686v3"},{"title":"SEMCODER: Training Code Language Models with Comprehensive Semantics Reasoning","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/6efcc7fd8efeee29a050a79c843c90e0-Paper-Conference.pdf"},{"title":"SemCoder: Training Code Language Models with Comprehensive Semantics Reasoning | OpenReview","url":"https://openreview.net/forum?id=PnlCHQrM69"},{"title":"SemCoder: Training Code Language Models with Comprehensive Semantics Reasoning | NSF Public Access Repository","url":"https://par.nsf.gov/biblio/10569457-semcoder-training-code-language-models-comprehensive-semantics-reasoning"},{"title":"[2406.01006] SemCoder: Training Code Language Models with Comprehensive Semantics","url":"https://ar5iv.labs.arxiv.org/html/2406.01006v1"}]
+
+I found the paper you're looking for. Here's a summary of the key findings:
+
+## Paper Overview
+
+"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models" was published at EMNLP 2025 in Suzhou, China by Wang, Xie, Hu, Liu, and Li.
+
+## Research Focus
+
+The researchers introduced a generic framework to support integrating semantic information (e.g., execution trace) to code task-relevant prompts, and conducted a comprehensive study to explore the role of semantic information in enhancing the reasoning ability of Code LLMs.
+
+## Key Findings
+
+The main findings are surprisingly negative regarding semantic information effectiveness:
+
+1. **Overall Result**: Existing code semantic information does not enhance fine-tuning and test-time scaling of Code LLMs.
+
+2. **Program Repair Tasks**: For Program Repair tasks, compared to models trained without traces (w/o trace), only SemCoder contributes to fine-tuning but with limited improvements (from 0.3 to 1.4).
+
+3. **Code Synthesis Tasks**: The results of Code Synthesis tasks show that semantic information cannot significantly enhance the code generation ability of Code LLMs. In more than half of the cases (7 out of 9 cases), fine-tuning without trace information achieves the best results.
+
+## Recommended Trace Representations
+
+SemCoder is the best choice for program repair tasks, and SemCoder (GPT4o) can consistently enhance the reasoning ability of Code LLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ddf38366-d8f7-4e3a-952b-258fdb2d284c",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "a77dfa0d-29a9-4f74-9069-264b82fb2bad",
+  "toolUseResult": {
+    "query": "\"Do Code Semantics Help\" EMNLP 2025 execution trace SemCoder Concise program repair findings",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SR5Wk1ijVoyGCHVXnoYhWE",
+        "content": [
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-emnlp.548/"
+          },
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models",
+            "url": "https://arxiv.org/html/2509.11686"
+          },
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.548.pdf"
+          },
+          {
+            "title": "[2509.11686] Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models",
+            "url": "https://arxiv.org/abs/2509.11686"
+          },
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on Execution",
+            "url": "https://arxiv.org/pdf/2509.11686"
+          },
+          {
+            "title": "[2509.11686v3] Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models",
+            "url": "https://arxiv.org/abs/2509.11686v3"
+          },
+          {
+            "title": "SEMCODER: Training Code Language Models with Comprehensive Semantics Reasoning",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/6efcc7fd8efeee29a050a79c843c90e0-Paper-Conference.pdf"
+          },
+          {
+            "title": "SemCoder: Training Code Language Models with Comprehensive Semantics Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=PnlCHQrM69"
+          },
+          {
+            "title": "SemCoder: Training Code Language Models with Comprehensive Semantics Reasoning | NSF Public Access Repository",
+            "url": "https://par.nsf.gov/biblio/10569457-semcoder-training-code-language-models-comprehensive-semantics-reasoning"
+          },
+          {
+            "title": "[2406.01006] SemCoder: Training Code Language Models with Comprehensive Semantics",
+            "url": "https://ar5iv.labs.arxiv.org/html/2406.01006v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's a summary of the key findings:\n\n## Paper Overview\n\n\"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models\" was published at EMNLP 2025 in Suzhou, China by Wang, Xie, Hu, Liu, and Li.\n\n## Research Focus\n\nThe researchers introduced a generic framework to support integrating semantic information (e.g., execution trace) to code task-relevant prompts, and conducted a comprehensive study to explore the role of semantic information in enhancing the reasoning ability of Code LLMs.\n\n## Key Findings\n\nThe main findings are surprisingly negative regarding semantic information effectiveness:\n\n1. **Overall Result**: Existing code semantic information does not enhance fine-tuning and test-time scaling of Code LLMs.\n\n2. **Program Repair Tasks**: For Program Repair tasks, compared to models trained without traces (w/o trace), only SemCoder contributes to fine-tuning but with limited improvements (from 0.3 to 1.4).\n\n3. **Code Synthesis Tasks**: The results of Code Synthesis tasks show that semantic information cannot significantly enhance the code generation ability of Code LLMs. In more than half of the cases (7 out of 9 cases), fine-tuning without trace information achieves the best results.\n\n## Recommended Trace Representations\n\nSemCoder is the best choice for program repair tasks, and SemCoder (GPT4o) can consistently enhance the reasoning ability of Code LLMs."
+    ],
+    "durationSeconds": 7.447491511
+  },
+  "sourceToolAssistantUUID": "ddf38366-d8f7-4e3a-952b-258fdb2d284c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"When Do Code Semantics Help? Learned Trace Filtering for LLM-Based Pro…",
+  "leafUuid": "a77dfa0d-29a9-4f74-9069-264b82fb2bad",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learned trace filtering for adaptive program repair",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366"
+}
+```
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-11T23:09:19.455Z_
+
+Now let me read the actual papers in detail — Squeez, SWE-Pruner, and the "Do Code Semantics Help?" paper to get precise claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a77dfa0d-29a9-4f74-9069-264b82fb2bad",
+  "isSidechain": false,
+  "requestId": "req_011Cawd9fMiuvueN6XLJ8WJe",
+  "type": "assistant",
+  "uuid": "066693d0-77f7-4e07-9c90-db0e4e5ef20a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017vkQLHJdXGNP1zL1QSd8wP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1026,
+      "cache_read_input_tokens": 26434,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1026,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 26434,
+          "cache_creation_input_tokens": 1026,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1026
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-11T23:09:22.776Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017HnNFfskcdHLNrrKS1Mn3t`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.04979",
+  "prompt": "Extract the full abstract, key methodology details, model architecture, training data, evaluation results (recall, F1, token removal rate), and how it handles different types of tool outputs (stack traces, build logs, test output). What specific types of traces/outputs does it handle? Does it use any structural segmentation of traces or just line-level processing?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "066693d0-77f7-4e07-9c90-db0e4e5ef20a",
+  "isSidechain": false,
+  "requestId": "req_011Cawd9fMiuvueN6XLJ8WJe",
+  "type": "assistant",
+  "uuid": "ba37e047-8264-41c3-8f5b-25587823fdb4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017vkQLHJdXGNP1zL1QSd8wP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1026,
+      "cache_read_input_tokens": 26434,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1026,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 26434,
+          "cache_creation_input_tokens": 1026,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1026
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-11T23:09:28.078Z_
+
+<details><summary>↩ Tool result · `toolu_017HnNFfskcdHLNrrKS1Mn3t`</summary>
+
+```text
+# Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents
+
+## Abstract
+The paper addresses token consumption inefficiency in coding agents by introducing a pruning mechanism. As stated, the work focuses on returning "the smallest verbatim evidence block the agent should inspect next" given a task query and tool output.
+
+## Methodology & Architecture
+- **Model**: Fine-tuned Qwen 3.5 2B using LoRA
+- **Approach**: Task-conditioned pruning that identifies minimal relevant evidence from tool outputs
+- **Comparative Analysis**: Benchmarked against larger zero-shot models (Qwen 3.5 35B A3B) and heuristic baselines
+
+## Training Data
+The benchmark comprises "11,477 examples built from SWE-bench repository interactions and synthetic multi-ecosystem tool outputs," with a manually curated test set of 618 examples.
+
+## Evaluation Results
+- **Recall**: 0.86
+- **F1 Score**: 0.80
+- **Token Reduction**: 92% of input tokens removed
+- **Comparative Performance**: Outperformed zero-shot Qwen 35B by 11 recall points
+
+## Tool Output Types Addressed
+The paper mentions "synthetic multi-ecosystem tool outputs" but **does not specify detailed handling of particular trace types** (stack traces, build logs, test output) in the provided abstract. The content indicates processing at the evidence-block level rather than granular structural details, though specific segmentation methodology is not elaborated in this excerpt.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ba37e047-8264-41c3-8f5b-25587823fdb4",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "c7c9a04e-94fb-4aac-a426-dd21b9a9ab0a",
+  "toolUseResult": {
+    "bytes": 43372,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents\n\n## Abstract\nThe paper addresses token consumption inefficiency in coding agents by introducing a pruning mechanism. As stated, the work focuses on returning \"the smallest verbatim evidence block the agent should inspect next\" given a task query and tool output.\n\n## Methodology & Architecture\n- **Model**: Fine-tuned Qwen 3.5 2B using LoRA\n- **Approach**: Task-conditioned pruning that identifies minimal relevant evidence from tool outputs\n- **Comparative Analysis**: Benchmarked against larger zero-shot models (Qwen 3.5 35B A3B) and heuristic baselines\n\n## Training Data\nThe benchmark comprises \"11,477 examples built from SWE-bench repository interactions and synthetic multi-ecosystem tool outputs,\" with a manually curated test set of 618 examples.\n\n## Evaluation Results\n- **Recall**: 0.86\n- **F1 Score**: 0.80\n- **Token Reduction**: 92% of input tokens removed\n- **Comparative Performance**: Outperformed zero-shot Qwen 35B by 11 recall points\n\n## Tool Output Types Addressed\nThe paper mentions \"synthetic multi-ecosystem tool outputs\" but **does not specify detailed handling of particular trace types** (stack traces, build logs, test output) in the provided abstract. The content indicates processing at the evidence-block level rather than granular structural details, though specific segmentation methodology is not elaborated in this excerpt.",
+    "durationMs": 5297,
+    "url": "https://arxiv.org/abs/2604.04979"
+  },
+  "sourceToolAssistantUUID": "ba37e047-8264-41c3-8f5b-25587823fdb4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-11T23:09:34.058Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_018AJqcegW411VVhRzeorqZr`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.04979",
+  "prompt": "Extract detailed methodology: 1) How does Squeez segment/process tool outputs - line-level or structural? 2) What types of tool outputs does it handle (stack traces, build logs, test output, execution traces)? 3) How is training data constructed - what is the labeling process? 4) What is the input/output format of the model? 5) Does it handle execution traces with variable states, function calls, control flow? 6) What granularity of pruning - line, block, or structural? 7) Any comparison with trace-specific methods?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c7c9a04e-94fb-4aac-a426-dd21b9a9ab0a",
+  "isSidechain": false,
+  "requestId": "req_011CawdAcY5nycGDEueRbTDx",
+  "type": "assistant",
+  "uuid": "b6472226-8931-492c-a195-6514b5a09c37",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QQVRACSUYwFJvE3M5dEuSR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 550,
+      "cache_read_input_tokens": 27460,
+      "output_tokens": 208,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 550,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 208,
+          "cache_read_input_tokens": 27460,
+          "cache_creation_input_tokens": 550,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 550
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-11T23:09:43.830Z_
+
+<details><summary>↩ Tool result · `toolu_018AJqcegW411VVhRzeorqZr`</summary>
+
+```text
+# Squeez Methodology Analysis
+
+## 1. Output Segmentation Approach
+Squeez processes tool outputs at **line-level granularity**. The system assigns line indices to segments and extracts "contiguous spans" defined by start and end line numbers. As the paper states: "each span refers to line indices in the original output."
+
+## 2. Tool Types Handled
+The benchmark covers 27 tool families across diverse formats:
+- **Code-related**: file reads, grep, git log/blame, type checkers, linters
+- **Execution outputs**: test results, build logs, python execution traces
+- **Infrastructure**: Docker logs, kubectl, pip/npm install, curl responses
+- **Logs and structured data**: service logs, coverage reports, terraform outputs
+
+The paper emphasizes this heterogeneity: "benchmark mixes very short observations such as Python exceptions and test summaries with long file reads, type-check outputs, and container logs."
+
+## 3. Training Data Construction
+The labeling pipeline uses two stages with GPT-4-level teacher models:
+1. Teacher writes a "focused, tool-aware extraction query" narrower than full task context
+2. Teacher selects "smallest contiguous span or set of spans" answering that query
+
+Data comes from real SWE-bench repository interactions (9,205 examples) plus synthetic multi-ecosystem outputs (2,272 examples). The test set underwent manual curation, removing 111 of 729 candidates "as near-duplicates, trivial 1–2 line outputs, overly broad spans, or incorrect annotations."
+
+## 4. Input/Output Format
+**Input**: Query-observation pairs where the query is a "short, concrete, tool-aware" extraction request paired with raw tool output.
+
+**Output**: Gold annotations stored as span coordinates (line ranges) over original text, with generative training targets formatted as "XML-wrapped extracted text" in `&lt;relevant_lines>` tags.
+
+## 5. Execution Trace Handling
+The paper does not explicitly address execution traces with variable states or function call sequences. While "python" tool outputs appear in the dataset (698 examples), the methodology focuses on static text extraction rather than stateful trace analysis.
+
+## 6. Pruning Granularity
+Pruning operates at **line-level with optional multi-span support**. The model can return "one or more contiguous spans," enabling non-consecutive relevant sections while maintaining verbatim preservation.
+
+## 7. Comparison with Trace-Specific Methods
+No trace-specific baselines appear in the evaluation. The paper compares against:
+- Zero-shot generative models (Qwen, Kimi)
+- Generic heuristics (BM25, First-N, Last-N, Random)
+- Document-level compression methods (EXIT, Provence) mentioned in related work
+
+**Key limitation acknowledged**: "benchmark evaluates pruning quality on single tool observations rather than full agent trajectories."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b6472226-8931-492c-a195-6514b5a09c37",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "b7f33109-2c00-473a-852d-b70d6e47bfdf",
+  "toolUseResult": {
+    "bytes": 138216,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Squeez Methodology Analysis\n\n## 1. Output Segmentation Approach\nSqueez processes tool outputs at **line-level granularity**. The system assigns line indices to segments and extracts \"contiguous spans\" defined by start and end line numbers. As the paper states: \"each span refers to line indices in the original output.\"\n\n## 2. Tool Types Handled\nThe benchmark covers 27 tool families across diverse formats:\n- **Code-related**: file reads, grep, git log/blame, type checkers, linters\n- **Execution outputs**: test results, build logs, python execution traces\n- **Infrastructure**: Docker logs, kubectl, pip/npm install, curl responses\n- **Logs and structured data**: service logs, coverage reports, terraform outputs\n\nThe paper emphasizes this heterogeneity: \"benchmark mixes very short observations such as Python exceptions and test summaries with long file reads, type-check outputs, and container logs.\"\n\n## 3. Training Data Construction\nThe labeling pipeline uses two stages with GPT-4-level teacher models:\n1. Teacher writes a \"focused, tool-aware extraction query\" narrower than full task context\n2. Teacher selects \"smallest contiguous span or set of spans\" answering that query\n\nData comes from real SWE-bench repository interactions (9,205 examples) plus synthetic multi-ecosystem outputs (2,272 examples). The test set underwent manual curation, removing 111 of 729 candidates \"as near-duplicates, trivial 1–2 line outputs, overly broad spans, or incorrect annotations.\"\n\n## 4. Input/Output Format\n**Input**: Query-observation pairs where the query is a \"short, concrete, tool-aware\" extraction request paired with raw tool output.\n\n**Output**: Gold annotations stored as span coordinates (line ranges) over original text, with generative training targets formatted as \"XML-wrapped extracted text\" in `&lt;relevant_lines>` tags.\n\n## 5. Execution Trace Handling\nThe paper does not explicitly address execution traces with variable states or function call sequences. While \"python\" tool outputs appear in the dataset (698 examples), the methodology focuses on static text extraction rather than stateful trace analysis.\n\n## 6. Pruning Granularity\nPruning operates at **line-level with optional multi-span support**. The model can return \"one or more contiguous spans,\" enabling non-consecutive relevant sections while maintaining verbatim preservation.\n\n## 7. Comparison with Trace-Specific Methods\nNo trace-specific baselines appear in the evaluation. The paper compares against:\n- Zero-shot generative models (Qwen, Kimi)\n- Generic heuristics (BM25, First-N, Last-N, Random)\n- Document-level compression methods (EXIT, Provence) mentioned in related work\n\n**Key limitation acknowledged**: \"benchmark evaluates pruning quality on single tool observations rather than full agent trajectories.\"",
+    "durationMs": 9767,
+    "url": "https://arxiv.org/html/2604.04979"
+  },
+  "sourceToolAssistantUUID": "b6472226-8931-492c-a195-6514b5a09c37",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-11T23:09:48.100Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01EMWuEKrrokGCYWRMnqf4o2`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.16746",
+  "prompt": "Extract the full abstract, methodology, model size, training data size (61K synthetic data?), evaluation benchmarks, token reduction rates (23-54%), and key differentiation from other pruning methods. What types of context does it prune? Does it handle execution traces or just static code?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7f33109-2c00-473a-852d-b70d6e47bfdf",
+  "isSidechain": false,
+  "requestId": "req_011CawdBmugG1M9FHURMzmZf",
+  "type": "assistant",
+  "uuid": "0cd2d31c-3781-441c-a0fb-b0b1ec8435df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MNcfz31PtjLUVKvQaUpimD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 875,
+      "cache_read_input_tokens": 28010,
+      "output_tokens": 143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 875,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 143,
+          "cache_read_input_tokens": 28010,
+          "cache_creation_input_tokens": 875,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 875
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-11T23:09:54.289Z_
+
+<details><summary>↩ Tool result · `toolu_01EMWuEKrrokGCYWRMnqf4o2`</summary>
+
+```text
+# SWE-Pruner: Context Pruning for Coding Agents
+
+## Abstract
+The paper introduces SWE-Pruner, addressing how "LLM agents have demonstrated remarkable capabilities in software development, but their performance is hampered by long interaction contexts." The framework uses task-aware adaptive pruning to reduce context while maintaining agent performance.
+
+## Methodology
+SWE-Pruner operates by having agents formulate explicit goals (e.g., "focus on error handling") to guide pruning. A "lightweight neural skimmer (0.6B parameters) is trained to dynamically select relevant lines from the surrounding context given the goal."
+
+## Key Differentiation
+Unlike fixed-metric approaches such as LongLLMLingua that rely on perplexity, SWE-Pruner is task-specific. The innovation addresses how existing methods "frequently disrupt syntactic and logical structure and fail to retain critical implementation details."
+
+## Evaluation Results
+- **Token Reduction**: 23-54% reduction on multi-turn agent tasks (SWE-Bench Verified) while improving success rates
+- **Single-turn Performance**: Up to 14.84x compression on single-turn tasks (LongCodeQA) with minimal impact
+
+## Evaluation Benchmarks
+Four benchmarks are mentioned but not detailed in the abstract. SWE-Bench Verified and LongCodeQA are specifically named.
+
+## Context Types
+The abstract doesn't clarify whether pruning handles execution traces or focuses solely on static code. The reference to how "human programmers selectively skim source code" suggests static code emphasis.
+
+**Note**: Training data size specifics (61K synthetic data) aren't mentioned in this excerpt.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0cd2d31c-3781-441c-a0fb-b0b1ec8435df",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "c46221cf-54b8-46c4-bd01-9fa5cfa881b7",
+  "toolUseResult": {
+    "bytes": 48273,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SWE-Pruner: Context Pruning for Coding Agents\n\n## Abstract\nThe paper introduces SWE-Pruner, addressing how \"LLM agents have demonstrated remarkable capabilities in software development, but their performance is hampered by long interaction contexts.\" The framework uses task-aware adaptive pruning to reduce context while maintaining agent performance.\n\n## Methodology\nSWE-Pruner operates by having agents formulate explicit goals (e.g., \"focus on error handling\") to guide pruning. A \"lightweight neural skimmer (0.6B parameters) is trained to dynamically select relevant lines from the surrounding context given the goal.\"\n\n## Key Differentiation\nUnlike fixed-metric approaches such as LongLLMLingua that rely on perplexity, SWE-Pruner is task-specific. The innovation addresses how existing methods \"frequently disrupt syntactic and logical structure and fail to retain critical implementation details.\"\n\n## Evaluation Results\n- **Token Reduction**: 23-54% reduction on multi-turn agent tasks (SWE-Bench Verified) while improving success rates\n- **Single-turn Performance**: Up to 14.84x compression on single-turn tasks (LongCodeQA) with minimal impact\n\n## Evaluation Benchmarks\nFour benchmarks are mentioned but not detailed in the abstract. SWE-Bench Verified and LongCodeQA are specifically named.\n\n## Context Types\nThe abstract doesn't clarify whether pruning handles execution traces or focuses solely on static code. The reference to how \"human programmers selectively skim source code\" suggests static code emphasis.\n\n**Note**: Training data size specifics (61K synthetic data) aren't mentioned in this excerpt.",
+    "durationMs": 6184,
+    "url": "https://arxiv.org/abs/2601.16746"
+  },
+  "sourceToolAssistantUUID": "0cd2d31c-3781-441c-a0fb-b0b1ec8435df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28 · 2026-05-11T23:09:54.292Z_
+
+```json
+{
+  "parentUuid": "c46221cf-54b8-46c4-bd01-9fa5cfa881b7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "637d79ba-9801-4ccc-aaf4-507a36f9134f",
+  "timestamp": "2026-05-11T23:09:54.292Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-11T23:09:59.859Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TmALt8AYcWHCpLiGgDMyRE`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2601.16746v1",
+  "prompt": "Extract: 1) How the 0.6B model works - architecture, training procedure, what exactly it prunes (static code vs execution traces vs tool outputs). 2) The 61K synthetic training data - how is it constructed? 3) Specific results on SWE-bench Verified - resolution rates before/after pruning. 4) Does it handle execution traces at all? 5) How does it differ from SWEzze and Squeez? 6) Any mention of structural segmentation vs line-level pruning."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "637d79ba-9801-4ccc-aaf4-507a36f9134f",
+  "isSidechain": false,
+  "requestId": "req_011CawdCYXYHFKgCHUdYSMt2",
+  "type": "assistant",
+  "uuid": "da1a5a00-f33f-4c8e-a57a-f7cbe68507bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NrdSubsKWQSyJBnhJeat9i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 636,
+      "cache_read_input_tokens": 28885,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 636,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 28885,
+          "cache_creation_input_tokens": 636,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 636
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-11T23:10:11.733Z_
+
+<details><summary>↩ Tool result · `toolu_01TmALt8AYcWHCpLiGgDMyRE`</summary>
+
+```text
+# SWE-Pruner: Key Technical Details
+
+## 1. The 0.6B Model Architecture
+
+The neural skimmer uses **Qwen3-Reranker-0.6B** as its backbone, extended with two specialized heads:
+
+- **CRF-based pruning head**: Formulates line-level retention as structured sequence labeling using Conditional Random Fields, modeling transition probabilities between retain/prune states
+- **Reranking head**: Produces document-level relevance scores via mean squared error
+
+The model extracts hidden states from three intermediate transformer layers (7, 14, 28), processes them through self-attention and multi-head attention (8 heads, 256 hidden size), then applies CRF decoding for coherent pruning decisions.
+
+## 2. Training Procedure & Synthetic Data
+
+The 61,184 training samples were synthetically constructed through a **teacher-student paradigm**:
+
+- Teacher LLM (Qwen3-Coder-30B) generated task-oriented queries targeting specific functional subsets of GitHub code snippets
+- Nine agentic task types guided synthesis: code summarization, refactoring, debugging, feature addition, etc.
+- Quality filtering via "LLM-as-a-Judge" (Qwen3-Next-80B) ensured annotation quality, retaining ~1/6 of candidates
+- Final corpus spans multiple languages with diverse query lengths (average 39.98 words)
+
+## 3. SWE-Bench Verified Results
+
+Before/after pruning with Claude Sonnet 4.5:
+- **Token reduction**: 23.1% (0.911M → 0.701M tokens)
+- **Success rate**: 70.6% → 70.2% (negligible 0.4% degradation)
+- **Agent rounds**: 51.0 → 41.7 (18.2% reduction)
+
+With GLM-4.6: 38.3% token reduction, 54.8% success rate.
+
+## 4. Execution Traces
+
+The framework operates at the **agent-environment boundary**, intercepting file reading operations (cat, grep) with pruned context. It does not directly handle execution traces; rather, it filters coarse retrieval results from read operations.
+
+## 5. Differentiation from Prior Work
+
+SWE-Pruner differs fundamentally from token-level methods:
+
+- **Line-level granularity** preserves syntactic structure (87.3% AST correctness vs. 0.29% for token-level pruning)
+- **Task-aware, dynamic filtering** adapts to agent's evolving goals via natural language hints
+- **Multi-turn agent focus** rather than single-turn proxy tasks
+
+The paper doesn't explicitly compare to "SWEzze" or "Squeez," but contrasts with LLMLingua-2, RAG, and LongCodeZip, achieving superior compression ratios.
+
+## 6. Structural Segmentation
+
+The approach uses **line-level aggregation**: token-level scores average to line scores via formula `s̄ⱼ = (1/|Tⱼ|)∑ₜ∈Tⱼ sₜ`. Lines are retained if aggregated score exceeds threshold τ=0.5, maintaining structural integrity while achieving precise compression.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "da1a5a00-f33f-4c8e-a57a-f7cbe68507bc",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "80ed8362-3fc1-43cc-b42a-b291a6a0120d",
+  "toolUseResult": {
+    "bytes": 887024,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SWE-Pruner: Key Technical Details\n\n## 1. The 0.6B Model Architecture\n\nThe neural skimmer uses **Qwen3-Reranker-0.6B** as its backbone, extended with two specialized heads:\n\n- **CRF-based pruning head**: Formulates line-level retention as structured sequence labeling using Conditional Random Fields, modeling transition probabilities between retain/prune states\n- **Reranking head**: Produces document-level relevance scores via mean squared error\n\nThe model extracts hidden states from three intermediate transformer layers (7, 14, 28), processes them through self-attention and multi-head attention (8 heads, 256 hidden size), then applies CRF decoding for coherent pruning decisions.\n\n## 2. Training Procedure & Synthetic Data\n\nThe 61,184 training samples were synthetically constructed through a **teacher-student paradigm**:\n\n- Teacher LLM (Qwen3-Coder-30B) generated task-oriented queries targeting specific functional subsets of GitHub code snippets\n- Nine agentic task types guided synthesis: code summarization, refactoring, debugging, feature addition, etc.\n- Quality filtering via \"LLM-as-a-Judge\" (Qwen3-Next-80B) ensured annotation quality, retaining ~1/6 of candidates\n- Final corpus spans multiple languages with diverse query lengths (average 39.98 words)\n\n## 3. SWE-Bench Verified Results\n\nBefore/after pruning with Claude Sonnet 4.5:\n- **Token reduction**: 23.1% (0.911M → 0.701M tokens)\n- **Success rate**: 70.6% → 70.2% (negligible 0.4% degradation)\n- **Agent rounds**: 51.0 → 41.7 (18.2% reduction)\n\nWith GLM-4.6: 38.3% token reduction, 54.8% success rate.\n\n## 4. Execution Traces\n\nThe framework operates at the **agent-environment boundary**, intercepting file reading operations (cat, grep) with pruned context. It does not directly handle execution traces; rather, it filters coarse retrieval results from read operations.\n\n## 5. Differentiation from Prior Work\n\nSWE-Pruner differs fundamentally from token-level methods:\n\n- **Line-level granularity** preserves syntactic structure (87.3% AST correctness vs. 0.29% for token-level pruning)\n- **Task-aware, dynamic filtering** adapts to agent's evolving goals via natural language hints\n- **Multi-turn agent focus** rather than single-turn proxy tasks\n\nThe paper doesn't explicitly compare to \"SWEzze\" or \"Squeez,\" but contrasts with LLMLingua-2, RAG, and LongCodeZip, achieving superior compression ratios.\n\n## 6. Structural Segmentation\n\nThe approach uses **line-level aggregation**: token-level scores average to line scores via formula `s̄ⱼ = (1/|Tⱼ|)∑ₜ∈Tⱼ sₜ`. Lines are retained if aggregated score exceeds threshold τ=0.5, maintaining structural integrity while achieving precise compression.",
+    "durationMs": 11871,
+    "url": "https://arxiv.org/html/2601.16746v1"
+  },
+  "sourceToolAssistantUUID": "da1a5a00-f33f-4c8e-a57a-f7cbe68507bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-11T23:10:18.583Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TWQvb68JEENXvrRsP2eZiB`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2509.11686",
+  "prompt": "I need to understand the exact claims about trace formats for program repair. Specifically: 1) What exactly does the paper say about Concise format vs SemCoder format for program repair? 2) Is the claim that 'Concise is the best format' accurate, or is it more nuanced? 3) What does the paper say about SemCoder being 'the best choice for program repair tasks'? 4) What exactly does the paper find about each of the 5 trace formats (NExT, SemCoder, CodeExecutor, Concise, Scratchpad) for repair? 5) Any specific numbers or tables about Pass@1 for different formats in repair tasks? 6) What does the paper say about 'more filtering → better results' gradient?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80ed8362-3fc1-43cc-b42a-b291a6a0120d",
+  "isSidechain": false,
+  "requestId": "req_011CawdDq9St4swXVGRQqK7o",
+  "type": "assistant",
+  "uuid": "5eb9297c-909b-498c-9a26-933b9dc35a12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VCTfep4nFwRoJ8s76DmUHx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 982,
+      "cache_read_input_tokens": 29521,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 982,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 29521,
+          "cache_creation_input_tokens": 982,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 982
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-11T23:10:24.699Z_
+
+<details><summary>↩ Tool result · `toolu_01TWQvb68JEENXvrRsP2eZiB`</summary>
+
+```text
+# Analysis of Trace Format Findings for Program Repair
+
+## Key Claims About Trace Formats
+
+**1. Concise vs. SemCoder:**
+The paper's claim is nuanced rather than declaring one definitively superior. For program repair specifically, Table 2 shows SemCoder achieves the best improvements (0.3 to 1.4 points over baselines), while Concise performs comparably across models.
+
+**2. SemCoder as "Best Choice":**
+The paper states: "SemCoder is the best choice for program repair tasks, and SemCoder (GPT4o) can consistently enhance the reasoning ability of Code LLMs." However, this recommendation comes with the caveat that improvements are "limited."
+
+**3. Performance Data Across Five Formats:**
+
+From Table 2 (DeepSeek-Coder repairs):
+- **SemCoder**: 40.5% (best for repairs)
+- **Concise**: 39.2%
+- **CodeExecutor**: 38.4%
+- **NExT**: 37.6%
+- **w/o trace**: 39.2% (no traces)
+
+The baseline without traces actually matches Concise, suggesting minimal real gains.
+
+**4. Main Finding:**
+The paper emphasizes a surprising conclusion: "fine-tuning with trace information cannot enhance the performance of Code LLMs" across repair, synthesis, and reasoning tasks. Most gains from semantic information were marginal or inconsistent.
+
+**5. "More Filtering → Better Results":**
+The paper doesn't establish this gradient. Dataset filtering (Section B.1) focused on quality control but didn't show that filtering intensity directly correlated with performance improvements.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5eb9297c-909b-498c-9a26-933b9dc35a12",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "6b6b1227-559e-47d9-aa22-9ead4309c8f0",
+  "toolUseResult": {
+    "bytes": 264152,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of Trace Format Findings for Program Repair\n\n## Key Claims About Trace Formats\n\n**1. Concise vs. SemCoder:**\nThe paper's claim is nuanced rather than declaring one definitively superior. For program repair specifically, Table 2 shows SemCoder achieves the best improvements (0.3 to 1.4 points over baselines), while Concise performs comparably across models.\n\n**2. SemCoder as \"Best Choice\":**\nThe paper states: \"SemCoder is the best choice for program repair tasks, and SemCoder (GPT4o) can consistently enhance the reasoning ability of Code LLMs.\" However, this recommendation comes with the caveat that improvements are \"limited.\"\n\n**3. Performance Data Across Five Formats:**\n\nFrom Table 2 (DeepSeek-Coder repairs):\n- **SemCoder**: 40.5% (best for repairs)\n- **Concise**: 39.2%\n- **CodeExecutor**: 38.4%\n- **NExT**: 37.6%\n- **w/o trace**: 39.2% (no traces)\n\nThe baseline without traces actually matches Concise, suggesting minimal real gains.\n\n**4. Main Finding:**\nThe paper emphasizes a surprising conclusion: \"fine-tuning with trace information cannot enhance the performance of Code LLMs\" across repair, synthesis, and reasoning tasks. Most gains from semantic information were marginal or inconsistent.\n\n**5. \"More Filtering → Better Results\":**\nThe paper doesn't establish this gradient. Dataset filtering (Section B.1) focused on quality control but didn't show that filtering intensity directly correlated with performance improvements.",
+    "durationMs": 6113,
+    "url": "https://arxiv.org/html/2509.11686"
+  },
+  "sourceToolAssistantUUID": "5eb9297c-909b-498c-9a26-933b9dc35a12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"When Do Code Semantics Help? Learned Trace Filtering for LLM-Based Pro…",
+  "leafUuid": "6b6b1227-559e-47d9-aa22-9ead4309c8f0",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learned trace filtering for adaptive program repair",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366"
+}
+```
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-11T23:10:27.957Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01G5AU5C9wXER2MK8gLBH7oC`</summary>
+
+```json
+{
+  "query": "CrossCodeEval benchmark cross-file code completion repository-level 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6b6b1227-559e-47d9-aa22-9ead4309c8f0",
+  "isSidechain": false,
+  "requestId": "req_011CawdEnYCyJ9vmZfREMe3Y",
+  "type": "assistant",
+  "uuid": "c14f4554-198c-4469-beee-811dbac5c8da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PFzdVrV2XeurfuwskEvB1y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 653,
+      "cache_read_input_tokens": 30503,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 653,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 30503,
+          "cache_creation_input_tokens": 653,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 653
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-11T23:10:34.593Z_
+
+<details><summary>↩ Tool result · `toolu_01G5AU5C9wXER2MK8gLBH7oC`</summary>
+
+```text
+Web search results for query: "CrossCodeEval benchmark cross-file code completion repository-level 2024 2025"
+
+Links: [{"title":"CrossCodeEval","url":"https://crosscodeeval.github.io/"},{"title":"A Diverse and Multilingual Benchmark for Cross-File Code ...","url":"https://proceedings.neurips.cc/paper_files/paper/2023/file/920f2dced7d32ab2ba2f1970bc306af6-Paper-Datasets_and_Benchmarks.pdf"},{"title":"[2310.11248] CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion","url":"https://arxiv.org/abs/2310.11248"},{"title":"GitHub - amazon-science/cceval: CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion (NeurIPS 2023)","url":"https://github.com/amazon-science/cceval"},{"title":"[PDF] CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CrossCodeEval:-A-Diverse-and-Multilingual-Benchmark-Ding-Wang/f1bd7ea3a63b78a60b5d90d91fdb4a1d7ac0de8e"},{"title":"NeurIPS Poster CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion","url":"https://neurips.cc/virtual/2023/poster/73423"},{"title":"CrossCodeEval Benchmark","url":"https://www.emergentmind.com/topics/crosscodeeval-benchmark"},{"title":"STALL+: Boosting LLM-based Repository-level Code Completion","url":"https://mingwei-liu.github.io/assets/pdf/arxiv2024STALL.pdf"},{"title":"RepoMasterEval: Evaluating Code Completion via Real-World Repositories","url":"https://chao-peng.github.io/publication/ase25industry/ase25industry.pdf"},{"title":"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019","url":"https://openreview.net/pdf?id=c2C2NQKjZw"}]
+
+Based on the search results, here's information about the CrossCodeEval benchmark:
+
+## Overview
+
+CrossCodeEval is a multilingual benchmark built on diverse real-world repositories in Python, Java, TypeScript, and C#. It is a multilingual, repository-level code completion benchmark that evaluates large language models on their ability to resolve cross-file dependencies in real-world software repositories.
+
+## Key Features
+
+It uses a static-analysis-based method to strictly require cross-file context for accurate code completion. The dataset is composed of 10k examples from 1k repositories in 4 languages.
+
+## Research Impact
+
+The benchmark was published at NeurIPS 2023 in the Datasets and Benchmarks track. CrossCodeEval's code and data are available at https://github.com/amazon-science/cceval.
+
+## Performance Results
+
+Experiments on leading models like CodeGen and StarCoder revealed that, while performance improves when given cross-file context, even the top models and context retrieval methods together are yet to achieve optimal performance. More recently, combining RAG with file-level dependencies and post-processing-phase integration achieves 34.67/52.05 line EM for DeepSeek-Coder-6.7B on Python/Java, which is the highest accuracy on the CrossCodeEval benchmark reported in 2024.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c14f4554-198c-4469-beee-811dbac5c8da",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "31858129-b6a6-4391-acfc-b674e17627e1",
+  "toolUseResult": {
+    "query": "CrossCodeEval benchmark cross-file code completion repository-level 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Vsxg693p7aQVuZHnSaw18u",
+        "content": [
+          {
+            "title": "CrossCodeEval",
+            "url": "https://crosscodeeval.github.io/"
+          },
+          {
+            "title": "A Diverse and Multilingual Benchmark for Cross-File Code ...",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/920f2dced7d32ab2ba2f1970bc306af6-Paper-Datasets_and_Benchmarks.pdf"
+          },
+          {
+            "title": "[2310.11248] CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion",
+            "url": "https://arxiv.org/abs/2310.11248"
+          },
+          {
+            "title": "GitHub - amazon-science/cceval: CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion (NeurIPS 2023)",
+            "url": "https://github.com/amazon-science/cceval"
+          },
+          {
+            "title": "[PDF] CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/CrossCodeEval:-A-Diverse-and-Multilingual-Benchmark-Ding-Wang/f1bd7ea3a63b78a60b5d90d91fdb4a1d7ac0de8e"
+          },
+          {
+            "title": "NeurIPS Poster CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion",
+            "url": "https://neurips.cc/virtual/2023/poster/73423"
+          },
+          {
+            "title": "CrossCodeEval Benchmark",
+            "url": "https://www.emergentmind.com/topics/crosscodeeval-benchmark"
+          },
+          {
+            "title": "STALL+: Boosting LLM-based Repository-level Code Completion",
+            "url": "https://mingwei-liu.github.io/assets/pdf/arxiv2024STALL.pdf"
+          },
+          {
+            "title": "RepoMasterEval: Evaluating Code Completion via Real-World Repositories",
+            "url": "https://chao-peng.github.io/publication/ase25industry/ase25industry.pdf"
+          },
+          {
+            "title": "000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019",
+            "url": "https://openreview.net/pdf?id=c2C2NQKjZw"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the CrossCodeEval benchmark:\n\n## Overview\n\nCrossCodeEval is a multilingual benchmark built on diverse real-world repositories in Python, Java, TypeScript, and C#. It is a multilingual, repository-level code completion benchmark that evaluates large language models on their ability to resolve cross-file dependencies in real-world software repositories.\n\n## Key Features\n\nIt uses a static-analysis-based method to strictly require cross-file context for accurate code completion. The dataset is composed of 10k examples from 1k repositories in 4 languages.\n\n## Research Impact\n\nThe benchmark was published at NeurIPS 2023 in the Datasets and Benchmarks track. CrossCodeEval's code and data are available at https://github.com/amazon-science/cceval.\n\n## Performance Results\n\nExperiments on leading models like CodeGen and StarCoder revealed that, while performance improves when given cross-file context, even the top models and context retrieval methods together are yet to achieve optimal performance. More recently, combining RAG with file-level dependencies and post-processing-phase integration achieves 34.67/52.05 line EM for DeepSeek-Coder-6.7B on Python/Java, which is the highest accuracy on the CrossCodeEval benchmark reported in 2024."
+    ],
+    "durationSeconds": 6.631344152999998
+  },
+  "sourceToolAssistantUUID": "c14f4554-198c-4469-beee-811dbac5c8da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-11T23:10:38.969Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01M16NNEMat7sXhrZeGRTQQ4`</summary>
+
+```json
+{
+  "query": "RepoBench benchmark repository-level code completion 2024 2025 latest results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31858129-b6a6-4391-acfc-b674e17627e1",
+  "isSidechain": false,
+  "requestId": "req_011CawdFWsAWJGK9twCw1PPx",
+  "type": "assistant",
+  "uuid": "12357f53-7556-43e8-98e6-dfe5f40769d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NMKpSSiXLEK3fHKFTGfGHC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 991,
+      "cache_read_input_tokens": 31156,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 991,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 31156,
+          "cache_creation_input_tokens": 991,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 991
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-11T23:10:45.463Z_
+
+<details><summary>↩ Tool result · `toolu_01M16NNEMat7sXhrZeGRTQQ4`</summary>
+
+```text
+Web search results for query: "RepoBench benchmark repository-level code completion 2024 2025 latest results"
+
+Links: [{"title":"GitHub - Leolty/repobench: ✨ RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems - ICLR 2024","url":"https://github.com/Leolty/repobench"},{"title":"[2306.03091] RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems","url":"https://arxiv.org/abs/2306.03091"},{"title":"RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems | OpenReview","url":"https://openreview.net/forum?id=pPjZIOuQuF"},{"title":"RepoBench Leaderboard","url":"https://llm-stats.com/benchmarks/repobench"},{"title":"ExecRepoBench","url":"https://execrepobench.github.io/"},{"title":"(PDF) RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems","url":"https://www.researchgate.net/publication/371311819_RepoBench_Benchmarking_Repository-Level_Code_Auto-Completion_Systems"},{"title":"REPOBENCH: BENCHMARKING REPOSITORY-LEVEL ...","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/d191ba4c8923ed8fd8935b7c98658b5f-Paper-Conference.pdf"},{"title":"REPOBENCH: BENCHMARKING REPOSITORY-LEVEL ...","url":"https://openreview.net/pdf?id=pPjZIOuQuF"},{"title":"[2306.03091] RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems","url":"https://ar5iv.labs.arxiv.org/html/2306.03091"},{"title":"RepoMasterEval: Evaluating Code Completion via Real-World Repositories","url":"https://arxiv.org/pdf/2408.03519"}]
+
+Based on the search results, here's information about RepoBench and the latest benchmark results:
+
+## RepoBench Overview
+
+RepoBench is a benchmark specifically designed for evaluating repository-level code auto-completion systems, supporting both Python and Java with three interconnected evaluation tasks: RepoBench-R (Retrieval), RepoBench-C (Code Completion), and RepoBench-P (Pipeline).
+
+## Latest Updates (2024)
+
+RepoBench v1.1 with newest code data became available on February 5th, 2024. RepoBench was accepted to ICLR 2024.
+
+RepoBench v1.1 was featured in the StarCoder 2 technical report as a benchmark for evaluating repository-level code completion capabilities, with evaluations at 5 levels (2k, 4k, 8k, 12k, and 16k tokens) to accommodate the 16k sequence length for most current open-source models.
+
+## Current Leaderboard Results
+
+According to the latest leaderboard data, Codestral-22B by Mistral AI currently leads with a score of 0.340.
+
+## Evaluation Metrics
+
+The benchmark calculates various metrics including Exact Match (EM), Edit Similarity (ES), and CodeBLEU (CB) scores for each setting.
+
+The repository is actively maintained at GitHub and serves as a live benchmark for the research community.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "12357f53-7556-43e8-98e6-dfe5f40769d3",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "110d3e88-26fe-4b0a-bb8c-fbc86a156913",
+  "toolUseResult": {
+    "query": "RepoBench benchmark repository-level code completion 2024 2025 latest results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AKCuGxiiaUfNxTwLzXicHU",
+        "content": [
+          {
+            "title": "GitHub - Leolty/repobench: ✨ RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems - ICLR 2024",
+            "url": "https://github.com/Leolty/repobench"
+          },
+          {
+            "title": "[2306.03091] RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems",
+            "url": "https://arxiv.org/abs/2306.03091"
+          },
+          {
+            "title": "RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems | OpenReview",
+            "url": "https://openreview.net/forum?id=pPjZIOuQuF"
+          },
+          {
+            "title": "RepoBench Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/repobench"
+          },
+          {
+            "title": "ExecRepoBench",
+            "url": "https://execrepobench.github.io/"
+          },
+          {
+            "title": "(PDF) RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems",
+            "url": "https://www.researchgate.net/publication/371311819_RepoBench_Benchmarking_Repository-Level_Code_Auto-Completion_Systems"
+          },
+          {
+            "title": "REPOBENCH: BENCHMARKING REPOSITORY-LEVEL ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/d191ba4c8923ed8fd8935b7c98658b5f-Paper-Conference.pdf"
+          },
+          {
+            "title": "REPOBENCH: BENCHMARKING REPOSITORY-LEVEL ...",
+            "url": "https://openreview.net/pdf?id=pPjZIOuQuF"
+          },
+          {
+            "title": "[2306.03091] RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems",
+            "url": "https://ar5iv.labs.arxiv.org/html/2306.03091"
+          },
+          {
+            "title": "RepoMasterEval: Evaluating Code Completion via Real-World Repositories",
+            "url": "https://arxiv.org/pdf/2408.03519"
+          }
+        ]
+      },
+      "Based on the search results, here's information about RepoBench and the latest benchmark results:\n\n## RepoBench Overview\n\nRepoBench is a benchmark specifically designed for evaluating repository-level code auto-completion systems, supporting both Python and Java with three interconnected evaluation tasks: RepoBench-R (Retrieval), RepoBench-C (Code Completion), and RepoBench-P (Pipeline).\n\n## Latest Updates (2024)\n\nRepoBench v1.1 with newest code data became available on February 5th, 2024. RepoBench was accepted to ICLR 2024.\n\nRepoBench v1.1 was featured in the StarCoder 2 technical report as a benchmark for evaluating repository-level code completion capabilities, with evaluations at 5 levels (2k, 4k, 8k, 12k, and 16k tokens) to accommodate the 16k sequence length for most current open-source models.\n\n## Current Leaderboard Results\n\nAccording to the latest leaderboard data, Codestral-22B by Mistral AI currently leads with a score of 0.340.\n\n## Evaluation Metrics\n\nThe benchmark calculates various metrics including Exact Match (EM), Edit Similarity (ES), and CodeBLEU (CB) scores for each setting.\n\nThe repository is actively maintained at GitHub and serves as a live benchmark for the research community."
+    ],
+    "durationSeconds": 6.490606188999983
+  },
+  "sourceToolAssistantUUID": "12357f53-7556-43e8-98e6-dfe5f40769d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-11T23:10:52.387Z_
+
+Now let me search for more details about the "Do Code Semantics Help?" paper's specific claims about Concise format and inference-time results, and also check for SWE-bench contamination issues.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "110d3e88-26fe-4b0a-bb8c-fbc86a156913",
+  "isSidechain": false,
+  "requestId": "req_011CawdGKJfLMk3xzz1Ft6N7",
+  "type": "assistant",
+  "uuid": "676020c7-a551-4fb4-915a-092980c611e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UjCoUSSLDaXeMctbBWrN3c",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 921,
+      "cache_read_input_tokens": 32147,
+      "output_tokens": 119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 921,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 119,
+          "cache_read_input_tokens": 32147,
+          "cache_creation_input_tokens": 921,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 921
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-11T23:10:53.028Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012X2XroSqByURnwKWD1MUJc`</summary>
+
+```json
+{
+  "query": "SWE-bench Verified contamination OpenAI stopped reporting frontier model 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "676020c7-a551-4fb4-915a-092980c611e5",
+  "isSidechain": false,
+  "requestId": "req_011CawdGKJfLMk3xzz1Ft6N7",
+  "type": "assistant",
+  "uuid": "2dd509b6-a67e-430e-9a7a-0aeec8ae4199",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UjCoUSSLDaXeMctbBWrN3c",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 921,
+      "cache_read_input_tokens": 32147,
+      "output_tokens": 119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 921,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 119,
+          "cache_read_input_tokens": 32147,
+          "cache_creation_input_tokens": 921,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 921
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-11T23:11:01.021Z_
+
+<details><summary>↩ Tool result · `toolu_012X2XroSqByURnwKWD1MUJc`</summary>
+
+```text
+Web search results for query: "SWE-bench Verified contamination OpenAI stopped reporting frontier model 2025 2026"
+
+Links: [{"title":"Why SWE-bench Verified no longer measures frontier coding capabilities | OpenAI","url":"https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/"},{"title":"Introducing SWE-bench Verified | OpenAI","url":"https://openai.com/index/introducing-swe-bench-verified/"},{"title":"LLM Benchmarks 2026: 30+ Models Ranked — MMLU, SWE-bench, Arena Elo & Pricing","url":"https://iternal.ai/llm-selection-guide"},{"title":"OpenAI o3 SWE-Bench Score: What Engineers Aren't Told","url":"https://neuralwired.com/2026/04/13/openai-o3-swe-bench-benchmark/"},{"title":"SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%","url":"https://www.morphllm.com/swe-bench-pro"},{"title":"OpenAI Abandons SWE-bench Verified After Finding 59% of Failed Tests Were Flawed","url":"https://blockchain.news/news/openai-abandons-swe-bench-verified-contamination-flawed-tests"},{"title":"OpenAI Drops SWE-bench Verified: What It Means for AI","url":"https://www.adwaitx.com/openai-swe-bench-verified-retired-ai-benchmarks/"},{"title":"⚡️The End of SWE-Bench Verified — Mia Glaese & Olivia Watkins, OpenAI Frontier Evals & Human Data","url":"https://www.latent.space/p/swe-bench-dead"},{"title":"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale","url":"https://labs.scale.com/leaderboard/swe_bench_pro_public"},{"title":"SWE-bench Verified","url":"https://www.swebench.com/verified.html"}]
+
+Based on the search results, here's what happened with SWE-bench Verified and OpenAI's frontier models:
+
+## Contamination Discovery
+
+SWE-bench Verified is increasingly contaminated and mismeasures frontier coding progress. OpenAI's audit found that all frontier models are contaminated on it, and 59.4% of hard tasks have flawed tests.
+
+OpenAI first encountered signs of contamination in their own models, with GPT-5.2 solving 31 tasks identified as almost impossible to solve, and showing in its chain of thought that it had information about release notes detailing codebase changes.
+
+## OpenAI Stopped Reporting
+
+OpenAI has stopped reporting Verified scores. On February 22, 2026, OpenAI published a post explaining their internal audit found defective tests, arbitrarily narrow pass criteria, and evidence of training data contamination.
+
+## The Performance Gap
+
+The contamination is significant: the best model scores 46% on Pro but 81% on Verified, because Verified is contaminated. Top frontier models score around 70%+ on SWE-bench Verified but drop to approximately 23% on SWE-bench Pro, reflecting how much of Verified performance came from training data recall rather than genuine problem-solving ability.
+
+## The Switch to SWE-bench Pro
+
+OpenAI recommends SWE-bench Pro. OpenAI explicitly endorses SWE-bench Pro, developed by Scale AI and released in September 2025, as the successor to SWE-bench Verified, addressing contamination by using copyleft-licensed and private commercial repositories.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2dd509b6-a67e-430e-9a7a-0aeec8ae4199",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "8fe530ea-3424-49b1-a3a4-455e86adc4bf",
+  "toolUseResult": {
+    "query": "SWE-bench Verified contamination OpenAI stopped reporting frontier model 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FsGWJYPXBzFNJb3QofJQwP",
+        "content": [
+          {
+            "title": "Why SWE-bench Verified no longer measures frontier coding capabilities | OpenAI",
+            "url": "https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/"
+          },
+          {
+            "title": "Introducing SWE-bench Verified | OpenAI",
+            "url": "https://openai.com/index/introducing-swe-bench-verified/"
+          },
+          {
+            "title": "LLM Benchmarks 2026: 30+ Models Ranked — MMLU, SWE-bench, Arena Elo & Pricing",
+            "url": "https://iternal.ai/llm-selection-guide"
+          },
+          {
+            "title": "OpenAI o3 SWE-Bench Score: What Engineers Aren't Told",
+            "url": "https://neuralwired.com/2026/04/13/openai-o3-swe-bench-benchmark/"
+          },
+          {
+            "title": "SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%",
+            "url": "https://www.morphllm.com/swe-bench-pro"
+          },
+          {
+            "title": "OpenAI Abandons SWE-bench Verified After Finding 59% of Failed Tests Were Flawed",
+            "url": "https://blockchain.news/news/openai-abandons-swe-bench-verified-contamination-flawed-tests"
+          },
+          {
+            "title": "OpenAI Drops SWE-bench Verified: What It Means for AI",
+            "url": "https://www.adwaitx.com/openai-swe-bench-verified-retired-ai-benchmarks/"
+          },
+          {
+            "title": "⚡️The End of SWE-Bench Verified — Mia Glaese & Olivia Watkins, OpenAI Frontier Evals & Human Data",
+            "url": "https://www.latent.space/p/swe-bench-dead"
+          },
+          {
+            "title": "SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale",
+            "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.swebench.com/verified.html"
+          }
+        ]
+      },
+      "Based on the search results, here's what happened with SWE-bench Verified and OpenAI's frontier models:\n\n## Contamination Discovery\n\nSWE-bench Verified is increasingly contaminated and mismeasures frontier coding progress. OpenAI's audit found that all frontier models are contaminated on it, and 59.4% of hard tasks have flawed tests.\n\nOpenAI first encountered signs of contamination in their own models, with GPT-5.2 solving 31 tasks identified as almost impossible to solve, and showing in its chain of thought that it had information about release notes detailing codebase changes.\n\n## OpenAI Stopped Reporting\n\nOpenAI has stopped reporting Verified scores. On February 22, 2026, OpenAI published a post explaining their internal audit found defective tests, arbitrarily narrow pass criteria, and evidence of training data contamination.\n\n## The Performance Gap\n\nThe contamination is significant: the best model scores 46% on Pro but 81% on Verified, because Verified is contaminated. Top frontier models score around 70%+ on SWE-bench Verified but drop to approximately 23% on SWE-bench Pro, reflecting how much of Verified performance came from training data recall rather than genuine problem-solving ability.\n\n## The Switch to SWE-bench Pro\n\nOpenAI recommends SWE-bench Pro. OpenAI explicitly endorses SWE-bench Pro, developed by Scale AI and released in September 2025, as the successor to SWE-bench Verified, addressing contamination by using copyleft-licensed and private commercial repositories."
+    ],
+    "durationSeconds": 7.988205401999992
+  },
+  "sourceToolAssistantUUID": "2dd509b6-a67e-430e-9a7a-0aeec8ae4199",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-11T23:11:10.081Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_014gWNYpgxEAJCJ7V2U3qZjD`</summary>
+
+```json
+{
+  "url": "https://aclanthology.org/2025.findings-emnlp.548.pdf",
+  "prompt": "I need the EXACT claims about the Concise trace format for program repair. Specifically: 1) Look at all tables showing repair results. What are the exact Pass@1 numbers for each trace format (NExT, SemCoder, CodeExecutor, Concise, Scratchpad, w/o trace) across different models? 2) Does the paper literally say 'Concise is the best format'? Or does it say something different? 3) What does the paper say about Concise at INFERENCE time (not fine-tuning)? 4) The exact quote about Concise achieving 'Pass@1 no worse than w/o trace in 11 out of 14 cases'. 5) What is the paper's actual recommendation for trace format in repair? 6) Any mention of 'more filtering leads to better results'?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8fe530ea-3424-49b1-a3a4-455e86adc4bf",
+  "isSidechain": false,
+  "requestId": "req_011CawdHTvMwjrYf98njEJ9X",
+  "type": "assistant",
+  "uuid": "4ae4d134-cf78-4e15-a89e-84e1558bc0ec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017yESkJpx3Ps23NL85DswSg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1053,
+      "cache_read_input_tokens": 33068,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1053,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 33068,
+          "cache_creation_input_tokens": 1053,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1053
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-11T23:11:16.795Z_
+
+<details><summary>↩ Tool result · `toolu_014gWNYpgxEAJCJ7V2U3qZjD`</summary>
+
+```text
+# Analysis of Concise Trace Format Claims
+
+Based on the PDF content provided, I cannot extract the specific numerical Pass@1 results or exact quotes you're requesting. The document appears to be a compressed/encoded PDF containing research about program repair and trace formats, but the text is not clearly legible in the provided format.
+
+However, I can note what would typically be found in such research:
+
+**Regarding claims about "Concise is the best format":**
+The paper likely presents nuanced findings rather than an absolute claim. Research typically shows trade-offs between different trace formats.
+
+**On inference-time performance:**
+If mentioned, this would differ from fine-tuning results, as trace filtering effects often vary across training versus evaluation phases.
+
+**Key limitations of this response:**
+- I cannot provide the exact Pass@1 numbers across models without clear text extraction
+- I cannot confirm the "11 out of 14 cases" quote without readable source material
+- I cannot verify specific recommendations without legible passages
+
+**Recommendation:**
+To get accurate answers to your questions, you would need:
+1. A text-extractable version of the PDF
+2. Direct access to the paper's tables and methodology sections
+3. Specific page numbers for the results being discussed
+
+If you can provide the text content in a more readable format, I can give you precise answers with proper quotation verification.
+
+[Binary content (application/pdf, 463.6KB) also saved to /home/ubuntu/.claude-account-3/projects/-/45e4cbcd-20b9-482e-a8b4-50469acc4366/tool-results/webfetch-1778541071671-wmzxv8.pdf]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4ae4d134-cf78-4e15-a89e-84e1558bc0ec",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "ea6a7572-d880-40d3-acf0-4a3cd9cc65da",
+  "toolUseResult": {
+    "bytes": 474735,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of Concise Trace Format Claims\n\nBased on the PDF content provided, I cannot extract the specific numerical Pass@1 results or exact quotes you're requesting. The document appears to be a compressed/encoded PDF containing research about program repair and trace formats, but the text is not clearly legible in the provided format.\n\nHowever, I can note what would typically be found in such research:\n\n**Regarding claims about \"Concise is the best format\":**\nThe paper likely presents nuanced findings rather than an absolute claim. Research typically shows trade-offs between different trace formats.\n\n**On inference-time performance:**\nIf mentioned, this would differ from fine-tuning results, as trace filtering effects often vary across training versus evaluation phases.\n\n**Key limitations of this response:**\n- I cannot provide the exact Pass@1 numbers across models without clear text extraction\n- I cannot confirm the \"11 out of 14 cases\" quote without readable source material\n- I cannot verify specific recommendations without legible passages\n\n**Recommendation:**\nTo get accurate answers to your questions, you would need:\n1. A text-extractable version of the PDF\n2. Direct access to the paper's tables and methodology sections\n3. Specific page numbers for the results being discussed\n\nIf you can provide the text content in a more readable format, I can give you precise answers with proper quotation verification.\n\n[Binary content (application/pdf, 463.6KB) also saved to /home/ubuntu/.claude-account-3/projects/-/45e4cbcd-20b9-482e-a8b4-50469acc4366/tool-results/webfetch-1778541071671-wmzxv8.pdf]",
+    "durationMs": 6709,
+    "url": "https://aclanthology.org/2025.findings-emnlp.548.pdf"
+  },
+  "sourceToolAssistantUUID": "4ae4d134-cf78-4e15-a89e-84e1558bc0ec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-11T23:11:25.966Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01LfPVK3osKPtty1yhRo7TLX`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2509.11686",
+  "prompt": "Find the EXACT claims about Concise trace format for program repair. I need: 1) The exact sentence/paragraph where the paper discusses Concise format's performance relative to other formats in REPAIR tasks. 2) The exact sentence where SemCoder is called 'the best choice for program repair tasks'. 3) The exact claim about Concise achieving Pass@1 'no worse than w/o trace in 11 out of 14 cases' - is this about inference or fine-tuning? 4) Tables showing Pass@1 for repair with different trace formats. 5) Any discussion about why Concise avoids degradation while richer formats sometimes hurt. 6) The paper's overall conclusion about trace format selection for repair."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea6a7572-d880-40d3-acf0-4a3cd9cc65da",
+  "isSidechain": false,
+  "requestId": "req_011CawdJdP9xpX64YfkdHn2i",
+  "type": "assistant",
+  "uuid": "0f3fd203-e77c-4167-8a0d-8471b82e66e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RukvcyLmnUaivEHm6FZXXE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 669,
+      "cache_read_input_tokens": 34121,
+      "output_tokens": 246,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 669,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 246,
+          "cache_read_input_tokens": 34121,
+          "cache_creation_input_tokens": 669,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 669
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"When Do Code Semantics Help? Learned Trace Filtering for LLM-Based Pro…",
+  "leafUuid": "0f3fd203-e77c-4167-8a0d-8471b82e66e5",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learned trace filtering for adaptive program repair",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366"
+}
+```
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-11T23:11:31.848Z_
+
+<details><summary>↩ Tool result · `toolu_01LfPVK3osKPtty1yhRo7TLX`</summary>
+
+```text
+# Analysis of Concise Trace Format Claims
+
+## 1. Concise Performance in Repair Tasks
+
+The paper states in Section 5.1: "Surprisingly, the results demonstrate that fine-tuning with trace information cannot enhance the performance of Code LLMs. Specifically, for Program Repair tasks, compared to models trained without traces (w/o trace), only SemCoder contributes to fine-tuning but with limited improvements."
+
+Concise is not highlighted as superior for repair during fine-tuning.
+
+## 2. SemCoder as "Best Choice"
+
+From Section 5.1: "Considering different tasks separately, SemCoder is the best choice for program repair tasks, and SemCoder (GPT4o) can consistently enhance the reasoning ability of Code LLMs."
+
+## 3. Concise's 11 out of 14 Cases Claim
+
+This appears in Section 5.3 (inference): "However, one semantic representation (Concise) stands out, which achieved Pass@1 no worse than w/o trace in 11 out of 14 cases."
+
+**This refers to test-time scaling inference, NOT fine-tuning.**
+
+## 4. Repair Performance Tables
+
+Table 2 shows full fine-tuning results across three models. For DeepSeek-Coder MBPP-R repair task: w/o trace achieved 39.2, while Concise scored 39.2 (identical).
+
+## 5. Why Concise Avoids Degradation
+
+The paper does not explicitly explain why Concise performs better during inference. It only notes that Concise "ignores variables whose values remain unchanged," creating a simpler representation.
+
+## 6. Overall Conclusion on Trace Selection
+
+The paper concludes: "Similar to fine-tuning, most of the trace-based semantic representations cannot enhance the performance of Code LLMs at test time except for Concise."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0f3fd203-e77c-4167-8a0d-8471b82e66e5",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "04ac9917-df3f-4173-b354-28ce285d4a59",
+  "toolUseResult": {
+    "bytes": 264152,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of Concise Trace Format Claims\n\n## 1. Concise Performance in Repair Tasks\n\nThe paper states in Section 5.1: \"Surprisingly, the results demonstrate that fine-tuning with trace information cannot enhance the performance of Code LLMs. Specifically, for Program Repair tasks, compared to models trained without traces (w/o trace), only SemCoder contributes to fine-tuning but with limited improvements.\"\n\nConcise is not highlighted as superior for repair during fine-tuning.\n\n## 2. SemCoder as \"Best Choice\"\n\nFrom Section 5.1: \"Considering different tasks separately, SemCoder is the best choice for program repair tasks, and SemCoder (GPT4o) can consistently enhance the reasoning ability of Code LLMs.\"\n\n## 3. Concise's 11 out of 14 Cases Claim\n\nThis appears in Section 5.3 (inference): \"However, one semantic representation (Concise) stands out, which achieved Pass@1 no worse than w/o trace in 11 out of 14 cases.\"\n\n**This refers to test-time scaling inference, NOT fine-tuning.**\n\n## 4. Repair Performance Tables\n\nTable 2 shows full fine-tuning results across three models. For DeepSeek-Coder MBPP-R repair task: w/o trace achieved 39.2, while Concise scored 39.2 (identical).\n\n## 5. Why Concise Avoids Degradation\n\nThe paper does not explicitly explain why Concise performs better during inference. It only notes that Concise \"ignores variables whose values remain unchanged,\" creating a simpler representation.\n\n## 6. Overall Conclusion on Trace Selection\n\nThe paper concludes: \"Similar to fine-tuning, most of the trace-based semantic representations cannot enhance the performance of Code LLMs at test time except for Concise.\"",
+    "durationMs": 5878,
+    "url": "https://arxiv.org/html/2509.11686"
+  },
+  "sourceToolAssistantUUID": "0f3fd203-e77c-4167-8a0d-8471b82e66e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-11T23:11:35.200Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NquK4Js7voSpREn9so4LPu`</summary>
+
+```json
+{
+  "query": "learned compression execution traces program repair code LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "04ac9917-df3f-4173-b354-28ce285d4a59",
+  "isSidechain": false,
+  "requestId": "req_011CawdKjdELCRwF1Ybnupk8",
+  "type": "assistant",
+  "uuid": "004758e5-98df-4f5e-a52b-2c186e39a112",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PwRewcXwW33FBbbWVqnuSD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 694,
+      "cache_read_input_tokens": 34790,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 694,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 34790,
+          "cache_creation_input_tokens": 694,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 694
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-11T23:11:42.541Z_
+
+<details><summary>↩ Tool result · `toolu_01NquK4Js7voSpREn9so4LPu`</summary>
+
+```text
+Web search results for query: "learned compression execution traces program repair code LLM 2025 2026"
+
+Links: [{"title":"[2505.04441] Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs","url":"https://arxiv.org/abs/2505.04441"},{"title":"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs","url":"https://arxiv.org/html/2505.04441v1"},{"title":"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate","url":"https://arxiv.org/html/2604.02647v1"},{"title":"A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression","url":"https://arxiv.org/html/2604.19572v1"},{"title":"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v1"},{"title":"LLMs for Code Repair: How AI Fixes Broken Code Efficiently","url":"https://www.guvi.in/blog/llms-for-code-repair/"},{"title":"A Survey of LLM-based Software Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v2"},{"title":"Can LLMs Compress (and Decompress)? Evaluating Code Understanding and Execution via Invertibility","url":"https://arxiv.org/html/2601.13398"},{"title":"Towards Effectively Leveraging Execution Traces for ...","url":"https://aclanthology.org/2025.knowledgenlp-1.17.pdf"},{"title":"GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4APR"}]
+
+Based on the web search results, here's what I found related to your query about learned compression, execution traces, program repair, and code LLMs from 2025-2026:
+
+## Key Research Areas
+
+**Execution Traces for Program Repair with LLMs:**
+
+Most approaches to LLM-based program repair are limited to static analysis of programs while disregarding runtime behavior. Researchers have aimed to remedy this by augmenting standard APR prompts with program execution traces. However, the results have been mixed.
+
+Simply incorporating execution traces into prompts provides limited performance improvement over trace-free baselines in only 2 out of 6 tested dataset/model configurations, and the effectiveness of execution traces for APR diminishes as their complexity increases.
+
+**Optimized Trace Representations:**
+
+Researchers have experimented with three different representations of execution traces: traces in a collated format, LLM-optimized traces, and trace representation conditionally selected based on querying the LLM's confidence. LLM-optimized trace-based prompts provide the most consistent results with respect to program repair.
+
+**Compression of Execution Context:**
+
+Terminal agents suffer from severe context redundancy since execution produces large amounts of noisy and repetitive observations. Existing compression methods mainly rely on truncation, hand-crafted heuristics, generic LLM summarization, or context management tools.
+
+**Recent Surveys:**
+
+A comprehensive survey published in 2025 reviews 63 state-of-the-art APR systems from January 2022 to June 2025, covering trends in fine-tuning, reinforcement learning, and agentic approaches for program repair with LLMs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "004758e5-98df-4f5e-a52b-2c186e39a112",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "e9e1d89d-4f14-4599-9710-05e88b117897",
+  "toolUseResult": {
+    "query": "learned compression execution traces program repair code LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EYm68EmjUUkfDrapkMn4a5",
+        "content": [
+          {
+            "title": "[2505.04441] Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs",
+            "url": "https://arxiv.org/abs/2505.04441"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs",
+            "url": "https://arxiv.org/html/2505.04441v1"
+          },
+          {
+            "title": "Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate",
+            "url": "https://arxiv.org/html/2604.02647v1"
+          },
+          {
+            "title": "A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression",
+            "url": "https://arxiv.org/html/2604.19572v1"
+          },
+          {
+            "title": "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v1"
+          },
+          {
+            "title": "LLMs for Code Repair: How AI Fixes Broken Code Efficiently",
+            "url": "https://www.guvi.in/blog/llms-for-code-repair/"
+          },
+          {
+            "title": "A Survey of LLM-based Software Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v2"
+          },
+          {
+            "title": "Can LLMs Compress (and Decompress)? Evaluating Code Understanding and Execution via Invertibility",
+            "url": "https://arxiv.org/html/2601.13398"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for ...",
+            "url": "https://aclanthology.org/2025.knowledgenlp-1.17.pdf"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4APR"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found related to your query about learned compression, execution traces, program repair, and code LLMs from 2025-2026:\n\n## Key Research Areas\n\n**Execution Traces for Program Repair with LLMs:**\n\nMost approaches to LLM-based program repair are limited to static analysis of programs while disregarding runtime behavior. Researchers have aimed to remedy this by augmenting standard APR prompts with program execution traces. However, the results have been mixed.\n\nSimply incorporating execution traces into prompts provides limited performance improvement over trace-free baselines in only 2 out of 6 tested dataset/model configurations, and the effectiveness of execution traces for APR diminishes as their complexity increases.\n\n**Optimized Trace Representations:**\n\nResearchers have experimented with three different representations of execution traces: traces in a collated format, LLM-optimized traces, and trace representation conditionally selected based on querying the LLM's confidence. LLM-optimized trace-based prompts provide the most consistent results with respect to program repair.\n\n**Compression of Execution Context:**\n\nTerminal agents suffer from severe context redundancy since execution produces large amounts of noisy and repetitive observations. Existing compression methods mainly rely on truncation, hand-crafted heuristics, generic LLM summarization, or context management tools.\n\n**Recent Surveys:**\n\nA comprehensive survey published in 2025 reviews 63 state-of-the-art APR systems from January 2022 to June 2025, covering trends in fine-tuning, reinforcement learning, and agentic approaches for program repair with LLMs."
+    ],
+    "durationSeconds": 7.336464160000003
+  },
+  "sourceToolAssistantUUID": "004758e5-98df-4f5e-a52b-2c186e39a112",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-11T23:11:45.639Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JkmPekQYQNjduzDNdtJWPv`</summary>
+
+```json
+{
+  "query": "Squeez cited by follow-up work tool output pruning coding agents 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9e1d89d-4f14-4599-9710-05e88b117897",
+  "isSidechain": false,
+  "requestId": "req_011CawdLXbCrVY9xNTZ8YsCC",
+  "type": "assistant",
+  "uuid": "11b8c0d5-7a43-48f5-a577-ace1c0dbf07a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VVWMRXnKpFajCKhuAqTUrZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 35484,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 974,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 35484,
+          "cache_creation_input_tokens": 974,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 974
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-11T23:11:53.760Z_
+
+<details><summary>↩ Tool result · `toolu_01JkmPekQYQNjduzDNdtJWPv`</summary>
+
+```text
+Web search results for query: "Squeez cited by follow-up work tool output pruning coding agents 2026"
+
+Links: [{"title":"Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents","url":"https://arxiv.org/html/2604.04979"},{"title":"GitHub - KRLabsOrg/squeez: Squeeze verbose LLM agent tool output down to only the relevant lines · GitHub","url":"https://github.com/KRLabsOrg/squeez"},{"title":"Paper page - Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents","url":"https://huggingface.co/papers/2604.04979"},{"title":"[2604.04979] Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents","url":"https://arxiv.org/abs/2604.04979"},{"title":"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://www.arxiv.org/pdf/2601.16746"},{"title":"GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub","url":"https://github.com/VoltAgent/awesome-ai-agent-papers"},{"title":"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://arxiv.org/html/2601.16746"},{"title":"AI Coding Tools in 2026: How to Work With Agents Without Losing Control","url":"https://www.the-main-thread.com/p/ai-coding-tools-2026-java-developers-agents-control"},{"title":"[2601.16746] SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://arxiv.org/abs/2601.16746"},{"title":"We Tested 15 AI Coding Agents (2026). Only 3 Changed How We Ship.","url":"https://www.morphllm.com/ai-coding-agent"}]
+
+Based on the search results, here's what I found:
+
+Squeez is a task-conditioned tool-output pruner for coding agents, with a benchmark that pairs grounded span annotations over 27 tool types with real SWE-bench workflows and synthetic multi-ecosystem observations.
+
+The task is: given a focused query and one tool output, return the smallest verbatim evidence block the agent should inspect next.
+
+The research introduces a benchmark of 11,477 examples built from SWE-bench repository interactions and synthetic multi-ecosystem tool outputs, fine-tunes Qwen 3.5 2B with LoRA, and achieves 0.86 recall and 0.80 F1 while removing 92% of input tokens, outperforming zero-shot Qwen 3.5 35B A3B by 11 recall points.
+
+Two models are available: a generative Qwen 3.5 2B (0.80 F1, 92% compression) or a smaller extractive ModernBERT alternative. The model works as a CLI pipe, a Python library, or a vLLM server.
+
+The paper was published in April 2026 by Ádám Kovács from KR Labs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "11b8c0d5-7a43-48f5-a577-ace1c0dbf07a",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "b2181f7c-aea3-4e45-97df-cd7b3186692d",
+  "toolUseResult": {
+    "query": "Squeez cited by follow-up work tool output pruning coding agents 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GkqD1dqMrkqj4kiNK1fo97",
+        "content": [
+          {
+            "title": "Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents",
+            "url": "https://arxiv.org/html/2604.04979"
+          },
+          {
+            "title": "GitHub - KRLabsOrg/squeez: Squeeze verbose LLM agent tool output down to only the relevant lines · GitHub",
+            "url": "https://github.com/KRLabsOrg/squeez"
+          },
+          {
+            "title": "Paper page - Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents",
+            "url": "https://huggingface.co/papers/2604.04979"
+          },
+          {
+            "title": "[2604.04979] Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents",
+            "url": "https://arxiv.org/abs/2604.04979"
+          },
+          {
+            "title": "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://www.arxiv.org/pdf/2601.16746"
+          },
+          {
+            "title": "GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub",
+            "url": "https://github.com/VoltAgent/awesome-ai-agent-papers"
+          },
+          {
+            "title": "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://arxiv.org/html/2601.16746"
+          },
+          {
+            "title": "AI Coding Tools in 2026: How to Work With Agents Without Losing Control",
+            "url": "https://www.the-main-thread.com/p/ai-coding-tools-2026-java-developers-agents-control"
+          },
+          {
+            "title": "[2601.16746] SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://arxiv.org/abs/2601.16746"
+          },
+          {
+            "title": "We Tested 15 AI Coding Agents (2026). Only 3 Changed How We Ship.",
+            "url": "https://www.morphllm.com/ai-coding-agent"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found:\n\nSqueez is a task-conditioned tool-output pruner for coding agents, with a benchmark that pairs grounded span annotations over 27 tool types with real SWE-bench workflows and synthetic multi-ecosystem observations.\n\nThe task is: given a focused query and one tool output, return the smallest verbatim evidence block the agent should inspect next.\n\nThe research introduces a benchmark of 11,477 examples built from SWE-bench repository interactions and synthetic multi-ecosystem tool outputs, fine-tunes Qwen 3.5 2B with LoRA, and achieves 0.86 recall and 0.80 F1 while removing 92% of input tokens, outperforming zero-shot Qwen 3.5 35B A3B by 11 recall points.\n\nTwo models are available: a generative Qwen 3.5 2B (0.80 F1, 92% compression) or a smaller extractive ModernBERT alternative. The model works as a CLI pipe, a Python library, or a vLLM server.\n\nThe paper was published in April 2026 by Ádám Kovács from KR Labs."
+    ],
+    "durationSeconds": 8.11682480099998
+  },
+  "sourceToolAssistantUUID": "11b8c0d5-7a43-48f5-a577-ace1c0dbf07a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 52 · 2026-05-11T23:11:53.764Z_
+
+```json
+{
+  "parentUuid": "b2181f7c-aea3-4e45-97df-cd7b3186692d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "26db0234-aa64-472d-9cce-7ff563e4165f",
+  "timestamp": "2026-05-11T23:11:53.764Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-11T23:11:56.863Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WmuEbZDFmQp7rpqPVDy4kR`</summary>
+
+```json
+{
+  "query": "observational context compression terminal agents execution traces 2604.19572 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26db0234-aa64-472d-9cce-7ff563e4165f",
+  "isSidechain": false,
+  "requestId": "req_011CawdMMPpGTZnaJTwQLDNc",
+  "type": "assistant",
+  "uuid": "549b0e7c-8d18-4ae1-82e6-d0357dabbff3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DkB4kDRBoeAxcqY5ddVeM3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1010,
+      "cache_read_input_tokens": 36458,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1010,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 36458,
+          "cache_creation_input_tokens": 1010,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1010
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-11T23:12:04.223Z_
+
+<details><summary>↩ Tool result · `toolu_01WmuEbZDFmQp7rpqPVDy4kR`</summary>
+
+```text
+Web search results for query: "observational context compression terminal agents execution traces 2604.19572 2026"
+
+Links: [{"title":"[2604.19572] A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression","url":"https://arxiv.org/abs/2604.19572"},{"title":"A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression","url":"https://arxiv.org/html/2604.19572"},{"title":"Paper page - A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression","url":"https://huggingface.co/papers/2604.19572"},{"title":"A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression | Takara TLDR","url":"https://tldr.takara.ai/p/2604.19572"},{"title":"Experience Compression Spectrum: Unifying Memory, Skills, and Rules in LLM Agents","url":"https://arxiv.org/html/2604.15877"},{"title":"ContextBudget: Budget-Aware Context Management for Long-Horizon Search Agents","url":"https://arxiv.org/html/2604.01664"},{"title":"Context Engineering for Commercial Agent Systems - Jeremy Daly","url":"https://www.jeremydaly.com/context-engineering-for-commercial-agent-systems/"},{"title":"Context Engineering for AI Agents: Token Economics and Production Optimization Strategies","url":"https://www.getmaxim.ai/articles/context-engineering-for-ai-agents-production-optimization-strategies/"},{"title":"[2604.15877] Experience Compression Spectrum: Unifying Memory, Skills, and Rules in LLM Agents","url":"https://arxiv.org/abs/2604.15877"},{"title":"Automatic Context Compression in LLM Agents: Why Agents Need to Forget — and How to Help Them Do It Well | by Plaban Nayak | The AI Forum | Mar, 2026 | Medium","url":"https://medium.com/the-ai-forum/automatic-context-compression-in-llm-agents-why-agents-need-to-forget-and-how-to-help-them-do-it-43bff14c341d"}]
+
+I found comprehensive information about the research paper you searched for. Here's what I discovered:
+
+## Paper Overview
+
+The paper is titled "A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression" (arXiv 2604.19572), submitted on April 21, 2026.
+
+## Key Problem
+
+As model capabilities advance, research has increasingly shifted toward long-horizon, multi-turn terminal-centric agentic tasks where raw environment feedback is often preserved in the interaction history to support future decisions. However, repeatedly retaining such feedback introduces substantial redundancy and causes cumulative token cost to grow quadratically with the number of steps, hindering long-horizon reasoning.
+
+## Proposed Solution
+
+The researchers propose TACO, a plug-and-play, self-evolving Terminal Agent Compression framework that automatically discovers and refines compression rules from interaction trajectories for existing terminal agents. Because terminal environments are highly heterogeneous across repositories, commands, and execution states, heuristic-based or fixed-prompt compression methods are difficult to generalize.
+
+## Evaluation
+
+Experiments on TerminalBench (TB 1.0 and TB 2.0) and four additional terminal-related benchmarks (i.e., SWE-Bench Lite, CompileBench, DevEval, and CRUST-Bench) show that TACO consistently improves performance.
+
+The paper addresses a critical bottleneck in scaling terminal agents to handle long, complex workflows by enabling intelligent compression of execution traces while preserving task-critical information.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "549b0e7c-8d18-4ae1-82e6-d0357dabbff3",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "70fa1f1c-1622-4c2c-8333-8697d84e1b2c",
+  "toolUseResult": {
+    "query": "observational context compression terminal agents execution traces 2604.19572 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PKKVQdSUjRb3bTdkkH9P97",
+        "content": [
+          {
+            "title": "[2604.19572] A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression",
+            "url": "https://arxiv.org/abs/2604.19572"
+          },
+          {
+            "title": "A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression",
+            "url": "https://arxiv.org/html/2604.19572"
+          },
+          {
+            "title": "Paper page - A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression",
+            "url": "https://huggingface.co/papers/2604.19572"
+          },
+          {
+            "title": "A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression | Takara TLDR",
+            "url": "https://tldr.takara.ai/p/2604.19572"
+          },
+          {
+            "title": "Experience Compression Spectrum: Unifying Memory, Skills, and Rules in LLM Agents",
+            "url": "https://arxiv.org/html/2604.15877"
+          },
+          {
+            "title": "ContextBudget: Budget-Aware Context Management for Long-Horizon Search Agents",
+            "url": "https://arxiv.org/html/2604.01664"
+          },
+          {
+            "title": "Context Engineering for Commercial Agent Systems - Jeremy Daly",
+            "url": "https://www.jeremydaly.com/context-engineering-for-commercial-agent-systems/"
+          },
+          {
+            "title": "Context Engineering for AI Agents: Token Economics and Production Optimization Strategies",
+            "url": "https://www.getmaxim.ai/articles/context-engineering-for-ai-agents-production-optimization-strategies/"
+          },
+          {
+            "title": "[2604.15877] Experience Compression Spectrum: Unifying Memory, Skills, and Rules in LLM Agents",
+            "url": "https://arxiv.org/abs/2604.15877"
+          },
+          {
+            "title": "Automatic Context Compression in LLM Agents: Why Agents Need to Forget — and How to Help Them Do It Well | by Plaban Nayak | The AI Forum | Mar, 2026 | Medium",
+            "url": "https://medium.com/the-ai-forum/automatic-context-compression-in-llm-agents-why-agents-need-to-forget-and-how-to-help-them-do-it-43bff14c341d"
+          }
+        ]
+      },
+      "I found comprehensive information about the research paper you searched for. Here's what I discovered:\n\n## Paper Overview\n\nThe paper is titled \"A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression\" (arXiv 2604.19572), submitted on April 21, 2026.\n\n## Key Problem\n\nAs model capabilities advance, research has increasingly shifted toward long-horizon, multi-turn terminal-centric agentic tasks where raw environment feedback is often preserved in the interaction history to support future decisions. However, repeatedly retaining such feedback introduces substantial redundancy and causes cumulative token cost to grow quadratically with the number of steps, hindering long-horizon reasoning.\n\n## Proposed Solution\n\nThe researchers propose TACO, a plug-and-play, self-evolving Terminal Agent Compression framework that automatically discovers and refines compression rules from interaction trajectories for existing terminal agents. Because terminal environments are highly heterogeneous across repositories, commands, and execution states, heuristic-based or fixed-prompt compression methods are difficult to generalize.\n\n## Evaluation\n\nExperiments on TerminalBench (TB 1.0 and TB 2.0) and four additional terminal-related benchmarks (i.e., SWE-Bench Lite, CompileBench, DevEval, and CRUST-Bench) show that TACO consistently improves performance.\n\nThe paper addresses a critical bottleneck in scaling terminal agents to handle long, complex workflows by enabling intelligent compression of execution traces while preserving task-critical information."
+    ],
+    "durationSeconds": 7.355654351999983
+  },
+  "sourceToolAssistantUUID": "549b0e7c-8d18-4ae1-82e6-d0357dabbff3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-11T23:12:09.052Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018y75KYg2QD8zg3uotvxJjR`</summary>
+
+```json
+{
+  "query": "SWE-bench Pro benchmark alternative contamination-free 2026 coding agents evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70fa1f1c-1622-4c2c-8333-8697d84e1b2c",
+  "isSidechain": false,
+  "requestId": "req_011CawdN83AtFR3UdEMEhTsg",
+  "type": "assistant",
+  "uuid": "d581f47a-eceb-45ff-8697-71f71b369356",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0129qLtSzmFDMTdokFb5S275",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 997,
+      "cache_read_input_tokens": 37468,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 997,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 37468,
+          "cache_creation_input_tokens": 997,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 997
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-11T23:12:16.736Z_
+
+<details><summary>↩ Tool result · `toolu_018y75KYg2QD8zg3uotvxJjR`</summary>
+
+```text
+Web search results for query: "SWE-bench Pro benchmark alternative contamination-free 2026 coding agents evaluation"
+
+Links: [{"title":"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale","url":"https://labs.scale.com/leaderboard/swe_bench_pro_public"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"SWE-bench Verified","url":"https://www.vals.ai/benchmarks/swebench"},{"title":"[2509.16941] SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?","url":"https://arxiv.org/abs/2509.16941"},{"title":"SWE-bench Verified","url":"https://www.swebench.com/verified.html"},{"title":"SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean","url":"https://www.codeant.ai/blogs/swe-bench-scores"},{"title":"SWE-Bench Pro Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/swe-bench-pro"},{"title":"arXiv:2509.16941v2 [cs.SE] 14 Nov 2025 SWE-Bench Pro: Can AI Agents Solve","url":"https://arxiv.org/pdf/2509.16941"},{"title":"LLM Benchmarks 2026: 30+ Models Ranked — MMLU, SWE-bench, Arena Elo & Pricing","url":"https://iternal.ai/llm-selection-guide"},{"title":"SWE-Bench Verified Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/swe-bench-verified"}]
+
+Based on the search results, here's what I found about SWE-bench Pro and contamination-free benchmarks for evaluating coding agents in 2026:
+
+## SWE-Bench Pro Overview
+
+SWE-Bench Pro is a benchmark designed to provide a rigorous and realistic evaluation of AI agents for software engineering. SWE-BENCH PRO contains 1,865 problems sourced from a diverse set of 41 actively maintained repositories spanning business applications, B2B services, and developer tools.
+
+## Contamination-Resistant Design
+
+SWE-Bench Pro was developed to address several limitations in existing benchmarks by tackling four key challenges: Data Contamination—Models have likely seen the evaluation code during training, making it hard to know if they are problem-solving or recalling a memorized solution.
+
+To address contamination, the benchmark is constructed from GPL-style copyleft repositories and private proprietary codebases, creating legal and access barriers that reduce the likelihood of contamination. Because the private codebases are legally inaccessible to model trainers, contamination is structurally prevented.
+
+## Performance Context
+
+The benchmark is significantly more challenging than its predecessors; top models score around 23% on the SWE-Bench Pro public set, compared to 70%+ on SWE-Bench Verified. More recently, Claude Mythos Preview leads with 77.8%, followed by Claude Opus 4.7 at 64.3% and Kimi K2.6 at 58.6%.
+
+## Alternative: LiveCodeBench
+
+The search results also mention an alternative benchmark: LiveCodeBench is a holistic and contamination-free evaluation benchmark for large language models for code. It continuously collects new problems from programming contests (LeetCode, AtCoder, CodeForces) and evaluates four different scenarios: code generation, self-repair, code execution, and test output prediction.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d581f47a-eceb-45ff-8697-71f71b369356",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "21363022-59de-49af-93fb-eae11903547b",
+  "toolUseResult": {
+    "query": "SWE-bench Pro benchmark alternative contamination-free 2026 coding agents evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CrrnCi4G7UMpDb22BXWYQx",
+        "content": [
+          {
+            "title": "SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale",
+            "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.vals.ai/benchmarks/swebench"
+          },
+          {
+            "title": "[2509.16941] SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?",
+            "url": "https://arxiv.org/abs/2509.16941"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.swebench.com/verified.html"
+          },
+          {
+            "title": "SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean",
+            "url": "https://www.codeant.ai/blogs/swe-bench-scores"
+          },
+          {
+            "title": "SWE-Bench Pro Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/swe-bench-pro"
+          },
+          {
+            "title": "arXiv:2509.16941v2 [cs.SE] 14 Nov 2025 SWE-Bench Pro: Can AI Agents Solve",
+            "url": "https://arxiv.org/pdf/2509.16941"
+          },
+          {
+            "title": "LLM Benchmarks 2026: 30+ Models Ranked — MMLU, SWE-bench, Arena Elo & Pricing",
+            "url": "https://iternal.ai/llm-selection-guide"
+          },
+          {
+            "title": "SWE-Bench Verified Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/swe-bench-verified"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SWE-bench Pro and contamination-free benchmarks for evaluating coding agents in 2026:\n\n## SWE-Bench Pro Overview\n\nSWE-Bench Pro is a benchmark designed to provide a rigorous and realistic evaluation of AI agents for software engineering. SWE-BENCH PRO contains 1,865 problems sourced from a diverse set of 41 actively maintained repositories spanning business applications, B2B services, and developer tools.\n\n## Contamination-Resistant Design\n\nSWE-Bench Pro was developed to address several limitations in existing benchmarks by tackling four key challenges: Data Contamination—Models have likely seen the evaluation code during training, making it hard to know if they are problem-solving or recalling a memorized solution.\n\nTo address contamination, the benchmark is constructed from GPL-style copyleft repositories and private proprietary codebases, creating legal and access barriers that reduce the likelihood of contamination. Because the private codebases are legally inaccessible to model trainers, contamination is structurally prevented.\n\n## Performance Context\n\nThe benchmark is significantly more challenging than its predecessors; top models score around 23% on the SWE-Bench Pro public set, compared to 70%+ on SWE-Bench Verified. More recently, Claude Mythos Preview leads with 77.8%, followed by Claude Opus 4.7 at 64.3% and Kimi K2.6 at 58.6%.\n\n## Alternative: LiveCodeBench\n\nThe search results also mention an alternative benchmark: LiveCodeBench is a holistic and contamination-free evaluation benchmark for large language models for code. It continuously collects new problems from programming contests (LeetCode, AtCoder, CodeForces) and evaluates four different scenarios: code generation, self-repair, code execution, and test output prediction."
+    ],
+    "durationSeconds": 7.680520339999989
+  },
+  "sourceToolAssistantUUID": "d581f47a-eceb-45ff-8697-71f71b369356",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"When Do Code Semantics Help? Learned Trace Filtering for LLM-Based Pro…",
+  "leafUuid": "21363022-59de-49af-93fb-eae11903547b",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learned trace filtering for adaptive program repair",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366"
+}
+```
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-11T23:12:20.681Z_
+
+Now let me search for any additional concurrent work in trace compression for code repair that might have appeared recently.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "21363022-59de-49af-93fb-eae11903547b",
+  "isSidechain": false,
+  "requestId": "req_011CawdP3aoeWqAgz32vczix",
+  "type": "assistant",
+  "uuid": "6c8d683a-bd3b-43e3-999b-e981d5ed11c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FXDyzmEbHWRUK7pofmBfXD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 982,
+      "cache_read_input_tokens": 38465,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 982,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 38465,
+          "cache_creation_input_tokens": 982,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 982
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-11T23:12:21.190Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011hinxXCvhGyeFBkREQxrid`</summary>
+
+```json
+{
+  "query": "execution trace filtering compression code repair debugging LLM arXiv 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c8d683a-bd3b-43e3-999b-e981d5ed11c1",
+  "isSidechain": false,
+  "requestId": "req_011CawdP3aoeWqAgz32vczix",
+  "type": "assistant",
+  "uuid": "303724f5-fc3e-4922-8b3a-db63dd2f6e9d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FXDyzmEbHWRUK7pofmBfXD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 982,
+      "cache_read_input_tokens": 38465,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 982,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 38465,
+          "cache_creation_input_tokens": 982,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 982
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-11T23:12:31.085Z_
+
+<details><summary>↩ Tool result · `toolu_011hinxXCvhGyeFBkREQxrid`</summary>
+
+```text
+Web search results for query: "execution trace filtering compression code repair debugging LLM arXiv 2025 2026"
+
+Links: [{"title":"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs","url":"https://arxiv.org/html/2505.04441v1"},{"title":"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate","url":"https://arxiv.org/html/2604.02647"},{"title":"[2505.04441] Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs","url":"https://arxiv.org/abs/2505.04441"},{"title":"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code","url":"https://arxiv.org/html/2602.06875"},{"title":"trace: Evaluating Execution Efficiency of LLM-Based Code Translation","url":"https://arxiv.org/html/2603.16479"},{"title":"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v1"},{"title":"Towards Effectively Leveraging Execution Traces for ...","url":"https://aclanthology.org/2025.knowledgenlp-1.17.pdf"},{"title":"Can LLMs Compress (and Decompress)? Evaluating Code Understanding and Execution via Invertibility","url":"https://arxiv.org/html/2601.13398"},{"title":"Trace-Based Diagnostics","url":"https://www.emergentmind.com/topics/trace-based-diagnostics"},{"title":"Debugging Code World Models","url":"https://arxiv.org/html/2602.07672v2"}]
+
+Based on the search results, I found several highly relevant recent papers on execution trace filtering, compression, code repair, and debugging with LLMs from 2025-2026:
+
+## Key Findings
+
+**Primary Research Papers:**
+
+1. **"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs"** (May 2025, arXiv:2505.04441)
+   - This paper analyzes the relationship between trace complexity and LLM-based program repair effectiveness, measuring complexity via trace length and variable modifications, finding that trace-based prompt effectiveness decreases with growing length and variable assignments.
+   - The researchers experiment with three execution trace representations: collated format, LLM-optimized traces, and confidence-based conditional selection, finding that LLM-optimized trace-based prompts provide the most consistent results.
+
+2. **"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate"** (April 2026, arXiv:2604.02647)
+   - TraceRepairDSV3.2 correctly resolves 392 defects on Defects4J, outperforming all compared methods.
+
+3. **"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code"** (February 2026, arXiv:2602.06875)
+   - This framework enables fine-grained runtime tracing to capture semantically rich execution signals and facilitates experience-informed repair decisions through historical learning with integrated rollback and iterative repair mechanisms.
+
+4. **"Can LLMs Compress (and Decompress)? Evaluating Code Understanding and Execution via Invertibility"** (January 2026, arXiv:2601.13398)
+   - The paper systematically evaluates state-of-the-art Code-LLMs using zero-shot prompting, supervised fine-tuning on execution traces, and self-reflection mechanisms.
+
+5. **"A Survey of LLM-based Automated Program Repair"** (June 2025, arXiv:2506.23749)
+   - Open challenges include finding suitable examples for projects without history, compressing prompts when defects span multiple lines, and controlling costs when majority-voting increases token usage.
+
+These papers collectively address trace filtering, compression strategies, and their application to LLM-based code repair and debugging tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "303724f5-fc3e-4922-8b3a-db63dd2f6e9d",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "d071b328-85f5-4cd2-8afb-8d4f77728213",
+  "toolUseResult": {
+    "query": "execution trace filtering compression code repair debugging LLM arXiv 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01C35twqr9bq9n9DZgkJT5kQ",
+        "content": [
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs",
+            "url": "https://arxiv.org/html/2505.04441v1"
+          },
+          {
+            "title": "Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate",
+            "url": "https://arxiv.org/html/2604.02647"
+          },
+          {
+            "title": "[2505.04441] Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs",
+            "url": "https://arxiv.org/abs/2505.04441"
+          },
+          {
+            "title": "TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code",
+            "url": "https://arxiv.org/html/2602.06875"
+          },
+          {
+            "title": "trace: Evaluating Execution Efficiency of LLM-Based Code Translation",
+            "url": "https://arxiv.org/html/2603.16479"
+          },
+          {
+            "title": "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v1"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for ...",
+            "url": "https://aclanthology.org/2025.knowledgenlp-1.17.pdf"
+          },
+          {
+            "title": "Can LLMs Compress (and Decompress)? Evaluating Code Understanding and Execution via Invertibility",
+            "url": "https://arxiv.org/html/2601.13398"
+          },
+          {
+            "title": "Trace-Based Diagnostics",
+            "url": "https://www.emergentmind.com/topics/trace-based-diagnostics"
+          },
+          {
+            "title": "Debugging Code World Models",
+            "url": "https://arxiv.org/html/2602.07672v2"
+          }
+        ]
+      },
+      "Based on the search results, I found several highly relevant recent papers on execution trace filtering, compression, code repair, and debugging with LLMs from 2025-2026:\n\n## Key Findings\n\n**Primary Research Papers:**\n\n1. **\"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\"** (May 2025, arXiv:2505.04441)\n   - This paper analyzes the relationship between trace complexity and LLM-based program repair effectiveness, measuring complexity via trace length and variable modifications, finding that trace-based prompt effectiveness decreases with growing length and variable assignments.\n   - The researchers experiment with three execution trace representations: collated format, LLM-optimized traces, and confidence-based conditional selection, finding that LLM-optimized trace-based prompts provide the most consistent results.\n\n2. **\"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate\"** (April 2026, arXiv:2604.02647)\n   - TraceRepairDSV3.2 correctly resolves 392 defects on Defects4J, outperforming all compared methods.\n\n3. **\"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code\"** (February 2026, arXiv:2602.06875)\n   - This framework enables fine-grained runtime tracing to capture semantically rich execution signals and facilitates experience-informed repair decisions through historical learning with integrated rollback and iterative repair mechanisms.\n\n4. **\"Can LLMs Compress (and Decompress)? Evaluating Code Understanding and Execution via Invertibility\"** (January 2026, arXiv:2601.13398)\n   - The paper systematically evaluates state-of-the-art Code-LLMs using zero-shot prompting, supervised fine-tuning on execution traces, and self-reflection mechanisms.\n\n5. **\"A Survey of LLM-based Automated Program Repair\"** (June 2025, arXiv:2506.23749)\n   - Open challenges include finding suitable examples for projects without history, compressing prompts when defects span multiple lines, and controlling costs when majority-voting increases token usage.\n\nThese papers collectively address trace filtering, compression strategies, and their application to LLM-based code repair and debugging tasks."
+    ],
+    "durationSeconds": 9.891308244999992
+  },
+  "sourceToolAssistantUUID": "303724f5-fc3e-4922-8b3a-db63dd2f6e9d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-11T23:12:33.665Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016WD4677V2p4iaxdqznEvVa`</summary>
+
+```json
+{
+  "query": "TACO terminal agent compression self-evolving framework execution observation pruning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d071b328-85f5-4cd2-8afb-8d4f77728213",
+  "isSidechain": false,
+  "requestId": "req_011CawdQ6tX31EXcDB1mnJTo",
+  "type": "assistant",
+  "uuid": "df6684ef-7048-43b7-b48c-875bcaef1451",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H3fipixPTU4Y4K1GLRzBvQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1116,
+      "cache_read_input_tokens": 39447,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1116,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 39447,
+          "cache_creation_input_tokens": 1116,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1116
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-11T23:12:41.948Z_
+
+<details><summary>↩ Tool result · `toolu_016WD4677V2p4iaxdqznEvVa`</summary>
+
+```text
+Web search results for query: "TACO terminal agent compression self-evolving framework execution observation pruning 2026"
+
+Links: [{"title":"A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression","url":"https://arxiv.org/html/2604.19572v1"},{"title":"[2604.19572] A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression","url":"https://arxiv.org/abs/2604.19572"},{"title":"Paper page - A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression","url":"https://huggingface.co/papers/2604.19572"},{"title":"A Self-Evolving Framework for Efficient Terminal Agents via ...","url":"https://arxiv.org/pdf/2604.19572"},{"title":"A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression | Takara TLDR","url":"https://tldr.takara.ai/p/2604.19572"},{"title":"GenericAgent Explained: Self-Evolving AI Agent Framework with Local System Control - Mervin Praison","url":"https://mer.vin/2026/04/genericagent-explained-self-evolving-ai-agent-framework-with-local-system-control/"},{"title":"The 'TACO' Framework For Understanding AI Agents","url":"https://www.artificiallawyer.com/2025/02/12/the-taco-framework-for-understanding-ai-agents/"},{"title":"GitHub - XMUDeepLIT/Awesome-Self-Evolving-Agents: A Survey of Self-Evolving Agents | A curated list of resources (surveys, papers, benchmarks, and opensource projects) on Self-Evolving Agents. · GitHub","url":"https://github.com/XMUDeepLIT/Awesome-Self-Evolving-Agents"},{"title":"KPMG TACO Framework","url":"https://kpmg.com/au/en/services/ai-services/taco-framework.html"},{"title":"GitHub - caramaschiHG/awesome-ai-agents-2026: 🤖 The most comprehensive list of AI agents, frameworks & tools in 2026. 300+ resources · 20+ categories · Updated monthly.","url":"https://github.com/caramaschiHG/awesome-ai-agents-2026"}]
+
+Based on the search results, I found comprehensive information about TACO in the context you requested:
+
+## TACO: Terminal Agent Compression Framework
+
+TACO is a plug-and-play, self-evolving Terminal Agent Compression framework that automatically discovers and refines compression rules from interaction trajectories for existing terminal agents.
+
+### Core Problem and Solution
+
+As model capabilities advance, research has increasingly shifted toward long-horizon, multi-turn terminal-centric agentic tasks, where raw environment feedback is often preserved in the interaction history to support future decisions. However, repeatedly retaining such feedback introduces substantial redundancy and causes cumulative token cost to grow quadratically with the number of steps, hindering long-horizon reasoning.
+
+TACO aligns with a training-free paradigm but introduces a novel application: terminal observation compression. While prior works evolve action plans or skills, TACO dynamically evolves a pool of structured compression rules.
+
+### Performance Results
+
+Experiments on TerminalBench (TB 1.0 and TB 2.0) and four additional terminal-related benchmarks (i.e., SWE-Bench Lite, CompileBench, DevEval, and CRUST-Bench) show that TACO consistently improves performance across mainstream agent frameworks and strong backbone models. With MiniMax-2.5, it improves performance on most benchmarks while reducing token overhead by around 10%. On TerminalBench, it brings consistent gains of 1%–4% across strong agentic models, and further improves accuracy by around 2%–3% under the same token budget.
+
+### Generalization
+
+Across different agent frameworks and backbone models, the learned compression rules consistently transfer well, demonstrating that TACO provides a general and scalable solution for terminal-agent context compression.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "df6684ef-7048-43b7-b48c-875bcaef1451",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "97997901-0b96-43dc-a98b-b21c8732c798",
+  "toolUseResult": {
+    "query": "TACO terminal agent compression self-evolving framework execution observation pruning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014GyAg3KV8cunhPHJwqrGTq",
+        "content": [
+          {
+            "title": "A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression",
+            "url": "https://arxiv.org/html/2604.19572v1"
+          },
+          {
+            "title": "[2604.19572] A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression",
+            "url": "https://arxiv.org/abs/2604.19572"
+          },
+          {
+            "title": "Paper page - A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression",
+            "url": "https://huggingface.co/papers/2604.19572"
+          },
+          {
+            "title": "A Self-Evolving Framework for Efficient Terminal Agents via ...",
+            "url": "https://arxiv.org/pdf/2604.19572"
+          },
+          {
+            "title": "A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression | Takara TLDR",
+            "url": "https://tldr.takara.ai/p/2604.19572"
+          },
+          {
+            "title": "GenericAgent Explained: Self-Evolving AI Agent Framework with Local System Control - Mervin Praison",
+            "url": "https://mer.vin/2026/04/genericagent-explained-self-evolving-ai-agent-framework-with-local-system-control/"
+          },
+          {
+            "title": "The 'TACO' Framework For Understanding AI Agents",
+            "url": "https://www.artificiallawyer.com/2025/02/12/the-taco-framework-for-understanding-ai-agents/"
+          },
+          {
+            "title": "GitHub - XMUDeepLIT/Awesome-Self-Evolving-Agents: A Survey of Self-Evolving Agents | A curated list of resources (surveys, papers, benchmarks, and opensource projects) on Self-Evolving Agents. · GitHub",
+            "url": "https://github.com/XMUDeepLIT/Awesome-Self-Evolving-Agents"
+          },
+          {
+            "title": "KPMG TACO Framework",
+            "url": "https://kpmg.com/au/en/services/ai-services/taco-framework.html"
+          },
+          {
+            "title": "GitHub - caramaschiHG/awesome-ai-agents-2026: 🤖 The most comprehensive list of AI agents, frameworks & tools in 2026. 300+ resources · 20+ categories · Updated monthly.",
+            "url": "https://github.com/caramaschiHG/awesome-ai-agents-2026"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about TACO in the context you requested:\n\n## TACO: Terminal Agent Compression Framework\n\nTACO is a plug-and-play, self-evolving Terminal Agent Compression framework that automatically discovers and refines compression rules from interaction trajectories for existing terminal agents.\n\n### Core Problem and Solution\n\nAs model capabilities advance, research has increasingly shifted toward long-horizon, multi-turn terminal-centric agentic tasks, where raw environment feedback is often preserved in the interaction history to support future decisions. However, repeatedly retaining such feedback introduces substantial redundancy and causes cumulative token cost to grow quadratically with the number of steps, hindering long-horizon reasoning.\n\nTACO aligns with a training-free paradigm but introduces a novel application: terminal observation compression. While prior works evolve action plans or skills, TACO dynamically evolves a pool of structured compression rules.\n\n### Performance Results\n\nExperiments on TerminalBench (TB 1.0 and TB 2.0) and four additional terminal-related benchmarks (i.e., SWE-Bench Lite, CompileBench, DevEval, and CRUST-Bench) show that TACO consistently improves performance across mainstream agent frameworks and strong backbone models. With MiniMax-2.5, it improves performance on most benchmarks while reducing token overhead by around 10%. On TerminalBench, it brings consistent gains of 1%–4% across strong agentic models, and further improves accuracy by around 2%–3% under the same token budget.\n\n### Generalization\n\nAcross different agent frameworks and backbone models, the learned compression rules consistently transfer well, demonstrating that TACO provides a general and scalable solution for terminal-agent context compression."
+    ],
+    "durationSeconds": 8.277363222000014
+  },
+  "sourceToolAssistantUUID": "df6684ef-7048-43b7-b48c-875bcaef1451",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-11T23:12:48.261Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UT1QJCQNEs64Wu64yuMHuF`</summary>
+
+```json
+{
+  "query": "DeepSeek V4 Flash Pro model API 2026 available pricing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97997901-0b96-43dc-a98b-b21c8732c798",
+  "isSidechain": false,
+  "requestId": "req_011CawdQuNziaGLJXkG14UAK",
+  "type": "assistant",
+  "uuid": "c3c7a82d-325a-4b71-b2bb-858c011a8a87",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SMzwpASUukHrDw3XMUfNEz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 40563,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1091,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 40563,
+          "cache_creation_input_tokens": 1091,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1091
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-11T23:12:54.302Z_
+
+<details><summary>↩ Tool result · `toolu_01UT1QJCQNEs64Wu64yuMHuF`</summary>
+
+```text
+Web search results for query: "DeepSeek V4 Flash Pro model API 2026 available pricing"
+
+Links: [{"title":"Models & Pricing | DeepSeek API Docs","url":"https://api-docs.deepseek.com/quick_start/pricing/"},{"title":"DeepSeek V4 Flash - API Pricing & Benchmarks | OpenRouter","url":"https://openrouter.ai/deepseek/deepseek-v4-flash"},{"title":"Current DeepSeek API Pricing 2026: V4 Flash & Pro Cost per 1M Tokens - DevTk.AI","url":"https://devtk.ai/en/blog/deepseek-api-pricing-guide-2026/"},{"title":"DeepSeek V4 Preview Release | DeepSeek API Docs","url":"https://api-docs.deepseek.com/news/news260424"},{"title":"DeepSeek V4 Pricing & API Migration (2026)","url":"https://www.verdent.ai/guides/deepseek-v4-pricing-api-migration-2026"},{"title":"DeepSeek V4 Pro - API Pricing & Benchmarks | OpenRouter","url":"https://openrouter.ai/deepseek/deepseek-v4-pro"},{"title":"DeepSeek API Pricing: V4 Flash, V4 Pro, Cache Hit, Cache Miss & Output Costs","url":"https://chat-deep.ai/pricing/"},{"title":"DeepSeek V4 API Pricing Guide 2026: Flash vs Pro Cost Comparison, Cache Hit Math & Setup","url":"https://ofox.ai/blog/deepseek-api-pricing-guide-2026/"},{"title":"DeepSeek V4 Pro API Pricing 2026: Official V4 Prices per 1M Tokens","url":"https://devtk.ai/en/models/deepseek-v4/"},{"title":"DeepSeek V4 Pro Pricing Guide 2026: Pricing, Providers & Cost Comparison","url":"https://deepinfra.com/blog/deepseek-v4-pro-pricing-guide-2026-providers-cost-analysis"}]
+
+Based on the search results, here's what I found about DeepSeek V4 API models and their pricing in 2026:
+
+## Available Models
+
+There is no "V4 Flash Pro" model. Instead, DeepSeek offers two main V4 models:
+
+1. **DeepSeek V4 Flash** - 284B total / 13B active params, positioned as a fast, efficient, and economical choice
+2. **DeepSeek V4 Pro** - 1.6T total / 49B active params
+
+## Pricing (May 2026)
+
+### DeepSeek V4 Flash
+V4 Flash costs $0.0028/M cached input, $0.14/M cache-miss input, and $0.28/M output
+
+### DeepSeek V4 Pro
+V4 Pro is discounted to $0.003625/M cached input, $0.435/M cache-miss input, and $0.87/M output until 2026-05-31 15:59 UTC
+
+Without the discount, V4 Pro would cost $1.74/M input and $3.48/M output
+
+## Key Features
+Both models use the OpenAI-compatible and Anthropic-compatible API formats, support thinking and non-thinking modes, and are listed with a 1M-token context length and a maximum output of 384K tokens
+
+The models are available via the official DeepSeek API at api.deepseek.com as well as through various third-party API providers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c3c7a82d-325a-4b71-b2bb-858c011a8a87",
+  "isSidechain": false,
+  "promptId": "b75a4c2d-11c5-403e-a7a5-a362f28d6902",
+  "type": "user",
+  "uuid": "93f1eab0-6e67-4ac6-850b-07c23b827849",
+  "toolUseResult": {
+    "query": "DeepSeek V4 Flash Pro model API 2026 available pricing",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VcKi4S2ipPaN8Ce7YrYXny",
+        "content": [
+          {
+            "title": "Models & Pricing | DeepSeek API Docs",
+            "url": "https://api-docs.deepseek.com/quick_start/pricing/"
+          },
+          {
+            "title": "DeepSeek V4 Flash - API Pricing & Benchmarks | OpenRouter",
+            "url": "https://openrouter.ai/deepseek/deepseek-v4-flash"
+          },
+          {
+            "title": "Current DeepSeek API Pricing 2026: V4 Flash & Pro Cost per 1M Tokens - DevTk.AI",
+            "url": "https://devtk.ai/en/blog/deepseek-api-pricing-guide-2026/"
+          },
+          {
+            "title": "DeepSeek V4 Preview Release | DeepSeek API Docs",
+            "url": "https://api-docs.deepseek.com/news/news260424"
+          },
+          {
+            "title": "DeepSeek V4 Pricing & API Migration (2026)",
+            "url": "https://www.verdent.ai/guides/deepseek-v4-pricing-api-migration-2026"
+          },
+          {
+            "title": "DeepSeek V4 Pro - API Pricing & Benchmarks | OpenRouter",
+            "url": "https://openrouter.ai/deepseek/deepseek-v4-pro"
+          },
+          {
+            "title": "DeepSeek API Pricing: V4 Flash, V4 Pro, Cache Hit, Cache Miss & Output Costs",
+            "url": "https://chat-deep.ai/pricing/"
+          },
+          {
+            "title": "DeepSeek V4 API Pricing Guide 2026: Flash vs Pro Cost Comparison, Cache Hit Math & Setup",
+            "url": "https://ofox.ai/blog/deepseek-api-pricing-guide-2026/"
+          },
+          {
+            "title": "DeepSeek V4 Pro API Pricing 2026: Official V4 Prices per 1M Tokens",
+            "url": "https://devtk.ai/en/models/deepseek-v4/"
+          },
+          {
+            "title": "DeepSeek V4 Pro Pricing Guide 2026: Pricing, Providers & Cost Comparison",
+            "url": "https://deepinfra.com/blog/deepseek-v4-pro-pricing-guide-2026-providers-cost-analysis"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about DeepSeek V4 API models and their pricing in 2026:\n\n## Available Models\n\nThere is no \"V4 Flash Pro\" model. Instead, DeepSeek offers two main V4 models:\n\n1. **DeepSeek V4 Flash** - 284B total / 13B active params, positioned as a fast, efficient, and economical choice\n2. **DeepSeek V4 Pro** - 1.6T total / 49B active params\n\n## Pricing (May 2026)\n\n### DeepSeek V4 Flash\nV4 Flash costs $0.0028/M cached input, $0.14/M cache-miss input, and $0.28/M output\n\n### DeepSeek V4 Pro\nV4 Pro is discounted to $0.003625/M cached input, $0.435/M cache-miss input, and $0.87/M output until 2026-05-31 15:59 UTC\n\nWithout the discount, V4 Pro would cost $1.74/M input and $3.48/M output\n\n## Key Features\nBoth models use the OpenAI-compatible and Anthropic-compatible API formats, support thinking and non-thinking modes, and are listed with a 1M-token context length and a maximum output of 384K tokens\n\nThe models are available via the official DeepSeek API at api.deepseek.com as well as through various third-party API providers."
+    ],
+    "durationSeconds": 6.035873991000001
+  },
+  "sourceToolAssistantUUID": "c3c7a82d-325a-4b71-b2bb-858c011a8a87",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-11T23:16:16.134Z_
+
+Good. Now I have all the research I need. Let me synthesize my findings and produce the revised idea.
+
+Key findings from my research:
+
+1. **Squeez**: Line-level pruning of heterogeneous tool outputs (27 tool families), Qwen 3.5 2B + LoRA, 0.86 recall, 92% token removal. Does NOT exploit trace structure — just identifies contiguous line spans. No trace-specific baselines.
+
+2. **SWE-Pruner**: 0.6B model (Qwen3-Reranker-0.6B), CRF-based line-level pruning of static code context, task-aware via natural language goal hints. 23-54% token reduction. Does NOT handle execution traces.
+
+3. **"Do Code Semantics Help?" actual claims**: The reviewer is RIGHT — the paper says SemCoder is "the best choice for program repair tasks" for fine-tuning. Concise's claim is specifically about inference: "achieved Pass@1 no worse than w/o trace in 11 out of 14 cases" — meaning it avoids degradation, not that it's the best. The "more filtering → better" gradient was overstated.
+
+4. **TACO** (arXiv 2604.19572): Another concurrent work — self-evolving compression rules for terminal agent observations. Training-free, rule-based. Relevant but not as close as Squeez/SWE-Pruner.
+
+5. **SWE-bench contamination**: OpenAI published Feb 2026 confirming frontier model contamination. SWE-bench Pro is the recommended successor.
+
+6. **CrossCodeEval/RepoBench**: Both established repo-level benchmarks (NeurIPS 2023, ICLR 2024). CrossCodeEval focuses on cross-file code completion requiring cross-file context.
+
+Now let me construct the revised idea as a "minor" revision — the core approach is sound, but I need to fix the framing, add competitors, correct claims, and address benchmarks.
+
+```json
+{
+  "title": "When Do Code Semantics Help? Learned Trace Filtering for LLM-Based Program Repair",
+  "change_type": "minor",
+  "core_problem": "Execution traces provide rich runtime diagnostic information, yet 'Do Code Semantics Help?' (EMNLP 2025 Findings) found that naively integrating trace information has limited benefit — traces boost Code LLM prediction confidence without improving correctness. At inference time, only the Concise format consistently avoided degradation (11/14 cases), while richer formats like SemCoder achieved the best repair performance during fine-tuning but at the cost of unreliability across configurations. This suggests that *reliability through noise reduction* matters more than *peak performance through richer semantics*. We hypothesize that the issue is not trace utility but trace noise: fixed-format trace representations include irrelevant execution state that pollutes the context window. Can a lightweight learned filter identify diagnostically-relevant trace segments, transforming traces from a noisy signal into a reliable repair advantage?",
+  "opportunity": "'Do Code Semantics Help?' (EMNLP 2025 Findings) tested five trace formats (NExT, SemCoder, CodeExecutor, Concise, Scratchpad) and found that only SemCoder contributed to fine-tuning for repair — but with limited improvements (0.3-1.4 points). At inference time, Concise was the only format that consistently avoided degradation (11/14 cases), while richer formats sometimes hurt. This reveals that *noise reduction reliability* is the key bottleneck, not richer semantics. TraceCoder (ICSE 2026) showed traces improve Pass@1 by 34.43% on moderate-complexity programs but degrade on complex ones. 'Debugging Code World Models' (arXiv 2602.07672) identified token-budget exhaustion from long traces as the dominant failure mode. The context compression study (arXiv 2604.13725) demonstrated that learned compression can beat full context by 28.3% on code tasks. Meanwhile, a family of learned context pruners has emerged for *static code and tool outputs*: SWEzze (arXiv 2603.28119) trains a 0.6B model for static code context compression via Oracle-guided Code Distillation; SWE-Pruner (arXiv 2601.16746) trains a 0.6B CRF-based skimmer for task-aware static code pruning (23-54% token reduction on SWE-bench Verified); Squeez (arXiv 2604.04979) trains Qwen 3.5 2B for line-level pruning of heterogeneous tool outputs (92% token removal, 0.86 recall across 27 tool families); and TACO (arXiv 2604.19572) learns compression rules for terminal agent observations. However, *none of these methods exploit the inherent structure of execution traces* — function-level call hierarchies, loop iteration semantics, exception propagation chains, and variable state evolution. They operate on static code (SWEzze, SWE-Pruner), flat text tool outputs (Squeez), or terminal observations (TACO) using line-level or span-level granularity without trace-specific structural awareness. This structural gap is especially significant because the 'Do Code Semantics Help?' finding — that noise reduction enables reliable trace utility — directly implies that *structure-aware* filtering should outperform structure-agnostic pruning on traces.",
+  "landscape": "TraceFixer (Bouzenia et al., arXiv 2304.12743, 2023) trains a CodeT5-based model on (partial trace excerpt, correct state) pairs for single-line Python repair, achieving 13-20% improvement — but requires user-specified correct program states and uses fixed trace excerpts. TraceCoder (ICSE 2026) adds fine-grained runtime tracing with a multi-agent framework, achieving 34.43% Pass@1 improvement but suffering exponential scaling on complex programs. TraceRepair (arXiv 2604.02647, Apr 2026) uses heuristic variable snapshot capture with multi-agent debate, fixing 392 Defects4J bugs but relying on hand-designed extraction rules. 'Towards Effectively Leveraging Execution Traces for Program Repair' (arXiv 2505.04441, May 2025) found that LLM-optimized trace formats outperform raw traces but all tested formats are hand-designed. 'Do Code Semantics Help?' (EMNLP Findings 2025) tested five trace representations — finding that SemCoder is the best choice for repair during fine-tuning (limited 0.3-1.4 point gains), while at inference Concise was the only format avoiding consistent degradation (11/14 cases). The key insight: richer formats can achieve peak performance but are unreliable; only aggressive noise reduction yields consistency. In the learned context compression space: SWEzze (arXiv 2603.28119, Mar 2026) trains Qwen3-Reranker-0.6B via Oracle-guided Code Distillation for static code context compression (6x compression, 5-9% resolution improvement). SWE-Pruner (arXiv 2601.16746, Jan 2026) trains a 0.6B CRF-based model on 61K synthetic data for task-aware code context pruning (23-54% token reduction on SWE-bench Verified while maintaining success rates). Squeez (arXiv 2604.04979, Apr 2026) trains Qwen 3.5 2B with LoRA for task-conditioned line-level pruning of heterogeneous tool outputs (including stack traces and build logs), achieving 92% token removal with 0.86 recall across 27 tool families — the closest methodological analog, but operates at line-level granularity over heterogeneous text without exploiting trace-specific structure (call hierarchies, loop semantics, exception chains). TACO (arXiv 2604.19572, Apr 2026) learns self-evolving compression rules for terminal observations in a training-free paradigm. The April 2026 context compression study (arXiv 2604.13725) shows learned compression can surpass full context by 28.3% on repository-level code tasks. LDB (ACL 2024) segments programs into basic blocks at fixed granularity. Execution Tuning (arXiv 2503.05703, Feb 2025) trains models on traces for understanding, not compression. 'Less is More' (AAAI 2025) compresses loop traces via ellipsis patterns — a useful heuristic but not learned. The Precise Debugging Benchmark (arXiv 2604.17338, Apr 2026) evaluates whether models genuinely debug or simply regenerate.",
+  "approach": "We propose Diagnostic Trace Distillation (DTD), which trains a lightweight model to perform *structure-aware* filtering of execution traces for LLM-based program repair. DTD's key differentiator from existing learned pruners (SWEzze, SWE-Pruner, Squeez) is that it segments traces into semantically meaningful structural units — function-level call subtrees, loop iteration groups, and exception propagation chains — rather than operating at line or span level over flat text. This structural segmentation exploits the inherent hierarchy of execution traces, enabling filtering decisions that respect diagnostic boundaries (e.g., keeping an entire exception chain rather than individual lines that lose context in isolation). Phase 1 (Oracle Trace Filtering — data construction): For buggy Python programs from SWE-bench Verified (500 instances) and BugsInPy (493 bugs), we collect execution traces using VizTracer (leveraging Python's sys.monitoring on 3.12+). We parse traces into structural segments (function-level call subtrees, loop iteration groups, and exception propagation chains). A teacher model (DeepSeek-V4-Flash, $0.14/M input tokens) performs pointwise relevance scoring: given (issue description, buggy code, trace segment), it outputs a binary keep/drop label indicating whether the segment contains repair-relevant diagnostic information. We validate teacher quality on a 200-instance subset using DeepSeek-V4-Pro. This direct-scoring approach avoids the expensive iterative delta-debugging used in SWEzze's OCD, cutting API costs to ~$150-300. Phase 2 (Student Distillation): We QLoRA-fine-tune Qwen3-Reranker-0.6B (same architecture as SWEzze and SWE-Pruner's student, LoRA rank=16, α=32) on the teacher-labeled (trace-segment, buggy-code, issue) → keep/drop dataset. The student is a pointwise classifier scoring each trace segment for diagnostic relevance. At inference, segments scoring below a learned threshold are dropped, achieving 5-8x trace compression. The 0.6B model runs in <1s per program on a single GPU. Phase 3 (Evaluation): We evaluate with three repair LLMs (DeepSeek-V4-Pro, Claude Sonnet 4.6, Qwen3-Coder-Next via API) across six conditions: (a) no trace, (b) full trace, (c) DTD-filtered trace, (d) Concise format (from 'Do Code Semantics Help?'), (e) Squeez applied to raw traces (line-level pruning baseline — testing whether trace-structure-aware segmentation outperforms generic line-level pruning), (f) random trace sampling at matched compression ratio. We stratify results by trace complexity: short (<2K tokens), medium (2-8K), long (>8K). The key hypothesis is that DTD-filtered traces outperform both fixed formats and structure-agnostic pruning (Squeez) in the >8K regime where raw traces fail. Benchmarks: SWE-bench Verified (500, real-world Python — acknowledging known contamination concerns per OpenAI's Feb 2026 findings, with BugsInPy and DebugBench serving as cleaner secondary benchmarks), BugsInPy (493, real-world Python), DebugBench Python subset (~250, controlled bug types), HumanEval/MBPP with bug injection (~500, for direct comparison with 'Do Code Semantics Help?' setup), and CrossCodeEval Python subset (~2.5K, cross-file code completion — demonstrating DTD's value for code comprehension beyond single-file repair, where trace context from cross-file dependencies should benefit from structural filtering).",
+  "resource_estimate": {
+    "human_in_loop": {
+      "gpu_hours": "~100h H100 (systematic sweeps over compression thresholds, trace segmentation granularities, and student hyperparameters)",
+      "gpu_utilization": "~65-75%; agent queues experiments, human gates major decisions",
+      "timeline": "12-14 days",
+      "team": "1 researcher, ~20-30min/day reviewing agent proposals",
+      "claude_api_cost": "$150-300 (~2000-4000 turns for experiment orchestration and analysis)",
+      "api_cost": "$500-900 (Phase 1 teacher scoring ~$200-300, repair evaluation ~$300-600)",
+      "estimated_gpu_cost": "$150-250 (100h × $1.50-2.50/hr spot H100)",
+      "risk_note": "Teacher scoring quality is the key bottleneck — validate on 200-instance subset before scaling; if teacher keep/drop labels have <70% agreement with oracle (ground-truth-fix-informed) labels, switch to iterative delta-debugging for the hard cases"
+    },
+    "auto_research": {
+      "gpu_hours": "~180h H100 (full ablation matrix: 2 student sizes × 3 segmentation granularities × 5 compression ratios × 3 repair LLMs, plus trace format comparisons and Squeez baseline runs)",
+      "gpu_utilization": "~85-90%; continuous experiment queuing",
+      "timeline": "10-14 days with 2× H100; 14-16 days with 1× H100",
+      "team": "0 (initial setup + final review only)",
+      "claude_api_cost": "$300-600 (~4000-8000 turns)",
+      "api_cost": "$800-1500 (Phase 1 scoring ~$250-400, comprehensive repair evaluation across 3 LLMs × 6 conditions × 5 benchmarks ~$550-1100)",
+      "estimated_gpu_cost": "$270-450 (180h × $1.50-2.50/hr spot H100)",
+      "speed_bottleneck": "Repair API rate limits across 3 provider APIs; trace collection is fast (<8h) and student training is cheap (~10h per run at 0.6B)",
+      "risk_note": "Without human judgment, agent may over-optimize compression threshold on SWE-bench at the expense of generalization to DebugBench; cross-benchmark validation checkpoints partially mitigate this"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR May 25, 2026 — PRIMARY, 'NLP and Code Models' track)",
+    "AAAI 2027 (expected ~Aug 2026, TBA)",
+    "ICLR 2027 (expected ~Sep/Oct 2026, TBA)",
+    "ICSE 2027 (abstract ~Jun 23, 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models (Findings of EMNLP 2025)",
+    "TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code (ICSE 2026)",
+    "TraceFixer: Execution Trace-Driven Program Repair (Bouzenia et al., arXiv 2304.12743, 2023)",
+    "Compressing Code Context for LLM-based Issue Resolution [SWEzze] (arXiv 2603.28119, 2026)",
+    "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents (arXiv 2601.16746, 2026)",
+    "Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents (arXiv 2604.04979, 2026)",
+    "A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression [TACO] (arXiv 2604.19572, 2026)",
+    "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs (KnowledgeNLP@ACL 2025)",
+    "Debugging Code World Models (arXiv 2602.07672, 2026)",
+    "On the Effectiveness of Context Compression for Repository-Level Tasks: An Empirical Investigation (arXiv 2604.13725, 2026)",
+    "Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate [TraceRepair] (arXiv 2604.02647, 2026)",
+    "Debug like a Human: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step (Findings of ACL 2024)",
+    "What I Cannot Execute, I Do Not Understand: Training and Evaluating LLMs on Program Execution Traces (arXiv 2503.05703, 2025)",
+    "Less is More: Adaptive Program Repair with Bug Localization and Preference Learning (AAAI 2025)",
+    "LongCodeZip: Compress Long Context for Code Language Models (ASE 2025)",
+    "Precise Debugging Benchmark: Is Your Model Debugging or Regenerating? (arXiv 2604.17338, 2026)",
+    "CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion (NeurIPS 2023 D&B)"
+  ],
+  "description": "We propose Diagnostic Trace Distillation (DTD), a method that trains a 0.6B model to perform structure-aware filtering of execution traces for LLM-based program repair, directly addressing the findings of 'Do Code Semantics Help?' (EMNLP 2025 Findings). That study found raw execution traces have limited utility — SemCoder achieved the best repair gains during fine-tuning (0.3-1.4 points) but was unreliable across configurations, while at inference only Concise consistently avoided degradation (11/14 cases). This reveals that reliability through noise reduction, not richer semantics, is the key to trace utility. DTD's core differentiator from existing learned pruners — SWEzze (static code, 6x compression), SWE-Pruner (static code, CRF-based line pruning, 23-54% reduction), and Squeez (heterogeneous tool outputs, line-level, 92% token removal) — is exploiting the *inherent structure* of execution traces: function-level call subtrees, loop iteration groups, and exception propagation chains. These structural segments define natural diagnostic boundaries that line-level pruners cannot capture. We adapt SWEzze's distillation framework: a DeepSeek-V4-Flash teacher scores trace segments for repair relevance, then we distill into Qwen3-Reranker-0.6B via QLoRA for fast pointwise keep/drop classification, achieving 5-8x compression while preserving fault-localization signals. Evaluation spans six conditions (no trace, full trace, DTD-filtered, Concise format, Squeez-on-traces baseline, random sampling) across five benchmarks: SWE-bench Verified (500, acknowledging contamination concerns), BugsInPy (493), DebugBench Python (~250), HumanEval/MBPP with bug injection (~500), and CrossCodeEval Python (~2.5K, demonstrating value for cross-file code comprehension beyond repair). Including Squeez as a direct baseline tests whether trace-structure-aware segmentation outperforms generic line-level pruning. Results are stratified by trace complexity (<2K, 2-8K, >8K tokens); the key falsifiable hypothesis is that DTD-filtered traces outperform both fixed formats and structure-agnostic pruning specifically in the >8K regime. Manual mode is excluded from timeline (infeasible before ARR deadline); HIL mode targets 12-14 days, auto mode 10-14 days. Total compute: ≤180 H100-hours. Primary target: EMNLP 2026 ARR May cycle.",
+  "project_name": "trace_distill_repair",
+  "source": "web_research"
+}
+```
+
+Here is the complete revised JSON:
+
+```json
+{
+  "title": "When Do Code Semantics Help? Learned Trace Filtering for LLM-Based Program Repair",
+  "change_type": "minor",
+  "core_problem": "Execution traces provide rich runtime diagnostic information, yet 'Do Code Semantics Help?' (EMNLP 2025 Findings) found that naively integrating trace information has limited benefit — traces boost Code LLM prediction confidence without improving correctness. At inference time, only the Concise format consistently avoided degradation (11/14 cases), while richer formats like SemCoder achieved the best repair performance during fine-tuning but at the cost of unreliability across configurations. This suggests that reliability through noise reduction matters more than peak performance through richer semantics — exactly what learned, structure-aware filtering should provide. We hypothesize that the issue is not trace utility but trace noise: fixed-format trace representations include irrelevant execution state that pollutes the context window. Can a lightweight learned filter that exploits execution trace structure identify diagnostically-relevant trace segments, transforming traces from a noisy signal into a reliable repair advantage?",
+  "opportunity": "'Do Code Semantics Help?' (EMNLP 2025 Findings) tested five trace formats (NExT, SemCoder, CodeExecutor, Concise, Scratchpad) and found that only SemCoder contributed to repair during fine-tuning — but with limited improvements (0.3-1.4 points). At inference time, Concise was the only format that consistently avoided degradation (11/14 cases), while richer formats sometimes hurt. This reveals that noise reduction reliability is the key bottleneck, not richer semantics. TraceCoder (ICSE 2026) showed traces improve Pass@1 by 34.43% on moderate-complexity programs but degrade on complex ones. 'Debugging Code World Models' (arXiv 2602.07672) identified token-budget exhaustion from long traces as the dominant failure mode. The context compression study (arXiv 2604.13725) demonstrated that learned compression can beat full context by 28.3% on code tasks. Meanwhile, a family of learned context pruners has emerged for static code and tool outputs: SWEzze (arXiv 2603.28119) trains a 0.6B model for static code context compression via Oracle-guided Code Distillation; SWE-Pruner (arXiv 2601.16746) trains a 0.6B CRF-based skimmer for task-aware static code pruning (23-54% token reduction on SWE-bench Verified); Squeez (arXiv 2604.04979) trains Qwen 3.5 2B for line-level pruning of heterogeneous tool outputs (92% token removal, 0.86 recall across 27 tool families); and TACO (arXiv 2604.19572) learns compression rules for terminal agent observations. However, none of these methods exploit the inherent structure of execution traces — function-level call hierarchies, loop iteration semantics, exception propagation chains, and variable state evolution. They operate on static code (SWEzze, SWE-Pruner), flat text tool outputs (Squeez), or terminal observations (TACO) using line-level or span-level granularity without trace-specific structural awareness. This structural gap is especially significant because the 'Do Code Semantics Help?' finding — that noise reduction enables reliable trace utility — directly implies that structure-aware filtering should outperform structure-agnostic pruning on execution traces.",
+  "landscape": "TraceFixer (Bouzenia et al., arXiv 2304.12743, 2023) trains a CodeT5-based model on (partial trace excerpt, correct state) pairs for single-line Python repair, achieving 13-20% improvement — but requires user-specified correct program states and uses fixed trace excerpts. TraceCoder (ICSE 2026) adds fine-grained runtime tracing with a multi-agent framework, achieving 34.43% Pass@1 improvement but suffering exponential scaling on complex programs. TraceRepair (arXiv 2604.02647, Apr 2026) uses heuristic variable snapshot capture with multi-agent debate, fixing 392 Defects4J bugs but relying on hand-designed extraction rules. 'Towards Effectively Leveraging Execution Traces for Program Repair' (arXiv 2505.04441, May 2025) found that LLM-optimized trace formats outperform raw traces but all tested formats are hand-designed. 'Do Code Semantics Help?' (EMNLP Findings 2025) tested five trace representations — finding that SemCoder is the best choice for repair during fine-tuning (limited 0.3-1.4 point gains), while at inference Concise was the only format avoiding consistent degradation (11/14 cases). The key insight: richer formats can achieve peak performance but are unreliable; only aggressive noise reduction yields consistency. In the learned context compression space: SWEzze (arXiv 2603.28119, Mar 2026) trains Qwen3-Reranker-0.6B via Oracle-guided Code Distillation for static code context compression (6x compression, 5-9% resolution improvement). SWE-Pruner (arXiv 2601.16746, Jan 2026) trains a 0.6B CRF-based model on 61K synthetic data for task-aware code context pruning (23-54% token reduction on SWE-bench Verified while maintaining success rates; uses natural language goal hints to adapt pruning to the agent's current task). Squeez (arXiv 2604.04979, Apr 2026) trains Qwen 3.5 2B with LoRA for task-conditioned line-level pruning of heterogeneous tool outputs (including stack traces and build logs), achieving 92% token removal with 0.86 recall across 27 tool families — the closest methodological analog, but operates at line-level granularity over heterogeneous text without exploiting trace-specific structure (call hierarchies, loop semantics, exception chains). TACO (arXiv 2604.19572, Apr 2026) learns self-evolving compression rules for terminal agent observations in a training-free paradigm. The April 2026 context compression study (arXiv 2604.13725) shows learned compression can surpass full context by 28.3% on repository-level code tasks. LDB (ACL 2024) segments programs into basic blocks at fixed granularity. Execution Tuning (arXiv 2503.05703, Feb 2025) trains models on traces for understanding, not compression. 'Less is More' (AAAI 2025) compresses loop traces via ellipsis patterns — a useful heuristic but not learned. The Precise Debugging Benchmark (arXiv 2604.17338, Apr 2026) evaluates whether models genuinely debug or simply regenerate.",
+  "approach": "We propose Diagnostic Trace Distillation (DTD), which trains a lightweight model to perform structure-aware filtering of execution traces for LLM-based program repair. DTD's key differentiator from existing learned pruners (SWEzze, SWE-Pruner, Squeez) is that it segments traces into semantically meaningful structural units — function-level call subtrees, loop iteration groups, and exception propagation chains — rather than operating at line or span level over flat text. This structural segmentation exploits the inherent hierarchy of execution traces, enabling filtering decisions that respect diagnostic boundaries (e.g., keeping an entire exception chain rather than individual lines that lose context in isolation). Phase 1 (Oracle Trace Filtering — data construction): For buggy Python programs from SWE-bench Verified (500 instances) and BugsInPy (493 bugs), we collect execution traces using VizTracer (leveraging Python's sys.monitoring on 3.12+). We parse traces into structural segments (function-level call subtrees, loop iteration groups, and exception propagation chains). A teacher model (DeepSeek-V4-Flash, $0.14/M input tokens) performs pointwise relevance scoring: given (issue description, buggy code, trace segment), it outputs a binary keep/drop label indicating whether the segment contains repair-relevant diagnostic information. We validate teacher quality on a 200-instance subset using DeepSeek-V4-Pro. This direct-scoring approach avoids the expensive iterative delta-debugging used in SWEzze's OCD, cutting API costs to ~$150-300. Phase 2 (Student Distillation): We QLoRA-fine-tune Qwen3-Reranker-0.6B (same architecture as SWEzze and SWE-Pruner's student, LoRA rank=16, alpha=32) on the teacher-labeled (trace-segment, buggy-code, issue) -> keep/drop dataset. The student is a pointwise classifier scoring each trace segment for diagnostic relevance. At inference, segments scoring below a learned threshold are dropped, achieving 5-8x trace compression. The 0.6B model runs in <1s per program on a single GPU. Phase 3 (Evaluation): We evaluate with three repair LLMs (DeepSeek-V4-Pro, Claude Sonnet 4.6, Qwen3-Coder-Next via API) across six conditions: (a) no trace, (b) full trace, (c) DTD-filtered trace, (d) Concise format (from 'Do Code Semantics Help?'), (e) Squeez applied to raw traces (line-level pruning baseline — directly testing whether trace-structure-aware segmentation outperforms generic line-level pruning), (f) random trace sampling at matched compression ratio. We stratify results by trace complexity: short (<2K tokens), medium (2-8K), long (>8K). The key hypothesis is that DTD-filtered traces outperform both fixed formats and structure-agnostic pruning (Squeez) in the >8K regime where raw traces fail. Benchmarks: SWE-bench Verified (500, real-world Python — acknowledging known contamination concerns per OpenAI's Feb 2026 audit, with BugsInPy and DebugBench serving as less-contaminated secondary benchmarks), BugsInPy (493, real-world Python), DebugBench Python subset (~250, controlled bug types), HumanEval/MBPP with bug injection (~500, for direct comparison with 'Do Code Semantics Help?' setup), and CrossCodeEval Python subset (~2.5K, cross-file code completion — demonstrating DTD's value for code comprehension beyond single-file repair, where trace context from cross-file dependencies should benefit from structural filtering).",
+  "resource_estimate": {
+    "human_in_loop": {
+      "gpu_hours": "~100h H100 (systematic sweeps over compression thresholds, trace segmentation granularities, and student hyperparameters)",
+      "gpu_utilization": "~65-75%; agent queues experiments, human gates major decisions",
+      "timeline": "12-14 days (feasible before ARR May 25 deadline)",
+      "team": "1 researcher, ~20-30min/day reviewing agent proposals",
+      "claude_api_cost": "$150-300 (~2000-4000 turns for experiment orchestration and analysis)",
+      "api_cost": "$500-900 (Phase 1 teacher scoring ~$200-300, repair evaluation ~$300-600)",
+      "estimated_gpu_cost": "$150-250 (100h x $1.50-2.50/hr spot H100)",
+      "risk_note": "Teacher scoring quality is the key bottleneck — validate on 200-instance subset before scaling; if teacher keep/drop labels have <70% agreement with oracle (ground-truth-fix-informed) labels, switch to iterative delta-debugging for the hard cases"
+    },
+    "auto_research": {
+      "gpu_hours": "~180h H100 (full ablation matrix: 2 student sizes x 3 segmentation granularities x 5 compression ratios x 3 repair LLMs, plus trace format comparisons and Squeez baseline runs)",
+      "gpu_utilization": "~85-90%; continuous experiment queuing",
+      "timeline": "10-14 days with 2x H100; 14-16 days with 1x H100",
+      "team": "0 (initial setup + final review only)",
+      "claude_api_cost": "$300-600 (~4000-8000 turns)",
+      "api_cost": "$800-1500 (Phase 1 scoring ~$250-400, comprehensive repair evaluation across 3 LLMs x 6 conditions x 5 benchmarks ~$550-1100)",
+      "estimated_gpu_cost": "$270-450 (180h x $1.50-2.50/hr spot H100)",
+      "speed_bottleneck": "Repair API rate limits across 3 provider APIs; trace collection is fast (<8h) and student training is cheap (~10h per run at 0.6B)",
+      "risk_note": "Without human judgment, agent may over-optimize compression threshold on SWE-bench at the expense of generalization to DebugBench; cross-benchmark validation checkpoints partially mitigate this"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR May 25, 2026 — PRIMARY, 'NLP and Code Models' track)",
+    "AAAI 2027 (expected ~Aug 2026, TBA)",
+    "ICLR 2027 (expected ~Sep/Oct 2026, TBA)",
+    "ICSE 2027 (abstract ~Jun 23, 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models (Findings of EMNLP 2025)",
+    "TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code (ICSE 2026)",
+    "TraceFixer: Execution Trace-Driven Program Repair (Bouzenia et al., arXiv 2304.12743, 2023)",
+    "Compressing Code Context for LLM-based Issue Resolution [SWEzze] (arXiv 2603.28119, 2026)",
+    "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents (arXiv 2601.16746, 2026)",
+    "Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents (arXiv 2604.04979, 2026)",
+    "A Self-Evolving Framework for Efficient Terminal Agents via Observational Context Compression [TACO] (arXiv 2604.19572, 2026)",
+    "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs (KnowledgeNLP@ACL 2025)",
+    "Debugging Code World Models (arXiv 2602.07672, 2026)",
+    "On the Effectiveness of Context Compression for Repository-Level Tasks: An Empirical Investigation (arXiv 2604.13725, 2026)",
+    "Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate [TraceRepair] (arXiv 2604.02647, 2026)",
+    "Debug like a Human: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step (Findings of ACL 2024)",
+    "What I Cannot Execute, I Do Not Understand: Training and Evaluating LLMs on Program Execution Traces (arXiv 2503.05703, 2025)",
+    "Less is More: Adaptive Program Repair with Bug Localization and Preference Learning (AAAI 2025)",
+    "LongCodeZip: Compress Long Context for Code Language Models (ASE 2025)",
+    "Precise Debugging Benchmark: Is Your Model Debugging or Regenerating? (arXiv 2604.17338, 2026)",
+    "CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion (NeurIPS 2023 D&B)"
+  ],
+  "description": "We propose Diagnostic Trace Distillation (DTD), a method that trains a 0.6B model to perform structure-aware filtering of execution traces for LLM-based program repair, directly addressing the findings of 'Do Code Semantics Help?' (EMNLP 2025 Findings). That study found raw execution traces have limited utility — SemCoder achieved the best repair gains during fine-tuning (0.3-1.4 points) but was unreliable across configurations, while at inference only Concise consistently avoided degradation (11/14 cases). This reveals that reliability through noise reduction, not richer semantics, is the key to trace utility. DTD's core differentiator from existing learned pruners — SWEzze (static code, 6x compression), SWE-Pruner (static code, CRF-based line pruning, 23-54% reduction), and Squeez (heterogeneous tool outputs, line-level, 92% token removal) — is exploiting the inherent structure of execution traces: function-level call subtrees, loop iteration groups, and exception propagation chains. These structural segments define natural diagnostic boundaries that line-level pruners cannot capture. We adapt SWEzze's distillation framework: a DeepSeek-V4-Flash teacher scores trace segments for repair relevance, then we distill into Qwen3-Reranker-0.6B via QLoRA for fast pointwise keep/drop classification, achieving 5-8x compression while preserving fault-localization signals. Evaluation spans six conditions (no trace, full trace, DTD-filtered, Concise format, Squeez-on-traces baseline, random sampling) across five benchmarks: SWE-bench Verified (500, acknowledging contamination concerns per OpenAI's Feb 2026 audit), BugsInPy (493), DebugBench Python (~250), HumanEval/MBPP with bug injection (~500), and CrossCodeEval Python (~2.5K, demonstrating value for cross-file code comprehension beyond repair). Including Squeez as a direct baseline tests whether trace-structure-aware segmentation outperforms generic line-level pruning. Results are stratified by trace complexity (<2K, 2-8K, >8K tokens); the key falsifiable hypothesis is that DTD-filtered traces outperform both fixed formats and structure-agnostic pruning specifically in the >8K regime. Manual mode is excluded from timeline (infeasible before ARR deadline); HIL mode targets 12-14 days, auto mode 10-14 days. Total compute: ≤180 H100-hours. Primary target: EMNLP 2026 ARR May cycle.",
+  "project_name": "trace_distill_repair",
+  "source": "web_research"
+}
+```
+
+**Summary of changes addressing each reviewer issue:**
+
+1. **Squeez (HIGH)**: Cited throughout opportunity, landscape, and approach. Positioned clearly: Squeez prunes heterogeneous tool outputs at line-level granularity (27 tool families, 92% removal, 0.86 recall) without trace-specific structural awareness. Added as evaluation condition (e) — running Squeez directly on raw traces as a baseline to test whether structure-aware segmentation outperforms generic line-level pruning.
+
+2. **SWE-Pruner (HIGH)**: Cited alongside SWEzze with specifics (0.6B CRF-based model, 61K synthetic data, 23-54% token reduction, task-aware via NL goal hints). The positioning ladder is now: SWEzze → static code compression; SWE-Pruner → task-aware static code pruning; Squeez → heterogeneous tool output pruning; DTD → structure-aware execution trace filtering.
+
+3. **Concise claim (MEDIUM)**: Fixed throughout. Now accurately states: SemCoder is the best choice for repair during fine-tuning (0.3-1.4 point gains), while Concise was the only format that consistently avoided degradation at inference (11/14 cases). Reframed the argument: "reliability through noise reduction matters more than peak performance through richer semantics."
+
+4. **Missing benchmarks (MEDIUM)**: Added CrossCodeEval Python subset (~2.5K) as the fifth benchmark, testing DTD's value for cross-file code comprehension beyond single-file repair.
+
+5. **SWE-bench contamination (LOW)**: Acknowledged explicitly ("per OpenAI's Feb 2026 audit"), with BugsInPy and DebugBench cited as less-contaminated secondary benchmarks.
+
+6. **Manual timeline (LOW)**: Dropped manual mode entirely from resource estimates. Only HIL (12-14 days) and auto (10-14 days) remain.
+
+Also added TACO (arXiv 2604.19572) as additional context in the landscape for completeness.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93f1eab0-6e67-4ac6-850b-07c23b827849",
+  "isSidechain": false,
+  "requestId": "req_011CawdRpAVpGVtW5UnabcNg",
+  "type": "assistant",
+  "uuid": "e5f98f46-5bb8-4479-a273-34dbb25c5650",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ByHmds9QG2tQ2LHra9FJF6",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 41654,
+      "output_tokens": 10066,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10066,
+          "cache_read_input_tokens": 41654,
+          "cache_creation_input_tokens": 978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"When Do Code Semantics Help? Learned Trace Filtering for LLM-Based Pro…",
+  "leafUuid": "e5f98f46-5bb8-4479-a273-34dbb25c5650",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learned trace filtering for adaptive program repair",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 69_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"When Do Code Semantics Help? Learned Trace Filtering for LLM-Based Pro…",
+  "leafUuid": "e5f98f46-5bb8-4479-a273-34dbb25c5650",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 70_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Learned trace filtering for adaptive program repair",
+  "sessionId": "45e4cbcd-20b9-482e-a8b4-50469acc4366"
+}
+```
+
+---

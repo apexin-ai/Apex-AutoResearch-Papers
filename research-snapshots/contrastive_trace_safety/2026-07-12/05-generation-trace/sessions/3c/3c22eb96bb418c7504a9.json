@@ -1,0 +1,1154 @@
+{
+  "schema_version": "1.0",
+  "id": "3c22eb96bb418c7504a9",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need you to extract the Python script content for `evaluate_stratified.py` and `analyze_stratified.py` from a worker c",
+  "task_key": "agent-a244b0313f96edf04",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a244b0313f96edf04.jsonl",
+    "occurrence": 1,
+    "bytes": 93485,
+    "sha256": "3b82adb643230d095870f9ee53fbd26d608d24b13ab74c89af5d71bd176be9b3"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 1,
+    "tool_calls": 8,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 8,
+      "tool_result": 8
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T07:54:39.108Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need you to extract the Python script content for `evaluate_stratified.py` and `analyze_stratified.py` from a worker chat log. These scripts were created during a previous worker session but weren't persisted to the server.\n\nThe chat log is at: `/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/logs/chats/worker_code_plan005-stratified-prep_20260515T050005.jsonl`\n\nThis is a JSONL file where each line is a JSON object with assistant messages that may contain tool_use calls (like ssh_execute) that wrote these scripts to the server. Look for the actual Python source code content of both scripts.\n\nAlso check the spec file for the expected interface:\n`/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/plan_005/report/plan005_stratification_spec.md`\n\nReturn the FULL source code of both scripts (evaluate_stratified.py and analyze_stratified.py) exactly as they were written. If you can't find them in the chat log, check if there's a local copy anywhere in the project directory tree."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "658d2eb0-8593-44d8-a0a6-011e29c3e29c",
+            "agentId": "a244b0313f96edf04",
+            "type": "user",
+            "uuid": "45849d27-9ecc-4a9b-9153-4b6e82d13334",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T07:54:39.113Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "45849d27-9ecc-4a9b-9153-4b6e82d13334",
+                "isSidechain": true,
+                "agentId": "a244b0313f96edf04",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "ce87b32c-16fc-49a7-a383-0151ed25e55f",
+                "timestamp": "2026-05-15T07:54:39.113Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+                "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T07:54:41.694Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll start by reading the chat log and the spec file in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce87b32c-16fc-49a7-a383-0151ed25e55f",
+            "isSidechain": true,
+            "agentId": "a244b0313f96edf04",
+            "requestId": "req_011Cb3zeBGoYepwKm33uYn3v",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ad6d50b2-3dc4-4300-b320-5c498dd1437a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D1gGBhrZuwJV4GnKWRPMfP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14370,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14370,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T07:54:42.745Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L6gGamg6d2R8LS3kezYjSq",
+              "name": "Bash",
+              "input": {
+                "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/logs/chats/worker_code_plan005-stratified-prep_20260515T050005.jsonl",
+                "description": "Count lines in the JSONL chat log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ad6d50b2-3dc4-4300-b320-5c498dd1437a",
+            "isSidechain": true,
+            "agentId": "a244b0313f96edf04",
+            "requestId": "req_011Cb3zeBGoYepwKm33uYn3v",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cf40556f-687f-4d44-9f7b-a97d19af80e7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D1gGBhrZuwJV4GnKWRPMfP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14370,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14370,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T07:54:42.796Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L6gGamg6d2R8LS3kezYjSq",
+              "type": "tool_result",
+              "content": "101 /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/logs/chats/worker_code_plan005-stratified-prep_20260515T050005.jsonl",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cf40556f-687f-4d44-9f7b-a97d19af80e7",
+            "isSidechain": true,
+            "promptId": "658d2eb0-8593-44d8-a0a6-011e29c3e29c",
+            "agentId": "a244b0313f96edf04",
+            "type": "user",
+            "uuid": "c8f6dfbe-17ce-4eb7-82e7-fa82f5e9e95b",
+            "sourceToolAssistantUUID": "cf40556f-687f-4d44-9f7b-a97d19af80e7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T07:54:43.673Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GxRYEZ3UD9KB2DkCAyafgM",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/plan_005/report/plan005_stratification_spec.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c8f6dfbe-17ce-4eb7-82e7-fa82f5e9e95b",
+            "isSidechain": true,
+            "agentId": "a244b0313f96edf04",
+            "requestId": "req_011Cb3zeBGoYepwKm33uYn3v",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "069d84c0-88f7-4ff2-bf3b-831125bf6ec5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D1gGBhrZuwJV4GnKWRPMfP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14370,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14370,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T07:54:43.680Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GxRYEZ3UD9KB2DkCAyafgM",
+              "type": "tool_result",
+              "content": "1\t# Plan 005: Stratified Analysis Specification\n2\t\n3\t## Pipeline\n4\t\n5\tThree-stage pipeline, stages 1 & 3 are CPU-only:\n6\t\n7\t1. **`prepare_stratification_index.py`** (CPU, DONE) — parses all.jsonl → `stratification_index.json`\n8\t2. **`evaluate_stratified.py`** (GPU, awaiting M2 checkpoints) — per-query eval with pool_size control\n9\t3. **`analyze_stratified.py`** (CPU) — stratification + bootstrap CI + plots\n10\t\n11\t## 5 Stratification Dimensions\n12\t\n13\t| # | Dimension | Bins | Source | Method |\n14\t|---|-----------|------|--------|--------|\n15\t| 1 | Repo size (file count) | small (<50), medium (50-200), large (200+) | `stratification_index.json` → `repo_file_count` | Fixed thresholds (matches BM25 overlap analysis) |\n16\t| 2 | Eval pool size | Quartiles | Per-query eval output → `pool_size` | Data-driven quartiles |\n17\t| 3 | Query-positive similarity | Quartiles | Per-query eval output → `query_pos_sim` | Data-driven quartiles |\n18\t| 4 | Structural data availability | Binary: with_structural / no_structural | `stratification_index.json` → `has_structural` | Binary (34.3% with / 65.7% without) |\n19\t| 5 | Negative difficulty | Quartiles of mean neg cosine sim | Per-query eval output → `mean_neg_sim` | Data-driven quartiles |\n20\t\n21\t## Pool Size Control (D038)\n22\t\n23\t`evaluate_stratified.py` accepts `--pool-sizes 50,100,200,500` to test strategy ranking stability across pool sizes. Each pool size produces a separate per-query JSONL. Analysis is run independently per pool size.\n24\t\n25\tPadding strategy: when a query has fewer candidates than target pool_size, pad with global distractors from other queries in the same val set (same as `eval_p2b_pooled.py`).\n26\t\n27\t## Data Sources\n28\t\n29\t- **M1 metadata**: `/root/autodl-tmp/structfuse/stratification_index.json` (19MB, 44,173 instances, 123 repos)\n30\t- **Val data**: `/root/autodl-tmp/structfuse/full_m2_training_data/val_{strategy}_s{seed}.jsonl` (2,980 queries each)\n31\t- **Checkpoints**: `/root/autodl-tmp/structfuse/checkpoints/m2_full_{encoder}/{strategy}_s{seed}/`\n32\t\n33\t## Per-query Output Schema\n34\t\n35\t```json\n36\t{\n37\t  \"query_id\": \"instance_id::file_path\",\n38\t  \"instance_id\": \"repo.commit.mutation__hash\",\n39\t  \"gold_rank\": 0,\n40\t  \"pool_size\": 50,\n41\t  \"query_pos_sim\": 0.712345,\n42\t  \"mean_neg_sim\": 0.351234,\n43\t  \"max_neg_sim\": 0.581234,\n44\t  \"hit_at_1\": true,\n45\t  \"hit_at_5\": true,\n46\t  \"hit_at_10\": true\n47\t}\n48\t```\n49\t\n50\t## Analysis Outputs\n51\t\n52\t- `stratified_results.json` — full results with bootstrap 95% CIs per stratum\n53\t- `stratified_results.csv` — flat table for easy import\n54\t- `stratified_{dimension}.pdf` — bar charts: R@1 per strategy (left), delta vs random (right)\n55\t- Weighted aggregate delta per dimension (accounts for stratum sizes)\n56\t\n57\t## Execution Plan\n58\t\n59\tWhen M2 checkpoints are ready:\n60\t\n61\t```bash\n62\t# Stage 2: per-query eval (GPU, ~30min per run × 18 runs)\n63\tfor encoder in qwen starcoder; do\n64\t  for strategy in random embedding_distance dataflow_aware; do\n65\t    for seed in 42 43 44; do\n66\t      python evaluate_stratified.py \\\n67\t        --ckpt-dir /root/autodl-tmp/structfuse/checkpoints/m2_full_${encoder}/${strategy}_s${seed} \\\n68\t        --model-name /root/autodl-tmp/structfuse/models/${model_path} \\\n69\t        --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_${strategy}_s${seed}.jsonl \\\n70\t        --pool-sizes 50 \\\n71\t        --output-dir /root/structfuse/results/stratified/per_query \\\n72\t        --tag ${encoder}_${strategy}_s${seed}\n73\t    done\n74\t  done\n75\tdone\n76\t\n77\t# Stage 3: analysis (CPU, <1min)\n78\tpython analyze_stratified.py \\\n79\t  --results-dir /root/structfuse/results/stratified/per_query \\\n80\t  --index-file /root/autodl-tmp/structfuse/stratification_index.json \\\n81\t  --strategies random,embedding_distance,dataflow_aware \\\n82\t  --encoder qwen --seeds 42,43,44 --pool-size 50 \\\n83\t  --output-dir /root/structfuse/results/stratified\n84\t```\n85\t\n86\t## Verification\n87\t\n88\t- [x] `prepare_stratification_index.py` — completed, 44,173 instances indexed\n89\t- [x] `evaluate_stratified.py --dry-run` — passed (2,980 queries, multi-pool-size)\n90\t- [x] `analyze_stratified.py --dry-run` — passed (5 dimensions, JSON+CSV+5 PDFs)\n91\t- [ ] Real eval — awaiting M2 checkpoints\n92\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "069d84c0-88f7-4ff2-bf3b-831125bf6ec5",
+            "isSidechain": true,
+            "promptId": "658d2eb0-8593-44d8-a0a6-011e29c3e29c",
+            "agentId": "a244b0313f96edf04",
+            "type": "user",
+            "uuid": "72380042-d14e-4530-ad40-567e886540db",
+            "sourceToolAssistantUUID": "069d84c0-88f7-4ff2-bf3b-831125bf6ec5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T07:54:44.126Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011xYEqXrr7ada5PRaLZP7Zi",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/evaluate_stratified.py",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "72380042-d14e-4530-ad40-567e886540db",
+            "isSidechain": true,
+            "agentId": "a244b0313f96edf04",
+            "requestId": "req_011Cb3zeBGoYepwKm33uYn3v",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f3bcf76d-9bac-4d32-924a-79a78188eb8e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D1gGBhrZuwJV4GnKWRPMfP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14370,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14370,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T07:54:44.139Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011xYEqXrr7ada5PRaLZP7Zi",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f3bcf76d-9bac-4d32-924a-79a78188eb8e",
+            "isSidechain": true,
+            "promptId": "658d2eb0-8593-44d8-a0a6-011e29c3e29c",
+            "agentId": "a244b0313f96edf04",
+            "type": "user",
+            "uuid": "327db6c1-dd71-4dc3-a105-6bc0646c521c",
+            "sourceToolAssistantUUID": "f3bcf76d-9bac-4d32-924a-79a78188eb8e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T07:54:44.477Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019YoeAoeKkgqXnP3pGev7fZ",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/analyze_stratified.py",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "327db6c1-dd71-4dc3-a105-6bc0646c521c",
+            "isSidechain": true,
+            "agentId": "a244b0313f96edf04",
+            "requestId": "req_011Cb3zeBGoYepwKm33uYn3v",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "bc8904fd-c7ab-4ca3-b5ef-078d899a31ad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D1gGBhrZuwJV4GnKWRPMfP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14370,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 401,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14370
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 401,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 14370,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 14370,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T07:54:44.499Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019YoeAoeKkgqXnP3pGev7fZ",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc8904fd-c7ab-4ca3-b5ef-078d899a31ad",
+            "isSidechain": true,
+            "promptId": "658d2eb0-8593-44d8-a0a6-011e29c3e29c",
+            "agentId": "a244b0313f96edf04",
+            "type": "user",
+            "uuid": "4e01c528-1bc4-47f7-89b2-d89bec35b15d",
+            "sourceToolAssistantUUID": "bc8904fd-c7ab-4ca3-b5ef-078d899a31ad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T07:54:47.538Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No local copies found. Let me search the JSONL chat log for the script contents."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4e01c528-1bc4-47f7-89b2-d89bec35b15d",
+            "isSidechain": true,
+            "agentId": "a244b0313f96edf04",
+            "requestId": "req_011Cb3zeaCCP4GEGQRK6ZiMT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4c69c92b-d35f-4293-a1ff-10130913406b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016mjQmSWC5JjE4CgtC82iFP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2955,
+                "cache_read_input_tokens": 14370,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2955,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T07:54:48.437Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FXw3uK7dzXRHvTq2dd63xu",
+              "name": "Grep",
+              "input": {
+                "pattern": "evaluate_stratified\\.py",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/logs/chats/worker_code_plan005-stratified-prep_20260515T050005.jsonl",
+                "output_mode": "content",
+                "head_limit": 20
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c69c92b-d35f-4293-a1ff-10130913406b",
+            "isSidechain": true,
+            "agentId": "a244b0313f96edf04",
+            "requestId": "req_011Cb3zeaCCP4GEGQRK6ZiMT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a26619ba-0b41-4ef1-9db5-2f91c93bd16a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016mjQmSWC5JjE4CgtC82iFP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2955,
+                "cache_read_input_tokens": 14370,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2955,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T07:54:48.459Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FXw3uK7dzXRHvTq2dd63xu",
+              "type": "tool_result",
+              "content": "63:[Omitted long matching line]\n64:{\"ts\": \"2026-05-15T05:09:54.789503+00:00\", \"role\": \"tool_result\", \"session\": \"worker_code_plan005-stratified-prep_20260515T050005\", \"text\": \"{\\\"result\\\":\\\"{\\\\\\\"success\\\\\\\": true, \\\\\\\"data\\\\\\\": {\\\\\\\"stdout\\\\\\\": \\\\\\\"evaluate_stratified.py written OK\\\\\\\\n\\\\\\\", \\\\\\\"stderr\\\\\\\": \\\\\\\"\\\\\\\", \\\\\\\"return_code\\\\\\\": 0}, \\\\\\\"error\\\\\\\": null, \\\\\\\"metadata\\\\\\\": {\\\\\\\"elapsed_seconds\\\\\\\": 0.35}}\\\"}\", \"tool\": \"mcp__agent-ml-research__ssh_execute\", \"elapsed_ms\": 0}\n91:[Omitted long matching line]\n97:[Omitted long matching line]\n101:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a26619ba-0b41-4ef1-9db5-2f91c93bd16a",
+            "isSidechain": true,
+            "promptId": "658d2eb0-8593-44d8-a0a6-011e29c3e29c",
+            "agentId": "a244b0313f96edf04",
+            "type": "user",
+            "uuid": "35953db3-a795-4ea0-b2ff-7959afbdfc4d",
+            "sourceToolAssistantUUID": "a26619ba-0b41-4ef1-9db5-2f91c93bd16a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T07:54:49.397Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XEwMTSpias2nnjnEQvw6MA",
+              "name": "Grep",
+              "input": {
+                "pattern": "analyze_stratified\\.py",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/logs/chats/worker_code_plan005-stratified-prep_20260515T050005.jsonl",
+                "output_mode": "content",
+                "head_limit": 20
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35953db3-a795-4ea0-b2ff-7959afbdfc4d",
+            "isSidechain": true,
+            "agentId": "a244b0313f96edf04",
+            "requestId": "req_011Cb3zeaCCP4GEGQRK6ZiMT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "48941102-e45e-4423-a2fa-8930f24b263a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016mjQmSWC5JjE4CgtC82iFP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2955,
+                "cache_read_input_tokens": 14370,
+                "output_tokens": 333,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2955
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 333,
+                    "cache_read_input_tokens": 14370,
+                    "cache_creation_input_tokens": 2955,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2955,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T07:54:49.409Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XEwMTSpias2nnjnEQvw6MA",
+              "type": "tool_result",
+              "content": "28:[Omitted long matching line]\n63:[Omitted long matching line]\n65:[Omitted long matching line]\n66:{\"ts\": \"2026-05-15T05:09:54.790023+00:00\", \"role\": \"tool_result\", \"session\": \"worker_code_plan005-stratified-prep_20260515T050005\", \"text\": \"{\\\"result\\\":\\\"{\\\\\\\"success\\\\\\\": true, \\\\\\\"data\\\\\\\": {\\\\\\\"stdout\\\\\\\": \\\\\\\"analyze_stratified.py written OK\\\\\\\\n\\\\\\\", \\\\\\\"stderr\\\\\\\": \\\\\\\"\\\\\\\", \\\\\\\"return_code\\\\\\\": 0}, \\\\\\\"error\\\\\\\": null, \\\\\\\"metadata\\\\\\\": {\\\\\\\"elapsed_seconds\\\\\\\": 0.41}}\\\"}\", \"tool\": \"mcp__agent-ml-research__ssh_execute\", \"elapsed_ms\": 0}\n85:[Omitted long matching line]\n86:[Omitted long matching line]\n87:[Omitted long matching line]\n89:[Omitted long matching line]\n97:[Omitted long matching line]\n101:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48941102-e45e-4423-a2fa-8930f24b263a",
+            "isSidechain": true,
+            "promptId": "658d2eb0-8593-44d8-a0a6-011e29c3e29c",
+            "agentId": "a244b0313f96edf04",
+            "type": "user",
+            "uuid": "c0ad263b-86fd-4be2-a5d2-00ad8936ea38",
+            "sourceToolAssistantUUID": "48941102-e45e-4423-a2fa-8930f24b263a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T07:54:52.396Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The scripts were written on line 63 (which contains both). Let me read that line to extract the full content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c0ad263b-86fd-4be2-a5d2-00ad8936ea38",
+            "isSidechain": true,
+            "agentId": "a244b0313f96edf04",
+            "requestId": "req_011Cb3zew9X2PFGmJa6YPNMT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "334e365f-49c0-4481-af80-e770b10197b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KfHE26PF9UDLvzihQkdkKC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 896,
+                "cache_read_input_tokens": 17325,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 896,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T07:54:53.215Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ESJSTPJGkZbEcJNUZ9yyNd",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/logs/chats/worker_code_plan005-stratified-prep_20260515T050005.jsonl",
+                "offset": 62,
+                "limit": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "334e365f-49c0-4481-af80-e770b10197b3",
+            "isSidechain": true,
+            "agentId": "a244b0313f96edf04",
+            "requestId": "req_011Cb3zew9X2PFGmJa6YPNMT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d69465c8-b8fb-49ea-a691-735887454794",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KfHE26PF9UDLvzihQkdkKC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 896,
+                "cache_read_input_tokens": 17325,
+                "output_tokens": 166,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 896
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 166,
+                    "cache_read_input_tokens": 17325,
+                    "cache_creation_input_tokens": 896,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 896,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T07:54:53.221Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ESJSTPJGkZbEcJNUZ9yyNd",
+              "type": "tool_result",
+              "content": "62\t{\"ts\": \"2026-05-15T05:09:54.789126+00:00\", \"role\": \"tool_result\", \"session\": \"worker_code_plan005-stratified-prep_20260515T050005\", \"text\": \"{\\\"result\\\":\\\"{\\\\\\\"success\\\\\\\": true, \\\\\\\"data\\\\\\\": {\\\\\\\"stdout\\\\\\\": \\\\\\\"prepare_stratification_index.py written OK\\\\\\\\n\\\\\\\", \\\\\\\"stderr\\\\\\\": \\\\\\\"\\\\\\\", \\\\\\\"return_code\\\\\\\": 0}, \\\\\\\"error\\\\\\\": null, \\\\\\\"metadata\\\\\\\": {\\\\\\\"elapsed_seconds\\\\\\\": 0.35}}\\\"}\", \"tool\": \"mcp__agent-ml-research__ssh_execute\", \"elapsed_ms\": 0}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d69465c8-b8fb-49ea-a691-735887454794",
+            "isSidechain": true,
+            "promptId": "658d2eb0-8593-44d8-a0a6-011e29c3e29c",
+            "agentId": "a244b0313f96edf04",
+            "type": "user",
+            "uuid": "63c4953b-3950-494b-aa78-1bac01588ced",
+            "sourceToolAssistantUUID": "d69465c8-b8fb-49ea-a691-735887454794",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T07:54:57.641Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "That line was a tool result. The actual script content would be in the assistant message with the ssh_execute tool_use call. Let me look at the lines around 63 more carefully, and also check what's on line 63 itself (the file uses 1-based indexing in the grep output but 0-based offset in Read)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "63c4953b-3950-494b-aa78-1bac01588ced",
+            "isSidechain": true,
+            "agentId": "a244b0313f96edf04",
+            "requestId": "req_011Cb3zfDXGDN96D2q5NaCws",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "27beb438-f5a3-4cbe-9a57-222faf12c4e2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017ZMQsFKZJsUGRvkexANpxV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 469,
+                "cache_read_input_tokens": 18221,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 469,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T07:54:58.226Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015uX33RSu5aYqPjzCKUeXfU",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/logs/chats/worker_code_plan005-stratified-prep_20260515T050005.jsonl",
+                "offset": 62,
+                "limit": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "27beb438-f5a3-4cbe-9a57-222faf12c4e2",
+            "isSidechain": true,
+            "agentId": "a244b0313f96edf04",
+            "requestId": "req_011Cb3zfDXGDN96D2q5NaCws",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e44ca124-d1be-4d6c-8848-87c010cfa608",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017ZMQsFKZJsUGRvkexANpxV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 469,
+                "cache_read_input_tokens": 18221,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 469,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T07:54:58.503Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015uX33RSu5aYqPjzCKUeXfU",
+              "type": "tool_result",
+              "content": "62\t{\"ts\": \"2026-05-15T05:09:54.789126+00:00\", \"role\": \"tool_result\", \"session\": \"worker_code_plan005-stratified-prep_20260515T050005\", \"text\": \"{\\\"result\\\":\\\"{\\\\\\\"success\\\\\\\": true, \\\\\\\"data\\\\\\\": {\\\\\\\"stdout\\\\\\\": \\\\\\\"prepare_stratification_index.py written OK\\\\\\\\n\\\\\\\", \\\\\\\"stderr\\\\\\\": \\\\\\\"\\\\\\\", \\\\\\\"return_code\\\\\\\": 0}, \\\\\\\"error\\\\\\\": null, \\\\\\\"metadata\\\\\\\": {\\\\\\\"elapsed_seconds\\\\\\\": 0.35}}\\\"}\", \"tool\": \"mcp__agent-ml-research__ssh_execute\", \"elapsed_ms\": 0}\n63\t{\"ts\": \"2026-05-15T05:09:54.789284+00:00\", \"role\": \"tool\", \"session\": \"worker_code_plan005-stratified-prep_20260515T050005\", \"text\": \"called mcp__agent-ml-research__ssh_execute\", \"tool\": \"mcp__agent-ml-research__ssh_execute\", \"tool_args\": {\"server\": \"bjb1-42106\", \"command\": \"cat > /root/structfuse/scripts/evaluate_stratified.py << 'PYEOF'\\n\\\"\\\"\\\"Per-query evaluation for stratified analysis (plan_005).\\n\\nEvaluates M2 checkpoints and records per-query results including gold rank,\\ncosine similarities, and pool sizes. Supports multiple pool sizes (D038).\\n\\nOutputs per-query JSONL for downstream analyze_stratified.py.\\n\\nUsage:\\n    # Real eval (GPU):\\n    python evaluate_stratified.py \\\\\\n        --ckpt-dir /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42 \\\\\\n        --model-name /root/autodl-tmp/structfuse/models/Qwen2.5-Coder-3B \\\\\\n        --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl \\\\\\n        --pool-sizes 50 \\\\\\n        --output-dir /root/structfuse/results/stratified/per_query \\\\\\n        --tag qwen_random_s42\\n\\n    # Dry-run (no GPU):\\n    python evaluate_stratified.py --dry-run \\\\\\n        --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl \\\\\\n        --output-dir /root/structfuse/results/stratified/per_query \\\\\\n        --tag dryrun_random_s42\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\n\\ndef _extract_instance_id(query_id: str) -> str:\\n    return query_id.split(\\\"::\\\")[0]\\n\\n\\ndef _load_val_data(val_path: str) -> list:\\n    samples = []\\n    with open(val_path) as f:\\n        for line in f:\\n            if line.strip():\\n                samples.append(json.loads(line))\\n    return samples\\n\\n\\ndef _build_global_pool(samples: list) -> dict:\\n    pool = {}\\n    for s in samples:\\n        ct = s.get(\\\"candidate_tokens\\\", {})\\n        for cid, text in ct.items():\\n            if text and cid not in pool:\\n                pool[cid] = text\\n        pid = s.get(\\\"pos_id\\\")\\n        pt = s.get(\\\"pos_tokens\\\")\\n        if pid and pt:\\n            pool[pid] = pt\\n    return pool\\n\\n\\ndef evaluate_real(samples, global_pool, global_ids, ckpt_dir, model_name,\\n                  device, max_seq_len, pool_size, eval_seed):\\n    import torch\\n    import torch.nn.functional as F\\n    from transformers import AutoTokenizer\\n\\n    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / \\\"training\\\"))\\n    from contrastive_model import StructFuseEncoder\\n\\n    tokenizer = AutoTokenizer.from_pretrained(ckpt_dir, trust_remote_code=True)\\n    config_path = Path(ckpt_dir) / \\\"training_config.json\\\"\\n    with open(config_path) as f:\\n        cfg = json.load(f)\\n\\n    model = StructFuseEncoder(\\n        model_name=model_name,\\n        proj_dim=cfg.get(\\\"proj_dim\\\", 256),\\n        use_lora=cfg.get(\\\"use_lora\\\", True),\\n        lora_r=cfg.get(\\\"lora_r\\\", 16),\\n        use_fusion_head=cfg.get(\\\"use_fusion_head\\\", False),\\n    )\\n    state_dict = torch.load(Path(ckpt_dir) / \\\"model.pt\\\", map_location=\\\"cpu\\\")\\n    result = model.load_state_dict(state_dict, strict=False)\\n    assert not result.missing_keys, f\\\"Missing keys: {result.missing_keys}\\\"\\n    model = model.to(device).eval()\\n\\n    def encode_batch(texts, batch_size=16):\\n        all_embs = []\\n        for i in range(0, len(texts), batch_size):\\n            bt = texts[i:i+batch_size]\\n            enc = tokenizer(bt, truncation=True, max_length=max_seq_len,\\n                            padding=True, return_tensors=\\\"pt\\\")\\n            enc = {k: v.to(device) for k, v in enc.items()}\\n            with torch.no_grad():\\n                emb = model.encode(enc[\\\"input_ids\\\"], enc[\\\"attention_mask\\\"])\\n            all_embs.append(emb.cpu())\\n        return torch.cat(all_embs, dim=0)\\n\\n    rng = random.Random(eval_seed)\\n    results = []\\n    target_negs = pool_size - 1\\n\\n    for idx, s in enumerate(samples):\\n        query_id = s.get(\\\"query_id\\\", \\\"\\\")\\n        query_text = s[\\\"query_tokens\\\"]\\n        pos_text = s[\\\"pos_tokens\\\"]\\n        pos_id = s.get(\\\"pos_id\\\", \\\"\\\")\\n\\n        cand_ids = s.get(\\\"neg_candidates\\\", [])\\n        cand_tokens = s.get(\\\"candidate_tokens\\\", {})\\n        neg_texts = [(cid, cand_tokens[cid]) for cid in cand_ids\\n                     if cid in cand_tokens and cand_tokens[cid]]\\n\\n        if len(neg_texts) < target_negs:\\n            used = {cid for cid, _ in neg_texts} | {pos_id, query_id}\\n            avail = [g for g in global_ids if g not in used]\\n            rng.shuffle(avail)\\n            for gid in avail:\\n                if len(neg_texts) >= target_negs:\\n                    break\\n                neg_texts.append((gid, global_pool[gid]))\\n\\n        if len(neg_texts) > target_negs:\\n            rng.shuffle(neg_texts)\\n            neg_texts = neg_texts[:target_negs]\\n\\n        if not neg_texts:\\n            continue\\n\\n        pool_texts = [pos_text] + [t for _, t in neg_texts]\\n        query_emb = encode_batch([query_text])\\n        pool_embs = encode_batch(pool_texts)\\n\\n        sims = F.cosine_similarity(query_emb, pool_embs, dim=1)\\n        ranking = sims.argsort(descending=True)\\n        gold_rank = (ranking == 0).nonzero(as_tuple=True)[0].item()\\n\\n        query_pos_sim = float(sims[0])\\n        neg_sims = sims[1:].numpy()\\n\\n        results.append({\\n            \\\"query_id\\\": query_id,\\n            \\\"instance_id\\\": _extract_instance_id(query_id),\\n            \\\"gold_rank\\\": gold_rank,\\n            \\\"pool_size\\\": len(pool_texts),\\n            \\\"query_pos_sim\\\": round(query_pos_sim, 6),\\n            \\\"mean_neg_sim\\\": round(float(neg_sims.mean()), 6) if len(neg_sims) > 0 else 0.0,\\n            \\\"max_neg_sim\\\": round(float(neg_sims.max()), 6) if len(neg_sims) > 0 else 0.0,\\n            \\\"hit_at_1\\\": gold_rank < 1,\\n            \\\"hit_at_5\\\": gold_rank < 5,\\n            \\\"hit_at_10\\\": gold_rank < 10,\\n        })\\n\\n        if (idx + 1) % 200 == 0:\\n            r1_so_far = sum(r[\\\"hit_at_1\\\"] for r in results) / len(results)\\n            print(f\\\"  [{idx+1}/{len(samples)}] running R@1={r1_so_far:.4f}\\\", flush=True)\\n\\n    return results\\n\\n\\ndef evaluate_dryrun(samples, pool_size, eval_seed):\\n    rng = np.random.RandomState(eval_seed)\\n    results = []\\n    for s in samples:\\n        query_id = s.get(\\\"query_id\\\", \\\"\\\")\\n        n_negs = min(len(s.get(\\\"neg_candidates\\\", [])), pool_size - 1)\\n        if n_negs < 1:\\n            n_negs = pool_size - 1\\n        actual_pool = n_negs + 1\\n\\n        gold_rank = rng.choice(actual_pool)\\n        qp_sim = rng.normal(0.6, 0.15)\\n        mn_sim = rng.normal(0.35, 0.1)\\n\\n        results.append({\\n            \\\"query_id\\\": query_id,\\n            \\\"instance_id\\\": _extract_instance_id(query_id),\\n            \\\"gold_rank\\\": int(gold_rank),\\n            \\\"pool_size\\\": actual_pool,\\n            \\\"query_pos_sim\\\": round(float(np.clip(qp_sim, -1, 1)), 6),\\n            \\\"mean_neg_sim\\\": round(float(np.clip(mn_sim, -1, 1)), 6),\\n            \\\"max_neg_sim\\\": round(float(np.clip(mn_sim + 0.15, -1, 1)), 6),\\n            \\\"hit_at_1\\\": int(gold_rank) < 1,\\n            \\\"hit_at_5\\\": int(gold_rank) < 5,\\n            \\\"hit_at_10\\\": int(gold_rank) < 10,\\n        })\\n    return results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--ckpt-dir\\\", default=None)\\n    parser.add_argument(\\\"--model-name\\\", default=None)\\n    parser.add_argument(\\\"--val-file\\\", required=True)\\n    parser.add_argument(\\\"--pool-sizes\\\", default=\\\"50\\\", help=\\\"Comma-separated pool sizes\\\")\\n    parser.add_argument(\\\"--output-dir\\\", required=True)\\n    parser.add_argument(\\\"--tag\\\", required=True, help=\\\"e.g., qwen_random_s42\\\")\\n    parser.add_argument(\\\"--max-seq-length\\\", type=int, default=2048)\\n    parser.add_argument(\\\"--device\\\", default=\\\"cuda:0\\\")\\n    parser.add_argument(\\\"--eval-seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    args = parser.parse_args()\\n\\n    pool_sizes = [int(x) for x in args.pool_sizes.split(\\\",\\\")]\\n    print(f\\\"Loading val data from {args.val_file}\\\", flush=True)\\n    samples = _load_val_data(args.val_file)\\n    print(f\\\"  {len(samples)} samples loaded\\\", flush=True)\\n\\n    if not args.dry_run:\\n        global_pool = _build_global_pool(samples)\\n        global_ids = list(global_pool.keys())\\n        print(f\\\"  global distractor pool: {len(global_ids)} files\\\", flush=True)\\n\\n    out_dir = Path(args.output_dir)\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n\\n    for ps in pool_sizes:\\n        print(f\\\"\\\\n{'='*50}\\\", flush=True)\\n        print(f\\\"Evaluating pool_size={ps} tag={args.tag} {'[DRY-RUN]' if args.dry_run else ''}\\\", flush=True)\\n        print(f\\\"{'='*50}\\\", flush=True)\\n\\n        if args.dry_run:\\n            results = evaluate_dryrun(samples, ps, args.eval_seed)\\n        else:\\n            results = evaluate_real(\\n                samples, global_pool, global_ids,\\n                args.ckpt_dir, args.model_name, args.device,\\n                args.max_seq_length, ps, args.eval_seed,\\n            )\\n\\n        total = len(results)\\n        r1 = sum(r[\\\"hit_at_1\\\"] for r in results) / max(total, 1)\\n        r5 = sum(r[\\\"hit_at_5\\\"] for r in results) / max(total, 1)\\n        r10 = sum(r[\\\"hit_at_10\\\"] for r in results) / max(total, 1)\\n\\n        print(f\\\"\\\\nAggregate: R@1={r1:.4f} R@5={r5:.4f} R@10={r10:.4f} (n={total})\\\", flush=True)\\n\\n        out_path = out_dir / f\\\"per_query_{args.tag}_p{ps}.jsonl\\\"\\n        with open(out_path, \\\"w\\\") as f:\\n            for r in results:\\n                f.write(json.dumps(r, ensure_ascii=False) + \\\"\\\\n\\\")\\n        print(f\\\"Saved: {out_path}\\\", flush=True)\\n\\n        summary = {\\n            \\\"tag\\\": args.tag,\\n            \\\"pool_size\\\": ps,\\n            \\\"total\\\": total,\\n            \\\"recall_at_1\\\": round(r1, 4),\\n            \\\"recall_at_5\\\": round(r5, 4),\\n            \\\"recall_at_10\\\": round(r10, 4),\\n            \\\"dry_run\\\": args.dry_run,\\n        }\\n        sum_path = out_dir / f\\\"summary_{args.tag}_p{ps}.json\\\"\\n        with open(sum_path, \\\"w\\\") as f:\\n            json.dump(summary, f, indent=2)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\nPYEOF\\necho \\\"evaluate_stratified.py written OK\\\"\", \"account\": \"root\"}}\n64\t{\"ts\": \"2026-05-15T05:09:54.789503+00:00\", \"role\": \"tool_result\", \"session\": \"worker_code_plan005-stratified-prep_20260515T050005\", \"text\": \"{\\\"result\\\":\\\"{\\\\\\\"success\\\\\\\": true, \\\\\\\"data\\\\\\\": {\\\\\\\"stdout\\\\\\\": \\\\\\\"evaluate_stratified.py written OK\\\\\\\\n\\\\\\\", \\\\\\\"stderr\\\\\\\": \\\\\\\"\\\\\\\", \\\\\\\"return_code\\\\\\\": 0}, \\\\\\\"error\\\\\\\": null, \\\\\\\"metadata\\\\\\\": {\\\\\\\"elapsed_seconds\\\\\\\": 0.35}}\\\"}\", \"tool\": \"mcp__agent-ml-research__ssh_execute\", \"elapsed_ms\": 0}\n65\t{\"ts\": \"2026-05-15T05:09:54.789730+00:00\", \"role\": \"tool\", \"session\": \"worker_code_plan005-stratified-prep_20260515T050005\", \"text\": \"called mcp__agent-ml-research__ssh_execute\", \"tool\": \"mcp__agent-ml-research__ssh_execute\", \"tool_args\": {\"server\": \"bjb1-42106\", \"command\": \"cat > /root/structfuse/scripts/analyze_stratified.py << 'PYEOF'\\n\\\"\\\"\\\"Stratified analysis of M2 results (plan_005).\\n\\nJoins per-query eval results with M1 metadata, groups by 5 stratification\\ndimensions, and computes per-stratum R@1 deltas with bootstrap CIs.\\n\\n5 strata:\\n  1. Repo size (small/medium/large)\\n  2. Actual eval pool size (quartiles)\\n  3. Query-positive similarity (quartiles)\\n  4. Structural data availability (has_structural / no_structural)\\n  5. Negative difficulty (quartiles of mean_neg_sim)\\n\\nOutputs: JSON summary, CSV table, PDF plots.\\n\\nUsage:\\n    python analyze_stratified.py \\\\\\n        --results-dir /root/structfuse/results/stratified/per_query \\\\\\n        --index-file /root/autodl-tmp/structfuse/stratification_index.json \\\\\\n        --strategies random,embedding_distance,dataflow_aware \\\\\\n        --encoder qwen --seeds 42,43,44 --pool-size 50 \\\\\\n        --output-dir /root/structfuse/results/stratified\\n\\n    # Dry-run (uses whatever per_query files exist, or generates mock):\\n    python analyze_stratified.py --dry-run \\\\\\n        --output-dir /root/structfuse/results/stratified\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nREPO_SIZE_BINS = {\\n    \\\"small (<50)\\\": (0, 50),\\n    \\\"medium (50-200)\\\": (50, 201),\\n    \\\"large (200+)\\\": (201, float(\\\"inf\\\")),\\n}\\n\\n\\ndef load_per_query(results_dir, encoder, strategy, seed, pool_size):\\n    tag = f\\\"{encoder}_{strategy}_s{seed}\\\"\\n    path = Path(results_dir) / f\\\"per_query_{tag}_p{pool_size}.jsonl\\\"\\n    if not path.exists():\\n        return None\\n    records = []\\n    with open(path) as f:\\n        for line in f:\\n            if line.strip():\\n                records.append(json.loads(line))\\n    return records\\n\\n\\ndef load_index(index_path):\\n    with open(index_path) as f:\\n        return json.load(f)\\n\\n\\ndef quartile_bins(values):\\n    if not values:\\n        return {}\\n    arr = np.array(values)\\n    q25, q50, q75 = np.percentile(arr, [25, 50, 75])\\n    return {\\n        \\\"Q1 (lowest)\\\": (float(\\\"-inf\\\"), q25),\\n        \\\"Q2\\\": (q25, q50),\\n        \\\"Q3\\\": (q50, q75),\\n        \\\"Q4 (highest)\\\": (q75, float(\\\"inf\\\")),\\n    }\\n\\n\\ndef assign_bin(val, bins):\\n    for name, (lo, hi) in bins.items():\\n        if lo <= val < hi:\\n            return name\\n    return list(bins.keys())[-1]\\n\\n\\ndef bootstrap_ci(values, n_boot=2000, ci=0.95, seed=42):\\n    rng = np.random.RandomState(seed)\\n    arr = np.array(values, dtype=float)\\n    n = len(arr)\\n    if n < 2:\\n        m = float(arr.mean()) if n > 0 else 0.0\\n        return {\\\"mean\\\": m, \\\"ci_lower\\\": m, \\\"ci_upper\\\": m, \\\"n\\\": n}\\n    means = np.array([rng.choice(arr, size=n, replace=True).mean() for _ in range(n_boot)])\\n    alpha = (1 - ci) / 2\\n    lo, hi = np.percentile(means, [100 * alpha, 100 * (1 - alpha)])\\n    return {\\n        \\\"mean\\\": round(float(arr.mean()), 6),\\n        \\\"ci_lower\\\": round(float(lo), 6),\\n        \\\"ci_upper\\\": round(float(hi), 6),\\n        \\\"n\\\": n,\\n    }\\n\\n\\ndef compute_stratum_metrics(records, strategies, baseline=\\\"random\\\"):\\n    per_strategy = defaultdict(list)\\n    for r in records:\\n        per_strategy[r[\\\"strategy\\\"]].append(r[\\\"hit_at_1\\\"])\\n\\n    result = {}\\n    for s in strategies:\\n        vals = per_strategy.get(s, [])\\n        result[s] = bootstrap_ci(vals)\\n\\n    if baseline in result and result[baseline][\\\"n\\\"] > 0:\\n        base_mean = result[baseline][\\\"mean\\\"]\\n        for s in strategies:\\n            if s != baseline and s in result:\\n                result[f\\\"delta_{s}_vs_{baseline}\\\"] = round(\\n                    result[s][\\\"mean\\\"] - base_mean, 6)\\n\\n    return result\\n\\n\\ndef run_analysis(all_records, index, strategies, baseline=\\\"random\\\"):\\n    inst_meta = index.get(\\\"instances\\\", {})\\n\\n    for r in all_records:\\n        iid = r[\\\"instance_id\\\"]\\n        meta = inst_meta.get(iid, {})\\n        r[\\\"repo\\\"] = meta.get(\\\"repo\\\", \\\"unknown\\\")\\n        r[\\\"repo_file_count\\\"] = meta.get(\\\"repo_file_count\\\", 0)\\n        r[\\\"has_structural\\\"] = meta.get(\\\"has_structural\\\", False)\\n        r[\\\"has_z\\\"] = meta.get(\\\"has_z\\\", False)\\n        r[\\\"extraction_method\\\"] = meta.get(\\\"extraction_method\\\", \\\"none\\\")\\n\\n    # Compute quartile bins from data\\n    pool_sizes = [r[\\\"pool_size\\\"] for r in all_records]\\n    qp_sims = [r[\\\"query_pos_sim\\\"] for r in all_records]\\n    neg_diffs = [r[\\\"mean_neg_sim\\\"] for r in all_records]\\n\\n    pool_bins = quartile_bins(pool_sizes)\\n    sim_bins = quartile_bins(qp_sims)\\n    diff_bins = quartile_bins(neg_diffs)\\n\\n    strata_defs = {\\n        \\\"repo_size\\\": {\\n            \\\"field\\\": \\\"repo_file_count\\\",\\n            \\\"bins\\\": REPO_SIZE_BINS,\\n            \\\"type\\\": \\\"fixed\\\",\\n        },\\n        \\\"pool_size\\\": {\\n            \\\"field\\\": \\\"pool_size\\\",\\n            \\\"bins\\\": pool_bins,\\n            \\\"type\\\": \\\"quartile\\\",\\n        },\\n        \\\"query_pos_similarity\\\": {\\n            \\\"field\\\": \\\"query_pos_sim\\\",\\n            \\\"bins\\\": sim_bins,\\n            \\\"type\\\": \\\"quartile\\\",\\n        },\\n        \\\"structural_availability\\\": {\\n            \\\"field\\\": \\\"has_structural\\\",\\n            \\\"bins\\\": {\\\"with_structural\\\": True, \\\"no_structural\\\": False},\\n            \\\"type\\\": \\\"binary\\\",\\n        },\\n        \\\"neg_difficulty\\\": {\\n            \\\"field\\\": \\\"mean_neg_sim\\\",\\n            \\\"bins\\\": diff_bins,\\n            \\\"type\\\": \\\"quartile\\\",\\n        },\\n    }\\n\\n    results = {}\\n    for dim_name, dim_def in strata_defs.items():\\n        dim_results = {}\\n        field = dim_def[\\\"field\\\"]\\n        bins = dim_def[\\\"bins\\\"]\\n        dim_type = dim_def[\\\"type\\\"]\\n\\n        if dim_type == \\\"binary\\\":\\n            grouped = defaultdict(list)\\n            for r in all_records:\\n                val = r.get(field, False)\\n                for bname, bval in bins.items():\\n                    if val == bval:\\n                        grouped[bname].append(r)\\n                        break\\n        else:\\n            grouped = defaultdict(list)\\n            for r in all_records:\\n                val = r.get(field, 0)\\n                bname = assign_bin(val, bins)\\n                grouped[bname].append(r)\\n\\n        for bname, brecs in sorted(grouped.items()):\\n            metrics = compute_stratum_metrics(brecs, strategies, baseline)\\n            metrics[\\\"count\\\"] = len(brecs)\\n            dim_results[bname] = metrics\\n\\n        # Weighted aggregate delta\\n        total_n = sum(m[\\\"count\\\"] for m in dim_results.values())\\n        for s in strategies:\\n            if s == baseline:\\n                continue\\n            delta_key = f\\\"delta_{s}_vs_{baseline}\\\"\\n            weighted_sum = 0\\n            for bname, m in dim_results.items():\\n                d = m.get(delta_key, 0) or 0\\n                w = m[\\\"count\\\"] / max(total_n, 1)\\n                weighted_sum += d * w\\n            dim_results[f\\\"weighted_{delta_key}\\\"] = round(weighted_sum, 6)\\n\\n        results[dim_name] = {\\n            \\\"bins\\\": {k: str(v) for k, v in bins.items()},\\n            \\\"strata\\\": dim_results,\\n        }\\n\\n    return results\\n\\n\\ndef generate_csv(results, output_path):\\n    lines = [\\\"dimension,stratum,count,strategy,r@1_mean,r@1_ci_lower,r@1_ci_upper\\\"]\\n    for dim, data in results.items():\\n        for bname, metrics in data[\\\"strata\\\"].items():\\n            if isinstance(metrics, dict) and \\\"count\\\" in metrics:\\n                count = metrics[\\\"count\\\"]\\n                for key, val in metrics.items():\\n                    if isinstance(val, dict) and \\\"mean\\\" in val:\\n                        lines.append(\\n                            f\\\"{dim},{bname},{count},{key},\\\"\\n                            f\\\"{val['mean']:.4f},{val['ci_lower']:.4f},{val['ci_upper']:.4f}\\\"\\n                        )\\n    with open(output_path, \\\"w\\\") as f:\\n        f.write(\\\"\\\\n\\\".join(lines) + \\\"\\\\n\\\")\\n\\n\\ndef generate_plots(results, strategies, baseline, output_dir):\\n    try:\\n        import matplotlib\\n        matplotlib.use(\\\"Agg\\\")\\n        import matplotlib.pyplot as plt\\n    except ImportError:\\n        print(\\\"WARNING: matplotlib not available, skipping plots\\\", flush=True)\\n        return\\n\\n    for dim, data in results.items():\\n        strata = data[\\\"strata\\\"]\\n        bin_names = [b for b in strata if isinstance(strata[b], dict) and \\\"count\\\" in strata[b]]\\n        if not bin_names:\\n            continue\\n\\n        fig, axes = plt.subplots(1, 2, figsize=(14, 5))\\n\\n        # Left: R@1 per strategy per stratum\\n        ax = axes[0]\\n        x = np.arange(len(bin_names))\\n        width = 0.8 / len(strategies)\\n        for i, s in enumerate(strategies):\\n            means = []\\n            errs_lo = []\\n            errs_hi = []\\n            for b in bin_names:\\n                m = strata[b].get(s, {})\\n                mean = m.get(\\\"mean\\\", 0)\\n                ci_lo = m.get(\\\"ci_lower\\\", mean)\\n                ci_hi = m.get(\\\"ci_upper\\\", mean)\\n                means.append(mean)\\n                errs_lo.append(mean - ci_lo)\\n                errs_hi.append(ci_hi - mean)\\n            ax.bar(x + i * width, means, width, label=s,\\n                   yerr=[errs_lo, errs_hi], capsize=3)\\n        ax.set_xticks(x + width * (len(strategies) - 1) / 2)\\n        ax.set_xticklabels(bin_names, rotation=30, ha=\\\"right\\\", fontsize=8)\\n        ax.set_ylabel(\\\"R@1\\\")\\n        ax.set_title(f\\\"R@1 by {dim}\\\")\\n        ax.legend(fontsize=7)\\n\\n        # Right: Delta vs baseline per stratum\\n        ax = axes[1]\\n        for i, s in enumerate(strategies):\\n            if s == baseline:\\n                continue\\n            deltas = []\\n            for b in bin_names:\\n                dk = f\\\"delta_{s}_vs_{baseline}\\\"\\n                deltas.append(strata[b].get(dk, 0) or 0)\\n            ax.bar(x + i * width, deltas, width, label=f\\\"{s} - {baseline}\\\")\\n        ax.axhline(0, color=\\\"black\\\", linewidth=0.5)\\n        ax.set_xticks(x + width * (len(strategies) - 1) / 2)\\n        ax.set_xticklabels(bin_names, rotation=30, ha=\\\"right\\\", fontsize=8)\\n        ax.set_ylabel(\\\"Delta R@1\\\")\\n        ax.set_title(f\\\"Delta vs {baseline} by {dim}\\\")\\n        ax.legend(fontsize=7)\\n\\n        plt.tight_layout()\\n        fig_path = Path(output_dir) / f\\\"stratified_{dim}.pdf\\\"\\n        plt.savefig(fig_path, dpi=150, bbox_inches=\\\"tight\\\")\\n        plt.close()\\n        print(f\\\"  Plot saved: {fig_path}\\\", flush=True)\\n\\n\\ndef generate_dryrun_data(results_dir, strategies, seeds, pool_size, n_queries=500):\\n    rng = np.random.RandomState(2026)\\n    Path(results_dir).mkdir(parents=True, exist_ok=True)\\n\\n    repos = [f\\\"repo_{i}\\\" for i in range(20)]\\n    for strategy in strategies:\\n        for seed in seeds:\\n            tag = f\\\"dryrun_{strategy}_s{seed}\\\"\\n            path = Path(results_dir) / f\\\"per_query_{tag}_p{pool_size}.jsonl\\\"\\n            if path.exists():\\n                continue\\n\\n            base_r1 = {\\\"random\\\": 0.42, \\\"embedding_distance\\\": 0.48,\\n                       \\\"dataflow_aware\\\": 0.51, \\\"bm25\\\": 0.45}\\n            p_hit = base_r1.get(strategy, 0.45) + rng.normal(0, 0.02)\\n\\n            with open(path, \\\"w\\\") as f:\\n                for i in range(n_queries):\\n                    repo = rng.choice(repos)\\n                    iid = f\\\"{repo}.{rng.randint(1000, 9999)}.func__{i:04d}\\\"\\n                    hit = rng.random() < p_hit\\n                    gold_rank = 0 if hit else rng.randint(1, pool_size)\\n                    rec = {\\n                        \\\"query_id\\\": f\\\"{iid}::src/file_{i}.py\\\",\\n                        \\\"instance_id\\\": iid,\\n                        \\\"gold_rank\\\": int(gold_rank),\\n                        \\\"pool_size\\\": pool_size,\\n                        \\\"query_pos_sim\\\": round(float(rng.normal(0.6, 0.15)), 6),\\n                        \\\"mean_neg_sim\\\": round(float(rng.normal(0.35, 0.1)), 6),\\n                        \\\"max_neg_sim\\\": round(float(rng.normal(0.5, 0.1)), 6),\\n                        \\\"hit_at_1\\\": hit,\\n                        \\\"hit_at_5\\\": int(gold_rank) < 5,\\n                        \\\"hit_at_10\\\": int(gold_rank) < 10,\\n                    }\\n                    f.write(json.dumps(rec) + \\\"\\\\n\\\")\\n\\n    # Also generate mock index\\n    index_path = Path(results_dir).parent / \\\"mock_stratification_index.json\\\"\\n    if not index_path.exists():\\n        instances = {}\\n        for strategy in strategies:\\n            seed = seeds[0]\\n            tag = f\\\"dryrun_{strategy}_s{seed}\\\"\\n            path = Path(results_dir) / f\\\"per_query_{tag}_p{pool_size}.jsonl\\\"\\n            with open(path) as f2:\\n                for line in f2:\\n                    r = json.loads(line)\\n                    iid = r[\\\"instance_id\\\"]\\n                    if iid not in instances:\\n                        repo = iid.split(\\\".\\\")[0]\\n                        instances[iid] = {\\n                            \\\"repo\\\": repo,\\n                            \\\"repo_file_count\\\": rng.randint(10, 500),\\n                            \\\"has_structural\\\": bool(rng.random() < 0.34),\\n                            \\\"has_z\\\": bool(rng.random() < 0.78),\\n                            \\\"extraction_method\\\": rng.choice([\\\"codeql\\\", \\\"beniget\\\", \\\"none\\\"]),\\n                        }\\n        mock_index = {\\n            \\\"instances\\\": instances,\\n            \\\"repo_stats\\\": {},\\n            \\\"summary\\\": {\\\"note\\\": \\\"mock data for dry-run\\\"},\\n        }\\n        with open(index_path, \\\"w\\\") as f2:\\n            json.dump(mock_index, f2, indent=1)\\n        print(f\\\"  Mock index written: {index_path}\\\", flush=True)\\n\\n    return str(index_path)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--results-dir\\\", default=None,\\n                        help=\\\"Dir with per_query_*.jsonl files\\\")\\n    parser.add_argument(\\\"--index-file\\\", default=None,\\n                        help=\\\"stratification_index.json from prepare_stratification_index.py\\\")\\n    parser.add_argument(\\\"--strategies\\\", default=\\\"random,embedding_distance,dataflow_aware\\\")\\n    parser.add_argument(\\\"--baseline\\\", default=\\\"random\\\")\\n    parser.add_argument(\\\"--encoder\\\", default=\\\"qwen\\\")\\n    parser.add_argument(\\\"--seeds\\\", default=\\\"42,43,44\\\")\\n    parser.add_argument(\\\"--pool-size\\\", type=int, default=50)\\n    parser.add_argument(\\\"--output-dir\\\", required=True)\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--bootstrap-iter\\\", type=int, default=2000)\\n    args = parser.parse_args()\\n\\n    strategies = args.strategies.split(\\\",\\\")\\n    seeds = [int(s) for s in args.seeds.split(\\\",\\\")]\\n    out_dir = Path(args.output_dir)\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n\\n    tag_prefix = \\\"dryrun\\\" if args.dry_run else args.encoder\\n\\n    if args.dry_run:\\n        results_dir = str(out_dir / \\\"per_query\\\")\\n        print(\\\"Generating dry-run mock data...\\\", flush=True)\\n        index_path = generate_dryrun_data(results_dir, strategies, seeds, args.pool_size)\\n    else:\\n        results_dir = args.results_dir\\n        index_path = args.index_file\\n\\n    if not results_dir or not index_path:\\n        print(\\\"ERROR: --results-dir and --index-file required in real mode\\\", file=sys.stderr)\\n        sys.exit(1)\\n\\n    print(f\\\"Loading index from {index_path}\\\", flush=True)\\n    index = load_index(index_path)\\n    inst_count = len(index.get(\\\"instances\\\", {}))\\n    print(f\\\"  {inst_count} instances in index\\\", flush=True)\\n\\n    # Load all per-query results\\n    all_records = []\\n    loaded = 0\\n    for strategy in strategies:\\n        for seed in seeds:\\n            tag = f\\\"{tag_prefix}_{strategy}_s{seed}\\\"\\n            recs = load_per_query(results_dir, tag_prefix, strategy, seed, args.pool_size)\\n            if recs is None:\\n                print(f\\\"  WARN: missing {tag} pool={args.pool_size}\\\", flush=True)\\n                continue\\n            for r in recs:\\n                r[\\\"strategy\\\"] = strategy\\n                r[\\\"seed\\\"] = seed\\n            all_records.extend(recs)\\n            loaded += 1\\n            print(f\\\"  Loaded {tag}: {len(recs)} queries\\\", flush=True)\\n\\n    print(f\\\"\\\\nTotal: {len(all_records)} records from {loaded} runs\\\", flush=True)\\n\\n    if not all_records:\\n        print(\\\"ERROR: no data loaded\\\", file=sys.stderr)\\n        sys.exit(1)\\n\\n    # Run analysis\\n    print(\\\"\\\\nRunning stratified analysis...\\\", flush=True)\\n    results = run_analysis(all_records, index, strategies, args.baseline)\\n\\n    # Print summary\\n    for dim, data in results.items():\\n        print(f\\\"\\\\n{'='*60}\\\", flush=True)\\n        print(f\\\"Dimension: {dim}\\\", flush=True)\\n        print(f\\\"{'='*60}\\\", flush=True)\\n        strata = data[\\\"strata\\\"]\\n        for bname, metrics in sorted(strata.items()):\\n            if isinstance(metrics, dict) and \\\"count\\\" in metrics:\\n                parts = [f\\\"  {bname} (n={metrics['count']})\\\"]\\n                for s in strategies:\\n                    m = metrics.get(s, {})\\n                    if isinstance(m, dict) and \\\"mean\\\" in m:\\n                        parts.append(f\\\"  {s}: {m['mean']:.4f} [{m['ci_lower']:.4f}, {m['ci_upper']:.4f}]\\\")\\n                for s in strategies:\\n                    if s != args.baseline:\\n                        dk = f\\\"delta_{s}_vs_{args.baseline}\\\"\\n                        d = metrics.get(dk)\\n                        if d is not None:\\n                            parts.append(f\\\"  {dk}: {d:+.4f}\\\")\\n                print(\\\"\\\\n\\\".join(parts), flush=True)\\n            elif isinstance(metrics, (int, float)):\\n                print(f\\\"  {bname}: {metrics}\\\", flush=True)\\n\\n    # Save outputs\\n    suffix = \\\"_dryrun\\\" if args.dry_run else \\\"\\\"\\n\\n    json_path = out_dir / f\\\"stratified_results{suffix}.json\\\"\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2, ensure_ascii=False)\\n    print(f\\\"\\\\nJSON saved: {json_path}\\\", flush=True)\\n\\n    csv_path = out_dir / f\\\"stratified_results{suffix}.csv\\\"\\n    generate_csv(results, csv_path)\\n    print(f\\\"CSV saved: {csv_path}\\\", flush=True)\\n\\n    generate_plots(results, strategies, args.baseline, out_dir)\\n\\n    print(\\\"\\\\nDone.\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\nPYEOF\\necho \\\"analyze_stratified.py written OK\\\"\", \"account\": \"root\"}}\n66\t{\"ts\": \"2026-05-15T05:09:54.790023+00:00\", \"role\": \"tool_result\", \"session\": \"worker_code_plan005-stratified-prep_20260515T050005\", \"text\": \"{\\\"result\\\":\\\"{\\\\\\\"success\\\\\\\": true, \\\\\\\"data\\\\\\\": {\\\\\\\"stdout\\\\\\\": \\\\\\\"analyze_stratified.py written OK\\\\\\\\n\\\\\\\", \\\\\\\"stderr\\\\\\\": \\\\\\\"\\\\\\\", \\\\\\\"return_code\\\\\\\": 0}, \\\\\\\"error\\\\\\\": null, \\\\\\\"metadata\\\\\\\": {\\\\\\\"elapsed_seconds\\\\\\\": 0.41}}\\\"}\", \"tool\": \"mcp__agent-ml-research__ssh_execute\", \"elapsed_ms\": 0}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e44ca124-d1be-4d6c-8848-87c010cfa608",
+            "isSidechain": true,
+            "promptId": "658d2eb0-8593-44d8-a0a6-011e29c3e29c",
+            "agentId": "a244b0313f96edf04",
+            "type": "user",
+            "uuid": "8a0d9c8f-86e4-4c0d-ad36-be7b52d18c4c",
+            "sourceToolAssistantUUID": "e44ca124-d1be-4d6c-8848-87c010cfa608",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T07:56:47.972Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I found both scripts in the chat log. Here are the full source codes, extracted from the `ssh_execute` tool calls on lines 63 and 65 of the JSONL file.\n\n---\n\n## `evaluate_stratified.py`\n\n```python\n\"\"\"Per-query evaluation for stratified analysis (plan_005).\n\nEvaluates M2 checkpoints and records per-query results including gold rank,\ncosine similarities, and pool sizes. Supports multiple pool sizes (D038).\n\nOutputs per-query JSONL for downstream analyze_stratified.py.\n\nUsage:\n    # Real eval (GPU):\n    python evaluate_stratified.py \\\n        --ckpt-dir /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42 \\\n        --model-name /root/autodl-tmp/structfuse/models/Qwen2.5-Coder-3B \\\n        --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl \\\n        --pool-sizes 50 \\\n        --output-dir /root/structfuse/results/stratified/per_query \\\n        --tag qwen_random_s42\n\n    # Dry-run (no GPU):\n    python evaluate_stratified.py --dry-run \\\n        --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl \\\n        --output-dir /root/structfuse/results/stratified/per_query \\\n        --tag dryrun_random_s42\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport random\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\n\n\ndef _extract_instance_id(query_id: str) -> str:\n    return query_id.split(\"::\")[0]\n\n\ndef _load_val_data(val_path: str) -> list:\n    samples = []\n    with open(val_path) as f:\n        for line in f:\n            if line.strip():\n                samples.append(json.loads(line))\n    return samples\n\n\ndef _build_global_pool(samples: list) -> dict:\n    pool = {}\n    for s in samples:\n        ct = s.get(\"candidate_tokens\", {})\n        for cid, text in ct.items():\n            if text and cid not in pool:\n                pool[cid] = text\n        pid = s.get(\"pos_id\")\n        pt = s.get(\"pos_tokens\")\n        if pid and pt:\n            pool[pid] = pt\n    return pool\n\n\ndef evaluate_real(samples, global_pool, global_ids, ckpt_dir, model_name,\n                  device, max_seq_len, pool_size, eval_seed):\n    import torch\n    import torch.nn.functional as F\n    from transformers import AutoTokenizer\n\n    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / \"training\"))\n    from contrastive_model import StructFuseEncoder\n\n    tokenizer = AutoTokenizer.from_pretrained(ckpt_dir, trust_remote_code=True)\n    config_path = Path(ckpt_dir) / \"training_config.json\"\n    with open(config_path) as f:\n        cfg = json.load(f)\n\n    model = StructFuseEncoder(\n        model_name=model_name,\n        proj_dim=cfg.get(\"proj_dim\", 256),\n        use_lora=cfg.get(\"use_lora\", True),\n        lora_r=cfg.get(\"lora_r\", 16),\n        use_fusion_head=cfg.get(\"use_fusion_head\", False),\n    )\n    state_dict = torch.load(Path(ckpt_dir) / \"model.pt\", map_location=\"cpu\")\n    result = model.load_state_dict(state_dict, strict=False)\n    assert not result.missing_keys, f\"Missing keys: {result.missing_keys}\"\n    model = model.to(device).eval()\n\n    def encode_batch(texts, batch_size=16):\n        all_embs = []\n        for i in range(0, len(texts), batch_size):\n            bt = texts[i:i+batch_size]\n            enc = tokenizer(bt, truncation=True, max_length=max_seq_len,\n                            padding=True, return_tensors=\"pt\")\n            enc = {k: v.to(device) for k, v in enc.items()}\n            with torch.no_grad():\n                emb = model.encode(enc[\"input_ids\"], enc[\"attention_mask\"])\n            all_embs.append(emb.cpu())\n        return torch.cat(all_embs, dim=0)\n\n    rng = random.Random(eval_seed)\n    results = []\n    target_negs = pool_size - 1\n\n    for idx, s in enumerate(samples):\n        query_id = s.get(\"query_id\", \"\")\n        query_text = s[\"query_tokens\"]\n        pos_text = s[\"pos_tokens\"]\n        pos_id = s.get(\"pos_id\", \"\")\n\n        cand_ids = s.get(\"neg_candidates\", [])\n        cand_tokens = s.get(\"candidate_tokens\", {})\n        neg_texts = [(cid, cand_tokens[cid]) for cid in cand_ids\n                     if cid in cand_tokens and cand_tokens[cid]]\n\n        if len(neg_texts) < target_negs:\n            used = {cid for cid, _ in neg_texts} | {pos_id, query_id}\n            avail = [g for g in global_ids if g not in used]\n            rng.shuffle(avail)\n            for gid in avail:\n                if len(neg_texts) >= target_negs:\n                    break\n                neg_texts.append((gid, global_pool[gid]))\n\n        if len(neg_texts) > target_negs:\n            rng.shuffle(neg_texts)\n            neg_texts = neg_texts[:target_negs]\n\n        if not neg_texts:\n            continue\n\n        pool_texts = [pos_text] + [t for _, t in neg_texts]\n        query_emb = encode_batch([query_text])\n        pool_embs = encode_batch(pool_texts)\n\n        sims = F.cosine_similarity(query_emb, pool_embs, dim=1)\n        ranking = sims.argsort(descending=True)\n        gold_rank = (ranking == 0).nonzero(as_tuple=True)[0].item()\n\n        query_pos_sim = float(sims[0])\n        neg_sims = sims[1:].numpy()\n\n        results.append({\n            \"query_id\": query_id,\n            \"instance_id\": _extract_instance_id(query_id),\n            \"gold_rank\": gold_rank,\n            \"pool_size\": len(pool_texts),\n            \"query_pos_sim\": round(query_pos_sim, 6),\n            \"mean_neg_sim\": round(float(neg_sims.mean()), 6) if len(neg_sims) > 0 else 0.0,\n            \"max_neg_sim\": round(float(neg_sims.max()), 6) if len(neg_sims) > 0 else 0.0,\n            \"hit_at_1\": gold_rank < 1,\n            \"hit_at_5\": gold_rank < 5,\n            \"hit_at_10\": gold_rank < 10,\n        })\n\n        if (idx + 1) % 200 == 0:\n            r1_so_far = sum(r[\"hit_at_1\"] for r in results) / len(results)\n            print(f\"  [{idx+1}/{len(samples)}] running R@1={r1_so_far:.4f}\", flush=True)\n\n    return results\n\n\ndef evaluate_dryrun(samples, pool_size, eval_seed):\n    rng = np.random.RandomState(eval_seed)\n    results = []\n    for s in samples:\n        query_id = s.get(\"query_id\", \"\")\n        n_negs = min(len(s.get(\"neg_candidates\", [])), pool_size - 1)\n        if n_negs < 1:\n            n_negs = pool_size - 1\n        actual_pool = n_negs + 1\n\n        gold_rank = rng.choice(actual_pool)\n        qp_sim = rng.normal(0.6, 0.15)\n        mn_sim = rng.normal(0.35, 0.1)\n\n        results.append({\n            \"query_id\": query_id,\n            \"instance_id\": _extract_instance_id(query_id),\n            \"gold_rank\": int(gold_rank),\n            \"pool_size\": actual_pool,\n            \"query_pos_sim\": round(float(np.clip(qp_sim, -1, 1)), 6),\n            \"mean_neg_sim\": round(float(np.clip(mn_sim, -1, 1)), 6),\n            \"max_neg_sim\": round(float(np.clip(mn_sim + 0.15, -1, 1)), 6),\n            \"hit_at_1\": int(gold_rank) < 1,\n            \"hit_at_5\": int(gold_rank) < 5,\n            \"hit_at_10\": int(gold_rank) < 10,\n        })\n    return results\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--ckpt-dir\", default=None)\n    parser.add_argument(\"--model-name\", default=None)\n    parser.add_argument(\"--val-file\", required=True)\n    parser.add_argument(\"--pool-sizes\", default=\"50\", help=\"Comma-separated pool sizes\")\n    parser.add_argument(\"--output-dir\", required=True)\n    parser.add_argument(\"--tag\", required=True, help=\"e.g., qwen_random_s42\")\n    parser.add_argument(\"--max-seq-length\", type=int, default=2048)\n    parser.add_argument(\"--device\", default=\"cuda:0\")\n    parser.add_argument(\"--eval-seed\", type=int, default=42)\n    parser.add_argument(\"--dry-run\", action=\"store_true\")\n    args = parser.parse_args()\n\n    pool_sizes = [int(x) for x in args.pool_sizes.split(\",\")]\n    print(f\"Loading val data from {args.val_file}\", flush=True)\n    samples = _load_val_data(args.val_file)\n    print(f\"  {len(samples)} samples loaded\", flush=True)\n\n    if not args.dry_run:\n        global_pool = _build_global_pool(samples)\n        global_ids = list(global_pool.keys())\n        print(f\"  global distractor pool: {len(global_ids)} files\", flush=True)\n\n    out_dir = Path(args.output_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n\n    for ps in pool_sizes:\n        print(f\"\\n{'='*50}\", flush=True)\n        print(f\"Evaluating pool_size={ps} tag={args.tag} {'[DRY-RUN]' if args.dry_run else ''}\", flush=True)\n        print(f\"{'='*50}\", flush=True)\n\n        if args.dry_run:\n            results = evaluate_dryrun(samples, ps, args.eval_seed)\n        else:\n            results = evaluate_real(\n                samples, global_pool, global_ids,\n                args.ckpt_dir, args.model_name, args.device,\n                args.max_seq_length, ps, args.eval_seed,\n            )\n\n        total = len(results)\n        r1 = sum(r[\"hit_at_1\"] for r in results) / max(total, 1)\n        r5 = sum(r[\"hit_at_5\"] for r in results) / max(total, 1)\n        r10 = sum(r[\"hit_at_10\"] for r in results) / max(total, 1)\n\n        print(f\"\\nAggregate: R@1={r1:.4f} R@5={r5:.4f} R@10={r10:.4f} (n={total})\", flush=True)\n\n        out_path = out_dir / f\"per_query_{args.tag}_p{ps}.jsonl\"\n        with open(out_path, \"w\") as f:\n            for r in results:\n                f.write(json.dumps(r, ensure_ascii=False) + \"\\n\")\n        print(f\"Saved: {out_path}\", flush=True)\n\n        summary = {\n            \"tag\": args.tag,\n            \"pool_size\": ps,\n            \"total\": total,\n            \"recall_at_1\": round(r1, 4),\n            \"recall_at_5\": round(r5, 4),\n            \"recall_at_10\": round(r10, 4),\n            \"dry_run\": args.dry_run,\n        }\n        sum_path = out_dir / f\"summary_{args.tag}_p{ps}.json\"\n        with open(sum_path, \"w\") as f:\n            json.dump(summary, f, indent=2)\n\n\nif __name__ == \"__main__\":\n    main()\n```\n\n---\n\n## `analyze_stratified.py`\n\n```python\n\"\"\"Stratified analysis of M2 results (plan_005).\n\nJoins per-query eval results with M1 metadata, groups by 5 stratification\ndimensions, and computes per-stratum R@1 deltas with bootstrap CIs.\n\n5 strata:\n  1. Repo size (small/medium/large)\n  2. Actual eval pool size (quartiles)\n  3. Query-positive similarity (quartiles)\n  4. Structural data availability (has_structural / no_structural)\n  5. Negative difficulty (quartiles of mean_neg_sim)\n\nOutputs: JSON summary, CSV table, PDF plots.\n\nUsage:\n    python analyze_stratified.py \\\n        --results-dir /root/structfuse/results/stratified/per_query \\\n        --index-file /root/autodl-tmp/structfuse/stratification_index.json \\\n        --strategies random,embedding_distance,dataflow_aware \\\n        --encoder qwen --seeds 42,43,44 --pool-size 50 \\\n        --output-dir /root/structfuse/results/stratified\n\n    # Dry-run (uses whatever per_query files exist, or generates mock):\n    python analyze_stratified.py --dry-run \\\n        --output-dir /root/structfuse/results/stratified\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\nfrom collections import defaultdict\nfrom pathlib import Path\n\nimport numpy as np\n\nREPO_SIZE_BINS = {\n    \"small (<50)\": (0, 50),\n    \"medium (50-200)\": (50, 201),\n    \"large (200+)\": (201, float(\"inf\")),\n}\n\n\ndef load_per_query(results_dir, encoder, strategy, seed, pool_size):\n    tag = f\"{encoder}_{strategy}_s{seed}\"\n    path = Path(results_dir) / f\"per_query_{tag}_p{pool_size}.jsonl\"\n    if not path.exists():\n        return None\n    records = []\n    with open(path) as f:\n        for line in f:\n            if line.strip():\n                records.append(json.loads(line))\n    return records\n\n\ndef load_index(index_path):\n    with open(index_path) as f:\n        return json.load(f)\n\n\ndef quartile_bins(values):\n    if not values:\n        return {}\n    arr = np.array(values)\n    q25, q50, q75 = np.percentile(arr, [25, 50, 75])\n    return {\n        \"Q1 (lowest)\": (float(\"-inf\"), q25),\n        \"Q2\": (q25, q50),\n        \"Q3\": (q50, q75),\n        \"Q4 (highest)\": (q75, float(\"inf\")),\n    }\n\n\ndef assign_bin(val, bins):\n    for name, (lo, hi) in bins.items():\n        if lo <= val < hi:\n            return name\n    return list(bins.keys())[-1]\n\n\ndef bootstrap_ci(values, n_boot=2000, ci=0.95, seed=42):\n    rng = np.random.RandomState(seed)\n    arr = np.array(values, dtype=float)\n    n = len(arr)\n    if n < 2:\n        m = float(arr.mean()) if n > 0 else 0.0\n        return {\"mean\": m, \"ci_lower\": m, \"ci_upper\": m, \"n\": n}\n    means = np.array([rng.choice(arr, size=n, replace=True).mean() for _ in range(n_boot)])\n    alpha = (1 - ci) / 2\n    lo, hi = np.percentile(means, [100 * alpha, 100 * (1 - alpha)])\n    return {\n        \"mean\": round(float(arr.mean()), 6),\n        \"ci_lower\": round(float(lo), 6),\n        \"ci_upper\": round(float(hi), 6),\n        \"n\": n,\n    }\n\n\ndef compute_stratum_metrics(records, strategies, baseline=\"random\"):\n    per_strategy = defaultdict(list)\n    for r in records:\n        per_strategy[r[\"strategy\"]].append(r[\"hit_at_1\"])\n\n    result = {}\n    for s in strategies:\n        vals = per_strategy.get(s, [])\n        result[s] = bootstrap_ci(vals)\n\n    if baseline in result and result[baseline][\"n\"] > 0:\n        base_mean = result[baseline][\"mean\"]\n        for s in strategies:\n            if s != baseline and s in result:\n                result[f\"delta_{s}_vs_{baseline}\"] = round(\n                    result[s][\"mean\"] - base_mean, 6)\n\n    return result\n\n\ndef run_analysis(all_records, index, strategies, baseline=\"random\"):\n    inst_meta = index.get(\"instances\", {})\n\n    for r in all_records:\n        iid = r[\"instance_id\"]\n        meta = inst_meta.get(iid, {})\n        r[\"repo\"] = meta.get(\"repo\", \"unknown\")\n        r[\"repo_file_count\"] = meta.get(\"repo_file_count\", 0)\n        r[\"has_structural\"] = meta.get(\"has_structural\", False)\n        r[\"has_z\"] = meta.get(\"has_z\", False)\n        r[\"extraction_method\"] = meta.get(\"extraction_method\", \"none\")\n\n    # Compute quartile bins from data\n    pool_sizes = [r[\"pool_size\"] for r in all_records]\n    qp_sims = [r[\"query_pos_sim\"] for r in all_records]\n    neg_diffs = [r[\"mean_neg_sim\"] for r in all_records]\n\n    pool_bins = quartile_bins(pool_sizes)\n    sim_bins = quartile_bins(qp_sims)\n    diff_bins = quartile_bins(neg_diffs)\n\n    strata_defs = {\n        \"repo_size\": {\n            \"field\": \"repo_file_count\",\n            \"bins\": REPO_SIZE_BINS,\n            \"type\": \"fixed\",\n        },\n        \"pool_size\": {\n            \"field\": \"pool_size\",\n            \"bins\": pool_bins,\n            \"type\": \"quartile\",\n        },\n        \"query_pos_similarity\": {\n            \"field\": \"query_pos_sim\",\n            \"bins\": sim_bins,\n            \"type\": \"quartile\",\n        },\n        \"structural_availability\": {\n            \"field\": \"has_structural\",\n            \"bins\": {\"with_structural\": True, \"no_structural\": False},\n            \"type\": \"binary\",\n        },\n        \"neg_difficulty\": {\n            \"field\": \"mean_neg_sim\",\n            \"bins\": diff_bins,\n            \"type\": \"quartile\",\n        },\n    }\n\n    results = {}\n    for dim_name, dim_def in strata_defs.items():\n        dim_results = {}\n        field = dim_def[\"field\"]\n        bins = dim_def[\"bins\"]\n        dim_type = dim_def[\"type\"]\n\n        if dim_type == \"binary\":\n            grouped = defaultdict(list)\n            for r in all_records:\n                val = r.get(field, False)\n                for bname, bval in bins.items():\n                    if val == bval:\n                        grouped[bname].append(r)\n                        break\n        else:\n            grouped = defaultdict(list)\n            for r in all_records:\n                val = r.get(field, 0)\n                bname = assign_bin(val, bins)\n                grouped[bname].append(r)\n\n        for bname, brecs in sorted(grouped.items()):\n            metrics = compute_stratum_metrics(brecs, strategies, baseline)\n            metrics[\"count\"] = len(brecs)\n            dim_results[bname] = metrics\n\n        # Weighted aggregate delta\n        total_n = sum(m[\"count\"] for m in dim_results.values())\n        for s in strategies:\n            if s == baseline:\n                continue\n            delta_key = f\"delta_{s}_vs_{baseline}\"\n            weighted_sum = 0\n            for bname, m in dim_results.items():\n                d = m.get(delta_key, 0) or 0\n                w = m[\"count\"] / max(total_n, 1)\n                weighted_sum += d * w\n            dim_results[f\"weighted_{delta_key}\"] = round(weighted_sum, 6)\n\n        results[dim_name] = {\n            \"bins\": {k: str(v) for k, v in bins.items()},\n            \"strata\": dim_results,\n        }\n\n    return results\n\n\ndef generate_csv(results, output_path):\n    lines = [\"dimension,stratum,count,strategy,r@1_mean,r@1_ci_lower,r@1_ci_upper\"]\n    for dim, data in results.items():\n        for bname, metrics in data[\"strata\"].items():\n            if isinstance(metrics, dict) and \"count\" in metrics:\n                count = metrics[\"count\"]\n                for key, val in metrics.items():\n                    if isinstance(val, dict) and \"mean\" in val:\n                        lines.append(\n                            f\"{dim},{bname},{count},{key},\"\n                            f\"{val['mean']:.4f},{val['ci_lower']:.4f},{val['ci_upper']:.4f}\"\n                        )\n    with open(output_path, \"w\") as f:\n        f.write(\"\\n\".join(lines) + \"\\n\")\n\n\ndef generate_plots(results, strategies, baseline, output_dir):\n    try:\n        import matplotlib\n        matplotlib.use(\"Agg\")\n        import matplotlib.pyplot as plt\n    except ImportError:\n        print(\"WARNING: matplotlib not available, skipping plots\", flush=True)\n        return\n\n    for dim, data in results.items():\n        strata = data[\"strata\"]\n        bin_names = [b for b in strata if isinstance(strata[b], dict) and \"count\" in strata[b]]\n        if not bin_names:\n            continue\n\n        fig, axes = plt.subplots(1, 2, figsize=(14, 5))\n\n        # Left: R@1 per strategy per stratum\n        ax = axes[0]\n        x = np.arange(len(bin_names))\n        width = 0.8 / len(strategies)\n        for i, s in enumerate(strategies):\n            means = []\n            errs_lo = []\n            errs_hi = []\n            for b in bin_names:\n                m = strata[b].get(s, {})\n                mean = m.get(\"mean\", 0)\n                ci_lo = m.get(\"ci_lower\", mean)\n                ci_hi = m.get(\"ci_upper\", mean)\n                means.append(mean)\n                errs_lo.append(mean - ci_lo)\n                errs_hi.append(ci_hi - mean)\n            ax.bar(x + i * width, means, width, label=s,\n                   yerr=[errs_lo, errs_hi], capsize=3)\n        ax.set_xticks(x + width * (len(strategies) - 1) / 2)\n        ax.set_xticklabels(bin_names, rotation=30, ha=\"right\", fontsize=8)\n        ax.set_ylabel(\"R@1\")\n        ax.set_title(f\"R@1 by {dim}\")\n        ax.legend(fontsize=7)\n\n        # Right: Delta vs baseline per stratum\n        ax = axes[1]\n        for i, s in enumerate(strategies):\n            if s == baseline:\n                continue\n            deltas = []\n            for b in bin_names:\n                dk = f\"delta_{s}_vs_{baseline}\"\n                deltas.append(strata[b].get(dk, 0) or 0)\n            ax.bar(x + i * width, deltas, width, label=f\"{s} - {baseline}\")\n        ax.axhline(0, color=\"black\", linewidth=0.5)\n        ax.set_xticks(x + width * (len(strategies) - 1) / 2)\n        ax.set_xticklabels(bin_names, rotation=30, ha=\"right\", fontsize=8)\n        ax.set_ylabel(\"Delta R@1\")\n        ax.set_title(f\"Delta vs {baseline} by {dim}\")\n        ax.legend(fontsize=7)\n\n        plt.tight_layout()\n        fig_path = Path(output_dir) / f\"stratified_{dim}.pdf\"\n        plt.savefig(fig_path, dpi=150, bbox_inches=\"tight\")\n        plt.close()\n        print(f\"  Plot saved: {fig_path}\", flush=True)\n\n\ndef generate_dryrun_data(results_dir, strategies, seeds, pool_size, n_queries=500):\n    rng = np.random.RandomState(2026)\n    Path(results_dir).mkdir(parents=True, exist_ok=True)\n\n    repos = [f\"repo_{i}\" for i in range(20)]\n    for strategy in strategies:\n        for seed in seeds:\n            tag = f\"dryrun_{strategy}_s{seed}\"\n            path = Path(results_dir) / f\"per_query_{tag}_p{pool_size}.jsonl\"\n            if path.exists():\n                continue\n\n            base_r1 = {\"random\": 0.42, \"embedding_distance\": 0.48,\n                       \"dataflow_aware\": 0.51, \"bm25\": 0.45}\n            p_hit = base_r1.get(strategy, 0.45) + rng.normal(0, 0.02)\n\n            with open(path, \"w\") as f:\n                for i in range(n_queries):\n                    repo = rng.choice(repos)\n                    iid = f\"{repo}.{rng.randint(1000, 9999)}.func__{i:04d}\"\n                    hit = rng.random() < p_hit\n                    gold_rank = 0 if hit else rng.randint(1, pool_size)\n                    rec = {\n                        \"query_id\": f\"{iid}::src/file_{i}.py\",\n                        \"instance_id\": iid,\n                        \"gold_rank\": int(gold_rank),\n                        \"pool_size\": pool_size,\n                        \"query_pos_sim\": round(float(rng.normal(0.6, 0.15)), 6),\n                        \"mean_neg_sim\": round(float(rng.normal(0.35, 0.1)), 6),\n                        \"max_neg_sim\": round(float(rng.normal(0.5, 0.1)), 6),\n                        \"hit_at_1\": hit,\n                        \"hit_at_5\": int(gold_rank) < 5,\n                        \"hit_at_10\": int(gold_rank) < 10,\n                    }\n                    f.write(json.dumps(rec) + \"\\n\")\n\n    # Also generate mock index\n    index_path = Path(results_dir).parent / \"mock_stratification_index.json\"\n    if not index_path.exists():\n        instances = {}\n        for strategy in strategies:\n            seed = seeds[0]\n            tag = f\"dryrun_{strategy}_s{seed}\"\n            path = Path(results_dir) / f\"per_query_{tag}_p{pool_size}.jsonl\"\n            with open(path) as f2:\n                for line in f2:\n                    r = json.loads(line)\n                    iid = r[\"instance_id\"]\n                    if iid not in instances:\n                        repo = iid.split(\".\")[0]\n                        instances[iid] = {\n                            \"repo\": repo,\n                            \"repo_file_count\": rng.randint(10, 500),\n                            \"has_structural\": bool(rng.random() < 0.34),\n                            \"has_z\": bool(rng.random() < 0.78),\n                            \"extraction_method\": rng.choice([\"codeql\", \"beniget\", \"none\"]),\n                        }\n        mock_index = {\n            \"instances\": instances,\n            \"repo_stats\": {},\n            \"summary\": {\"note\": \"mock data for dry-run\"},\n        }\n        with open(index_path, \"w\") as f2:\n            json.dump(mock_index, f2, indent=1)\n        print(f\"  Mock index written: {index_path}\", flush=True)\n\n    return str(index_path)\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--results-dir\", default=None,\n                        help=\"Dir with per_query_*.jsonl files\")\n    parser.add_argument(\"--index-file\", default=None,\n                        help=\"stratification_index.json from prepare_stratification_index.py\")\n    parser.add_argument(\"--strategies\", default=\"random,embedding_distance,dataflow_aware\")\n    parser.add_argument(\"--baseline\", default=\"random\")\n    parser.add_argument(\"--encoder\", default=\"qwen\")\n    parser.add_argument(\"--seeds\", default=\"42,43,44\")\n    parser.add_argument(\"--pool-size\", type=int, default=50)\n    parser.add_argument(\"--output-dir\", required=True)\n    parser.add_argument(\"--dry-run\", action=\"store_true\")\n    parser.add_argument(\"--bootstrap-iter\", type=int, default=2000)\n    args = parser.parse_args()\n\n    strategies = args.strategies.split(\",\")\n    seeds = [int(s) for s in args.seeds.split(\",\")]\n    out_dir = Path(args.output_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n\n    tag_prefix = \"dryrun\" if args.dry_run else args.encoder\n\n    if args.dry_run:\n        results_dir = str(out_dir / \"per_query\")\n        print(\"Generating dry-run mock data...\", flush=True)\n        index_path = generate_dryrun_data(results_dir, strategies, seeds, args.pool_size)\n    else:\n        results_dir = args.results_dir\n        index_path = args.index_file\n\n    if not results_dir or not index_path:\n        print(\"ERROR: --results-dir and --index-file required in real mode\", file=sys.stderr)\n        sys.exit(1)\n\n    print(f\"Loading index from {index_path}\", flush=True)\n    index = load_index(index_path)\n    inst_count = len(index.get(\"instances\", {}))\n    print(f\"  {inst_count} instances in index\", flush=True)\n\n    # Load all per-query results\n    all_records = []\n    loaded = 0\n    for strategy in strategies:\n        for seed in seeds:\n            tag = f\"{tag_prefix}_{strategy}_s{seed}\"\n            recs = load_per_query(results_dir, tag_prefix, strategy, seed, args.pool_size)\n            if recs is None:\n                print(f\"  WARN: missing {tag} pool={args.pool_size}\", flush=True)\n                continue\n            for r in recs:\n                r[\"strategy\"] = strategy\n                r[\"seed\"] = seed\n            all_records.extend(recs)\n            loaded += 1\n            print(f\"  Loaded {tag}: {len(recs)} queries\", flush=True)\n\n    print(f\"\\nTotal: {len(all_records)} records from {loaded} runs\", flush=True)\n\n    if not all_records:\n        print(\"ERROR: no data loaded\", file=sys.stderr)\n        sys.exit(1)\n\n    # Run analysis\n    print(\"\\nRunning stratified analysis...\", flush=True)\n    results = run_analysis(all_records, index, strategies, args.baseline)\n\n    # Print summary\n    for dim, data in results.items():\n        print(f\"\\n{'='*60}\", flush=True)\n        print(f\"Dimension: {dim}\", flush=True)\n        print(f\"{'='*60}\", flush=True)\n        strata = data[\"strata\"]\n        for bname, metrics in sorted(strata.items()):\n            if isinstance(metrics, dict) and \"count\" in metrics:\n                parts = [f\"  {bname} (n={metrics['count']})\"]\n                for s in strategies:\n                    m = metrics.get(s, {})\n                    if isinstance(m, dict) and \"mean\" in m:\n                        parts.append(f\"  {s}: {m['mean']:.4f} [{m['ci_lower']:.4f}, {m['ci_upper']:.4f}]\")\n                for s in strategies:\n                    if s != args.baseline:\n                        dk = f\"delta_{s}_vs_{args.baseline}\"\n                        d = metrics.get(dk)\n                        if d is not None:\n                            parts.append(f\"  {dk}: {d:+.4f}\")\n                print(\"\\n\".join(parts), flush=True)\n            elif isinstance(metrics, (int, float)):\n                print(f\"  {bname}: {metrics}\", flush=True)\n\n    # Save outputs\n    suffix = \"_dryrun\" if args.dry_run else \"\"\n\n    json_path = out_dir / f\"stratified_results{suffix}.json\"\n    with open(json_path, \"w\") as f:\n        json.dump(results, f, indent=2, ensure_ascii=False)\n    print(f\"\\nJSON saved: {json_path}\", flush=True)\n\n    csv_path = out_dir / f\"stratified_results{suffix}.csv\"\n    generate_csv(results, csv_path)\n    print(f\"CSV saved: {csv_path}\", flush=True)\n\n    generate_plots(results, strategies, args.baseline, out_dir)\n\n    print(\"\\nDone.\", flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\n```\n\n---\n\nBoth scripts were extracted from JSONL lines 63 and 65 respectively of the chat log at `/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/logs/chats/worker_code_plan005-stratified-prep_20260515T050005.jsonl`. They were originally written to `/root/structfuse/scripts/evaluate_stratified.py` and `/root/structfuse/scripts/analyze_stratified.py` on remote server `bjb1-42106`. Both dry-run verifications passed per the spec at `/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/plan_005/report/plan005_stratification_spec.md`."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8a0d9c8f-86e4-4c0d-ad36-be7b52d18c4c",
+            "isSidechain": true,
+            "agentId": "a244b0313f96edf04",
+            "requestId": "req_011Cb3zfbrBq5omtLE1ntdt5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2843b1e3-eb24-487b-ae32-1e798a27274e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "953f15f8-e655-48b5-a31c-751a817178ce",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BxL7712tDqg8S9GKPPMm8d",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10850,
+                "cache_read_input_tokens": 18690,
+                "output_tokens": 9035,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 10850
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 9035,
+                    "cache_read_input_tokens": 18690,
+                    "cache_creation_input_tokens": 10850,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 10850,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-you-to-extract-the-python-script-content-for-evaluate-stratified-py-and.md"
+}

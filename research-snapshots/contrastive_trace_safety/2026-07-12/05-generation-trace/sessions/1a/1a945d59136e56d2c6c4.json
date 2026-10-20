@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "1a945d59136e56d2c6c4",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: contrastive_trace_safety ## 运行环境 - 服务器名: autodl-rtx6000 - SSH 账户: root（调用 ssh_execute / submit_t",
+  "task_key": "0c7bef95-97f2-4e34-a006-b4c166118895",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/0c7bef95-97f2-4e34-a006-b4c166118895.jsonl",
+    "occurrence": 1,
+    "bytes": 559995,
+    "sha256": "5beb439bbedd53e9dd2f3980f3da5673a73f80ae6d05416939dab66585706013"
+  },
+  "statistics": {
+    "messages": 284,
+    "user_turns": 1,
+    "tool_calls": 93,
+    "roles": {
+      "record": 53,
+      "user": 1,
+      "assistant": 44,
+      "tool_call": 93,
+      "tool_result": 93
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "1a945d59136e56d2c6c4-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 282,
+      "chunks": [
+        {
+          "path": "1a945d59136e56d2c6c4-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "1a945d59136e56d2c6c4-part-0002.json",
+          "message_count": 104
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-contrastive-trace-safety-autodl-rtx6000-ssh-root-ssh-execute-s-copy-27.md"
+}

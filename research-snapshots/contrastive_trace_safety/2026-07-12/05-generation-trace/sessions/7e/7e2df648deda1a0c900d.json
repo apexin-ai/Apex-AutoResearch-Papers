@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "7e2df648deda1a0c900d",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: contrastive_trace_safety ## 运行环境 - 服务器名: autodl-rtx6000 - SSH 账户: root（调用 ssh_execute / submit_t",
+  "task_key": "2761bff0-0c7b-4387-9936-ba7fc787369d",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/2761bff0-0c7b-4387-9936-ba7fc787369d.jsonl",
+    "occurrence": 1,
+    "bytes": 1024359,
+    "sha256": "05e3364ef7a273412ae271b84231b3a80608e8b82399235ca9873c5533a40154"
+  },
+  "statistics": {
+    "messages": 534,
+    "user_turns": 1,
+    "tool_calls": 184,
+    "roles": {
+      "record": 84,
+      "user": 1,
+      "assistant": 81,
+      "tool_call": 184,
+      "tool_result": 184
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7e2df648deda1a0c900d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 532,
+      "chunks": [
+        {
+          "path": "7e2df648deda1a0c900d-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "7e2df648deda1a0c900d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e2df648deda1a0c900d-part-0003.json",
+          "message_count": 174
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-contrastive-trace-safety-autodl-rtx6000-ssh-root-ssh-execute-s-copy-112.md"
+}

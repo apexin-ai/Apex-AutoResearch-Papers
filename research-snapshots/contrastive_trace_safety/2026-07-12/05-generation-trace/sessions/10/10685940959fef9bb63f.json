@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "10685940959fef9bb63f",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: faith-evidence-ie ## 运行环境 - 服务器名: cqa1-21977 - SSH 账户: root（调用 ssh_execute / submit_training_job",
+  "task_key": "f108f24a-bf59-450b-bee9-6794c1a7577c",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/f108f24a-bf59-450b-bee9-6794c1a7577c.jsonl",
+    "occurrence": 1,
+    "bytes": 1488293,
+    "sha256": "2577c34cc3cfceea9a09810f45aa5cb74a4f9612586547cd799e487c5c84b0a9"
+  },
+  "statistics": {
+    "messages": 1035,
+    "user_turns": 1,
+    "tool_calls": 377,
+    "roles": {
+      "record": 144,
+      "user": 1,
+      "assistant": 137,
+      "tool_call": 376,
+      "tool_result": 377
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "10685940959fef9bb63f-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1033,
+      "chunks": [
+        {
+          "path": "10685940959fef9bb63f-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "10685940959fef9bb63f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "10685940959fef9bb63f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "10685940959fef9bb63f-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "10685940959fef9bb63f-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "10685940959fef9bb63f-part-0006.json",
+          "message_count": 135
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-faith-evidence-ie-cqa1-21977-ssh-root-ssh-execute-submit-train-copy-10.md"
+}

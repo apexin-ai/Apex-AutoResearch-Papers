@@ -1,0 +1,6639 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-10 (UTC).** ## Original idea { "tit
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 103
+- **Recorded user turns:** 1
+- **Tool calls:** 31
+- **Original source:** `logs/chats/exported-trajectories/account-1/c145521e-551c-49d2-bab9-66545d64d26b.jsonl`
+- **Structured JSON:** [`19c5470689f2ac42560c.json`](../../sessions/19/19c5470689f2ac42560c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T19:08:29.673Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T19:08:29.673Z",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-10 (UTC).**\n\n## Original idea\n{\n  \"title\": \"StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level Code Repair Context Selection\",\n  \"core_problem\": \"Repository-level bug repair requires selecting relevant context from large codebases. Existing context selectors fall into three paradigms, each with fundamental limitations: (1) Neural selectors like SWE-Pruner train on LLM-generated labels that are coupled to a specific teacher model's biases and selection patterns—labels are stochastic, non-reproducible, and encode the teacher's blind spots. (2) Retrieve-and-rerank methods like SweRank (ICLR 2026) achieve strong text-based localization but miss structural dependencies—lexically similar but structurally unrelated code becomes a false positive. (3) Graph-guided agents like LocAgent capture import/call/inheritance edges but omit fine-grained data-flow (def-use) edges; ARISE uses intra-procedural def-use but only at runtime via tool calls, not as distilled knowledge. On SWE-bench Pro (where top systems range from ~42% under SEAL-standardized evaluation to 77.8% with custom scaffolding, and context selection accounts for 4-10pp swings), context quality remains a key differentiator. Can we build a context selector that leverages inter-procedural data-flow signals for structurally-grounded, interpretable, and model-independent selections—using deterministic program analysis rather than stochastic LLM judgments?\",\n  \"opportunity\": \"SWE-Pruner (arXiv:2601.16746) demonstrated a 0.6B neural skimmer can reduce tokens 23-54% with <1pp degradation, but its supervision comes from Qwen3-Coder-30B-A3B-Instruct (an MoE model with 3.3B active parameters)—while inference is cheap (~$10-35 to label 61K samples), the labels are coupled to that model's biases, non-reproducible across runs, and provide no interpretable rationale for selections. LocAgent (ACL 2025) showed graph-guided localization achieves 92.7% file-level accuracy using import/invocation/inheritance edges with fine-tuned Qwen2.5-32B, but omits data-flow edges. SweRank (ICLR 2026) achieves SOTA retrieve-and-rerank localization but is purely text-based. ARISE (arXiv:2605.03117) confirmed data-flow slicing yields +17pp Function Recall@1, but (a) uses only Python's ast module for intra-procedural analysis (explicitly does not cross call boundaries), and (b) keeps analysis as runtime tool calls adding latency per agent step. SWE-Fixer (ACL Findings 2025) combines BM25 with a fine-tuned 7B retriever for coarse-to-fine file retrieval but uses no structural program analysis features. Sliceformer (arXiv:2604.26961) validated that data-flow knowledge transfers to neural models with 22% ExactMatch gains on slicing tasks. The opportunity: no existing work (a) uses inter-procedural def-use analysis for repair context selection, (b) distills data-flow signals into a fast retrieval model, or (c) exploits structural connectivity for contrastive hard negative mining. ARISE's intra-procedural limitation and SweRank's text-only approach leave a clear gap for inter-procedural data-flow-aware retrieval.\",\n  \"landscape\": \"**Neural context selectors**: SWE-Pruner trains a 0.6B skimmer on 61K samples labeled by Qwen3-Coder-30B-A3B-Instruct (an MoE model with 3.3B active parameters per forward pass, costing ~$10-35 for labeling at $0.07-0.19/1M input tokens), achieving <1pp degradation on SWE-bench Verified (70.6%→70.2%)—though SWE-bench Verified is known contaminated (OpenAI, Feb 2026). Squeez (arXiv:2604.04979) fine-tunes Qwen 3.5 2B for task-conditioned tool-output pruning (0.86 recall, 92% token removal) but targets tool outputs, not repository context. LongCodeZip (ASE 2025) achieves 5.6x compression via perplexity-based ranking, training-free but code-agnostic. **Retrieve-and-rerank approaches**: SweRank (ICLR 2026, arXiv:2505.07849) achieves SOTA issue localization via SweRankEmbed (bi-encoder retriever) + SweRankLLM (listwise LLM reranker), trained on the SweLoc dataset—purely text-based with no structural signals. SweRank+ (arXiv:2512.20482) extends to multilingual multi-turn ranking with 155K training instances. SWE-Fixer (ACL Findings 2025) combines BM25 with a fine-tuned 7B retriever (SWE-Fixer-Retriever-7B) for coarse-to-fine file retrieval, achieving 24.7%/32.8% on SWE-bench Lite/Verified with P2P filtering—architecturally the closest prior work to our retrieval fusion, but uses learned embeddings without structural program analysis features. **Graph-guided approaches**: LocAgent (ACL 2025, arXiv:2503.09089) parses codebases into directed heterogeneous graphs with import/invocation/inheritance edges, achieving 92.7% file-level accuracy with fine-tuned Qwen2.5-32B—but omits data-flow (def-use) edges and requires a 32B model at inference. KGCompass (arXiv:2503.21710) constructs repository knowledge graphs (58.3% repair) but with heavy construction overhead. GraphCoder (ASE 2024) uses code context graphs with control-flow and data-dependence for coarse-to-fine retrieval in code completion—related but targets completion, not repair context selection. SaraCoder (ICLR 2026) orchestrates semantic and structural cues for code completion with a graph-based structural similarity metric—demonstrates the value of structural signals in retrieval but does not address repair or use def-use data-flow. **Data-flow-specific approaches**: ARISE (arXiv:2605.03117) augments SWE-agent with statement-level def-use edges via Python's ast module, gaining +17pp Function Recall@1 and +4.7pp Pass@1—but is limited to intra-procedural analysis (explicitly does not cross call boundaries), keeps analysis as runtime tool calls, and requires Qwen2.5-Coder-32B at inference. LLMxCPG (USENIX Security 2025) uses Code Property Graphs for vulnerability detection (67-91% code reduction, 15-40% F1 gain) but targets security, not repair context. Sliceformer (arXiv:2604.26961) distills DFG knowledge into CodeT5+ for slicing tasks via dataflow-aware pretraining objectives, validating structural knowledge transfer but not addressing repair. **Contrastive learning for code**: CoCoHaNeRe (TOSEM 2025) demonstrates that hard negative mining significantly improves contrastive code search (+7-11% MRR over baselines), but uses random or embedding-distance-based negatives without structural awareness. No existing work uses program-analysis-derived structural connectivity to mine hard negatives. **Compression paradigms**: An empirical study (arXiv:2604.13725) shows continuous latent vector compression surpasses full-context by up to 28.3% BLEU at 4x compression. **Benchmarks**: SWE-bench Pro (Scale AI, 1865 tasks total, 731 public) is the recommended hard benchmark—top scores range from ~42-59% under SEAL-standardized evaluation to 77.8% with custom scaffolding (Claude Mythos Preview). SWE-bench Lite (300 instances) remains widely used. RepoBench-R (ICLR 2024) directly evaluates cross-file context retrieval. **Gap**: No existing work combines inter-procedural data-flow analysis with contrastive hard negative mining for repair context retrieval. ARISE is intra-procedural only; SweRank and SWE-Fixer are text-only; LocAgent uses coarser structural edges without def-use; CoCoHaNeRe shows hard negatives work for code search but without structural awareness. The fusion of inter-procedural data-flow features with lexical retrieval via data-flow-aware contrastive learning is unexplored.\",\n  \"approach\": \"We propose StructFuse, a two-stage context retrieval system that combines inter-procedural data-flow analysis with a novel data-flow-aware contrastive learning objective for repository-level code repair context selection.\\n\\n**Stage 1: Inter-Procedural Data-Flow Graph Construction (Days 1-3).** For ~5K SWE-smith training instances, we extract inter-procedural data-flow features. For Python, CodeQL does not require compilation to build databases (it performs extraction directly from source files), making database creation reliable for Python projects. We configure CodeQL's data-flow API with broad source/sink definitions (all function parameters and return values as sources; all variable reads across call boundaries as sinks) to approximate general inter-procedural def-use chains. Where this overproduces flows, we filter by graph distance (≤3 hops from the buggy location). We budget Day 1 specifically for CodeQL query development and validation on 10 pilot repos before scaling—testing query precision, recall against gold patches, and extraction throughput. For repos where CodeQL's inter-procedural analysis produces insufficient coverage (<5 reachable files from bug location), we supplement with Beniget for intra-file def-use chains. For each candidate file/function, we compute: (a) shortest data-flow path distance to the buggy location, (b) number of distinct data-flow paths, (c) dependency type (inter-procedural def-use, call-graph, import). We also extract lexical features (BM25 scores, SweRankEmbed similarity) and structural metadata (git co-change frequency, import distance).\\n\\n**Stage 2: Data-Flow-Aware Contrastive Retrieval Training (Days 4-6).** This is the core methodological contribution, going beyond standard SFT with different labels. We train a Qwen2.5-Coder-3B bi-encoder retriever with a two-component objective:\\n\\n(a) *Data-flow-aware hard negative mining*: For each training instance, hard negatives are files that are lexically similar to the bug-relevant files (high BM25/embedding similarity) but structurally disconnected (no data-flow path within 3 hops of the buggy location). This is inspired by CoCoHaNeRe's (TOSEM 2025) demonstration that hard negatives dramatically improve code search, but we replace their embedding-distance-based mining with program-analysis-derived structural connectivity—a fundamentally different and more principled signal. The structural disconnection criterion cannot be approximated by any text-based method, giving the model supervision that is impossible to derive from lexical features alone.\\n\\n(b) *Structure-conditioned contrastive loss*: We use an InfoNCE-style loss where positive pairs are (issue description, data-flow-connected code) and negatives include both random negatives and the structurally-mined hard negatives above. We weight the contrastive loss by data-flow path strength: code reachable via short, direct def-use chains receives higher positive weight than code connected only via long transitive paths. This encodes the inductive bias that direct data-flow connections are stronger relevance signals than transitive ones.\\n\\n(c) *Multi-signal fusion head*: On top of the contrastive encoder, a lightweight MLP fusion head combines the learned embedding similarity with explicit features (data-flow distance, BM25 score, co-change frequency) for final ranking. This allows the model to leverage both learned representations and interpretable structural features.\\n\\nTraining takes ~3-5 hours per run on a single H100. We run 6 ablation configurations: (i) contrastive with data-flow hard negatives, (ii) contrastive with random negatives only, (iii) standard cross-entropy SFT (as in SWE-Pruner's paradigm), (iv) full fusion with MLP head, (v) inter-procedural features only vs. intra-procedural only (testing whether crossing call boundaries matters), (vi) data-flow features only vs. lexical only.\\n\\n**Stage 3: Two-Stage Cascade Evaluation (Days 7-11).** At inference, StructFuse operates as a two-stage cascade: (1) coarse file selection via BM25 + data-flow reachability (retain files within 3 data-flow hops OR top-30 BM25), then (2) fine-grained function ranking via the trained 3B contrastive model. This cascade adds architectural novelty over flat ranking approaches like SweRank while being directly comparable to SWE-Fixer's coarse-to-fine paradigm—with the key difference that our coarse stage uses structural reachability, not just BM25. We evaluate on: (a) SWE-bench Lite (300 instances, full), (b) SWE-bench Pro public split (500-instance stratified sample of 731 public instances), (c) RepoBench-R (cross-file retrieval evaluation, no LLM needed). Metrics: localization recall@k (file and function level), end-to-end Pass@1 repair rate, token efficiency, and a new metric: *structural precision*—what fraction of selected files are reachable via data-flow from the actual fix. End-to-end evaluation uses Qwen3.6-27B exclusively (open-weight, no API costs). We compare against: (i) SweRank/SweRankEmbed (ICLR 2026, SOTA text-based retrieval), (ii) SWE-Pruner (LLM-labeled selector), (iii) SWE-Fixer-Retriever (BM25 + neural, ACL Findings 2025), (iv) BM25 baseline, (v) ARISE's graph tools (intra-procedural def-use), (vi) no-pruning full-context.\\n\\n**Stage 4: Writing (Days 11-15).** The paper presents three contributions: (1) *Methodological*: data-flow-aware contrastive hard negative mining—using program analysis to generate training negatives that are structurally disconnected from the bug despite lexical similarity, a signal impossible to derive from text-based methods. (2) *Empirical*: demonstration that inter-procedural def-use edges (crossing call boundaries) provide gains beyond ARISE's intra-procedural analysis and LocAgent's import/call/inheritance edges, with the contrastive objective outperforming standard SFT on the same data. (3) *Practical*: a model-independent pipeline (CodeQL→contrastive training→3B retriever) with deterministic, reproducible labels, interpretable selections with traceable data-flow paths, and zero marginal cost when scaling to new repositories (only CodeQL extraction needed, no LLM inference).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~190h H100 (CodeQL database creation for Python repos: ~8h CPU-parallel, no GPU needed for Python; feature extraction and data-flow graph construction: ~15h; contrastive training 6 ablation runs: ~30h; SWE-bench evaluation 800 instances with Qwen3.6-27B: ~120h; RepoBench-R evaluation: ~15h)\",\n      \"gpu_utilization\": \"~70-80% utilization during evaluation phase (Qwen3.6-27B inference is GPU-bound); ~50-60% during contrastive training\",\n      \"timeline\": \"15 days (Day 1: CodeQL query development + validation on 10 pilot repos; Days 2-3: full-scale data-flow extraction + feature computation; Days 4-6: contrastive training + ablations; Days 7-11: evaluation; Days 11-15: writing)\",\n      \"team\": \"1-2 researchers (one with CodeQL/program analysis, one with contrastive learning; can be same person)\",\n      \"estimated_gpu_cost\": \"$450-650 (190h H100 at spot ~$2.50/hr; no LLM API costs—all evaluation uses open-weight Qwen3.6-27B)\",\n      \"claude_api_cost\": \"$0 for evaluation (Qwen3.6-27B only); ~$50-100 for writing assistance\",\n      \"risk_note\": \"CodeQL Python database creation does not require compilation (source extraction only), significantly reducing build failure risk vs. compiled languages. Primary risk: CodeQL inter-procedural data-flow queries may be slow on large repos (>100K LOC); mitigated by graph-distance filtering (≤3 hops). Day 1 pilot on 10 repos validates query precision and throughput before committing to full-scale extraction.\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~160h H100 (same pipeline; agent manages CodeQL builds and queues training; human reviews CodeQL query quality at day 1 and ablation results at day 6)\",\n      \"gpu_utilization\": \"~75-85% utilization; agent parallelizes independent experiments\",\n      \"timeline\": \"12-14 days\",\n      \"team\": \"1 researcher, ~45min/day check-in for CodeQL query review and experiment approval\",\n      \"claude_api_cost\": \"$80-150 (800-1500 turns for pipeline code generation and debugging)\",\n      \"estimated_gpu_cost\": \"$380-530 (160h H100 at spot ~$2.50/hr)\",\n      \"risk_note\": \"Tight timeline requires pre-validated CodeQL setup; recommend testing inter-procedural query on 3 repos in first 4 hours before scaling\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~220h H100 (full ablation suite, hyperparameter sweep over contrastive temperature and hard negative ratio, multi-benchmark evaluation including RepoBench-R)\",\n      \"gpu_utilization\": \"~85-90% utilization; agent continuously launches experiments, parallelizes independent ablations\",\n      \"timeline\": \"10-12 days with 2-4 H100 GPUs available concurrently\",\n      \"team\": \"0 (initial setup: CodeQL CLI installation, SWE-smith repo cloning, SWE-bench evaluation harness)\",\n      \"claude_api_cost\": \"$200-400 (2000-4000 turns for iterative pipeline development, CodeQL query debugging, experiment scheduling)\",\n      \"estimated_gpu_cost\": \"$550-770 (220h H100 at spot ~$2.50/hr to on-demand ~$3.50/hr)\",\n      \"speed_bottleneck\": \"SWE-bench evaluation (~9min/instance × 800 instances on Qwen3.6-27B ≈ 120 H100-hours; parallelizable across GPUs)\",\n      \"risk_note\": \"Agent should validate CodeQL inter-procedural data-flow coverage on first 10 repos and report reachability statistics (avg files reachable within 3 hops) before scaling. If coverage < 30% of gold patch files, consider relaxing hop limit or adding call-graph edges.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 Main + Findings (ARR submission deadline: May 25, 2026; conference: Fall 2026; topic area: 'NLP and Code Models'; dual-targeting Main and Findings to de-risk rejection given empirical contribution type)\"\n  ],\n  \"key_references\": [\n    \"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents (arXiv:2601.16746, Jan 2026) — 0.6B skimmer trained on labels from Qwen3-Coder-30B-A3B (MoE, 3.3B active params), <1pp degradation on SWE-bench Verified\",\n    \"LocAgent: Graph-Guided LLM Agents for Code Localization (ACL 2025, arXiv:2503.09089) — 92.7% file-level accuracy on SWE-bench Lite using import/invocation/inheritance edges with fine-tuned Qwen2.5-32B; no def-use edges\",\n    \"SweRank: Software Issue Localization with Code Ranking (ICLR 2026, arXiv:2505.07849) — SOTA retrieve-and-rerank via SweRankEmbed + SweRankLLM; text-only, no structural signals\",\n    \"SweRank+: Multilingual, Multi-Turn Code Ranking (arXiv:2512.20482, Dec 2025) — extends SweRank to multilingual multi-turn with 155K training instances\",\n    \"SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution (ACL Findings 2025) — BM25 + fine-tuned 7B retriever for coarse-to-fine file retrieval; 24.7%/32.8% on SWE-bench Lite/Verified; no structural program analysis features\",\n    \"ARISE: Repository-level Graph Representation for Agentic Fault Localization and Repair (arXiv:2605.03117, May 2026) — intra-procedural def-use edges via Python ast module (does NOT cross call boundaries), +17pp Function Recall@1, runtime tool calls only\",\n    \"Sliceformer: Static Program Slicing Using Language Models With Dataflow-Aware Pretraining (arXiv:2604.26961, Apr 2026) — validates data-flow knowledge transfer to neural models via DFG-aware pretraining objectives\",\n    \"CoCoHaNeRe: Effective Hard Negative Mining for Contrastive Learning-Based Code Search (TOSEM 2025) — demonstrates hard negative mining improves code search MRR by 7-11% over baselines; uses embedding-distance negatives, not structural\",\n    \"GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph (ASE 2024) — coarse-to-fine retrieval using control-flow and data-dependence graphs for code completion\",\n    \"SaraCoder: Orchestrating Semantic and Structural Cues for Repository-Level Code Completion (ICLR 2026) — graph-based structural similarity for code completion retrieval\",\n    \"LLMxCPG: Context-Aware Vulnerability Detection Through CPG-Guided LLMs (USENIX Security 2025) — CPG-guided context extraction, 67-91% code reduction\",\n    \"Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents (arXiv:2604.04979, Apr 2026) — 0.86 recall, 92% token removal on tool outputs\",\n    \"On the Effectiveness of Context Compression for Repository-Level Tasks (arXiv:2604.13725, Apr 2026) — continuous latent vectors surpass full-context by 28.3% at 4x compression\",\n    \"LongCodeZip: Compress Long Context for Code Language Models (ASE 2025, arXiv:2510.00446) — 5.6x training-free compression\",\n    \"RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems (ICLR 2024, arXiv:2306.03091) — cross-file retrieval evaluation benchmark\",\n    \"SWE-ContextBench: A Benchmark for Context Learning in Coding (arXiv:2602.08316, Feb 2026) — 1100+376 context evaluation tasks\",\n    \"On the Role of Fault Localization Context for LLM-Based Program Repair (arXiv:2604.05481, Apr 2026) — file-level is dominant factor\",\n    \"Why SWE-bench Verified No Longer Measures Frontier Coding Capabilities (OpenAI, Feb 2026) — contamination analysis\",\n    \"SWE-bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? (Scale AI, arXiv:2509.16941, 2025) — 1865 tasks, 731 public\",\n    \"LLMDFA: Analyzing Dataflow in Code with Large Language Models (NeurIPS 2024)\",\n    \"SWE-smith: Scaling Data for Software Engineering Agents (NeurIPS 2025 D&B Spotlight)\",\n    \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues? (ICLR 2024)\"\n  ],\n  \"description\": \"We propose StructFuse, a two-stage context retrieval system for repository-level code repair that introduces data-flow-aware contrastive learning for structurally-grounded context selection. The key methodological contribution is a novel hard negative mining strategy: for each training instance, negatives are files that are lexically similar to bug-relevant code (high BM25/embedding similarity) but structurally disconnected (no inter-procedural data-flow path within 3 hops of the buggy location). This structural disconnection signal is impossible to derive from text-based methods and provides fundamentally different supervision from embedding-distance-based hard negatives (as in CoCoHaNeRe, TOSEM 2025). Unlike ARISE (arXiv:2605.03117), which is limited to intra-procedural def-use via Python's ast module, StructFuse extracts inter-procedural def-use chains via CodeQL (which does not require compilation for Python). Unlike SWE-Pruner, whose labels are coupled to Qwen3-Coder-30B-A3B's biases and are non-reproducible, StructFuse's labels are deterministic program analysis outputs with zero marginal cost at scale. Unlike SweRank (ICLR 2026) and SWE-Fixer (ACL Findings 2025), StructFuse incorporates structural program analysis into both training (via hard negatives) and inference (via a two-stage cascade: coarse selection by BM25 + data-flow reachability → fine ranking by 3B contrastive model). The approach differs from SWE-Fixer's coarse-to-fine paradigm in that our coarse stage uses structural reachability, not just BM25. We train a Qwen2.5-Coder-3B bi-encoder with structure-conditioned InfoNCE loss and a lightweight MLP fusion head. We evaluate on SWE-bench Lite (300), SWE-bench Pro (500-instance sample of 731 public), and RepoBench-R, using only open-weight Qwen3.6-27B for end-to-end repair (no API costs). The paper presents three contributions: (1) data-flow-aware contrastive hard negative mining as a novel training methodology for code retrieval, (2) empirical evidence that inter-procedural def-use edges provide gains beyond intra-procedural analysis (ARISE) and coarser structural edges (LocAgent), and (3) a practical, model-independent pipeline with deterministic labels, interpretable selections, and zero labeling cost. We explicitly target EMNLP 2026 Main with Findings as fallback, reflecting the combined methodological and empirical contribution.\",\n  \"project_name\": \"structfuse_context\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 5)\nIssues: [\"MISSING REFERENCES: RANGER (arXiv:2509.25257, Sep 2025) is a repository-level graph-enhanced retrieval agent using Cypher lookups + MCTS-guided graph exploration with bi-encoder + cross-encoder cascade, evaluated on RepoBench and CrossCodeEval. CodexGraph (NAACL 2025) bridges LLMs and code repos via Neo4j code property graphs with Cypher queries, evaluated on CrossCodeEval and SWE-bench. Both are graph-guided repo-level retrieval systems directly relevant to StructFuse's landscape. Differentiation point: neither uses structural signals for contrastive training or hard negative mining.\", \"CODEQL SCALABILITY RISK UNDERESTIMATED: CodeQL documentation explicitly warns that broad source/sink definitions cause Cartesian-product blowups during query evaluation — memory exhaustion and very long runtimes. The ≤3-hop graph-distance filter is applied AFTER query evaluation, not during it, so it does not prevent the blowup. The idea needs either: (a) a more conservative query strategy (e.g., restrict sources to parameters of functions within 2 call-graph hops of the buggy function, rather than ALL parameters), or (b) explicit query-timeout and memory-limit handling with graceful degradation to Beniget for repos where CodeQL times out, or (c) quantified worst-case estimates from the Day 1 pilot.\", \"IMPROVEMENT CEILING NOT ADDRESSED: The paper must explicitly discuss the expected magnitude of improvement. SWE-Pruner achieves <1pp degradation with LLM labels costing $10-35 — if text-based context selection is already near-optimal on SWE-bench Verified, what improvement does StructFuse expect? The paper should argue: (a) on harder benchmarks (SWE-bench Pro, 42-46% SEAL), context selection has proportionally larger impact, (b) structural signals help precisely in cases where text-based retrieval fails (e.g., bugs caused by data-flow through indirect dependencies), (c) include a failure analysis of SWE-Pruner/SweRank showing specific instances where structural context would have helped.\", \"BENIGET FALLBACK CREATES LABEL HETEROGENEITY: When CodeQL coverage is insufficient (<5 reachable files), the fallback to Beniget produces intra-procedural-only labels. This creates heterogeneous label quality across training instances (inter-procedural for some repos, intra-procedural for others). The paper should either: (a) weight these differently in training, (b) include a label-source indicator feature, or (c) quantify how many instances use each extraction method and show robustness to the heterogeneity.\", \"EVALUATION TIME ESTIMATE UNJUSTIFIED: The 9min/instance estimate for Qwen3.6-27B on SWE-bench is stated without source. Qwen3.6-27B (27B dense, 262K context) is substantially smaller than models typically used in SWE-agent scaffolding (32B-70B). The actual runtime depends on scaffolding (how many turns, token budget per turn). If the actual runtime is higher, the 120h evaluation budget overflows the 200h total. Justify this estimate or add a buffer.\"]\nFeedback: The idea has improved substantially over 5 rounds and the core novelty (data-flow-aware contrastive hard negatives) is verified as genuinely novel. The idea is close to passing but needs targeted fixes:\n\n1. **Add RANGER and CodexGraph to related work.** RANGER (arXiv:2509.25257) uses graph-enhanced retrieval with MCTS exploration — differentiate by noting it doesn't use structural signals for training. CodexGraph (NAACL 2025) uses code property graphs via Neo4j — differentiate by noting it's an inference-time tool, not a training methodology.\n\n2. **Fix the CodeQL scalability story.** The current approach ('all function parameters as sources, all variable reads as sinks') will cause query-evaluation blowups on large repos. Propose a more conservative strategy: restrict sources to parameters of functions within 2 call-graph hops of the buggy location. This bounds the analysis scope before evaluation begins, not after. Add explicit timeout handling (e.g., 5min per repo; fall back to Beniget on timeout) and report timeout rates from the Day 1 pilot.\n\n3. **Address the improvement ceiling head-on.** Add a section arguing: (a) on SWE-bench Pro (42-46% SEAL), the gap between current performance and perfect repair is 54-58pp — much more room for context selection to help than on saturated Verified; (b) include 3-5 qualitative examples from SWE-bench where text-based retrieval fails but data-flow analysis would identify the correct context; (c) frame the primary contribution as the training methodology (generalizable to other code intelligence tasks), not just the absolute improvement on one benchmark.\n\n4. **Handle label heterogeneity from the Beniget fallback.** Add a binary feature indicating whether inter-procedural or intra-procedural analysis was used. Report the fraction of training instances using each method. Include an ablation: does excluding Beniget-only instances hurt or help?\n\n5. **Justify or reduce the evaluation scope.** Either provide evidence for the 9min/instance estimate (cite SWE-agent runtimes with similar-sized models) or reduce to SWE-bench Lite (300 instances, ~45h at 9min) + RepoBench-R (no LLM needed) as primary evaluation, with SWE-bench Pro (300-instance sample) as secondary. This gives more timeline buffer.\n\n6. **For EMNLP Main competitiveness:** Consider adding a brief theoretical argument for why structural disconnection provides better gradient signal than embedding-distance negatives — embedding-distance negatives are partly redundant with the model's own similarity computation (the model already knows these are similar), while structurally disconnected negatives provide an orthogonal learning signal (the model cannot derive structural connectivity from text alone). Even 2-3 sentences of analysis would strengthen the method contribution.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T19:08:29.680Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T19:08:29.680Z",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+## Round 1
+
+101 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T19:08:29.722Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-10 (UTC).**
+
+## Original idea
+{
+  "title": "StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level Code Repair Context Selection",
+  "core_problem": "Repository-level bug repair requires selecting relevant context from large codebases. Existing context selectors fall into three paradigms, each with fundamental limitations: (1) Neural selectors like SWE-Pruner train on LLM-generated labels that are coupled to a specific teacher model's biases and selection patterns—labels are stochastic, non-reproducible, and encode the teacher's blind spots. (2) Retrieve-and-rerank methods like SweRank (ICLR 2026) achieve strong text-based localization but miss structural dependencies—lexically similar but structurally unrelated code becomes a false positive. (3) Graph-guided agents like LocAgent capture import/call/inheritance edges but omit fine-grained data-flow (def-use) edges; ARISE uses intra-procedural def-use but only at runtime via tool calls, not as distilled knowledge. On SWE-bench Pro (where top systems range from ~42% under SEAL-standardized evaluation to 77.8% with custom scaffolding, and context selection accounts for 4-10pp swings), context quality remains a key differentiator. Can we build a context selector that leverages inter-procedural data-flow signals for structurally-grounded, interpretable, and model-independent selections—using deterministic program analysis rather than stochastic LLM judgments?",
+  "opportunity": "SWE-Pruner (arXiv:2601.16746) demonstrated a 0.6B neural skimmer can reduce tokens 23-54% with <1pp degradation, but its supervision comes from Qwen3-Coder-30B-A3B-Instruct (an MoE model with 3.3B active parameters)—while inference is cheap (~$10-35 to label 61K samples), the labels are coupled to that model's biases, non-reproducible across runs, and provide no interpretable rationale for selections. LocAgent (ACL 2025) showed graph-guided localization achieves 92.7% file-level accuracy using import/invocation/inheritance edges with fine-tuned Qwen2.5-32B, but omits data-flow edges. SweRank (ICLR 2026) achieves SOTA retrieve-and-rerank localization but is purely text-based. ARISE (arXiv:2605.03117) confirmed data-flow slicing yields +17pp Function Recall@1, but (a) uses only Python's ast module for intra-procedural analysis (explicitly does not cross call boundaries), and (b) keeps analysis as runtime tool calls adding latency per agent step. SWE-Fixer (ACL Findings 2025) combines BM25 with a fine-tuned 7B retriever for coarse-to-fine file retrieval but uses no structural program analysis features. Sliceformer (arXiv:2604.26961) validated that data-flow knowledge transfers to neural models with 22% ExactMatch gains on slicing tasks. The opportunity: no existing work (a) uses inter-procedural def-use analysis for repair context selection, (b) distills data-flow signals into a fast retrieval model, or (c) exploits structural connectivity for contrastive hard negative mining. ARISE's intra-procedural limitation and SweRank's text-only approach leave a clear gap for inter-procedural data-flow-aware retrieval.",
+  "landscape": "**Neural context selectors**: SWE-Pruner trains a 0.6B skimmer on 61K samples labeled by Qwen3-Coder-30B-A3B-Instruct (an MoE model with 3.3B active parameters per forward pass, costing ~$10-35 for labeling at $0.07-0.19/1M input tokens), achieving <1pp degradation on SWE-bench Verified (70.6%→70.2%)—though SWE-bench Verified is known contaminated (OpenAI, Feb 2026). Squeez (arXiv:2604.04979) fine-tunes Qwen 3.5 2B for task-conditioned tool-output pruning (0.86 recall, 92% token removal) but targets tool outputs, not repository context. LongCodeZip (ASE 2025) achieves 5.6x compression via perplexity-based ranking, training-free but code-agnostic. **Retrieve-and-rerank approaches**: SweRank (ICLR 2026, arXiv:2505.07849) achieves SOTA issue localization via SweRankEmbed (bi-encoder retriever) + SweRankLLM (listwise LLM reranker), trained on the SweLoc dataset—purely text-based with no structural signals. SweRank+ (arXiv:2512.20482) extends to multilingual multi-turn ranking with 155K training instances. SWE-Fixer (ACL Findings 2025) combines BM25 with a fine-tuned 7B retriever (SWE-Fixer-Retriever-7B) for coarse-to-fine file retrieval, achieving 24.7%/32.8% on SWE-bench Lite/Verified with P2P filtering—architecturally the closest prior work to our retrieval fusion, but uses learned embeddings without structural program analysis features. **Graph-guided approaches**: LocAgent (ACL 2025, arXiv:2503.09089) parses codebases into directed heterogeneous graphs with import/invocation/inheritance edges, achieving 92.7% file-level accuracy with fine-tuned Qwen2.5-32B—but omits data-flow (def-use) edges and requires a 32B model at inference. KGCompass (arXiv:2503.21710) constructs repository knowledge graphs (58.3% repair) but with heavy construction overhead. GraphCoder (ASE 2024) uses code context graphs with control-flow and data-dependence for coarse-to-fine retrieval in code completion—related but targets completion, not repair context selection. SaraCoder (ICLR 2026) orchestrates semantic and structural cues for code completion with a graph-based structural similarity metric—demonstrates the value of structural signals in retrieval but does not address repair or use def-use data-flow. **Data-flow-specific approaches**: ARISE (arXiv:2605.03117) augments SWE-agent with statement-level def-use edges via Python's ast module, gaining +17pp Function Recall@1 and +4.7pp Pass@1—but is limited to intra-procedural analysis (explicitly does not cross call boundaries), keeps analysis as runtime tool calls, and requires Qwen2.5-Coder-32B at inference. LLMxCPG (USENIX Security 2025) uses Code Property Graphs for vulnerability detection (67-91% code reduction, 15-40% F1 gain) but targets security, not repair context. Sliceformer (arXiv:2604.26961) distills DFG knowledge into CodeT5+ for slicing tasks via dataflow-aware pretraining objectives, validating structural knowledge transfer but not addressing repair. **Contrastive learning for code**: CoCoHaNeRe (TOSEM 2025) demonstrates that hard negative mining significantly improves contrastive code search (+7-11% MRR over baselines), but uses random or embedding-distance-based negatives without structural awareness. No existing work uses program-analysis-derived structural connectivity to mine hard negatives. **Compression paradigms**: An empirical study (arXiv:2604.13725) shows continuous latent vector compression surpasses full-context by up to 28.3% BLEU at 4x compression. **Benchmarks**: SWE-bench Pro (Scale AI, 1865 tasks total, 731 public) is the recommended hard benchmark—top scores range from ~42-59% under SEAL-standardized evaluation to 77.8% with custom scaffolding (Claude Mythos Preview). SWE-bench Lite (300 instances) remains widely used. RepoBench-R (ICLR 2024) directly evaluates cross-file context retrieval. **Gap**: No existing work combines inter-procedural data-flow analysis with contrastive hard negative mining for repair context retrieval. ARISE is intra-procedural only; SweRank and SWE-Fixer are text-only; LocAgent uses coarser structural edges without def-use; CoCoHaNeRe shows hard negatives work for code search but without structural awareness. The fusion of inter-procedural data-flow features with lexical retrieval via data-flow-aware contrastive learning is unexplored.",
+  "approach": "We propose StructFuse, a two-stage context retrieval system that combines inter-procedural data-flow analysis with a novel data-flow-aware contrastive learning objective for repository-level code repair context selection.\n\n**Stage 1: Inter-Procedural Data-Flow Graph Construction (Days 1-3).** For ~5K SWE-smith training instances, we extract inter-procedural data-flow features. For Python, CodeQL does not require compilation to build databases (it performs extraction directly from source files), making database creation reliable for Python projects. We configure CodeQL's data-flow API with broad source/sink definitions (all function parameters and return values as sources; all variable reads across call boundaries as sinks) to approximate general inter-procedural def-use chains. Where this overproduces flows, we filter by graph distance (≤3 hops from the buggy location). We budget Day 1 specifically for CodeQL query development and validation on 10 pilot repos before scaling—testing query precision, recall against gold patches, and extraction throughput. For repos where CodeQL's inter-procedural analysis produces insufficient coverage (<5 reachable files from bug location), we supplement with Beniget for intra-file def-use chains. For each candidate file/function, we compute: (a) shortest data-flow path distance to the buggy location, (b) number of distinct data-flow paths, (c) dependency type (inter-procedural def-use, call-graph, import). We also extract lexical features (BM25 scores, SweRankEmbed similarity) and structural metadata (git co-change frequency, import distance).\n\n**Stage 2: Data-Flow-Aware Contrastive Retrieval Training (Days 4-6).** This is the core methodological contribution, going beyond standard SFT with different labels. We train a Qwen2.5-Coder-3B bi-encoder retriever with a two-component objective:\n\n(a) *Data-flow-aware hard negative mining*: For each training instance, hard negatives are files that are lexically similar to the bug-relevant files (high BM25/embedding similarity) but structurally disconnected (no data-flow path within 3 hops of the buggy location). This is inspired by CoCoHaNeRe's (TOSEM 2025) demonstration that hard negatives dramatically improve code search, but we replace their embedding-distance-based mining with program-analysis-derived structural connectivity—a fundamentally different and more principled signal. The structural disconnection criterion cannot be approximated by any text-based method, giving the model supervision that is impossible to derive from lexical features alone.\n\n(b) *Structure-conditioned contrastive loss*: We use an InfoNCE-style loss where positive pairs are (issue description, data-flow-connected code) and negatives include both random negatives and the structurally-mined hard negatives above. We weight the contrastive loss by data-flow path strength: code reachable via short, direct def-use chains receives higher positive weight than code connected only via long transitive paths. This encodes the inductive bias that direct data-flow connections are stronger relevance signals than transitive ones.\n\n(c) *Multi-signal fusion head*: On top of the contrastive encoder, a lightweight MLP fusion head combines the learned embedding similarity with explicit features (data-flow distance, BM25 score, co-change frequency) for final ranking. This allows the model to leverage both learned representations and interpretable structural features.\n\nTraining takes ~3-5 hours per run on a single H100. We run 6 ablation configurations: (i) contrastive with data-flow hard negatives, (ii) contrastive with random negatives only, (iii) standard cross-entropy SFT (as in SWE-Pruner's paradigm), (iv) full fusion with MLP head, (v) inter-procedural features only vs. intra-procedural only (testing whether crossing call boundaries matters), (vi) data-flow features only vs. lexical only.\n\n**Stage 3: Two-Stage Cascade Evaluation (Days 7-11).** At inference, StructFuse operates as a two-stage cascade: (1) coarse file selection via BM25 + data-flow reachability (retain files within 3 data-flow hops OR top-30 BM25), then (2) fine-grained function ranking via the trained 3B contrastive model. This cascade adds architectural novelty over flat ranking approaches like SweRank while being directly comparable to SWE-Fixer's coarse-to-fine paradigm—with the key difference that our coarse stage uses structural reachability, not just BM25. We evaluate on: (a) SWE-bench Lite (300 instances, full), (b) SWE-bench Pro public split (500-instance stratified sample of 731 public instances), (c) RepoBench-R (cross-file retrieval evaluation, no LLM needed). Metrics: localization recall@k (file and function level), end-to-end Pass@1 repair rate, token efficiency, and a new metric: *structural precision*—what fraction of selected files are reachable via data-flow from the actual fix. End-to-end evaluation uses Qwen3.6-27B exclusively (open-weight, no API costs). We compare against: (i) SweRank/SweRankEmbed (ICLR 2026, SOTA text-based retrieval), (ii) SWE-Pruner (LLM-labeled selector), (iii) SWE-Fixer-Retriever (BM25 + neural, ACL Findings 2025), (iv) BM25 baseline, (v) ARISE's graph tools (intra-procedural def-use), (vi) no-pruning full-context.\n\n**Stage 4: Writing (Days 11-15).** The paper presents three contributions: (1) *Methodological*: data-flow-aware contrastive hard negative mining—using program analysis to generate training negatives that are structurally disconnected from the bug despite lexical similarity, a signal impossible to derive from text-based methods. (2) *Empirical*: demonstration that inter-procedural def-use edges (crossing call boundaries) provide gains beyond ARISE's intra-procedural analysis and LocAgent's import/call/inheritance edges, with the contrastive objective outperforming standard SFT on the same data. (3) *Practical*: a model-independent pipeline (CodeQL→contrastive training→3B retriever) with deterministic, reproducible labels, interpretable selections with traceable data-flow paths, and zero marginal cost when scaling to new repositories (only CodeQL extraction needed, no LLM inference).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~190h H100 (CodeQL database creation for Python repos: ~8h CPU-parallel, no GPU needed for Python; feature extraction and data-flow graph construction: ~15h; contrastive training 6 ablation runs: ~30h; SWE-bench evaluation 800 instances with Qwen3.6-27B: ~120h; RepoBench-R evaluation: ~15h)",
+      "gpu_utilization": "~70-80% utilization during evaluation phase (Qwen3.6-27B inference is GPU-bound); ~50-60% during contrastive training",
+      "timeline": "15 days (Day 1: CodeQL query development + validation on 10 pilot repos; Days 2-3: full-scale data-flow extraction + feature computation; Days 4-6: contrastive training + ablations; Days 7-11: evaluation; Days 11-15: writing)",
+      "team": "1-2 researchers (one with CodeQL/program analysis, one with contrastive learning; can be same person)",
+      "estimated_gpu_cost": "$450-650 (190h H100 at spot ~$2.50/hr; no LLM API costs—all evaluation uses open-weight Qwen3.6-27B)",
+      "claude_api_cost": "$0 for evaluation (Qwen3.6-27B only); ~$50-100 for writing assistance",
+      "risk_note": "CodeQL Python database creation does not require compilation (source extraction only), significantly reducing build failure risk vs. compiled languages. Primary risk: CodeQL inter-procedural data-flow queries may be slow on large repos (>100K LOC); mitigated by graph-distance filtering (≤3 hops). Day 1 pilot on 10 repos validates query precision and throughput before committing to full-scale extraction."
+    },
+    "human_in_loop": {
+      "gpu_hours": "~160h H100 (same pipeline; agent manages CodeQL builds and queues training; human reviews CodeQL query quality at day 1 and ablation results at day 6)",
+      "gpu_utilization": "~75-85% utilization; agent parallelizes independent experiments",
+      "timeline": "12-14 days",
+      "team": "1 researcher, ~45min/day check-in for CodeQL query review and experiment approval",
+      "claude_api_cost": "$80-150 (800-1500 turns for pipeline code generation and debugging)",
+      "estimated_gpu_cost": "$380-530 (160h H100 at spot ~$2.50/hr)",
+      "risk_note": "Tight timeline requires pre-validated CodeQL setup; recommend testing inter-procedural query on 3 repos in first 4 hours before scaling"
+    },
+    "auto_research": {
+      "gpu_hours": "~220h H100 (full ablation suite, hyperparameter sweep over contrastive temperature and hard negative ratio, multi-benchmark evaluation including RepoBench-R)",
+      "gpu_utilization": "~85-90% utilization; agent continuously launches experiments, parallelizes independent ablations",
+      "timeline": "10-12 days with 2-4 H100 GPUs available concurrently",
+      "team": "0 (initial setup: CodeQL CLI installation, SWE-smith repo cloning, SWE-bench evaluation harness)",
+      "claude_api_cost": "$200-400 (2000-4000 turns for iterative pipeline development, CodeQL query debugging, experiment scheduling)",
+      "estimated_gpu_cost": "$550-770 (220h H100 at spot ~$2.50/hr to on-demand ~$3.50/hr)",
+      "speed_bottleneck": "SWE-bench evaluation (~9min/instance × 800 instances on Qwen3.6-27B ≈ 120 H100-hours; parallelizable across GPUs)",
+      "risk_note": "Agent should validate CodeQL inter-procedural data-flow coverage on first 10 repos and report reachability statistics (avg files reachable within 3 hops) before scaling. If coverage < 30% of gold patch files, consider relaxing hop limit or adding call-graph edges."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 Main + Findings (ARR submission deadline: May 25, 2026; conference: Fall 2026; topic area: 'NLP and Code Models'; dual-targeting Main and Findings to de-risk rejection given empirical contribution type)"
+  ],
+  "key_references": [
+    "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents (arXiv:2601.16746, Jan 2026) — 0.6B skimmer trained on labels from Qwen3-Coder-30B-A3B (MoE, 3.3B active params), <1pp degradation on SWE-bench Verified",
+    "LocAgent: Graph-Guided LLM Agents for Code Localization (ACL 2025, arXiv:2503.09089) — 92.7% file-level accuracy on SWE-bench Lite using import/invocation/inheritance edges with fine-tuned Qwen2.5-32B; no def-use edges",
+    "SweRank: Software Issue Localization with Code Ranking (ICLR 2026, arXiv:2505.07849) — SOTA retrieve-and-rerank via SweRankEmbed + SweRankLLM; text-only, no structural signals",
+    "SweRank+: Multilingual, Multi-Turn Code Ranking (arXiv:2512.20482, Dec 2025) — extends SweRank to multilingual multi-turn with 155K training instances",
+    "SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution (ACL Findings 2025) — BM25 + fine-tuned 7B retriever for coarse-to-fine file retrieval; 24.7%/32.8% on SWE-bench Lite/Verified; no structural program analysis features",
+    "ARISE: Repository-level Graph Representation for Agentic Fault Localization and Repair (arXiv:2605.03117, May 2026) — intra-procedural def-use edges via Python ast module (does NOT cross call boundaries), +17pp Function Recall@1, runtime tool calls only",
+    "Sliceformer: Static Program Slicing Using Language Models With Dataflow-Aware Pretraining (arXiv:2604.26961, Apr 2026) — validates data-flow knowledge transfer to neural models via DFG-aware pretraining objectives",
+    "CoCoHaNeRe: Effective Hard Negative Mining for Contrastive Learning-Based Code Search (TOSEM 2025) — demonstrates hard negative mining improves code search MRR by 7-11% over baselines; uses embedding-distance negatives, not structural",
+    "GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph (ASE 2024) — coarse-to-fine retrieval using control-flow and data-dependence graphs for code completion",
+    "SaraCoder: Orchestrating Semantic and Structural Cues for Repository-Level Code Completion (ICLR 2026) — graph-based structural similarity for code completion retrieval",
+    "LLMxCPG: Context-Aware Vulnerability Detection Through CPG-Guided LLMs (USENIX Security 2025) — CPG-guided context extraction, 67-91% code reduction",
+    "Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents (arXiv:2604.04979, Apr 2026) — 0.86 recall, 92% token removal on tool outputs",
+    "On the Effectiveness of Context Compression for Repository-Level Tasks (arXiv:2604.13725, Apr 2026) — continuous latent vectors surpass full-context by 28.3% at 4x compression",
+    "LongCodeZip: Compress Long Context for Code Language Models (ASE 2025, arXiv:2510.00446) — 5.6x training-free compression",
+    "RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems (ICLR 2024, arXiv:2306.03091) — cross-file retrieval evaluation benchmark",
+    "SWE-ContextBench: A Benchmark for Context Learning in Coding (arXiv:2602.08316, Feb 2026) — 1100+376 context evaluation tasks",
+    "On the Role of Fault Localization Context for LLM-Based Program Repair (arXiv:2604.05481, Apr 2026) — file-level is dominant factor",
+    "Why SWE-bench Verified No Longer Measures Frontier Coding Capabilities (OpenAI, Feb 2026) — contamination analysis",
+    "SWE-bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? (Scale AI, arXiv:2509.16941, 2025) — 1865 tasks, 731 public",
+    "LLMDFA: Analyzing Dataflow in Code with Large Language Models (NeurIPS 2024)",
+    "SWE-smith: Scaling Data for Software Engineering Agents (NeurIPS 2025 D&B Spotlight)",
+    "SWE-bench: Can Language Models Resolve Real-World GitHub Issues? (ICLR 2024)"
+  ],
+  "description": "We propose StructFuse, a two-stage context retrieval system for repository-level code repair that introduces data-flow-aware contrastive learning for structurally-grounded context selection. The key methodological contribution is a novel hard negative mining strategy: for each training instance, negatives are files that are lexically similar to bug-relevant code (high BM25/embedding similarity) but structurally disconnected (no inter-procedural data-flow path within 3 hops of the buggy location). This structural disconnection signal is impossible to derive from text-based methods and provides fundamentally different supervision from embedding-distance-based hard negatives (as in CoCoHaNeRe, TOSEM 2025). Unlike ARISE (arXiv:2605.03117), which is limited to intra-procedural def-use via Python's ast module, StructFuse extracts inter-procedural def-use chains via CodeQL (which does not require compilation for Python). Unlike SWE-Pruner, whose labels are coupled to Qwen3-Coder-30B-A3B's biases and are non-reproducible, StructFuse's labels are deterministic program analysis outputs with zero marginal cost at scale. Unlike SweRank (ICLR 2026) and SWE-Fixer (ACL Findings 2025), StructFuse incorporates structural program analysis into both training (via hard negatives) and inference (via a two-stage cascade: coarse selection by BM25 + data-flow reachability → fine ranking by 3B contrastive model). The approach differs from SWE-Fixer's coarse-to-fine paradigm in that our coarse stage uses structural reachability, not just BM25. We train a Qwen2.5-Coder-3B bi-encoder with structure-conditioned InfoNCE loss and a lightweight MLP fusion head. We evaluate on SWE-bench Lite (300), SWE-bench Pro (500-instance sample of 731 public), and RepoBench-R, using only open-weight Qwen3.6-27B for end-to-end repair (no API costs). The paper presents three contributions: (1) data-flow-aware contrastive hard negative mining as a novel training methodology for code retrieval, (2) empirical evidence that inter-procedural def-use edges provide gains beyond intra-procedural analysis (ARISE) and coarser structural edges (LocAgent), and (3) a practical, model-independent pipeline with deterministic labels, interpretable selections, and zero labeling cost. We explicitly target EMNLP 2026 Main with Findings as fallback, reflecting the combined methodological and empirical contribution.",
+  "project_name": "structfuse_context",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 5)
+Issues: ["MISSING REFERENCES: RANGER (arXiv:2509.25257, Sep 2025) is a repository-level graph-enhanced retrieval agent using Cypher lookups + MCTS-guided graph exploration with bi-encoder + cross-encoder cascade, evaluated on RepoBench and CrossCodeEval. CodexGraph (NAACL 2025) bridges LLMs and code repos via Neo4j code property graphs with Cypher queries, evaluated on CrossCodeEval and SWE-bench. Both are graph-guided repo-level retrieval systems directly relevant to StructFuse's landscape. Differentiation point: neither uses structural signals for contrastive training or hard negative mining.", "CODEQL SCALABILITY RISK UNDERESTIMATED: CodeQL documentation explicitly warns that broad source/sink definitions cause Cartesian-product blowups during query evaluation — memory exhaustion and very long runtimes. The ≤3-hop graph-distance filter is applied AFTER query evaluation, not during it, so it does not prevent the blowup. The idea needs either: (a) a more conservative query strategy (e.g., restrict sources to parameters of functions within 2 call-graph hops of the buggy function, rather than ALL parameters), or (b) explicit query-timeout and memory-limit handling with graceful degradation to Beniget for repos where CodeQL times out, or (c) quantified worst-case estimates from the Day 1 pilot.", "IMPROVEMENT CEILING NOT ADDRESSED: The paper must explicitly discuss the expected magnitude of improvement. SWE-Pruner achieves <1pp degradation with LLM labels costing $10-35 — if text-based context selection is already near-optimal on SWE-bench Verified, what improvement does StructFuse expect? The paper should argue: (a) on harder benchmarks (SWE-bench Pro, 42-46% SEAL), context selection has proportionally larger impact, (b) structural signals help precisely in cases where text-based retrieval fails (e.g., bugs caused by data-flow through indirect dependencies), (c) include a failure analysis of SWE-Pruner/SweRank showing specific instances where structural context would have helped.", "BENIGET FALLBACK CREATES LABEL HETEROGENEITY: When CodeQL coverage is insufficient (<5 reachable files), the fallback to Beniget produces intra-procedural-only labels. This creates heterogeneous label quality across training instances (inter-procedural for some repos, intra-procedural for others). The paper should either: (a) weight these differently in training, (b) include a label-source indicator feature, or (c) quantify how many instances use each extraction method and show robustness to the heterogeneity.", "EVALUATION TIME ESTIMATE UNJUSTIFIED: The 9min/instance estimate for Qwen3.6-27B on SWE-bench is stated without source. Qwen3.6-27B (27B dense, 262K context) is substantially smaller than models typically used in SWE-agent scaffolding (32B-70B). The actual runtime depends on scaffolding (how many turns, token budget per turn). If the actual runtime is higher, the 120h evaluation budget overflows the 200h total. Justify this estimate or add a buffer."]
+Feedback: The idea has improved substantially over 5 rounds and the core novelty (data-flow-aware contrastive hard negatives) is verified as genuinely novel. The idea is close to passing but needs targeted fixes:
+
+1. **Add RANGER and CodexGraph to related work.** RANGER (arXiv:2509.25257) uses graph-enhanced retrieval with MCTS exploration — differentiate by noting it doesn't use structural signals for training. CodexGraph (NAACL 2025) uses code property graphs via Neo4j — differentiate by noting it's an inference-time tool, not a training methodology.
+
+2. **Fix the CodeQL scalability story.** The current approach ('all function parameters as sources, all variable reads as sinks') will cause query-evaluation blowups on large repos. Propose a more conservative strategy: restrict sources to parameters of functions within 2 call-graph hops of the buggy location. This bounds the analysis scope before evaluation begins, not after. Add explicit timeout handling (e.g., 5min per repo; fall back to Beniget on timeout) and report timeout rates from the Day 1 pilot.
+
+3. **Address the improvement ceiling head-on.** Add a section arguing: (a) on SWE-bench Pro (42-46% SEAL), the gap between current performance and perfect repair is 54-58pp — much more room for context selection to help than on saturated Verified; (b) include 3-5 qualitative examples from SWE-bench where text-based retrieval fails but data-flow analysis would identify the correct context; (c) frame the primary contribution as the training methodology (generalizable to other code intelligence tasks), not just the absolute improvement on one benchmark.
+
+4. **Handle label heterogeneity from the Beniget fallback.** Add a binary feature indicating whether inter-procedural or intra-procedural analysis was used. Report the fraction of training instances using each method. Include an ablation: does excluding Beniget-only instances hurt or help?
+
+5. **Justify or reduce the evaluation scope.** Either provide evidence for the 9min/instance estimate (cite SWE-agent runtimes with similar-sized models) or reduce to SWE-bench Lite (300 instances, ~45h at 9min) + RepoBench-R (no LLM needed) as primary evaluation, with SWE-bench Pro (300-instance sample) as secondary. This gives more timeline buffer.
+
+6. **For EMNLP Main competitiveness:** Consider adding a brief theoretical argument for why structural disconnection provides better gradient signal than embedding-distance negatives — embedding-distance negatives are partly redundant with the model's own similarity computation (the model already knows these are similar), while structurally disconnected negatives provide an orthogonal learning signal (the model cannot derive structural connectivity from text alone). Even 2-3 sentences of analysis would strengthen the method contribution.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "605166e1-b3f8-4f9a-aa2f-12b2c8b31944",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T19:08:29.719Z_
+
+```json
+{
+  "parentUuid": "605166e1-b3f8-4f9a-aa2f-12b2c8b31944",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "78f5cde0-fd9b-4127-a21f-15b761d7254b",
+  "timestamp": "2026-05-10T19:08:29.719Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T19:08:29.719Z_
+
+```json
+{
+  "parentUuid": "78f5cde0-fd9b-4127-a21f-15b761d7254b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "4cc23bb4-7169-4bb5-bd80-a501521f68a0",
+  "timestamp": "2026-05-10T19:08:29.719Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level…",
+  "leafUuid": "4cc23bb4-7169-4bb5-bd80-a501521f68a0",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise StructFuse to address CodeQL scalability and improve ceiling analysis",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T19:08:36.125Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully and plan my research approach before making revisions.
+
+The reviewer has 6 specific issues:
+1. Missing references: RANGER and CodexGraph
+2. CodeQL scalability risk underestimated
+3. Improvement ceiling not addressed
+4. Beniget fallback creates label heterogeneity
+5. Evaluation time estimate unjustified
+6. Theoretical argument for structural disconnection negatives
+
+Let me search for each of these systematically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4cc23bb4-7169-4bb5-bd80-a501521f68a0",
+  "isSidechain": false,
+  "requestId": "req_011CauQyvdZDBPH21HPfx68F",
+  "type": "assistant",
+  "uuid": "35eb2c9f-635d-42a4-958a-7f7f40c45aa6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014szFE4rW8dFsCrtgFz4fs2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14415,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14415,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 14415,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14415
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T19:08:37.539Z_
+
+I'll systematically research each reviewer concern before revising. Let me search for the missing references, CodeQL scalability details, evaluation runtime benchmarks, and related work in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "35eb2c9f-635d-42a4-958a-7f7f40c45aa6",
+  "isSidechain": false,
+  "requestId": "req_011CauQyvdZDBPH21HPfx68F",
+  "type": "assistant",
+  "uuid": "8646902f-2b5e-492b-92bd-966142130f0b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014szFE4rW8dFsCrtgFz4fs2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14415,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14415,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 14415,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14415
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T19:08:37.944Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QUHZiyGaV6TiNkhfSDr3Zs`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8646902f-2b5e-492b-92bd-966142130f0b",
+  "isSidechain": false,
+  "requestId": "req_011CauQyvdZDBPH21HPfx68F",
+  "type": "assistant",
+  "uuid": "a8a5dbef-9192-4814-8cdf-5483d6776f08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014szFE4rW8dFsCrtgFz4fs2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14415,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 241,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14415,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 241,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 14415,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14415
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T19:08:37.950Z_
+
+<details><summary>↩ Tool result · `toolu_01QUHZiyGaV6TiNkhfSDr3Zs`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a8a5dbef-9192-4814-8cdf-5483d6776f08",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "85cf3282-5c34-4c08-8023-6c2ba4c212a2",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "a8a5dbef-9192-4814-8cdf-5483d6776f08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-10T19:08:40.586Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me launch parallel searches for all the key topics the reviewer raised.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85cf3282-5c34-4c08-8023-6c2ba4c212a2",
+  "isSidechain": false,
+  "requestId": "req_011CauQzX4FRG7Wiz6ttJQjy",
+  "type": "assistant",
+  "uuid": "2342f296-2da7-4a67-920f-7aec5866697b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dgp8HAUyxMRuzL9rM5m57Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1261,
+      "cache_read_input_tokens": 26219,
+      "output_tokens": 113,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 113,
+          "cache_read_input_tokens": 26219,
+          "cache_creation_input_tokens": 1261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-10T19:08:41.132Z_
+
+Let me research all reviewer concerns in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2342f296-2da7-4a67-920f-7aec5866697b",
+  "isSidechain": false,
+  "requestId": "req_011CauQzX4FRG7Wiz6ttJQjy",
+  "type": "assistant",
+  "uuid": "e01a2bcb-a5a5-451f-8e8d-02d768456470",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dgp8HAUyxMRuzL9rM5m57Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1261,
+      "cache_read_input_tokens": 26219,
+      "output_tokens": 113,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 113,
+          "cache_read_input_tokens": 26219,
+          "cache_creation_input_tokens": 1261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T19:08:42.097Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NywsJfBkAvKx5xCfktHCW2`</summary>
+
+```json
+{
+  "query": "RANGER arXiv 2509.25257 repository-level graph-enhanced retrieval agent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e01a2bcb-a5a5-451f-8e8d-02d768456470",
+  "isSidechain": false,
+  "requestId": "req_011CauQzX4FRG7Wiz6ttJQjy",
+  "type": "assistant",
+  "uuid": "dda2623e-521a-4083-9ac2-953b85969aaa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dgp8HAUyxMRuzL9rM5m57Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1261,
+      "cache_read_input_tokens": 26219,
+      "output_tokens": 113,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 113,
+          "cache_read_input_tokens": 26219,
+          "cache_creation_input_tokens": 1261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-10T19:08:49.361Z_
+
+<details><summary>↩ Tool result · `toolu_01NywsJfBkAvKx5xCfktHCW2`</summary>
+
+```text
+Web search results for query: "RANGER arXiv 2509.25257 repository-level graph-enhanced retrieval agent"
+
+Links: [{"title":"[2509.25257] RANGER -- Repository-Level Agent for Graph-Enhanced Retrieval","url":"https://arxiv.org/abs/2509.25257"},{"title":"RANGER: Repository‑level Agent for Graph‑Enhanced Retrieval","url":"https://arxiv.org/html/2509.25257"},{"title":"(PDF) RANGER -- Repository-Level Agent for Graph-Enhanced Retrieval","url":"https://www.researchgate.net/publication/396048813_RANGER_--_Repository-Level_Agent_for_Graph-Enhanced_Retrieval"},{"title":"RANGER -- Repository-Level Agent for Graph-Enhanced ...","url":"https://arxiv.org/pdf/2509.25257"},{"title":"Software Engineering on X: \"RANGER -- Repository-Level Agent for Graph-Enhanced Retrieval. https://t.co/wXCWqY3iyI\" / X","url":"https://x.com/ComputerPapers/status/1973474396628029697"},{"title":"GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion","url":"https://arxiv.org/html/2509.05980"},{"title":"Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches","url":"https://arxiv.org/html/2510.04905v1"},{"title":"DSRAG: A Domain-Specific Retrieval Framework Based on Document-derived Multimodal Knowledge Graph","url":"https://arxiv.org/html/2509.10467v1"},{"title":"Graph Retrieval-Augmented Generation: A Survey","url":"https://arxiv.org/html/2408.08921v1"},{"title":"Repository-Level Agent for Graph-Enhanced Retrieval","url":"https://chatpaper.com/paper/194690"}]
+
+Based on the search results, here's what I found about RANGER (arXiv 2509.25257):
+
+## Overview
+RANGER is a repository-level code retrieval agent designed to address both code-entity queries and natural language queries, filling a gap in recent works that have focused primarily on code-entity queries.
+
+## Key Features
+
+**Knowledge Graph Construction:** RANGER first constructs a comprehensive knowledge graph of the entire repository, capturing hierarchical and cross-file dependencies.
+
+**Dual-Stage Retrieval Pipeline:** RANGER operates on the graph through a dual-stage retrieval pipeline where entity-based queries are answered through fast Cypher lookups, while natural language queries are handled by MCTS-guided graph exploration.
+
+## Performance
+
+RANGER was evaluated across four diverse benchmarks that represent core ASE tasks including code search, question answering, cross-file dependency retrieval, and repository-level code completion. On CodeSearchNet and RepoQA it outperforms retrieval baselines using embeddings from strong models such as Qwen3-8B, and on RepoBench it achieves superior cross-file dependency retrieval over baselines, while on CrossCodeEval, pairing RANGER with BM25 delivers the highest exact match rate in code completion compared to other RAG methods.
+
+## Authors
+The paper was submitted on September 27, 2025 by authors Pratik Shah, Rajat Ghosh, Aryan Singhal, and Debojyoti Dutta.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dda2623e-521a-4083-9ac2-953b85969aaa",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "994f2354-15a5-4fb2-987a-a5d008218f46",
+  "toolUseResult": {
+    "query": "RANGER arXiv 2509.25257 repository-level graph-enhanced retrieval agent",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019Q9WKrwYTxV8ntyQCUoB5E",
+        "content": [
+          {
+            "title": "[2509.25257] RANGER -- Repository-Level Agent for Graph-Enhanced Retrieval",
+            "url": "https://arxiv.org/abs/2509.25257"
+          },
+          {
+            "title": "RANGER: Repository‑level Agent for Graph‑Enhanced Retrieval",
+            "url": "https://arxiv.org/html/2509.25257"
+          },
+          {
+            "title": "(PDF) RANGER -- Repository-Level Agent for Graph-Enhanced Retrieval",
+            "url": "https://www.researchgate.net/publication/396048813_RANGER_--_Repository-Level_Agent_for_Graph-Enhanced_Retrieval"
+          },
+          {
+            "title": "RANGER -- Repository-Level Agent for Graph-Enhanced ...",
+            "url": "https://arxiv.org/pdf/2509.25257"
+          },
+          {
+            "title": "Software Engineering on X: \"RANGER -- Repository-Level Agent for Graph-Enhanced Retrieval. https://t.co/wXCWqY3iyI\" / X",
+            "url": "https://x.com/ComputerPapers/status/1973474396628029697"
+          },
+          {
+            "title": "GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion",
+            "url": "https://arxiv.org/html/2509.05980"
+          },
+          {
+            "title": "Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches",
+            "url": "https://arxiv.org/html/2510.04905v1"
+          },
+          {
+            "title": "DSRAG: A Domain-Specific Retrieval Framework Based on Document-derived Multimodal Knowledge Graph",
+            "url": "https://arxiv.org/html/2509.10467v1"
+          },
+          {
+            "title": "Graph Retrieval-Augmented Generation: A Survey",
+            "url": "https://arxiv.org/html/2408.08921v1"
+          },
+          {
+            "title": "Repository-Level Agent for Graph-Enhanced Retrieval",
+            "url": "https://chatpaper.com/paper/194690"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about RANGER (arXiv 2509.25257):\n\n## Overview\nRANGER is a repository-level code retrieval agent designed to address both code-entity queries and natural language queries, filling a gap in recent works that have focused primarily on code-entity queries.\n\n## Key Features\n\n**Knowledge Graph Construction:** RANGER first constructs a comprehensive knowledge graph of the entire repository, capturing hierarchical and cross-file dependencies.\n\n**Dual-Stage Retrieval Pipeline:** RANGER operates on the graph through a dual-stage retrieval pipeline where entity-based queries are answered through fast Cypher lookups, while natural language queries are handled by MCTS-guided graph exploration.\n\n## Performance\n\nRANGER was evaluated across four diverse benchmarks that represent core ASE tasks including code search, question answering, cross-file dependency retrieval, and repository-level code completion. On CodeSearchNet and RepoQA it outperforms retrieval baselines using embeddings from strong models such as Qwen3-8B, and on RepoBench it achieves superior cross-file dependency retrieval over baselines, while on CrossCodeEval, pairing RANGER with BM25 delivers the highest exact match rate in code completion compared to other RAG methods.\n\n## Authors\nThe paper was submitted on September 27, 2025 by authors Pratik Shah, Rajat Ghosh, Aryan Singhal, and Debojyoti Dutta."
+    ],
+    "durationSeconds": 7.259308610999999
+  },
+  "sourceToolAssistantUUID": "dda2623e-521a-4083-9ac2-953b85969aaa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-10T19:08:52.626Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012wZsBNCHTk5e6dvzSDBbjT`</summary>
+
+```json
+{
+  "query": "CodexGraph NAACL 2025 code property graph Neo4j LLM repository"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "994f2354-15a5-4fb2-987a-a5d008218f46",
+  "isSidechain": false,
+  "requestId": "req_011CauR1MbFonUHSbgrYYPoh",
+  "type": "assistant",
+  "uuid": "5b62e395-6ad6-4a83-b50b-06d44c0a430d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QUh4XpsxtuwaWe4RqY1riP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 950,
+      "cache_read_input_tokens": 27480,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 950,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 27480,
+          "cache_creation_input_tokens": 950,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 950
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T19:09:00.181Z_
+
+<details><summary>↩ Tool result · `toolu_012wZsBNCHTk5e6dvzSDBbjT`</summary>
+
+```text
+Web search results for query: "CodexGraph NAACL 2025 code property graph Neo4j LLM repository"
+
+Links: [{"title":"CODEXGRAPH: Bridging Large Language Models and ...","url":"https://aclanthology.org/2025.naacl-long.7.pdf"},{"title":"CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases - ACL Anthology","url":"https://aclanthology.org/2025.naacl-long.7/"},{"title":"CodexGraph: LLM-Driven Code Graphs","url":"https://www.emergentmind.com/topics/codexgraph"},{"title":"CodexGraph","url":"https://laptype.github.io/CodexGraph-page/"},{"title":"[2408.03910] CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases","url":"https://arxiv.org/abs/2408.03910"},{"title":"GitHub - techsavvyash/codegraph: LLM-powered code intelligence platform with SCIP indexing, Neo4j graph database, and MCP server integration · GitHub","url":"https://github.com/techsavvyash/codegraph"},{"title":"CODEXGRAPH: Bridging Large Language Models","url":"https://arxiv.org/pdf/2408.03910v2"},{"title":"CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases","url":"https://arxiv.org/html/2408.03910v2"},{"title":"CODEXGRAPH: Bridging Large Language Models and Code Repositories","url":"https://openreview.net/pdf/165bbc76cbb447f2ea74ed1b1a4bb3531ee87e6d.pdf"},{"title":"CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases","url":"https://www.researchgate.net/publication/392505894_CodexGraph_Bridging_Large_Language_Models_and_Code_Repositories_via_Code_Graph_Databases"}]
+
+Based on the search results, here's information about CodexGraph, the NAACL 2025 paper on code property graphs and LLMs:
+
+## Overview
+
+CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases was presented at the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics.
+
+## Key Features
+
+CodexGraph is a system that integrates LLM agents with graph database interfaces extracted from code repositories. By leveraging the structural properties of graph databases and the flexibility of the graph query language, CodexGraph enables the LLM agent to construct and execute queries, allowing for precise, code structure-aware context retrieval and code navigation.
+
+## Code Property Graph Construction
+
+The system indexes input code repositories using static analysis, storing code symbols and relationships as nodes and edges in a graph database according to a predefined schema. The system selects Neo4j as the graph database and Cypher as the query language.
+
+## LLM Agent Approach
+
+CodexGraph employs a dual-agent LLM approach. The primary agent decomposes the input task into natural-language queries and deduces reasoning chains; the translation agent maps each to executable Cypher queries.
+
+## Evaluation
+
+CodexGraph is assessed using three benchmarks: CrossCodeEval, SWE-bench, and EvoCodeBench. Additionally, the researchers develop five real-world coding applications.
+
+With a unified graph database schema, CodexGraph demonstrates competitive performance and potential in both academic and real-world environments, showcasing its versatility and efficacy in software engineering.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b62e395-6ad6-4a83-b50b-06d44c0a430d",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "f0a3b6b9-3801-4109-8700-706540cb1cbf",
+  "toolUseResult": {
+    "query": "CodexGraph NAACL 2025 code property graph Neo4j LLM repository",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NBu8M4N6BTgjmEMXT2RkzA",
+        "content": [
+          {
+            "title": "CODEXGRAPH: Bridging Large Language Models and ...",
+            "url": "https://aclanthology.org/2025.naacl-long.7.pdf"
+          },
+          {
+            "title": "CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases - ACL Anthology",
+            "url": "https://aclanthology.org/2025.naacl-long.7/"
+          },
+          {
+            "title": "CodexGraph: LLM-Driven Code Graphs",
+            "url": "https://www.emergentmind.com/topics/codexgraph"
+          },
+          {
+            "title": "CodexGraph",
+            "url": "https://laptype.github.io/CodexGraph-page/"
+          },
+          {
+            "title": "[2408.03910] CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases",
+            "url": "https://arxiv.org/abs/2408.03910"
+          },
+          {
+            "title": "GitHub - techsavvyash/codegraph: LLM-powered code intelligence platform with SCIP indexing, Neo4j graph database, and MCP server integration · GitHub",
+            "url": "https://github.com/techsavvyash/codegraph"
+          },
+          {
+            "title": "CODEXGRAPH: Bridging Large Language Models",
+            "url": "https://arxiv.org/pdf/2408.03910v2"
+          },
+          {
+            "title": "CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases",
+            "url": "https://arxiv.org/html/2408.03910v2"
+          },
+          {
+            "title": "CODEXGRAPH: Bridging Large Language Models and Code Repositories",
+            "url": "https://openreview.net/pdf/165bbc76cbb447f2ea74ed1b1a4bb3531ee87e6d.pdf"
+          },
+          {
+            "title": "CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases",
+            "url": "https://www.researchgate.net/publication/392505894_CodexGraph_Bridging_Large_Language_Models_and_Code_Repositories_via_Code_Graph_Databases"
+          }
+        ]
+      },
+      "Based on the search results, here's information about CodexGraph, the NAACL 2025 paper on code property graphs and LLMs:\n\n## Overview\n\nCodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases was presented at the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics.\n\n## Key Features\n\nCodexGraph is a system that integrates LLM agents with graph database interfaces extracted from code repositories. By leveraging the structural properties of graph databases and the flexibility of the graph query language, CodexGraph enables the LLM agent to construct and execute queries, allowing for precise, code structure-aware context retrieval and code navigation.\n\n## Code Property Graph Construction\n\nThe system indexes input code repositories using static analysis, storing code symbols and relationships as nodes and edges in a graph database according to a predefined schema. The system selects Neo4j as the graph database and Cypher as the query language.\n\n## LLM Agent Approach\n\nCodexGraph employs a dual-agent LLM approach. The primary agent decomposes the input task into natural-language queries and deduces reasoning chains; the translation agent maps each to executable Cypher queries.\n\n## Evaluation\n\nCodexGraph is assessed using three benchmarks: CrossCodeEval, SWE-bench, and EvoCodeBench. Additionally, the researchers develop five real-world coding applications.\n\nWith a unified graph database schema, CodexGraph demonstrates competitive performance and potential in both academic and real-world environments, showcasing its versatility and efficacy in software engineering."
+    ],
+    "durationSeconds": 7.547820315000001
+  },
+  "sourceToolAssistantUUID": "5b62e395-6ad6-4a83-b50b-06d44c0a430d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-10T19:09:03.863Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QUGoZ7FfuWWKReSXp9s8QZ`</summary>
+
+```json
+{
+  "query": "CodeQL inter-procedural data-flow analysis scalability memory blowup large repositories Python"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0a3b6b9-3801-4109-8700-706540cb1cbf",
+  "isSidechain": false,
+  "requestId": "req_011CauR29upYvq3FNAcUgWNJ",
+  "type": "assistant",
+  "uuid": "ebd0867f-04a5-4f79-bdcc-1286886f3d8a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017WeMRxLHJoz6fSHq4Sqq3Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 965,
+      "cache_read_input_tokens": 28430,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 965,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 28430,
+          "cache_creation_input_tokens": 965,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 965
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-10T19:09:10.870Z_
+
+<details><summary>↩ Tool result · `toolu_01QUGoZ7FfuWWKReSXp9s8QZ`</summary>
+
+```text
+Web search results for query: "CodeQL inter-procedural data-flow analysis scalability memory blowup large repositories Python"
+
+Links: [{"title":"Analyzing data flow in Python - CodeQL - GitHub","url":"https://codeql.github.com/docs/codeql-language-guides/analyzing-data-flow-in-python/"},{"title":"About data flow analysis - CodeQL - GitHub","url":"https://codeql.github.com/docs/writing-codeql-queries/about-data-flow-analysis/"},{"title":"DataFlow - CodeQL - GitHub","url":"https://codeql.github.com/codeql-standard-libraries/python/semmle/python/dataflow/new/DataFlow.qll/module.DataFlow.html"},{"title":"GitHub Incremental CodeQL: Faster Scans for PRs in 2026","url":"https://techbytes.app/posts/github-codeql-incremental-analysis/"},{"title":"codeql/docs/ql-libraries/dataflow/dataflow.md at main · github/codeql","url":"https://github.com/github/codeql/blob/main/docs/ql-libraries/dataflow/dataflow.md"},{"title":"An introduction to CodeQL and data flow analysis | Zeyu (Zayne) Zhang","url":"https://www.analogue.computer/blog/codeql-and-data-flow-analysis"},{"title":"Analyzing data flow in JavaScript and TypeScript — CodeQL","url":"https://codeql.github.com/docs/codeql-language-guides/analyzing-data-flow-in-javascript-and-typescript/"},{"title":"Incrementalizing Production CodeQL Analyses Tamás Szabó GitHub Germany ABSTRACT","url":"https://arxiv.org/pdf/2308.09660"},{"title":"Using flow state for precise data flow analysis - CodeQL - GitHub","url":"https://codeql.github.com/docs/codeql-language-guides/using-flow-labels-for-precise-data-flow-analysis/"},{"title":"Analyzing control flow in Python - CodeQL - GitHub","url":"https://codeql.github.com/docs/codeql-language-guides/analyzing-control-flow-in-python/"}]
+
+Based on the web search results, here's what I found regarding CodeQL inter-procedural data-flow analysis scalability and memory issues with large repositories:
+
+## Key Scalability Challenges
+
+Computing global (inter-procedural) data flow is typically more time and energy intensive than local data flow, therefore queries should be refined to look for more specific sources and sinks.
+
+For performance reasons, it is not generally feasible to compute all global data flow across the entire program. Instead, you can define a data flow configuration, which specifies source data flow nodes and sink data flow nodes of interest.
+
+## Memory Blowup Issues
+
+The search results reveal concrete evidence of memory problems with large repositories. A fully-incremental inter-procedural data-flow analysis can take more than an hour to perform the first from-scratch analysis, and the memory use (due to caching) of the analysis can go as high as ~70 GB, which is prohibitive.
+
+To address this, by executing all non-recursive parts of the analysis implementation non-incrementally, memory use can be reduced to ~20 GB, though the incremental update time gets higher compared to the fully-incremental approach, but it is still below a minute.
+
+## Implementation Notes
+
+The scalability approach for inter-procedural flow does have some scalability issues if the number of unreachable nodes is large combined with many call sites.
+
+These findings suggest that while CodeQL's inter-procedural analysis is powerful, large repository analysis requires careful configuration and potentially hybrid approaches to manage memory and computation resources effectively.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ebd0867f-04a5-4f79-bdcc-1286886f3d8a",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "851e4949-1a5b-4916-82ad-0a38b6b785d6",
+  "toolUseResult": {
+    "query": "CodeQL inter-procedural data-flow analysis scalability memory blowup large repositories Python",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016Mu78QwvHu7gwnFuBCCpsy",
+        "content": [
+          {
+            "title": "Analyzing data flow in Python - CodeQL - GitHub",
+            "url": "https://codeql.github.com/docs/codeql-language-guides/analyzing-data-flow-in-python/"
+          },
+          {
+            "title": "About data flow analysis - CodeQL - GitHub",
+            "url": "https://codeql.github.com/docs/writing-codeql-queries/about-data-flow-analysis/"
+          },
+          {
+            "title": "DataFlow - CodeQL - GitHub",
+            "url": "https://codeql.github.com/codeql-standard-libraries/python/semmle/python/dataflow/new/DataFlow.qll/module.DataFlow.html"
+          },
+          {
+            "title": "GitHub Incremental CodeQL: Faster Scans for PRs in 2026",
+            "url": "https://techbytes.app/posts/github-codeql-incremental-analysis/"
+          },
+          {
+            "title": "codeql/docs/ql-libraries/dataflow/dataflow.md at main · github/codeql",
+            "url": "https://github.com/github/codeql/blob/main/docs/ql-libraries/dataflow/dataflow.md"
+          },
+          {
+            "title": "An introduction to CodeQL and data flow analysis | Zeyu (Zayne) Zhang",
+            "url": "https://www.analogue.computer/blog/codeql-and-data-flow-analysis"
+          },
+          {
+            "title": "Analyzing data flow in JavaScript and TypeScript — CodeQL",
+            "url": "https://codeql.github.com/docs/codeql-language-guides/analyzing-data-flow-in-javascript-and-typescript/"
+          },
+          {
+            "title": "Incrementalizing Production CodeQL Analyses Tamás Szabó GitHub Germany ABSTRACT",
+            "url": "https://arxiv.org/pdf/2308.09660"
+          },
+          {
+            "title": "Using flow state for precise data flow analysis - CodeQL - GitHub",
+            "url": "https://codeql.github.com/docs/codeql-language-guides/using-flow-labels-for-precise-data-flow-analysis/"
+          },
+          {
+            "title": "Analyzing control flow in Python - CodeQL - GitHub",
+            "url": "https://codeql.github.com/docs/codeql-language-guides/analyzing-control-flow-in-python/"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found regarding CodeQL inter-procedural data-flow analysis scalability and memory issues with large repositories:\n\n## Key Scalability Challenges\n\nComputing global (inter-procedural) data flow is typically more time and energy intensive than local data flow, therefore queries should be refined to look for more specific sources and sinks.\n\nFor performance reasons, it is not generally feasible to compute all global data flow across the entire program. Instead, you can define a data flow configuration, which specifies source data flow nodes and sink data flow nodes of interest.\n\n## Memory Blowup Issues\n\nThe search results reveal concrete evidence of memory problems with large repositories. A fully-incremental inter-procedural data-flow analysis can take more than an hour to perform the first from-scratch analysis, and the memory use (due to caching) of the analysis can go as high as ~70 GB, which is prohibitive.\n\nTo address this, by executing all non-recursive parts of the analysis implementation non-incrementally, memory use can be reduced to ~20 GB, though the incremental update time gets higher compared to the fully-incremental approach, but it is still below a minute.\n\n## Implementation Notes\n\nThe scalability approach for inter-procedural flow does have some scalability issues if the number of unreachable nodes is large combined with many call sites.\n\nThese findings suggest that while CodeQL's inter-procedural analysis is powerful, large repository analysis requires careful configuration and potentially hybrid approaches to manage memory and computation resources effectively."
+    ],
+    "durationSeconds": 7.003116907999996
+  },
+  "sourceToolAssistantUUID": "ebd0867f-04a5-4f79-bdcc-1286886f3d8a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level…",
+  "leafUuid": "851e4949-1a5b-4916-82ad-0a38b6b785d6",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise StructFuse to address CodeQL scalability and improve ceiling analysis",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-10T19:09:14.845Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01H6VrrxwptPjnViC3ri26em`</summary>
+
+```json
+{
+  "query": "SWE-agent runtime per instance minutes Qwen 27B 32B SWE-bench evaluation time"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "851e4949-1a5b-4916-82ad-0a38b6b785d6",
+  "isSidechain": false,
+  "requestId": "req_011CauR2waC4raJ7KxQyU2L7",
+  "type": "assistant",
+  "uuid": "7930843d-6ced-4e29-badc-ee80680596c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013ZuGP2QfhyCsgAk3YP9Ea9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 972,
+      "cache_read_input_tokens": 29395,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 972,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 29395,
+          "cache_creation_input_tokens": 972,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 972
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-10T19:09:19.805Z_
+
+<details><summary>↩ Tool result · `toolu_01H6VrrxwptPjnViC3ri26em`</summary>
+
+```text
+Web search results for query: "SWE-agent runtime per instance minutes Qwen 27B 32B SWE-bench evaluation time"
+
+Links: [{"title":"Qwen/Qwen3.6-27B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.6-27B"},{"title":"SWE-bench Verified","url":"https://www.vals.ai/benchmarks/swebench"},{"title":"Qwen Studio","url":"https://qwen.ai/blog?id=qwen3.6"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"SWE-bench Results Viewer","url":"https://www.swebench.com/viewer.html"},{"title":"Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model","url":"https://qwen.ai/blog?id=qwen3.6-27b"},{"title":"SWE-Bench Verified Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/swe-bench-verified"},{"title":"SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?","url":"https://arxiv.org/html/2509.16941v1"},{"title":"SWE-bench-Live Leaderboard","url":"https://swe-bench-live.github.io/"},{"title":"Are LLMs Truly Solving Software Problems — or Are Agents Doing It?","url":"https://sambanova.ai/blog/are-llms-truly-solving-software-problems"}]
+
+I found search results related to SWE-bench evaluation and Qwen models, but the specific information about SWE-agent runtime per instance in minutes for Qwen 27B and 32B models is not detailed in these results. The search results contain information about:
+
+- SWE-Bench Series evaluation using an internal agent scaffold with bash and file-edit tools
+- Performance of Qwen 3 32B achieving a 3.4% resolve rate on SWE-Bench Pro
+- Qwen3-32B reaching a 15.2% resolve rate on 100 samples from SWE-bench Verified using the mini-SWE-agent framework
+
+However, the exact runtime metrics per instance in minutes for SWE-agent evaluations on these models are not present in these search results. You may need to check the official SWE-agent GitHub repository, research papers with detailed experimental setups, or technical documentation that specifically reports timing metrics for these evaluations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7930843d-6ced-4e29-badc-ee80680596c5",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "f3071036-aff8-4704-993c-e96bb6027e13",
+  "toolUseResult": {
+    "query": "SWE-agent runtime per instance minutes Qwen 27B 32B SWE-bench evaluation time",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014EuGPxqnu1hFWuSEXXWKw7",
+        "content": [
+          {
+            "title": "Qwen/Qwen3.6-27B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.6-27B"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.vals.ai/benchmarks/swebench"
+          },
+          {
+            "title": "Qwen Studio",
+            "url": "https://qwen.ai/blog?id=qwen3.6"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "SWE-bench Results Viewer",
+            "url": "https://www.swebench.com/viewer.html"
+          },
+          {
+            "title": "Qwen3.6-27B: Flagship-Level Coding in a 27B Dense Model",
+            "url": "https://qwen.ai/blog?id=qwen3.6-27b"
+          },
+          {
+            "title": "SWE-Bench Verified Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?",
+            "url": "https://arxiv.org/html/2509.16941v1"
+          },
+          {
+            "title": "SWE-bench-Live Leaderboard",
+            "url": "https://swe-bench-live.github.io/"
+          },
+          {
+            "title": "Are LLMs Truly Solving Software Problems — or Are Agents Doing It?",
+            "url": "https://sambanova.ai/blog/are-llms-truly-solving-software-problems"
+          }
+        ]
+      },
+      "I found search results related to SWE-bench evaluation and Qwen models, but the specific information about SWE-agent runtime per instance in minutes for Qwen 27B and 32B models is not detailed in these results. The search results contain information about:\n\n- SWE-Bench Series evaluation using an internal agent scaffold with bash and file-edit tools\n- Performance of Qwen 3 32B achieving a 3.4% resolve rate on SWE-Bench Pro\n- Qwen3-32B reaching a 15.2% resolve rate on 100 samples from SWE-bench Verified using the mini-SWE-agent framework\n\nHowever, the exact runtime metrics per instance in minutes for SWE-agent evaluations on these models are not present in these search results. You may need to check the official SWE-agent GitHub repository, research papers with detailed experimental setups, or technical documentation that specifically reports timing metrics for these evaluations."
+    ],
+    "durationSeconds": 4.955308193000004
+  },
+  "sourceToolAssistantUUID": "7930843d-6ced-4e29-badc-ee80680596c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-10T19:09:24.942Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T6rYMeUSLCsKs5fJgP1GeE`</summary>
+
+```json
+{
+  "query": "SWE-bench evaluation cost time per instance average runtime agent 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f3071036-aff8-4704-993c-e96bb6027e13",
+  "isSidechain": false,
+  "requestId": "req_011CauR3bqZv2xLmAJy4hjR5",
+  "type": "assistant",
+  "uuid": "20aa9c65-e4f7-46b7-b008-ea84d4d8e3fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014F4981qsAGQUhWKYv8AFHb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 732,
+      "cache_read_input_tokens": 30367,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 732,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 30367,
+          "cache_creation_input_tokens": 732,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 732
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-10T19:09:30.079Z_
+
+<details><summary>↩ Tool result · `toolu_01T6rYMeUSLCsKs5fJgP1GeE`</summary>
+
+```text
+Web search results for query: "SWE-bench evaluation cost time per instance average runtime agent 2025 2026"
+
+Links: [{"title":"SWE-bench Verified","url":"https://www.vals.ai/benchmarks/swebench"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"SWE-bench Verified","url":"https://www.swebench.com/verified.html"},{"title":"[Leaderboard] AI Agent Framework Scorecard 2026 | Rapid Claw","url":"https://rapidclaw.dev/blog/ai-agent-benchmarks-2026"},{"title":"GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub","url":"https://github.com/swe-bench/SWE-bench"},{"title":"GitHub - murataslan1/ai-agent-benchmark: AI coding agents comparison - 80+ agents, SWE-Bench leaderboard, pricing. Devin, Cursor, Claude Code, Copilot, and more. December 2025. · GitHub","url":"https://github.com/murataslan1/ai-agent-benchmark"},{"title":"SWE-bench-Live Leaderboard","url":"https://swe-bench-live.github.io/"},{"title":"SWE-Bench+: Next-Gen Code Agent Benchmarks","url":"https://www.emergentmind.com/topics/swe-bench-3b86a734-b378-4ee6-bcaf-640949ed7afb"},{"title":"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale","url":"https://labs.scale.com/leaderboard/swe_bench_pro_public"},{"title":"Introducing SWE-bench Verified | OpenAI","url":"https://openai.com/index/introducing-swe-bench-verified/"}]
+
+Based on the search results, I found information about SWE-bench benchmarking in 2025-2026, but the results don't contain specific data about evaluation cost, time per instance, or average runtime for agents. 
+
+The search results discuss:
+- SWE-bench Verified as a human-validated subset of 500 instances
+- Cloud-based evaluation tools including sb-cli and Modal for running evaluations on the cloud
+- SWE-Bench++ which scales to 11 languages and 3,971 repositories with 11,133 instances
+- Various agent and model performance metrics on SWE-bench
+
+However, the search results don't contain specific information about evaluation costs, time per instance metrics, or average runtime durations for running agents on SWE-bench in 2025-2026. 
+
+To find this information, you might want to check:
+- The official SWE-bench GitHub repository documentation or papers
+- Individual agent evaluation reports that include runtime/cost metrics
+- SWE-bench leaderboard pages which may display timing information
+- Papers on specific agents tested in 2025-2026 that report computational costs
+
+Would you like me to search for more specific information about any of these aspects?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "20aa9c65-e4f7-46b7-b008-ea84d4d8e3fd",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "8f642f5b-61fb-4108-b822-bde18a6caa84",
+  "toolUseResult": {
+    "query": "SWE-bench evaluation cost time per instance average runtime agent 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Xt6VNi1SVFe4eyPhamX6oW",
+        "content": [
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.vals.ai/benchmarks/swebench"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.swebench.com/verified.html"
+          },
+          {
+            "title": "[Leaderboard] AI Agent Framework Scorecard 2026 | Rapid Claw",
+            "url": "https://rapidclaw.dev/blog/ai-agent-benchmarks-2026"
+          },
+          {
+            "title": "GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub",
+            "url": "https://github.com/swe-bench/SWE-bench"
+          },
+          {
+            "title": "GitHub - murataslan1/ai-agent-benchmark: AI coding agents comparison - 80+ agents, SWE-Bench leaderboard, pricing. Devin, Cursor, Claude Code, Copilot, and more. December 2025. · GitHub",
+            "url": "https://github.com/murataslan1/ai-agent-benchmark"
+          },
+          {
+            "title": "SWE-bench-Live Leaderboard",
+            "url": "https://swe-bench-live.github.io/"
+          },
+          {
+            "title": "SWE-Bench+: Next-Gen Code Agent Benchmarks",
+            "url": "https://www.emergentmind.com/topics/swe-bench-3b86a734-b378-4ee6-bcaf-640949ed7afb"
+          },
+          {
+            "title": "SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale",
+            "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public"
+          },
+          {
+            "title": "Introducing SWE-bench Verified | OpenAI",
+            "url": "https://openai.com/index/introducing-swe-bench-verified/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about SWE-bench benchmarking in 2025-2026, but the results don't contain specific data about evaluation cost, time per instance, or average runtime for agents. \n\nThe search results discuss:\n- SWE-bench Verified as a human-validated subset of 500 instances\n- Cloud-based evaluation tools including sb-cli and Modal for running evaluations on the cloud\n- SWE-Bench++ which scales to 11 languages and 3,971 repositories with 11,133 instances\n- Various agent and model performance metrics on SWE-bench\n\nHowever, the search results don't contain specific information about evaluation costs, time per instance metrics, or average runtime durations for running agents on SWE-bench in 2025-2026. \n\nTo find this information, you might want to check:\n- The official SWE-bench GitHub repository documentation or papers\n- Individual agent evaluation reports that include runtime/cost metrics\n- SWE-bench leaderboard pages which may display timing information\n- Papers on specific agents tested in 2025-2026 that report computational costs\n\nWould you like me to search for more specific information about any of these aspects?"
+    ],
+    "durationSeconds": 5.132541272000002
+  },
+  "sourceToolAssistantUUID": "20aa9c65-e4f7-46b7-b008-ea84d4d8e3fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-10T19:09:32.972Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01J5HMcKqEBn3YbVt7xLvmow`</summary>
+
+```json
+{
+  "query": "CodeQL Python data flow query timeout memory limit configuration options"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f642f5b-61fb-4108-b822-bde18a6caa84",
+  "isSidechain": false,
+  "requestId": "req_011CauR4MhnYpVbQfiRtQxV3",
+  "type": "assistant",
+  "uuid": "c808f0da-2dd1-4c1f-a5e4-61083501fcb4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NtAGwNti3FoLephBxbPxUD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 857,
+      "cache_read_input_tokens": 31099,
+      "output_tokens": 62,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 857,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 62,
+          "cache_read_input_tokens": 31099,
+          "cache_creation_input_tokens": 857,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 857
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-10T19:09:40.353Z_
+
+<details><summary>↩ Tool result · `toolu_01J5HMcKqEBn3YbVt7xLvmow`</summary>
+
+```text
+Web search results for query: "CodeQL Python data flow query timeout memory limit configuration options"
+
+Links: [{"title":"Analyzing data flow in Python - CodeQL - GitHub","url":"https://codeql.github.com/docs/codeql-language-guides/analyzing-data-flow-in-python/"},{"title":"CodeQL 2.16.0 (2024-01-16) — CodeQL","url":"https://codeql.github.com/docs/codeql-overview/codeql-changelog/codeql-cli-2.16.0/"},{"title":"database run-queries - GitHub Enterprise Cloud Docs","url":"https://docs.github.com/en/enterprise-cloud@latest/code-security/reference/code-scanning/codeql/codeql-cli-manual/database-run-queries"},{"title":"Understanding the time taken for analyzing queries using codeql cli · github/codeql · Discussion #6020","url":"https://github.com/github/codeql/discussions/6020"},{"title":"DataFlow - CodeQL - GitHub","url":"https://codeql.github.com/codeql-standard-libraries/python/semmle/python/dataflow/new/DataFlow.qll/module.DataFlow.html"},{"title":"CodeQL for Python — CodeQL","url":"https://codeql.github.com/docs/codeql-language-guides/codeql-for-python/"},{"title":"Code scanning analysis takes too long - GitHub Docs","url":"https://docs.github.com/en/code-security/code-scanning/troubleshooting-code-scanning/analysis-takes-too-long"},{"title":"CodeQL out of memory · community · Discussion #25430","url":"https://github.com/orgs/community/discussions/25430"},{"title":"Analyzing control flow in Python - CodeQL - GitHub","url":"https://codeql.github.com/docs/codeql-language-guides/analyzing-control-flow-in-python/"},{"title":"About data flow analysis - CodeQL - GitHub","url":"https://codeql.github.com/docs/writing-codeql-queries/about-data-flow-analysis/"}]
+
+Based on the search results, here's information about CodeQL Python data flow query timeout and memory limit configuration options:
+
+## Memory Configuration
+
+The query evaluator will try hard to keep its total memory footprint below the value specified by the `--ram` option, though for large databases it is possible that this threshold may be broken by file-backed memory maps.
+
+Starting in CodeQL 2.16.0, the `--ram` option to commands like `codeql database run-queries` is now interpreted more strictly, with CodeQL trying harder to keep its total memory consumption during evaluation below the given limit.
+
+## Data Flow Performance Considerations
+
+Global data flow tracks data flow throughout the entire program and is more powerful than local data flow, but global data flow is less precise than local data flow, and the analysis typically requires significantly more time and memory to perform.
+
+Local data flow concerns the data flow within a single function, and is generally sufficiently fast, efficient and precise for many queries, making it usually possible to compute local data flow for all functions in a CodeQL database.
+
+## Query Timeout and Threading
+
+You can use the `--threads` option to specify how many threads to use for query evaluation, which defaults to 1, and you can pass 0 to use one thread per core or -N to leave N cores unused.
+
+The search results don't contain specific information about explicit timeout configuration options for CodeQL Python data flow queries. The primary configuration mechanism appears to be through the `--ram` memory limit option, with the understanding that resource constraints affect query execution time.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c808f0da-2dd1-4c1f-a5e4-61083501fcb4",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "d050e014-3351-46a6-9860-9fec56db8145",
+  "toolUseResult": {
+    "query": "CodeQL Python data flow query timeout memory limit configuration options",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015NnQyjPq3omiUtsuHmhQ4f",
+        "content": [
+          {
+            "title": "Analyzing data flow in Python - CodeQL - GitHub",
+            "url": "https://codeql.github.com/docs/codeql-language-guides/analyzing-data-flow-in-python/"
+          },
+          {
+            "title": "CodeQL 2.16.0 (2024-01-16) — CodeQL",
+            "url": "https://codeql.github.com/docs/codeql-overview/codeql-changelog/codeql-cli-2.16.0/"
+          },
+          {
+            "title": "database run-queries - GitHub Enterprise Cloud Docs",
+            "url": "https://docs.github.com/en/enterprise-cloud@latest/code-security/reference/code-scanning/codeql/codeql-cli-manual/database-run-queries"
+          },
+          {
+            "title": "Understanding the time taken for analyzing queries using codeql cli · github/codeql · Discussion #6020",
+            "url": "https://github.com/github/codeql/discussions/6020"
+          },
+          {
+            "title": "DataFlow - CodeQL - GitHub",
+            "url": "https://codeql.github.com/codeql-standard-libraries/python/semmle/python/dataflow/new/DataFlow.qll/module.DataFlow.html"
+          },
+          {
+            "title": "CodeQL for Python — CodeQL",
+            "url": "https://codeql.github.com/docs/codeql-language-guides/codeql-for-python/"
+          },
+          {
+            "title": "Code scanning analysis takes too long - GitHub Docs",
+            "url": "https://docs.github.com/en/code-security/code-scanning/troubleshooting-code-scanning/analysis-takes-too-long"
+          },
+          {
+            "title": "CodeQL out of memory · community · Discussion #25430",
+            "url": "https://github.com/orgs/community/discussions/25430"
+          },
+          {
+            "title": "Analyzing control flow in Python - CodeQL - GitHub",
+            "url": "https://codeql.github.com/docs/codeql-language-guides/analyzing-control-flow-in-python/"
+          },
+          {
+            "title": "About data flow analysis - CodeQL - GitHub",
+            "url": "https://codeql.github.com/docs/writing-codeql-queries/about-data-flow-analysis/"
+          }
+        ]
+      },
+      "Based on the search results, here's information about CodeQL Python data flow query timeout and memory limit configuration options:\n\n## Memory Configuration\n\nThe query evaluator will try hard to keep its total memory footprint below the value specified by the `--ram` option, though for large databases it is possible that this threshold may be broken by file-backed memory maps.\n\nStarting in CodeQL 2.16.0, the `--ram` option to commands like `codeql database run-queries` is now interpreted more strictly, with CodeQL trying harder to keep its total memory consumption during evaluation below the given limit.\n\n## Data Flow Performance Considerations\n\nGlobal data flow tracks data flow throughout the entire program and is more powerful than local data flow, but global data flow is less precise than local data flow, and the analysis typically requires significantly more time and memory to perform.\n\nLocal data flow concerns the data flow within a single function, and is generally sufficiently fast, efficient and precise for many queries, making it usually possible to compute local data flow for all functions in a CodeQL database.\n\n## Query Timeout and Threading\n\nYou can use the `--threads` option to specify how many threads to use for query evaluation, which defaults to 1, and you can pass 0 to use one thread per core or -N to leave N cores unused.\n\nThe search results don't contain specific information about explicit timeout configuration options for CodeQL Python data flow queries. The primary configuration mechanism appears to be through the `--ram` memory limit option, with the understanding that resource constraints affect query execution time."
+    ],
+    "durationSeconds": 7.377053894999997
+  },
+  "sourceToolAssistantUUID": "c808f0da-2dd1-4c1f-a5e4-61083501fcb4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-10T19:09:42.797Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BazD9QMo7u5oQ2G4XHYrCF`</summary>
+
+```json
+{
+  "query": "contrastive learning hard negative mining structural versus embedding distance gradient signal theory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d050e014-3351-46a6-9860-9fec56db8145",
+  "isSidechain": false,
+  "requestId": "req_011CauR57bzmA2NikyiJS54Y",
+  "type": "assistant",
+  "uuid": "623f0a1d-40ea-4389-8ae4-fa6f83e22315",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WPQwhWgqTCpvFdXGtorRbG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 944,
+      "cache_read_input_tokens": 31956,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 944,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 31956,
+          "cache_creation_input_tokens": 944,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 944
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-10T19:09:51.001Z_
+
+<details><summary>↩ Tool result · `toolu_01BazD9QMo7u5oQ2G4XHYrCF`</summary>
+
+```text
+Web search results for query: "contrastive learning hard negative mining structural versus embedding distance gradient signal theory"
+
+Links: [{"title":"Contrastive Representation Learning | Lil'Log","url":"https://lilianweng.github.io/posts/2021-05-31-contrastive/"},{"title":"Adaptive graph contrastive learning with hard negative mining for multimodal hyperspectral and LiDAR classification - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12969351/"},{"title":"CONTRASTIVE LEARNING WITH HARD NEGATIVE ...","url":"https://openreview.net/pdf?id=CR1XOQ0UTh-"},{"title":"Hard Negative Mixing for Contrastive Learning Yannis Kalantidis","url":"https://proceedings.neurips.cc/paper/2020/file/f7cade80b7cc92b991cf4d2806d6bd78-Paper.pdf"},{"title":"Effective Hard Negative Mining for Contrastive Learning-Based Code Search | ACM Transactions on Software Engineering and Methodology","url":"https://dl.acm.org/doi/10.1145/3695994"},{"title":"Revisiting Hard Negative Mining in Contrastive Learning for Visual Understanding","url":"https://www.mdpi.com/2079-9292/12/23/4884"},{"title":"Contrastive Learning with Hard Negatives","url":"https://www.emergentmind.com/topics/contrastive-learning-with-hard-negative-samples"},{"title":"Contrastive Learning with Hard Negative Samples | by It's Amit | Medium","url":"https://mr-amit.medium.com/contrastive-learning-with-hard-negative-samples-2cccb609fa0c"},{"title":"Contrastive learning with hard negative samples","url":"https://arxiv.org/pdf/2010.04592"},{"title":"[2010.04592] Contrastive Learning with Hard Negative Samples","url":"https://arxiv.org/abs/2010.04592"}]
+
+I found comprehensive search results on contrastive learning and hard negative mining. Here's what the research reveals:
+
+## Core Concepts of Hard Negative Mining
+
+Hard negative samples should have different labels from the anchor sample, but have embedding features very close to the anchor. Contrastive learning of representations benefits from hard negative samples (i.e., points that are difficult to distinguish from an anchor point).
+
+## Structural vs. Embedding Distance
+
+The research shows an important distinction in hard negative mining approaches:
+
+A hard negative mining mechanism combines feature similarity and spatial distance constraints when constructing negative samples, prioritizing samples that are semantically similar yet spatially separated, thus reducing false-negative interference. This directly addresses the structural-versus-embedding question in your query.
+
+Additionally, previous contrastive learning methods often overlook spatial and cross-modal context during negative sample selection, increasing the risk of false negatives where semantically similar samples are incorrectly treated as dissimilar, which distorts the embedding space and ultimately degrades representation quality.
+
+## Gradient Signal Theory
+
+Regarding gradient signals, the most useful negative samples are ones that the embedding currently believes to be likely to be most useful and provide significant gradient information during training. The inclusion of hard negative samples in the contrastive loss directly sharpens the decision boundary, accelerates convergence, and corrects model uncertainty in local regions of the feature space.
+
+## Theoretical Considerations
+
+In the unsupervised regime, theoretical results demonstrate that soft/hard negative reweighting, if not carefully regulated, can lead to dimensional collapse or even degenerate embeddings, motivating regularization to maintain learning signal and prevent collapse.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "623f0a1d-40ea-4389-8ae4-fa6f83e22315",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "cab98e17-946a-4920-9052-db7c39f21efe",
+  "toolUseResult": {
+    "query": "contrastive learning hard negative mining structural versus embedding distance gradient signal theory",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BzaEHo5z1STxUQN89m5Pim",
+        "content": [
+          {
+            "title": "Contrastive Representation Learning | Lil'Log",
+            "url": "https://lilianweng.github.io/posts/2021-05-31-contrastive/"
+          },
+          {
+            "title": "Adaptive graph contrastive learning with hard negative mining for multimodal hyperspectral and LiDAR classification - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12969351/"
+          },
+          {
+            "title": "CONTRASTIVE LEARNING WITH HARD NEGATIVE ...",
+            "url": "https://openreview.net/pdf?id=CR1XOQ0UTh-"
+          },
+          {
+            "title": "Hard Negative Mixing for Contrastive Learning Yannis Kalantidis",
+            "url": "https://proceedings.neurips.cc/paper/2020/file/f7cade80b7cc92b991cf4d2806d6bd78-Paper.pdf"
+          },
+          {
+            "title": "Effective Hard Negative Mining for Contrastive Learning-Based Code Search | ACM Transactions on Software Engineering and Methodology",
+            "url": "https://dl.acm.org/doi/10.1145/3695994"
+          },
+          {
+            "title": "Revisiting Hard Negative Mining in Contrastive Learning for Visual Understanding",
+            "url": "https://www.mdpi.com/2079-9292/12/23/4884"
+          },
+          {
+            "title": "Contrastive Learning with Hard Negatives",
+            "url": "https://www.emergentmind.com/topics/contrastive-learning-with-hard-negative-samples"
+          },
+          {
+            "title": "Contrastive Learning with Hard Negative Samples | by It's Amit | Medium",
+            "url": "https://mr-amit.medium.com/contrastive-learning-with-hard-negative-samples-2cccb609fa0c"
+          },
+          {
+            "title": "Contrastive learning with hard negative samples",
+            "url": "https://arxiv.org/pdf/2010.04592"
+          },
+          {
+            "title": "[2010.04592] Contrastive Learning with Hard Negative Samples",
+            "url": "https://arxiv.org/abs/2010.04592"
+          }
+        ]
+      },
+      "I found comprehensive search results on contrastive learning and hard negative mining. Here's what the research reveals:\n\n## Core Concepts of Hard Negative Mining\n\nHard negative samples should have different labels from the anchor sample, but have embedding features very close to the anchor. Contrastive learning of representations benefits from hard negative samples (i.e., points that are difficult to distinguish from an anchor point).\n\n## Structural vs. Embedding Distance\n\nThe research shows an important distinction in hard negative mining approaches:\n\nA hard negative mining mechanism combines feature similarity and spatial distance constraints when constructing negative samples, prioritizing samples that are semantically similar yet spatially separated, thus reducing false-negative interference. This directly addresses the structural-versus-embedding question in your query.\n\nAdditionally, previous contrastive learning methods often overlook spatial and cross-modal context during negative sample selection, increasing the risk of false negatives where semantically similar samples are incorrectly treated as dissimilar, which distorts the embedding space and ultimately degrades representation quality.\n\n## Gradient Signal Theory\n\nRegarding gradient signals, the most useful negative samples are ones that the embedding currently believes to be likely to be most useful and provide significant gradient information during training. The inclusion of hard negative samples in the contrastive loss directly sharpens the decision boundary, accelerates convergence, and corrects model uncertainty in local regions of the feature space.\n\n## Theoretical Considerations\n\nIn the unsupervised regime, theoretical results demonstrate that soft/hard negative reweighting, if not carefully regulated, can lead to dimensional collapse or even degenerate embeddings, motivating regularization to maintain learning signal and prevent collapse."
+    ],
+    "durationSeconds": 8.201228745
+  },
+  "sourceToolAssistantUUID": "623f0a1d-40ea-4389-8ae4-fa6f83e22315",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-10T19:09:51.004Z_
+
+```json
+{
+  "parentUuid": "cab98e17-946a-4920-9052-db7c39f21efe",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2af51b51-8f98-49a7-89ff-f86d11b1cfff",
+  "timestamp": "2026-05-10T19:09:51.004Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-10T19:09:58.730Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FkhbMjie6SfTarWv3znfdT`</summary>
+
+```json
+{
+  "query": "SWE-bench Pro SEAL standardized evaluation leaderboard 2026 latest scores"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2af51b51-8f98-49a7-89ff-f86d11b1cfff",
+  "isSidechain": false,
+  "requestId": "req_011CauR5uBuWfin3qsUDjCKY",
+  "type": "assistant",
+  "uuid": "dba40799-463a-497f-b8ce-151820b3367e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RkPawPn8mCeoH7cwArHZK6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1056,
+      "cache_read_input_tokens": 32900,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1056,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 32900,
+          "cache_creation_input_tokens": 1056,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1056
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level…",
+  "leafUuid": "dba40799-463a-497f-b8ce-151820b3367e",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise StructFuse to address CodeQL scalability and improve ceiling analysis",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-10T19:10:05.446Z_
+
+<details><summary>↩ Tool result · `toolu_01FkhbMjie6SfTarWv3znfdT`</summary>
+
+```text
+Web search results for query: "SWE-bench Pro SEAL standardized evaluation leaderboard 2026 latest scores"
+
+Links: [{"title":"SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%","url":"https://www.morphllm.com/swe-bench-pro"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean","url":"https://www.codeant.ai/blogs/swe-bench-scores"},{"title":"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale","url":"https://labs.scale.com/leaderboard/swe_bench_pro_public"},{"title":"SWE-Bench Verified Leaderboard March 2026 - Marco Patzelt","url":"https://www.marc0.dev/en/leaderboard"},{"title":"SWE-Bench Verified Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/swe-bench-verified"},{"title":"SWE-bench Scores and Leaderboard Explained (2026) - DEV Community","url":"https://dev.to/rahulxsingh/swe-bench-scores-and-leaderboard-explained-2026-54of"},{"title":"SWE-Bench Pro Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/swe-bench-pro"},{"title":"SWE-bench Pro Benchmark 2026: 30 LLM scores | BenchLM.ai","url":"https://benchlm.ai/benchmarks/swePro"},{"title":"SWE-bench-Live Leaderboard","url":"https://swe-bench-live.github.io/"}]
+
+Based on the latest search results, here are the most current SWE-bench Pro SEAL standardized evaluation leaderboard scores for 2026:
+
+## SWE-Bench Pro - Latest Leaders (May 2026)
+
+As of May 7, 2026, Claude Mythos Preview leads the SWE-bench Pro leaderboard with 77.8%, followed by Claude Opus 4.7 (Adaptive) (64.3%) and GPT-5.5 (58.6%).
+
+## SEAL Leaderboard (Standardized Scaffolding)
+
+Claude Opus 4.5 scores 45.9% on the SEAL leaderboard with standardized scaffolding, the highest of any model. Additional SEAL scores include GPT-5 (High) scores 41.8% and GPT-5.2 Codex scores 41.0%.
+
+## Key Context
+
+The SEAL leaderboard represents a crucial standardized evaluation because Scale AI runs every model through identical tooling with a 250-turn limit, which isolates raw model capability from scaffolding quality. This contrasts with broader leaderboard scores that can vary significantly based on custom scaffolding and agent frameworks used by different teams.
+
+SWE-Bench Pro is a software engineering benchmark by Scale AI that evaluates AI coding agents on 1,865 long-horizon tasks from 41 real repositories across Python, Go, TypeScript, and JavaScript.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dba40799-463a-497f-b8ce-151820b3367e",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "3ec2ecaa-bcd9-4b14-98ba-10b4d8f08af9",
+  "toolUseResult": {
+    "query": "SWE-bench Pro SEAL standardized evaluation leaderboard 2026 latest scores",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DGTfiCpoLiaMBms3pupqtu",
+        "content": [
+          {
+            "title": "SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%",
+            "url": "https://www.morphllm.com/swe-bench-pro"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean",
+            "url": "https://www.codeant.ai/blogs/swe-bench-scores"
+          },
+          {
+            "title": "SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale",
+            "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public"
+          },
+          {
+            "title": "SWE-Bench Verified Leaderboard March 2026 - Marco Patzelt",
+            "url": "https://www.marc0.dev/en/leaderboard"
+          },
+          {
+            "title": "SWE-Bench Verified Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "SWE-bench Scores and Leaderboard Explained (2026) - DEV Community",
+            "url": "https://dev.to/rahulxsingh/swe-bench-scores-and-leaderboard-explained-2026-54of"
+          },
+          {
+            "title": "SWE-Bench Pro Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/swe-bench-pro"
+          },
+          {
+            "title": "SWE-bench Pro Benchmark 2026: 30 LLM scores | BenchLM.ai",
+            "url": "https://benchlm.ai/benchmarks/swePro"
+          },
+          {
+            "title": "SWE-bench-Live Leaderboard",
+            "url": "https://swe-bench-live.github.io/"
+          }
+        ]
+      },
+      "Based on the latest search results, here are the most current SWE-bench Pro SEAL standardized evaluation leaderboard scores for 2026:\n\n## SWE-Bench Pro - Latest Leaders (May 2026)\n\nAs of May 7, 2026, Claude Mythos Preview leads the SWE-bench Pro leaderboard with 77.8%, followed by Claude Opus 4.7 (Adaptive) (64.3%) and GPT-5.5 (58.6%).\n\n## SEAL Leaderboard (Standardized Scaffolding)\n\nClaude Opus 4.5 scores 45.9% on the SEAL leaderboard with standardized scaffolding, the highest of any model. Additional SEAL scores include GPT-5 (High) scores 41.8% and GPT-5.2 Codex scores 41.0%.\n\n## Key Context\n\nThe SEAL leaderboard represents a crucial standardized evaluation because Scale AI runs every model through identical tooling with a 250-turn limit, which isolates raw model capability from scaffolding quality. This contrasts with broader leaderboard scores that can vary significantly based on custom scaffolding and agent frameworks used by different teams.\n\nSWE-Bench Pro is a software engineering benchmark by Scale AI that evaluates AI coding agents on 1,865 long-horizon tasks from 41 real repositories across Python, Go, TypeScript, and JavaScript."
+    ],
+    "durationSeconds": 6.709214437000003
+  },
+  "sourceToolAssistantUUID": "dba40799-463a-497f-b8ce-151820b3367e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-10T19:10:08.516Z_
+
+Now let me fetch the key papers for deeper reading.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3ec2ecaa-bcd9-4b14-98ba-10b4d8f08af9",
+  "isSidechain": false,
+  "requestId": "req_011CauR6xweoB8vvvnQaXkWf",
+  "type": "assistant",
+  "uuid": "55b8c352-d893-4f7e-b8f6-97087f94df83",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SG5VpCV65dSFC2DCbpJEa8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 895,
+      "cache_read_input_tokens": 33956,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 895,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 33956,
+          "cache_creation_input_tokens": 895,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 895
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-10T19:10:11.364Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XxikkecXbvRoV7unjhgGVJ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2509.25257",
+  "prompt": "Extract: (1) exact method description - what graph types and edges are used, (2) retrieval architecture - bi-encoder, cross-encoder, MCTS details, (3) evaluation benchmarks and results, (4) whether structural signals are used during training or only at inference, (5) any data-flow or def-use analysis"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55b8c352-d893-4f7e-b8f6-97087f94df83",
+  "isSidechain": false,
+  "requestId": "req_011CauR6xweoB8vvvnQaXkWf",
+  "type": "assistant",
+  "uuid": "c556a7b4-8aaa-43e7-aa66-0671adcef4c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SG5VpCV65dSFC2DCbpJEa8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 895,
+      "cache_read_input_tokens": 33956,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 895,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 33956,
+          "cache_creation_input_tokens": 895,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 895
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-10T19:10:16.645Z_
+
+<details><summary>↩ Tool result · `toolu_01XxikkecXbvRoV7unjhgGVJ`</summary>
+
+```text
+# RANGER Paper Summary
+
+Based on the arXiv abstract provided, I can only extract limited technical details, as the full paper content isn't included:
+
+## (1) Graph Construction
+The paper describes building "a comprehensive knowledge graph of the entire repository, capturing hierarchical and cross-file dependencies down to the variable level." However, specific edge types and graph schema details aren't provided in this excerpt.
+
+## (2) Retrieval Architecture
+RANGER employs a "dual-stage retrieval pipeline":
+- **Entity queries**: Handled through "fast Cypher lookups"
+- **Natural language queries**: Processed via "MCTS-guided graph exploration"
+
+The system augments graph nodes with "textual descriptions and embeddings," suggesting embedding-based representation, though encoder architecture specifics aren't detailed here.
+
+## (3) Evaluation & Results
+Testing across four benchmarks showed:
+- CodeSearchNet & RepoQA: Outperformed "embeddings from strong models such as Qwen3-8B"
+- RepoBench: Superior "cross-file dependency retrieval"
+- CrossCodeEval: Highest "exact match rate in code completion" when paired with BM25
+
+## (4) Training vs. Inference
+Not specified in the abstract.
+
+## (5) Static Analysis Techniques
+Not addressed in this excerpt.
+
+**Note**: Complete technical details require accessing the full PDF paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c556a7b4-8aaa-43e7-aa66-0671adcef4c9",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "b947951b-db38-4a9e-9115-dcf7606f2689",
+  "toolUseResult": {
+    "bytes": 47828,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# RANGER Paper Summary\n\nBased on the arXiv abstract provided, I can only extract limited technical details, as the full paper content isn't included:\n\n## (1) Graph Construction\nThe paper describes building \"a comprehensive knowledge graph of the entire repository, capturing hierarchical and cross-file dependencies down to the variable level.\" However, specific edge types and graph schema details aren't provided in this excerpt.\n\n## (2) Retrieval Architecture\nRANGER employs a \"dual-stage retrieval pipeline\":\n- **Entity queries**: Handled through \"fast Cypher lookups\"\n- **Natural language queries**: Processed via \"MCTS-guided graph exploration\"\n\nThe system augments graph nodes with \"textual descriptions and embeddings,\" suggesting embedding-based representation, though encoder architecture specifics aren't detailed here.\n\n## (3) Evaluation & Results\nTesting across four benchmarks showed:\n- CodeSearchNet & RepoQA: Outperformed \"embeddings from strong models such as Qwen3-8B\"\n- RepoBench: Superior \"cross-file dependency retrieval\"\n- CrossCodeEval: Highest \"exact match rate in code completion\" when paired with BM25\n\n## (4) Training vs. Inference\nNot specified in the abstract.\n\n## (5) Static Analysis Techniques\nNot addressed in this excerpt.\n\n**Note**: Complete technical details require accessing the full PDF paper.",
+    "durationMs": 5278,
+    "url": "https://arxiv.org/abs/2509.25257"
+  },
+  "sourceToolAssistantUUID": "c556a7b4-8aaa-43e7-aa66-0671adcef4c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-10T19:10:22.340Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01YMi45vrojoqRTiaz43pvD7`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2509.25257",
+  "prompt": "Extract: (1) the exact graph schema - what node types and edge types are used in the knowledge graph, (2) does RANGER use data-flow or def-use edges or only structural/syntactic edges like imports, calls, inheritance, (3) is the graph used during training of any model or only at inference time, (4) the MCTS exploration details - what is being searched, (5) specific results on RepoBench and CrossCodeEval with numbers, (6) the bi-encoder and cross-encoder architecture details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b947951b-db38-4a9e-9115-dcf7606f2689",
+  "isSidechain": false,
+  "requestId": "req_011CauR7nmzih4Ef5z82VZw3",
+  "type": "assistant",
+  "uuid": "e43dfa1b-da1e-4d80-b023-5544da6dd5df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GCWsxHLoCqx8d9bYyYqBsF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 485,
+      "cache_read_input_tokens": 34851,
+      "output_tokens": 197,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 485,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 197,
+          "cache_read_input_tokens": 34851,
+          "cache_creation_input_tokens": 485,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 485
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-10T19:10:30.173Z_
+
+<details><summary>↩ Tool result · `toolu_01YMi45vrojoqRTiaz43pvD7`</summary>
+
+```text
+# RANGER: Key Technical Extracts
+
+## 1. Graph Schema
+
+**Node Types:** Module, Class, Function, Method, Field, GlobalVariable
+
+**Edge Types:** CONTAINS (module to classes/functions), HAS_METHOD (class to methods), HAS_FIELD (module to variables), INHERITS (class inheritance), USES (cross-file function calls), and temporary Import nodes during parsing.
+
+The system uses "structural edges...including CONTAINS edges from a Module to its classes and functions, HAS_METHOD edges from a Class to its methods, and INHERITS edges."
+
+## 2. Edge Types: Structural vs. Data-Flow
+
+RANGER employs **only structural and syntactic edges**—no data-flow or def-use relationships. The graph captures hierarchical relationships and cross-file dependencies through "definitions, references, and calls" resolved during repository consolidation, but does not model variable assignments or control flow.
+
+## 3. Graph Usage: Inference Only
+
+The knowledge graph is constructed offline and stored persistently in a graph database (Neo4j). No model training occurs; the graph serves purely as an indexing and retrieval structure at query time.
+
+## 4. MCTS Exploration Details
+
+MCTS explores the code graph starting from a root node. The bi-encoder ranks neighbors by cosine similarity; the top-k most similar unvisited neighbors are added to the search tree. A cross-encoder then scores these nodes as rewards. UCT balances exploration and exploitation across iterations.
+
+## 5. RepoBench and CrossCodeEval Results
+
+**RepoBench (Accuracy@5):** RANGER achieves 0.5446 vs. baseline 0.4346 with Unixcoder; 0.5471 vs. 0.4940 with Qwen-3-8B.
+
+**CrossCodeEval (Exact Match):** RANGER+BM25 reaches 36.27% with DeepSeek-Coder-7B, 31.68% with CodeLlama-7B.
+
+## 6. Encoder Architecture Details
+
+**Bi-encoder:** mxbai-embed-large-v1 (335M parameters) for query-description similarity.
+
+**Cross-encoder:** bge-reranker-v2-m3 (568M parameters) for relevance scoring during MCTS simulation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e43dfa1b-da1e-4d80-b023-5544da6dd5df",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "7a9e4482-5cb8-4a15-82ae-f02e3676cc99",
+  "toolUseResult": {
+    "bytes": 190073,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# RANGER: Key Technical Extracts\n\n## 1. Graph Schema\n\n**Node Types:** Module, Class, Function, Method, Field, GlobalVariable\n\n**Edge Types:** CONTAINS (module to classes/functions), HAS_METHOD (class to methods), HAS_FIELD (module to variables), INHERITS (class inheritance), USES (cross-file function calls), and temporary Import nodes during parsing.\n\nThe system uses \"structural edges...including CONTAINS edges from a Module to its classes and functions, HAS_METHOD edges from a Class to its methods, and INHERITS edges.\"\n\n## 2. Edge Types: Structural vs. Data-Flow\n\nRANGER employs **only structural and syntactic edges**—no data-flow or def-use relationships. The graph captures hierarchical relationships and cross-file dependencies through \"definitions, references, and calls\" resolved during repository consolidation, but does not model variable assignments or control flow.\n\n## 3. Graph Usage: Inference Only\n\nThe knowledge graph is constructed offline and stored persistently in a graph database (Neo4j). No model training occurs; the graph serves purely as an indexing and retrieval structure at query time.\n\n## 4. MCTS Exploration Details\n\nMCTS explores the code graph starting from a root node. The bi-encoder ranks neighbors by cosine similarity; the top-k most similar unvisited neighbors are added to the search tree. A cross-encoder then scores these nodes as rewards. UCT balances exploration and exploitation across iterations.\n\n## 5. RepoBench and CrossCodeEval Results\n\n**RepoBench (Accuracy@5):** RANGER achieves 0.5446 vs. baseline 0.4346 with Unixcoder; 0.5471 vs. 0.4940 with Qwen-3-8B.\n\n**CrossCodeEval (Exact Match):** RANGER+BM25 reaches 36.27% with DeepSeek-Coder-7B, 31.68% with CodeLlama-7B.\n\n## 6. Encoder Architecture Details\n\n**Bi-encoder:** mxbai-embed-large-v1 (335M parameters) for query-description similarity.\n\n**Cross-encoder:** bge-reranker-v2-m3 (568M parameters) for relevance scoring during MCTS simulation.",
+    "durationMs": 7825,
+    "url": "https://arxiv.org/html/2509.25257"
+  },
+  "sourceToolAssistantUUID": "e43dfa1b-da1e-4d80-b023-5544da6dd5df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-10T19:10:34.940Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017D367222cexDoJdRAdenFw`</summary>
+
+```json
+{
+  "url": "https://aclanthology.org/2025.naacl-long.7/",
+  "prompt": "Extract: (1) the code property graph schema - what edges and nodes, (2) whether def-use or data-flow edges are included, (3) results on SWE-bench and CrossCodeEval with numbers, (4) whether any model training happens or it's purely inference-time, (5) scalability discussion"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a9e4482-5cb8-4a15-82ae-f02e3676cc99",
+  "isSidechain": false,
+  "requestId": "req_011CauR8ndqhNGftM174ZYA5",
+  "type": "assistant",
+  "uuid": "e8cf5315-cbb2-48c7-8ea9-e3b5d45267e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JRVBXCMCK9Tw48LdWFAQHY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 737,
+      "cache_read_input_tokens": 35336,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 737,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 35336,
+          "cache_creation_input_tokens": 737,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 737
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-10T19:10:39.297Z_
+
+<details><summary>↩ Tool result · `toolu_017D367222cexDoJdRAdenFw`</summary>
+
+```text
+# CodexGraph: Key Technical Details
+
+Based on the provided abstract and metadata, I can only provide limited information, as the full paper content isn't included:
+
+## 1. Code Property Graph Schema
+**Not detailed in provided content.** The abstract mentions CodexGraph uses "graph database interfaces extracted from code repositories" with "a unified graph database schema," but specific node and edge types aren't described.
+
+## 2. Def-Use or Data-Flow Edges
+**Not specified.** The excerpt doesn't clarify whether the system includes def-use chains or data-flow analysis edges in its graph representation.
+
+## 3. SWE-bench and CrossCodeEval Results
+**Numbers unavailable.** While the abstract states CodexGraph was "assessed using three benchmarks: CrossCodeEval, SWE-bench, and EvoCodeBench," no numerical results are provided in this entry.
+
+## 4. Model Training vs. Inference-Only
+**Training details unclear.** The paper describes a system that "integrates LLM agents with graph database interfaces," but the provided excerpt doesn't specify whether any fine-tuning occurs or if it operates purely at inference time.
+
+## 5. Scalability Discussion
+**Not addressed here.** The available content doesn't include scalability considerations or repository-size limitations.
+
+---
+
+**Note:** Complete technical details require accessing the full PDF at https://aclanthology.org/2025.naacl-long.7.pdf (pages 142-160).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e8cf5315-cbb2-48c7-8ea9-e3b5d45267e0",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "3ce00b79-a283-4a1b-832a-87b63084a976",
+  "toolUseResult": {
+    "bytes": 43203,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# CodexGraph: Key Technical Details\n\nBased on the provided abstract and metadata, I can only provide limited information, as the full paper content isn't included:\n\n## 1. Code Property Graph Schema\n**Not detailed in provided content.** The abstract mentions CodexGraph uses \"graph database interfaces extracted from code repositories\" with \"a unified graph database schema,\" but specific node and edge types aren't described.\n\n## 2. Def-Use or Data-Flow Edges\n**Not specified.** The excerpt doesn't clarify whether the system includes def-use chains or data-flow analysis edges in its graph representation.\n\n## 3. SWE-bench and CrossCodeEval Results\n**Numbers unavailable.** While the abstract states CodexGraph was \"assessed using three benchmarks: CrossCodeEval, SWE-bench, and EvoCodeBench,\" no numerical results are provided in this entry.\n\n## 4. Model Training vs. Inference-Only\n**Training details unclear.** The paper describes a system that \"integrates LLM agents with graph database interfaces,\" but the provided excerpt doesn't specify whether any fine-tuning occurs or if it operates purely at inference time.\n\n## 5. Scalability Discussion\n**Not addressed here.** The available content doesn't include scalability considerations or repository-size limitations.\n\n---\n\n**Note:** Complete technical details require accessing the full PDF at https://aclanthology.org/2025.naacl-long.7.pdf (pages 142-160).",
+    "durationMs": 4353,
+    "url": "https://aclanthology.org/2025.naacl-long.7/"
+  },
+  "sourceToolAssistantUUID": "e8cf5315-cbb2-48c7-8ea9-e3b5d45267e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-10T19:10:48.088Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Ev7qvJGTD9RPQB7Afnowke`</summary>
+
+```json
+{
+  "url": "https://codeql.github.com/docs/codeql-language-guides/analyzing-data-flow-in-python/",
+  "prompt": "Extract: (1) how to configure sources and sinks for inter-procedural analysis, (2) any warnings about performance or scalability with broad source/sink definitions, (3) whether there are ways to restrict the scope of analysis (e.g., limiting call-graph depth or hop count), (4) the difference between local and global data flow in terms of performance, (5) any specific recommendations for avoiding query evaluation blowups"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3ce00b79-a283-4a1b-832a-87b63084a976",
+  "isSidechain": false,
+  "requestId": "req_011CauR9TdsXeEnoAgKhYbmk",
+  "type": "assistant",
+  "uuid": "794ff370-33a2-4c12-85ea-97661d18882c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014zUtg5VHP6khojpDxR8kdt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 501,
+      "cache_read_input_tokens": 36073,
+      "output_tokens": 190,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 501,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 190,
+          "cache_read_input_tokens": 36073,
+          "cache_creation_input_tokens": 501,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 501
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-10T19:10:54.454Z_
+
+<details><summary>↩ Tool result · `toolu_01Ev7qvJGTD9RPQB7Afnowke`</summary>
+
+```text
+# Data Flow Analysis Configuration and Performance in CodeQL Python
+
+## 1. Configuring Sources and Sinks
+
+To set up inter-procedural analysis, you implement the `DataFlow::ConfigSig` signature and apply it to either `DataFlow::Global` or `TaintTracking::Global`:
+
+> "predicate isSource(DataFlow::Node source) { ... } predicate isSink(DataFlow::Node sink) { ... }"
+
+Optional predicates include `isBarrier` (blocks flow) and `isAdditionalFlowStep` (adds custom steps).
+
+## 2. Performance Warnings
+
+The documentation explicitly cautions that "global data flow is less precise than local data flow, and the analysis typically requires significantly more time and memory to perform." Broad source/sink definitions directly exacerbate this cost.
+
+## 3. Scope Restriction Mechanisms
+
+The guidance recommends restricting sources to `LocalSourceNode` instances: "For global flow, it is also useful to restrict sources to instances of `LocalSourceNode`. The predefined sources generally do that." This narrows analysis scope by focusing on data origins rather than processing all intermediate nodes.
+
+No mention of explicit call-graph depth limits or hop count boundaries appears in the documentation.
+
+## 4. Local vs. Global Performance Difference
+
+Local data flow analysis is "easier, faster, and more precise than global data flow, and is sufficient for many queries." The stark performance gap stems from local analysis operating within single callables versus global analysis tracking "throughout the entire program."
+
+## 5. Avoiding Query Blowups
+
+Key recommendations:
+- Use `LocalSourceNode` to create leaner data-flow graphs
+- Prefer local data flow when sufficient
+- Leverage predefined sources/sinks from `RemoteFlowSources` and `Concepts` modules, which already apply appropriate restrictions
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "794ff370-33a2-4c12-85ea-97661d18882c",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "75e23d5c-8ad2-4a5d-957b-b77214d18f61",
+  "toolUseResult": {
+    "bytes": 65325,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Data Flow Analysis Configuration and Performance in CodeQL Python\n\n## 1. Configuring Sources and Sinks\n\nTo set up inter-procedural analysis, you implement the `DataFlow::ConfigSig` signature and apply it to either `DataFlow::Global` or `TaintTracking::Global`:\n\n> \"predicate isSource(DataFlow::Node source) { ... } predicate isSink(DataFlow::Node sink) { ... }\"\n\nOptional predicates include `isBarrier` (blocks flow) and `isAdditionalFlowStep` (adds custom steps).\n\n## 2. Performance Warnings\n\nThe documentation explicitly cautions that \"global data flow is less precise than local data flow, and the analysis typically requires significantly more time and memory to perform.\" Broad source/sink definitions directly exacerbate this cost.\n\n## 3. Scope Restriction Mechanisms\n\nThe guidance recommends restricting sources to `LocalSourceNode` instances: \"For global flow, it is also useful to restrict sources to instances of `LocalSourceNode`. The predefined sources generally do that.\" This narrows analysis scope by focusing on data origins rather than processing all intermediate nodes.\n\nNo mention of explicit call-graph depth limits or hop count boundaries appears in the documentation.\n\n## 4. Local vs. Global Performance Difference\n\nLocal data flow analysis is \"easier, faster, and more precise than global data flow, and is sufficient for many queries.\" The stark performance gap stems from local analysis operating within single callables versus global analysis tracking \"throughout the entire program.\"\n\n## 5. Avoiding Query Blowups\n\nKey recommendations:\n- Use `LocalSourceNode` to create leaner data-flow graphs\n- Prefer local data flow when sufficient\n- Leverage predefined sources/sinks from `RemoteFlowSources` and `Concepts` modules, which already apply appropriate restrictions",
+    "durationMs": 6363,
+    "url": "https://codeql.github.com/docs/codeql-language-guides/analyzing-data-flow-in-python/"
+  },
+  "sourceToolAssistantUUID": "794ff370-33a2-4c12-85ea-97661d18882c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-10T19:10:57.927Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Cz8dKgAMbeTgQmKTeS9Zen`</summary>
+
+```json
+{
+  "query": "SWE-agent average turns tokens per instance SWE-bench open source model inference time"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "75e23d5c-8ad2-4a5d-957b-b77214d18f61",
+  "isSidechain": false,
+  "requestId": "req_011CauRAaRBszgLxExaEUL23",
+  "type": "assistant",
+  "uuid": "dd96c91e-5934-4d1a-ab42-70da9fcb8442",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011DWTQMLG4kFwTLgaSSm5Fs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 607,
+      "cache_read_input_tokens": 36574,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 607,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 36574,
+          "cache_creation_input_tokens": 607,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 607
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-10T19:11:05.976Z_
+
+<details><summary>↩ Tool result · `toolu_01Cz8dKgAMbeTgQmKTeS9Zen`</summary>
+
+```text
+Web search results for query: "SWE-agent average turns tokens per instance SWE-bench open source model inference time"
+
+Links: [{"title":"SWE-bench Verified","url":"https://www.vals.ai/benchmarks/swebench"},{"title":"Saving SWE-Bench: A Benchmark Mutation Approach for Realistic Agent Evaluation","url":"https://arxiv.org/html/2510.08996v1"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"SWE-bench Verified Explained: What the Coding Agent Leaderboard Actually Measures (and What It Misses) | Groundy","url":"https://groundy.com/articles/swe-bench-verified-explained-what-the-coding-agent-leaderboard-actually-measures-and-what-it-misses/"},{"title":"SWE-bench Verified | Epoch AI","url":"https://epoch.ai/benchmarks/swe-bench-verified"},{"title":"SWE-agent trajectories on SWE-bench · Issue #832 · SWE-agent/SWE-agent","url":"https://github.com/SWE-agent/SWE-agent/issues/832"},{"title":"GitHub - murataslan1/ai-agent-benchmark: AI coding agents comparison - 80+ agents, SWE-Bench leaderboard, pricing. Devin, Cursor, Claude Code, Copilot, and more. December 2025. · GitHub","url":"https://github.com/murataslan1/ai-agent-benchmark"},{"title":"Competitive runs - SWE-agent documentation","url":"https://swe-agent.com/latest/usage/competitive_runs/"},{"title":"SWE-bench Verified","url":"https://www.swebench.com/verified.html"},{"title":"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale","url":"https://labs.scale.com/leaderboard/swe_bench_pro_public"}]
+
+Based on the search results, I found some relevant information about SWE-agent and token usage on SWE-bench:
+
+Typical resource constraints per instance during evaluation involve 45 minutes of wall-clock time, with successful runs often consuming 100,000+ tokens and hundreds of model turns.
+
+Regarding inference time specifically for open source models, the search results indicate that closed-source models perform better on SWE-bench Verified than open-source models. However, the search results do not provide specific metrics for average turns, tokens per instance, or inference time explicitly broken down for open source models alone.
+
+The results also show that token usage grows quadratically with each model call, as the conversation history is passed as input for the LLM to produce its next message or tool call.
+
+For more detailed statistics on specific open source model performance metrics, you may want to check the SWE-bench leaderboards directly or consult the SWE-agent documentation, as these sources appear to track detailed performance data across different model types.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dd96c91e-5934-4d1a-ab42-70da9fcb8442",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "c3533526-8086-458d-87af-dd4b1c7a5e60",
+  "toolUseResult": {
+    "query": "SWE-agent average turns tokens per instance SWE-bench open source model inference time",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y67iezQqezmoycX2YHKXzf",
+        "content": [
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.vals.ai/benchmarks/swebench"
+          },
+          {
+            "title": "Saving SWE-Bench: A Benchmark Mutation Approach for Realistic Agent Evaluation",
+            "url": "https://arxiv.org/html/2510.08996v1"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "SWE-bench Verified Explained: What the Coding Agent Leaderboard Actually Measures (and What It Misses) | Groundy",
+            "url": "https://groundy.com/articles/swe-bench-verified-explained-what-the-coding-agent-leaderboard-actually-measures-and-what-it-misses/"
+          },
+          {
+            "title": "SWE-bench Verified | Epoch AI",
+            "url": "https://epoch.ai/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "SWE-agent trajectories on SWE-bench · Issue #832 · SWE-agent/SWE-agent",
+            "url": "https://github.com/SWE-agent/SWE-agent/issues/832"
+          },
+          {
+            "title": "GitHub - murataslan1/ai-agent-benchmark: AI coding agents comparison - 80+ agents, SWE-Bench leaderboard, pricing. Devin, Cursor, Claude Code, Copilot, and more. December 2025. · GitHub",
+            "url": "https://github.com/murataslan1/ai-agent-benchmark"
+          },
+          {
+            "title": "Competitive runs - SWE-agent documentation",
+            "url": "https://swe-agent.com/latest/usage/competitive_runs/"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.swebench.com/verified.html"
+          },
+          {
+            "title": "SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale",
+            "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public"
+          }
+        ]
+      },
+      "Based on the search results, I found some relevant information about SWE-agent and token usage on SWE-bench:\n\nTypical resource constraints per instance during evaluation involve 45 minutes of wall-clock time, with successful runs often consuming 100,000+ tokens and hundreds of model turns.\n\nRegarding inference time specifically for open source models, the search results indicate that closed-source models perform better on SWE-bench Verified than open-source models. However, the search results do not provide specific metrics for average turns, tokens per instance, or inference time explicitly broken down for open source models alone.\n\nThe results also show that token usage grows quadratically with each model call, as the conversation history is passed as input for the LLM to produce its next message or tool call.\n\nFor more detailed statistics on specific open source model performance metrics, you may want to check the SWE-bench leaderboards directly or consult the SWE-agent documentation, as these sources appear to track detailed performance data across different model types."
+    ],
+    "durationSeconds": 8.042877853999991
+  },
+  "sourceToolAssistantUUID": "dd96c91e-5934-4d1a-ab42-70da9fcb8442",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level…",
+  "leafUuid": "c3533526-8086-458d-87af-dd4b1c7a5e60",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise StructFuse to address CodeQL scalability and improve ceiling analysis",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-10T19:11:08.709Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01H6HB9QUsDnjd4JaFwFybLE`</summary>
+
+```json
+{
+  "query": "\"contrastive learning\" \"orthogonal signal\" hard negatives \"information-theoretic\" gradient redundancy"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3533526-8086-458d-87af-dd4b1c7a5e60",
+  "isSidechain": false,
+  "requestId": "req_011CauRBRhLv5zH8bkwA5pwE",
+  "type": "assistant",
+  "uuid": "97386f26-b0e8-463e-81f5-db9bead180d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ASYDCvPn4E6AJQN3BoaXeq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 827,
+      "cache_read_input_tokens": 37181,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 827,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 37181,
+          "cache_creation_input_tokens": 827,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 827
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-10T19:11:16.227Z_
+
+<details><summary>↩ Tool result · `toolu_01H6HB9QUsDnjd4JaFwFybLE`</summary>
+
+```text
+Web search results for query: ""contrastive learning" "orthogonal signal" hard negatives "information-theoretic" gradient redundancy"
+
+Links: [{"title":"CONTRASTIVE LEARNING WITH HARD NEGATIVE ...","url":"https://openreview.net/pdf?id=CR1XOQ0UTh-"},{"title":"Contrastive learning with hard negative samples","url":"https://arxiv.org/pdf/2010.04592"},{"title":"Contrastive Representation Learning | Lil'Log","url":"https://lilianweng.github.io/posts/2021-05-31-contrastive/"},{"title":"[2010.04592] Contrastive Learning with Hard Negative Samples","url":"https://ar5iv.labs.arxiv.org/html/2010.04592"},{"title":"A new contrastive learning framework for reducing the effect of hard negatives - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0950705122012175"},{"title":"Diversity Is All You Need for Contrastive Learning:","url":"https://arxiv.org/pdf/2510.05767"},{"title":"Understanding the Behaviour of Contrastive Loss Feng Wang, Huaping Liu †","url":"https://openaccess.thecvf.com/content/CVPR2021/papers/Wang_Understanding_the_Behaviour_of_Contrastive_Loss_CVPR_2021_paper.pdf"},{"title":"Robust Contrastive Learning Using Negative Samples with Diminished Semantics","url":"https://proceedings.neurips.cc/paper_files/paper/2021/file/e5afb0f2dbc6d39b312d7406054cb4c6-Paper.pdf"},{"title":"Contrastive Learning for Retrieval: InfoNCE & DPR Guide - Interactive | Michael Brenndoerfer | Michael Brenndoerfer","url":"https://mbrenndoerfer.com/writing/contrastive-learning-retrieval-infonce-dpr"},{"title":"Contrastive Learning with Hard Negatives","url":"https://www.emergentmind.com/topics/contrastive-learning-with-hard-negative-samples"}]
+
+I've performed the web search with your query. Here are the key findings:
+
+## Research Overview
+
+The search results reveal several important dimensions of contrastive learning research involving hard negatives and related concepts:
+
+### Hard Negatives in Contrastive Learning
+
+The most useful negative samples are ones that the embedding currently believes to be similar and are likely to provide significant gradient information during training. Hard negatives provide non-negligible gradient information during training.
+
+### Information-Theoretic Foundations
+
+Information-theoretically, InfoNCE provides a tighter lower bound on the mutual information between queries and relevant passages as the number of negatives grows. This connects to the information-theoretic principles underlying hard negative sampling strategies.
+
+### Gradient and Spectral Analysis
+
+Recent work addresses gradient behavior and embedding redundancy. Most prior work tackles this at the pair level (e.g., hard-negative mining and debiased losses), but overlooks a batch-level signal: the spectrum of the embedding cloud. If that cloud is too narrow (high anisotropy; low effective rank), negatives become redundant; if too wide (near-isotropic).
+
+### Representation Geometry
+
+The optimal representations for hard negative methods place similar inputs in tight clusters, whilst spacing the clusters as far apart as possible. Hard negative samples should have different labels from the anchor sample, but have embedding features very close to the anchor embedding.
+
+The research indicates that understanding the interplay between gradient information, spectral properties of embeddings, and the orthogonal structure of representation spaces is central to improving contrastive learning with hard negatives.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "97386f26-b0e8-463e-81f5-db9bead180d5",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "68b8b945-af67-43f4-af26-3a2bb27ae91f",
+  "toolUseResult": {
+    "query": "\"contrastive learning\" \"orthogonal signal\" hard negatives \"information-theoretic\" gradient redundancy",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Mq3cA1ZUivrzHyykgmvANN",
+        "content": [
+          {
+            "title": "CONTRASTIVE LEARNING WITH HARD NEGATIVE ...",
+            "url": "https://openreview.net/pdf?id=CR1XOQ0UTh-"
+          },
+          {
+            "title": "Contrastive learning with hard negative samples",
+            "url": "https://arxiv.org/pdf/2010.04592"
+          },
+          {
+            "title": "Contrastive Representation Learning | Lil'Log",
+            "url": "https://lilianweng.github.io/posts/2021-05-31-contrastive/"
+          },
+          {
+            "title": "[2010.04592] Contrastive Learning with Hard Negative Samples",
+            "url": "https://ar5iv.labs.arxiv.org/html/2010.04592"
+          },
+          {
+            "title": "A new contrastive learning framework for reducing the effect of hard negatives - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0950705122012175"
+          },
+          {
+            "title": "Diversity Is All You Need for Contrastive Learning:",
+            "url": "https://arxiv.org/pdf/2510.05767"
+          },
+          {
+            "title": "Understanding the Behaviour of Contrastive Loss Feng Wang, Huaping Liu †",
+            "url": "https://openaccess.thecvf.com/content/CVPR2021/papers/Wang_Understanding_the_Behaviour_of_Contrastive_Loss_CVPR_2021_paper.pdf"
+          },
+          {
+            "title": "Robust Contrastive Learning Using Negative Samples with Diminished Semantics",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2021/file/e5afb0f2dbc6d39b312d7406054cb4c6-Paper.pdf"
+          },
+          {
+            "title": "Contrastive Learning for Retrieval: InfoNCE & DPR Guide - Interactive | Michael Brenndoerfer | Michael Brenndoerfer",
+            "url": "https://mbrenndoerfer.com/writing/contrastive-learning-retrieval-infonce-dpr"
+          },
+          {
+            "title": "Contrastive Learning with Hard Negatives",
+            "url": "https://www.emergentmind.com/topics/contrastive-learning-with-hard-negative-samples"
+          }
+        ]
+      },
+      "I've performed the web search with your query. Here are the key findings:\n\n## Research Overview\n\nThe search results reveal several important dimensions of contrastive learning research involving hard negatives and related concepts:\n\n### Hard Negatives in Contrastive Learning\n\nThe most useful negative samples are ones that the embedding currently believes to be similar and are likely to provide significant gradient information during training. Hard negatives provide non-negligible gradient information during training.\n\n### Information-Theoretic Foundations\n\nInformation-theoretically, InfoNCE provides a tighter lower bound on the mutual information between queries and relevant passages as the number of negatives grows. This connects to the information-theoretic principles underlying hard negative sampling strategies.\n\n### Gradient and Spectral Analysis\n\nRecent work addresses gradient behavior and embedding redundancy. Most prior work tackles this at the pair level (e.g., hard-negative mining and debiased losses), but overlooks a batch-level signal: the spectrum of the embedding cloud. If that cloud is too narrow (high anisotropy; low effective rank), negatives become redundant; if too wide (near-isotropic).\n\n### Representation Geometry\n\nThe optimal representations for hard negative methods place similar inputs in tight clusters, whilst spacing the clusters as far apart as possible. Hard negative samples should have different labels from the anchor sample, but have embedding features very close to the anchor embedding.\n\nThe research indicates that understanding the interplay between gradient information, spectral properties of embeddings, and the orthogonal structure of representation spaces is central to improving contrastive learning with hard negatives."
+    ],
+    "durationSeconds": 7.515259535999998
+  },
+  "sourceToolAssistantUUID": "97386f26-b0e8-463e-81f5-db9bead180d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-10T19:11:20.086Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WzMDNjGKxxfszmaF2uRHLQ`</summary>
+
+```json
+{
+  "query": "SWE-smith training data instances count how many repos Python CodeQL compatible"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "68b8b945-af67-43f4-af26-3a2bb27ae91f",
+  "isSidechain": false,
+  "requestId": "req_011CauRCBXqFXbgYLXkgybrV",
+  "type": "assistant",
+  "uuid": "77ae72a9-4a6d-4670-9f03-2c6d74efff55",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017GEcYvk4ivBdLe1Edvmf7w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 994,
+      "cache_read_input_tokens": 38008,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 994,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 38008,
+          "cache_creation_input_tokens": 994,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 994
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-10T19:11:24.329Z_
+
+<details><summary>↩ Tool result · `toolu_01WzMDNjGKxxfszmaF2uRHLQ`</summary>
+
+```text
+Web search results for query: "SWE-smith training data instances count how many repos Python CodeQL compatible"
+
+Links: [{"title":"GitHub - SWE-bench/SWE-smith: [NeurIPS 2025 D&B Spotlight] Scaling Data for SWE-agents · GitHub","url":"https://github.com/SWE-bench/SWE-smith"},{"title":"SWE-bench","url":"https://www.swebench.com/original.html"},{"title":"SWE-smith","url":"https://swesmith.com/"},{"title":"SWE-smith: Scaling Data for Software Engineering Agents | OpenReview","url":"https://openreview.net/forum?id=63iVrXc8cC"},{"title":"SWE-smith: Scaling Data for Software Engineering Agents","url":"https://arxiv.org/pdf/2504.21798"},{"title":"Scaling Data for Software Engineering Agents - SWE-smith","url":"https://swesmith.com/blog.html"},{"title":"(PDF) SWE-smith: Scaling Data for Software Engineering Agents","url":"https://www.researchgate.net/publication/391329161_SWE-smith_Scaling_Data_for_Software_Engineering_Agents"},{"title":"[2504.21798] SWE-smith: Scaling Data for Software Engineering Agents","url":"https://arxiv.org/abs/2504.21798"},{"title":"\\bugs: Scaling Data for Software Engineering Agents","url":"https://arxiv.org/html/2504.21798v1"},{"title":"SWE-smith: Automated SE Data Pipeline","url":"https://www.emergentmind.com/topics/swe-smith"}]
+
+Based on the search results, I can provide you with information about SWE-smith's training data instances and Python repositories:
+
+## Training Data Instances and Repository Count
+
+SWE-smith was applied to 128 Python repositories, generating a total of 50k instances. More specifically, the dataset comprises 50,137 instances sourced from 128 Python repositories, packaged in environments totaling 125 Docker images (295 GB).
+
+On average, 381 task instances were generated per repository, with as many as 2,277 for pandas-dev/pandas.
+
+## Regarding CodeQL Compatibility
+
+Regarding your specific question about CodeQL compatibility: The search results do not contain information about which of these repositories are CodeQL-compatible. The results focus on the general characteristics of the SWE-smith dataset (instance counts, repository numbers, storage requirements) and the methods used to generate synthetic bugs, but don't mention CodeQL compatibility metrics or filtering criteria.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "77ae72a9-4a6d-4670-9f03-2c6d74efff55",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "12cb545c-2a99-42ef-a6c9-21be261f7d83",
+  "toolUseResult": {
+    "query": "SWE-smith training data instances count how many repos Python CodeQL compatible",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Mp5hW9L3vtiHrhDmd4iKZw",
+        "content": [
+          {
+            "title": "GitHub - SWE-bench/SWE-smith: [NeurIPS 2025 D&B Spotlight] Scaling Data for SWE-agents · GitHub",
+            "url": "https://github.com/SWE-bench/SWE-smith"
+          },
+          {
+            "title": "SWE-bench",
+            "url": "https://www.swebench.com/original.html"
+          },
+          {
+            "title": "SWE-smith",
+            "url": "https://swesmith.com/"
+          },
+          {
+            "title": "SWE-smith: Scaling Data for Software Engineering Agents | OpenReview",
+            "url": "https://openreview.net/forum?id=63iVrXc8cC"
+          },
+          {
+            "title": "SWE-smith: Scaling Data for Software Engineering Agents",
+            "url": "https://arxiv.org/pdf/2504.21798"
+          },
+          {
+            "title": "Scaling Data for Software Engineering Agents - SWE-smith",
+            "url": "https://swesmith.com/blog.html"
+          },
+          {
+            "title": "(PDF) SWE-smith: Scaling Data for Software Engineering Agents",
+            "url": "https://www.researchgate.net/publication/391329161_SWE-smith_Scaling_Data_for_Software_Engineering_Agents"
+          },
+          {
+            "title": "[2504.21798] SWE-smith: Scaling Data for Software Engineering Agents",
+            "url": "https://arxiv.org/abs/2504.21798"
+          },
+          {
+            "title": "\\bugs: Scaling Data for Software Engineering Agents",
+            "url": "https://arxiv.org/html/2504.21798v1"
+          },
+          {
+            "title": "SWE-smith: Automated SE Data Pipeline",
+            "url": "https://www.emergentmind.com/topics/swe-smith"
+          }
+        ]
+      },
+      "Based on the search results, I can provide you with information about SWE-smith's training data instances and Python repositories:\n\n## Training Data Instances and Repository Count\n\nSWE-smith was applied to 128 Python repositories, generating a total of 50k instances. More specifically, the dataset comprises 50,137 instances sourced from 128 Python repositories, packaged in environments totaling 125 Docker images (295 GB).\n\nOn average, 381 task instances were generated per repository, with as many as 2,277 for pandas-dev/pandas.\n\n## Regarding CodeQL Compatibility\n\nRegarding your specific question about CodeQL compatibility: The search results do not contain information about which of these repositories are CodeQL-compatible. The results focus on the general characteristics of the SWE-smith dataset (instance counts, repository numbers, storage requirements) and the methods used to generate synthetic bugs, but don't mention CodeQL compatibility metrics or filtering criteria."
+    ],
+    "durationSeconds": 4.239974401000014
+  },
+  "sourceToolAssistantUUID": "77ae72a9-4a6d-4670-9f03-2c6d74efff55",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-10T19:11:26.941Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WzywzsUwW3yqpFCbSzqSkk`</summary>
+
+```json
+{
+  "query": "CodeQL database creation Python repository time minutes average benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12cb545c-2a99-42ef-a6c9-21be261f7d83",
+  "isSidechain": false,
+  "requestId": "req_011CauRCn8h2HgPze9Q8aSVY",
+  "type": "assistant",
+  "uuid": "a64fcb0c-55fc-4527-ba0a-47d152d2bce3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ALeoUmGXGcSxSxtRBNGfDB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 729,
+      "cache_read_input_tokens": 39002,
+      "output_tokens": 61,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 729,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 61,
+          "cache_read_input_tokens": 39002,
+          "cache_creation_input_tokens": 729,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 729
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-10T19:11:32.105Z_
+
+<details><summary>↩ Tool result · `toolu_01WzywzsUwW3yqpFCbSzqSkk`</summary>
+
+```text
+Web search results for query: "CodeQL database creation Python repository time minutes average benchmark"
+
+Links: [{"title":"Preparing your code for CodeQL analysis - GitHub Docs","url":"https://docs.github.com/en/code-security/codeql-cli/getting-started-with-the-codeql-cli/preparing-your-code-for-codeql-analysis"},{"title":"Semgrep vs CodeQL (2026): Technical Comparison for Security Teams | Konvu","url":"https://konvu.com/compare/semgrep-vs-codeql"},{"title":"database create - CodeQL CLI","url":"https://docs.github.com/en/code-security/codeql-cli/codeql-cli-manual/database-create"},{"title":"CodeQL for Python — CodeQL","url":"https://codeql.github.com/docs/codeql-language-guides/codeql-for-python/"},{"title":"CodeQL version 2.18.2 doubles the amount of time spent compiling CodeQL databases · Issue #17489 · github/codeql","url":"https://github.com/github/codeql/issues/17489"},{"title":"Understanding the time taken for analyzing queries using codeql cli · github/codeql · Discussion #6020","url":"https://github.com/github/codeql/discussions/6020"},{"title":"database create - CodeQL","url":"https://docs.github.com/en/code-security/reference/code-scanning/codeql/codeql-cli-manual/database-create"},{"title":"Pre-Auth RCE with CodeQL in Under 20 Minutes | Frycos Security Diary","url":"https://frycos.github.io/vulns4free/2022/12/02/rce-in-20-minutes.html"},{"title":"Preparing your code for CodeQL analysis - GitHub Enterprise Server 3.20 Docs","url":"https://docs.github.com/en/enterprise-server@3.20/code-security/tutorials/customize-code-scanning/preparing-your-code-for-codeql-analysis"},{"title":"database analyze - CodeQL","url":"https://docs.github.com/en/code-security/reference/code-scanning/codeql/codeql-cli-manual/database-analyze"}]
+
+Based on the search results, I found relevant information about CodeQL database creation time benchmarks for Python repositories:
+
+CodeQL database creation adds minutes to tens of minutes to scan times. More specifically, CodeQL takes minutes to 30+ minutes with approximately 450MB memory for complete analysis operations.
+
+The search results also indicate that some organizations have reported database build times doubling (increased by ~2x) between different CodeQL versions, suggesting that performance can vary significantly depending on the version and codebase characteristics.
+
+For Python specifically, the documentation notes that the build command can be skipped for languages where it is not needed (like Python), which can help reduce database creation time compared to compiled languages.
+
+However, the search results don't provide specific average benchmark numbers (like "X minutes average") for Python repository database creation across standard test cases. The timing appears to be highly variable depending on factors like repository size, CodeQL version, system resources, and other configurations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a64fcb0c-55fc-4527-ba0a-47d152d2bce3",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "5592ec99-960a-4ff0-ab5f-58acecc24b41",
+  "toolUseResult": {
+    "query": "CodeQL database creation Python repository time minutes average benchmark",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VA6fandPXQweTX3n5UZc2W",
+        "content": [
+          {
+            "title": "Preparing your code for CodeQL analysis - GitHub Docs",
+            "url": "https://docs.github.com/en/code-security/codeql-cli/getting-started-with-the-codeql-cli/preparing-your-code-for-codeql-analysis"
+          },
+          {
+            "title": "Semgrep vs CodeQL (2026): Technical Comparison for Security Teams | Konvu",
+            "url": "https://konvu.com/compare/semgrep-vs-codeql"
+          },
+          {
+            "title": "database create - CodeQL CLI",
+            "url": "https://docs.github.com/en/code-security/codeql-cli/codeql-cli-manual/database-create"
+          },
+          {
+            "title": "CodeQL for Python — CodeQL",
+            "url": "https://codeql.github.com/docs/codeql-language-guides/codeql-for-python/"
+          },
+          {
+            "title": "CodeQL version 2.18.2 doubles the amount of time spent compiling CodeQL databases · Issue #17489 · github/codeql",
+            "url": "https://github.com/github/codeql/issues/17489"
+          },
+          {
+            "title": "Understanding the time taken for analyzing queries using codeql cli · github/codeql · Discussion #6020",
+            "url": "https://github.com/github/codeql/discussions/6020"
+          },
+          {
+            "title": "database create - CodeQL",
+            "url": "https://docs.github.com/en/code-security/reference/code-scanning/codeql/codeql-cli-manual/database-create"
+          },
+          {
+            "title": "Pre-Auth RCE with CodeQL in Under 20 Minutes | Frycos Security Diary",
+            "url": "https://frycos.github.io/vulns4free/2022/12/02/rce-in-20-minutes.html"
+          },
+          {
+            "title": "Preparing your code for CodeQL analysis - GitHub Enterprise Server 3.20 Docs",
+            "url": "https://docs.github.com/en/enterprise-server@3.20/code-security/tutorials/customize-code-scanning/preparing-your-code-for-codeql-analysis"
+          },
+          {
+            "title": "database analyze - CodeQL",
+            "url": "https://docs.github.com/en/code-security/reference/code-scanning/codeql/codeql-cli-manual/database-analyze"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about CodeQL database creation time benchmarks for Python repositories:\n\nCodeQL database creation adds minutes to tens of minutes to scan times. More specifically, CodeQL takes minutes to 30+ minutes with approximately 450MB memory for complete analysis operations.\n\nThe search results also indicate that some organizations have reported database build times doubling (increased by ~2x) between different CodeQL versions, suggesting that performance can vary significantly depending on the version and codebase characteristics.\n\nFor Python specifically, the documentation notes that the build command can be skipped for languages where it is not needed (like Python), which can help reduce database creation time compared to compiled languages.\n\nHowever, the search results don't provide specific average benchmark numbers (like \"X minutes average\") for Python repository database creation across standard test cases. The timing appears to be highly variable depending on factors like repository size, CodeQL version, system resources, and other configurations."
+    ],
+    "durationSeconds": 5.159636154000007
+  },
+  "sourceToolAssistantUUID": "a64fcb0c-55fc-4527-ba0a-47d152d2bce3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54 · 2026-05-10T19:11:32.113Z_
+
+```json
+{
+  "parentUuid": "5592ec99-960a-4ff0-ab5f-58acecc24b41",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "97d394c1-025e-4169-80ee-bf6e169d3c68",
+  "timestamp": "2026-05-10T19:11:32.113Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-10T19:11:35.846Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Moz2wR1PxxyaUx8gEbXe9d`</summary>
+
+```json
+{
+  "query": "CodeQL Python inter-procedural query restrict scope call graph hops limit sources sinks"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97d394c1-025e-4169-80ee-bf6e169d3c68",
+  "isSidechain": false,
+  "requestId": "req_011CauRDMTepW6c5Pcdm9eh7",
+  "type": "assistant",
+  "uuid": "b9246736-f2cd-4112-acee-dd6792245328",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CpMWLpHwxotp69u8pgn4VG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 946,
+      "cache_read_input_tokens": 39731,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 946,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 39731,
+          "cache_creation_input_tokens": 946,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 946
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-10T19:11:43.690Z_
+
+<details><summary>↩ Tool result · `toolu_01Moz2wR1PxxyaUx8gEbXe9d`</summary>
+
+```text
+Web search results for query: "CodeQL Python inter-procedural query restrict scope call graph hops limit sources sinks"
+
+Links: [{"title":"Analyzing control flow in Python - CodeQL - GitHub","url":"https://codeql.github.com/docs/codeql-language-guides/analyzing-control-flow-in-python/"},{"title":"CodeQL query help for Python — CodeQL query help documentation","url":"https://codeql.github.com/codeql-query-help/python/"},{"title":"CodeQL for Python — CodeQL","url":"https://codeql.github.com/docs/codeql-language-guides/codeql-for-python/"},{"title":"About CodeQL queries — CodeQL","url":"https://codeql.github.com/docs/writing-codeql-queries/about-codeql-queries/"},{"title":"How to write query to get Call Graph in python? · github/codeql · Discussion #8063","url":"https://github.com/github/codeql/discussions/8063"},{"title":"CallGraph - CodeQL - GitHub","url":"https://codeql.github.com/codeql-standard-libraries/python/semmle/python/pointsto/CallGraph.qll/module.CallGraph.html"},{"title":"Practical Introduction to CodeQL :: jorgectf — blog","url":"https://jorgectf.github.io/blog/post/practical-codeql-introduction/"},{"title":"CodeQL zero to hero part 5: Debugging queries - The GitHub Blog","url":"https://github.blog/security/vulnerability-research/codeql-zero-to-hero-part-5-debugging-queries/"},{"title":"CodeQL library for Python — CodeQL","url":"https://codeql.github.com/docs/codeql-language-guides/codeql-library-for-python/"},{"title":"CodeQL zero to hero part 2: Getting started with CodeQL - The GitHub Blog","url":"https://github.blog/developer-skills/github/codeql-zero-to-hero-part-2-getting-started-with-codeql/"}]
+
+Based on the search results, I found information about CodeQL's approach to data flow analysis and call graphs in Python. Here's what the results reveal:
+
+## CodeQL Data Flow and Call Graph Analysis
+
+CodeQL can track the flow of data through a Python program to places where the data is used, and path queries describe the flow of information between a source and a sink in your code.
+
+### Call Graph Construction
+
+For building call graphs in Python, you can query relationships between values and their calls, tracking where callable values or class values are called from different scopes. The results show examples using `Value`, `CallNode`, and `Scope` classes to construct call graphs.
+
+### Taint Flow and Flow Analysis
+
+For inter-procedural analysis, additional taint steps can specify "jumps" that the flow may make to bypass known functions, and once the flow ends, CodeQL applies the specified steps and continues looking for flow.
+
+Partial graphs come in two forms: forward FlowExplorationFwd, which traces flow from a given source to any sink, and backward/reverse FlowExplorationRev, which traces flow from a given sink back to any source.
+
+The search results indicate that CodeQL provides mechanisms for data flow analysis with sources and sinks, but specific details about call graph hop limits and scope restrictions would require more targeted documentation or the CodeQL Python library reference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b9246736-f2cd-4112-acee-dd6792245328",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "b203df1f-ae91-467e-9678-dd9484ae51f8",
+  "toolUseResult": {
+    "query": "CodeQL Python inter-procedural query restrict scope call graph hops limit sources sinks",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014ee3oWvfGEE6Wwzs6UAFSJ",
+        "content": [
+          {
+            "title": "Analyzing control flow in Python - CodeQL - GitHub",
+            "url": "https://codeql.github.com/docs/codeql-language-guides/analyzing-control-flow-in-python/"
+          },
+          {
+            "title": "CodeQL query help for Python — CodeQL query help documentation",
+            "url": "https://codeql.github.com/codeql-query-help/python/"
+          },
+          {
+            "title": "CodeQL for Python — CodeQL",
+            "url": "https://codeql.github.com/docs/codeql-language-guides/codeql-for-python/"
+          },
+          {
+            "title": "About CodeQL queries — CodeQL",
+            "url": "https://codeql.github.com/docs/writing-codeql-queries/about-codeql-queries/"
+          },
+          {
+            "title": "How to write query to get Call Graph in python? · github/codeql · Discussion #8063",
+            "url": "https://github.com/github/codeql/discussions/8063"
+          },
+          {
+            "title": "CallGraph - CodeQL - GitHub",
+            "url": "https://codeql.github.com/codeql-standard-libraries/python/semmle/python/pointsto/CallGraph.qll/module.CallGraph.html"
+          },
+          {
+            "title": "Practical Introduction to CodeQL :: jorgectf — blog",
+            "url": "https://jorgectf.github.io/blog/post/practical-codeql-introduction/"
+          },
+          {
+            "title": "CodeQL zero to hero part 5: Debugging queries - The GitHub Blog",
+            "url": "https://github.blog/security/vulnerability-research/codeql-zero-to-hero-part-5-debugging-queries/"
+          },
+          {
+            "title": "CodeQL library for Python — CodeQL",
+            "url": "https://codeql.github.com/docs/codeql-language-guides/codeql-library-for-python/"
+          },
+          {
+            "title": "CodeQL zero to hero part 2: Getting started with CodeQL - The GitHub Blog",
+            "url": "https://github.blog/developer-skills/github/codeql-zero-to-hero-part-2-getting-started-with-codeql/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about CodeQL's approach to data flow analysis and call graphs in Python. Here's what the results reveal:\n\n## CodeQL Data Flow and Call Graph Analysis\n\nCodeQL can track the flow of data through a Python program to places where the data is used, and path queries describe the flow of information between a source and a sink in your code.\n\n### Call Graph Construction\n\nFor building call graphs in Python, you can query relationships between values and their calls, tracking where callable values or class values are called from different scopes. The results show examples using `Value`, `CallNode`, and `Scope` classes to construct call graphs.\n\n### Taint Flow and Flow Analysis\n\nFor inter-procedural analysis, additional taint steps can specify \"jumps\" that the flow may make to bypass known functions, and once the flow ends, CodeQL applies the specified steps and continues looking for flow.\n\nPartial graphs come in two forms: forward FlowExplorationFwd, which traces flow from a given source to any sink, and backward/reverse FlowExplorationRev, which traces flow from a given sink back to any source.\n\nThe search results indicate that CodeQL provides mechanisms for data flow analysis with sources and sinks, but specific details about call graph hop limits and scope restrictions would require more targeted documentation or the CodeQL Python library reference."
+    ],
+    "durationSeconds": 7.839992949000007
+  },
+  "sourceToolAssistantUUID": "b9246736-f2cd-4112-acee-dd6792245328",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-10T19:11:46.787Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WWmrcqPTvGhE6G9vkaoRBM`</summary>
+
+```json
+{
+  "query": "CodexGraph arXiv 2408.03910 code property graph schema edges SWE-bench results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b203df1f-ae91-467e-9678-dd9484ae51f8",
+  "isSidechain": false,
+  "requestId": "req_011CauRECvUVUCaAb2JebGQ7",
+  "type": "assistant",
+  "uuid": "83655abf-9861-4e8b-a21a-b0fbca76d9ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XsyaCUiUEXrfKSbo12pD2k",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 899,
+      "cache_read_input_tokens": 40677,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 899,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 40677,
+          "cache_creation_input_tokens": 899,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 899
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level…",
+  "leafUuid": "83655abf-9861-4e8b-a21a-b0fbca76d9ea",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise StructFuse to address CodeQL scalability and improve ceiling analysis",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-10T19:11:51.331Z_
+
+<details><summary>↩ Tool result · `toolu_01WWmrcqPTvGhE6G9vkaoRBM`</summary>
+
+```text
+Web search results for query: "CodexGraph arXiv 2408.03910 code property graph schema edges SWE-bench results"
+
+Links: [{"title":"[2408.03910] CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases","url":"https://arxiv.org/abs/2408.03910"},{"title":"CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases","url":"https://arxiv.org/html/arXiv:2408.03910"},{"title":"CodexGraph","url":"https://laptype.github.io/CodexGraph-page/"},{"title":"Paper page - CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases","url":"https://huggingface.co/papers/2408.03910"},{"title":"[2408.03910v2] CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases","url":"https://arxiv.org/abs/2408.03910v2"},{"title":"CODEXGRAPH: Bridging Large Language Models","url":"https://arxiv.org/pdf/2408.03910v2"},{"title":"CODEXGRAPH: Bridging Large Language Models and Code Repositories via Code Graph Databases","url":"https://ssawant.github.io/posts/CODEXGRAPH/CODEXGRAPH.html"},{"title":"[2408.03910v1] CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases","url":"https://arxiv.org/abs/2408.03910v1"},{"title":"\\framework: Bridging Large Language Models and Code Repositories via Code Graph Databases","url":"https://arxiv.org/html/2408.03910v1"},{"title":"CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240803910L/abstract"}]
+
+Based on the search results, here's information about CodexGraph (arXiv 2408.03910):
+
+## Overview
+
+CodexGraph is a system that integrates LLM agents with graph database interfaces extracted from code repositories, enabling precise, code structure-aware context retrieval and code navigation.
+
+## Code Property Graph Schema
+
+CodexGraph utilizes static analysis to extract code graphs from repositories using a task-agnostic schema that defines the nodes and edges within the code graphs. In these graphs, nodes represent source code symbols such as MODULE, CLASS, and FUNCTION, and edges between nodes represent relationships among these symbols, such as CONTAINS, INHERITS, and USES.
+
+## SWE-bench Results
+
+CodexGraph was assessed using three benchmarks: CrossCodeEval, SWE-bench, and EvoCodeBench. With a unified graph database schema, CodexGraph demonstrates competitive performance and potential in both academic and real-world environments.
+
+## Key Features
+
+By leveraging the structural properties of graph databases and the flexibility of the graph query language, CodexGraph enables the LLM agent to construct and execute queries, allowing for effective multi-hop reasoning across code repositories.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "83655abf-9861-4e8b-a21a-b0fbca76d9ea",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "ab5013ff-e193-49ea-a3d2-5b8169d686c7",
+  "toolUseResult": {
+    "query": "CodexGraph arXiv 2408.03910 code property graph schema edges SWE-bench results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017ZNg27HFGedH9PNpf8sLRL",
+        "content": [
+          {
+            "title": "[2408.03910] CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases",
+            "url": "https://arxiv.org/abs/2408.03910"
+          },
+          {
+            "title": "CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases",
+            "url": "https://arxiv.org/html/arXiv:2408.03910"
+          },
+          {
+            "title": "CodexGraph",
+            "url": "https://laptype.github.io/CodexGraph-page/"
+          },
+          {
+            "title": "Paper page - CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases",
+            "url": "https://huggingface.co/papers/2408.03910"
+          },
+          {
+            "title": "[2408.03910v2] CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases",
+            "url": "https://arxiv.org/abs/2408.03910v2"
+          },
+          {
+            "title": "CODEXGRAPH: Bridging Large Language Models",
+            "url": "https://arxiv.org/pdf/2408.03910v2"
+          },
+          {
+            "title": "CODEXGRAPH: Bridging Large Language Models and Code Repositories via Code Graph Databases",
+            "url": "https://ssawant.github.io/posts/CODEXGRAPH/CODEXGRAPH.html"
+          },
+          {
+            "title": "[2408.03910v1] CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases",
+            "url": "https://arxiv.org/abs/2408.03910v1"
+          },
+          {
+            "title": "\\framework: Bridging Large Language Models and Code Repositories via Code Graph Databases",
+            "url": "https://arxiv.org/html/2408.03910v1"
+          },
+          {
+            "title": "CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240803910L/abstract"
+          }
+        ]
+      },
+      "Based on the search results, here's information about CodexGraph (arXiv 2408.03910):\n\n## Overview\n\nCodexGraph is a system that integrates LLM agents with graph database interfaces extracted from code repositories, enabling precise, code structure-aware context retrieval and code navigation.\n\n## Code Property Graph Schema\n\nCodexGraph utilizes static analysis to extract code graphs from repositories using a task-agnostic schema that defines the nodes and edges within the code graphs. In these graphs, nodes represent source code symbols such as MODULE, CLASS, and FUNCTION, and edges between nodes represent relationships among these symbols, such as CONTAINS, INHERITS, and USES.\n\n## SWE-bench Results\n\nCodexGraph was assessed using three benchmarks: CrossCodeEval, SWE-bench, and EvoCodeBench. With a unified graph database schema, CodexGraph demonstrates competitive performance and potential in both academic and real-world environments.\n\n## Key Features\n\nBy leveraging the structural properties of graph databases and the flexibility of the graph query language, CodexGraph enables the LLM agent to construct and execute queries, allowing for effective multi-hop reasoning across code repositories."
+    ],
+    "durationSeconds": 4.540794725999993
+  },
+  "sourceToolAssistantUUID": "83655abf-9861-4e8b-a21a-b0fbca76d9ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-10T19:11:58.337Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01NLsdc7CGQ9eNgDnmy1VDgA`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2408.03910v2",
+  "prompt": "Extract: (1) the exact code property graph schema - all node types and edge types listed, (2) whether data-flow or def-use edges are included, (3) specific numerical results on SWE-bench with numbers, (4) whether any training happens or it's purely inference-time, (5) how Neo4j/Cypher queries are used for retrieval"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab5013ff-e193-49ea-a3d2-5b8169d686c7",
+  "isSidechain": false,
+  "requestId": "req_011CauREmiwMLz7HYLzTBinD",
+  "type": "assistant",
+  "uuid": "5cdf11d1-60c7-4def-b489-16fac44c777f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013v8xbXXiQQddU2TsXe32A9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 847,
+      "cache_read_input_tokens": 41576,
+      "output_tokens": 166,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 847,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 166,
+          "cache_read_input_tokens": 41576,
+          "cache_creation_input_tokens": 847,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 847
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-10T19:12:04.604Z_
+
+<details><summary>↩ Tool result · `toolu_01NLsdc7CGQ9eNgDnmy1VDgA`</summary>
+
+```text
+# CodexGraph: Key Technical Details
+
+## (1) Code Property Graph Schema
+
+**Node Types:** MODULE, CLASS, METHOD, FUNCTION, FIELD, GLOBAL_VARIABLE
+
+**Edge Types:** CONTAINS, HAS_METHOD, HAS_FIELD, INHERITS, USES
+
+Each node stores metadata like name, file_path, code (as indexed references), and signature. The USES edge includes attributes for source and target association types.
+
+## (2) Data-Flow and Def-Use Edges
+
+The schema does **not** include explicit data-flow or def-use edges. The paper acknowledges this limitation, noting "there is room for improvement in...schema completeness" and mentions "adding edges related to function calls" as future work.
+
+## (3) SWE-bench Numerical Results
+
+Using GPT-4o on SWE-bench Lite (257 samples):
+- **CodexGraph: 22.96% Pass@1**
+- AutoCodeRover: 22.96% Pass@1
+- BM25: —
+- No RAG: —
+
+CodexGraph matches AutoCodeRover's performance on this benchmark.
+
+## (4) Training vs. Inference-Time
+
+CodexGraph is **purely inference-time**. No model training occurs. The system uses "static analysis to extract code graphs" and leverages existing LLMs (GPT-4o, DeepSeek-Coder-V2, Qwen2) without modification.
+
+## (5) Neo4j/Cypher Query Usage
+
+LLM agents generate natural language queries, which a "translation LLM agent" converts to "formal graph queries" in Cypher. These execute against the Neo4j database to retrieve relevant code nodes and edges, enabling "code structure-aware searches" across complex multi-hop relationships.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5cdf11d1-60c7-4def-b489-16fac44c777f",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "f8a3fe61-ff60-4f53-a0a9-0a714a5fe974",
+  "toolUseResult": {
+    "bytes": 236952,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# CodexGraph: Key Technical Details\n\n## (1) Code Property Graph Schema\n\n**Node Types:** MODULE, CLASS, METHOD, FUNCTION, FIELD, GLOBAL_VARIABLE\n\n**Edge Types:** CONTAINS, HAS_METHOD, HAS_FIELD, INHERITS, USES\n\nEach node stores metadata like name, file_path, code (as indexed references), and signature. The USES edge includes attributes for source and target association types.\n\n## (2) Data-Flow and Def-Use Edges\n\nThe schema does **not** include explicit data-flow or def-use edges. The paper acknowledges this limitation, noting \"there is room for improvement in...schema completeness\" and mentions \"adding edges related to function calls\" as future work.\n\n## (3) SWE-bench Numerical Results\n\nUsing GPT-4o on SWE-bench Lite (257 samples):\n- **CodexGraph: 22.96% Pass@1**\n- AutoCodeRover: 22.96% Pass@1\n- BM25: —\n- No RAG: —\n\nCodexGraph matches AutoCodeRover's performance on this benchmark.\n\n## (4) Training vs. Inference-Time\n\nCodexGraph is **purely inference-time**. No model training occurs. The system uses \"static analysis to extract code graphs\" and leverages existing LLMs (GPT-4o, DeepSeek-Coder-V2, Qwen2) without modification.\n\n## (5) Neo4j/Cypher Query Usage\n\nLLM agents generate natural language queries, which a \"translation LLM agent\" converts to \"formal graph queries\" in Cypher. These execute against the Neo4j database to retrieve relevant code nodes and edges, enabling \"code structure-aware searches\" across complex multi-hop relationships.",
+    "durationMs": 6265,
+    "url": "https://arxiv.org/html/2408.03910v2"
+  },
+  "sourceToolAssistantUUID": "5cdf11d1-60c7-4def-b489-16fac44c777f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-10T19:12:07.981Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BjCMMuXMQcxKWmEf29EHCj`</summary>
+
+```json
+{
+  "query": "Qwen3.6-27B vLLM inference throughput tokens per second H100 benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8a3fe61-ff60-4f53-a0a9-0a714a5fe974",
+  "isSidechain": false,
+  "requestId": "req_011CauRFkRqSWUHiE6Qz6D2h",
+  "type": "assistant",
+  "uuid": "82432db5-a9a5-4878-bfc0-e23643c0caba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EiP1EYpPjbmMU8Ly2CbzQU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 584,
+      "cache_read_input_tokens": 42423,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 584,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 42423,
+          "cache_creation_input_tokens": 584,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 584
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-10T19:12:13.359Z_
+
+<details><summary>↩ Tool result · `toolu_01BjCMMuXMQcxKWmEf29EHCj`</summary>
+
+```text
+Web search results for query: "Qwen3.6-27B vLLM inference throughput tokens per second H100 benchmark"
+
+Links: [{"title":"Speed Benchmark - Qwen","url":"https://qwen.readthedocs.io/en/latest/getting_started/speed_benchmark.html"},{"title":"1 Million Tokens Per Second: Qwen 3.5 27B on GKE with B200 GPUs","url":"https://medium.com/google-cloud/1-million-tokens-per-second-qwen-3-5-27b-on-gke-with-b200-gpus-161da5c1b592"},{"title":"We ran Qwen3.6-27B on $800 of consumer GPUs, day one. Here's how llama.cpp and vLLM compared, and what each token actually costs. - LLMKube Blog","url":"https://llmkube.com/blog/qwen3-6-27b-bakeoff"},{"title":"We ran Qwen3.6-27B on $800 of consumer GPUs, day one: llama.cpp vs vLLM - prodSens.live","url":"https://prodsens.live/2026/04/24/we-ran-qwen3-6-27b-on-800-of-consumer-gpus-day-one-llama-cpp-vs-vllm/"},{"title":"Speed Benchmark - Qwen docs","url":"https://qwen.readthedocs.io/en/v2.0/benchmark/speed_benchmark.html"},{"title":"An Overnight Stack for Qwen3.6–27B: 85 TPS, 125K Context, Vision — on One RTX 3090 | Medium","url":"https://medium.com/@fzbcwvv/an-overnight-stack-for-qwen3-6-27b-85-tps-125k-context-vision-on-one-rtx-3090-0d95c6291914"},{"title":"Qwen3.5 27B Latency and Throughput: INT4 vs NVFP4 vs FP8 vs BF16","url":"https://kaitchup.substack.com/p/qwen35-27b-latency-and-throughput"},{"title":"Optimizing Qwen3-235B-A22B Throughput on NVIDIA ...","url":"https://docs.gpustack.ai/latest/performance-lab/qwen3-235b-a22b/h100/"},{"title":"What's the best speed we can get with Qwen 3.6 27B without quantizing? - DGX Spark / GB10 - NVIDIA Developer Forums","url":"https://forums.developer.nvidia.com/t/whats-the-best-speed-we-can-get-with-qwen-3-6-27b-without-quantizing/367561"},{"title":"We ran Qwen3.6-27B on $800 of consumer GPUs, day one: llama.cpp vs vLLM - DEV Community","url":"https://dev.to/defilan/we-ran-qwen36-27b-on-800-of-consumer-gpus-day-one-llamacpp-vs-vllm-mg1"}]
+
+Based on the search results, I found information about Qwen3.6-27B inference performance, though the specific H100 benchmark data is limited. Here's what I found:
+
+## Qwen3.6-27B vLLM Performance:
+
+On an RTX 3090, Qwen3.6-27B achieves 85 tokens per second sustained throughput and 106 tokens per second peak throughput.
+
+vLLM wins throughput by 3 to 4× at high concurrency thanks to NVFP4 and PagedAttention when compared to llama.cpp for Qwen3.6-27B.
+
+## H100 Benchmarks:
+
+The search results reference H100 benchmarks for related Qwen models but not specifically for Qwen3.6-27B. One benchmark compares Qwen3.5 27B inference speed in various quantization formats (BF16, FP8, NVFP4, and INT4) on H100 GPUs, though the specific throughput numbers from that study aren't directly quoted in the search results.
+
+For more detailed H100-specific throughput numbers for Qwen3.6-27B with vLLM, you may want to check the official Qwen documentation on speed benchmarks or recent community benchmarks, as the search results don't contain those specific metrics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "82432db5-a9a5-4878-bfc0-e23643c0caba",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "7df48161-5d6a-46fd-a6f6-f6a169d0ba89",
+  "toolUseResult": {
+    "query": "Qwen3.6-27B vLLM inference throughput tokens per second H100 benchmark",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Cgj8vw556azQEG2imSQ3hb",
+        "content": [
+          {
+            "title": "Speed Benchmark - Qwen",
+            "url": "https://qwen.readthedocs.io/en/latest/getting_started/speed_benchmark.html"
+          },
+          {
+            "title": "1 Million Tokens Per Second: Qwen 3.5 27B on GKE with B200 GPUs",
+            "url": "https://medium.com/google-cloud/1-million-tokens-per-second-qwen-3-5-27b-on-gke-with-b200-gpus-161da5c1b592"
+          },
+          {
+            "title": "We ran Qwen3.6-27B on $800 of consumer GPUs, day one. Here's how llama.cpp and vLLM compared, and what each token actually costs. - LLMKube Blog",
+            "url": "https://llmkube.com/blog/qwen3-6-27b-bakeoff"
+          },
+          {
+            "title": "We ran Qwen3.6-27B on $800 of consumer GPUs, day one: llama.cpp vs vLLM - prodSens.live",
+            "url": "https://prodsens.live/2026/04/24/we-ran-qwen3-6-27b-on-800-of-consumer-gpus-day-one-llama-cpp-vs-vllm/"
+          },
+          {
+            "title": "Speed Benchmark - Qwen docs",
+            "url": "https://qwen.readthedocs.io/en/v2.0/benchmark/speed_benchmark.html"
+          },
+          {
+            "title": "An Overnight Stack for Qwen3.6–27B: 85 TPS, 125K Context, Vision — on One RTX 3090 | Medium",
+            "url": "https://medium.com/@fzbcwvv/an-overnight-stack-for-qwen3-6-27b-85-tps-125k-context-vision-on-one-rtx-3090-0d95c6291914"
+          },
+          {
+            "title": "Qwen3.5 27B Latency and Throughput: INT4 vs NVFP4 vs FP8 vs BF16",
+            "url": "https://kaitchup.substack.com/p/qwen35-27b-latency-and-throughput"
+          },
+          {
+            "title": "Optimizing Qwen3-235B-A22B Throughput on NVIDIA ...",
+            "url": "https://docs.gpustack.ai/latest/performance-lab/qwen3-235b-a22b/h100/"
+          },
+          {
+            "title": "What's the best speed we can get with Qwen 3.6 27B without quantizing? - DGX Spark / GB10 - NVIDIA Developer Forums",
+            "url": "https://forums.developer.nvidia.com/t/whats-the-best-speed-we-can-get-with-qwen-3-6-27b-without-quantizing/367561"
+          },
+          {
+            "title": "We ran Qwen3.6-27B on $800 of consumer GPUs, day one: llama.cpp vs vLLM - DEV Community",
+            "url": "https://dev.to/defilan/we-ran-qwen36-27b-on-800-of-consumer-gpus-day-one-llamacpp-vs-vllm-mg1"
+          }
+        ]
+      },
+      "Based on the search results, I found information about Qwen3.6-27B inference performance, though the specific H100 benchmark data is limited. Here's what I found:\n\n## Qwen3.6-27B vLLM Performance:\n\nOn an RTX 3090, Qwen3.6-27B achieves 85 tokens per second sustained throughput and 106 tokens per second peak throughput.\n\nvLLM wins throughput by 3 to 4× at high concurrency thanks to NVFP4 and PagedAttention when compared to llama.cpp for Qwen3.6-27B.\n\n## H100 Benchmarks:\n\nThe search results reference H100 benchmarks for related Qwen models but not specifically for Qwen3.6-27B. One benchmark compares Qwen3.5 27B inference speed in various quantization formats (BF16, FP8, NVFP4, and INT4) on H100 GPUs, though the specific throughput numbers from that study aren't directly quoted in the search results.\n\nFor more detailed H100-specific throughput numbers for Qwen3.6-27B with vLLM, you may want to check the official Qwen documentation on speed benchmarks or recent community benchmarks, as the search results don't contain those specific metrics."
+    ],
+    "durationSeconds": 5.373561514000001
+  },
+  "sourceToolAssistantUUID": "82432db5-a9a5-4878-bfc0-e23643c0caba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-10T19:12:16.674Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Mg9hK8PMJDV9PYRdpbWjwk`</summary>
+
+```json
+{
+  "query": "SWE-bench Lite average cost per instance open source model agent evaluation hours"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7df48161-5d6a-46fd-a6f6-f6a169d0ba89",
+  "isSidechain": false,
+  "requestId": "req_011CauRGPmtzGoFPh3xqTUDZ",
+  "type": "assistant",
+  "uuid": "a5928b0f-0aba-497f-8182-472018baca59",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016pvTBN49g9g8Vuk3CzM7c8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1212,
+      "cache_read_input_tokens": 43007,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1212,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 43007,
+          "cache_creation_input_tokens": 1212,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1212
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-10T19:12:21.872Z_
+
+<details><summary>↩ Tool result · `toolu_01Mg9hK8PMJDV9PYRdpbWjwk`</summary>
+
+```text
+Web search results for query: "SWE-bench Lite average cost per instance open source model agent evaluation hours"
+
+Links: [{"title":"Introducing SWE-bench Verified | OpenAI","url":"https://openai.com/index/introducing-swe-bench-verified/"},{"title":"SWE-bench Verified","url":"https://www.vals.ai/benchmarks/swebench"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"SWE-bench Verified | Epoch AI","url":"https://epoch.ai/benchmarks/swe-bench-verified"},{"title":"SWE-bench Lite","url":"https://www.swebench.com/lite.html"},{"title":"GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub","url":"https://github.com/SWE-bench/SWE-bench"},{"title":"Overview - SWE-bench","url":"https://www.swebench.com/SWE-bench/"},{"title":"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale","url":"https://labs.scale.com/leaderboard/swe_bench_pro_public"},{"title":"SWE-rebench Leaderboard","url":"https://swe-rebench.com/"},{"title":"SWE-bench-Live Leaderboard","url":"https://swe-bench-live.github.io/"}]
+
+I found search results related to SWE-bench and its variants, but the results don't contain specific information about "average cost per instance" or "evaluation hours" for open source models. However, I did find one relevant detail:
+
+The average per-problem cost for Claude Sonnet 4 dropped from $5.29 in August to just $0.91 in September when using caching properly on the SWE-rebench leaderboard, though this appears to be for a closed-source model rather than an open-source model.
+
+The search results show that:
+- SWE-bench Lite was designed to reduce evaluation costs while maintaining benchmark quality and provide a more accessible entry point for research groups
+- SWE-bench Lite covers 11 of the original 12 repositories with similar diversity and distribution
+
+However, the specific metrics you're looking for regarding average cost per instance and evaluation hours for open source model agents on SWE-bench Lite are not present in these search results. If you're looking for detailed benchmarking data on open-source model costs and evaluation times, you may need to check the official SWE-bench documentation, papers, or leaderboards directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a5928b0f-0aba-497f-8182-472018baca59",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "fd538fc2-3cd4-4ea4-9726-6a9d9f7d658e",
+  "toolUseResult": {
+    "query": "SWE-bench Lite average cost per instance open source model agent evaluation hours",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013R4hNYbLK654Pq8b6oswX6",
+        "content": [
+          {
+            "title": "Introducing SWE-bench Verified | OpenAI",
+            "url": "https://openai.com/index/introducing-swe-bench-verified/"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.vals.ai/benchmarks/swebench"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "SWE-bench Verified | Epoch AI",
+            "url": "https://epoch.ai/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "SWE-bench Lite",
+            "url": "https://www.swebench.com/lite.html"
+          },
+          {
+            "title": "GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub",
+            "url": "https://github.com/SWE-bench/SWE-bench"
+          },
+          {
+            "title": "Overview - SWE-bench",
+            "url": "https://www.swebench.com/SWE-bench/"
+          },
+          {
+            "title": "SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale",
+            "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public"
+          },
+          {
+            "title": "SWE-rebench Leaderboard",
+            "url": "https://swe-rebench.com/"
+          },
+          {
+            "title": "SWE-bench-Live Leaderboard",
+            "url": "https://swe-bench-live.github.io/"
+          }
+        ]
+      },
+      "I found search results related to SWE-bench and its variants, but the results don't contain specific information about \"average cost per instance\" or \"evaluation hours\" for open source models. However, I did find one relevant detail:\n\nThe average per-problem cost for Claude Sonnet 4 dropped from $5.29 in August to just $0.91 in September when using caching properly on the SWE-rebench leaderboard, though this appears to be for a closed-source model rather than an open-source model.\n\nThe search results show that:\n- SWE-bench Lite was designed to reduce evaluation costs while maintaining benchmark quality and provide a more accessible entry point for research groups\n- SWE-bench Lite covers 11 of the original 12 repositories with similar diversity and distribution\n\nHowever, the specific metrics you're looking for regarding average cost per instance and evaluation hours for open source model agents on SWE-bench Lite are not present in these search results. If you're looking for detailed benchmarking data on open-source model costs and evaluation times, you may need to check the official SWE-bench documentation, papers, or leaderboards directly."
+    ],
+    "durationSeconds": 5.194646506000019
+  },
+  "sourceToolAssistantUUID": "a5928b0f-0aba-497f-8182-472018baca59",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-10T19:12:25.179Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01C9q5dzHFPcePmThLQLBLED`</summary>
+
+```json
+{
+  "query": "SWE-agent open source model 27B 32B wall clock time per task minutes SWE-bench"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd538fc2-3cd4-4ea4-9726-6a9d9f7d658e",
+  "isSidechain": false,
+  "requestId": "req_011CauRH2Bej4qLFn5oGJWVp",
+  "type": "assistant",
+  "uuid": "95be7423-349a-4cae-906a-cdd69e23ee33",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VncwvpgtVyduGpxMeRtHWL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 738,
+      "cache_read_input_tokens": 44219,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 738,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 44219,
+          "cache_creation_input_tokens": 738,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 738
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-10T19:12:30.193Z_
+
+<details><summary>↩ Tool result · `toolu_01C9q5dzHFPcePmThLQLBLED`</summary>
+
+```text
+Web search results for query: "SWE-agent open source model 27B 32B wall clock time per task minutes SWE-bench"
+
+Links: [{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"GitHub - SWE-agent/SWE-agent: SWE-agent takes a GitHub issue and tries to automatically fix it, using your LM of choice. It can also be employed for offensive cybersecurity or competitive coding challenges. [NeurIPS 2024] · GitHub","url":"https://github.com/SWE-agent/SWE-agent"},{"title":"Introducing SWE-bench Verified | OpenAI","url":"https://openai.com/index/introducing-swe-bench-verified/"},{"title":"GSO: Software Optimization Benchmark for SWE-Agents","url":"https://gso-bench.github.io/"},{"title":"Getting Started - SWE-agent documentation","url":"https://swe-agent.com/latest/"},{"title":"SWE-bench Verified","url":"https://www.vals.ai/benchmarks/swebench"},{"title":"SWE-bench Results Viewer","url":"https://www.swebench.com/viewer.html"},{"title":"SWE-bench/SWE-agent-LM-32B · Hugging Face","url":"https://huggingface.co/SWE-bench/SWE-agent-LM-32B"},{"title":"GitHub - SWE-agent/mini-swe-agent: The 100 line AI agent that solves GitHub issues or helps you in your command line. Radically simple, no huge configs, no giant monorepo—but scores >74% on SWE-bench verified!","url":"https://github.com/SWE-agent/mini-swe-agent"},{"title":"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale","url":"https://labs.scale.com/leaderboard/swe_bench_pro_public"}]
+
+Based on the search results, I found information about SWE-agent and SWE-bench, but the specific details about wall clock time per task in minutes for 27B and 32B models are not directly provided in these search results. 
+
+The results show that:
+
+- SWE-agent-LM-32b achieves open-weights SOTA on SWE-bench
+- SWE-agent-LM-32B is a Language Model for Software Engineering trained using the SWE-smith toolkit, introduced as part of their work: SWE-smith: Scaling Data for Software Engineering Agents
+
+However, the search results don't contain the specific wall clock time metrics per task in minutes for the 27B and 32B models on SWE-bench. To find this information, you may need to:
+
+1. Check the SWE-bench leaderboards directly at swebench.com or the results viewer
+2. Look at the official paper or technical documentation for SWE-agent-LM models
+3. Check the Hugging Face model card for SWE-agent-LM-32B which may contain performance benchmarks
+
+Would you like me to search for more specific information about these performance metrics?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "95be7423-349a-4cae-906a-cdd69e23ee33",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "053c58ed-d13b-4899-a0ae-44913c18e773",
+  "toolUseResult": {
+    "query": "SWE-agent open source model 27B 32B wall clock time per task minutes SWE-bench",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013HSh1SRHUJL8Mvj6EjyzzQ",
+        "content": [
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "GitHub - SWE-agent/SWE-agent: SWE-agent takes a GitHub issue and tries to automatically fix it, using your LM of choice. It can also be employed for offensive cybersecurity or competitive coding challenges. [NeurIPS 2024] · GitHub",
+            "url": "https://github.com/SWE-agent/SWE-agent"
+          },
+          {
+            "title": "Introducing SWE-bench Verified | OpenAI",
+            "url": "https://openai.com/index/introducing-swe-bench-verified/"
+          },
+          {
+            "title": "GSO: Software Optimization Benchmark for SWE-Agents",
+            "url": "https://gso-bench.github.io/"
+          },
+          {
+            "title": "Getting Started - SWE-agent documentation",
+            "url": "https://swe-agent.com/latest/"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.vals.ai/benchmarks/swebench"
+          },
+          {
+            "title": "SWE-bench Results Viewer",
+            "url": "https://www.swebench.com/viewer.html"
+          },
+          {
+            "title": "SWE-bench/SWE-agent-LM-32B · Hugging Face",
+            "url": "https://huggingface.co/SWE-bench/SWE-agent-LM-32B"
+          },
+          {
+            "title": "GitHub - SWE-agent/mini-swe-agent: The 100 line AI agent that solves GitHub issues or helps you in your command line. Radically simple, no huge configs, no giant monorepo—but scores >74% on SWE-bench verified!",
+            "url": "https://github.com/SWE-agent/mini-swe-agent"
+          },
+          {
+            "title": "SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale",
+            "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public"
+          }
+        ]
+      },
+      "Based on the search results, I found information about SWE-agent and SWE-bench, but the specific details about wall clock time per task in minutes for 27B and 32B models are not directly provided in these search results. \n\nThe results show that:\n\n- SWE-agent-LM-32b achieves open-weights SOTA on SWE-bench\n- SWE-agent-LM-32B is a Language Model for Software Engineering trained using the SWE-smith toolkit, introduced as part of their work: SWE-smith: Scaling Data for Software Engineering Agents\n\nHowever, the search results don't contain the specific wall clock time metrics per task in minutes for the 27B and 32B models on SWE-bench. To find this information, you may need to:\n\n1. Check the SWE-bench leaderboards directly at swebench.com or the results viewer\n2. Look at the official paper or technical documentation for SWE-agent-LM models\n3. Check the Hugging Face model card for SWE-agent-LM-32B which may contain performance benchmarks\n\nWould you like me to search for more specific information about these performance metrics?"
+    ],
+    "durationSeconds": 5.010394525999989
+  },
+  "sourceToolAssistantUUID": "95be7423-349a-4cae-906a-cdd69e23ee33",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 69_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level…",
+  "leafUuid": "053c58ed-d13b-4899-a0ae-44913c18e773",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 70_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise StructFuse to address CodeQL scalability and improve ceiling analysis",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-10T19:12:35.976Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017RneWkBgUQga6LNvtzNZDU`</summary>
+
+```json
+{
+  "url": "https://swe-agent.com/latest/usage/competitive_runs/",
+  "prompt": "Extract: (1) average runtime per instance or wall clock time per task, (2) total evaluation time for SWE-bench runs, (3) any cost estimates or resource requirements, (4) number of agent turns per instance, (5) token budgets or limits used"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "053c58ed-d13b-4899-a0ae-44913c18e773",
+  "isSidechain": false,
+  "requestId": "req_011CauRHdnHVfuwFSEip6Ku5",
+  "type": "assistant",
+  "uuid": "47dc10ef-78c8-4c7d-803e-fcfae7084c3d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Comc12pAyyUPDntsgufuc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 879,
+      "cache_read_input_tokens": 44957,
+      "output_tokens": 144,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 879,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 144,
+          "cache_read_input_tokens": 44957,
+          "cache_creation_input_tokens": 879,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 879
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-10T19:12:44.995Z_
+
+<details><summary>↩ Tool result · `toolu_017RneWkBgUQga6LNvtzNZDU`</summary>
+
+```text
+# SWE-Agent Competitive Runs: Resource Requirements
+
+Based on the documentation provided, here's what's specified about performance metrics and resource requirements:
+
+## Resource Allocation
+
+The documentation recommends running on "a machine with 32GB memory and 8 cores" and suggests using `--memory=10g` per Docker worker to prevent out-of-memory situations.
+
+## Cost and Turn Limits
+
+For cost management, the guidance indicates that "a cost-conservative limit would be $1 instance limit or lower and a turn count limit of 50." However, the specific configurations used for actual SWE-bench submissions employ "slightly higher limits" than these conservative recommendations.
+
+## Runtime and Evaluation Time
+
+The documentation does **not provide** specific data on:
+- Average runtime per instance
+- Wall clock time per task
+- Total evaluation time for complete SWE-bench runs
+- Token budgets or specific token limits
+
+The page focuses primarily on configuration details and cost considerations rather than empirical performance metrics. For detailed performance benchmarks, you would need to consult the actual benchmark submission configs or separate performance documentation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "47dc10ef-78c8-4c7d-803e-fcfae7084c3d",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "a0a2276a-15d4-49b9-aa50-9768ed2d1b34",
+  "toolUseResult": {
+    "bytes": 81816,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SWE-Agent Competitive Runs: Resource Requirements\n\nBased on the documentation provided, here's what's specified about performance metrics and resource requirements:\n\n## Resource Allocation\n\nThe documentation recommends running on \"a machine with 32GB memory and 8 cores\" and suggests using `--memory=10g` per Docker worker to prevent out-of-memory situations.\n\n## Cost and Turn Limits\n\nFor cost management, the guidance indicates that \"a cost-conservative limit would be $1 instance limit or lower and a turn count limit of 50.\" However, the specific configurations used for actual SWE-bench submissions employ \"slightly higher limits\" than these conservative recommendations.\n\n## Runtime and Evaluation Time\n\nThe documentation does **not provide** specific data on:\n- Average runtime per instance\n- Wall clock time per task\n- Total evaluation time for complete SWE-bench runs\n- Token budgets or specific token limits\n\nThe page focuses primarily on configuration details and cost considerations rather than empirical performance metrics. For detailed performance benchmarks, you would need to consult the actual benchmark submission configs or separate performance documentation.",
+    "durationMs": 9015,
+    "url": "https://swe-agent.com/latest/usage/competitive_runs/"
+  },
+  "sourceToolAssistantUUID": "47dc10ef-78c8-4c7d-803e-fcfae7084c3d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-10T19:12:49.592Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018SzDouHmVkNvfeK6uqDhMy`</summary>
+
+```json
+{
+  "query": "ARISE arXiv 2605.03117 repository graph agentic fault localization data flow slicing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a0a2276a-15d4-49b9-aa50-9768ed2d1b34",
+  "isSidechain": false,
+  "requestId": "req_011CauRJj2LM5BGXaVEwTA4q",
+  "type": "assistant",
+  "uuid": "1515dfb6-4e65-4da7-b658-2b3de8ec5a21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJQTJ8M8FawN8Qdi2LE4yG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 393,
+      "cache_read_input_tokens": 45836,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 393,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 45836,
+          "cache_creation_input_tokens": 393,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 393
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-10T19:12:56.999Z_
+
+<details><summary>↩ Tool result · `toolu_018SzDouHmVkNvfeK6uqDhMy`</summary>
+
+```text
+Web search results for query: "ARISE arXiv 2605.03117 repository graph agentic fault localization data flow slicing"
+
+Links: [{"title":"[2605.03117] ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair","url":"https://arxiv.org/abs/2605.03117"},{"title":"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair","url":"https://arxiv.org/html/2605.03117"},{"title":"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub","url":"https://github.com/tmgthb/Autonomous-Agents"},{"title":"A Multi-Agent Approach to Fault Localization via Graph-Based Retrieval and Reflexion","url":"https://arxiv.org/html/2409.13642v2"},{"title":"A Multi-Agent Approach to Fault Localization via Graph-Based","url":"https://www.arxiv.org/pdf/2409.13642"},{"title":"GraphLocator: Graph-guided Causal Reasoning for Issue Localization","url":"https://arxiv.org/html/2512.22469"},{"title":"[2409.13642] A Multi-Agent Approach to Fault Localization via Graph-Based Retrieval and Reflexion","url":"https://arxiv.org/abs/2409.13642"},{"title":"Agentic Code Reasoning","url":"https://arxiv.org/html/2603.01896v1"},{"title":"GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥","url":"https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation"},{"title":"[2604.00167] A Study on the Impact of Fault localization Granularity for Repository-Scale Code Repair Tasks","url":"https://arxiv.org/abs/2604.00167"}]
+
+Based on the search results, here's what I found about ARISE (arXiv 2605.03117):
+
+## ARISE: A Repository-level Graph Representation and Toolset
+
+ARISE is a paper submitted on May 4, 2026, titled "ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair" by Shahd Seddik and Fatemeh Fard.
+
+### Key Contributions
+
+ARISE (Agentic Repository-level Issue Solving Engine) augments an LLM-based agent with a multi-granularity program graph that extends structural relationships down to statement-level nodes and exposes this graph through a three-tier tool API, which brings data-flow slicing as a first-class, queryable agent primitive that allows the model to trace which statements define or consume a variable of interest.
+
+### Problem Addressed
+
+Existing graph-based systems provide structural representations of repositories (files, classes, functions and their relationships) but do not model how variable values flow within procedures, leaving agents without the semantic precision needed for function- and line-level localization.
+
+### Evaluation Results
+
+ARISE was evaluated on SWE-bench Lite (300 real GitHub issues, 11 Python repositories) using Qwen2.5-Coder-32B-Instruct as the backbone, improving Function Recall@1 by 17.0 points and Line Recall@1 by 15.0 points compared to the SWE-agent baseline, with ARISE achieving 22.0% Pass@1 (66/300), a 4.7 percentage-point improvement over SWE-agent.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1515dfb6-4e65-4da7-b658-2b3de8ec5a21",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "2cc7b2ca-fc62-481a-b613-f49cbcae9e4a",
+  "toolUseResult": {
+    "query": "ARISE arXiv 2605.03117 repository graph agentic fault localization data flow slicing",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Rfn4YoUq3NijGiVq2s37PN",
+        "content": [
+          {
+            "title": "[2605.03117] ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair",
+            "url": "https://arxiv.org/abs/2605.03117"
+          },
+          {
+            "title": "ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair",
+            "url": "https://arxiv.org/html/2605.03117"
+          },
+          {
+            "title": "GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub",
+            "url": "https://github.com/tmgthb/Autonomous-Agents"
+          },
+          {
+            "title": "A Multi-Agent Approach to Fault Localization via Graph-Based Retrieval and Reflexion",
+            "url": "https://arxiv.org/html/2409.13642v2"
+          },
+          {
+            "title": "A Multi-Agent Approach to Fault Localization via Graph-Based",
+            "url": "https://www.arxiv.org/pdf/2409.13642"
+          },
+          {
+            "title": "GraphLocator: Graph-guided Causal Reasoning for Issue Localization",
+            "url": "https://arxiv.org/html/2512.22469"
+          },
+          {
+            "title": "[2409.13642] A Multi-Agent Approach to Fault Localization via Graph-Based Retrieval and Reflexion",
+            "url": "https://arxiv.org/abs/2409.13642"
+          },
+          {
+            "title": "Agentic Code Reasoning",
+            "url": "https://arxiv.org/html/2603.01896v1"
+          },
+          {
+            "title": "GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥",
+            "url": "https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation"
+          },
+          {
+            "title": "[2604.00167] A Study on the Impact of Fault localization Granularity for Repository-Scale Code Repair Tasks",
+            "url": "https://arxiv.org/abs/2604.00167"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about ARISE (arXiv 2605.03117):\n\n## ARISE: A Repository-level Graph Representation and Toolset\n\nARISE is a paper submitted on May 4, 2026, titled \"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair\" by Shahd Seddik and Fatemeh Fard.\n\n### Key Contributions\n\nARISE (Agentic Repository-level Issue Solving Engine) augments an LLM-based agent with a multi-granularity program graph that extends structural relationships down to statement-level nodes and exposes this graph through a three-tier tool API, which brings data-flow slicing as a first-class, queryable agent primitive that allows the model to trace which statements define or consume a variable of interest.\n\n### Problem Addressed\n\nExisting graph-based systems provide structural representations of repositories (files, classes, functions and their relationships) but do not model how variable values flow within procedures, leaving agents without the semantic precision needed for function- and line-level localization.\n\n### Evaluation Results\n\nARISE was evaluated on SWE-bench Lite (300 real GitHub issues, 11 Python repositories) using Qwen2.5-Coder-32B-Instruct as the backbone, improving Function Recall@1 by 17.0 points and Line Recall@1 by 15.0 points compared to the SWE-agent baseline, with ARISE achieving 22.0% Pass@1 (66/300), a 4.7 percentage-point improvement over SWE-agent."
+    ],
+    "durationSeconds": 7.40147847099998
+  },
+  "sourceToolAssistantUUID": "1515dfb6-4e65-4da7-b658-2b3de8ec5a21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-10T19:13:02.501Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01AMuf8xDqWhP7DGuAqspWGq`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.03117",
+  "prompt": "Extract: (1) does ARISE use inter-procedural or only intra-procedural def-use analysis, (2) what tool (ast module? tree-sitter?) is used for constructing the graph, (3) what are the exact numerical results on SWE-bench (Pass@1, recall metrics), (4) what model is used and inference cost/time, (5) any limitations mentioned about the approach"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2cc7b2ca-fc62-481a-b613-f49cbcae9e4a",
+  "isSidechain": false,
+  "requestId": "req_011CauRKcP1GbTZfotujoXKY",
+  "type": "assistant",
+  "uuid": "c70441ee-e481-43a4-b142-f055b65f0ec4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016HwhKB8CCzVxWF4FuQTcyG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1002,
+      "cache_read_input_tokens": 46229,
+      "output_tokens": 174,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1002,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 174,
+          "cache_read_input_tokens": 46229,
+          "cache_creation_input_tokens": 1002,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1002
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-10T19:13:06.486Z_
+
+<details><summary>↩ Tool result · `toolu_01AMuf8xDqWhP7DGuAqspWGq`</summary>
+
+```text
+# ARISE Paper Analysis
+
+Based on the abstract provided, here's what can be extracted:
+
+**(1) Intra- vs Inter-procedural Analysis:**
+The system uses **intra-procedural** analysis. The abstract states it models "statement-level nodes connected by intra-procedural definition-use edges," explicitly limiting the scope within procedures rather than across them.
+
+**(2) Graph Construction Tool:**
+Not disclosed in the provided content. The abstract mentions the toolset is "framework-agnostic" but doesn't specify which parsing or AST tool is used.
+
+**(3) SWE-bench Numerical Results:**
+- **Pass@1: 22.0%** (66/300 issues resolved)
+- **Function Recall@1: +17.0 points** improvement over baseline
+- **Line Recall@1: +15.0 points** improvement over baseline
+- **Overall improvement: 4.7 percentage points** over SWE-agent baseline
+
+**(4) Model & Inference Cost:**
+- **Model:** Qwen2.5-Coder-32B-Instruct
+- **Inference cost/time:** Not mentioned in the abstract
+
+**(5) Limitations:**
+The provided content doesn't explicitly discuss approach limitations. However, the system is restricted to "intra-procedural" data-flow analysis, which inherently limits its ability to trace dependencies across function boundaries.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c70441ee-e481-43a4-b142-f055b65f0ec4",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "b98a90d7-3776-4c76-91af-c9df55d3cf9a",
+  "toolUseResult": {
+    "bytes": 47800,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ARISE Paper Analysis\n\nBased on the abstract provided, here's what can be extracted:\n\n**(1) Intra- vs Inter-procedural Analysis:**\nThe system uses **intra-procedural** analysis. The abstract states it models \"statement-level nodes connected by intra-procedural definition-use edges,\" explicitly limiting the scope within procedures rather than across them.\n\n**(2) Graph Construction Tool:**\nNot disclosed in the provided content. The abstract mentions the toolset is \"framework-agnostic\" but doesn't specify which parsing or AST tool is used.\n\n**(3) SWE-bench Numerical Results:**\n- **Pass@1: 22.0%** (66/300 issues resolved)\n- **Function Recall@1: +17.0 points** improvement over baseline\n- **Line Recall@1: +15.0 points** improvement over baseline\n- **Overall improvement: 4.7 percentage points** over SWE-agent baseline\n\n**(4) Model & Inference Cost:**\n- **Model:** Qwen2.5-Coder-32B-Instruct\n- **Inference cost/time:** Not mentioned in the abstract\n\n**(5) Limitations:**\nThe provided content doesn't explicitly discuss approach limitations. However, the system is restricted to \"intra-procedural\" data-flow analysis, which inherently limits its ability to trace dependencies across function boundaries.",
+    "durationMs": 3980,
+    "url": "https://arxiv.org/abs/2605.03117"
+  },
+  "sourceToolAssistantUUID": "c70441ee-e481-43a4-b142-f055b65f0ec4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-10T19:13:09.212Z_
+
+Now I have sufficient research. Let me also quickly check the latest SWE-bench Pro scores to ensure accuracy.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b98a90d7-3776-4c76-91af-c9df55d3cf9a",
+  "isSidechain": false,
+  "requestId": "req_011CauRLJuZfaUtP34Y16KMW",
+  "type": "assistant",
+  "uuid": "bc3d39c1-58aa-4a74-aedc-12e95ac8874c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W2Fsoqeio8DY6dg5EsaCCw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 501,
+      "cache_read_input_tokens": 47231,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 501,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 47231,
+          "cache_creation_input_tokens": 501,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 501
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-10T19:13:11.196Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0166bXp3vRssuRb84DUtYthH`</summary>
+
+```json
+{
+  "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+  "prompt": "Extract: the top 10 entries on the SWE-bench Pro leaderboard with their scores, model names, and whether they use SEAL standardized evaluation or custom scaffolding. I need the most up-to-date numbers as of May 2026."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc3d39c1-58aa-4a74-aedc-12e95ac8874c",
+  "isSidechain": false,
+  "requestId": "req_011CauRLJuZfaUtP34Y16KMW",
+  "type": "assistant",
+  "uuid": "fb489d76-45ea-4a5a-9795-77c0d70ec62f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W2Fsoqeio8DY6dg5EsaCCw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 501,
+      "cache_read_input_tokens": 47231,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 501,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 47231,
+          "cache_creation_input_tokens": 501,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 501
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-10T19:13:15.006Z_
+
+<details><summary>↩ Tool result · `toolu_0166bXp3vRssuRb84DUtYthH`</summary>
+
+```text
+I can provide the top 10 entries from the SWE-Bench Pro leaderboard based on the content provided, but I must clarify an important limitation:
+
+**The data shown is not from May 2026.** The page content does not include a publication date, but the leaderboard reflects current results, not future predictions.
+
+Here are the top 10 entries from the public leaderboard:
+
+1. **gpt-5.4 (xHigh)** – 59.10±3.56 (mini-swe-agent harness)
+2. **Muse Spark** – 55.00±3.60 (mini-swe-agent harness)
+3. **claude-opus-4-6 (thinking)** – 51.90±3.61 (mini-swe-agent harness)
+4. **gemini-3.1-pro (thinking)** – 46.10±3.60 (mini-swe-agent harness)
+5. **claude-opus-4-5-20251101** – 45.89±3.60
+6. **claude-4-5-Sonnet** – 43.60±3.60
+7. **gemini-3-pro-preview** – 43.30±3.60
+8. **claude-4-Sonnet** – 42.70±3.59
+9. **gpt-5-2025-08-07 (High)** – 41.78±3.49
+10. **gpt-5.2-codex** – 41.04±3.57
+
+**Note:** The asterisked models use the "mini-swe-agent harness," while others were evaluated with standard uncapped parameters and a 250-turn limit.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb489d76-45ea-4a5a-9795-77c0d70ec62f",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "6e7dbe5d-123c-4c3e-8a40-210e51098c4a",
+  "toolUseResult": {
+    "bytes": 148979,
+    "code": 200,
+    "codeText": "OK",
+    "result": "I can provide the top 10 entries from the SWE-Bench Pro leaderboard based on the content provided, but I must clarify an important limitation:\n\n**The data shown is not from May 2026.** The page content does not include a publication date, but the leaderboard reflects current results, not future predictions.\n\nHere are the top 10 entries from the public leaderboard:\n\n1. **gpt-5.4 (xHigh)** – 59.10±3.56 (mini-swe-agent harness)\n2. **Muse Spark** – 55.00±3.60 (mini-swe-agent harness)\n3. **claude-opus-4-6 (thinking)** – 51.90±3.61 (mini-swe-agent harness)\n4. **gemini-3.1-pro (thinking)** – 46.10±3.60 (mini-swe-agent harness)\n5. **claude-opus-4-5-20251101** – 45.89±3.60\n6. **claude-4-5-Sonnet** – 43.60±3.60\n7. **gemini-3-pro-preview** – 43.30±3.60\n8. **claude-4-Sonnet** – 42.70±3.59\n9. **gpt-5-2025-08-07 (High)** – 41.78±3.49\n10. **gpt-5.2-codex** – 41.04±3.57\n\n**Note:** The asterisked models use the \"mini-swe-agent harness,\" while others were evaluated with standard uncapped parameters and a 250-turn limit.",
+    "durationMs": 3804,
+    "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public"
+  },
+  "sourceToolAssistantUUID": "fb489d76-45ea-4a5a-9795-77c0d70ec62f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 80 · 2026-05-10T19:13:15.008Z_
+
+```json
+{
+  "parentUuid": "6e7dbe5d-123c-4c3e-8a40-210e51098c4a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "556c3732-5bf9-4c29-88f0-120d6210a8ce",
+  "timestamp": "2026-05-10T19:13:15.008Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-10T19:13:18.440Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VVQtDWein58dpvLXiPWASy`</summary>
+
+```json
+{
+  "query": "\"hard negative\" \"false negative\" contrastive learning code retrieval structurally similar semantically different"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "556c3732-5bf9-4c29-88f0-120d6210a8ce",
+  "isSidechain": false,
+  "requestId": "req_011CauRLwL4XbsZd5APNwmTn",
+  "type": "assistant",
+  "uuid": "5b4f17a7-7180-4e09-b847-4f4eac8aca10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011W97TxxxKSHrzFb8FsyrTG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 694,
+      "cache_read_input_tokens": 47732,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 694,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 47732,
+          "cache_creation_input_tokens": 694,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 694
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-10T19:13:28.396Z_
+
+<details><summary>↩ Tool result · `toolu_01VVQtDWein58dpvLXiPWASy`</summary>
+
+```text
+Web search results for query: ""hard negative" "false negative" contrastive learning code retrieval structurally similar semantically different"
+
+Links: [{"title":"Contrastive Learning with Hard Negatives","url":"https://www.emergentmind.com/topics/contrastive-learning-with-hard-negative-samples"},{"title":"Effective Hard Negative Mining for Contrastive Learning-Based Code Search | ACM Transactions on Software Engineering and Methodology","url":"https://dl.acm.org/doi/full/10.1145/3695994"},{"title":"Contrastive Learning with Hard Negative Samples | by It's Amit | Medium","url":"https://mr-amit.medium.com/contrastive-learning-with-hard-negative-samples-2cccb609fa0c"},{"title":"Within-View Negative Pairs in Learning","url":"https://www.emergentmind.com/topics/within-view-negative-pairs"},{"title":"[2010.04592] Contrastive Learning with Hard Negative Samples","url":"https://arxiv.org/abs/2010.04592"},{"title":"Boosting Contrastive Self-Supervised Learning with False Negative Cancellation","url":"https://openaccess.thecvf.com/content/WACV2022/papers/Huynh_Boosting_Contrastive_Self-Supervised_Learning_With_False_Negative_Cancellation_WACV_2022_paper.pdf"},{"title":"CONTRASTIVE LEARNING WITH HARD NEGATIVE ...","url":"https://openreview.net/pdf?id=CR1XOQ0UTh-"},{"title":"Uncertainty-Aware Contrastive Learning With Hard Negative Sampling for","url":"https://ojs.aaai.org/index.php/AAAI/article/view/34070/36225"},{"title":"Contrastive learning with hard negative samples","url":"https://arxiv.org/pdf/2010.04592"},{"title":"ECI: Effective Contrastive Information to Evaluate Hard-Negatives Aarush Sinha∗","url":"https://arxiv.org/pdf/2603.20990"}]
+
+Based on the search results, here's what I found about hard negatives, false negatives, and contrastive learning in code retrieval:
+
+## Key Concepts
+
+**Hard Negatives in Contrastive Learning:**
+
+Contrastive learning with hard negatives is a technique that uses semantically challenging negative samples to refine embedding spaces and enhance model convergence. Contrastive learning of representations benefits from hard negative samples (i.e., points that are difficult to distinguish from an anchor point).
+
+**Application to Code Retrieval:**
+
+To enable the model to discern semantic differences between similar codes, applying contrastive learning on samples with similar texts but different semantics is essential, rather than relying on simple random sampling.
+
+A concrete example from code search demonstrates this challenge: The erroneous code (Hard Negative Example) exhibits higher text similarity with the user query, containing similar keywords such as "event," "callback," "create," and "version." In contrast, the correct code contains fewer similar keywords.
+
+**Structurally Similar, Semantically Different Samples:**
+
+Two sentences might be structurally similar but have very different meanings. Hard negatives force the model to learn these subtle differences, which is key for tasks like retrieval-based systems (e.g., search engines, question-answering models).
+
+**False Negatives Problem:**
+
+False negative avoidance becomes crucial in unsupervised settings: label-aware or clustering-based methods are preferred when labels are available; otherwise, PU-learning style debiasing, clustering, or structural constraints can help mitigate risk. Without knowledge of labels, automatically selected negative pairs could actually belong to the same semantic category, creating false negatives.
+
+A specific framework addressing this is CoCoHaNeRe, a Code search framework augmented by Contrastive learning with differentiable Hard Negative samples Retrieval, which designs a new memory bank that supports finding the nearest neighbor of query as hard negatives.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b4f17a7-7180-4e09-b847-4f4eac8aca10",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "c350c250-a150-4bb3-bdae-ca4464ad61f9",
+  "toolUseResult": {
+    "query": "\"hard negative\" \"false negative\" contrastive learning code retrieval structurally similar semantically different",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KvUtMzFcZteZPo2jZVcALL",
+        "content": [
+          {
+            "title": "Contrastive Learning with Hard Negatives",
+            "url": "https://www.emergentmind.com/topics/contrastive-learning-with-hard-negative-samples"
+          },
+          {
+            "title": "Effective Hard Negative Mining for Contrastive Learning-Based Code Search | ACM Transactions on Software Engineering and Methodology",
+            "url": "https://dl.acm.org/doi/full/10.1145/3695994"
+          },
+          {
+            "title": "Contrastive Learning with Hard Negative Samples | by It's Amit | Medium",
+            "url": "https://mr-amit.medium.com/contrastive-learning-with-hard-negative-samples-2cccb609fa0c"
+          },
+          {
+            "title": "Within-View Negative Pairs in Learning",
+            "url": "https://www.emergentmind.com/topics/within-view-negative-pairs"
+          },
+          {
+            "title": "[2010.04592] Contrastive Learning with Hard Negative Samples",
+            "url": "https://arxiv.org/abs/2010.04592"
+          },
+          {
+            "title": "Boosting Contrastive Self-Supervised Learning with False Negative Cancellation",
+            "url": "https://openaccess.thecvf.com/content/WACV2022/papers/Huynh_Boosting_Contrastive_Self-Supervised_Learning_With_False_Negative_Cancellation_WACV_2022_paper.pdf"
+          },
+          {
+            "title": "CONTRASTIVE LEARNING WITH HARD NEGATIVE ...",
+            "url": "https://openreview.net/pdf?id=CR1XOQ0UTh-"
+          },
+          {
+            "title": "Uncertainty-Aware Contrastive Learning With Hard Negative Sampling for",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/34070/36225"
+          },
+          {
+            "title": "Contrastive learning with hard negative samples",
+            "url": "https://arxiv.org/pdf/2010.04592"
+          },
+          {
+            "title": "ECI: Effective Contrastive Information to Evaluate Hard-Negatives Aarush Sinha∗",
+            "url": "https://arxiv.org/pdf/2603.20990"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about hard negatives, false negatives, and contrastive learning in code retrieval:\n\n## Key Concepts\n\n**Hard Negatives in Contrastive Learning:**\n\nContrastive learning with hard negatives is a technique that uses semantically challenging negative samples to refine embedding spaces and enhance model convergence. Contrastive learning of representations benefits from hard negative samples (i.e., points that are difficult to distinguish from an anchor point).\n\n**Application to Code Retrieval:**\n\nTo enable the model to discern semantic differences between similar codes, applying contrastive learning on samples with similar texts but different semantics is essential, rather than relying on simple random sampling.\n\nA concrete example from code search demonstrates this challenge: The erroneous code (Hard Negative Example) exhibits higher text similarity with the user query, containing similar keywords such as \"event,\" \"callback,\" \"create,\" and \"version.\" In contrast, the correct code contains fewer similar keywords.\n\n**Structurally Similar, Semantically Different Samples:**\n\nTwo sentences might be structurally similar but have very different meanings. Hard negatives force the model to learn these subtle differences, which is key for tasks like retrieval-based systems (e.g., search engines, question-answering models).\n\n**False Negatives Problem:**\n\nFalse negative avoidance becomes crucial in unsupervised settings: label-aware or clustering-based methods are preferred when labels are available; otherwise, PU-learning style debiasing, clustering, or structural constraints can help mitigate risk. Without knowledge of labels, automatically selected negative pairs could actually belong to the same semantic category, creating false negatives.\n\nA specific framework addressing this is CoCoHaNeRe, a Code search framework augmented by Contrastive learning with differentiable Hard Negative samples Retrieval, which designs a new memory bank that supports finding the nearest neighbor of query as hard negatives."
+    ],
+    "durationSeconds": 9.952880366999947
+  },
+  "sourceToolAssistantUUID": "5b4f17a7-7180-4e09-b847-4f4eac8aca10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level…",
+  "leafUuid": "c350c250-a150-4bb3-bdae-ca4464ad61f9",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise StructFuse to address CodeQL scalability and improve ceiling analysis",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 85 · 2026-05-10T19:14:09.145Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough research to revise the idea. Let me synthesize what I've learned:
+
+1. **RANGER** (arXiv:2509.25257): Uses structural/syntactic edges only (CONTAINS, HAS_METHOD, HAS_FIELD, INHERITS, USES). No data-flow or def-use edges. No model training - purely inference-time with MCTS-guided graph exploration. Uses bi-encoder (mxbai-embed-large-v1) + cross-encoder (bge-reranker-v2-m3). Evaluated on RepoBench, CrossCodeEval, CodeSearchNet, RepoQA.
+
+
+2. **CodexGraph** (NAACL 2025, arXiv:2408.03910): Similar node and edge structure to RANGER, also inference-only with Neo4j backend, achieving 22.96% Pass@1 on SWE-bench Lite.
+3. **CodeQL scalability**: Global data flow analysis becomes prohibitively expensive in time and memory, so the practical approach is to narrow source and sink definitions rather than attempting comprehensive coverage.
+4. **SWE-bench evaluation time**: With typical 50-turn runs consuming 100K+ tokens per instance, inference speed on H100 hardware would likely allow 5-15 minutes per instance depending on the agent's scaffolding complexity.
+5. **SWE-bench Pro performance**: Current top models cluster around 42-59% Pass@1, with Claude Opus 4.6 (thinking) at 51.9% and GPT-5.4 approaching similar ranges.
+6. **Contrastive learning theory**: The key insight is that embedding-distance-based hard negatives are partially redundant with the model's own similarity computation, whereas structurally disconnected negatives provide orthogonal signal—forcing the model to learn the distinction between lexically similar but structurally irrelevant pairs versus those that are both similar and relevant.
+
+Now addressing the reviewer concerns: RANGER and CodexGraph need to be added to the landscape. RANGER operates purely at inference time with graph exploration but lacks data-flow edges and doesn't leverage structural signals for training. CodexGraph similarly works at inference only without data-flow edges, using Cypher queries instead.
+
+For CodeQL scalability, the reviewer's concern about Cartesian-product blowups during query evaluation is valid—the ≤3-hop filter is indeed post-hoc. I need to restrict sources to parameters within 2 call-graph hops of the buggy function as a pre-computation step, add explicit timeout and memory limits with graceful fallback to Beniget, and report timeout rates from the pilot.
+
+On the improvement ceiling, I should argue that SWE-bench Pro's 41-58pp gap leaves substantial room for better context selection, include qualitative failure analysis, and reframe the primary contribution as the training methodology rather than absolute performance numbers. For label heterogeneity from Beniget fallback, I'll add a binary indicator feature to distinguish inter-procedural cases.
+
+For evaluation time, I can't find hard evidence for the 9-minute estimate, but SWE-agent's 50-turn budget and Qwen3.6-27B throughput suggest 5-15 minutes is reasonable. A better strategy is to make SWE-bench Lite (300 instances) plus RepoBench-R the primary evaluation, with a 300-instance sample from SWE-bench Pro as secondary validation.
+
+On the theoretical side, embedding-distance negatives overlap with what the model already learns from similarity computation, whereas structurally disconnected negatives provide a distinct learning signal that can't be derived from text alone—this diversity tightens the InfoNCE bound and improves the learning objective.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c350c250-a150-4bb3-bdae-ca4464ad61f9",
+  "isSidechain": false,
+  "requestId": "req_011CauRMvftwceawdKEwhURi",
+  "type": "assistant",
+  "uuid": "89fc09c0-5a84-4bae-bce1-b610bf6374c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017bi8EeeYMU1iaCMQt4RnnB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1061,
+      "cache_read_input_tokens": 48426,
+      "output_tokens": 11023,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1061,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11023,
+          "cache_read_input_tokens": 48426,
+          "cache_creation_input_tokens": 1061,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1061
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86 · 2026-05-10T19:14:13.478Z_
+
+I now have thorough research on all six reviewer concerns. Let me synthesize the findings and produce the revision.
+
+Key findings from research:
+- **RANGER**: Structural/syntactic edges only (CONTAINS, HAS_METHOD, INHERITS, USES), no data-flow. No model training—purely inference-time MCTS exploration with bi-encoder + cross-encoder. 
+- **CodexGraph**: Same edge types, purely inference-time, Neo4j/Cypher. SWE-bench Lite 22.96% Pass@1.
+- **CodeQL scalability**: Docs explicitly warn global data-flow needs "significantly more time and memory" with broad source/sink defs. No built-in hop limit during evaluation.
+- **SWE-bench Pro SEAL latest**: GPT-5.4 59.1%, Claude Opus 4.6 51.9%, leaving 41-58pp improvement gap.
+- **Evaluation time**: SWE-agent recommends $1/instance, 50-turn limit. ~5-15min/instance realistic for 27B models on H100.
+
+Now producing the complete revised idea:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89fc09c0-5a84-4bae-bce1-b610bf6374c9",
+  "isSidechain": false,
+  "requestId": "req_011CauRMvftwceawdKEwhURi",
+  "type": "assistant",
+  "uuid": "861c6318-be70-4ddb-b669-29a9610ac5bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017bi8EeeYMU1iaCMQt4RnnB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1061,
+      "cache_read_input_tokens": 48426,
+      "output_tokens": 11023,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1061,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11023,
+          "cache_read_input_tokens": 48426,
+          "cache_creation_input_tokens": 1061,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1061
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-10T19:18:06.884Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Eso598Ni7e5Ug1NiQ7TfRW`</summary>
+
+```json
+{
+  "command": "cat << 'ENDJSON'\n{\n  \"change_type\": \"minor\",\n  \"title\": \"StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level Code Repair Context Selection\",\n  \"core_problem\": \"Repository-level bug repair requires selecting relevant context from large codebases. Existing context selectors fall into three paradigms, each with fundamental limitations: (1) Neural selectors like SWE-Pruner train on LLM-generated labels that are coupled to a specific teacher model's biases and selection patterns—labels are stochastic, non-reproducible, and encode the teacher's blind spots. (2) Retrieve-and-rerank methods like SweRank (ICLR 2026) achieve strong text-based localization but miss structural dependencies—lexically similar but structurally unrelated code becomes a false positive. (3) Graph-guided agents like LocAgent, RANGER, and CodexGraph capture structural edges (import/call/inheritance/USES) but omit fine-grained data-flow (def-use) edges, and operate purely at inference time without using structural signals to improve model training; ARISE uses intra-procedural def-use but only at runtime via tool calls, not as distilled knowledge, and explicitly does not cross call boundaries. On SWE-bench Pro (where top SEAL-standardized scores range from ~42-59%—GPT-5.4 at 59.1%, Claude Opus 4.6 at 51.9%—leaving 41-58pp improvement headroom, and context selection accounts for 4-10pp swings), context quality remains a key differentiator with substantial room for improvement. Can we build a context selector that leverages inter-procedural data-flow signals for structurally-grounded, interpretable, and model-independent selections—using deterministic program analysis rather than stochastic LLM judgments?\",\n  \"opportunity\": \"SWE-Pruner (arXiv:2601.16746) demonstrated a 0.6B neural skimmer can reduce tokens 23-54% with <1pp degradation, but its supervision comes from Qwen3-Coder-30B-A3B-Instruct (an MoE model with 3.3B active parameters)—while inference is cheap (~$10-35 to label 61K samples), the labels are coupled to that model's biases, non-reproducible across runs, and provide no interpretable rationale for selections. LocAgent (ACL 2025) showed graph-guided localization achieves 92.7% file-level accuracy using import/invocation/inheritance edges with fine-tuned Qwen2.5-32B, but omits data-flow edges. SweRank (ICLR 2026) achieves SOTA retrieve-and-rerank localization but is purely text-based. RANGER (arXiv:2509.25257) builds comprehensive repository knowledge graphs with MCTS-guided exploration and bi-encoder + cross-encoder cascade, achieving strong results on RepoBench and CrossCodeEval—but uses only structural/syntactic edges (CONTAINS, HAS_METHOD, INHERITS, USES) without data-flow, and is purely an inference-time system with no model training. CodexGraph (NAACL 2025) bridges LLMs and code repos via Neo4j code property graphs with Cypher queries (22.96% Pass@1 on SWE-bench Lite)—but again is purely inference-time with no data-flow edges. ARISE (arXiv:2605.03117) confirmed data-flow slicing yields +17pp Function Recall@1, but (a) uses only Python's ast module for intra-procedural analysis (explicitly does not cross call boundaries), and (b) keeps analysis as runtime tool calls adding latency per agent step. SWE-Fixer (ACL Findings 2025) combines BM25 with a fine-tuned 7B retriever for coarse-to-fine file retrieval but uses no structural program analysis features. Sliceformer (arXiv:2604.26961) validated that data-flow knowledge transfers to neural models with 22% ExactMatch gains on slicing tasks. The opportunity: no existing work (a) uses inter-procedural def-use analysis for repair context selection, (b) distills data-flow signals into a fast retrieval model via contrastive training, or (c) exploits structural connectivity for contrastive hard negative mining. ARISE's intra-procedural limitation, RANGER/CodexGraph's inference-only graph use, and SweRank's text-only approach leave a clear gap for inter-procedural data-flow-aware retrieval with structural training signal.\",\n  \"landscape\": \"**Neural context selectors**: SWE-Pruner trains a 0.6B skimmer on 61K samples labeled by Qwen3-Coder-30B-A3B-Instruct (an MoE model with 3.3B active parameters per forward pass, costing ~$10-35 for labeling at $0.07-0.19/1M input tokens), achieving <1pp degradation on SWE-bench Verified (70.6%→70.2%)—though SWE-bench Verified is known contaminated (OpenAI, Feb 2026). Squeez (arXiv:2604.04979) fine-tunes Qwen 3.5 2B for task-conditioned tool-output pruning (0.86 recall, 92% token removal) but targets tool outputs, not repository context. LongCodeZip (ASE 2025) achieves 5.6x compression via perplexity-based ranking, training-free but code-agnostic. **Retrieve-and-rerank approaches**: SweRank (ICLR 2026, arXiv:2505.07849) achieves SOTA issue localization via SweRankEmbed (bi-encoder retriever) + SweRankLLM (listwise LLM reranker), trained on the SweLoc dataset—purely text-based with no structural signals. SweRank+ (arXiv:2512.20482) extends to multilingual multi-turn ranking with 155K training instances. SWE-Fixer (ACL Findings 2025) combines BM25 with a fine-tuned 7B retriever (SWE-Fixer-Retriever-7B) for coarse-to-fine file retrieval, achieving 24.7%/32.8% on SWE-bench Lite/Verified with P2P filtering—architecturally the closest prior work to our retrieval fusion, but uses learned embeddings without structural program analysis features. **Graph-guided approaches**: LocAgent (ACL 2025, arXiv:2503.09089) parses codebases into directed heterogeneous graphs with import/invocation/inheritance edges, achieving 92.7% file-level accuracy with fine-tuned Qwen2.5-32B—but omits data-flow (def-use) edges and requires a 32B model at inference. RANGER (arXiv:2509.25257) constructs repository knowledge graphs with six node types (Module, Class, Function, Method, Field, GlobalVariable) and structural edges (CONTAINS, HAS_METHOD, HAS_FIELD, INHERITS, USES), employing MCTS-guided graph exploration with a bi-encoder (mxbai-embed-large-v1, 335M) + cross-encoder (bge-reranker-v2-m3, 568M) cascade—achieves 0.5471 Accuracy@5 on RepoBench with Qwen-3-8B embeddings, but uses no data-flow edges and is purely an inference-time system with no model training using structural signals. CodexGraph (NAACL 2025, arXiv:2408.03910) bridges LLMs and code repositories via Neo4j code property graphs with Cypher queries, using a similar structural schema (MODULE, CLASS, METHOD, FUNCTION, FIELD, GLOBAL_VARIABLE nodes; CONTAINS, HAS_METHOD, HAS_FIELD, INHERITS, USES edges)—achieves 22.96% Pass@1 on SWE-bench Lite with GPT-4o, but is purely inference-time with no model training, no data-flow edges, and the paper itself acknowledges room for improvement in 'schema completeness' including 'adding edges related to function calls.' KGCompass (arXiv:2503.21710) constructs repository knowledge graphs (58.3% repair) but with heavy construction overhead. GraphCoder (ASE 2024) uses code context graphs with control-flow and data-dependence for coarse-to-fine retrieval in code completion—related but targets completion, not repair context selection. SaraCoder (ICLR 2026) orchestrates semantic and structural cues for code completion with a graph-based structural similarity metric—demonstrates the value of structural signals in retrieval but does not address repair or use def-use data-flow. **Data-flow-specific approaches**: ARISE (arXiv:2605.03117) augments SWE-agent with statement-level def-use edges via Python's ast module, gaining +17pp Function Recall@1 and +4.7pp Pass@1 (22.0% on SWE-bench Lite with Qwen2.5-Coder-32B)—but is limited to intra-procedural analysis (explicitly does not cross call boundaries), keeps analysis as runtime tool calls, and requires a 32B model at inference. LLMxCPG (USENIX Security 2025) uses Code Property Graphs for vulnerability detection (67-91% code reduction, 15-40% F1 gain) but targets security, not repair context. Sliceformer (arXiv:2604.26961) distills DFG knowledge into CodeT5+ for slicing tasks via dataflow-aware pretraining objectives, validating structural knowledge transfer but not addressing repair. **Contrastive learning for code**: CoCoHaNeRe (TOSEM 2025) demonstrates that hard negative mining significantly improves contrastive code search (+7-11% MRR over baselines), but uses random or embedding-distance-based negatives without structural awareness. No existing work uses program-analysis-derived structural connectivity to mine hard negatives. **Compression paradigms**: An empirical study (arXiv:2604.13725) shows continuous latent vector compression surpasses full-context by up to 28.3% BLEU at 4x compression. **Benchmarks**: SWE-bench Pro (Scale AI, 1865 tasks total, 731 public) is the recommended hard benchmark—top SEAL-standardized scores: GPT-5.4 (xHigh) 59.1%, Claude Opus 4.6 (thinking) 51.9%, Gemini 3.1 Pro 46.1%; custom scaffolding goes higher (Claude Mythos Preview 77.8%). The 41-58pp gap between SEAL scores and perfect resolution means context selection has proportionally large impact—unlike near-saturated SWE-bench Verified where SWE-Pruner's <1pp degradation suggests diminishing returns. SWE-bench Lite (300 instances) remains widely used. RepoBench-R (ICLR 2024) directly evaluates cross-file context retrieval. **Gap**: No existing work combines inter-procedural data-flow analysis with contrastive hard negative mining for repair context retrieval. ARISE is intra-procedural only; SweRank and SWE-Fixer are text-only; LocAgent uses coarser structural edges without def-use; RANGER and CodexGraph use structural graphs at inference only, not for training; CoCoHaNeRe shows hard negatives work for code search but without structural awareness. The fusion of inter-procedural data-flow features with lexical retrieval via data-flow-aware contrastive learning is unexplored.\",\n  \"approach\": \"We propose StructFuse, a two-stage context retrieval system that combines inter-procedural data-flow analysis with a novel data-flow-aware contrastive learning objective for repository-level code repair context selection.\\n\\n**Stage 1: Scope-Bounded Inter-Procedural Data-Flow Extraction (Days 1-3).** For ~5K SWE-smith training instances, we extract inter-procedural data-flow features using a two-phase CodeQL strategy designed to prevent query-evaluation blowups. **Phase 1a (call-graph pre-computation):** For each instance, we first run a lightweight CodeQL query to extract the call graph and identify all functions within 2 call-graph hops of the buggy function. This is fast (seconds per repo) because call-graph queries are relational joins, not data-flow tracking. **Phase 1b (scope-bounded data-flow query):** We then configure CodeQL's inter-procedural data-flow API with sources restricted to parameters and return values of only the functions identified in Phase 1a (within 2 call-graph hops), and sinks restricted to variable reads within those same functions. This bounds the analysis scope *before* query evaluation begins, preventing the Cartesian-product blowup that occurs with broad 'all parameters as sources' definitions—the reviewer correctly identified that post-hoc graph-distance filtering does not prevent evaluation-time blowups. We enforce strict resource limits: --timeout=300s and --ram=8192 per repo query. **Graceful degradation:** For repos where CodeQL times out (>300s) or produces insufficient coverage (<5 reachable files from bug location), we fall back to Beniget for intra-file def-use chains and record a binary label-source indicator (inter_procedural=True/False) for each instance. We budget Day 1 specifically for CodeQL query development and validation on 10 pilot repos—testing query precision, recall against gold patches, extraction throughput, and critically: timeout rates and memory consumption. We report three pilot statistics before scaling: (a) mean/max query time per repo, (b) fraction of repos that timeout, (c) average files reachable within 2 call-graph hops + data-flow from bug location. If >30% of repos timeout, we tighten to 1 call-graph hop before scaling. For each candidate file/function, we compute: (a) shortest data-flow path distance to the buggy location, (b) number of distinct data-flow paths, (c) dependency type (inter-procedural def-use, call-graph, import), (d) label-source indicator (CodeQL inter-procedural vs. Beniget intra-procedural). We also extract lexical features (BM25 scores, SweRankEmbed similarity) and structural metadata (git co-change frequency, import distance).\\n\\n**Stage 2: Data-Flow-Aware Contrastive Retrieval Training (Days 4-6).** This is the core methodological contribution. We train a Qwen2.5-Coder-3B bi-encoder retriever with a two-component objective:\\n\\n(a) *Data-flow-aware hard negative mining*: For each training instance, hard negatives are files that are lexically similar to the bug-relevant files (high BM25/embedding similarity) but structurally disconnected (no data-flow path within the scope-bounded analysis from the buggy location). This is inspired by CoCoHaNeRe's (TOSEM 2025) demonstration that hard negatives dramatically improve code search, but we replace their embedding-distance-based mining with program-analysis-derived structural connectivity—a fundamentally different and more principled signal. **Theoretical justification:** Embedding-distance-based hard negatives (as in CoCoHaNeRe) are partly redundant with the model's own learned similarity: the contrastive encoder already computes embedding similarity, so negatives selected by embedding distance provide gradient signal along dimensions the model has already partially learned to separate. In contrast, structurally disconnected negatives provide an *orthogonal* learning signal—the model cannot derive inter-procedural data-flow connectivity from lexical features alone, so these negatives force the model to internalize a structural relevance concept that is inaccessible through text-based training. In information-theoretic terms, this increases the effective diversity of the negative set in the InfoNCE objective, tightening the mutual information bound between queries and truly relevant code.\\n\\n(b) *Structure-conditioned contrastive loss*: We use an InfoNCE-style loss where positive pairs are (issue description, data-flow-connected code) and negatives include both random negatives and the structurally-mined hard negatives above. We weight the contrastive loss by data-flow path strength: code reachable via short, direct def-use chains receives higher positive weight than code connected only via long transitive paths. This encodes the inductive bias that direct data-flow connections are stronger relevance signals than transitive ones.\\n\\n(c) *Label-source-aware training*: To address heterogeneity from the Beniget fallback, we include the binary label-source indicator (inter-procedural vs. intra-procedural) as an explicit input feature to the fusion head. We weight instances with inter-procedural labels slightly higher (1.2x) in the contrastive loss, reflecting higher label quality. We include a dedicated ablation: training with vs. without Beniget-only instances, and with vs. without the label-source indicator.\\n\\n(d) *Multi-signal fusion head*: On top of the contrastive encoder, a lightweight MLP fusion head combines the learned embedding similarity with explicit features (data-flow distance, BM25 score, co-change frequency, label-source indicator) for final ranking. This allows the model to leverage both learned representations and interpretable structural features.\\n\\nTraining takes ~3-5 hours per run on a single H100. We run 8 ablation configurations: (i) contrastive with data-flow hard negatives, (ii) contrastive with random negatives only, (iii) contrastive with embedding-distance hard negatives (CoCoHaNeRe-style, as direct comparison), (iv) standard cross-entropy SFT (as in SWE-Pruner's paradigm), (v) full fusion with MLP head, (vi) inter-procedural features only vs. intra-procedural only (testing whether crossing call boundaries matters), (vii) data-flow features only vs. lexical only, (viii) with vs. without Beniget-only instances + label-source indicator.\\n\\n**Stage 3: Evaluation (Days 7-11).** At inference, StructFuse operates as a two-stage cascade: (1) coarse file selection via BM25 + data-flow reachability (retain files within scope-bounded data-flow analysis OR top-30 BM25), then (2) fine-grained function ranking via the trained 3B contrastive model. This cascade adds architectural novelty over flat ranking approaches like SweRank while being directly comparable to SWE-Fixer's coarse-to-fine paradigm—with the key difference that our coarse stage uses structural reachability, not just BM25. Unlike RANGER and CodexGraph, which use graphs only at inference time, StructFuse uses structural signals during training to produce a model that has internalized data-flow relevance patterns.\\n\\n**Primary evaluation** (budget-safe): (a) SWE-bench Lite (300 instances, full)—the most widely compared benchmark with established baselines including ARISE (22.0% Pass@1). We estimate ~5-12min per instance with Qwen3.6-27B on H100 using vLLM serving under a 50-turn agent budget (consistent with SWE-agent's recommended cost-conservative configuration), yielding ~25-60h total. (b) RepoBench-R (cross-file retrieval evaluation, no LLM needed, ~15h).\\n\\n**Secondary evaluation** (if timeline permits): SWE-bench Pro (300-instance stratified sample of 731 public instances, ~25-60h). This provides signal on harder tasks where the 41-58pp SEAL gap means context selection has proportionally larger impact.\\n\\nMetrics: localization recall@k (file and function level), end-to-end Pass@1 repair rate, token efficiency, and a new metric: *structural precision*—what fraction of selected files are reachable via data-flow from the actual fix. End-to-end evaluation uses Qwen3.6-27B exclusively (open-weight, no API costs). We compare against: (i) SweRank/SweRankEmbed (ICLR 2026, SOTA text-based retrieval), (ii) SWE-Pruner (LLM-labeled selector), (iii) SWE-Fixer-Retriever (BM25 + neural, ACL Findings 2025), (iv) BM25 baseline, (v) ARISE's graph tools (intra-procedural def-use, 22.0% on SWE-bench Lite), (vi) no-pruning full-context.\\n\\n**Improvement ceiling analysis:** We explicitly address expected improvement magnitude. On SWE-bench Verified, SWE-Pruner's <1pp degradation suggests text-based context selection is near-sufficient for the remaining solvable instances—but this is a ceiling effect on a near-saturated benchmark. On SWE-bench Lite and Pro, where ARISE achieves only 22.0% and SEAL scores plateau at 42-59%, the headroom is 41-78pp. We hypothesize structural signals help precisely in cases where text-based retrieval fails: bugs caused by data-flow through indirect dependencies (e.g., a function modifies a shared data structure consumed 2 call-graph hops away, with no lexical overlap between the modifier and consumer). We include a qualitative failure analysis of 50 SWE-Pruner/SweRank failures on SWE-bench Lite, categorizing failures by whether data-flow analysis would have identified the correct context. We frame the primary contribution as the *training methodology* (data-flow-aware contrastive hard negatives)—generalizable to code search, vulnerability detection, and other code intelligence tasks—not just absolute improvement on one benchmark.\\n\\n**Stage 4: Writing (Days 11-15).** The paper presents four contributions: (1) *Methodological*: data-flow-aware contrastive hard negative mining—using program analysis to generate training negatives that are structurally disconnected from the bug despite lexical similarity, providing an orthogonal learning signal that embedding-distance negatives cannot offer. (2) *Technical*: scope-bounded inter-procedural data-flow extraction via two-phase CodeQL queries (call-graph pre-computation → bounded data-flow), with graceful degradation and label-source indicators for heterogeneous extraction quality. (3) *Empirical*: demonstration that inter-procedural def-use edges (crossing call boundaries) provide gains beyond ARISE's intra-procedural analysis, LocAgent's import/call/inheritance edges, and RANGER/CodexGraph's inference-only structural graphs, with the contrastive objective outperforming standard SFT on the same data. (4) *Practical*: a model-independent pipeline (CodeQL→contrastive training→3B retriever) with deterministic, reproducible labels, interpretable selections with traceable data-flow paths, and zero marginal cost when scaling to new repositories (only CodeQL extraction needed, no LLM inference).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~170h H100 (CodeQL database creation + scope-bounded data-flow extraction for Python repos: ~10h CPU-parallel, no GPU; feature extraction: ~10h; contrastive training 8 ablation runs: ~40h; SWE-bench Lite evaluation 300 instances with Qwen3.6-27B at ~5-12min/instance: ~25-60h; RepoBench-R evaluation: ~15h; optional SWE-bench Pro 300 instances: ~25-60h if timeline permits)\",\n      \"gpu_utilization\": \"~70-80% utilization during evaluation phase (Qwen3.6-27B inference is GPU-bound via vLLM); ~50-60% during contrastive training\",\n      \"timeline\": \"15 days (Day 1: CodeQL query development + scope-bounded validation on 10 pilot repos, reporting timeout rates and reachability statistics; Days 2-3: full-scale data-flow extraction + feature computation with label-source tracking; Days 4-6: contrastive training + 8 ablations including label-heterogeneity ablation; Days 7-11: evaluation on SWE-bench Lite + RepoBench-R primary, SWE-bench Pro secondary; Days 11-15: writing including failure analysis and improvement ceiling discussion)\",\n      \"team\": \"1-2 researchers (one with CodeQL/program analysis, one with contrastive learning; can be same person)\",\n      \"estimated_gpu_cost\": \"$400-600 (170h H100 at spot ~$2.50/hr; no LLM API costs—all evaluation uses open-weight Qwen3.6-27B)\",\n      \"claude_api_cost\": \"$0 for evaluation (Qwen3.6-27B only); ~$50-100 for writing assistance\",\n      \"risk_note\": \"CodeQL scalability risk mitigated by scope-bounded query design: Phase 1a extracts call graph (fast, seconds/repo), Phase 1b restricts sources/sinks to functions within 2 call-graph hops. Explicit --timeout=300s and --ram=8192 per repo. Day 1 pilot on 10 repos reports: (a) mean/max query time, (b) timeout rate, (c) average reachable files. If >30% timeout, tighten to 1 call-graph hop. Beniget fallback with label-source indicator handles remaining failures. Evaluation time estimate based on SWE-agent's 50-turn budget recommendation; Qwen3.6-27B achieves ~85 TPS on RTX 3090, substantially faster on H100 with vLLM. Primary evaluation scoped to SWE-bench Lite (300) + RepoBench-R to ensure timeline safety.\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~140h H100 (same pipeline; agent manages CodeQL builds and queues training; human reviews CodeQL query quality at Day 1 pilot and ablation results at Day 6)\",\n      \"gpu_utilization\": \"~75-85% utilization; agent parallelizes independent experiments\",\n      \"timeline\": \"12-14 days\",\n      \"team\": \"1 researcher, ~45min/day check-in for CodeQL query review and experiment approval\",\n      \"claude_api_cost\": \"$80-150 (800-1500 turns for pipeline code generation and debugging)\",\n      \"estimated_gpu_cost\": \"$330-470 (140h H100 at spot ~$2.50/hr)\",\n      \"risk_note\": \"Tight timeline requires pre-validated CodeQL setup; human reviews scope-bounded query on 3 repos in first 4 hours before scaling. Label-source tracking automated from extraction phase.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~200h H100 (full ablation suite including label-heterogeneity experiments, hyperparameter sweep over contrastive temperature and hard negative ratio, primary + secondary benchmark evaluation)\",\n      \"gpu_utilization\": \"~85-90% utilization; agent continuously launches experiments, parallelizes independent ablations\",\n      \"timeline\": \"10-12 days with 2-4 H100 GPUs available concurrently\",\n      \"team\": \"0 (initial setup: CodeQL CLI installation, SWE-smith repo cloning, SWE-bench evaluation harness)\",\n      \"claude_api_cost\": \"$200-400 (2000-4000 turns for iterative pipeline development, CodeQL query debugging, experiment scheduling)\",\n      \"estimated_gpu_cost\": \"$500-700 (200h H100 at spot ~$2.50/hr to on-demand ~$3.50/hr)\",\n      \"speed_bottleneck\": \"SWE-bench Lite evaluation (~8min/instance × 300 instances on Qwen3.6-27B ≈ 40 H100-hours; parallelizable across GPUs). Optional SWE-bench Pro adds ~40h.\",\n      \"risk_note\": \"Agent should validate scope-bounded CodeQL query on first 10 repos and report: (a) timeout rate with 300s limit, (b) avg reachable files within 2 call-graph hops, (c) fraction requiring Beniget fallback. If CodeQL timeout rate >30%, agent autonomously tightens to 1 call-graph hop. Label-source statistics automatically tracked and reported.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 Main + Findings (ARR submission deadline: May 25, 2026; conference: Fall 2026; topic area: 'NLP and Code Models'; dual-targeting Main and Findings to de-risk rejection given empirical contribution type)\"\n  ],\n  \"key_references\": [\n    \"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents (arXiv:2601.16746, Jan 2026) — 0.6B skimmer trained on labels from Qwen3-Coder-30B-A3B (MoE, 3.3B active params), <1pp degradation on SWE-bench Verified\",\n    \"LocAgent: Graph-Guided LLM Agents for Code Localization (ACL 2025, arXiv:2503.09089) — 92.7% file-level accuracy on SWE-bench Lite using import/invocation/inheritance edges with fine-tuned Qwen2.5-32B; no def-use edges\",\n    \"SweRank: Software Issue Localization with Code Ranking (ICLR 2026, arXiv:2505.07849) — SOTA retrieve-and-rerank via SweRankEmbed + SweRankLLM; text-only, no structural signals\",\n    \"SweRank+: Multilingual, Multi-Turn Code Ranking (arXiv:2512.20482, Dec 2025) — extends SweRank to multilingual multi-turn with 155K training instances\",\n    \"SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution (ACL Findings 2025) — BM25 + fine-tuned 7B retriever for coarse-to-fine file retrieval; 24.7%/32.8% on SWE-bench Lite/Verified; no structural program analysis features\",\n    \"RANGER: Repository-Level Agent for Graph-Enhanced Retrieval (arXiv:2509.25257, Sep 2025) — repository knowledge graph with structural edges (CONTAINS, HAS_METHOD, INHERITS, USES), MCTS-guided exploration with bi-encoder (mxbai-embed-large-v1, 335M) + cross-encoder (bge-reranker-v2-m3, 568M) cascade; 0.5471 Accuracy@5 on RepoBench; no data-flow edges, no model training with structural signals, purely inference-time\",\n    \"CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases (NAACL 2025, arXiv:2408.03910) — Neo4j code property graphs with Cypher queries; structural edges only (CONTAINS, HAS_METHOD, HAS_FIELD, INHERITS, USES), no data-flow edges; 22.96% Pass@1 on SWE-bench Lite with GPT-4o; purely inference-time, no model training\",\n    \"ARISE: Repository-level Graph Representation for Agentic Fault Localization and Repair (arXiv:2605.03117, May 2026) — intra-procedural def-use edges via Python ast module (does NOT cross call boundaries), +17pp Function Recall@1, 22.0% Pass@1 on SWE-bench Lite with Qwen2.5-Coder-32B, runtime tool calls only\",\n    \"Sliceformer: Static Program Slicing Using Language Models With Dataflow-Aware Pretraining (arXiv:2604.26961, Apr 2026) — validates data-flow knowledge transfer to neural models via DFG-aware pretraining objectives\",\n    \"CoCoHaNeRe: Effective Hard Negative Mining for Contrastive Learning-Based Code Search (TOSEM 2025) — demonstrates hard negative mining improves code search MRR by 7-11% over baselines; uses embedding-distance negatives, not structural\",\n    \"GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph (ASE 2024) — coarse-to-fine retrieval using control-flow and data-dependence graphs for code completion\",\n    \"SaraCoder: Orchestrating Semantic and Structural Cues for Repository-Level Code Completion (ICLR 2026) — graph-based structural similarity for code completion retrieval\",\n    \"LLMxCPG: Context-Aware Vulnerability Detection Through CPG-Guided LLMs (USENIX Security 2025) — CPG-guided context extraction, 67-91% code reduction\",\n    \"Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents (arXiv:2604.04979, Apr 2026) — 0.86 recall, 92% token removal on tool outputs\",\n    \"On the Effectiveness of Context Compression for Repository-Level Tasks (arXiv:2604.13725, Apr 2026) — continuous latent vectors surpass full-context by 28.3% at 4x compression\",\n    \"LongCodeZip: Compress Long Context for Code Language Models (ASE 2025, arXiv:2510.00446) — 5.6x training-free compression\",\n    \"RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems (ICLR 2024, arXiv:2306.03091) — cross-file retrieval evaluation benchmark\",\n    \"SWE-ContextBench: A Benchmark for Context Learning in Coding (arXiv:2602.08316, Feb 2026) — 1100+376 context evaluation tasks\",\n    \"On the Role of Fault Localization Context for LLM-Based Program Repair (arXiv:2604.05481, Apr 2026) — file-level is dominant factor\",\n    \"Why SWE-bench Verified No Longer Measures Frontier Coding Capabilities (OpenAI, Feb 2026) — contamination analysis\",\n    \"SWE-bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? (Scale AI, arXiv:2509.16941, 2025) — 1865 tasks, 731 public; SEAL top scores: GPT-5.4 59.1%, Claude Opus 4.6 51.9%\",\n    \"Contrastive Learning with Hard Negative Samples (arXiv:2010.04592, Robinson et al., 2021) — theoretical analysis of hard negative sampling in contrastive learning; demonstrates debiased contrastive objectives\",\n    \"LLMDFA: Analyzing Dataflow in Code with Large Language Models (NeurIPS 2024)\",\n    \"SWE-smith: Scaling Data for Software Engineering Agents (NeurIPS 2025 D&B Spotlight) — 50K instances from 128 Python repos\",\n    \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues? (ICLR 2024)\"\n  ],\n  \"description\": \"We propose StructFuse, a two-stage context retrieval system for repository-level code repair that introduces data-flow-aware contrastive learning for structurally-grounded context selection. The key methodological contribution is a novel hard negative mining strategy: for each training instance, negatives are files that are lexically similar to bug-relevant code (high BM25/embedding similarity) but structurally disconnected (no inter-procedural data-flow path within the scope-bounded analysis from the buggy location). This structural disconnection signal is impossible to derive from text-based methods and provides an orthogonal learning signal compared to embedding-distance-based hard negatives (as in CoCoHaNeRe, TOSEM 2025)—the contrastive encoder already computes embedding similarity, so embedding-distance negatives provide partly redundant gradient signal, while structurally disconnected negatives force the model to internalize a relevance concept inaccessible through text alone. Unlike ARISE (arXiv:2605.03117), which is limited to intra-procedural def-use via Python's ast module, StructFuse extracts inter-procedural def-use chains via scope-bounded CodeQL queries (call-graph pre-computation → bounded data-flow within 2 hops, with explicit --timeout=300s and --ram=8192 limits, and graceful Beniget fallback with label-source indicators). Unlike SWE-Pruner, whose labels are coupled to Qwen3-Coder-30B-A3B's biases and are non-reproducible, StructFuse's labels are deterministic program analysis outputs with zero marginal cost at scale. Unlike SweRank (ICLR 2026) and SWE-Fixer (ACL Findings 2025), StructFuse incorporates structural program analysis into both training (via hard negatives) and inference (via a two-stage cascade: coarse selection by BM25 + data-flow reachability → fine ranking by 3B contrastive model). Unlike RANGER (arXiv:2509.25257) and CodexGraph (NAACL 2025), which use structural graphs only at inference time without data-flow edges, StructFuse uses inter-procedural data-flow signals during training to produce a model that has internalized structural relevance patterns. We train a Qwen2.5-Coder-3B bi-encoder with structure-conditioned InfoNCE loss, label-source-aware weighting, and a lightweight MLP fusion head. We evaluate primarily on SWE-bench Lite (300, with direct comparison to ARISE's 22.0% Pass@1) and RepoBench-R, with SWE-bench Pro (300-instance sample) as secondary, using only open-weight Qwen3.6-27B for end-to-end repair (no API costs). The paper includes a qualitative failure analysis of text-based retrieval on 50 instances, demonstrating specific cases where data-flow analysis identifies correct context that lexical methods miss. The paper presents four contributions: (1) data-flow-aware contrastive hard negative mining as a novel training methodology providing orthogonal gradient signal versus embedding-distance negatives, (2) scope-bounded inter-procedural CodeQL extraction with graceful degradation and label-source tracking, (3) empirical evidence that inter-procedural def-use edges provide gains beyond intra-procedural analysis (ARISE), coarser structural edges (LocAgent), and inference-only graph use (RANGER, CodexGraph), and (4) a practical, model-independent pipeline with deterministic labels, interpretable selections, and zero labeling cost. We explicitly target EMNLP 2026 Main with Findings as fallback.\",\n  \"project_name\": \"structfuse_context\",\n  \"source\": \"web_research\"\n}\nENDJSON",
+  "description": "Output the complete revised JSON"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "861c6318-be70-4ddb-b669-29a9610ac5bf",
+  "isSidechain": false,
+  "requestId": "req_011CauRMvftwceawdKEwhURi",
+  "type": "assistant",
+  "uuid": "dd63b3e7-6e49-4e3e-ab36-21f877def1d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017bi8EeeYMU1iaCMQt4RnnB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1061,
+      "cache_read_input_tokens": 48426,
+      "output_tokens": 11023,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1061,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 11023,
+          "cache_read_input_tokens": 48426,
+          "cache_creation_input_tokens": 1061,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1061
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-10T19:18:06.950Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Eso598Ni7e5Ug1NiQ7TfRW`</summary>
+
+```text
+Contains brace with quote character (expansion obfuscation)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dd63b3e7-6e49-4e3e-ab36-21f877def1d8",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "6a35f427-250e-4b35-9336-da45ceb8615a",
+  "toolUseResult": "Error: Contains brace with quote character (expansion obfuscation)",
+  "sourceToolAssistantUUID": "dd63b3e7-6e49-4e3e-ab36-21f877def1d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 89_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level…",
+  "leafUuid": "6a35f427-250e-4b35-9336-da45ceb8615a",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise StructFuse to address CodeQL scalability and improve ceiling analysis",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-10T19:22:05.848Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01USSFQfirXxXt1QCyFBGgBN`</summary>
+
+```json
+{
+  "file_path": "/tmp/structfuse_revised.json",
+  "content": "{\n  \"change_type\": \"minor\",\n  \"title\": \"StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level Code Repair Context Selection\",\n  \"core_problem\": \"Repository-level bug repair requires selecting relevant context from large codebases. Existing context selectors fall into three paradigms, each with fundamental limitations: (1) Neural selectors like SWE-Pruner train on LLM-generated labels that are coupled to a specific teacher model's biases and selection patterns—labels are stochastic, non-reproducible, and encode the teacher's blind spots. (2) Retrieve-and-rerank methods like SweRank (ICLR 2026) achieve strong text-based localization but miss structural dependencies—lexically similar but structurally unrelated code becomes a false positive. (3) Graph-guided agents like LocAgent, RANGER, and CodexGraph capture structural edges (import/call/inheritance/USES) but omit fine-grained data-flow (def-use) edges, and operate purely at inference time without using structural signals to improve model training; ARISE uses intra-procedural def-use but only at runtime via tool calls, not as distilled knowledge, and explicitly does not cross call boundaries. On SWE-bench Pro (where top SEAL-standardized scores range from ~42-59%—GPT-5.4 at 59.1%, Claude Opus 4.6 at 51.9%—leaving 41-58pp improvement headroom, and context selection accounts for 4-10pp swings), context quality remains a key differentiator with substantial room for improvement. Can we build a context selector that leverages inter-procedural data-flow signals for structurally-grounded, interpretable, and model-independent selections—using deterministic program analysis rather than stochastic LLM judgments?\",\n  \"opportunity\": \"SWE-Pruner (arXiv:2601.16746) demonstrated a 0.6B neural skimmer can reduce tokens 23-54% with <1pp degradation, but its supervision comes from Qwen3-Coder-30B-A3B-Instruct (an MoE model with 3.3B active parameters)—while inference is cheap (~$10-35 to label 61K samples), the labels are coupled to that model's biases, non-reproducible across runs, and provide no interpretable rationale for selections. LocAgent (ACL 2025) showed graph-guided localization achieves 92.7% file-level accuracy using import/invocation/inheritance edges with fine-tuned Qwen2.5-32B, but omits data-flow edges. SweRank (ICLR 2026) achieves SOTA retrieve-and-rerank localization but is purely text-based. RANGER (arXiv:2509.25257) builds comprehensive repository knowledge graphs with MCTS-guided exploration and bi-encoder + cross-encoder cascade, achieving strong results on RepoBench (0.5471 Accuracy@5) and CrossCodeEval—but uses only structural/syntactic edges (CONTAINS, HAS_METHOD, INHERITS, USES) without data-flow, and is purely an inference-time system with no model training. CodexGraph (NAACL 2025) bridges LLMs and code repos via Neo4j code property graphs with Cypher queries (22.96% Pass@1 on SWE-bench Lite)—but again is purely inference-time with no data-flow edges, and the paper itself acknowledges room for 'schema completeness' improvements. ARISE (arXiv:2605.03117) confirmed data-flow slicing yields +17pp Function Recall@1, but (a) uses only Python's ast module for intra-procedural analysis (explicitly does not cross call boundaries), and (b) keeps analysis as runtime tool calls adding latency per agent step. SWE-Fixer (ACL Findings 2025) combines BM25 with a fine-tuned 7B retriever for coarse-to-fine file retrieval but uses no structural program analysis features. Sliceformer (arXiv:2604.26961) validated that data-flow knowledge transfers to neural models with 22% ExactMatch gains on slicing tasks. The opportunity: no existing work (a) uses inter-procedural def-use analysis for repair context selection, (b) distills data-flow signals into a fast retrieval model via contrastive training, or (c) exploits structural connectivity for contrastive hard negative mining. ARISE's intra-procedural limitation, RANGER/CodexGraph's inference-only graph use without data-flow edges, and SweRank's text-only approach leave a clear gap for inter-procedural data-flow-aware retrieval with structural training signal.\",\n  \"landscape\": \"**Neural context selectors**: SWE-Pruner trains a 0.6B skimmer on 61K samples labeled by Qwen3-Coder-30B-A3B-Instruct (an MoE model with 3.3B active parameters per forward pass, costing ~$10-35 for labeling at $0.07-0.19/1M input tokens), achieving <1pp degradation on SWE-bench Verified (70.6%->70.2%)—though SWE-bench Verified is known contaminated (OpenAI, Feb 2026). Squeez (arXiv:2604.04979) fine-tunes Qwen 3.5 2B for task-conditioned tool-output pruning (0.86 recall, 92% token removal) but targets tool outputs, not repository context. LongCodeZip (ASE 2025) achieves 5.6x compression via perplexity-based ranking, training-free but code-agnostic. **Retrieve-and-rerank approaches**: SweRank (ICLR 2026, arXiv:2505.07849) achieves SOTA issue localization via SweRankEmbed (bi-encoder retriever) + SweRankLLM (listwise LLM reranker), trained on the SweLoc dataset—purely text-based with no structural signals. SweRank+ (arXiv:2512.20482) extends to multilingual multi-turn ranking with 155K training instances. SWE-Fixer (ACL Findings 2025) combines BM25 with a fine-tuned 7B retriever (SWE-Fixer-Retriever-7B) for coarse-to-fine file retrieval, achieving 24.7%/32.8% on SWE-bench Lite/Verified with P2P filtering—architecturally the closest prior work to our retrieval fusion, but uses learned embeddings without structural program analysis features. **Graph-guided approaches**: LocAgent (ACL 2025, arXiv:2503.09089) parses codebases into directed heterogeneous graphs with import/invocation/inheritance edges, achieving 92.7% file-level accuracy with fine-tuned Qwen2.5-32B—but omits data-flow (def-use) edges and requires a 32B model at inference. RANGER (arXiv:2509.25257) constructs repository knowledge graphs with six node types (Module, Class, Function, Method, Field, GlobalVariable) and structural edges (CONTAINS, HAS_METHOD, HAS_FIELD, INHERITS, USES), employing MCTS-guided graph exploration with a bi-encoder (mxbai-embed-large-v1, 335M) + cross-encoder (bge-reranker-v2-m3, 568M) cascade—achieves 0.5471 Accuracy@5 on RepoBench with Qwen-3-8B embeddings, but uses no data-flow edges and is purely an inference-time system with no model training using structural signals. CodexGraph (NAACL 2025, arXiv:2408.03910) bridges LLMs and code repositories via Neo4j code property graphs with Cypher queries, using a similar structural schema (MODULE, CLASS, METHOD, FUNCTION, FIELD, GLOBAL_VARIABLE nodes; CONTAINS, HAS_METHOD, HAS_FIELD, INHERITS, USES edges)—achieves 22.96% Pass@1 on SWE-bench Lite with GPT-4o, but is purely inference-time with no model training, no data-flow edges, and the paper itself acknowledges room for improvement in 'schema completeness' including 'adding edges related to function calls.' KGCompass (arXiv:2503.21710) constructs repository knowledge graphs (58.3% repair) but with heavy construction overhead. GraphCoder (ASE 2024) uses code context graphs with control-flow and data-dependence for coarse-to-fine retrieval in code completion—related but targets completion, not repair context selection. SaraCoder (ICLR 2026) orchestrates semantic and structural cues for code completion with a graph-based structural similarity metric—demonstrates the value of structural signals in retrieval but does not address repair or use def-use data-flow. **Data-flow-specific approaches**: ARISE (arXiv:2605.03117) augments SWE-agent with statement-level def-use edges via Python's ast module, gaining +17pp Function Recall@1 and +4.7pp Pass@1 (22.0% on SWE-bench Lite with Qwen2.5-Coder-32B)—but is limited to intra-procedural analysis (explicitly does not cross call boundaries), keeps analysis as runtime tool calls, and requires a 32B model at inference. LLMxCPG (USENIX Security 2025) uses Code Property Graphs for vulnerability detection (67-91% code reduction, 15-40% F1 gain) but targets security, not repair context. Sliceformer (arXiv:2604.26961) distills DFG knowledge into CodeT5+ for slicing tasks via dataflow-aware pretraining objectives, validating structural knowledge transfer but not addressing repair. **Contrastive learning for code**: CoCoHaNeRe (TOSEM 2025) demonstrates that hard negative mining significantly improves contrastive code search (+7-11% MRR over baselines), but uses random or embedding-distance-based negatives without structural awareness. No existing work uses program-analysis-derived structural connectivity to mine hard negatives. **Compression paradigms**: An empirical study (arXiv:2604.13725) shows continuous latent vector compression surpasses full-context by up to 28.3% BLEU at 4x compression. **Benchmarks**: SWE-bench Pro (Scale AI, 1865 tasks total, 731 public) is the recommended hard benchmark—top SEAL-standardized scores: GPT-5.4 (xHigh) 59.1%, Claude Opus 4.6 (thinking) 51.9%, Gemini 3.1 Pro 46.1%; custom scaffolding goes higher (Claude Mythos Preview 77.8%). The 41-58pp gap between SEAL scores and perfect resolution means context selection has proportionally large impact—unlike near-saturated SWE-bench Verified where SWE-Pruner's <1pp degradation suggests diminishing returns. SWE-bench Lite (300 instances) remains widely used. RepoBench-R (ICLR 2024) directly evaluates cross-file context retrieval. **Gap**: No existing work combines inter-procedural data-flow analysis with contrastive hard negative mining for repair context retrieval. ARISE is intra-procedural only; SweRank and SWE-Fixer are text-only; LocAgent uses coarser structural edges without def-use; RANGER and CodexGraph use structural graphs at inference only, not for training; CoCoHaNeRe shows hard negatives work for code search but without structural awareness. The fusion of inter-procedural data-flow features with lexical retrieval via data-flow-aware contrastive learning is unexplored.\",\n  \"approach\": \"We propose StructFuse, a two-stage context retrieval system that combines inter-procedural data-flow analysis with a novel data-flow-aware contrastive learning objective for repository-level code repair context selection.\\n\\n**Stage 1: Scope-Bounded Inter-Procedural Data-Flow Extraction (Days 1-3).** For ~5K SWE-smith training instances, we extract inter-procedural data-flow features using a two-phase CodeQL strategy designed to prevent query-evaluation blowups. **Phase 1a (call-graph pre-computation):** For each instance, we first run a lightweight CodeQL query to extract the call graph and identify all functions within 2 call-graph hops of the buggy function. This is fast (seconds per repo) because call-graph queries are relational joins, not data-flow tracking. **Phase 1b (scope-bounded data-flow query):** We then configure CodeQL's inter-procedural data-flow API with sources restricted to parameters and return values of only the functions identified in Phase 1a (within 2 call-graph hops), and sinks restricted to variable reads within those same functions. This bounds the analysis scope *before* query evaluation begins, preventing the Cartesian-product blowup that occurs with broad 'all parameters as sources' definitions—the reviewer correctly identified that post-hoc graph-distance filtering does not prevent evaluation-time blowups. We enforce strict resource limits: --timeout=300s and --ram=8192 per repo query. **Graceful degradation:** For repos where CodeQL times out (>300s) or produces insufficient coverage (<5 reachable files from bug location), we fall back to Beniget for intra-file def-use chains and record a binary label-source indicator (inter_procedural=True/False) for each instance. We budget Day 1 specifically for CodeQL query development and validation on 10 pilot repos—testing query precision, recall against gold patches, extraction throughput, and critically: timeout rates and memory consumption. We report three pilot statistics before scaling: (a) mean/max query time per repo, (b) fraction of repos that timeout, (c) average files reachable within 2 call-graph hops + data-flow from bug location. If >30% of repos timeout, we tighten to 1 call-graph hop before scaling. For each candidate file/function, we compute: (a) shortest data-flow path distance to the buggy location, (b) number of distinct data-flow paths, (c) dependency type (inter-procedural def-use, call-graph, import), (d) label-source indicator (CodeQL inter-procedural vs. Beniget intra-procedural). We also extract lexical features (BM25 scores, SweRankEmbed similarity) and structural metadata (git co-change frequency, import distance).\\n\\n**Stage 2: Data-Flow-Aware Contrastive Retrieval Training (Days 4-6).** This is the core methodological contribution. We train a Qwen2.5-Coder-3B bi-encoder retriever with a two-component objective:\\n\\n(a) *Data-flow-aware hard negative mining*: For each training instance, hard negatives are files that are lexically similar to the bug-relevant files (high BM25/embedding similarity) but structurally disconnected (no data-flow path within the scope-bounded analysis from the buggy location). This is inspired by CoCoHaNeRe's (TOSEM 2025) demonstration that hard negatives dramatically improve code search, but we replace their embedding-distance-based mining with program-analysis-derived structural connectivity—a fundamentally different and more principled signal. **Theoretical justification:** Embedding-distance-based hard negatives (as in CoCoHaNeRe) are partly redundant with the model's own learned similarity: the contrastive encoder already computes embedding similarity, so negatives selected by embedding distance provide gradient signal along dimensions the model has already partially learned to separate. In contrast, structurally disconnected negatives provide an *orthogonal* learning signal—the model cannot derive inter-procedural data-flow connectivity from lexical features alone, so these negatives force the model to internalize a structural relevance concept that is inaccessible through text-based training. In information-theoretic terms, this increases the effective diversity of the negative set in the InfoNCE objective, tightening the mutual information bound between queries and truly relevant code.\\n\\n(b) *Structure-conditioned contrastive loss*: We use an InfoNCE-style loss where positive pairs are (issue description, data-flow-connected code) and negatives include both random negatives and the structurally-mined hard negatives above. We weight the contrastive loss by data-flow path strength: code reachable via short, direct def-use chains receives higher positive weight than code connected only via long transitive paths. This encodes the inductive bias that direct data-flow connections are stronger relevance signals than transitive ones.\\n\\n(c) *Label-source-aware training*: To address heterogeneity from the Beniget fallback, we include the binary label-source indicator (inter-procedural vs. intra-procedural) as an explicit input feature to the fusion head. We weight instances with inter-procedural labels slightly higher (1.2x) in the contrastive loss, reflecting higher label quality. We include a dedicated ablation: training with vs. without Beniget-only instances, and with vs. without the label-source indicator.\\n\\n(d) *Multi-signal fusion head*: On top of the contrastive encoder, a lightweight MLP fusion head combines the learned embedding similarity with explicit features (data-flow distance, BM25 score, co-change frequency, label-source indicator) for final ranking. This allows the model to leverage both learned representations and interpretable structural features.\\n\\nTraining takes ~3-5 hours per run on a single H100. We run 8 ablation configurations: (i) contrastive with data-flow hard negatives, (ii) contrastive with random negatives only, (iii) contrastive with embedding-distance hard negatives (CoCoHaNeRe-style, as direct comparison), (iv) standard cross-entropy SFT (as in SWE-Pruner's paradigm), (v) full fusion with MLP head, (vi) inter-procedural features only vs. intra-procedural only (testing whether crossing call boundaries matters), (vii) data-flow features only vs. lexical only, (viii) with vs. without Beniget-only instances + label-source indicator.\\n\\n**Stage 3: Evaluation (Days 7-11).** At inference, StructFuse operates as a two-stage cascade: (1) coarse file selection via BM25 + data-flow reachability (retain files within scope-bounded data-flow analysis OR top-30 BM25), then (2) fine-grained function ranking via the trained 3B contrastive model. This cascade adds architectural novelty over flat ranking approaches like SweRank while being directly comparable to SWE-Fixer's coarse-to-fine paradigm—with the key difference that our coarse stage uses structural reachability, not just BM25. Unlike RANGER and CodexGraph, which use graphs only at inference time, StructFuse uses structural signals during training to produce a model that has internalized data-flow relevance patterns.\\n\\n**Primary evaluation** (budget-safe): (a) SWE-bench Lite (300 instances, full)—the most widely compared benchmark with established baselines including ARISE (22.0% Pass@1). We estimate ~5-12min per instance with Qwen3.6-27B on H100 using vLLM serving under a 50-turn agent budget (consistent with SWE-agent's recommended cost-conservative configuration of $1/instance and 50-turn limit), yielding ~25-60h total. (b) RepoBench-R (cross-file retrieval evaluation, no LLM needed, ~15h).\\n\\n**Secondary evaluation** (if timeline permits): SWE-bench Pro (300-instance stratified sample of 731 public instances, ~25-60h). This provides signal on harder tasks where the 41-58pp SEAL gap means context selection has proportionally larger impact.\\n\\nMetrics: localization recall@k (file and function level), end-to-end Pass@1 repair rate, token efficiency, and a new metric: *structural precision*—what fraction of selected files are reachable via data-flow from the actual fix. End-to-end evaluation uses Qwen3.6-27B exclusively (open-weight, no API costs). We compare against: (i) SweRank/SweRankEmbed (ICLR 2026, SOTA text-based retrieval), (ii) SWE-Pruner (LLM-labeled selector), (iii) SWE-Fixer-Retriever (BM25 + neural, ACL Findings 2025), (iv) BM25 baseline, (v) ARISE's graph tools (intra-procedural def-use, 22.0% on SWE-bench Lite), (vi) no-pruning full-context.\\n\\n**Improvement ceiling analysis:** We explicitly address expected improvement magnitude. On SWE-bench Verified, SWE-Pruner's <1pp degradation suggests text-based context selection is near-sufficient for the remaining solvable instances—but this is a ceiling effect on a near-saturated benchmark. On SWE-bench Lite and Pro, where ARISE achieves only 22.0% and SEAL scores plateau at 42-59%, the headroom is 41-78pp. We hypothesize structural signals help precisely in cases where text-based retrieval fails: bugs caused by data-flow through indirect dependencies (e.g., a function modifies a shared data structure consumed 2 call-graph hops away, with no lexical overlap between the modifier and consumer). We include a qualitative failure analysis of 50 SWE-Pruner/SweRank failures on SWE-bench Lite, categorizing failures by whether data-flow analysis would have identified the correct context. We frame the primary contribution as the *training methodology* (data-flow-aware contrastive hard negatives)—generalizable to code search, vulnerability detection, and other code intelligence tasks—not just absolute improvement on one benchmark.\\n\\n**Stage 4: Writing (Days 11-15).** The paper presents four contributions: (1) *Methodological*: data-flow-aware contrastive hard negative mining—using program analysis to generate training negatives that are structurally disconnected from the bug despite lexical similarity, providing an orthogonal learning signal that embedding-distance negatives cannot offer. (2) *Technical*: scope-bounded inter-procedural data-flow extraction via two-phase CodeQL queries (call-graph pre-computation then bounded data-flow), with graceful degradation and label-source indicators for heterogeneous extraction quality. (3) *Empirical*: demonstration that inter-procedural def-use edges (crossing call boundaries) provide gains beyond ARISE's intra-procedural analysis, LocAgent's import/call/inheritance edges, and RANGER/CodexGraph's inference-only structural graphs, with the contrastive objective outperforming standard SFT on the same data. (4) *Practical*: a model-independent pipeline (CodeQL to contrastive training to 3B retriever) with deterministic, reproducible labels, interpretable selections with traceable data-flow paths, and zero marginal cost when scaling to new repositories (only CodeQL extraction needed, no LLM inference).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~170h H100 (CodeQL database creation + scope-bounded data-flow extraction for Python repos: ~10h CPU-parallel, no GPU; feature extraction: ~10h; contrastive training 8 ablation runs: ~40h; SWE-bench Lite evaluation 300 instances with Qwen3.6-27B at ~5-12min/instance: ~25-60h; RepoBench-R evaluation: ~15h; optional SWE-bench Pro 300 instances: ~25-60h if timeline permits)\",\n      \"gpu_utilization\": \"~70-80% utilization during evaluation phase (Qwen3.6-27B inference is GPU-bound via vLLM); ~50-60% during contrastive training\",\n      \"timeline\": \"15 days (Day 1: CodeQL query development + scope-bounded validation on 10 pilot repos, reporting timeout rates and reachability statistics; Days 2-3: full-scale data-flow extraction + feature computation with label-source tracking; Days 4-6: contrastive training + 8 ablations including label-heterogeneity ablation; Days 7-11: evaluation on SWE-bench Lite + RepoBench-R primary, SWE-bench Pro secondary; Days 11-15: writing including failure analysis and improvement ceiling discussion)\",\n      \"team\": \"1-2 researchers (one with CodeQL/program analysis, one with contrastive learning; can be same person)\",\n      \"estimated_gpu_cost\": \"$400-600 (170h H100 at spot ~$2.50/hr; no LLM API costs—all evaluation uses open-weight Qwen3.6-27B)\",\n      \"claude_api_cost\": \"$0 for evaluation (Qwen3.6-27B only); ~$50-100 for writing assistance\",\n      \"risk_note\": \"CodeQL scalability risk mitigated by scope-bounded query design: Phase 1a extracts call graph (fast, seconds/repo), Phase 1b restricts sources/sinks to functions within 2 call-graph hops. Explicit --timeout=300s and --ram=8192 per repo. Day 1 pilot on 10 repos reports: (a) mean/max query time, (b) timeout rate, (c) average reachable files. If >30% timeout, tighten to 1 call-graph hop. Beniget fallback with label-source indicator handles remaining failures. Evaluation time estimate based on SWE-agent's recommended 50-turn budget and $1/instance cost-conservative configuration; Qwen3.6-27B achieves ~85 TPS on RTX 3090, substantially faster on H100 with vLLM. Primary evaluation scoped to SWE-bench Lite (300) + RepoBench-R to ensure timeline safety.\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~140h H100 (same pipeline; agent manages CodeQL builds and queues training; human reviews CodeQL query quality at Day 1 pilot and ablation results at Day 6)\",\n      \"gpu_utilization\": \"~75-85% utilization; agent parallelizes independent experiments\",\n      \"timeline\": \"12-14 days\",\n      \"team\": \"1 researcher, ~45min/day check-in for CodeQL query review and experiment approval\",\n      \"claude_api_cost\": \"$80-150 (800-1500 turns for pipeline code generation and debugging)\",\n      \"estimated_gpu_cost\": \"$330-470 (140h H100 at spot ~$2.50/hr)\",\n      \"risk_note\": \"Tight timeline requires pre-validated CodeQL setup; human reviews scope-bounded query on 3 repos in first 4 hours before scaling. Label-source tracking automated from extraction phase.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~200h H100 (full ablation suite including label-heterogeneity experiments, hyperparameter sweep over contrastive temperature and hard negative ratio, primary + secondary benchmark evaluation)\",\n      \"gpu_utilization\": \"~85-90% utilization; agent continuously launches experiments, parallelizes independent ablations\",\n      \"timeline\": \"10-12 days with 2-4 H100 GPUs available concurrently\",\n      \"team\": \"0 (initial setup: CodeQL CLI installation, SWE-smith repo cloning, SWE-bench evaluation harness)\",\n      \"claude_api_cost\": \"$200-400 (2000-4000 turns for iterative pipeline development, CodeQL query debugging, experiment scheduling)\",\n      \"estimated_gpu_cost\": \"$500-700 (200h H100 at spot ~$2.50/hr to on-demand ~$3.50/hr)\",\n      \"speed_bottleneck\": \"SWE-bench Lite evaluation (~8min/instance x 300 instances on Qwen3.6-27B = ~40 H100-hours; parallelizable across GPUs). Optional SWE-bench Pro adds ~40h.\",\n      \"risk_note\": \"Agent should validate scope-bounded CodeQL query on first 10 repos and report: (a) timeout rate with 300s limit, (b) avg reachable files within 2 call-graph hops, (c) fraction requiring Beniget fallback. If CodeQL timeout rate >30%, agent autonomously tightens to 1 call-graph hop. Label-source statistics automatically tracked and reported.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 Main + Findings (ARR submission deadline: May 25, 2026; conference: Fall 2026; topic area: 'NLP and Code Models'; dual-targeting Main and Findings to de-risk rejection given empirical contribution type)\"\n  ],\n  \"key_references\": [\n    \"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents (arXiv:2601.16746, Jan 2026) — 0.6B skimmer trained on labels from Qwen3-Coder-30B-A3B (MoE, 3.3B active params), <1pp degradation on SWE-bench Verified\",\n    \"LocAgent: Graph-Guided LLM Agents for Code Localization (ACL 2025, arXiv:2503.09089) — 92.7% file-level accuracy on SWE-bench Lite using import/invocation/inheritance edges with fine-tuned Qwen2.5-32B; no def-use edges\",\n    \"SweRank: Software Issue Localization with Code Ranking (ICLR 2026, arXiv:2505.07849) — SOTA retrieve-and-rerank via SweRankEmbed + SweRankLLM; text-only, no structural signals\",\n    \"SweRank+: Multilingual, Multi-Turn Code Ranking (arXiv:2512.20482, Dec 2025) — extends SweRank to multilingual multi-turn with 155K training instances\",\n    \"SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution (ACL Findings 2025) — BM25 + fine-tuned 7B retriever for coarse-to-fine file retrieval; 24.7%/32.8% on SWE-bench Lite/Verified; no structural program analysis features\",\n    \"RANGER: Repository-Level Agent for Graph-Enhanced Retrieval (arXiv:2509.25257, Sep 2025) — repository knowledge graph with structural edges (CONTAINS, HAS_METHOD, INHERITS, USES), MCTS-guided exploration with bi-encoder (mxbai-embed-large-v1, 335M) + cross-encoder (bge-reranker-v2-m3, 568M) cascade; 0.5471 Accuracy@5 on RepoBench; no data-flow edges, no model training with structural signals, purely inference-time\",\n    \"CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases (NAACL 2025, arXiv:2408.03910) — Neo4j code property graphs with Cypher queries; structural edges only (CONTAINS, HAS_METHOD, HAS_FIELD, INHERITS, USES), no data-flow edges; 22.96% Pass@1 on SWE-bench Lite with GPT-4o; purely inference-time, no model training\",\n    \"ARISE: Repository-level Graph Representation for Agentic Fault Localization and Repair (arXiv:2605.03117, May 2026) — intra-procedural def-use edges via Python ast module (does NOT cross call boundaries), +17pp Function Recall@1, 22.0% Pass@1 on SWE-bench Lite with Qwen2.5-Coder-32B, runtime tool calls only\",\n    \"Sliceformer: Static Program Slicing Using Language Models With Dataflow-Aware Pretraining (arXiv:2604.26961, Apr 2026) — validates data-flow knowledge transfer to neural models via DFG-aware pretraining objectives\",\n    \"CoCoHaNeRe: Effective Hard Negative Mining for Contrastive Learning-Based Code Search (TOSEM 2025) — demonstrates hard negative mining improves code search MRR by 7-11% over baselines; uses embedding-distance negatives, not structural\",\n    \"GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph (ASE 2024) — coarse-to-fine retrieval using control-flow and data-dependence graphs for code completion\",\n    \"SaraCoder: Orchestrating Semantic and Structural Cues for Repository-Level Code Completion (ICLR 2026) — graph-based structural similarity for code completion retrieval\",\n    \"LLMxCPG: Context-Aware Vulnerability Detection Through CPG-Guided LLMs (USENIX Security 2025) — CPG-guided context extraction, 67-91% code reduction\",\n    \"Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents (arXiv:2604.04979, Apr 2026) — 0.86 recall, 92% token removal on tool outputs\",\n    \"On the Effectiveness of Context Compression for Repository-Level Tasks (arXiv:2604.13725, Apr 2026) — continuous latent vectors surpass full-context by 28.3% at 4x compression\",\n    \"LongCodeZip: Compress Long Context for Code Language Models (ASE 2025, arXiv:2510.00446) — 5.6x training-free compression\",\n    \"RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems (ICLR 2024, arXiv:2306.03091) — cross-file retrieval evaluation benchmark\",\n    \"SWE-ContextBench: A Benchmark for Context Learning in Coding (arXiv:2602.08316, Feb 2026) — 1100+376 context evaluation tasks\",\n    \"On the Role of Fault Localization Context for LLM-Based Program Repair (arXiv:2604.05481, Apr 2026) — file-level is dominant factor\",\n    \"Why SWE-bench Verified No Longer Measures Frontier Coding Capabilities (OpenAI, Feb 2026) — contamination analysis\",\n    \"SWE-bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? (Scale AI, arXiv:2509.16941, 2025) — 1865 tasks, 731 public; SEAL top scores: GPT-5.4 59.1%, Claude Opus 4.6 51.9%\",\n    \"Contrastive Learning with Hard Negative Samples (arXiv:2010.04592, Robinson et al., 2021) — theoretical analysis of hard negative sampling in contrastive learning; demonstrates debiased contrastive objectives\",\n    \"LLMDFA: Analyzing Dataflow in Code with Large Language Models (NeurIPS 2024)\",\n    \"SWE-smith: Scaling Data for Software Engineering Agents (NeurIPS 2025 D&B Spotlight) — 50K instances from 128 Python repos\",\n    \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues? (ICLR 2024)\"\n  ],\n  \"description\": \"We propose StructFuse, a two-stage context retrieval system for repository-level code repair that introduces data-flow-aware contrastive learning for structurally-grounded context selection. The key methodological contribution is a novel hard negative mining strategy: for each training instance, negatives are files that are lexically similar to bug-relevant code (high BM25/embedding similarity) but structurally disconnected (no inter-procedural data-flow path within the scope-bounded analysis from the buggy location). This structural disconnection signal is impossible to derive from text-based methods and provides an orthogonal learning signal compared to embedding-distance-based hard negatives (as in CoCoHaNeRe, TOSEM 2025)—the contrastive encoder already computes embedding similarity, so embedding-distance negatives provide partly redundant gradient signal, while structurally disconnected negatives force the model to internalize a relevance concept inaccessible through text alone, tightening the InfoNCE mutual information bound. Unlike ARISE (arXiv:2605.03117), which is limited to intra-procedural def-use via Python's ast module, StructFuse extracts inter-procedural def-use chains via scope-bounded CodeQL queries (call-graph pre-computation then bounded data-flow within 2 hops, with explicit --timeout=300s and --ram=8192 limits, and graceful Beniget fallback with label-source indicators to handle heterogeneous extraction quality). Unlike SWE-Pruner, whose labels are coupled to Qwen3-Coder-30B-A3B's biases and are non-reproducible, StructFuse's labels are deterministic program analysis outputs with zero marginal cost at scale. Unlike SweRank (ICLR 2026) and SWE-Fixer (ACL Findings 2025), StructFuse incorporates structural program analysis into both training (via hard negatives) and inference (via a two-stage cascade: coarse selection by BM25 + data-flow reachability, then fine ranking by 3B contrastive model). Unlike RANGER (arXiv:2509.25257) and CodexGraph (NAACL 2025), which use structural graphs only at inference time without data-flow edges, StructFuse uses inter-procedural data-flow signals during training to produce a model that has internalized structural relevance patterns. We train a Qwen2.5-Coder-3B bi-encoder with structure-conditioned InfoNCE loss, label-source-aware weighting for heterogeneous extraction quality, and a lightweight MLP fusion head. We evaluate primarily on SWE-bench Lite (300, with direct comparison to ARISE's 22.0% Pass@1) and RepoBench-R, with SWE-bench Pro (300-instance sample) as secondary evaluation, using only open-weight Qwen3.6-27B for end-to-end repair under SWE-agent's recommended 50-turn budget (no API costs). The paper includes a qualitative failure analysis of 50 text-based retrieval failures, demonstrating specific cases where data-flow analysis identifies correct context that lexical methods miss, and an explicit improvement ceiling discussion arguing that structural signals matter most on unsaturated benchmarks (SWE-bench Pro 41-58pp SEAL gap) rather than near-saturated ones (SWE-bench Verified). The paper presents four contributions: (1) data-flow-aware contrastive hard negative mining as a novel training methodology providing orthogonal gradient signal versus embedding-distance negatives, (2) scope-bounded inter-procedural CodeQL extraction with graceful degradation and label-source tracking, (3) empirical evidence that inter-procedural def-use edges provide gains beyond intra-procedural analysis (ARISE), coarser structural edges (LocAgent), and inference-only graph use (RANGER, CodexGraph), and (4) a practical, model-independent pipeline with deterministic labels, interpretable selections, and zero labeling cost. We explicitly target EMNLP 2026 Main with Findings as fallback.\",\n  \"project_name\": \"structfuse_context\",\n  \"source\": \"web_research\"\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a35f427-250e-4b35-9336-da45ceb8615a",
+  "isSidechain": false,
+  "requestId": "req_011CauRiTc4FnEAtL3AsNfeA",
+  "type": "assistant",
+  "uuid": "ab0fa796-b277-4717-97d4-531c781a4769",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017QyAyVJ8ra25w35qMYjLZr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11053,
+      "cache_read_input_tokens": 49487,
+      "output_tokens": 9622,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11053,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9622,
+          "cache_read_input_tokens": 49487,
+          "cache_creation_input_tokens": 11053,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11053
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-10T19:22:05.858Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01USSFQfirXxXt1QCyFBGgBN`</summary>
+
+```text
+Claude requested permissions to write to /tmp/structfuse_revised.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ab0fa796-b277-4717-97d4-531c781a4769",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "6e4b98c3-c7f9-4111-b1f2-a247eca3c1ae",
+  "toolUseResult": "Error: Claude requested permissions to write to /tmp/structfuse_revised.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "ab0fa796-b277-4717-97d4-531c781a4769",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 93_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level…",
+  "leafUuid": "6e4b98c3-c7f9-4111-b1f2-a247eca3c1ae",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 94_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise StructFuse to address CodeQL scalability and improve ceiling analysis",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-10T19:26:06.610Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_015K2ceNAyeEJnwFXPeNgUJT`</summary>
+
+```json
+{
+  "file_path": "/tmp/structfuse_revised.json",
+  "content": "{\n  \"change_type\": \"minor\",\n  \"title\": \"StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level Code Repair Context Selection\",\n  \"core_problem\": \"Repository-level bug repair requires selecting relevant context from large codebases. Existing context selectors fall into three paradigms, each with fundamental limitations: (1) Neural selectors like SWE-Pruner train on LLM-generated labels that are coupled to a specific teacher model's biases and selection patterns—labels are stochastic, non-reproducible, and encode the teacher's blind spots. (2) Retrieve-and-rerank methods like SweRank (ICLR 2026) achieve strong text-based localization but miss structural dependencies—lexically similar but structurally unrelated code becomes a false positive. (3) Graph-guided agents like LocAgent, RANGER, and CodexGraph capture structural edges (import/call/inheritance/USES) but omit fine-grained data-flow (def-use) edges, and operate purely at inference time without using structural signals to improve model training; ARISE uses intra-procedural def-use but only at runtime via tool calls, not as distilled knowledge, and explicitly does not cross call boundaries. On SWE-bench Pro (where top SEAL-standardized scores range from ~42-59%—GPT-5.4 at 59.1%, Claude Opus 4.6 at 51.9%—leaving 41-58pp improvement headroom, and context selection accounts for 4-10pp swings), context quality remains a key differentiator with substantial room for improvement. Can we build a context selector that leverages inter-procedural data-flow signals for structurally-grounded, interpretable, and model-independent selections—using deterministic program analysis rather than stochastic LLM judgments?\",\n  \"opportunity\": \"SWE-Pruner (arXiv:2601.16746) demonstrated a 0.6B neural skimmer can reduce tokens 23-54% with <1pp degradation, but its supervision comes from Qwen3-Coder-30B-A3B-Instruct (an MoE model with 3.3B active parameters)—while inference is cheap (~$10-35 to label 61K samples), the labels are coupled to that model's biases, non-reproducible across runs, and provide no interpretable rationale for selections. LocAgent (ACL 2025) showed graph-guided localization achieves 92.7% file-level accuracy using import/invocation/inheritance edges with fine-tuned Qwen2.5-32B, but omits data-flow edges. SweRank (ICLR 2026) achieves SOTA retrieve-and-rerank localization but is purely text-based. RANGER (arXiv:2509.25257) builds comprehensive repository knowledge graphs with MCTS-guided exploration and bi-encoder + cross-encoder cascade, achieving strong results on RepoBench (0.5471 Accuracy@5) and CrossCodeEval—but uses only structural/syntactic edges (CONTAINS, HAS_METHOD, INHERITS, USES) without data-flow, and is purely an inference-time system with no model training. CodexGraph (NAACL 2025) bridges LLMs and code repos via Neo4j code property graphs with Cypher queries (22.96% Pass@1 on SWE-bench Lite)—but again is purely inference-time with no data-flow edges, and the paper itself acknowledges room for 'schema completeness' improvements. ARISE (arXiv:2605.03117) confirmed data-flow slicing yields +17pp Function Recall@1, but (a) uses only Python's ast module for intra-procedural analysis (explicitly does not cross call boundaries), and (b) keeps analysis as runtime tool calls adding latency per agent step. SWE-Fixer (ACL Findings 2025) combines BM25 with a fine-tuned 7B retriever for coarse-to-fine file retrieval but uses no structural program analysis features. Sliceformer (arXiv:2604.26961) validated that data-flow knowledge transfers to neural models with 22% ExactMatch gains on slicing tasks. The opportunity: no existing work (a) uses inter-procedural def-use analysis for repair context selection, (b) distills data-flow signals into a fast retrieval model via contrastive training, or (c) exploits structural connectivity for contrastive hard negative mining. ARISE's intra-procedural limitation, RANGER/CodexGraph's inference-only graph use without data-flow edges, and SweRank's text-only approach leave a clear gap for inter-procedural data-flow-aware retrieval with structural training signal.\",\n  \"landscape\": \"**Neural context selectors**: SWE-Pruner trains a 0.6B skimmer on 61K samples labeled by Qwen3-Coder-30B-A3B-Instruct (an MoE model with 3.3B active parameters per forward pass, costing ~$10-35 for labeling at $0.07-0.19/1M input tokens), achieving <1pp degradation on SWE-bench Verified (70.6%->70.2%)—though SWE-bench Verified is known contaminated (OpenAI, Feb 2026). Squeez (arXiv:2604.04979) fine-tunes Qwen 3.5 2B for task-conditioned tool-output pruning (0.86 recall, 92% token removal) but targets tool outputs, not repository context. LongCodeZip (ASE 2025) achieves 5.6x compression via perplexity-based ranking, training-free but code-agnostic. **Retrieve-and-rerank approaches**: SweRank (ICLR 2026, arXiv:2505.07849) achieves SOTA issue localization via SweRankEmbed (bi-encoder retriever) + SweRankLLM (listwise LLM reranker), trained on the SweLoc dataset—purely text-based with no structural signals. SweRank+ (arXiv:2512.20482) extends to multilingual multi-turn ranking with 155K training instances. SWE-Fixer (ACL Findings 2025) combines BM25 with a fine-tuned 7B retriever (SWE-Fixer-Retriever-7B) for coarse-to-fine file retrieval, achieving 24.7%/32.8% on SWE-bench Lite/Verified with P2P filtering—architecturally the closest prior work to our retrieval fusion, but uses learned embeddings without structural program analysis features. **Graph-guided approaches**: LocAgent (ACL 2025, arXiv:2503.09089) parses codebases into directed heterogeneous graphs with import/invocation/inheritance edges, achieving 92.7% file-level accuracy with fine-tuned Qwen2.5-32B—but omits data-flow (def-use) edges and requires a 32B model at inference. RANGER (arXiv:2509.25257) constructs repository knowledge graphs with six node types (Module, Class, Function, Method, Field, GlobalVariable) and structural edges (CONTAINS, HAS_METHOD, HAS_FIELD, INHERITS, USES), employing MCTS-guided graph exploration with a bi-encoder (mxbai-embed-large-v1, 335M) + cross-encoder (bge-reranker-v2-m3, 568M) cascade—achieves 0.5471 Accuracy@5 on RepoBench with Qwen-3-8B embeddings, but uses no data-flow edges and is purely an inference-time system with no model training using structural signals. CodexGraph (NAACL 2025, arXiv:2408.03910) bridges LLMs and code repositories via Neo4j code property graphs with Cypher queries, using a similar structural schema (MODULE, CLASS, METHOD, FUNCTION, FIELD, GLOBAL_VARIABLE nodes; CONTAINS, HAS_METHOD, HAS_FIELD, INHERITS, USES edges)—achieves 22.96% Pass@1 on SWE-bench Lite with GPT-4o, but is purely inference-time with no model training, no data-flow edges, and the paper itself acknowledges room for improvement in 'schema completeness' including 'adding edges related to function calls.' KGCompass (arXiv:2503.21710) constructs repository knowledge graphs (58.3% repair) but with heavy construction overhead. GraphCoder (ASE 2024) uses code context graphs with control-flow and data-dependence for coarse-to-fine retrieval in code completion—related but targets completion, not repair context selection. SaraCoder (ICLR 2026) orchestrates semantic and structural cues for code completion with a graph-based structural similarity metric—demonstrates the value of structural signals in retrieval but does not address repair or use def-use data-flow. **Data-flow-specific approaches**: ARISE (arXiv:2605.03117) augments SWE-agent with statement-level def-use edges via Python's ast module, gaining +17pp Function Recall@1 and +4.7pp Pass@1 (22.0% on SWE-bench Lite with Qwen2.5-Coder-32B)—but is limited to intra-procedural analysis (explicitly does not cross call boundaries), keeps analysis as runtime tool calls, and requires a 32B model at inference. LLMxCPG (USENIX Security 2025) uses Code Property Graphs for vulnerability detection (67-91% code reduction, 15-40% F1 gain) but targets security, not repair context. Sliceformer (arXiv:2604.26961) distills DFG knowledge into CodeT5+ for slicing tasks via dataflow-aware pretraining objectives, validating structural knowledge transfer but not addressing repair. **Contrastive learning for code**: CoCoHaNeRe (TOSEM 2025) demonstrates that hard negative mining significantly improves contrastive code search (+7-11% MRR over baselines), but uses random or embedding-distance-based negatives without structural awareness. No existing work uses program-analysis-derived structural connectivity to mine hard negatives. **Compression paradigms**: An empirical study (arXiv:2604.13725) shows continuous latent vector compression surpasses full-context by up to 28.3% BLEU at 4x compression. **Benchmarks**: SWE-bench Pro (Scale AI, 1865 tasks total, 731 public) is the recommended hard benchmark—top SEAL-standardized scores: GPT-5.4 (xHigh) 59.1%, Claude Opus 4.6 (thinking) 51.9%, Gemini 3.1 Pro 46.1%; custom scaffolding goes higher (Claude Mythos Preview 77.8%). The 41-58pp gap between SEAL scores and perfect resolution means context selection has proportionally large impact—unlike near-saturated SWE-bench Verified where SWE-Pruner's <1pp degradation suggests diminishing returns. SWE-bench Lite (300 instances) remains widely used. RepoBench-R (ICLR 2024) directly evaluates cross-file context retrieval. **Gap**: No existing work combines inter-procedural data-flow analysis with contrastive hard negative mining for repair context retrieval. ARISE is intra-procedural only; SweRank and SWE-Fixer are text-only; LocAgent uses coarser structural edges without def-use; RANGER and CodexGraph use structural graphs at inference only, not for training; CoCoHaNeRe shows hard negatives work for code search but without structural awareness. The fusion of inter-procedural data-flow features with lexical retrieval via data-flow-aware contrastive learning is unexplored.\",\n  \"approach\": \"We propose StructFuse, a two-stage context retrieval system that combines inter-procedural data-flow analysis with a novel data-flow-aware contrastive learning objective for repository-level code repair context selection.\\n\\n**Stage 1: Scope-Bounded Inter-Procedural Data-Flow Extraction (Days 1-3).** For ~5K SWE-smith training instances, we extract inter-procedural data-flow features using a two-phase CodeQL strategy designed to prevent query-evaluation blowups. **Phase 1a (call-graph pre-computation):** For each instance, we first run a lightweight CodeQL query to extract the call graph and identify all functions within 2 call-graph hops of the buggy function. This is fast (seconds per repo) because call-graph queries are relational joins, not data-flow tracking. **Phase 1b (scope-bounded data-flow query):** We then configure CodeQL's inter-procedural data-flow API with sources restricted to parameters and return values of only the functions identified in Phase 1a (within 2 call-graph hops), and sinks restricted to variable reads within those same functions. This bounds the analysis scope *before* query evaluation begins, preventing the Cartesian-product blowup that occurs with broad 'all parameters as sources' definitions—the reviewer correctly identified that post-hoc graph-distance filtering does not prevent evaluation-time blowups. We enforce strict resource limits: --timeout=300s and --ram=8192 per repo query. **Graceful degradation:** For repos where CodeQL times out (>300s) or produces insufficient coverage (<5 reachable files from bug location), we fall back to Beniget for intra-file def-use chains and record a binary label-source indicator (inter_procedural=True/False) for each instance. We budget Day 1 specifically for CodeQL query development and validation on 10 pilot repos—testing query precision, recall against gold patches, extraction throughput, and critically: timeout rates and memory consumption. We report three pilot statistics before scaling: (a) mean/max query time per repo, (b) fraction of repos that timeout, (c) average files reachable within 2 call-graph hops + data-flow from bug location. If >30% of repos timeout, we tighten to 1 call-graph hop before scaling. For each candidate file/function, we compute: (a) shortest data-flow path distance to the buggy location, (b) number of distinct data-flow paths, (c) dependency type (inter-procedural def-use, call-graph, import), (d) label-source indicator (CodeQL inter-procedural vs. Beniget intra-procedural). We also extract lexical features (BM25 scores, SweRankEmbed similarity) and structural metadata (git co-change frequency, import distance).\\n\\n**Stage 2: Data-Flow-Aware Contrastive Retrieval Training (Days 4-6).** This is the core methodological contribution. We train a Qwen2.5-Coder-3B bi-encoder retriever with a two-component objective:\\n\\n(a) *Data-flow-aware hard negative mining*: For each training instance, hard negatives are files that are lexically similar to the bug-relevant files (high BM25/embedding similarity) but structurally disconnected (no data-flow path within the scope-bounded analysis from the buggy location). This is inspired by CoCoHaNeRe's (TOSEM 2025) demonstration that hard negatives dramatically improve code search, but we replace their embedding-distance-based mining with program-analysis-derived structural connectivity—a fundamentally different and more principled signal. **Theoretical justification:** Embedding-distance-based hard negatives (as in CoCoHaNeRe) are partly redundant with the model's own learned similarity: the contrastive encoder already computes embedding similarity, so negatives selected by embedding distance provide gradient signal along dimensions the model has already partially learned to separate. In contrast, structurally disconnected negatives provide an *orthogonal* learning signal—the model cannot derive inter-procedural data-flow connectivity from lexical features alone, so these negatives force the model to internalize a structural relevance concept that is inaccessible through text-based training. In information-theoretic terms, this increases the effective diversity of the negative set in the InfoNCE objective, tightening the mutual information bound between queries and truly relevant code.\\n\\n(b) *Structure-conditioned contrastive loss*: We use an InfoNCE-style loss where positive pairs are (issue description, data-flow-connected code) and negatives include both random negatives and the structurally-mined hard negatives above. We weight the contrastive loss by data-flow path strength: code reachable via short, direct def-use chains receives higher positive weight than code connected only via long transitive paths. This encodes the inductive bias that direct data-flow connections are stronger relevance signals than transitive ones.\\n\\n(c) *Label-source-aware training*: To address heterogeneity from the Beniget fallback, we include the binary label-source indicator (inter-procedural vs. intra-procedural) as an explicit input feature to the fusion head. We weight instances with inter-procedural labels slightly higher (1.2x) in the contrastive loss, reflecting higher label quality. We include a dedicated ablation: training with vs. without Beniget-only instances, and with vs. without the label-source indicator.\\n\\n(d) *Multi-signal fusion head*: On top of the contrastive encoder, a lightweight MLP fusion head combines the learned embedding similarity with explicit features (data-flow distance, BM25 score, co-change frequency, label-source indicator) for final ranking. This allows the model to leverage both learned representations and interpretable structural features.\\n\\nTraining takes ~3-5 hours per run on a single H100. We run 8 ablation configurations: (i) contrastive with data-flow hard negatives, (ii) contrastive with random negatives only, (iii) contrastive with embedding-distance hard negatives (CoCoHaNeRe-style, as direct comparison), (iv) standard cross-entropy SFT (as in SWE-Pruner's paradigm), (v) full fusion with MLP head, (vi) inter-procedural features only vs. intra-procedural only (testing whether crossing call boundaries matters), (vii) data-flow features only vs. lexical only, (viii) with vs. without Beniget-only instances + label-source indicator.\\n\\n**Stage 3: Evaluation (Days 7-11).** At inference, StructFuse operates as a two-stage cascade: (1) coarse file selection via BM25 + data-flow reachability (retain files within scope-bounded data-flow analysis OR top-30 BM25), then (2) fine-grained function ranking via the trained 3B contrastive model. This cascade adds architectural novelty over flat ranking approaches like SweRank while being directly comparable to SWE-Fixer's coarse-to-fine paradigm—with the key difference that our coarse stage uses structural reachability, not just BM25. Unlike RANGER and CodexGraph, which use graphs only at inference time, StructFuse uses structural signals during training to produce a model that has internalized data-flow relevance patterns.\\n\\n**Primary evaluation** (budget-safe): (a) SWE-bench Lite (300 instances, full)—the most widely compared benchmark with established baselines including ARISE (22.0% Pass@1). We estimate ~5-12min per instance with Qwen3.6-27B on H100 using vLLM serving under a 50-turn agent budget (consistent with SWE-agent's recommended cost-conservative configuration of $1/instance and 50-turn limit), yielding ~25-60h total. (b) RepoBench-R (cross-file retrieval evaluation, no LLM needed, ~15h).\\n\\n**Secondary evaluation** (if timeline permits): SWE-bench Pro (300-instance stratified sample of 731 public instances, ~25-60h). This provides signal on harder tasks where the 41-58pp SEAL gap means context selection has proportionally larger impact.\\n\\nMetrics: localization recall@k (file and function level), end-to-end Pass@1 repair rate, token efficiency, and a new metric: *structural precision*—what fraction of selected files are reachable via data-flow from the actual fix. End-to-end evaluation uses Qwen3.6-27B exclusively (open-weight, no API costs). We compare against: (i) SweRank/SweRankEmbed (ICLR 2026, SOTA text-based retrieval), (ii) SWE-Pruner (LLM-labeled selector), (iii) SWE-Fixer-Retriever (BM25 + neural, ACL Findings 2025), (iv) BM25 baseline, (v) ARISE's graph tools (intra-procedural def-use, 22.0% on SWE-bench Lite), (vi) no-pruning full-context.\\n\\n**Improvement ceiling analysis:** We explicitly address expected improvement magnitude. On SWE-bench Verified, SWE-Pruner's <1pp degradation suggests text-based context selection is near-sufficient for the remaining solvable instances—but this is a ceiling effect on a near-saturated benchmark. On SWE-bench Lite and Pro, where ARISE achieves only 22.0% and SEAL scores plateau at 42-59%, the headroom is 41-78pp. We hypothesize structural signals help precisely in cases where text-based retrieval fails: bugs caused by data-flow through indirect dependencies (e.g., a function modifies a shared data structure consumed 2 call-graph hops away, with no lexical overlap between the modifier and consumer). We include a qualitative failure analysis of 50 SWE-Pruner/SweRank failures on SWE-bench Lite, categorizing failures by whether data-flow analysis would have identified the correct context. We frame the primary contribution as the *training methodology* (data-flow-aware contrastive hard negatives)—generalizable to code search, vulnerability detection, and other code intelligence tasks—not just absolute improvement on one benchmark.\\n\\n**Stage 4: Writing (Days 11-15).** The paper presents four contributions: (1) *Methodological*: data-flow-aware contrastive hard negative mining—using program analysis to generate training negatives that are structurally disconnected from the bug despite lexical similarity, providing an orthogonal learning signal that embedding-distance negatives cannot offer. (2) *Technical*: scope-bounded inter-procedural data-flow extraction via two-phase CodeQL queries (call-graph pre-computation then bounded data-flow), with graceful degradation and label-source indicators for heterogeneous extraction quality. (3) *Empirical*: demonstration that inter-procedural def-use edges (crossing call boundaries) provide gains beyond ARISE's intra-procedural analysis, LocAgent's import/call/inheritance edges, and RANGER/CodexGraph's inference-only structural graphs, with the contrastive objective outperforming standard SFT on the same data. (4) *Practical*: a model-independent pipeline (CodeQL to contrastive training to 3B retriever) with deterministic, reproducible labels, interpretable selections with traceable data-flow paths, and zero marginal cost when scaling to new repositories (only CodeQL extraction needed, no LLM inference).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~170h H100 (CodeQL database creation + scope-bounded data-flow extraction for Python repos: ~10h CPU-parallel, no GPU; feature extraction: ~10h; contrastive training 8 ablation runs: ~40h; SWE-bench Lite evaluation 300 instances with Qwen3.6-27B at ~5-12min/instance: ~25-60h; RepoBench-R evaluation: ~15h; optional SWE-bench Pro 300 instances: ~25-60h if timeline permits)\",\n      \"gpu_utilization\": \"~70-80% utilization during evaluation phase (Qwen3.6-27B inference is GPU-bound via vLLM); ~50-60% during contrastive training\",\n      \"timeline\": \"15 days (Day 1: CodeQL query development + scope-bounded validation on 10 pilot repos, reporting timeout rates and reachability statistics; Days 2-3: full-scale data-flow extraction + feature computation with label-source tracking; Days 4-6: contrastive training + 8 ablations including label-heterogeneity ablation; Days 7-11: evaluation on SWE-bench Lite + RepoBench-R primary, SWE-bench Pro secondary; Days 11-15: writing including failure analysis and improvement ceiling discussion)\",\n      \"team\": \"1-2 researchers (one with CodeQL/program analysis, one with contrastive learning; can be same person)\",\n      \"estimated_gpu_cost\": \"$400-600 (170h H100 at spot ~$2.50/hr; no LLM API costs—all evaluation uses open-weight Qwen3.6-27B)\",\n      \"claude_api_cost\": \"$0 for evaluation (Qwen3.6-27B only); ~$50-100 for writing assistance\",\n      \"risk_note\": \"CodeQL scalability risk mitigated by scope-bounded query design: Phase 1a extracts call graph (fast, seconds/repo), Phase 1b restricts sources/sinks to functions within 2 call-graph hops. Explicit --timeout=300s and --ram=8192 per repo. Day 1 pilot on 10 repos reports: (a) mean/max query time, (b) timeout rate, (c) average reachable files. If >30% timeout, tighten to 1 call-graph hop. Beniget fallback with label-source indicator handles remaining failures. Evaluation time estimate based on SWE-agent's recommended 50-turn budget and $1/instance cost-conservative configuration; Qwen3.6-27B achieves ~85 TPS on RTX 3090, substantially faster on H100 with vLLM. Primary evaluation scoped to SWE-bench Lite (300) + RepoBench-R to ensure timeline safety.\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~140h H100 (same pipeline; agent manages CodeQL builds and queues training; human reviews CodeQL query quality at Day 1 pilot and ablation results at Day 6)\",\n      \"gpu_utilization\": \"~75-85% utilization; agent parallelizes independent experiments\",\n      \"timeline\": \"12-14 days\",\n      \"team\": \"1 researcher, ~45min/day check-in for CodeQL query review and experiment approval\",\n      \"claude_api_cost\": \"$80-150 (800-1500 turns for pipeline code generation and debugging)\",\n      \"estimated_gpu_cost\": \"$330-470 (140h H100 at spot ~$2.50/hr)\",\n      \"risk_note\": \"Tight timeline requires pre-validated CodeQL setup; human reviews scope-bounded query on 3 repos in first 4 hours before scaling. Label-source tracking automated from extraction phase.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~200h H100 (full ablation suite including label-heterogeneity experiments, hyperparameter sweep over contrastive temperature and hard negative ratio, primary + secondary benchmark evaluation)\",\n      \"gpu_utilization\": \"~85-90% utilization; agent continuously launches experiments, parallelizes independent ablations\",\n      \"timeline\": \"10-12 days with 2-4 H100 GPUs available concurrently\",\n      \"team\": \"0 (initial setup: CodeQL CLI installation, SWE-smith repo cloning, SWE-bench evaluation harness)\",\n      \"claude_api_cost\": \"$200-400 (2000-4000 turns for iterative pipeline development, CodeQL query debugging, experiment scheduling)\",\n      \"estimated_gpu_cost\": \"$500-700 (200h H100 at spot ~$2.50/hr to on-demand ~$3.50/hr)\",\n      \"speed_bottleneck\": \"SWE-bench Lite evaluation (~8min/instance x 300 instances on Qwen3.6-27B = ~40 H100-hours; parallelizable across GPUs). Optional SWE-bench Pro adds ~40h.\",\n      \"risk_note\": \"Agent should validate scope-bounded CodeQL query on first 10 repos and report: (a) timeout rate with 300s limit, (b) avg reachable files within 2 call-graph hops, (c) fraction requiring Beniget fallback. If CodeQL timeout rate >30%, agent autonomously tightens to 1 call-graph hop. Label-source statistics automatically tracked and reported.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 Main + Findings (ARR submission deadline: May 25, 2026; conference: Fall 2026; topic area: 'NLP and Code Models'; dual-targeting Main and Findings to de-risk rejection given empirical contribution type)\"\n  ],\n  \"key_references\": [\n    \"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents (arXiv:2601.16746, Jan 2026) — 0.6B skimmer trained on labels from Qwen3-Coder-30B-A3B (MoE, 3.3B active params), <1pp degradation on SWE-bench Verified\",\n    \"LocAgent: Graph-Guided LLM Agents for Code Localization (ACL 2025, arXiv:2503.09089) — 92.7% file-level accuracy on SWE-bench Lite using import/invocation/inheritance edges with fine-tuned Qwen2.5-32B; no def-use edges\",\n    \"SweRank: Software Issue Localization with Code Ranking (ICLR 2026, arXiv:2505.07849) — SOTA retrieve-and-rerank via SweRankEmbed + SweRankLLM; text-only, no structural signals\",\n    \"SweRank+: Multilingual, Multi-Turn Code Ranking (arXiv:2512.20482, Dec 2025) — extends SweRank to multilingual multi-turn with 155K training instances\",\n    \"SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution (ACL Findings 2025) — BM25 + fine-tuned 7B retriever for coarse-to-fine file retrieval; 24.7%/32.8% on SWE-bench Lite/Verified; no structural program analysis features\",\n    \"RANGER: Repository-Level Agent for Graph-Enhanced Retrieval (arXiv:2509.25257, Sep 2025) — repository knowledge graph with structural edges (CONTAINS, HAS_METHOD, INHERITS, USES), MCTS-guided exploration with bi-encoder (mxbai-embed-large-v1, 335M) + cross-encoder (bge-reranker-v2-m3, 568M) cascade; 0.5471 Accuracy@5 on RepoBench; no data-flow edges, no model training with structural signals, purely inference-time\",\n    \"CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases (NAACL 2025, arXiv:2408.03910) — Neo4j code property graphs with Cypher queries; structural edges only (CONTAINS, HAS_METHOD, HAS_FIELD, INHERITS, USES), no data-flow edges; 22.96% Pass@1 on SWE-bench Lite with GPT-4o; purely inference-time, no model training\",\n    \"ARISE: Repository-level Graph Representation for Agentic Fault Localization and Repair (arXiv:2605.03117, May 2026) — intra-procedural def-use edges via Python ast module (does NOT cross call boundaries), +17pp Function Recall@1, 22.0% Pass@1 on SWE-bench Lite with Qwen2.5-Coder-32B, runtime tool calls only\",\n    \"Sliceformer: Static Program Slicing Using Language Models With Dataflow-Aware Pretraining (arXiv:2604.26961, Apr 2026) — validates data-flow knowledge transfer to neural models via DFG-aware pretraining objectives\",\n    \"CoCoHaNeRe: Effective Hard Negative Mining for Contrastive Learning-Based Code Search (TOSEM 2025) — demonstrates hard negative mining improves code search MRR by 7-11% over baselines; uses embedding-distance negatives, not structural\",\n    \"GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph (ASE 2024) — coarse-to-fine retrieval using control-flow and data-dependence graphs for code completion\",\n    \"SaraCoder: Orchestrating Semantic and Structural Cues for Repository-Level Code Completion (ICLR 2026) — graph-based structural similarity for code completion retrieval\",\n    \"LLMxCPG: Context-Aware Vulnerability Detection Through CPG-Guided LLMs (USENIX Security 2025) — CPG-guided context extraction, 67-91% code reduction\",\n    \"Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents (arXiv:2604.04979, Apr 2026) — 0.86 recall, 92% token removal on tool outputs\",\n    \"On the Effectiveness of Context Compression for Repository-Level Tasks (arXiv:2604.13725, Apr 2026) — continuous latent vectors surpass full-context by 28.3% at 4x compression\",\n    \"LongCodeZip: Compress Long Context for Code Language Models (ASE 2025, arXiv:2510.00446) — 5.6x training-free compression\",\n    \"RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems (ICLR 2024, arXiv:2306.03091) — cross-file retrieval evaluation benchmark\",\n    \"SWE-ContextBench: A Benchmark for Context Learning in Coding (arXiv:2602.08316, Feb 2026) — 1100+376 context evaluation tasks\",\n    \"On the Role of Fault Localization Context for LLM-Based Program Repair (arXiv:2604.05481, Apr 2026) — file-level is dominant factor\",\n    \"Why SWE-bench Verified No Longer Measures Frontier Coding Capabilities (OpenAI, Feb 2026) — contamination analysis\",\n    \"SWE-bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? (Scale AI, arXiv:2509.16941, 2025) — 1865 tasks, 731 public; SEAL top scores: GPT-5.4 59.1%, Claude Opus 4.6 51.9%\",\n    \"Contrastive Learning with Hard Negative Samples (arXiv:2010.04592, Robinson et al., 2021) — theoretical analysis of hard negative sampling in contrastive learning; demonstrates debiased contrastive objectives\",\n    \"LLMDFA: Analyzing Dataflow in Code with Large Language Models (NeurIPS 2024)\",\n    \"SWE-smith: Scaling Data for Software Engineering Agents (NeurIPS 2025 D&B Spotlight) — 50K instances from 128 Python repos\",\n    \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues? (ICLR 2024)\"\n  ],\n  \"description\": \"We propose StructFuse, a two-stage context retrieval system for repository-level code repair that introduces data-flow-aware contrastive learning for structurally-grounded context selection. The key methodological contribution is a novel hard negative mining strategy: for each training instance, negatives are files that are lexically similar to bug-relevant code (high BM25/embedding similarity) but structurally disconnected (no inter-procedural data-flow path within the scope-bounded analysis from the buggy location). This structural disconnection signal is impossible to derive from text-based methods and provides an orthogonal learning signal compared to embedding-distance-based hard negatives (as in CoCoHaNeRe, TOSEM 2025)—the contrastive encoder already computes embedding similarity, so embedding-distance negatives provide partly redundant gradient signal, while structurally disconnected negatives force the model to internalize a relevance concept inaccessible through text alone, tightening the InfoNCE mutual information bound. Unlike ARISE (arXiv:2605.03117), which is limited to intra-procedural def-use via Python's ast module, StructFuse extracts inter-procedural def-use chains via scope-bounded CodeQL queries (call-graph pre-computation then bounded data-flow within 2 hops, with explicit --timeout=300s and --ram=8192 limits, and graceful Beniget fallback with label-source indicators to handle heterogeneous extraction quality). Unlike SWE-Pruner, whose labels are coupled to Qwen3-Coder-30B-A3B's biases and are non-reproducible, StructFuse's labels are deterministic program analysis outputs with zero marginal cost at scale. Unlike SweRank (ICLR 2026) and SWE-Fixer (ACL Findings 2025), StructFuse incorporates structural program analysis into both training (via hard negatives) and inference (via a two-stage cascade: coarse selection by BM25 + data-flow reachability, then fine ranking by 3B contrastive model). Unlike RANGER (arXiv:2509.25257) and CodexGraph (NAACL 2025), which use structural graphs only at inference time without data-flow edges, StructFuse uses inter-procedural data-flow signals during training to produce a model that has internalized structural relevance patterns. We train a Qwen2.5-Coder-3B bi-encoder with structure-conditioned InfoNCE loss, label-source-aware weighting for heterogeneous extraction quality, and a lightweight MLP fusion head. We evaluate primarily on SWE-bench Lite (300, with direct comparison to ARISE's 22.0% Pass@1) and RepoBench-R, with SWE-bench Pro (300-instance sample) as secondary evaluation, using only open-weight Qwen3.6-27B for end-to-end repair under SWE-agent's recommended 50-turn budget (no API costs). The paper includes a qualitative failure analysis of 50 text-based retrieval failures, demonstrating specific cases where data-flow analysis identifies correct context that lexical methods miss, and an explicit improvement ceiling discussion arguing that structural signals matter most on unsaturated benchmarks (SWE-bench Pro 41-58pp SEAL gap) rather than near-saturated ones (SWE-bench Verified). The paper presents four contributions: (1) data-flow-aware contrastive hard negative mining as a novel training methodology providing orthogonal gradient signal versus embedding-distance negatives, (2) scope-bounded inter-procedural CodeQL extraction with graceful degradation and label-source tracking, (3) empirical evidence that inter-procedural def-use edges provide gains beyond intra-procedural analysis (ARISE), coarser structural edges (LocAgent), and inference-only graph use (RANGER, CodexGraph), and (4) a practical, model-independent pipeline with deterministic labels, interpretable selections, and zero labeling cost. We explicitly target EMNLP 2026 Main with Findings as fallback.\",\n  \"project_name\": \"structfuse_context\",\n  \"source\": \"web_research\"\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e4b98c3-c7f9-4111-b1f2-a247eca3c1ae",
+  "isSidechain": false,
+  "requestId": "req_011CauS25CRFPuJ4fLFX6UqX",
+  "type": "assistant",
+  "uuid": "2f637a3f-2e69-402a-a003-15c0ab9ead6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019fspr7gWaHwwgPgZ13s978",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9666,
+      "cache_read_input_tokens": 60540,
+      "output_tokens": 9622,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9666,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9622,
+          "cache_read_input_tokens": 60540,
+          "cache_creation_input_tokens": 9666,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9666
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-10T19:26:06.627Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_015K2ceNAyeEJnwFXPeNgUJT`</summary>
+
+```text
+Claude requested permissions to write to /tmp/structfuse_revised.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2f637a3f-2e69-402a-a003-15c0ab9ead6b",
+  "isSidechain": false,
+  "promptId": "755e825c-b472-4bed-9474-ba5343607b88",
+  "type": "user",
+  "uuid": "276ee692-61a7-4c37-bbb1-383dfa43646d",
+  "toolUseResult": "Error: Claude requested permissions to write to /tmp/structfuse_revised.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "2f637a3f-2e69-402a-a003-15c0ab9ead6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 97_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level…",
+  "leafUuid": "276ee692-61a7-4c37-bbb1-383dfa43646d",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise StructFuse to address CodeQL scalability and improve ceiling analysis",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 99 · 2026-05-10T19:30:19.136Z_
+
+Here is the complete revised idea as JSON, addressing all six reviewer concerns:
+
+```json
+{
+  "change_type": "minor",
+  "title": "StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level Code Repair Context Selection",
+  "core_problem": "Repository-level bug repair requires selecting relevant context from large codebases. Existing context selectors fall into three paradigms, each with fundamental limitations: (1) Neural selectors like SWE-Pruner train on LLM-generated labels that are coupled to a specific teacher model's biases and selection patterns—labels are stochastic, non-reproducible, and encode the teacher's blind spots. (2) Retrieve-and-rerank methods like SweRank (ICLR 2026) achieve strong text-based localization but miss structural dependencies—lexically similar but structurally unrelated code becomes a false positive. (3) Graph-guided agents like LocAgent, RANGER, and CodexGraph capture structural edges (import/call/inheritance/USES) but omit fine-grained data-flow (def-use) edges, and operate purely at inference time without using structural signals to improve model training; ARISE uses intra-procedural def-use but only at runtime via tool calls, not as distilled knowledge, and explicitly does not cross call boundaries. On SWE-bench Pro (where top SEAL-standardized scores range from ~42-59%—GPT-5.4 at 59.1%, Claude Opus 4.6 at 51.9%—leaving 41-58pp improvement headroom, and context selection accounts for 4-10pp swings), context quality remains a key differentiator with substantial room for improvement. Can we build a context selector that leverages inter-procedural data-flow signals for structurally-grounded, interpretable, and model-independent selections—using deterministic program analysis rather than stochastic LLM judgments?",
+  "opportunity": "SWE-Pruner (arXiv:2601.16746) demonstrated a 0.6B neural skimmer can reduce tokens 23-54% with <1pp degradation, but its supervision comes from Qwen3-Coder-30B-A3B-Instruct (an MoE model with 3.3B active parameters)—while inference is cheap (~$10-35 to label 61K samples), the labels are coupled to that model's biases, non-reproducible across runs, and provide no interpretable rationale for selections. LocAgent (ACL 2025) showed graph-guided localization achieves 92.7% file-level accuracy using import/invocation/inheritance edges with fine-tuned Qwen2.5-32B, but omits data-flow edges. SweRank (ICLR 2026) achieves SOTA retrieve-and-rerank localization but is purely text-based. RANGER (arXiv:2509.25257) builds comprehensive repository knowledge graphs with MCTS-guided exploration and bi-encoder + cross-encoder cascade, achieving strong results on RepoBench (0.5471 Accuracy@5) and CrossCodeEval—but uses only structural/syntactic edges (CONTAINS, HAS_METHOD, INHERITS, USES) without data-flow, and is purely an inference-time system with no model training. CodexGraph (NAACL 2025) bridges LLMs and code repos via Neo4j code property graphs with Cypher queries (22.96% Pass@1 on SWE-bench Lite)—but again is purely inference-time with no data-flow edges, and the paper itself acknowledges room for 'schema completeness' improvements. ARISE (arXiv:2605.03117) confirmed data-flow slicing yields +17pp Function Recall@1, but (a) uses only Python's ast module for intra-procedural analysis (explicitly does not cross call boundaries), and (b) keeps analysis as runtime tool calls adding latency per agent step. SWE-Fixer (ACL Findings 2025) combines BM25 with a fine-tuned 7B retriever for coarse-to-fine file retrieval but uses no structural program analysis features. Sliceformer (arXiv:2604.26961) validated that data-flow knowledge transfers to neural models with 22% ExactMatch gains on slicing tasks. The opportunity: no existing work (a) uses inter-procedural def-use analysis for repair context selection, (b) distills data-flow signals into a fast retrieval model via contrastive training, or (c) exploits structural connectivity for contrastive hard negative mining. ARISE's intra-procedural limitation, RANGER/CodexGraph's inference-only graph use without data-flow edges, and SweRank's text-only approach leave a clear gap for inter-procedural data-flow-aware retrieval with structural training signal.",
+  "landscape": "**Neural context selectors**: SWE-Pruner trains a 0.6B skimmer on 61K samples labeled by Qwen3-Coder-30B-A3B-Instruct (an MoE model with 3.3B active parameters per forward pass, costing ~$10-35 for labeling at $0.07-0.19/1M input tokens), achieving <1pp degradation on SWE-bench Verified (70.6%->70.2%)—though SWE-bench Verified is known contaminated (OpenAI, Feb 2026). Squeez (arXiv:2604.04979) fine-tunes Qwen 3.5 2B for task-conditioned tool-output pruning (0.86 recall, 92% token removal) but targets tool outputs, not repository context. LongCodeZip (ASE 2025) achieves 5.6x compression via perplexity-based ranking, training-free but code-agnostic. **Retrieve-and-rerank approaches**: SweRank (ICLR 2026, arXiv:2505.07849) achieves SOTA issue localization via SweRankEmbed (bi-encoder retriever) + SweRankLLM (listwise LLM reranker), trained on the SweLoc dataset—purely text-based with no structural signals. SweRank+ (arXiv:2512.20482) extends to multilingual multi-turn ranking with 155K training instances. SWE-Fixer (ACL Findings 2025) combines BM25 with a fine-tuned 7B retriever (SWE-Fixer-Retriever-7B) for coarse-to-fine file retrieval, achieving 24.7%/32.8% on SWE-bench Lite/Verified with P2P filtering—architecturally the closest prior work to our retrieval fusion, but uses learned embeddings without structural program analysis features. **Graph-guided approaches**: LocAgent (ACL 2025, arXiv:2503.09089) parses codebases into directed heterogeneous graphs with import/invocation/inheritance edges, achieving 92.7% file-level accuracy with fine-tuned Qwen2.5-32B—but omits data-flow (def-use) edges and requires a 32B model at inference. RANGER (arXiv:2509.25257) constructs repository knowledge graphs with six node types (Module, Class, Function, Method, Field, GlobalVariable) and structural edges (CONTAINS, HAS_METHOD, HAS_FIELD, INHERITS, USES), employing MCTS-guided graph exploration with a bi-encoder (mxbai-embed-large-v1, 335M) + cross-encoder (bge-reranker-v2-m3, 568M) cascade—achieves 0.5471 Accuracy@5 on RepoBench with Qwen-3-8B embeddings, but uses no data-flow edges and is purely an inference-time system with no model training using structural signals. CodexGraph (NAACL 2025, arXiv:2408.03910) bridges LLMs and code repositories via Neo4j code property graphs with Cypher queries, using a similar structural schema (MODULE, CLASS, METHOD, FUNCTION, FIELD, GLOBAL_VARIABLE nodes; CONTAINS, HAS_METHOD, HAS_FIELD, INHERITS, USES edges)—achieves 22.96% Pass@1 on SWE-bench Lite with GPT-4o, but is purely inference-time with no model training, no data-flow edges, and the paper itself acknowledges room for improvement in 'schema completeness' including 'adding edges related to function calls.' KGCompass (arXiv:2503.21710) constructs repository knowledge graphs (58.3% repair) but with heavy construction overhead. GraphCoder (ASE 2024) uses code context graphs with control-flow and data-dependence for coarse-to-fine retrieval in code completion—related but targets completion, not repair context selection. SaraCoder (ICLR 2026) orchestrates semantic and structural cues for code completion with a graph-based structural similarity metric—demonstrates the value of structural signals in retrieval but does not address repair or use def-use data-flow. **Data-flow-specific approaches**: ARISE (arXiv:2605.03117) augments SWE-agent with statement-level def-use edges via Python's ast module, gaining +17pp Function Recall@1 and +4.7pp Pass@1 (22.0% on SWE-bench Lite with Qwen2.5-Coder-32B)—but is limited to intra-procedural analysis (explicitly does not cross call boundaries), keeps analysis as runtime tool calls, and requires a 32B model at inference. LLMxCPG (USENIX Security 2025) uses Code Property Graphs for vulnerability detection (67-91% code reduction, 15-40% F1 gain) but targets security, not repair context. Sliceformer (arXiv:2604.26961) distills DFG knowledge into CodeT5+ for slicing tasks via dataflow-aware pretraining objectives, validating structural knowledge transfer but not addressing repair. **Contrastive learning for code**: CoCoHaNeRe (TOSEM 2025) demonstrates that hard negative mining significantly improves contrastive code search (+7-11% MRR over baselines), but uses random or embedding-distance-based negatives without structural awareness. No existing work uses program-analysis-derived structural connectivity to mine hard negatives. **Compression paradigms**: An empirical study (arXiv:2604.13725) shows continuous latent vector compression surpasses full-context by up to 28.3% BLEU at 4x compression. **Benchmarks**: SWE-bench Pro (Scale AI, 1865 tasks total, 731 public) is the recommended hard benchmark—top SEAL-standardized scores: GPT-5.4 (xHigh) 59.1%, Claude Opus 4.6 (thinking) 51.9%, Gemini 3.1 Pro 46.1%; custom scaffolding goes higher (Claude Mythos Preview 77.8%). The 41-58pp gap between SEAL scores and perfect resolution means context selection has proportionally large impact—unlike near-saturated SWE-bench Verified where SWE-Pruner's <1pp degradation suggests diminishing returns. SWE-bench Lite (300 instances) remains widely used. RepoBench-R (ICLR 2024) directly evaluates cross-file context retrieval. **Gap**: No existing work combines inter-procedural data-flow analysis with contrastive hard negative mining for repair context retrieval. ARISE is intra-procedural only; SweRank and SWE-Fixer are text-only; LocAgent uses coarser structural edges without def-use; RANGER and CodexGraph use structural graphs at inference only, not for training; CoCoHaNeRe shows hard negatives work for code search but without structural awareness. The fusion of inter-procedural data-flow features with lexical retrieval via data-flow-aware contrastive learning is unexplored.",
+  "approach": "We propose StructFuse, a two-stage context retrieval system that combines inter-procedural data-flow analysis with a novel data-flow-aware contrastive learning objective for repository-level code repair context selection.\n\n**Stage 1: Scope-Bounded Inter-Procedural Data-Flow Extraction (Days 1-3).** For ~5K SWE-smith training instances, we extract inter-procedural data-flow features using a two-phase CodeQL strategy designed to prevent query-evaluation blowups. **Phase 1a (call-graph pre-computation):** For each instance, we first run a lightweight CodeQL query to extract the call graph and identify all functions within 2 call-graph hops of the buggy function. This is fast (seconds per repo) because call-graph queries are relational joins, not data-flow tracking. **Phase 1b (scope-bounded data-flow query):** We then configure CodeQL's inter-procedural data-flow API with sources restricted to parameters and return values of only the functions identified in Phase 1a (within 2 call-graph hops), and sinks restricted to variable reads within those same functions. This bounds the analysis scope *before* query evaluation begins, preventing the Cartesian-product blowup that occurs with broad 'all parameters as sources' definitions—the reviewer correctly identified that post-hoc graph-distance filtering does not prevent evaluation-time blowups. We enforce strict resource limits: --timeout=300s and --ram=8192 per repo query. **Graceful degradation:** For repos where CodeQL times out (>300s) or produces insufficient coverage (<5 reachable files from bug location), we fall back to Beniget for intra-file def-use chains and record a binary label-source indicator (inter_procedural=True/False) for each instance. We budget Day 1 specifically for CodeQL query development and validation on 10 pilot repos—testing query precision, recall against gold patches, extraction throughput, and critically: timeout rates and memory consumption. We report three pilot statistics before scaling: (a) mean/max query time per repo, (b) fraction of repos that timeout, (c) average files reachable within 2 call-graph hops + data-flow from bug location. If >30% of repos timeout, we tighten to 1 call-graph hop before scaling. For each candidate file/function, we compute: (a) shortest data-flow path distance to the buggy location, (b) number of distinct data-flow paths, (c) dependency type (inter-procedural def-use, call-graph, import), (d) label-source indicator (CodeQL inter-procedural vs. Beniget intra-procedural). We also extract lexical features (BM25 scores, SweRankEmbed similarity) and structural metadata (git co-change frequency, import distance).\n\n**Stage 2: Data-Flow-Aware Contrastive Retrieval Training (Days 4-6).** This is the core methodological contribution. We train a Qwen2.5-Coder-3B bi-encoder retriever with a two-component objective:\n\n(a) *Data-flow-aware hard negative mining*: For each training instance, hard negatives are files that are lexically similar to the bug-relevant files (high BM25/embedding similarity) but structurally disconnected (no data-flow path within the scope-bounded analysis from the buggy location). This is inspired by CoCoHaNeRe's (TOSEM 2025) demonstration that hard negatives dramatically improve code search, but we replace their embedding-distance-based mining with program-analysis-derived structural connectivity—a fundamentally different and more principled signal. **Theoretical justification:** Embedding-distance-based hard negatives (as in CoCoHaNeRe) are partly redundant with the model's own learned similarity: the contrastive encoder already computes embedding similarity, so negatives selected by embedding distance provide gradient signal along dimensions the model has already partially learned to separate. In contrast, structurally disconnected negatives provide an *orthogonal* learning signal—the model cannot derive inter-procedural data-flow connectivity from lexical features alone, so these negatives force the model to internalize a structural relevance concept that is inaccessible through text-based training. In information-theoretic terms, this increases the effective diversity of the negative set in the InfoNCE objective, tightening the mutual information bound between queries and truly relevant code.\n\n(b) *Structure-conditioned contrastive loss*: We use an InfoNCE-style loss where positive pairs are (issue description, data-flow-connected code) and negatives include both random negatives and the structurally-mined hard negatives above. We weight the contrastive loss by data-flow path strength: code reachable via short, direct def-use chains receives higher positive weight than code connected only via long transitive paths. This encodes the inductive bias that direct data-flow connections are stronger relevance signals than transitive ones.\n\n(c) *Label-source-aware training*: To address heterogeneity from the Beniget fallback, we include the binary label-source indicator (inter-procedural vs. intra-procedural) as an explicit input feature to the fusion head. We weight instances with inter-procedural labels slightly higher (1.2x) in the contrastive loss, reflecting higher label quality. We include a dedicated ablation: training with vs. without Beniget-only instances, and with vs. without the label-source indicator.\n\n(d) *Multi-signal fusion head*: On top of the contrastive encoder, a lightweight MLP fusion head combines the learned embedding similarity with explicit features (data-flow distance, BM25 score, co-change frequency, label-source indicator) for final ranking. This allows the model to leverage both learned representations and interpretable structural features.\n\nTraining takes ~3-5 hours per run on a single H100. We run 8 ablation configurations: (i) contrastive with data-flow hard negatives, (ii) contrastive with random negatives only, (iii) contrastive with embedding-distance hard negatives (CoCoHaNeRe-style, as direct comparison), (iv) standard cross-entropy SFT (as in SWE-Pruner's paradigm), (v) full fusion with MLP head, (vi) inter-procedural features only vs. intra-procedural only (testing whether crossing call boundaries matters), (vii) data-flow features only vs. lexical only, (viii) with vs. without Beniget-only instances + label-source indicator.\n\n**Stage 3: Evaluation (Days 7-11).** At inference, StructFuse operates as a two-stage cascade: (1) coarse file selection via BM25 + data-flow reachability (retain files within scope-bounded data-flow analysis OR top-30 BM25), then (2) fine-grained function ranking via the trained 3B contrastive model. This cascade adds architectural novelty over flat ranking approaches like SweRank while being directly comparable to SWE-Fixer's coarse-to-fine paradigm—with the key difference that our coarse stage uses structural reachability, not just BM25. Unlike RANGER and CodexGraph, which use graphs only at inference time, StructFuse uses structural signals during training to produce a model that has internalized data-flow relevance patterns.\n\n**Primary evaluation** (budget-safe): (a) SWE-bench Lite (300 instances, full)—the most widely compared benchmark with established baselines including ARISE (22.0% Pass@1). We estimate ~5-12min per instance with Qwen3.6-27B on H100 using vLLM serving under a 50-turn agent budget (consistent with SWE-agent's recommended cost-conservative configuration of $1/instance and 50-turn limit), yielding ~25-60h total. (b) RepoBench-R (cross-file retrieval evaluation, no LLM needed, ~15h).\n\n**Secondary evaluation** (if timeline permits): SWE-bench Pro (300-instance stratified sample of 731 public instances, ~25-60h). This provides signal on harder tasks where the 41-58pp SEAL gap means context selection has proportionally larger impact.\n\nMetrics: localization recall@k (file and function level), end-to-end Pass@1 repair rate, token efficiency, and a new metric: *structural precision*—what fraction of selected files are reachable via data-flow from the actual fix. End-to-end evaluation uses Qwen3.6-27B exclusively (open-weight, no API costs). We compare against: (i) SweRank/SweRankEmbed (ICLR 2026, SOTA text-based retrieval), (ii) SWE-Pruner (LLM-labeled selector), (iii) SWE-Fixer-Retriever (BM25 + neural, ACL Findings 2025), (iv) BM25 baseline, (v) ARISE's graph tools (intra-procedural def-use, 22.0% on SWE-bench Lite), (vi) no-pruning full-context.\n\n**Improvement ceiling analysis:** We explicitly address expected improvement magnitude. On SWE-bench Verified, SWE-Pruner's <1pp degradation suggests text-based context selection is near-sufficient for the remaining solvable instances—but this is a ceiling effect on a near-saturated benchmark. On SWE-bench Lite and Pro, where ARISE achieves only 22.0% and SEAL scores plateau at 42-59%, the headroom is 41-78pp. We hypothesize structural signals help precisely in cases where text-based retrieval fails: bugs caused by data-flow through indirect dependencies (e.g., a function modifies a shared data structure consumed 2 call-graph hops away, with no lexical overlap between the modifier and consumer). We include a qualitative failure analysis of 50 SWE-Pruner/SweRank failures on SWE-bench Lite, categorizing failures by whether data-flow analysis would have identified the correct context. We frame the primary contribution as the *training methodology* (data-flow-aware contrastive hard negatives)—generalizable to code search, vulnerability detection, and other code intelligence tasks—not just absolute improvement on one benchmark.\n\n**Stage 4: Writing (Days 11-15).** The paper presents four contributions: (1) *Methodological*: data-flow-aware contrastive hard negative mining—using program analysis to generate training negatives that are structurally disconnected from the bug despite lexical similarity, providing an orthogonal learning signal that embedding-distance negatives cannot offer. (2) *Technical*: scope-bounded inter-procedural data-flow extraction via two-phase CodeQL queries (call-graph pre-computation then bounded data-flow), with graceful degradation and label-source indicators for heterogeneous extraction quality. (3) *Empirical*: demonstration that inter-procedural def-use edges (crossing call boundaries) provide gains beyond ARISE's intra-procedural analysis, LocAgent's import/call/inheritance edges, and RANGER/CodexGraph's inference-only structural graphs, with the contrastive objective outperforming standard SFT on the same data. (4) *Practical*: a model-independent pipeline (CodeQL to contrastive training to 3B retriever) with deterministic, reproducible labels, interpretable selections with traceable data-flow paths, and zero marginal cost when scaling to new repositories (only CodeQL extraction needed, no LLM inference).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~170h H100 (CodeQL database creation + scope-bounded data-flow extraction for Python repos: ~10h CPU-parallel, no GPU; feature extraction: ~10h; contrastive training 8 ablation runs: ~40h; SWE-bench Lite evaluation 300 instances with Qwen3.6-27B at ~5-12min/instance: ~25-60h; RepoBench-R evaluation: ~15h; optional SWE-bench Pro 300 instances: ~25-60h if timeline permits)",
+      "gpu_utilization": "~70-80% utilization during evaluation phase (Qwen3.6-27B inference is GPU-bound via vLLM); ~50-60% during contrastive training",
+      "timeline": "15 days (Day 1: CodeQL query development + scope-bounded validation on 10 pilot repos, reporting timeout rates and reachability statistics; Days 2-3: full-scale data-flow extraction + feature computation with label-source tracking; Days 4-6: contrastive training + 8 ablations including label-heterogeneity ablation; Days 7-11: evaluation on SWE-bench Lite + RepoBench-R primary, SWE-bench Pro secondary; Days 11-15: writing including failure analysis and improvement ceiling discussion)",
+      "team": "1-2 researchers (one with CodeQL/program analysis, one with contrastive learning; can be same person)",
+      "estimated_gpu_cost": "$400-600 (170h H100 at spot ~$2.50/hr; no LLM API costs—all evaluation uses open-weight Qwen3.6-27B)",
+      "claude_api_cost": "$0 for evaluation (Qwen3.6-27B only); ~$50-100 for writing assistance",
+      "risk_note": "CodeQL scalability risk mitigated by scope-bounded query design: Phase 1a extracts call graph (fast, seconds/repo), Phase 1b restricts sources/sinks to functions within 2 call-graph hops. Explicit --timeout=300s and --ram=8192 per repo. Day 1 pilot on 10 repos reports: (a) mean/max query time, (b) timeout rate, (c) average reachable files. If >30% timeout, tighten to 1 call-graph hop. Beniget fallback with label-source indicator handles remaining failures. Evaluation time estimate based on SWE-agent's recommended 50-turn budget and $1/instance cost-conservative configuration; Qwen3.6-27B achieves ~85 TPS on RTX 3090, substantially faster on H100 with vLLM. Primary evaluation scoped to SWE-bench Lite (300) + RepoBench-R to ensure timeline safety."
+    },
+    "human_in_loop": {
+      "gpu_hours": "~140h H100 (same pipeline; agent manages CodeQL builds and queues training; human reviews CodeQL query quality at Day 1 pilot and ablation results at Day 6)",
+      "gpu_utilization": "~75-85% utilization; agent parallelizes independent experiments",
+      "timeline": "12-14 days",
+      "team": "1 researcher, ~45min/day check-in for CodeQL query review and experiment approval",
+      "claude_api_cost": "$80-150 (800-1500 turns for pipeline code generation and debugging)",
+      "estimated_gpu_cost": "$330-470 (140h H100 at spot ~$2.50/hr)",
+      "risk_note": "Tight timeline requires pre-validated CodeQL setup; human reviews scope-bounded query on 3 repos in first 4 hours before scaling. Label-source tracking automated from extraction phase."
+    },
+    "auto_research": {
+      "gpu_hours": "~200h H100 (full ablation suite including label-heterogeneity experiments, hyperparameter sweep over contrastive temperature and hard negative ratio, primary + secondary benchmark evaluation)",
+      "gpu_utilization": "~85-90% utilization; agent continuously launches experiments, parallelizes independent ablations",
+      "timeline": "10-12 days with 2-4 H100 GPUs available concurrently",
+      "team": "0 (initial setup: CodeQL CLI installation, SWE-smith repo cloning, SWE-bench evaluation harness)",
+      "claude_api_cost": "$200-400 (2000-4000 turns for iterative pipeline development, CodeQL query debugging, experiment scheduling)",
+      "estimated_gpu_cost": "$500-700 (200h H100 at spot ~$2.50/hr to on-demand ~$3.50/hr)",
+      "speed_bottleneck": "SWE-bench Lite evaluation (~8min/instance x 300 instances on Qwen3.6-27B = ~40 H100-hours; parallelizable across GPUs). Optional SWE-bench Pro adds ~40h.",
+      "risk_note": "Agent should validate scope-bounded CodeQL query on first 10 repos and report: (a) timeout rate with 300s limit, (b) avg reachable files within 2 call-graph hops, (c) fraction requiring Beniget fallback. If CodeQL timeout rate >30%, agent autonomously tightens to 1 call-graph hop. Label-source statistics automatically tracked and reported."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 Main + Findings (ARR submission deadline: May 25, 2026; conference: Fall 2026; topic area: 'NLP and Code Models'; dual-targeting Main and Findings to de-risk rejection given empirical contribution type)"
+  ],
+  "key_references": [
+    "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents (arXiv:2601.16746, Jan 2026) — 0.6B skimmer trained on labels from Qwen3-Coder-30B-A3B (MoE, 3.3B active params), <1pp degradation on SWE-bench Verified",
+    "LocAgent: Graph-Guided LLM Agents for Code Localization (ACL 2025, arXiv:2503.09089) — 92.7% file-level accuracy on SWE-bench Lite using import/invocation/inheritance edges with fine-tuned Qwen2.5-32B; no def-use edges",
+    "SweRank: Software Issue Localization with Code Ranking (ICLR 2026, arXiv:2505.07849) — SOTA retrieve-and-rerank via SweRankEmbed + SweRankLLM; text-only, no structural signals",
+    "SweRank+: Multilingual, Multi-Turn Code Ranking (arXiv:2512.20482, Dec 2025) — extends SweRank to multilingual multi-turn with 155K training instances",
+    "SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution (ACL Findings 2025) — BM25 + fine-tuned 7B retriever for coarse-to-fine file retrieval; 24.7%/32.8% on SWE-bench Lite/Verified; no structural program analysis features",
+    "RANGER: Repository-Level Agent for Graph-Enhanced Retrieval (arXiv:2509.25257, Sep 2025) — repository knowledge graph with structural edges (CONTAINS, HAS_METHOD, INHERITS, USES), MCTS-guided exploration with bi-encoder (mxbai-embed-large-v1, 335M) + cross-encoder (bge-reranker-v2-m3, 568M) cascade; 0.5471 Accuracy@5 on RepoBench; no data-flow edges, no model training with structural signals, purely inference-time",
+    "CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases (NAACL 2025, arXiv:2408.03910) — Neo4j code property graphs with Cypher queries; structural edges only (CONTAINS, HAS_METHOD, HAS_FIELD, INHERITS, USES), no data-flow edges; 22.96% Pass@1 on SWE-bench Lite with GPT-4o; purely inference-time, no model training",
+    "ARISE: Repository-level Graph Representation for Agentic Fault Localization and Repair (arXiv:2605.03117, May 2026) — intra-procedural def-use edges via Python ast module (does NOT cross call boundaries), +17pp Function Recall@1, 22.0% Pass@1 on SWE-bench Lite with Qwen2.5-Coder-32B, runtime tool calls only",
+    "Sliceformer: Static Program Slicing Using Language Models With Dataflow-Aware Pretraining (arXiv:2604.26961, Apr 2026) — validates data-flow knowledge transfer to neural models via DFG-aware pretraining objectives",
+    "CoCoHaNeRe: Effective Hard Negative Mining for Contrastive Learning-Based Code Search (TOSEM 2025) — demonstrates hard negative mining improves code search MRR by 7-11% over baselines; uses embedding-distance negatives, not structural",
+    "GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph (ASE 2024) — coarse-to-fine retrieval using control-flow and data-dependence graphs for code completion",
+    "SaraCoder: Orchestrating Semantic and Structural Cues for Repository-Level Code Completion (ICLR 2026) — graph-based structural similarity for code completion retrieval",
+    "LLMxCPG: Context-Aware Vulnerability Detection Through CPG-Guided LLMs (USENIX Security 2025) — CPG-guided context extraction, 67-91% code reduction",
+    "Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents (arXiv:2604.04979, Apr 2026) — 0.86 recall, 92% token removal on tool outputs",
+    "On the Effectiveness of Context Compression for Repository-Level Tasks (arXiv:2604.13725, Apr 2026) — continuous latent vectors surpass full-context by 28.3% at 4x compression",
+    "LongCodeZip: Compress Long Context for Code Language Models (ASE 2025, arXiv:2510.00446) — 5.6x training-free compression",
+    "RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems (ICLR 2024, arXiv:2306.03091) — cross-file retrieval evaluation benchmark",
+    "SWE-ContextBench: A Benchmark for Context Learning in Coding (arXiv:2602.08316, Feb 2026) — 1100+376 context evaluation tasks",
+    "On the Role of Fault Localization Context for LLM-Based Program Repair (arXiv:2604.05481, Apr 2026) — file-level is dominant factor",
+    "Why SWE-bench Verified No Longer Measures Frontier Coding Capabilities (OpenAI, Feb 2026) — contamination analysis",
+    "SWE-bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? (Scale AI, arXiv:2509.16941, 2025) — 1865 tasks, 731 public; SEAL top scores: GPT-5.4 59.1%, Claude Opus 4.6 51.9%",
+    "Contrastive Learning with Hard Negative Samples (arXiv:2010.04592, Robinson et al., 2021) — theoretical analysis of hard negative sampling in contrastive learning; demonstrates debiased contrastive objectives",
+    "LLMDFA: Analyzing Dataflow in Code with Large Language Models (NeurIPS 2024)",
+    "SWE-smith: Scaling Data for Software Engineering Agents (NeurIPS 2025 D&B Spotlight) — 50K instances from 128 Python repos",
+    "SWE-bench: Can Language Models Resolve Real-World GitHub Issues? (ICLR 2024)"
+  ],
+  "description": "We propose StructFuse, a two-stage context retrieval system for repository-level code repair that introduces data-flow-aware contrastive learning for structurally-grounded context selection. The key methodological contribution is a novel hard negative mining strategy: for each training instance, negatives are files that are lexically similar to bug-relevant code (high BM25/embedding similarity) but structurally disconnected (no inter-procedural data-flow path within the scope-bounded analysis from the buggy location). This structural disconnection signal is impossible to derive from text-based methods and provides an orthogonal learning signal compared to embedding-distance-based hard negatives (as in CoCoHaNeRe, TOSEM 2025)—the contrastive encoder already computes embedding similarity, so embedding-distance negatives provide partly redundant gradient signal, while structurally disconnected negatives force the model to internalize a relevance concept inaccessible through text alone, tightening the InfoNCE mutual information bound. Unlike ARISE (arXiv:2605.03117), which is limited to intra-procedural def-use via Python's ast module, StructFuse extracts inter-procedural def-use chains via scope-bounded CodeQL queries (call-graph pre-computation then bounded data-flow within 2 hops, with explicit --timeout=300s and --ram=8192 limits, and graceful Beniget fallback with label-source indicators to handle heterogeneous extraction quality). Unlike SWE-Pruner, whose labels are coupled to Qwen3-Coder-30B-A3B's biases and are non-reproducible, StructFuse's labels are deterministic program analysis outputs with zero marginal cost at scale. Unlike SweRank (ICLR 2026) and SWE-Fixer (ACL Findings 2025), StructFuse incorporates structural program analysis into both training (via hard negatives) and inference (via a two-stage cascade: coarse selection by BM25 + data-flow reachability, then fine ranking by 3B contrastive model). Unlike RANGER (arXiv:2509.25257) and CodexGraph (NAACL 2025), which use structural graphs only at inference time without data-flow edges, StructFuse uses inter-procedural data-flow signals during training to produce a model that has internalized structural relevance patterns. We train a Qwen2.5-Coder-3B bi-encoder with structure-conditioned InfoNCE loss, label-source-aware weighting for heterogeneous extraction quality, and a lightweight MLP fusion head. We evaluate primarily on SWE-bench Lite (300, with direct comparison to ARISE's 22.0% Pass@1) and RepoBench-R, with SWE-bench Pro (300-instance sample) as secondary evaluation, using only open-weight Qwen3.6-27B for end-to-end repair under SWE-agent's recommended 50-turn budget (no API costs). The paper includes a qualitative failure analysis of 50 text-based retrieval failures, demonstrating specific cases where data-flow analysis identifies correct context that lexical methods miss, and an explicit improvement ceiling discussion arguing that structural signals matter most on unsaturated benchmarks (SWE-bench Pro 41-58pp SEAL gap) rather than near-saturated ones (SWE-bench Verified). The paper presents four contributions: (1) data-flow-aware contrastive hard negative mining as a novel training methodology providing orthogonal gradient signal versus embedding-distance negatives, (2) scope-bounded inter-procedural CodeQL extraction with graceful degradation and label-source tracking, (3) empirical evidence that inter-procedural def-use edges provide gains beyond intra-procedural analysis (ARISE), coarser structural edges (LocAgent), and inference-only graph use (RANGER, CodexGraph), and (4) a practical, model-independent pipeline with deterministic labels, interpretable selections, and zero labeling cost. We explicitly target EMNLP 2026 Main with Findings as fallback.",
+  "project_name": "structfuse_context",
+  "source": "web_research"
+}
+```
+
+---
+
+## Summary of changes addressing each reviewer concern:
+
+**1. RANGER + CodexGraph added** — Both integrated throughout core_problem, opportunity, landscape, approach, and key_references with specific differentiation: RANGER uses structural edges only (CONTAINS/HAS_METHOD/INHERITS/USES), no data-flow, no model training, purely inference-time MCTS exploration. CodexGraph similarly inference-only with Neo4j/Cypher, no data-flow, and the paper itself acknowledges incomplete schema. StructFuse differs by using data-flow edges and structural signals *during training*.
+
+**2. CodeQL scalability fixed** — Replaced the naive "all parameters as sources" approach with a two-phase strategy: Phase 1a pre-computes the call graph to identify functions within 2 hops (fast relational query), Phase 1b restricts CodeQL sources/sinks to *only those functions*, bounding the analysis scope *before evaluation begins*. Added explicit `--timeout=300s` and `--ram=8192` limits. Added adaptive fallback: if >30% timeout at Day 1 pilot, tighten to 1 hop.
+
+**3. Improvement ceiling addressed** — Added explicit "Improvement ceiling analysis" section arguing: (a) SWE-bench Verified is near-saturated (ceiling effect), (b) SWE-bench Lite/Pro have 41-78pp headroom, (c) structural signals help specifically where text fails (indirect data-flow dependencies), (d) qualitative failure analysis of 50 instances planned, (e) primary contribution framed as generalizable training methodology, not benchmark numbers.
+
+**4. Label heterogeneity handled** — Added binary `label-source indicator` (inter_procedural vs. intra-procedural) as explicit feature in fusion head. Added 1.2x weighting for inter-procedural instances. Added dedicated ablation (viii): with vs. without Beniget-only instances + label-source indicator. Fraction of instances using each method tracked and reported.
+
+**5. Evaluation scope reduced and justified** — Primary evaluation scoped to SWE-bench Lite (300) + RepoBench-R (budget-safe). SWE-bench Pro (300 instances) moved to secondary/optional. Runtime justified via SWE-agent's documented 50-turn budget and $1/instance recommendation, plus Qwen3.6-27B's ~85 TPS on RTX 3090 (faster on H100). Total GPU budget reduced from 190h to 170h.
+
+**6. Theoretical argument added** — Included in approach section 2(a): embedding-distance negatives are partly redundant with the model's own similarity computation (the encoder already separates by embedding distance). Structurally disconnected negatives provide an *orthogonal* signal the model cannot derive from text, increasing effective negative diversity and tightening the InfoNCE mutual information bound.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "276ee692-61a7-4c37-bbb1-383dfa43646d",
+  "isSidechain": false,
+  "requestId": "req_011CauSKpbLTwWuZVTQjtGJt",
+  "type": "assistant",
+  "uuid": "fb785f64-b856-48cc-bdce-c2397e1f67b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DAbX1oG6iCBEtDtDdYJjJV",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9666,
+      "cache_read_input_tokens": 70206,
+      "output_tokens": 10234,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9666,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10234,
+          "cache_read_input_tokens": 70206,
+          "cache_creation_input_tokens": 9666,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9666
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 100_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level…",
+  "leafUuid": "fb785f64-b856-48cc-bdce-c2397e1f67b8",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 101_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise StructFuse to address CodeQL scalability and improve ceiling analysis",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 102_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level…",
+  "leafUuid": "fb785f64-b856-48cc-bdce-c2397e1f67b8",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 103_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise StructFuse to address CodeQL scalability and improve ceiling analysis",
+  "sessionId": "c145521e-551c-49d2-bab9-66545d64d26b"
+}
+```
+
+---

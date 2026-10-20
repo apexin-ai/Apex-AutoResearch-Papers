@@ -1,0 +1,1745 @@
+{
+  "schema_version": "1.0",
+  "id": "7b99f96805a97d635393",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I'm reviewing a paper idea called \"StructFuse\" that proposes data-flow-aware contrastive retrieval for repository-level ",
+  "task_key": "agent-aea381432b8282449",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-aea381432b8282449.jsonl",
+    "occurrence": 1,
+    "bytes": 92741,
+    "sha256": "439cfe2cad50ed7f79a5d3e212234b53805edcf433ddb09989f808651247e7ab"
+  },
+  "statistics": {
+    "messages": 38,
+    "user_turns": 1,
+    "tool_calls": 16,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 16,
+      "tool_result": 16
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T19:00:15.270Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'm reviewing a paper idea called \"StructFuse\" that proposes data-flow-aware contrastive retrieval for repository-level code repair context selection. I need to find competing work the authors may have missed.\n\nThe core method is:\n1. Extract inter-procedural data-flow (def-use) chains via CodeQL from Python repos\n2. Use these to mine hard negatives for contrastive learning (files that are lexically similar but structurally disconnected)\n3. Train a 3B bi-encoder retriever with structure-conditioned InfoNCE loss\n4. Two-stage cascade: coarse BM25 + data-flow reachability → fine ranking by 3B model\n\nPlease search for:\n1. \"contrastive learning code retrieval data flow 2025 2026\" - any work combining contrastive learning with structural code features for retrieval\n2. \"code property graph neural retrieval repair 2025 2026\" - CPG/DFG-guided neural models\n3. \"inter-procedural analysis code repair context 2025 2026\" - inter-procedural analysis for code repair\n4. \"hard negative mining code search structural 2025 2026\" - structural hard negative mining for code\n5. \"CodeQL machine learning training data 2025 2026\" - using CodeQL outputs as ML training signal\n6. \"repository level context selection code repair 2026\" - general repo-level context selection\n7. \"data flow aware retrieval augmented generation code\" - data-flow + RAG for code\n\nFor each search, report what you find. I'm especially interested in any paper that:\n- Uses program analysis outputs (data-flow, control-flow, CPG) as training signal for neural code retrieval\n- Applies contrastive learning with structural code features\n- Uses CodeQL for ML training data generation\n- Does inter-procedural analysis for code repair context\n\nReport concisely (under 500 words), listing any potentially missed papers with title, venue, and why they're relevant."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "e415714b-7a28-4c44-aefa-f517da24be8e",
+            "agentId": "aea381432b8282449",
+            "type": "user",
+            "uuid": "00bfdcaf-550d-47c5-bae1-168bfcf0a421",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T19:00:15.274Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "00bfdcaf-550d-47c5-bae1-168bfcf0a421",
+                "isSidechain": true,
+                "agentId": "aea381432b8282449",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "c900259c-e7c0-4c1b-8780-23404a62744d",
+                "timestamp": "2026-05-10T19:00:15.274Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T19:00:17.699Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll run all seven searches in parallel to find competing work."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c900259c-e7c0-4c1b-8780-23404a62744d",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQMTgZhJC1Yrex94NXx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e62880ec-aea6-4d78-a6e1-402446084a0f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AoGrwKqyrf3tiMDGPxBZqT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 974,
+                "cache_read_input_tokens": 7304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 974,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T19:00:18.259Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TqRjUbfZuKEipsUeZ6Qpn5",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e62880ec-aea6-4d78-a6e1-402446084a0f",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQMTgZhJC1Yrex94NXx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "59d2ac30-a1fa-4c0f-a7aa-635ef936e5cb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AoGrwKqyrf3tiMDGPxBZqT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 974,
+                "cache_read_input_tokens": 7304,
+                "output_tokens": 90,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 974
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 90,
+                    "cache_read_input_tokens": 7304,
+                    "cache_creation_input_tokens": 974,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 974,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T19:00:18.263Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01TqRjUbfZuKEipsUeZ6Qpn5",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "59d2ac30-a1fa-4c0f-a7aa-635ef936e5cb",
+            "isSidechain": true,
+            "promptId": "e415714b-7a28-4c44-aefa-f517da24be8e",
+            "agentId": "aea381432b8282449",
+            "type": "user",
+            "uuid": "23af0934-d24c-4041-8255-a66eb77d5fc6",
+            "sourceToolAssistantUUID": "59d2ac30-a1fa-4c0f-a7aa-635ef936e5cb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T19:00:25.507Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me run all seven searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23af0934-d24c-4041-8255-a66eb77d5fc6",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQMgfR74xWKfosq8F8D",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ac687e76-8545-4ca1-9d81-19fc1fc4af60",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HAFzdUWJRHsfseTPiv8rug",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1407,
+                "cache_read_input_tokens": 8278,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1407,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T19:00:25.707Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017s61ZmW5wiqZT9DowUogrk",
+              "name": "WebSearch",
+              "input": {
+                "query": "contrastive learning code retrieval data flow 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac687e76-8545-4ca1-9d81-19fc1fc4af60",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQMgfR74xWKfosq8F8D",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "be3a6c76-44ac-4337-ae51-edf3b76933c1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HAFzdUWJRHsfseTPiv8rug",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1407,
+                "cache_read_input_tokens": 8278,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1407,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T19:00:25.909Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013nNVu5WBibXMHtRCeZoAwk",
+              "name": "WebSearch",
+              "input": {
+                "query": "code property graph neural retrieval repair 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be3a6c76-44ac-4337-ae51-edf3b76933c1",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQMgfR74xWKfosq8F8D",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f0ca4818-9a30-4638-8122-b686338e57ac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HAFzdUWJRHsfseTPiv8rug",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1407,
+                "cache_read_input_tokens": 8278,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1407,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T19:00:25.984Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015UXjuHtjE21yQfZbjRE2kC",
+              "name": "WebSearch",
+              "input": {
+                "query": "inter-procedural analysis code repair context 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f0ca4818-9a30-4638-8122-b686338e57ac",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQMgfR74xWKfosq8F8D",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "47f6c2cd-96e9-4284-badf-e012168d17e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HAFzdUWJRHsfseTPiv8rug",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1407,
+                "cache_read_input_tokens": 8278,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1407,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T19:00:26.087Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015JKEurfoZvxaZisXXnYTwy",
+              "name": "WebSearch",
+              "input": {
+                "query": "hard negative mining code search structural 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "47f6c2cd-96e9-4284-badf-e012168d17e5",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQMgfR74xWKfosq8F8D",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "efb8aadb-7906-4ff1-8323-4d1312907ecc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HAFzdUWJRHsfseTPiv8rug",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1407,
+                "cache_read_input_tokens": 8278,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1407,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T19:00:26.148Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HR7io92iqCbCdPbp7nFhkQ",
+              "name": "WebSearch",
+              "input": {
+                "query": "CodeQL machine learning training data 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "efb8aadb-7906-4ff1-8323-4d1312907ecc",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQMgfR74xWKfosq8F8D",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "79f90205-24eb-4e7b-840c-512c6222aabf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HAFzdUWJRHsfseTPiv8rug",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1407,
+                "cache_read_input_tokens": 8278,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1407,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T19:00:26.456Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DgKQUTMqFVrfkX5Hk4q1An",
+              "name": "WebSearch",
+              "input": {
+                "query": "repository level context selection code repair 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "79f90205-24eb-4e7b-840c-512c6222aabf",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQMgfR74xWKfosq8F8D",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c2251832-bcd8-474b-b06e-7e16991504b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HAFzdUWJRHsfseTPiv8rug",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1407,
+                "cache_read_input_tokens": 8278,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1407,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T19:00:26.713Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EnEcEDewpZGFGSDL9BSD8a",
+              "name": "WebSearch",
+              "input": {
+                "query": "data flow aware retrieval augmented generation code"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c2251832-bcd8-474b-b06e-7e16991504b0",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQMgfR74xWKfosq8F8D",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9f37b9c2-8d21-4973-a491-6ac3d3696a2c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HAFzdUWJRHsfseTPiv8rug",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1407,
+                "cache_read_input_tokens": 8278,
+                "output_tokens": 351,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1407
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 351,
+                    "cache_read_input_tokens": 8278,
+                    "cache_creation_input_tokens": 1407,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1407,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T19:00:32.948Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017s61ZmW5wiqZT9DowUogrk",
+              "type": "tool_result",
+              "content": "Web search results for query: \"contrastive learning code retrieval data flow 2025 2026\"\n\nLinks: [{\"title\":\"Learn Before Represent: Bridging Generative and Contrastive Learning\",\"url\":\"https://arxiv.org/pdf/2601.11124\"},{\"title\":\"Contrastive Learning for Retrieval: InfoNCE & DPR Guide - Interactive | Michael Brenndoerfer | Michael Brenndoerfer\",\"url\":\"https://mbrenndoerfer.com/writing/contrastive-learning-retrieval-infonce-dpr\"},{\"title\":\"GitHub - ryanzhumich/Contrastive-Learning-NLP-Papers: Paper List for Contrastive Learning for Natural Language Processing · GitHub\",\"url\":\"https://github.com/ryanzhumich/Contrastive-Learning-NLP-Papers\"},{\"title\":\"NeurIPS Poster Generalized Contrastive Learning for Universal Multimodal Retrieval\",\"url\":\"https://neurips.cc/virtual/2025/poster/117866\"},{\"title\":\"Vision Language Models: A Survey of 26K Papers (CVPR, ICLR, NeurIPS 2023–2025)\",\"url\":\"https://arxiv.org/html/2510.09586v1\"},{\"title\":\"Generalized Contrastive Learning for Multi-Modal Retrieval and Ranking | Companion Proceedings of the ACM on Web Conference 2025\",\"url\":\"https://dl.acm.org/doi/10.1145/3701716.3715227\"},{\"title\":\"A comprehensive survey on contrastive learning - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0925231224014164\"},{\"title\":\"A Survey on Behavioral Data Representation Learning\",\"url\":\"https://openreview.net/pdf/36f6fa22337fe42a9bc8b300c157daaa14b2e2e1.pdf\"},{\"title\":\"Machine Learning Mar 2025\",\"url\":\"https://arxiv.org/list/cs.LG/2025-03?skip=1200&show=1000\"},{\"title\":\"Accepted Findings Papers - ACL 2025\",\"url\":\"https://2025.aclweb.org/program/find_papers/\"}]\n\nBased on the search results, here are the key findings related to contrastive learning, code retrieval, and data flow in 2025-2026:\n\n## Recent Research on Contrastive Learning and Code\n\nA 2025 paper titled \"Learn Before Represent\" presents a framework where in Stage 1, the model performs generative learning under an Information Bottleneck constraint, and in Stage 2, the bottleneck tokens serve as embeddings through contrastive learning.\n\nResearch has evaluated performance across vertical domains including Chemistry, Medical, and Code, with evaluation protocols testing terminology understanding tasks.\n\n## Contrastive Learning for Retrieval\n\nContrastive learning is a training paradigm built around teaching a model what things should look like together by also showing it what things should not look like together. Practitioners can use a contrastive batch size of 4096 while only processing 32 sequences through the encoder at a time, achieving representational benefits of massive in-batch negative sets without exceeding GPU memory capacity.\n\n## Multimodal and Ranking Extensions\n\nGeneralized Contrastive Learning (GCL), a novel approach designed to learn from fine-grained rankings beyond binary relevance scores, converts desired ranking scores into weights that scale the loss function and encodes both relevance and ranking information into a unified embedding space.\n\nRecent work includes CLeVeR, which applies multi-modal contrastive learning for vulnerability code representation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be3a6c76-44ac-4337-ae51-edf3b76933c1",
+            "isSidechain": true,
+            "promptId": "e415714b-7a28-4c44-aefa-f517da24be8e",
+            "agentId": "aea381432b8282449",
+            "type": "user",
+            "uuid": "b560e28a-a29b-41aa-b07f-ce3a799dfb67",
+            "sourceToolAssistantUUID": "be3a6c76-44ac-4337-ae51-edf3b76933c1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T19:00:33.026Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015JKEurfoZvxaZisXXnYTwy",
+              "type": "tool_result",
+              "content": "Web search results for query: \"hard negative mining code search structural 2025 2026\"\n\nLinks: [{\"title\":\"Effective Hard Negative Mining for Contrastive Learning-Based Code Search | ACM Transactions on Software Engineering and Methodology\",\"url\":\"https://dl.acm.org/doi/10.1145/3695994\"},{\"title\":\"[2505.18366] Hard Negative Mining for Domain-Specific Retrieval in Enterprise Systems\",\"url\":\"https://arxiv.org/abs/2505.18366\"},{\"title\":\"Hard Negative Mining for Domain-Specific Retrieval in Enterprise Systems - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.acl-industry.72/\"},{\"title\":\"Effective Hard Negative Mining for Contrastive Learning-Based Code Search | Request PDF\",\"url\":\"https://www.researchgate.net/publication/384848348_Effective_Hard_Negative_Mining_for_Contrastive_Learning-based_Code_Search\"},{\"title\":\"Hard Negative Mining for Domain-Specific Retrieval in ...\",\"url\":\"https://aclanthology.org/2025.acl-industry.72.pdf\"},{\"title\":\"hard-negative-mining · GitHub Topics · GitHub\",\"url\":\"https://github.com/topics/hard-negative-mining\"},{\"title\":\"Neighborhood-based Hard Negative Mining for Sequential Recommendation | Proceedings of the 46th International ACM SIGIR Conference on Research and Development in Information Retrieval\",\"url\":\"https://dl.acm.org/doi/10.1145/3539618.3591995\"},{\"title\":\"Hard Negative Mining for Domain-Specific Retrieval in ...\",\"url\":\"https://arxiv.org/pdf/2505.18366\"},{\"title\":\"Effective Hard Negative Mining for Contrastive Learning-based Code Search | CoLab\",\"url\":\"https://colab.ws/articles/10.1145/3695994\"},{\"title\":\"Contrastive Learning with Hard Negatives\",\"url\":\"https://www.emergentmind.com/topics/contrastive-learning-with-hard-negative-samples\"}]\n\nBased on the search results, here are the key findings related to hard negative mining in code search and structural approaches from 2025-2026:\n\n## Recent Publications on Hard Negative Mining for Code Search\n\nA recent publication titled \"Effective Hard Negative Mining for Contrastive Learning-based Code Search\" was published in ACM Transactions on Software Engineering and Methodology in 2025. The study presents CoCoHaNeRe, which performs better than all baseline approaches, improving performance by more than 40% compared to IR-based methods and more than 4% compared to pre-trained models without code search tasks.\n\n## Structural Considerations in Code Search\n\nFor models like GraphCodeBERT that require code structure information, researchers filter out code that cannot generate control flow graphs (CFG) in datasets. Existing pre-trained models may not be the best option for code clone detection tasks, since they tend to focus more on text semantics, whereas clone detection may require attention to code structure—using graph neural networks and outputting structural information such as AST and CFG may be better improvement measures.\n\n## Related Hard Negative Mining Applications\n\nThe paper \"Hard Negative Mining for Domain-Specific Retrieval in Enterprise Systems\" was presented at the 63rd Annual Meeting of the Association for Computational Linguistics in 2025. This work demonstrated substantial improvements of 15% in MRR@3 and 19% in MRR@10 on proprietary enterprise corpora, with further validation on public domain-specific datasets confirming the method's generalizability.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "efb8aadb-7906-4ff1-8323-4d1312907ecc",
+            "isSidechain": true,
+            "promptId": "e415714b-7a28-4c44-aefa-f517da24be8e",
+            "agentId": "aea381432b8282449",
+            "type": "user",
+            "uuid": "9cc69c63-ce16-40b0-bea0-b24a40c49434",
+            "sourceToolAssistantUUID": "efb8aadb-7906-4ff1-8323-4d1312907ecc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T19:00:33.150Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EnEcEDewpZGFGSDL9BSD8a",
+              "type": "tool_result",
+              "content": "Web search results for query: \"data flow aware retrieval augmented generation code\"\n\nLinks: [{\"title\":\"Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches\",\"url\":\"https://arxiv.org/html/2510.04905v1\"},{\"title\":\"RAG 101: Demystifying Retrieval-Augmented Generation Pipelines | NVIDIA Technical Blog\",\"url\":\"https://developer.nvidia.com/blog/rag-101-demystifying-retrieval-augmented-generation-pipelines/\"},{\"title\":\"GraphCodeAgent: Dual Graph-Guided LLM Agent for Retrieval-Augmented Repo-Level Code Generation\",\"url\":\"https://arxiv.org/html/2504.10046\"},{\"title\":\"RAG: Retrieval Augmented Generation In-Depth with Code Implementation using Langchain, Langchain Agents, LlamaIndex and LangSmith. | by Devmallya Karar | Medium\",\"url\":\"https://medium.com/@devmallyakarar/rag-retrieval-augmented-generation-in-depth-with-code-implementation-using-langchain-llamaindex-1f77d1ca2d33\"},{\"title\":\"Create a vector RAG chatbot | Langflow Documentation\",\"url\":\"https://docs.langflow.org/chat-with-rag\"},{\"title\":\"RAG (Retrieval Augmented Generation) on Databricks | Databricks on AWS\",\"url\":\"https://docs.databricks.com/aws/en/generative-ai/retrieval-augmented-generation\"},{\"title\":\"RETRIEVAL-AUGMENTED GENERATION FOR CODE ...\",\"url\":\"https://openreview.net/pdf?id=zv-typ1gPxA\"},{\"title\":\"RETRIEVAL-AUGMENTED CODE GENERATION: A SURVEY WITH\",\"url\":\"https://arxiv.org/pdf/2510.04905\"},{\"title\":\"Retrieval Augmented Generation (RAG) in Azure AI Search\",\"url\":\"https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview\"},{\"title\":\"[2507.12425] Advancing Retrieval-Augmented Generation for Structured Enterprise and Internal Data\",\"url\":\"https://arxiv.org/abs/2507.12425\"}]\n\nBased on the search results, here's what I found about data flow aware retrieval augmented generation code:\n\n## Overview\n\nGraph-based RAG methods leverage the inherently structured nature of code to construct explicit graph representations, such as Abstract Syntax Trees (ASTs), data-flow graphs, or dependency graphs. Nodes typically represent code entities (e.g., functions, classes, variables), while edges encode relationships such as function calls, inheritance, import statements, or data/control flow.\n\n## Key Approaches\n\n### Data-Flow-Aware Methods\n\nGraphCoder constructs the code context graph (CCG) that considers the control-flow, data-flow, and control-dependence between code statements for retrieval-augmented code completion. This approach specifically integrates data flow analysis into the retrieval process.\n\n### Benefits\n\nBy exploiting graph connectivity and traversal patterns, graph-based methods enable more structurally grounded and contextually precise retrieval, which is particularly beneficial for tasks requiring global reasoning, such as cross-file completion or multi-module consistency checking.\n\n## Challenges\n\nWhile graph-based methods offer high fidelity and structural awareness, they also introduce challenges in preprocessing, graph maintenance, and computational overhead—especially when applied to large-scale, heterogeneous repositories.\n\nData flow aware retrieval augmented generation is particularly useful for repository-level code generation tasks where understanding dependencies and data relationships between code elements is critical for generating contextually correct code.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9f37b9c2-8d21-4973-a491-6ac3d3696a2c",
+            "isSidechain": true,
+            "promptId": "e415714b-7a28-4c44-aefa-f517da24be8e",
+            "agentId": "aea381432b8282449",
+            "type": "user",
+            "uuid": "ea71365f-07a6-44a4-9fa2-c2e1112a2c29",
+            "sourceToolAssistantUUID": "9f37b9c2-8d21-4973-a491-6ac3d3696a2c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T19:00:33.307Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HR7io92iqCbCdPbp7nFhkQ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CodeQL machine learning training data 2025 2026\"\n\nLinks: [{\"title\":\"20+ CodeQL Online Courses for 2026 | Explore Free Courses & Certifications | Class Central\",\"url\":\"https://www.classcentral.com/subject/codeql\"},{\"title\":\"CodeQL documentation - GitHub\",\"url\":\"https://codeql.github.com/docs/\"},{\"title\":\"Academic publications - CodeQL - GitHub\",\"url\":\"https://codeql.github.com/publications/\"},{\"title\":\"Identify security vulnerabilities in your codebase by using CodeQL - Training | Microsoft Learn\",\"url\":\"https://learn.microsoft.com/en-us/training/modules/codebase-representation-codeql/\"},{\"title\":\"CodeQL\",\"url\":\"https://codeql.github.com/\"},{\"title\":\"How GitHub Uses Machine Learning to Extend Vulnerability Code Scanning - InfoQ\",\"url\":\"https://www.infoq.com/news/2022/02/GitHub-code-scanning-ml/\"},{\"title\":\"Code Scanning with GitHub CodeQL - Training | Microsoft Learn\",\"url\":\"https://learn.microsoft.com/en-us/training/modules/code-scanning-with-github-codeql/\"},{\"title\":\"CodeQL 2.23.5 (2025-11-13) — CodeQL\",\"url\":\"https://codeql.github.com/docs/codeql-overview/codeql-changelog/codeql-cli-2.23.5/\"},{\"title\":\"Getting started with CodeQL, GitHub's declarative static analyzer for security - Tweag\",\"url\":\"https://www.tweag.io/blog/2025-08-07-codeql-intro/\"},{\"title\":\"Learning CodeQL\",\"url\":\"https://bartwullems.blogspot.com/2023/08/learning-codeql.html\"}]\n\nBased on the search results, here's what I found regarding CodeQL machine learning training data:\n\n## CodeQL Machine Learning Approach\n\nGitHub leverages existing CodeQL rules as a ground-truth oracle to automatically label tens of millions of code snippets from over a hundred thousand public repositories. The resulting data is used as a training set to build a predictive model.\n\n## Training Methodology\n\nSupervised learning, where experts label each code snippet as either vulnerable or safe, works better than unsupervised learning. The model is trained on labels generated using an older set of CodeQL rules and then tested against vulnerabilities detected by a newer set of CodeQL rules.\n\n## Feature Extraction\n\nGitHub leverages the power of CodeQL rules to identify features in code snippets, such as access path, API name, enclosing function body, and other semantic information, rather than using NLP techniques to treat code as text.\n\nThe search results do not contain specific information about CodeQL machine learning training data developments planned for 2025-2026. The most recent technical details available are from a 2022 article describing GitHub's ML approach to vulnerability detection.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "79f90205-24eb-4e7b-840c-512c6222aabf",
+            "isSidechain": true,
+            "promptId": "e415714b-7a28-4c44-aefa-f517da24be8e",
+            "agentId": "aea381432b8282449",
+            "type": "user",
+            "uuid": "3109bef6-50e7-4b45-8852-c1f089e5d5d1",
+            "sourceToolAssistantUUID": "79f90205-24eb-4e7b-840c-512c6222aabf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-10T19:00:33.673Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015UXjuHtjE21yQfZbjRE2kC",
+              "type": "tool_result",
+              "content": "Web search results for query: \"inter-procedural analysis code repair context 2025 2026\"\n\nLinks: [{\"title\":\"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications\",\"url\":\"https://arxiv.org/html/2506.23749v1\"},{\"title\":\"Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural\",\"url\":\"https://www.arxiv.org/pdf/2602.06751\"},{\"title\":\"SoK: Towards Effective Automated Vulnerability Repair\",\"url\":\"https://gangw.cs.illinois.edu/sec25-sok.pdf\"},{\"title\":\"Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vulnerability Detection | Request PDF\",\"url\":\"https://www.researchgate.net/publication/400583926_Beyond_Function-Level_Analysis_Context-Aware_Reasoning_for_Inter-Procedural_Vulnerability_Detection\"},{\"title\":\"Understanding How Inter-Procedural Analysis Strengthens Impact Accuracy - IN-COM DATA SYSTEMS\",\"url\":\"https://www.in-com.com/blog/understanding-how-inter-procedural-analysis-strengthens-impact-accuracy/\"},{\"title\":\"INTERPROCEDURAL ANALYSIS\",\"url\":\"https://pages.cs.wisc.edu/~fischer/cs701.f14/6.INTERPROCEDURAL-ANALYSIS.html\"},{\"title\":\"Interprocedural Analysis | GeeksforGeeks\",\"url\":\"https://www.geeksforgeeks.org/interprocedural-analysis/\"},{\"title\":\"SoK: Automated Vulnerability Repair: Methods, Tools, and ...\",\"url\":\"https://www.usenix.org/system/files/usenixsecurity25-hu-yiwei.pdf\"},{\"title\":\"Automated Code Repair for C/C++ Static Analysis Alerts\",\"url\":\"https://www.arxiv.org/pdf/2508.02820\"},{\"title\":\"Interprocedural Analysis - an overview | ScienceDirect Topics\",\"url\":\"https://www.sciencedirect.com/topics/computer-science/interprocedural-analysis\"}]\n\nBased on the search results, here's what I found regarding inter-procedural analysis, code repair, and context in the 2025-2026 timeframe:\n\n## Recent Research and Applications\n\nRecent LLM-based automated program repair (APR) systems published from January 2022 to June 2025 are categorized into four paradigms, with retrieval- or analysis-augmented contexts strengthening any of them.\n\nAnalysis-augmented generation (AAG) pipelines interleave an automated program analysis pass with LLM repair steps, with evidence stemming from logical inconsistency sets, semantics-based token pruning, or static and hybrid security analyzers such as CodeQL.\n\n## Inter-Procedural Dependency in Code Repair\n\nInter-procedural dependency refers to modifications within a vulnerable function that involve components outside of that function. Methods for tracking inter-procedural data flows and validating dependencies against security specifications, along with API calls and structure definitions, may lead to more accurate, contextually informed repairs.\n\n## Impact Analysis and Context\n\nBy modeling cross-function dependencies, inter-procedural analysis provides an accurate picture of how one code change influences another, enabling teams to predict real impact rather than assuming it. By integrating procedural call graphs and data flow models, inter-procedural analysis provides the context necessary for precise impact estimation, forecasting which modules will be affected by a proposed change.\n\nThe search results highlight that inter-procedural analysis is increasingly important for modern code repair systems, particularly when combined with LLM-based approaches that require rich contextual information to generate accurate patches.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "47f6c2cd-96e9-4284-badf-e012168d17e5",
+            "isSidechain": true,
+            "promptId": "e415714b-7a28-4c44-aefa-f517da24be8e",
+            "agentId": "aea381432b8282449",
+            "type": "user",
+            "uuid": "b8608c48-0029-4b41-ba78-45d300cb86ff",
+            "sourceToolAssistantUUID": "47f6c2cd-96e9-4284-badf-e012168d17e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-10T19:00:34.790Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DgKQUTMqFVrfkX5Hk4q1An",
+              "type": "tool_result",
+              "content": "Web search results for query: \"repository level context selection code repair 2026\"\n\nLinks: [{\"title\":\"RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair\",\"url\":\"https://arxiv.org/html/2603.01048v1\"},{\"title\":\"In Line with Context: Repository-Level Code Generation via Context Inlining\",\"url\":\"https://arxiv.org/pdf/2601.00376\"},{\"title\":\"GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥\",\"url\":\"https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation\"},{\"title\":\"(PDF) RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair\",\"url\":\"https://www.researchgate.net/publication/401470565_RepoRepair_Leveraging_Code_Documentation_for_Repository-Level_Automated_Program_Repair\"},{\"title\":\"[2603.01048] RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair\",\"url\":\"https://arxiv.org/abs/2603.01048\"},{\"title\":\"Repository-Level Context Files\",\"url\":\"https://www.emergentmind.com/topics/repository-level-context-files\"},{\"title\":\"A Study on the Impact of Fault localization Granularity for Repository-Scale Code Repair Tasks\",\"url\":\"https://arxiv.org/html/2604.00167\"},{\"title\":\"Compressing Code Context for LLM-based Issue Resolution\",\"url\":\"https://arxiv.org/html/2603.28119\"},{\"title\":\"RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair | Gist.Science\",\"url\":\"https://gist.science/paper/2603.01048\"},{\"title\":\"CI-Repair-Bench: A Repository-Aware Benchmark for Automated Patch Validation via CI Workflows\",\"url\":\"https://arxiv.org/html/2604.27148\"}]\n\nBased on the search results, here's what I found regarding repository-level context selection for code repair in 2026:\n\n## Key Research Findings\n\nRecent work in repository-level code repair focuses on strategies like deleting contents of functions/classes that don't need modification and pruning file content for minimal repair context, while also localizing functions/classes that need to be modified based on issue descriptions and documentation.\n\n### RepoRepair Approach\n\nA prominent 2026 approach leverages LLMs to generate hierarchical code documentation (from functions to files) for code repositories, creating structured semantic abstractions that enable LLMs to comprehend repository-level context and dependencies, with LLMs like DeepSeek-V3 generating file/function-level code documentation.\n\n### Context Optimization Strategies\n\nRecent methods include truncating and ordering snippets by relevance with coalition-aware selection, and context window optimization with prompt budgeting to meet latency and model window constraints.\n\nAdvanced compression techniques employ Oracle-guided Code Distillation to systematically reduce initial context to a minimal sufficient context—where every retained fragment is functionally necessary for successful repair.\n\n### Granularity Considerations\n\nResearch shows that function-level granularity yields the highest repair rate compared to line-level and file-level approaches, though the optimal level of localization granularity appears to be instance-dependent rather than fixed, motivating investigation into difficulty-aware or adaptive granularity selection.\n\n### Performance Results\n\nRepoRepair achieves a 45.7% repair rate on SWE-bench Lite at $0.44 per fix, and 37.1% repair rate on SWE-bench Multimodal at $0.56 per fix.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c2251832-bcd8-474b-b06e-7e16991504b0",
+            "isSidechain": true,
+            "promptId": "e415714b-7a28-4c44-aefa-f517da24be8e",
+            "agentId": "aea381432b8282449",
+            "type": "user",
+            "uuid": "ccf65ea1-bda1-4899-bba4-d89c72a92541",
+            "sourceToolAssistantUUID": "c2251832-bcd8-474b-b06e-7e16991504b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-10T19:00:38.005Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013nNVu5WBibXMHtRCeZoAwk",
+              "type": "tool_result",
+              "content": "Web search results for query: \"code property graph neural retrieval repair 2025 2026\"\n\nLinks: [{\"title\":\"A Code Vulnerability Detection Method Integrating Pre-trained Model and Graph Neural Network | Springer Nature Link\",\"url\":\"https://link.springer.com/chapter/10.1007/978-981-95-3182-0_5\"},{\"title\":\"CodeLLMPaper/data/papers/labels/program_repair.md at main · PurCL/CodeLLMPaper\",\"url\":\"https://github.com/PurCL/CodeLLMPaper/blob/main/data/papers/labels/program_repair.md\"},{\"title\":\"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications\",\"url\":\"https://arxiv.org/html/2506.23749v1\"},{\"title\":\"An integrated graph neural network model for joint software defect prediction and code quality assessment | Scientific Reports\",\"url\":\"https://www.nature.com/articles/s41598-025-31209-5\"},{\"title\":\"Structure-Enhanced Prompt Learning for Graph-Based Code Vulnerability Detection\",\"url\":\"https://www.mdpi.com/2076-3417/15/11/6128\"},{\"title\":\"CODEXGRAPH: Bridging Large Language Models and ...\",\"url\":\"https://aclanthology.org/2025.naacl-long.7.pdf\"},{\"title\":\"A Source Code Vulnerability Detection Method Based on Adaptive Graph Neural Networks | Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering Workshops\",\"url\":\"https://dl.acm.org/doi/10.1145/3691621.3694950\"},{\"title\":\"Learning Graph-based Code Representations for Source- ...\",\"url\":\"https://jun-zeng.github.io/file/tailor_paper.pdf\"},{\"title\":\"Advancements in automated program repair: a comprehensive review | Knowledge and Information Systems | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s10115-025-02383-9\"},{\"title\":\"GitHub - DEEP-PolyU/Awesome-GraphRAG: Awesome-GraphRAG: A curated list of resources (surveys, papers, benchmarks, and opensource projects) on graph-based retrieval-augmented generation. · GitHub\",\"url\":\"https://github.com/DEEP-PolyU/Awesome-GraphRAG\"}]\n\nBased on the search results, here's what I found regarding code property graphs, neural networks, retrieval, and repair in 2025-2026:\n\n## Recent Research Trends\n\n**Code Property Graphs and Neural Networks:**\nA code vulnerability detection method proposed for 2026 integrates pre-trained models with graph neural networks, where the approach extracts both code sequence and code property graph features, with the pre-trained model capturing semantic information and the graph neural network learning structural characteristics.\n\nA mobile application vulnerability detection method based on Code Property Graphs (CPG) and adaptive graph neural networks first converts source code into CPGs, then uses CodeBERT to vectorize CPG nodes.\n\n**Program Repair with Retrieval-Augmented Approaches:**\nLarge language models (LLMs) are reshaping automated program repair (APR), with recent systems categorized into four paradigms and showing how retrieval- or analysis-augmented contexts strengthen them.\n\nDSrepair, a knowledge-enhanced program repair approach designed to repair buggy code generated by LLMs in the data science domain, uses knowledge graph based RAG for API knowledge retrieval and bug knowledge enrichment to construct repair prompts for LLMs.\n\n**Graph-based Code Retrieval:**\nCODEXGRAPH employs code graph databases as interfaces that allow LLM agents to interact seamlessly with code repositories and supports the management of a wide range of tasks, from academic-level code benchmarks to real-world software engineering applications.\n\nThese results show significant development in combining graph neural networks with code analysis, particularly for vulnerability detection and program repair tasks in 2025-2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f0ca4818-9a30-4638-8122-b686338e57ac",
+            "isSidechain": true,
+            "promptId": "e415714b-7a28-4c44-aefa-f517da24be8e",
+            "agentId": "aea381432b8282449",
+            "type": "user",
+            "uuid": "4a83a399-e65d-4df3-9e10-cad74d19bce9",
+            "sourceToolAssistantUUID": "f0ca4818-9a30-4638-8122-b686338e57ac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-10T19:00:46.880Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me run a few more targeted searches to fill in gaps on the most directly competing work."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a83a399-e65d-4df3-9e10-cad74d19bce9",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQP8qYrSnYs52raxcPz",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1e1143c7-c433-40dc-aec6-dd128e1f5bd8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01511y4HZTKDwuVXktFnT7eb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4298,
+                "cache_creation_input_tokens": 2228,
+                "cache_read_input_tokens": 9685,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-10T19:00:47.999Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TsQXcja5zMuKPBTK4rFcrn",
+              "name": "WebSearch",
+              "input": {
+                "query": "GraphCoder data flow code context graph retrieval augmented code completion 2024 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1e1143c7-c433-40dc-aec6-dd128e1f5bd8",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQP8qYrSnYs52raxcPz",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "775e0a91-95ba-4c97-a70e-b75c62d0d8d9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01511y4HZTKDwuVXktFnT7eb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4298,
+                "cache_creation_input_tokens": 2228,
+                "cache_read_input_tokens": 9685,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-10T19:00:49.039Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NxX2Cy1RcG5aH7g24VXbKT",
+              "name": "WebSearch",
+              "input": {
+                "query": "CoCoHaNeRe hard negative mining contrastive code search TOSEM 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "775e0a91-95ba-4c97-a70e-b75c62d0d8d9",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQP8qYrSnYs52raxcPz",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5042022f-8d02-4493-8fd6-7ddaa4174b1c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01511y4HZTKDwuVXktFnT7eb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4298,
+                "cache_creation_input_tokens": 2228,
+                "cache_read_input_tokens": 9685,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-10T19:00:49.359Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HoXFmy9WHWtPiVZvQXzapp",
+              "name": "WebSearch",
+              "input": {
+                "query": "GraphCodeAgent dual graph retrieval repo-level code generation 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5042022f-8d02-4493-8fd6-7ddaa4174b1c",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQP8qYrSnYs52raxcPz",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4691d99b-43b5-407b-9f8a-c24e7c02a69a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01511y4HZTKDwuVXktFnT7eb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4298,
+                "cache_creation_input_tokens": 2228,
+                "cache_read_input_tokens": 9685,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-10T19:00:50.984Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GqoXdeWGQ7fxEsiiyWTLAW",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Beyond Function-Level Analysis\" inter-procedural vulnerability detection context-aware 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4691d99b-43b5-407b-9f8a-c24e7c02a69a",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQP8qYrSnYs52raxcPz",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "76d2ed66-4f88-4f96-a6f7-3b0910dd80b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01511y4HZTKDwuVXktFnT7eb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4298,
+                "cache_creation_input_tokens": 2228,
+                "cache_read_input_tokens": 9685,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2228,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-10T19:00:51.186Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0156XcRG4gWc14xWj8VwbX1L",
+              "name": "WebSearch",
+              "input": {
+                "query": "CODEXGRAPH code graph database LLM agent repository 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "76d2ed66-4f88-4f96-a6f7-3b0910dd80b3",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQP8qYrSnYs52raxcPz",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7c81afeb-7bdb-420d-a5b5-9459c2b1328d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01511y4HZTKDwuVXktFnT7eb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4298,
+                "cache_creation_input_tokens": 2228,
+                "cache_read_input_tokens": 9685,
+                "output_tokens": 298,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2228
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4298,
+                    "output_tokens": 298,
+                    "cache_read_input_tokens": 9685,
+                    "cache_creation_input_tokens": 2228,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2228,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-10T19:00:54.335Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TsQXcja5zMuKPBTK4rFcrn",
+              "type": "tool_result",
+              "content": "Web search results for query: \"GraphCoder data flow code context graph retrieval augmented code completion 2024 2025\"\n\nLinks: [{\"title\":\"[2406.07003] GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model\",\"url\":\"https://arxiv.org/abs/2406.07003\"},{\"title\":\"GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph | Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering\",\"url\":\"https://dl.acm.org/doi/10.1145/3691620.3695054\"},{\"title\":\"GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph (ASE 2024 - Research Papers) - ASE 2024\",\"url\":\"https://conf.researchr.org/details/ase-2024/ase-2024-research/46/GraphCoder-Enhancing-Repository-Level-Code-Completion-via-Coarse-to-fine-Retrieval-B\"},{\"title\":\"[PDF] GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/GraphCoder:-Enhancing-Repository-Level-Code-via-and-Liu-Yu/793bbb3c70d4bac3908bd8f2ecc309f1bfdf5f52\"},{\"title\":\"GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2024arXiv240607003L/abstract\"},{\"title\":\"GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model\",\"url\":\"https://arxiv.org/html/2406.07003v2\"},{\"title\":\"GitHub - oceaneLIU/GraphCoder\",\"url\":\"https://github.com/oceaneLIU/GraphCoder\"},{\"title\":\"GitHub - DEEP-PolyU/Awesome-GraphRAG: Awesome-GraphRAG: A curated list of resources (surveys, papers, benchmarks, and opensource projects) on graph-based retrieval-augmented generation. · GitHub\",\"url\":\"https://github.com/DEEP-PolyU/Awesome-GraphRAG\"},{\"title\":\"GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥\",\"url\":\"https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation\"},{\"title\":\"GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph | IEEE Conference Publication | IEEE Xplore\",\"url\":\"https://ieeexplore.ieee.org/iel8/10764795/10764801/10765009.pdf\"}]\n\nI've completed the web search for GraphCoder. Here's what I found:\n\n## GraphCoder Overview\n\nGraphCoder is a retrieval-augmented code completion framework that leverages LLMs' general code knowledge and the repository-specific knowledge via a graph-based retrieval-generation process.\n\n## Key Technical Innovations\n\nGraphCoder captures the context of completion target more accurately through code context graph (CCG) that consists of control-flow, data- and control-dependence between code statements, a more structured way to capture the completion target context than the sequence-based context used in existing retrieval-augmented approaches; based on CCG, GraphCoder further employs a coarse-to-fine retrieval process to locate context-similar code snippets with the completion target from the current repository.\n\n## Performance Results\n\nCompared to baseline retrieval-augmented methods, GraphCoder achieves higher exact match (EM) on average, with increases of +6.06 in code match and +6.23 in identifier match, while using less time and space.\n\n## Publication Information\n\nThe paper was published in 2024, with the arXiv version dated June 11, 2024, and a subsequent version from September 13, 2024. It was presented at ASE 2024 (39th IEEE/ACM International Conference on Automated Software Engineering) on October 31, 2024. The paper has also been featured in curated lists of graph-based retrieval-augmented generation resources.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "775e0a91-95ba-4c97-a70e-b75c62d0d8d9",
+            "isSidechain": true,
+            "promptId": "e415714b-7a28-4c44-aefa-f517da24be8e",
+            "agentId": "aea381432b8282449",
+            "type": "user",
+            "uuid": "702d0bf6-8188-4074-acfe-8e741d6f39f8",
+            "sourceToolAssistantUUID": "775e0a91-95ba-4c97-a70e-b75c62d0d8d9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-10T19:00:56.440Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NxX2Cy1RcG5aH7g24VXbKT",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CoCoHaNeRe hard negative mining contrastive code search TOSEM 2025\"\n\nLinks: [{\"title\":\"Effective Hard Negative Mining for Contrastive Learning-based Code Search | CoLab\",\"url\":\"https://colab.ws/articles/10.1145/3695994\"},{\"title\":\"Effective Hard Negative Mining for Contrastive Learning-Based Code Search | ACM Transactions on Software Engineering and Methodology\",\"url\":\"https://dl.acm.org/doi/full/10.1145/3695994\"},{\"title\":\"Effective Hard Negative Mining for Contrastive Learning-Based Code Search | Request PDF\",\"url\":\"https://www.researchgate.net/publication/384848348_Effective_Hard_Negative_Mining_for_Contrastive_Learning-based_Code_Search\"},{\"title\":\"[PDF] CoCoSoDa: Effective Contrastive Learning for Code Search | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/CoCoSoDa:-Effective-Contrastive-Learning-for-Code-Shi-Wang/ae52599f2d2731f68c567b6726a5185c06cb9a41\"},{\"title\":\"Revisiting Hard Negative Mining in Contrastive Learning for Visual Understanding\",\"url\":\"https://www.mdpi.com/2079-9292/12/23/4884\"},{\"title\":\"A Hard Negatives Mining and Enhancing Method for Multi-Modal Contrastive Learning\",\"url\":\"https://www.mdpi.com/2079-9292/14/4/767\"},{\"title\":\"Contrastive learning with hard negative samples\",\"url\":\"https://arxiv.org/pdf/2010.04592\"},{\"title\":\"Debiased hybrid contrastive learning with hard negative mining for unsupervised person re-identification - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S1051200424004512\"},{\"title\":\"Semantic-Aware Hard Negative Mining for Medical Vision-Language Contrastive Pretraining | Proceedings of the 33rd ACM International Conference on Multimedia\",\"url\":\"https://dl.acm.org/doi/10.1145/3746027.3754991\"},{\"title\":\"Mining negative samples on contrastive learning via curricular weighting strategy - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S002002552400447X\"}]\n\nBased on the search results, here is information about CoCoHaNeRe:\n\n## CoCoHaNeRe: Hard Negative Mining for Code Search\n\nCoCoHaNeRe is a Code search framework augmented by Contrastive learning with differentiable Hard Negative samples Retrieval.\n\n### Key Contributions\n\nThe model introduces hard negative examples into contrastive training, which are negative examples in the codebase that are most similar to positive examples. The framework designs a new memory bank that supports finding the nearest neighbor of query as hard negatives.\n\n### Problem Statement\n\nDue to the random selection of negative samples, existing models cannot distinguish similar codes well, and since semantic vectors in the memory bank are reused from previous inference results without gradient descent, the model cannot effectively learn the negative sample semantic information.\n\n### Technical Approach\n\nThe framework adopts differentiable hard negative embeddings for the model's gradient descent process, specifically recomputing the embeddings of hard negatives and putting them in the same batch as positive examples for training.\n\n### Performance\n\nIn the code search task, the average MRR score of CoCoHaNeRe exceeds CodeBERT, GraphCodeBERT, and UniXcoder by 11.25%, 8.13%, and 7.38% respectively, and has made great progress in code clone detection and code question answering, performing well in different programming languages and code pre-training models.\n\n### Publication\n\nThe paper was published in ACM Transactions on Software Engineering and Methodology in 2025, Volume 34, No. 3.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5042022f-8d02-4493-8fd6-7ddaa4174b1c",
+            "isSidechain": true,
+            "promptId": "e415714b-7a28-4c44-aefa-f517da24be8e",
+            "agentId": "aea381432b8282449",
+            "type": "user",
+            "uuid": "00c9d345-3f17-4a27-961e-a8e2dfe9b7e8",
+            "sourceToolAssistantUUID": "5042022f-8d02-4493-8fd6-7ddaa4174b1c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-10T19:00:56.502Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HoXFmy9WHWtPiVZvQXzapp",
+              "type": "tool_result",
+              "content": "Web search results for query: \"GraphCodeAgent dual graph retrieval repo-level code generation 2025\"\n\nLinks: [{\"title\":\"GraphCodeAgent: Dual Graph-Guided LLM Agent for Retrieval-Augmented Repo-Level Code Generation - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv250410046L/abstract\"},{\"title\":\"GraphCodeAgent: Dual Graph-Guided LLM Agent for Retrieval-Augmented Repo-Level Code Generation\",\"url\":\"https://arxiv.org/html/2504.10046v2\"},{\"title\":\"[2504.10046] GraphCodeAgent: Dual Graph-Guided LLM Agent for Retrieval-Augmented Repo-Level Code Generation\",\"url\":\"https://arxiv.org/abs/2504.10046\"},{\"title\":\"GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph | Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering\",\"url\":\"https://dl.acm.org/doi/10.1145/3691620.3695054\"},{\"title\":\"GraphCodeAgent: Dual-Graph Code Generation\",\"url\":\"https://www.emergentmind.com/topics/graphcodeagent\"},{\"title\":\"Codebase-Memory: Tree-Sitter-Based Knowledge Graphs for LLM Code Exploration via MCP\",\"url\":\"https://arxiv.org/html/2603.27277v1\"},{\"title\":\"GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥\",\"url\":\"https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation\"},{\"title\":\"RANGER: Repository‑level Agent for Graph‑Enhanced Retrieval\",\"url\":\"https://arxiv.org/html/2509.25257v1\"},{\"title\":\"[PDF] GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/GraphCoder:-Enhancing-Repository-Level-Code-via-and-Liu-Yu/793bbb3c70d4bac3908bd8f2ecc309f1bfdf5f52\"},{\"title\":\"Knowledge Graph Based Repository-Level Code Generation\",\"url\":\"https://arxiv.org/html/2505.14394v1\"}]\n\nBased on the search results, here's what I found about GraphCodeAgent:\n\n## Overview\n\nGraphCodeAgent is a dual graph-guided LLM agent for retrieval-augmented repo-level code generation, bridging the gap between NL requirements and programming implementations.\n\n## Key Technical Approach\n\nThe approach constructs two interconnected graphs: a Requirement Graph (RG) to model requirement relations of code snippets within the repository, as well as the relations between the target requirement and the requirements of these code snippets, and a Structural-Semantic Code Graph (SSCG) to capture the repository's intricate code dependencies.\n\nGuided by this, an LLM-powered agent performs multi-hop reasoning to systematically retrieve all context code snippets, including implicit and explicit code snippets, even if they are not explicitly expressed in requirements.\n\n## Motivation\n\nThe work addresses a fundamental challenge in repo-level code generation: there is a gap between natural language (NL) requirements and programming implementations, which results in the failure to retrieve the relevant code of these fine-grained subtasks.\n\n## Evaluation Results\n\nGraphCodeAgent significantly outperforms state-of-the-art baselines, achieving relative improvements of 43.81% with GPT-4o and 39.15% with Gemini-1.5-Pro on DevEval, and 31.91% with GPT-4o and 8.25% with Gemini-1.5-Pro on CoderEval in terms of Pass@1.\n\nIt was evaluated on three advanced LLMs with the two widely-used repo-level code generation benchmarks DevEval and CoderEval.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4691d99b-43b5-407b-9f8a-c24e7c02a69a",
+            "isSidechain": true,
+            "promptId": "e415714b-7a28-4c44-aefa-f517da24be8e",
+            "agentId": "aea381432b8282449",
+            "type": "user",
+            "uuid": "4c85ac4b-e657-4a65-bcae-49294e1a9683",
+            "sourceToolAssistantUUID": "4691d99b-43b5-407b-9f8a-c24e7c02a69a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-10T19:00:59.359Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0156XcRG4gWc14xWj8VwbX1L",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CODEXGRAPH code graph database LLM agent repository 2025\"\n\nLinks: [{\"title\":\"[2408.03910] CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases\",\"url\":\"https://arxiv.org/abs/2408.03910\"},{\"title\":\"CodexGraph\",\"url\":\"https://laptype.github.io/CodexGraph-page/\"},{\"title\":\"CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.naacl-long.7/\"},{\"title\":\"CODEXGRAPH: Bridging Large Language Models and ...\",\"url\":\"https://aclanthology.org/2025.naacl-long.7.pdf\"},{\"title\":\"CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases\",\"url\":\"https://arxiv.org/html/2408.03910v2\"},{\"title\":\"CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases | OpenReview\",\"url\":\"https://openreview.net/forum?id=5VGC017Wgf\"},{\"title\":\"CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases\",\"url\":\"https://www.researchgate.net/publication/392505894_CodexGraph_Bridging_Large_Language_Models_and_Code_Repositories_via_Code_Graph_Databases\"},{\"title\":\"CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2024arXiv240803910L/abstract\"},{\"title\":\"CodexGraph: An Artificial Intelligence AI System that Integrates LLM Agents with Graph Database Interfaces Extracted from Code Repositories - MarkTechPost\",\"url\":\"https://www.marktechpost.com/2024/08/11/codexgraph-an-artificial-intelligence-ai-system-that-integrates-llm-agents-with-graph-database-interfaces-extracted-from-code-repositories/\"},{\"title\":\"CODEXGRAPH: Bridging Large Language Models and Code Repositories via Code Graph Databases\",\"url\":\"https://ssawant.github.io/posts/CODEXGRAPH/CODEXGRAPH.html\"}]\n\nBased on the search results, here's what I found about CodexGraph:\n\n## Overview\n\nCodexGraph is a system that integrates LLM agents with graph database interfaces extracted from code repositories. Large Language Models (LLMs) excel in stand-alone code tasks like HumanEval and MBPP, but struggle with handling entire code repositories. This challenge prompted research on enhancing LLM-codebase interaction at a repository scale.\n\n## Core Functionality\n\nBy leveraging the structural properties of graph databases and the flexibility of the graph query language, CodexGraph enables the LLM agent to construct and execute multi-hop queries, allowing for accurate, code structure-aware context retrieval and code navigation. \n\nCodexGraph utilizes static analysis to extract code graphs from repositories using a task-agnostic schema that defines the nodes and edges within the code graphs. In these graphs, nodes represent source code symbols such as MODULE, CLASS, and FUNCTION, and each node is enriched with relevant meta-information. The edges between nodes represent the relationships among these symbols, such as CONTAINS, INHERITS, and USES.\n\n## Applications and Evaluation\n\nFive real-world coding applications were developed based on CodexGraph. With a unified graph database schema, CodexGraph demonstrates competitive performance across diverse academic tasks and highlights its potential application value in real production environments. CodexGraph was assessed using three benchmarks: CrossCodeEval, SWE-bench, and EvoCodeBench.\n\n## Recent Publication\n\nThe research was presented at the Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers) in 2025.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7c81afeb-7bdb-420d-a5b5-9459c2b1328d",
+            "isSidechain": true,
+            "promptId": "e415714b-7a28-4c44-aefa-f517da24be8e",
+            "agentId": "aea381432b8282449",
+            "type": "user",
+            "uuid": "fcc9a489-3503-4772-845d-9890caddae71",
+            "sourceToolAssistantUUID": "7c81afeb-7bdb-420d-a5b5-9459c2b1328d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-10T19:00:59.683Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GqoXdeWGQ7fxEsiiyWTLAW",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Beyond Function-Level Analysis\" inter-procedural vulnerability detection context-aware 2025\"\n\nLinks: [{\"title\":\"[2602.06751] Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vulnerability Detection\",\"url\":\"https://arxiv.org/abs/2602.06751\"},{\"title\":\"Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural\",\"url\":\"https://www.arxiv.org/pdf/2602.06751\"},{\"title\":\"Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vulnerability Detection | Request PDF\",\"url\":\"https://www.researchgate.net/publication/400583926_Beyond_Function-Level_Analysis_Context-Aware_Reasoning_for_Inter-Procedural_Vulnerability_Detection\"},{\"title\":\"Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vulnerability Detection\",\"url\":\"https://arxiv.org/html/2602.06751v1\"},{\"title\":\"Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vulnerability Detection | Cool Papers - Immersive Paper Discovery\",\"url\":\"https://papers.cool/arxiv/2602.06751\"},{\"title\":\"LLMxCPG: Context-Aware Vulnerability Detection Through ...\",\"url\":\"https://www.usenix.org/system/files/usenixsecurity25-lekssays.pdf\"},{\"title\":\"Top Score on the Wrong Exam: On Benchmarking in Machine ...\",\"url\":\"https://mboehme.github.io/paper/ISSTA25-topscore.pdf\"},{\"title\":\"Context-Enhanced Vulnerability Detection Based on Large Language Model\",\"url\":\"https://gaoxiang9430.github.io/papers/TOSEM25_ProcVD.pdf\"},{\"title\":\"Vulnerability Detection with Code Language Models: How Far are We? | Request PDF\",\"url\":\"https://www.researchgate.net/publication/392956745_Vulnerability_Detection_with_Code_Language_Models_How_Far_are_We\"},{\"title\":\"Benchmarking LLMs and LLM-based Agents in Practical ...\",\"url\":\"https://aclanthology.org/2025.acl-long.1490.pdf\"}]\n\nI found comprehensive search results for your query about \"Beyond Function-Level Analysis: Context-Aware Reasoning for Inter-Procedural Vulnerability Detection.\"\n\n## Key Findings\n\nCPRVul is a context-aware vulnerability detection framework that couples Context Profiling and Selection with Structured Reasoning. This recent research addresses a significant limitation in the field.\n\n### The Problem\n\nMost existing approaches still operate at the function level, where models are asked to predict whether a single function is vulnerable without inter-procedural context. However, vulnerability presence and root cause often depend on contextual information. Real-world context is long, redundant, and noisy, and unstructured context frequently degrades the performance of strong fine-tuned code models.\n\n### The Solution\n\nCPRVul operates through four stages: (1) extracting callers, callees, and global variables related to a target function via CPG-based static analysis; (2) constructing security risk profiles for each contextual element; (3) ranking elements by vulnerability relevance; and (4) integrating the highest-ranked context that fits within the LLM's context window.\n\n### Performance Results\n\nCPRVul consistently outperforms function-only baselines, yielding accuracy gains of up to 10.08 points on TITANVUL, 11.13 points on PRIMEVUL, and 6.70 points on CLEANVUL. On the PRIMEVUL benchmark, CPRVul achieves 67.78% accuracy, outperforming state-of-the-art approaches from USENIX Security'25, ICSE'25, and ICSE'26.\n\nThe paper appears to be a recent 2025 publication addressing a critical gap in vulnerability detection by moving beyond function-level analysis to incorporate inter-procedural context through structured reasoning.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "76d2ed66-4f88-4f96-a6f7-3b0910dd80b3",
+            "isSidechain": true,
+            "promptId": "e415714b-7a28-4c44-aefa-f517da24be8e",
+            "agentId": "aea381432b8282449",
+            "type": "user",
+            "uuid": "edde257f-7613-4565-829c-1e3a8b17ee5d",
+            "sourceToolAssistantUUID": "76d2ed66-4f88-4f96-a6f7-3b0910dd80b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-10T19:01:04.085Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015AMpXdgh4gjm2ak9wKh8Kn",
+              "name": "WebSearch",
+              "input": {
+                "query": "RANGER repository agent graph enhanced retrieval code 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "edde257f-7613-4565-829c-1e3a8b17ee5d",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQQjWewoFwHZCxXgxQy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "123a8235-ac65-4c0b-a0d9-f327ed0af98b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VFEjXS8hXHsToMPCqRAYgh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 991,
+                "cache_creation_input_tokens": 8691,
+                "cache_read_input_tokens": 11913,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8691,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-10T19:01:04.312Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tfr7A5JayRbWXUcQRwYhSW",
+              "name": "WebSearch",
+              "input": {
+                "query": "LLMxCPG code property graph vulnerability detection USENIX 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "123a8235-ac65-4c0b-a0d9-f327ed0af98b",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQQjWewoFwHZCxXgxQy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4fcd89f5-9bc3-4b8d-82ab-0316d70dd05b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VFEjXS8hXHsToMPCqRAYgh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 991,
+                "cache_creation_input_tokens": 8691,
+                "cache_read_input_tokens": 11913,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8691,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-10T19:01:07.807Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V8gfkPcLhSDyKUGa9rV6Ji",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"structure-conditioned\" OR \"structure-aware\" contrastive learning code representation 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4fcd89f5-9bc3-4b8d-82ab-0316d70dd05b",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQQjWewoFwHZCxXgxQy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9e4e6d36-a19a-4c4c-a612-ef4f4e433e49",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VFEjXS8hXHsToMPCqRAYgh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 991,
+                "cache_creation_input_tokens": 8691,
+                "cache_read_input_tokens": 11913,
+                "output_tokens": 174,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8691
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 991,
+                    "output_tokens": 174,
+                    "cache_read_input_tokens": 11913,
+                    "cache_creation_input_tokens": 8691,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8691,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-10T19:01:10.781Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tfr7A5JayRbWXUcQRwYhSW",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LLMxCPG code property graph vulnerability detection USENIX 2025\"\n\nLinks: [{\"title\":\"LLMxCPG: Context-Aware Vulnerability Detection Through Code Property Graph-Guided Large Language Models | USENIX\",\"url\":\"https://www.usenix.org/conference/usenixsecurity25/presentation/lekssays\"},{\"title\":\"Source Code for \\\"LLMxCPG: Context-Aware Vulnerability Detection Through Code Property Graph-Guided Large Language Models\\\"\",\"url\":\"https://zenodo.org/records/15614095\"},{\"title\":\"[2507.16585] LLMxCPG: Context-Aware Vulnerability Detection Through Code Property Graph-Guided Large Language Models\",\"url\":\"https://arxiv.org/abs/2507.16585\"},{\"title\":\"llmxcpg/README.md at main · qcri/llmxcpg\",\"url\":\"https://github.com/qcri/llmxcpg/blob/main/README.md\"},{\"title\":\"LLMxCPG: Context-Aware Vulnerability Detection Through ...\",\"url\":\"https://www.usenix.org/system/files/usenixsecurity25-lekssays.pdf\"},{\"title\":\"[Research] “LLMxCPG: Context-Aware Vulnerability Detection Through Code Property Graph-Guided Large Language Models” Paper Review (EN) - hackyboiz\",\"url\":\"https://hackyboiz.github.io/2025/09/22/l0ch/llmxcpg_paper_review/en/\"},{\"title\":\"LLMxCPG: context-aware vulnerability detection through ...\",\"url\":\"https://dl.acm.org/doi/10.5555/3766078.3766104\"},{\"title\":\"LLMxCPG: Context-Aware Vulnerability Detection Through Code Property Graph-Guided Large Language Models - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv250716585L/abstract\"},{\"title\":\"LLMxCPG: Context-Aware Vulnerability Detection Through Code Property Graph-Guided Large Language Models - Hamad Bin Khalifa University\",\"url\":\"https://elmi.hbku.edu.qa/en/publications/llmxcpg-context-aware-vulnerability-detection-through-code-proper/\"},{\"title\":\"GitHub - qcri/llmxcpg: Source code for LLMxCPG paper · GitHub\",\"url\":\"https://github.com/qcri/llmxcpg/\"}]\n\nI found comprehensive information about LLMxCPG. Here's what the search revealed:\n\n## Overview\n\nLLMxCPG is a novel framework integrating Code Property Graphs (CPG) with Large Language Models (LLM) for robust vulnerability detection. The paper was presented at USENIX Security 2025.\n\n## Key Technical Approach\n\nThe core methodology involves a two-phase process: Slice Construction where an LLM generates specific queries for a Code Property Graph to extract a minimal, relevant \"slice\" of code that may contain a vulnerability, followed by Vulnerability Detection where a second LLM analyzes the extracted code slice to classify it as either vulnerable or safe.\n\n## Performance and Results\n\nThe CPG-based slice construction technique reduces code size by 67.84-90.93% while preserving vulnerability-relevant context. Empirical evaluation demonstrates LLMxCPG's effectiveness across verified datasets, achieving 15-40% improvements in F1-score over state-of-the-art baselines. Moreover, LLMxCPG maintains high performance across function-level and multi-function codebases while exhibiting robust detection efficacy under various syntactic code modifications.\n\n## Implementation Details\n\nThe Query Generation Model (LLMxCPG-Q) is fine-tuned from Qwen2.5-Coder-32B-Instruct, the Detection Model (LLMxCPG-D) is fine-tuned from QwQ-32B-Preview, and the training process uses the Unsloth framework and employs Low-Rank Adaptation (LoRA) for efficient fine-tuning.\n\nThe paper was authored by researchers from Qatar Computing Research Institute, New Jersey Institute of Technology, and Mohamed bin Zayed University of Artificial Intelligence.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4fcd89f5-9bc3-4b8d-82ab-0316d70dd05b",
+            "isSidechain": true,
+            "promptId": "e415714b-7a28-4c44-aefa-f517da24be8e",
+            "agentId": "aea381432b8282449",
+            "type": "user",
+            "uuid": "46d11c11-5786-4b45-82f3-e0b0a1588311",
+            "sourceToolAssistantUUID": "4fcd89f5-9bc3-4b8d-82ab-0316d70dd05b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-10T19:01:12.566Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015AMpXdgh4gjm2ak9wKh8Kn",
+              "type": "tool_result",
+              "content": "Web search results for query: \"RANGER repository agent graph enhanced retrieval code 2025\"\n\nLinks: [{\"title\":\"RANGER: Repository‑level Agent for Graph‑Enhanced Retrieval\",\"url\":\"https://arxiv.org/html/2509.25257v1\"},{\"title\":\"RANGER -- Repository-Level Agent for Graph-Enhanced ...\",\"url\":\"https://arxiv.org/pdf/2509.25257\"},{\"title\":\"[2509.25257] RANGER -- Repository-Level Agent for Graph-Enhanced Retrieval\",\"url\":\"https://arxiv.org/abs/2509.25257\"},{\"title\":\"(PDF) RANGER -- Repository-Level Agent for Graph-Enhanced Retrieval\",\"url\":\"https://www.researchgate.net/publication/396048813_RANGER_--_Repository-Level_Agent_for_Graph-Enhanced_Retrieval\"},{\"title\":\"Software Engineering on X: \\\"RANGER -- Repository-Level Agent for Graph-Enhanced Retrieval. https://t.co/wXCWqY3iyI\\\" / X\",\"url\":\"https://x.com/ComputerPapers/status/1973474396628029697\"},{\"title\":\"RETRIEVAL-AUGMENTED CODE GENERATION: A SURVEY WITH\",\"url\":\"https://arxiv.org/pdf/2510.04905\"},{\"title\":\"GitHub - DavidZWZ/Awesome-RAG-Reasoning: [EMNLP 2025] Awesome RAG Reasoning Resources · GitHub\",\"url\":\"https://github.com/DavidZWZ/Awesome-RAG-Reasoning\"},{\"title\":\"GitHub - asinghcsu/AgenticRAG-Survey: Agentic-RAG explores advanced Retrieval-Augmented Generation systems enhanced with AI LLM agents. · GitHub\",\"url\":\"https://github.com/asinghcsu/AgenticRAG-Survey\"},{\"title\":\"[2412.18431] GeAR: Graph-enhanced Agent for Retrieval-augmented Generation\",\"url\":\"https://arxiv.org/abs/2412.18431\"},{\"title\":\"Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches\",\"url\":\"https://arxiv.org/html/2510.04905v1\"}]\n\nBased on the search results, here's what I found about RANGER:\n\n## RANGER: Repository-Level Agent for Graph-Enhanced Retrieval\n\nRANGER is a repository level agent for graph enhanced code retrieval that handles both code entity queries and natural language queries. The paper was published on September 27, 2025.\n\n### Key Features and Approach\n\nRANGER is a repository-level retrieval agent that integrates persistent graph construction with query-type–aware retrieval. Entity-based queries are answered through fast Cypher lookups, while natural language queries are handled by MCTS-guided graph exploration.\n\nThe MCTS based graph exploration algorithm uses a bi-encoder for expansion and a cross encoder as the reward. Because cross encoders are more accurate but expensive and often infeasible to apply over the entire repository, MCTS scores only promising nodes, keeping quality close to exhaustive reranking at lower cost.\n\n### Performance Results\n\nRANGER surpasses strong semantic retrieval systems, including Qwen-3-8B embedding baseline ranked number one on MTEB Leaderboard, while using smaller models for embedding and reranking mxbai-embed-large-v1 with 335M parameters and bge-reranker-v2-m3 with 568M parameters.\n\nRANGER is evaluated across four diverse benchmarks including code search, question answering, cross-file dependency retrieval, and repository-level code completion. On CodeSearchNet and RepoQA it outperforms retrieval baselines that use embeddings from strong models such as Qwen3-8B. On RepoBench, it achieves superior cross-file dependency retrieval over baselines, and on CrossCodeEval, pairing RANGER with BM25 delivers the highest exact match rate in code completion compared to other RAG methods.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "123a8235-ac65-4c0b-a0d9-f327ed0af98b",
+            "isSidechain": true,
+            "promptId": "e415714b-7a28-4c44-aefa-f517da24be8e",
+            "agentId": "aea381432b8282449",
+            "type": "user",
+            "uuid": "2db79fd8-32c8-4ee1-9424-61eabaa9bbe2",
+            "sourceToolAssistantUUID": "123a8235-ac65-4c0b-a0d9-f327ed0af98b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-10T19:01:15.156Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V8gfkPcLhSDyKUGa9rV6Ji",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"structure-conditioned\" OR \"structure-aware\" contrastive learning code representation 2025 2026\"\n\nLinks: [{\"title\":\"S‐PLM: Structure‐Aware Protein Language Model via Contrastive Learning Between Sequence and Structure - Wang - 2025 - Advanced Science - Wiley Online Library\",\"url\":\"https://advanced.onlinelibrary.wiley.com/doi/10.1002/advs.202404212\"},{\"title\":\"GraphLoRA: Structure-Aware Contrastive Low-Rank Adaptation for Cross-Graph Transfer Learning | Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.1\",\"url\":\"https://dl.acm.org/doi/10.1145/3690624.3709186\"},{\"title\":\"The Beginner’s Guide to Contrastive Learning\",\"url\":\"https://www.v7darwin.com/blog/contrastive-learning-guide\"},{\"title\":\"Local structure-aware graph contrastive representation learning - PubMed\",\"url\":\"https://pubmed.ncbi.nlm.nih.gov/38182463/\"},{\"title\":\"Contrastive Code Representation Learning\",\"url\":\"https://parasj.github.io/contracode/\"},{\"title\":\"Local structure-aware graph contrastive representation learning - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S089360802300744X\"},{\"title\":\"Multi-scale tree-guided contrastive learning for structure-aware graph representation | Complex & Intelligent Systems | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s40747-025-02219-7\"},{\"title\":\"Contrastive Code Representation Learning | OpenReview\",\"url\":\"https://openreview.net/forum?id=uV7hcsjqM-\"},{\"title\":\"[2509.01959] Structure-aware Contrastive Learning for Diagram Understanding of Multimodal Models\",\"url\":\"https://arxiv.org/abs/2509.01959\"},{\"title\":\"Program Structure-aware Language Models: Targeted Software Testing beyond Textual Semantics\",\"url\":\"https://arxiv.org/html/2604.17715v1\"}]\n\nBased on my web search, I found several relevant results related to structure-aware and structure-conditioned contrastive learning approaches, though most of them focus on domains beyond code representation. Here's what I discovered:\n\n## Key Findings:\n\n**Graph and Structure-Aware Contrastive Learning (2025-2026):**\n\nMulti-Scale Tree-Guided Contrastive Learning for Structure-Aware Graph Representation (MTGCL) proposes structure-aware contrastive learning for graph representation, published in January 2026. This approach proposes a multi-scale tree structure construction method based on breadth-first search, which explicitly preserves the multi-hop neighborhood of each node and builds structural views with prior topology.\n\n**Code Representation Learning:**\n\nContraCode learns code representations with contrastive learning by training the network to find equivalent programs among many distractors. However, this work is from 2020, not the 2025-2026 timeframe.\n\n**Program Structure-Aware Approaches (2025):**\n\nGLMTest proposes encoding programs by transforming their graph representation and developer-provided textual information into a shared embedding space using a heterogeneous graph neural network (GNN) and an LLM.\n\n**Other Structure-Aware Domains:**\n\nStructure-aware Contrastive Learning for Diagram Understanding incorporates two specialized loss functions that leverage the inherent structural properties of diagrams, dating from September 2025.\n\nThe search results show that structure-aware contrastive learning is an active research area in 2025-2026, with applications to graphs, programs, and diagrams, though specific applications to code representation with the exact terminology you requested appear limited in recent literature.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e4e6d36-a19a-4c4c-a612-ef4f4e433e49",
+            "isSidechain": true,
+            "promptId": "e415714b-7a28-4c44-aefa-f517da24be8e",
+            "agentId": "aea381432b8282449",
+            "type": "user",
+            "uuid": "ca3cb693-39ab-4832-b03b-9cd55f2f0aa1",
+            "sourceToolAssistantUUID": "9e4e6d36-a19a-4c4c-a612-ef4f4e433e49",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-10T19:01:48.183Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is my analysis of potentially missed competing work for the StructFuse paper.\n\n---\n\n**Potentially Missed Competing Papers**\n\n1. **GraphCoder** (ASE 2024) -- Builds a Code Context Graph (CCG) encoding control-flow, data-flow, and control-dependence between statements, then uses coarse-to-fine retrieval for repo-level code completion. Directly overlaps with StructFuse's data-flow-guided two-stage retrieval cascade. Must cite.\n\n2. **CoCoHaNeRe** (TOSEM 2025) -- Hard negative mining for contrastive learning-based code search. Introduces a differentiable memory bank to retrieve hard negatives for contrastive training, improving MRR by 7-11% over CodeBERT/GraphCodeBERT/UniXcoder. Directly competes with StructFuse's structural hard negative mining strategy, though CoCoHaNeRe mines negatives by embedding similarity rather than structural disconnection.\n\n3. **RANGER** (arXiv, Sep 2025) -- Repository-level agent for graph-enhanced retrieval. Constructs a persistent code graph, routes entity queries via Cypher lookups and NL queries via MCTS-guided graph exploration with a bi-encoder + cross-encoder cascade. Shares the two-stage graph-then-neural-reranker architecture with StructFuse.\n\n4. **GraphCodeAgent** (arXiv, Apr 2025) -- Dual graph-guided LLM agent for repo-level code generation. Builds a Structural-Semantic Code Graph capturing code dependencies and a Requirement Graph, then does multi-hop reasoning for context retrieval. Relevant as a graph-guided repo-level retrieval competitor.\n\n5. **LLMxCPG** (USENIX Security 2025) -- Uses Code Property Graphs to guide LLMs for vulnerability detection. An LLM generates CPG queries to extract minimal code slices (67-91% reduction), then a second LLM classifies. Demonstrates CPG as a training/inference signal for neural models -- directly relevant to StructFuse's use of program analysis outputs for ML.\n\n6. **CPRVul / \"Beyond Function-Level Analysis\"** (arXiv, Feb 2026) -- Context-aware inter-procedural vulnerability detection. Extracts callers, callees, and global variables via CPG-based static analysis, profiles them for security relevance, and ranks context for LLM consumption. Shares the inter-procedural analysis + neural ranking pipeline.\n\n7. **CodexGraph** (NAACL 2025) -- Bridges LLMs and code repos via code graph databases with a task-agnostic schema. LLM agents construct multi-hop graph queries for structure-aware context retrieval. Evaluated on SWE-bench. Relevant as graph-database-driven code retrieval.\n\n8. **RepoRepair** (arXiv, Mar 2026) -- Generates hierarchical code documentation for repository-level repair context selection, achieving 45.7% on SWE-bench Lite. Competes directly on the repo-level code repair context selection problem, though uses documentation rather than data-flow.\n\n**Key gaps in the search**: I found no paper that uses CodeQL specifically as a training data generator for contrastive learning, nor one that combines inter-procedural def-use chains with structure-conditioned InfoNCE loss. These appear to be genuinely novel contributions. However, the individual components (graph-guided retrieval, hard negative mining for code search, CPG-driven context selection) are well-explored, and the papers above should be discussed.\n\nSources:\n- [GraphCoder (ASE 2024)](https://dl.acm.org/doi/10.1145/3691620.3695054)\n- [CoCoHaNeRe (TOSEM 2025)](https://dl.acm.org/doi/full/10.1145/3695994)\n- [RANGER (2025)](https://arxiv.org/abs/2509.25257)\n- [GraphCodeAgent (2025)](https://arxiv.org/abs/2504.10046)\n- [LLMxCPG (USENIX Security 2025)](https://www.usenix.org/conference/usenixsecurity25/presentation/lekssays)\n- [CPRVul / Beyond Function-Level Analysis (2026)](https://arxiv.org/abs/2602.06751)\n- [CodexGraph (NAACL 2025)](https://aclanthology.org/2025.naacl-long.7/)\n- [RepoRepair (2026)](https://arxiv.org/abs/2603.01048)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca3cb693-39ab-4832-b03b-9cd55f2f0aa1",
+            "isSidechain": true,
+            "agentId": "aea381432b8282449",
+            "requestId": "req_011CauQRseL5sFpNgzcCzSG8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e02169ec-cd7f-4824-9d7a-b8b799adc6d5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a47aaa43-a429-47b7-80b6-f2738661f6aa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BHW6TAaJRHit6wmEvdbZy9",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4163,
+                "cache_read_input_tokens": 20604,
+                "output_tokens": 1104,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4163
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1104,
+                    "cache_read_input_tokens": 20604,
+                    "cache_creation_input_tokens": 4163,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4163,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 38
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-m-reviewing-a-paper-idea-called-structfuse-that-proposes-data-flow-aware-con.md"
+}

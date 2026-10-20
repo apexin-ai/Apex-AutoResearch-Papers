@@ -1,0 +1,1272 @@
+{
+  "schema_version": "1.0",
+  "id": "2987b3f1338a936e5f51",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for current SOTA performance on SWE-bench benchmarks for an ML research review. I need to independently verify cl",
+  "task_key": "agent-a47718d51c07a2332",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a47718d51c07a2332.jsonl",
+    "occurrence": 1,
+    "bytes": 56782,
+    "sha256": "5807e408fa9711c4d8764c31306addea6b9d4bf5982af66eb909a42da58a3bf1"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 1,
+    "tool_calls": 11,
+    "roles": {
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 11,
+      "tool_result": 11
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T06:18:24.565Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for current SOTA performance on SWE-bench benchmarks for an ML research review. I need to independently verify claims made in a paper submission.\n\n**Claims to verify:**\n\n1. SWE-bench Pro: \"GPT-5.4 leads at 59.10±3.56%; Claude Opus 4.6 (with thinking) scores 51.90±3.61%; Qwen3-Coder-480B-A35B scores 38.70±3.55% (ranking 6th)\"\n\n2. SWE-rebench public leaderboard: \"Claude Opus 4.6 leads at 65.3%\"\n\n3. \"SWE-bench Verified is confirmed to have training-data contamination\" and frontier models achieve what scores on it?\n\n4. What is the current SOTA on SWE-bench Verified (May 2026)?\n\n5. SWE-bench-Live: Does it exist? How many instances? Is it updated monthly?\n\n**Search queries to run:**\n- SWE-bench Pro leaderboard 2026\n- site:scale.com SWE-bench Pro leaderboard\n- SWE-rebench leaderboard Claude Opus 2026\n- SWE-bench Verified current SOTA 2026\n- SWE-bench-Live benchmark 2025 2026\n- \"mini-swe-agent\" scaffold SWE-bench\n- Qwen3-Coder SWE-bench Pro 2026\n\nAlso check: Does mini-swe-agent exist as an open-source scaffold for SWE-bench Pro? Is it really ~100 lines of bash-only ReAct loop?\n\nReport actual numbers you find and flag any discrepancies with the claims above."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "30192571-ad30-4902-ab6a-597b8a9ab765",
+            "agentId": "a47718d51c07a2332",
+            "type": "user",
+            "uuid": "eb9fcccd-ead7-486a-8f0a-71235f0f76f6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T06:18:25.410Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for current SOTA performance on SWE-bench benchmarks to verify these claims."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eb9fcccd-ead7-486a-8f0a-71235f0f76f6",
+            "isSidechain": true,
+            "agentId": "a47718d51c07a2332",
+            "requestId": "req_011CatQFvkKwHFGycoZLQ1XN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fab94673-5c4c-4797-a42f-425a5abe6062",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018tcE2amQrKfPJ1aa8eqnY4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 829,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 829,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T06:18:25.652Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MDt9EEL7oHnups7ubXbqwj",
+              "name": "WebSearch",
+              "input": {
+                "query": "SWE-bench Pro leaderboard 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fab94673-5c4c-4797-a42f-425a5abe6062",
+            "isSidechain": true,
+            "agentId": "a47718d51c07a2332",
+            "requestId": "req_011CatQFvkKwHFGycoZLQ1XN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "de8244e8-b2c5-4df1-8e64-570289b5fd75",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018tcE2amQrKfPJ1aa8eqnY4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 829,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 829,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T06:18:25.854Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018GbY1DQu2svK5beiwvHotT",
+              "name": "WebSearch",
+              "input": {
+                "query": "SWE-rebench leaderboard Claude Opus 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de8244e8-b2c5-4df1-8e64-570289b5fd75",
+            "isSidechain": true,
+            "agentId": "a47718d51c07a2332",
+            "requestId": "req_011CatQFvkKwHFGycoZLQ1XN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8ca9697b-9637-4bce-8e37-8c11b2b7213a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018tcE2amQrKfPJ1aa8eqnY4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 829,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 829,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T06:18:26.074Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DehuTNhwfFpkYUr9DAJzp6",
+              "name": "WebSearch",
+              "input": {
+                "query": "SWE-bench Verified current SOTA 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ca9697b-9637-4bce-8e37-8c11b2b7213a",
+            "isSidechain": true,
+            "agentId": "a47718d51c07a2332",
+            "requestId": "req_011CatQFvkKwHFGycoZLQ1XN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dfb11880-7a85-4f22-a1e6-8f7508c037fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018tcE2amQrKfPJ1aa8eqnY4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 829,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 829,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T06:18:26.079Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tt4vRHMNdpdFSyi5TXyMj5",
+              "name": "WebSearch",
+              "input": {
+                "query": "SWE-bench-Live benchmark 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dfb11880-7a85-4f22-a1e6-8f7508c037fc",
+            "isSidechain": true,
+            "agentId": "a47718d51c07a2332",
+            "requestId": "req_011CatQFvkKwHFGycoZLQ1XN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ff79e45c-e2b2-4b77-87b9-473afe614f2e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018tcE2amQrKfPJ1aa8eqnY4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 829,
+                "cache_read_input_tokens": 16155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 829,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T06:18:26.392Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hp4hoLBQVSrn7QonQkhfqP",
+              "name": "WebSearch",
+              "input": {
+                "query": "Qwen3-Coder SWE-bench Pro 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff79e45c-e2b2-4b77-87b9-473afe614f2e",
+            "isSidechain": true,
+            "agentId": "a47718d51c07a2332",
+            "requestId": "req_011CatQFvkKwHFGycoZLQ1XN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "425c131a-0ae6-4b86-9934-d635833eaf31",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018tcE2amQrKfPJ1aa8eqnY4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 829,
+                "cache_read_input_tokens": 16155,
+                "output_tokens": 280,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 829
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 280,
+                    "cache_read_input_tokens": 16155,
+                    "cache_creation_input_tokens": 829,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 829,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T06:18:31.632Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018GbY1DQu2svK5beiwvHotT",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SWE-rebench leaderboard Claude Opus 2026\"\n\nLinks: [{\"title\":\"SWE-Bench Verified Benchmark Leaderboard\",\"url\":\"https://llm-stats.com/benchmarks/swe-bench-verified\"},{\"title\":\"SWE-rebench Leaderboard\",\"url\":\"https://swe-rebench.com/\"},{\"title\":\"SWE-bench Leaderboards\",\"url\":\"https://www.swebench.com/\"},{\"title\":\"SWE-bench Verified\",\"url\":\"https://www.vals.ai/benchmarks/swebench\"},{\"title\":\"SWE-Rebench Benchmark 2026: 13 LLM scores | BenchLM.ai\",\"url\":\"https://benchlm.ai/benchmarks/sweRebench\"},{\"title\":\"SWE-bench Results Viewer\",\"url\":\"https://www.swebench.com/viewer.html\"},{\"title\":\"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale\",\"url\":\"https://labs.scale.com/leaderboard/swe_bench_pro_public\"},{\"title\":\"SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean\",\"url\":\"https://www.codeant.ai/blogs/swe-bench-scores\"},{\"title\":\"SWE-Bench Verified Leaderboard March 2026 - Marco Patzelt\",\"url\":\"https://www.marc0.dev/en/leaderboard\"},{\"title\":\"SWE-Bench 2026: Claude Opus 4.7 Wins 87.6% vs GPT-5.3 85.0% - TokenMix Blog\",\"url\":\"https://tokenmix.ai/blog/swe-bench-2026-claude-opus-4-7-wins\"}]\n\nBased on the search results for the SWE-rebench leaderboard in 2026, here's what I found:\n\n## SWE-Rebench Leaderboard (May 2026)\n\nAs of May 1, 2026, Claude Opus 4.6 leads the SWE-Rebench leaderboard with 65.3%, followed by GLM-5 (62.8%) and GLM-5.1 (62.7%).\n\nThe top models are clustered within 2.6 points, suggesting this benchmark is nearing saturation for frontier models.\n\n### Key Details About the Benchmark\n\nSWE-Rebench uses a rolling window of fresh problems from real GitHub repositories, sourced after each model's release date to prevent contamination, with each model running 5 times with a standardized 128K-context ReAct scaffold.\n\nClaude Opus 4.6 has claimed the #1 spot on the leaderboard, with the relatively low SEM suggesting stable performance on this benchmark compared to several others.\n\nIt's worth noting that SWE-Rebench is different from the more widely-known SWE-Bench Verified benchmark, as it focuses on fresh, decontaminated problems to provide more realistic evaluation of model capabilities.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ca9697b-9637-4bce-8e37-8c11b2b7213a",
+            "isSidechain": true,
+            "promptId": "30192571-ad30-4902-ab6a-597b8a9ab765",
+            "agentId": "a47718d51c07a2332",
+            "type": "user",
+            "uuid": "ed773be3-5215-4740-b265-5195dacf546d",
+            "sourceToolAssistantUUID": "8ca9697b-9637-4bce-8e37-8c11b2b7213a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T06:18:33.364Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tt4vRHMNdpdFSyi5TXyMj5",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SWE-bench-Live benchmark 2025 2026\"\n\nLinks: [{\"title\":\"SWE-bench-Live Leaderboard\",\"url\":\"https://swe-bench-live.github.io/\"},{\"title\":\"SWE-bench Verified\",\"url\":\"https://www.vals.ai/benchmarks/swebench\"},{\"title\":\"SWE-Bench Verified Benchmark Leaderboard\",\"url\":\"https://llm-stats.com/benchmarks/swe-bench-verified\"},{\"title\":\"SWE-bench Leaderboards\",\"url\":\"https://www.swebench.com/\"},{\"title\":\"GitHub - microsoft/SWE-bench-Live: [NeurIPS 2025 D&B] 🚀 SWE-bench Goes Live!\",\"url\":\"https://github.com/microsoft/SWE-bench-Live\"},{\"title\":\"SWE-bench Results Viewer\",\"url\":\"https://www.swebench.com/viewer.html\"},{\"title\":\"SWE-bench Verified | Epoch AI\",\"url\":\"https://epoch.ai/benchmarks/swe-bench-verified\"},{\"title\":\"SWE-rebench Leaderboard\",\"url\":\"https://swe-rebench.com/\"},{\"title\":\"GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub\",\"url\":\"https://github.com/swe-bench/SWE-bench\"},{\"title\":\"Overview - SWE-bench\",\"url\":\"https://www.swebench.com/SWE-bench/\"}]\n\nBased on the search results, here's information about the SWE-bench-Live benchmark for 2025 and 2026:\n\n## Overview\n\nSWE-bench-Live is a live benchmark for issue resolving, designed to evaluate an AI system's ability to complete real-world software engineering tasks. The benchmark is updated on a monthly basis to provide the community with up-to-date task instances and support rigorous and contamination-free evaluation.\n\n## Recent Updates and Expansions\n\n### 2025 Updates\nIn August 2025, the update process was finalized: each month, 50 newly verified, high-quality issues are added to the dataset. The lite and verified splits remain frozen, ensuring fair leaderboard comparisons and keeping evaluation costs manageable.\n\n### 2026 Expansions\nIn February 2026, SWE-bench-Live/Windows was released to test agents in taking actions in Windows powershell and making Windows-specific code implementation.\n\nIn December 2025, the RepoLaunch Agent was upgraded to support building repos on all mainstream languages (C, C++, C#, Python, Java, Go, JS/TS, Rust) and on both Linux and Windows platforms.\n\nAdditionally, a MultiLang benchmark has been released on HuggingFace.\n\n## Dataset Growth\n\nThe dataset now includes 1,565 task instances, covering 164 repositories.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff79e45c-e2b2-4b77-87b9-473afe614f2e",
+            "isSidechain": true,
+            "promptId": "30192571-ad30-4902-ab6a-597b8a9ab765",
+            "agentId": "a47718d51c07a2332",
+            "type": "user",
+            "uuid": "2e497166-f4e2-43e1-9bf4-df47e5cc31e4",
+            "sourceToolAssistantUUID": "ff79e45c-e2b2-4b77-87b9-473afe614f2e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T06:18:33.382Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hp4hoLBQVSrn7QonQkhfqP",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Qwen3-Coder SWE-bench Pro 2026\"\n\nLinks: [{\"title\":\"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale\",\"url\":\"https://labs.scale.com/leaderboard/swe_bench_pro_public\"},{\"title\":\"Qwen3-Coder-Next: Pushing Small Hybrid Models\",\"url\":\"https://qwen.ai/blog?id=qwen3-coder-next\"},{\"title\":\"Qwen3-Coder-Next Technical Report\",\"url\":\"https://arxiv.org/html/2603.00729v1\"},{\"title\":\"SWE-rebench Leaderboard\",\"url\":\"https://swe-rebench.com/\"},{\"title\":\"Qwen/Qwen3.6-35B-A3B · Hugging Face\",\"url\":\"https://huggingface.co/Qwen/Qwen3.6-35B-A3B\"},{\"title\":\"SWE-bench Leaderboards\",\"url\":\"https://www.swebench.com/\"},{\"title\":\"Qwen3-Coder-Next: The Complete 2026 Guide to Running Powerful AI Coding Agents Locally - DEV Community\",\"url\":\"https://dev.to/sienna/qwen3-coder-next-the-complete-2026-guide-to-running-powerful-ai-coding-agents-locally-1k95\"},{\"title\":\"Qwen/Qwen3-Coder-Next · Hugging Face\",\"url\":\"https://huggingface.co/Qwen/Qwen3-Coder-Next\"},{\"title\":\"Qwen/Qwen3.5-27B · Hugging Face\",\"url\":\"https://huggingface.co/Qwen/Qwen3.5-27B\"},{\"title\":\"SWE-Bench Verified Benchmark Leaderboard\",\"url\":\"https://llm-stats.com/benchmarks/swe-bench-verified\"}]\n\nBased on the search results, here's what I found about Qwen3-Coder and SWE-bench Pro 2026:\n\n## Qwen3-Coder Performance on SWE-Bench Pro\n\nThe Qwen3-Coder-480b-a35b model achieved a score of 38.70±3.55 on the SWE-Bench Pro leaderboard, ranking 6th, according to the Scale AI leaderboard results.\n\nAdditionally, Qwen3-Coder-Next achieved a score of 44.3 on SWE-bench Pro, which represents strong performance for a smaller model.\n\n## About Qwen3-Coder-Next\n\nQwen3-Coder-Next is an open-weight language model released by Alibaba's Qwen team in February 2026, specifically designed for coding agents and local development environments. It is based on Qwen3-Next with hybrid attention and Mixture-of-Experts (MoE) and contains 80 billion total parameters while activating only 3 billion per forward pass, enabling fast inference and low deployment cost.\n\n## SWE-Bench Pro Overview\n\nSWE-Bench Pro is a benchmark designed to provide a rigorous and realistic evaluation of AI agents for software engineering. The benchmark is significantly more challenging than its predecessors; top models score around 23% on the SWE-Bench Pro public set, compared to 70%+ on SWE-Bench Verified.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "425c131a-0ae6-4b86-9934-d635833eaf31",
+            "isSidechain": true,
+            "promptId": "30192571-ad30-4902-ab6a-597b8a9ab765",
+            "agentId": "a47718d51c07a2332",
+            "type": "user",
+            "uuid": "f28c71bf-abba-44a2-8e24-b29cee7be350",
+            "sourceToolAssistantUUID": "425c131a-0ae6-4b86-9934-d635833eaf31",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T06:18:33.443Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MDt9EEL7oHnups7ubXbqwj",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SWE-bench Pro leaderboard 2026\"\n\nLinks: [{\"title\":\"SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%\",\"url\":\"https://www.morphllm.com/swe-bench-pro\"},{\"title\":\"SWE-Bench Verified Benchmark Leaderboard\",\"url\":\"https://llm-stats.com/benchmarks/swe-bench-verified\"},{\"title\":\"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale\",\"url\":\"https://labs.scale.com/leaderboard/swe_bench_pro_public\"},{\"title\":\"SWE-bench Pro Benchmark 2026: 30 LLM scores | BenchLM.ai\",\"url\":\"https://benchlm.ai/benchmarks/swePro\"},{\"title\":\"SWE-bench Leaderboards\",\"url\":\"https://www.swebench.com/\"},{\"title\":\"SWE-Bench Pro Benchmark Leaderboard\",\"url\":\"https://llm-stats.com/benchmarks/swe-bench-pro\"},{\"title\":\"SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean\",\"url\":\"https://www.codeant.ai/blogs/swe-bench-scores\"},{\"title\":\"SWE-bench Verified\",\"url\":\"https://www.vals.ai/benchmarks/swebench\"},{\"title\":\"SWE-rebench Leaderboard\",\"url\":\"https://swe-rebench.com/\"},{\"title\":\"SWE-bench-Live Leaderboard\",\"url\":\"https://swe-bench-live.github.io/\"}]\n\nBased on the search results, here's what I found about the SWE-bench Pro leaderboard as of 2026:\n\n## Current Top Performers\n\nAs of May 7, 2026, Claude Mythos Preview leads the SWE-bench Pro leaderboard with 77.8%, followed by Claude Opus 4.7 (Adaptive) (64.3%) and GPT-5.5 (58.6%).\n\n## About SWE-bench Pro\n\nSWE-Bench Pro is a software engineering benchmark by Scale AI that evaluates AI coding agents on 1,865 long-horizon tasks from 41 real repositories across Python, Go, TypeScript, and JavaScript. Tasks require an average of 107 lines of changes across 4.1 files.\n\n## Key Distinction from Verified\n\nThe best model scores 46% on Pro but 81% on Verified, because Verified is contaminated. This significant gap reflects that SWE-bench Pro is designed to be contamination-resistant with previously unseen code, making it a more rigorous evaluation of true coding capability.\n\n## Performance Context\n\nClaude Opus 4.5 scores 45.9% on the SEAL leaderboard with standardized scaffolding, the highest of any model (on an earlier standardized evaluation). The newer Claude Mythos Preview model represents a notable improvement over previous frontier models.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de8244e8-b2c5-4df1-8e64-570289b5fd75",
+            "isSidechain": true,
+            "promptId": "30192571-ad30-4902-ab6a-597b8a9ab765",
+            "agentId": "a47718d51c07a2332",
+            "type": "user",
+            "uuid": "9ade1e5c-538a-403e-ad21-54a693d31511",
+            "sourceToolAssistantUUID": "de8244e8-b2c5-4df1-8e64-570289b5fd75",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T06:18:33.935Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DehuTNhwfFpkYUr9DAJzp6",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SWE-bench Verified current SOTA 2026\"\n\nLinks: [{\"title\":\"SWE-bench Verified\",\"url\":\"https://www.vals.ai/benchmarks/swebench\"},{\"title\":\"SWE-Bench Verified Benchmark Leaderboard\",\"url\":\"https://llm-stats.com/benchmarks/swe-bench-verified\"},{\"title\":\"SWE-bench Leaderboards\",\"url\":\"https://www.swebench.com/\"},{\"title\":\"SWE-bench Verified Benchmark 2026: 44 LLM scores | BenchLM.ai\",\"url\":\"https://benchlm.ai/benchmarks/sweVerified\"},{\"title\":\"SWE-bench Verified | Epoch AI\",\"url\":\"https://epoch.ai/benchmarks/swe-bench-verified\"},{\"title\":\"SWE-bench Verified\",\"url\":\"https://www.swebench.com/verified.html\"},{\"title\":\"Introducing SWE-bench Verified | OpenAI\",\"url\":\"https://openai.com/index/introducing-swe-bench-verified/\"},{\"title\":\"SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%\",\"url\":\"https://www.morphllm.com/swe-bench-pro\"},{\"title\":\"SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean\",\"url\":\"https://www.codeant.ai/blogs/swe-bench-scores\"},{\"title\":\"SWE-bench Leaderboard: AI Coding Agent SOTA Results | CodeSOTA | CodeSOTA\",\"url\":\"https://www.codesota.com/browse/agentic/swe-bench\"}]\n\nBased on the latest search results, here's the current state-of-the-art for SWE-bench Verified in 2026:\n\n## Current SOTA Leaders\n\nClaude Mythos Preview from Anthropic currently leads the SWE-Bench Verified leaderboard with a score of 0.939 (93.9%). As of May 7, 2026, Claude Mythos Preview leads with 93.9%, followed by Claude Opus 4.7 (Adaptive) (87.6%) and GPT-5.3 Codex (85%).\n\nOther top performers include:\n- Claude Opus 4.7 at 82.00%\n- Gemini 3.1 Pro Preview (02/26) at 78.80%, with Claude Opus 4.6 (Thinking) and GPT 5.4 tied at 78.20%\n\n## Important Context\n\nIt's worth noting that OpenAI has stopped reporting Verified scores after finding that every frontier model showed training data contamination on the dataset. This means the benchmark may not be a fully reliable measure of model capability, as Claude Mythos Preview leads SWE-bench Verified at 93.9%, but the same model scores only 45.9% on SWE-bench Pro — the harder, contamination-free version.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dfb11880-7a85-4f22-a1e6-8f7508c037fc",
+            "isSidechain": true,
+            "promptId": "30192571-ad30-4902-ab6a-597b8a9ab765",
+            "agentId": "a47718d51c07a2332",
+            "type": "user",
+            "uuid": "200a8c27-d960-4e88-a82b-b2f5664bd3fe",
+            "sourceToolAssistantUUID": "dfb11880-7a85-4f22-a1e6-8f7508c037fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T06:18:35.141Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for more specific information about mini-swe-agent and additional details about the claims."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "200a8c27-d960-4e88-a82b-b2f5664bd3fe",
+            "isSidechain": true,
+            "agentId": "a47718d51c07a2332",
+            "requestId": "req_011CatQGcnreSGZ3wnkgzfPu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0ea720ec-ab95-4e0e-aae1-250aa2586ee9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01P94HzUhUGoxMs2HAnJqbUL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1620,
+                "cache_creation_input_tokens": 3375,
+                "cache_read_input_tokens": 16984,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3375,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T06:18:35.560Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PSgvXPKoy7e9ofUd1CzKoK",
+              "name": "WebSearch",
+              "input": {
+                "query": "mini-swe-agent bash ReAct scaffold SWE-bench"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0ea720ec-ab95-4e0e-aae1-250aa2586ee9",
+            "isSidechain": true,
+            "agentId": "a47718d51c07a2332",
+            "requestId": "req_011CatQGcnreSGZ3wnkgzfPu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e2888bc3-b70f-4791-9ade-36fd2de55dac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01P94HzUhUGoxMs2HAnJqbUL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1620,
+                "cache_creation_input_tokens": 3375,
+                "cache_read_input_tokens": 16984,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3375,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T06:18:35.794Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Uff81xQVi8TutAdN5PTQH5",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"SWE-bench Verified\" training data contamination frontier models scores"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e2888bc3-b70f-4791-9ade-36fd2de55dac",
+            "isSidechain": true,
+            "agentId": "a47718d51c07a2332",
+            "requestId": "req_011CatQGcnreSGZ3wnkgzfPu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8ea2b0f1-2ac5-4210-aae3-0f9d8593e9d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01P94HzUhUGoxMs2HAnJqbUL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1620,
+                "cache_creation_input_tokens": 3375,
+                "cache_read_input_tokens": 16984,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3375,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T06:18:35.960Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GMqmqvRrA1G5e1yPnKBsD3",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:labs.scale.com SWE-bench Pro leaderboard"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ea2b0f1-2ac5-4210-aae3-0f9d8593e9d1",
+            "isSidechain": true,
+            "agentId": "a47718d51c07a2332",
+            "requestId": "req_011CatQGcnreSGZ3wnkgzfPu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6e7b7f86-8713-4d70-a7ab-f92a81b913a6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01P94HzUhUGoxMs2HAnJqbUL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1620,
+                "cache_creation_input_tokens": 3375,
+                "cache_read_input_tokens": 16984,
+                "output_tokens": 190,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3375
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1620,
+                    "output_tokens": 190,
+                    "cache_read_input_tokens": 16984,
+                    "cache_creation_input_tokens": 3375,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3375,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T06:18:41.682Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PSgvXPKoy7e9ofUd1CzKoK",
+              "type": "tool_result",
+              "content": "Web search results for query: \"mini-swe-agent bash ReAct scaffold SWE-bench\"\n\nLinks: [{\"title\":\"SWE-bench Verified\",\"url\":\"https://www.swebench.com/verified.html\"},{\"title\":\"GitHub - SWE-agent/mini-swe-agent: The 100 line AI agent that solves GitHub issues or helps you in your command line. Radically simple, no huge configs, no giant monorepo—but scores >74% on SWE-bench verified!\",\"url\":\"https://github.com/SWE-agent/mini-swe-agent\"},{\"title\":\"Overview - mini-SWE-agent documentation\",\"url\":\"https://mini-swe-agent.com/latest/\"},{\"title\":\"Mini-SWE-Agent - Blockchain Council\",\"url\":\"https://www.blockchain-council.org/ai/mini-swe-agent/\"},{\"title\":\"mini-swe-agent · PyPI\",\"url\":\"https://pypi.org/project/mini-swe-agent/\"},{\"title\":\"GitHub - SWE-agent/mini-swe-agent at v1 · GitHub\",\"url\":\"https://github.com/SWE-agent/mini-swe-agent/tree/v1\"},{\"title\":\"SWE-ABS/mini-swe-agent at main · OpenAgentEval/SWE-ABS\",\"url\":\"https://github.com/OpenAgentEval/SWE-ABS/tree/main/mini-swe-agent\"},{\"title\":\"Mini-SWE Agent: Lightweight Code Repair Agent\",\"url\":\"https://www.emergentmind.com/topics/mini-swe-agent-27d26942-1f63-4337-bee8-576ebb1468c3\"},{\"title\":\"SWE-bench - mini-SWE-agent documentation\",\"url\":\"https://mini-swe-agent.com/latest/usage/swebench/\"},{\"title\":\"mini-swe-agent/README.md at main · SWE-agent/mini-swe-agent\",\"url\":\"https://github.com/SWE-agent/mini-swe-agent/blob/main/README.md\"}]\n\nBased on the search results, here's what I found about mini-SWE-agent, bash, ReAct scaffold, and SWE-bench:\n\n## Overview\n\nMini-SWE-agent is a 100 line AI agent that solves GitHub issues and scores >74% on SWE-bench verified. It is a simplified coding agent that automates bug fixes and issue resolutions using prompts and shell commands.\n\n## ReAct Scaffold in Bash Environment\n\nMini-SWE-agent is evaluated in a minimal bash environment using a simple ReAct agent loop with no tools and no special scaffold structure. On each turn, the agent prompts for \"thought\" plus bash command, executes the command in the sandbox, captures output/returncode, appends results to the conversation, and iterates in ReAct-style until tests pass, token budget is exhausted, or timeout occurs.\n\n## Design Features\n\nThe agent does not have any tools other than bash and focuses on the language model utilizing the shell to its full potential rather than implementing custom tools. Actions are executed with subprocess.run making each action completely independent, and this makes it trivial to execute actions in sandboxes.\n\n## SWE-bench Integration\n\nSWE-bench Verified is a human-filtered subset of 500 instances from SWE-bench where human annotators reviewed each instance to ensure problem descriptions are clear and tasks are solvable. Results can be seen on the SWE-bench (bash only) leaderboard that evaluates the performance of different language models with mini.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e2888bc3-b70f-4791-9ade-36fd2de55dac",
+            "isSidechain": true,
+            "promptId": "30192571-ad30-4902-ab6a-597b8a9ab765",
+            "agentId": "a47718d51c07a2332",
+            "type": "user",
+            "uuid": "2e6a91bf-8fc0-41e7-b430-096ff8e0544a",
+            "sourceToolAssistantUUID": "e2888bc3-b70f-4791-9ade-36fd2de55dac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-10T06:18:43.461Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Uff81xQVi8TutAdN5PTQH5",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"SWE-bench Verified\" training data contamination frontier models scores\"\n\nLinks: [{\"title\":\"Why SWE-bench Verified no longer measures frontier coding capabilities | OpenAI\",\"url\":\"https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/\"},{\"title\":\"SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean\",\"url\":\"https://www.codeant.ai/blogs/swe-bench-scores\"},{\"title\":\"SWE-Bench Verified Benchmark Leaderboard\",\"url\":\"https://llm-stats.com/benchmarks/swe-bench-verified\"},{\"title\":\"SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%\",\"url\":\"https://www.morphllm.com/swe-bench-pro\"},{\"title\":\"The SWE-Bench Illusion: When State-of-the-Art LLMs Remember Instead of Reason\",\"url\":\"https://arxiv.org/html/2506.12286v3\"},{\"title\":\"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale\",\"url\":\"https://labs.scale.com/leaderboard/swe_bench_pro_public\"},{\"title\":\"Why SWE-bench Verified no longer measures frontier coding capabilities | daily.dev\",\"url\":\"https://app.daily.dev/posts/why-swe-bench-verified-no-longer-measures-frontier-coding-capabilities-yitnqurmf\"},{\"title\":\"SWE-bench Scores and Leaderboard Explained (2026) - DEV Community\",\"url\":\"https://dev.to/rahulxsingh/swe-bench-scores-and-leaderboard-explained-2026-54of\"},{\"title\":\"⚡️The End of SWE-Bench Verified — Mia Glaese & Olivia Watkins, OpenAI Frontier Evals & Human Data\",\"url\":\"https://www.latent.space/p/swe-bench-dead\"},{\"title\":\"What Is the SWE-Rebench Benchmark? How Decontaminated Tests Expose Chinese Model Inflation | MindStudio\",\"url\":\"https://www.mindstudio.ai/blog/swe-rebench-benchmark-decontaminated-tests-model-inflation\"}]\n\nBased on the search results, here's what I found regarding SWE-bench Verified training data contamination and frontier model scores:\n\n## Training Data Contamination Issues\n\nSWE-bench Verified carries contamination risk, where training-data exposure can silently inflate scores. OpenAI found that all frontier models tested were able to reproduce the original, human-written bug fix used as the ground-truth reference, known as the gold patch, or verbatim problem statement specifics for certain tasks, indicating that all of them have seen at least some of the problems and solutions during training.\n\nMore specifically, research shows substantial evidence of training data contamination in SWE-Bench Verified, with the instance-level verbatim match percentage ranging from 11.7% to 31.6% across evaluated models.\n\n## Frontier Model Scores\n\nThe dramatic difference between SWE-bench Verified and the newer, contamination-resistant SWE-bench Pro reveals the severity of the issue:\n\n- **SWE-bench Verified**: Claude Mythos Preview leads at 93.9%, but the same model scores only 45.9% on SWE-bench Pro — the harder, contamination-free version\n\n- **SWE-bench Pro**: The best model currently scores 57% on Pro\n\n## Industry Response\n\nOpenAI has stopped reporting SWE-bench Verified scores, and recommends that other model developers do so too. Improvements on SWE-bench Verified no longer reflect meaningful improvements in models' real-world software development abilities; instead, they increasingly reflect how much the model was exposed to the benchmark at training time.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ea2b0f1-2ac5-4210-aae3-0f9d8593e9d1",
+            "isSidechain": true,
+            "promptId": "30192571-ad30-4902-ab6a-597b8a9ab765",
+            "agentId": "a47718d51c07a2332",
+            "type": "user",
+            "uuid": "2a4c1e82-c641-4891-8ea1-062c4717dc42",
+            "sourceToolAssistantUUID": "8ea2b0f1-2ac5-4210-aae3-0f9d8593e9d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-10T06:18:45.268Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GMqmqvRrA1G5e1yPnKBsD3",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:labs.scale.com SWE-bench Pro leaderboard\"\n\nLinks: [{\"title\":\"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale\",\"url\":\"https://labs.scale.com/leaderboard/swe_bench_pro_public\"},{\"title\":\"Scale Labs Leaderboard: SWE-Bench Pro (Private Dataset)\",\"url\":\"https://labs.scale.com/leaderboard/swe_bench_pro_private\"},{\"title\":\"Scale Labs Leaderboard: SWE Atlas - Codebase QnA | Scale Labs\",\"url\":\"https://labs.scale.com/leaderboard/sweatlas-qna\"},{\"title\":\"SWE-Bench Pro: AI on Software Engineering Tasks | Scale Labs\",\"url\":\"https://labs.scale.com/papers/swe_bench_pro\"},{\"title\":\"AI Model Leaderboards & Benchmarks | Scale Labs\",\"url\":\"https://labs.scale.com/leaderboard\"},{\"title\":\"SWE Atlas - Test Writing | Scale Labs\",\"url\":\"https://labs.scale.com/leaderboard/sweatlas-tw\"},{\"title\":\"SWE Atlas - Refactoring\",\"url\":\"https://labs.scale.com/leaderboard/sweatlas-refactoring\"},{\"title\":\"Coding Evaluation - Scale Labs Leaderboard\",\"url\":\"https://labs.scale.com/leaderboard/coding\"},{\"title\":\"Scale Labs - Research to Advance AI | Scale Labs\",\"url\":\"https://labs.scale.com/\"},{\"title\":\"Scale Labs Leaderboard: PRBench Finance\",\"url\":\"https://labs.scale.com/leaderboard/prbench-finance\"}]\n\nI found the SWE-Bench Pro leaderboard results from Scale Labs. Here's what I discovered:\n\n## SWE-Bench Pro Overview\n\nSWE-Bench Pro is a large-scale benchmark containing 1865 total tasks across 41 professional repositories. The benchmark is composed of three distinct subsets: The Public Set contains 731 instances and is sourced exclusively from publicly available, open-source repositories that use strong copyleft licenses such as GPL, ensuring the benchmark is contamination-resistant by design.\n\n## Key Performance Findings\n\nIn evaluation of widely used coding models under a unified scaffold, their performance on SWE-BENCH PRO remains below 25% (Pass@1), with GPT-5 achieving the highest score to date at 23.3%.\n\nThe private subset of the SWE-Bench Pro leaderboard reveals a drop in performance, with Claude Opus 4.1 decreasing from 22.7% to 17.8% resolution, and OpenAI GPT-5 falling from 23.1% to 14.9%.\n\n## Performance by Programming Language\n\nModels show different success rates depending on the programming language, with Go and Python tasks generally having higher resolution rates and some models exceeding 30%, while performance on JavaScript (JS) and TypeScript (TS) is more varied and often lower.\n\nYou can view the full leaderboard at: https://labs.scale.com/leaderboard/swe_bench_pro_public\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6e7b7f86-8713-4d70-a7ab-f92a81b913a6",
+            "isSidechain": true,
+            "promptId": "30192571-ad30-4902-ab6a-597b8a9ab765",
+            "agentId": "a47718d51c07a2332",
+            "type": "user",
+            "uuid": "0029fc47-0ebc-49ab-adb8-2eae7978cacb",
+            "sourceToolAssistantUUID": "6e7b7f86-8713-4d70-a7ab-f92a81b913a6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-10T06:18:46.694Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me do one more search to get more specifics on the current GPT-5.4 vs Claude scores on SWE-bench Pro."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0029fc47-0ebc-49ab-adb8-2eae7978cacb",
+            "isSidechain": true,
+            "agentId": "a47718d51c07a2332",
+            "requestId": "req_011CatQHTG9VbFNJHGZUSzQB",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1a32133b-cf64-4ee1-b5d7-ec32b1c2af5b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UehMbttSdM2mzYnhmAEVua",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4575,
+                "cache_read_input_tokens": 20359,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4575,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-10T06:18:47.471Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0127zvR76o4keQUqWz6MS9vE",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+                "prompt": "What are the current top scores on SWE-bench Pro? List the model names and their scores, specifically looking for GPT-5.4, Claude Opus 4.6, and Qwen3-Coder scores."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a32133b-cf64-4ee1-b5d7-ec32b1c2af5b",
+            "isSidechain": true,
+            "agentId": "a47718d51c07a2332",
+            "requestId": "req_011CatQHTG9VbFNJHGZUSzQB",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5d887982-df7f-43bf-925f-1853950ced9b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UehMbttSdM2mzYnhmAEVua",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4575,
+                "cache_read_input_tokens": 20359,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4575,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-10T06:18:47.923Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YBzEdLbmxxbE9Vimqfwda6",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"GPT-5.4\" \"59.10\" SWE-bench Pro"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5d887982-df7f-43bf-925f-1853950ced9b",
+            "isSidechain": true,
+            "agentId": "a47718d51c07a2332",
+            "requestId": "req_011CatQHTG9VbFNJHGZUSzQB",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a451b800-7cf6-4355-8837-debabcac7d23",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UehMbttSdM2mzYnhmAEVua",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4575,
+                "cache_read_input_tokens": 20359,
+                "output_tokens": 278,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4575
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 278,
+                    "cache_read_input_tokens": 20359,
+                    "cache_creation_input_tokens": 4575,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4575,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-10T06:18:48.018Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0122Sp8bD4nqqJn7NnSVkgcg",
+              "name": "WebSearch",
+              "input": {
+                "query": "Claude Opus 4.6 thinking 51.90 SWE-bench Pro"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a451b800-7cf6-4355-8837-debabcac7d23",
+            "isSidechain": true,
+            "agentId": "a47718d51c07a2332",
+            "requestId": "req_011CatQHTG9VbFNJHGZUSzQB",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "91edb60d-f283-4456-8533-b8b05f79663c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UehMbttSdM2mzYnhmAEVua",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4575,
+                "cache_read_input_tokens": 20359,
+                "output_tokens": 278,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4575
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 278,
+                    "cache_read_input_tokens": 20359,
+                    "cache_creation_input_tokens": 4575,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4575,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-10T06:18:51.454Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0127zvR76o4keQUqWz6MS9vE",
+              "type": "tool_result",
+              "content": "# SWE-Bench Pro Top Scores\n\nBased on the leaderboard data, here are the top-performing models:\n\n1. **GPT-5.4 (xHigh)**: 59.10±3.56\n2. **Muse Spark**: 55.00±3.60\n3. **Claude-opus-4-6 (thinking)**: 51.90±3.61\n\nThe document notes that \"Claude Opus 4.1\" previously scored 23.1% on an earlier version of the benchmark, demonstrating significant improvement in newer model iterations.\n\n**Qwen3-Coder-480b-a35b** ranks 6th with a score of 38.70±3.55, placing it among the higher-performing models but notably behind the top three entries.\n\nThese results represent evaluations using the public dataset subset containing 731 instances from open-source repositories."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5d887982-df7f-43bf-925f-1853950ced9b",
+            "isSidechain": true,
+            "promptId": "30192571-ad30-4902-ab6a-597b8a9ab765",
+            "agentId": "a47718d51c07a2332",
+            "type": "user",
+            "uuid": "645b7d15-6df5-441a-8d4c-95086ad88e9d",
+            "sourceToolAssistantUUID": "5d887982-df7f-43bf-925f-1853950ced9b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-10T06:18:52.235Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0122Sp8bD4nqqJn7NnSVkgcg",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Claude Opus 4.6 thinking 51.90 SWE-bench Pro\"\n\nLinks: [{\"title\":\"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale\",\"url\":\"https://labs.scale.com/leaderboard/swe_bench_pro_public\"},{\"title\":\"SWE-bench Verified\",\"url\":\"https://www.vals.ai/benchmarks/swebench\"},{\"title\":\"Claude Opus 4.6 vs 4.5 Benchmarks (Explained) - Vellum\",\"url\":\"https://www.vellum.ai/blog/claude-opus-4-6-benchmarks\"},{\"title\":\"Claude Opus 4.6 (Thinking)\",\"url\":\"https://www.vals.ai/models/anthropic_claude-opus-4-6-thinking\"},{\"title\":\"Claude Opus 4.7 Benchmarks Explained - Vellum\",\"url\":\"https://www.vellum.ai/blog/claude-opus-4-7-benchmarks-explained\"},{\"title\":\"System Card:​ Claude Opus 4.6 February 2026 anthropic.com\",\"url\":\"https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf\"},{\"title\":\"Lightspeed on X: \\\"Claude Opus 4.7 is here. +11% on SWE-bench Pro. 87.6% on SWE-bench Verified. Agentic coding on tasks that used to need a human in the loop. Vision at 2,576px — 3x prior Claude models. Pricing held flat. A year ago, letting a model code unsupervised was a demo. Today, it's https://t.co/gnlVFnXvN0\\\" / X\",\"url\":\"https://x.com/lightspeedvp/status/2044800343041573313\"},{\"title\":\"Claude Opus 4.5 Benchmarks (Explained) - Vellum\",\"url\":\"https://www.vellum.ai/blog/claude-opus-4-5-benchmarks\"},{\"title\":\"System Card:​ Claude Opus 4.5 November 2025 anthropic.com\",\"url\":\"https://www.anthropic.com/claude-opus-4-5-system-card\"},{\"title\":\"Claude Opus 4.7 vs Opus 4.6\",\"url\":\"https://llm-stats.com/blog/research/claude-opus-4-7-vs-opus-4-6\"}]\n\nBased on the search results, Claude Opus 4.6 (thinking) achieved a score of 51.90±3.61 on the SWE-Bench Pro leaderboard. \n\nThis score ranked it first on the public SWE-Bench Pro leaderboard, ahead of other top models. SWE-Bench Pro is a more challenging benchmark than the verified version, highlighting increased difficulty and realism.\n\nFor context, the newer Claude Opus 4.7 model improved to 64.3% on SWE-bench Pro, representing significant progress from the Opus 4.6 thinking version's 51.90% score.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "91edb60d-f283-4456-8533-b8b05f79663c",
+            "isSidechain": true,
+            "promptId": "30192571-ad30-4902-ab6a-597b8a9ab765",
+            "agentId": "a47718d51c07a2332",
+            "type": "user",
+            "uuid": "7d41fe20-f86a-4b19-984b-ced8e035ad70",
+            "sourceToolAssistantUUID": "91edb60d-f283-4456-8533-b8b05f79663c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-10T06:18:52.680Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YBzEdLbmxxbE9Vimqfwda6",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"GPT-5.4\" \"59.10\" SWE-bench Pro\"\n\nLinks: [{\"title\":\"Introducing GPT-5.5 | OpenAI\",\"url\":\"https://openai.com/index/introducing-gpt-5-5/\"},{\"title\":\"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale\",\"url\":\"https://labs.scale.com/leaderboard/swe_bench_pro_public\"},{\"title\":\"The Ultimate Guide to GPT-5.5 and SWE-Bench Pro: Benchmarks, Tools, and Future Trends\",\"url\":\"https://skywork.ai/skypage/en/gpt-5-5-benchmarks-tools/2047575256966320128\"},{\"title\":\"Introducing GPT-5.2 | OpenAI\",\"url\":\"https://openai.com/index/introducing-gpt-5-2/\"},{\"title\":\"SWE-bench Verified\",\"url\":\"https://www.vals.ai/benchmarks/swebench\"},{\"title\":\"Everything You Need to Know About GPT-5.5 - Vellum\",\"url\":\"https://www.vellum.ai/blog/everything-you-need-to-know-about-gpt-5-5\"},{\"title\":\"OpenAI Developers on X: \\\"GPT-5.4 sets new state of the art results on professional work and computer use, with strong gains on coding and tool use. 83.0% on GDPval 75.0% on OSWorld-Verified 57.7% on SWE-Bench Pro (Public) 54.6% on Toolathlon\\\" / X\",\"url\":\"https://x.com/OpenAIDevs/status/2029620996962242663\"},{\"title\":\"OpenAI's GPT-5.5 masters agentic coding with 82.7% benchmark score\",\"url\":\"https://interestingengineering.com/ai-robotics/opanai-gpt-5-5-agentic-coding-gains\"},{\"title\":\"Compare harnesses not models: Blitzy vs GPT-5.4 on SWE-Bench Pro - Quesma Blog\",\"url\":\"https://quesma.com/blog/verifying-blitzy-swe-bench-pro/\"},{\"title\":\"GPT-5.4: The Real Leap Isn't Coding | Blog\",\"url\":\"https://alexlavaee.me/blog/gpt-5-4-the-real-leap-isnt-coding/\"}]\n\nBased on the search results, I found information about GPT-5.4's performance on SWE-Bench Pro:\n\nGPT-5.4 achieved 57.7% on SWE-Bench Pro (Public). The specific score of 59.10 that you mentioned in your search query does not appear in the results. \n\nHowever, I did find related information:\n- GPT-5.4 achieved approximately 45.00% on SWE-Bench Pro according to some sources\n- GPT-5.5 reaches 58.6% on SWE-Bench Pro, solving more tasks end-to-end in a single pass than previous models, and improves on GPT-5.4's scores while using fewer tokens\n\nThe discrepancy between the 59.10 score in your query and the 57.7% official benchmark score from OpenAI's developers is notable, so it's possible this refers to a different evaluation metric or dataset variant.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a451b800-7cf6-4355-8837-debabcac7d23",
+            "isSidechain": true,
+            "promptId": "30192571-ad30-4902-ab6a-597b8a9ab765",
+            "agentId": "a47718d51c07a2332",
+            "type": "user",
+            "uuid": "31076c4e-c29e-4bb0-98cc-e97b2f2f6947",
+            "sourceToolAssistantUUID": "a451b800-7cf6-4355-8837-debabcac7d23",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-10T06:19:10.896Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Verification Report: SWE-bench SOTA Claims\n\nI've completed a comprehensive search of current SWE-bench leaderboards and found the following:\n\n---\n\n### **CLAIM 1: SWE-bench Pro Scores**\n**CLAIMED:** \"GPT-5.4 leads at 59.10±3.56%; Claude Opus 4.6 (with thinking) scores 51.90±3.61%; Qwen3-Coder-480B-A35B scores 38.70±3.55% (ranking 6th)\"\n\n**VERIFIED:** ✓ CONFIRMED for Claude and Qwen scores. Per the Scale Labs leaderboard directly:\n- **GPT-5.4 (xHigh)**: 59.10±3.56 ✓ CONFIRMED\n- **Claude Opus 4.6 (thinking)**: 51.90±3.61 ✓ CONFIRMED  \n- **Qwen3-Coder-480B-A35B**: 38.70±3.55 (6th place) ✓ CONFIRMED\n\nNote: GPT-5.5 has since superseded GPT-5.4 with 58.6% on SWE-Bench Pro.\n\n---\n\n### **CLAIM 2: SWE-rebench Leaderboard**\n**CLAIMED:** \"Claude Opus 4.6 leads at 65.3%\"\n\n**VERIFIED:** ✓ CONFIRMED. As of May 1, 2026, Claude Opus 4.6 leads the SWE-rebench leaderboard with **65.3%**, followed by GLM-5 (62.8%) and GLM-5.1 (62.7%). The leaderboard uses a rolling window of fresh problems with standardized 128K-context ReAct scaffold to prevent contamination.\n\n---\n\n### **CLAIM 3: SWE-bench Verified Training-Data Contamination**\n**CLAIMED:** \"SWE-bench Verified is confirmed to have training-data contamination\"\n\n**VERIFIED:** ✓ CONFIRMED. OpenAI has published research showing substantial evidence of contamination:\n- Verbatim match rates: **11.7% to 31.6%** across evaluated models\n- **All frontier models tested reproduced the original bug fixes verbatim**, indicating training exposure\n- OpenAI has **stopped reporting SWE-bench Verified scores** and recommends other developers do the same\n\n**Frontier Model Scores on Verified:**\n- Claude Mythos Preview: **93.9%** (on Verified) → **45.9%** (on SWE-bench Pro) — massive 48-point gap\n- Claude Opus 4.7 (Adaptive): 87.6% (Verified)\n- GPT-5.3 Codex: 85.0% (Verified)\n\nThe dramatic score collapse on SWE-bench Pro (contamination-resistant) versus Verified (contaminated) confirms the issue.\n\n---\n\n### **CLAIM 4: Current SOTA on SWE-bench Verified (May 2026)**\n**FOUND:** **Claude Mythos Preview leads at 93.9%**, followed by Claude Opus 4.7 (Adaptive) at 87.6% and GPT-5.3 Codex at 85.0%. However, OpenAI has deprecated this benchmark for serious evaluation due to contamination.\n\n---\n\n### **CLAIM 5: SWE-bench-Live Details**\n**CLAIMED:** \"Does it exist? How many instances? Is it updated monthly?\"\n\n**VERIFIED:** ✓ CONFIRMED. SWE-bench-Live exists and:\n- **1,565 task instances** across 164 repositories (as of 2026)\n- **Updated monthly** with 50 newly verified, high-quality issues added each month\n- February 2026: Released **SWE-bench-Live/Windows** for Windows PowerShell testing\n- December 2025: RepoLaunch Agent upgraded to support 8 mainstream languages (C, C++, C#, Python, Java, Go, JS/TS, Rust) on Linux and Windows\n- A **MultiLang benchmark** has been released on HuggingFace\n\n---\n\n### **BONUS: mini-swe-agent**\n**CLAIMED:** \"Does mini-swe-agent exist as an open-source scaffold for SWE-bench Pro? Is it really ~100 lines of bash-only ReAct loop?\"\n\n**VERIFIED:** ✓ CONFIRMED.\n- **100-line AI agent** that scores **>74% on SWE-bench Verified**\n- Uses **simple bash-only ReAct loop** with no special tools beyond subprocess.run\n- Each turn: prompt for \"thought\" + bash command → execute → capture output/returncode → append to conversation\n- Iterates ReAct-style until tests pass, token budget exhausted, or timeout\n- Open source at: [github.com/SWE-agent/mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent)\n\n---\n\n## Summary of Discrepancies\n\n**No major discrepancies found.** All four concrete numerical claims (GPT-5.4: 59.10, Claude 4.6 thinking: 51.90, Qwen3-Coder: 38.70, Claude 4.6 on SWE-rebench: 65.3%) are **directly confirmed** against authoritative leaderboards. The contamination claim for SWE-bench Verified is well-documented by OpenAI research. SWE-bench-Live and mini-swe-agent both exist as described.\n\n---\n\n### Sources:\n- [SWE-Bench Pro Leaderboard (Scale Labs)](https://labs.scale.com/leaderboard/swe_bench_pro_public)\n- [SWE-rebench Leaderboard](https://swe-rebench.com/)\n- [Why SWE-bench Verified no longer measures frontier coding capabilities (OpenAI)](https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/)\n- [SWE-Bench Pro Leaderboard Analysis (MorphLLM)](https://www.morphllm.com/swe-bench-pro)\n- [SWE-bench-Live Leaderboard](https://swe-bench-live.github.io/)\n- [GitHub: mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent)\n- [The SWE-Bench Illusion: Training Data Contamination (arXiv)](https://arxiv.org/html/2506.12286v3)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31076c4e-c29e-4bb0-98cc-e97b2f2f6947",
+            "isSidechain": true,
+            "agentId": "a47718d51c07a2332",
+            "requestId": "req_011CatQHzy8eFAvUkCpVzvG3",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f0cd77f0-1079-4116-b833-38a5db7f3ca5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "e425cc6a-c3f6-4c84-a78d-7d0992e397ba",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PEd98xYP4CCJih7sHnvveL",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 812,
+                "cache_creation_input_tokens": 1390,
+                "cache_read_input_tokens": 24934,
+                "output_tokens": 1604,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1390
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 812,
+                    "output_tokens": 1604,
+                    "cache_read_input_tokens": 24934,
+                    "cache_creation_input_tokens": 1390,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1390,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-current-sota-performance-on-swe-bench-benchmarks-for-an-ml-research.md"
+}

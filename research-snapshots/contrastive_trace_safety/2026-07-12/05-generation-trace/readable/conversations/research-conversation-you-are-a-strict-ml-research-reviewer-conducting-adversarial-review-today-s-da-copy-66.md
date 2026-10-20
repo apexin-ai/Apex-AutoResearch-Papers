@@ -1,0 +1,7792 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-11 (UTC).** Your job: indep
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 107
+- **Recorded user turns:** 1
+- **Tool calls:** 32
+- **Original source:** `logs/chats/exported-trajectories/account-3/79da2c56-251c-4777-a49a-d3a3a468fcbd.jsonl`
+- **Structured JSON:** [`8c4e5cf504c40d2e2171.json`](../../sessions/8c/8c4e5cf504c40d2e2171.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-11T22:40:10.448Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-11T22:40:10.448Z",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-11 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: NLP and Code Models.\n\nDirection: Code understanding and generation — repo-level comprehension, program repair, code reasoning, debugging, test generation, code-to-documentation, cross-language code transfer. NOT just code completion — focus on higher-level code reasoning tasks.\n\nContribution type: METHOD ONLY. Propose new training methods, retrieval-augmented code repair, or inference algorithms for code tasks. Not a new benchmark or leaderboard entry.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Code models are often evaluated zero-shot or few-shot — budget goes to SFT/LoRA if fine-tuning.\n2. Time: ≤16 days. Build on existing code models (DeepSeek-Coder-V2, StarCoder2, CodeLlama, Qwen2.5-Coder) and frameworks (aider, SWE-agent, Moatless).\n3. Eval: SWE-bench Verified, HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, CodeContests.\n\nLook for: repo-level context compression for code understanding, retrieval-augmented repair with semantic code search, code reasoning via execution feedback, cross-repo transfer learning. Avoid: simple prompt templates for code completion.\n\nTag: direction=code_models, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 1/10)\n{\n  \"title\": \"Adaptive Granularity Context Orchestration for Repo-Level Repair\",\n  \"core_problem\": \"Repository-level repair pipelines use fixed fault-localization granularity (file/function/line) and fixed context windows, but two concurrent April 2026 studies reveal this is suboptimal: function-level FL yields the highest average repair rate, yet the ideal granularity is task-dependent, and expanding line-level context frequently degrades repair due to noise amplification. Can we learn a policy that dynamically selects the optimal abstraction level and context amount for each bug?\",\n  \"opportunity\": \"Two April 2026 papers independently surface the same insight from different angles: (1) arXiv 2604.00167 shows function-level FL beats file- and line-level on average but is task-dependent; (2) arXiv 2604.05481 shows file-level context provides 15-17x improvement but line-level expansion causes noise amplification, with optimal configurations using ~6-10 files. SWEzze (March 2026) trains a minimal-context reranker but operates at fixed granularity. No existing system jointly adapts BOTH granularity and context amount based on the incoming bug signal. This is a 'why now' moment: the empirical evidence for adaptive control just appeared 4-6 weeks ago.\",\n  \"landscape\": \"ARISE (May 2026, arXiv 2605.03117) introduces a multi-granularity program graph with statement-level nodes but uses a fixed graph representation, not adaptive selection. SWEzze (arXiv 2603.28119) trains a cross-encoder reranker for minimal sufficient context but at a single granularity. Hierarchical Knowledge Injection (ASE 2025) structures context into bug/repo/project layers and shows different layers help different bug types, but uses a fixed layered architecture rather than learned adaptation. The FL granularity study (arXiv 2604.00167) provides the empirical foundation but stops at analysis — it does not propose an adaptive method. SIADAFIX (arXiv 2510.16059) adaptively selects repair difficulty modes (easy/medium/hard) based on issue classification but does not adapt localization granularity or context budget. SWE-Pruner (arXiv 2601.16746) performs adaptive context pruning via a neural skimmer but operates at a fixed granularity level. The gap is a learned context-orchestration policy that conditions on bug signal features (error type, stack trace structure, test failure pattern) to jointly select granularity and context budget.\",\n  \"approach\": \"We propose a learned meta-controller that, given bug-signal features (error type, stack trace structure, test failure pattern, code-change entropy), jointly selects the optimal fault-localization granularity (file/function/line) and context budget (number of retrieved code elements) for each incoming bug. Oracle training labels are collected by exhaustively running the Agentless repair pipeline across 18 configurations (3 granularities × 6 context budgets) on SWE-bench Verified. A lightweight cross-encoder fine-tuned from Qwen3-Reranker-0.6B is trained to predict the best configuration per bug, with an auxiliary RL fine-tuning stage where reward is binary patch correctness. The trained policy integrates as a drop-in pre-processing module into existing localize-then-repair pipelines, routing each bug to its predicted optimal (granularity, budget) before invoking repair with a frontier open-source code LLM (Qwen3-Coder-Next 80B MoE). We evaluate against fixed-configuration baselines and concurrent adaptive methods (SIADAFIX, SWE-Pruner, SWEzze) on held-out SWE-bench partitions and SWE-bench Lite.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~600-800h A100 80GB (450h oracle profiling across 18 configs × 200 training instances, 125h evaluation, 100h ablations, remainder for debugging/iteration)\",\n      \"gpu_utilization\": \"Low (~25-35%). GPUs idle while researchers analyze oracle results, debug feature extraction, design policy architecture, and interpret ablation outcomes. Profiling runs are bursty — days of idle between experiment batches.\",\n      \"timeline\": \"4-6 months\",\n      \"team\": \"2 researchers (1 SE/repair expert, 1 ML/RL expert)\",\n      \"estimated_gpu_cost\": \"$900-1,200 (at ~$1.50/hr A100 80GB on-demand via Hyperstack/JarvisLabs)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~800-1,100h A100 80GB (more exploration of feature sets and policy architectures, agent tries 2-3x more configurations, but human gates prevent wasted runs)\",\n      \"gpu_utilization\": \"Moderate (~50-60%). Agent queues experiment batches overnight and between human check-ins, reducing idle gaps. Human approval gates prevent wasted GPU on dead-end configurations.\",\n      \"timeline\": \"6-10 weeks\",\n      \"team\": \"1 researcher, ~45min/day check-in for reviewing oracle results, approving experiment plans, and validating evaluation metrics\",\n      \"claude_api_cost\": \"$150-400 (~2,000-4,000 agent turns for experiment design, code generation, result analysis, and paper drafting at ~$0.08-0.10/turn average with caching)\",\n      \"estimated_gpu_cost\": \"$1,200-1,650\",\n      \"risk_note\": \"Oracle profiling is embarrassingly parallel but requires careful SWE-bench Docker setup; environment failures on ~10-15% of instances may require human triage to decide skip-vs-fix.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~1,800-2,500h A100 80GB (agent explores 3-5x more feature/config combinations, runs exhaustive ablations, tries alternative policy architectures including DPO and reward-model variants)\",\n      \"gpu_utilization\": \"High (~85-95%). Agent continuously schedules next experiment batch before current one finishes, maintains GPU queue, and parallelizes independent ablations. Near-zero idle because agent operates 24/7 without wait states.\",\n      \"timeline\": \"10-18 days with 4× A100 80GB available concurrently\",\n      \"team\": \"0 (only initial setup: SWE-bench Docker environment, Agentless installation, model weights download)\",\n      \"claude_api_cost\": \"$400-900 (~5,000-9,000 agent turns for iterative experiment design, code writing, failure debugging, and full paper drafting)\",\n      \"estimated_gpu_cost\": \"$2,700-3,750\",\n      \"speed_bottleneck\": \"GPU count is the primary bottleneck — oracle profiling of 18 configs × 500 instances is embarrassingly parallel but requires 4+ A100s to finish in <2 weeks. Secondary bottleneck is SWE-bench instance setup time (~2min per Docker container).\",\n      \"risk_note\": \"Agent may over-explore policy architecture space (trying complex RL formulations) when simpler supervised learning suffices, wasting GPU on diminishing-return experiments. Without human judgment on when results are 'good enough,' auto mode risks scope creep into tangential ablations.\"\n    }\n  },\n  \"target_venues\": [\n    \"ICSE 2027 Research Track (abstract: June 23, 2026; paper: June 30, 2026)\",\n    \"AAAI 2027 (abstract: July 25, 2026; paper: August 1, 2026)\",\n    \"EMNLP 2026 via ARR May cycle (submission: May 25, 2026)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"A Study on the Impact of Fault Localization Granularity for Repository-Scale Code Repair Tasks (arXiv 2026)\",\n    \"On the Role of Fault Localization Context for LLM-Based Program Repair (arXiv 2026)\",\n    \"Compressing Code Context for LLM-based Issue Resolution (arXiv 2026)\",\n    \"Hierarchical Knowledge Injection for Improving LLM-based Program Repair (ASE 2025)\",\n    \"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair (arXiv 2026)\",\n    \"Agentless: Demystifying LLM-based Software Engineering Agents (FSE 2025)\",\n    \"SWE-RL: Advancing LLM Reasoning via Reinforcement Learning on Open Software Evolution (NeurIPS 2025)\",\n    \"SIADAFIX: Issue Description Response for Adaptive Program Repair (arXiv 2025)\",\n    \"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents (arXiv 2026)\"\n  ],\n  \"description\": \"Two concurrent April 2026 studies reveal that optimal fault-localization granularity and context amount for repository-level program repair are task-dependent, yet all existing systems use fixed configurations. We propose a learned context-orchestration policy that, given bug-signal features (error type, stack trace structure, test failure pattern), jointly selects the optimal FL granularity (file/function/line) and context budget per bug instance. Training labels are obtained by exhaustively profiling the Agentless pipeline across 18 granularity-budget configurations on SWE-bench Verified. A lightweight cross-encoder (0.6B parameters, fine-tuned from Qwen3-Reranker) predicts the best configuration, with an auxiliary RL stage using patch correctness as reward. The policy integrates as a drop-in module upstream of any localize-then-repair pipeline. We target evaluation on SWE-bench using Qwen3-Coder-Next as the open-source repair backbone, comparing against fixed-configuration baselines and concurrent adaptive methods (SIADAFIX, SWE-Pruner, SWEzze). Resource requirements center on ~600-2,500 A100 GPU-hours depending on research mode, with the main cost in exhaustive configuration profiling. Primary targets are ICSE 2027 and AAAI 2027.\",\n  \"project_name\": \"adaptive_context_orchestration\",\n  \"source\": \"web_research\"\n}\n\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-11T22:40:10.460Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-11T22:40:10.460Z",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+## Round 1
+
+105 recorded events
+
+### User
+
+_source line 3 · 2026-05-11T22:40:10.498Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-11 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: NLP and Code Models.
+
+Direction: Code understanding and generation — repo-level comprehension, program repair, code reasoning, debugging, test generation, code-to-documentation, cross-language code transfer. NOT just code completion — focus on higher-level code reasoning tasks.
+
+Contribution type: METHOD ONLY. Propose new training methods, retrieval-augmented code repair, or inference algorithms for code tasks. Not a new benchmark or leaderboard entry.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Code models are often evaluated zero-shot or few-shot — budget goes to SFT/LoRA if fine-tuning.
+2. Time: ≤16 days. Build on existing code models (DeepSeek-Coder-V2, StarCoder2, CodeLlama, Qwen2.5-Coder) and frameworks (aider, SWE-agent, Moatless).
+3. Eval: SWE-bench Verified, HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, CodeContests.
+
+Look for: repo-level context compression for code understanding, retrieval-augmented repair with semantic code search, code reasoning via execution feedback, cross-repo transfer learning. Avoid: simple prompt templates for code completion.
+
+Tag: direction=code_models, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 1/10)
+{
+  "title": "Adaptive Granularity Context Orchestration for Repo-Level Repair",
+  "core_problem": "Repository-level repair pipelines use fixed fault-localization granularity (file/function/line) and fixed context windows, but two concurrent April 2026 studies reveal this is suboptimal: function-level FL yields the highest average repair rate, yet the ideal granularity is task-dependent, and expanding line-level context frequently degrades repair due to noise amplification. Can we learn a policy that dynamically selects the optimal abstraction level and context amount for each bug?",
+  "opportunity": "Two April 2026 papers independently surface the same insight from different angles: (1) arXiv 2604.00167 shows function-level FL beats file- and line-level on average but is task-dependent; (2) arXiv 2604.05481 shows file-level context provides 15-17x improvement but line-level expansion causes noise amplification, with optimal configurations using ~6-10 files. SWEzze (March 2026) trains a minimal-context reranker but operates at fixed granularity. No existing system jointly adapts BOTH granularity and context amount based on the incoming bug signal. This is a 'why now' moment: the empirical evidence for adaptive control just appeared 4-6 weeks ago.",
+  "landscape": "ARISE (May 2026, arXiv 2605.03117) introduces a multi-granularity program graph with statement-level nodes but uses a fixed graph representation, not adaptive selection. SWEzze (arXiv 2603.28119) trains a cross-encoder reranker for minimal sufficient context but at a single granularity. Hierarchical Knowledge Injection (ASE 2025) structures context into bug/repo/project layers and shows different layers help different bug types, but uses a fixed layered architecture rather than learned adaptation. The FL granularity study (arXiv 2604.00167) provides the empirical foundation but stops at analysis — it does not propose an adaptive method. SIADAFIX (arXiv 2510.16059) adaptively selects repair difficulty modes (easy/medium/hard) based on issue classification but does not adapt localization granularity or context budget. SWE-Pruner (arXiv 2601.16746) performs adaptive context pruning via a neural skimmer but operates at a fixed granularity level. The gap is a learned context-orchestration policy that conditions on bug signal features (error type, stack trace structure, test failure pattern) to jointly select granularity and context budget.",
+  "approach": "We propose a learned meta-controller that, given bug-signal features (error type, stack trace structure, test failure pattern, code-change entropy), jointly selects the optimal fault-localization granularity (file/function/line) and context budget (number of retrieved code elements) for each incoming bug. Oracle training labels are collected by exhaustively running the Agentless repair pipeline across 18 configurations (3 granularities × 6 context budgets) on SWE-bench Verified. A lightweight cross-encoder fine-tuned from Qwen3-Reranker-0.6B is trained to predict the best configuration per bug, with an auxiliary RL fine-tuning stage where reward is binary patch correctness. The trained policy integrates as a drop-in pre-processing module into existing localize-then-repair pipelines, routing each bug to its predicted optimal (granularity, budget) before invoking repair with a frontier open-source code LLM (Qwen3-Coder-Next 80B MoE). We evaluate against fixed-configuration baselines and concurrent adaptive methods (SIADAFIX, SWE-Pruner, SWEzze) on held-out SWE-bench partitions and SWE-bench Lite.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~600-800h A100 80GB (450h oracle profiling across 18 configs × 200 training instances, 125h evaluation, 100h ablations, remainder for debugging/iteration)",
+      "gpu_utilization": "Low (~25-35%). GPUs idle while researchers analyze oracle results, debug feature extraction, design policy architecture, and interpret ablation outcomes. Profiling runs are bursty — days of idle between experiment batches.",
+      "timeline": "4-6 months",
+      "team": "2 researchers (1 SE/repair expert, 1 ML/RL expert)",
+      "estimated_gpu_cost": "$900-1,200 (at ~$1.50/hr A100 80GB on-demand via Hyperstack/JarvisLabs)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~800-1,100h A100 80GB (more exploration of feature sets and policy architectures, agent tries 2-3x more configurations, but human gates prevent wasted runs)",
+      "gpu_utilization": "Moderate (~50-60%). Agent queues experiment batches overnight and between human check-ins, reducing idle gaps. Human approval gates prevent wasted GPU on dead-end configurations.",
+      "timeline": "6-10 weeks",
+      "team": "1 researcher, ~45min/day check-in for reviewing oracle results, approving experiment plans, and validating evaluation metrics",
+      "claude_api_cost": "$150-400 (~2,000-4,000 agent turns for experiment design, code generation, result analysis, and paper drafting at ~$0.08-0.10/turn average with caching)",
+      "estimated_gpu_cost": "$1,200-1,650",
+      "risk_note": "Oracle profiling is embarrassingly parallel but requires careful SWE-bench Docker setup; environment failures on ~10-15% of instances may require human triage to decide skip-vs-fix."
+    },
+    "auto_research": {
+      "gpu_hours": "~1,800-2,500h A100 80GB (agent explores 3-5x more feature/config combinations, runs exhaustive ablations, tries alternative policy architectures including DPO and reward-model variants)",
+      "gpu_utilization": "High (~85-95%). Agent continuously schedules next experiment batch before current one finishes, maintains GPU queue, and parallelizes independent ablations. Near-zero idle because agent operates 24/7 without wait states.",
+      "timeline": "10-18 days with 4× A100 80GB available concurrently",
+      "team": "0 (only initial setup: SWE-bench Docker environment, Agentless installation, model weights download)",
+      "claude_api_cost": "$400-900 (~5,000-9,000 agent turns for iterative experiment design, code writing, failure debugging, and full paper drafting)",
+      "estimated_gpu_cost": "$2,700-3,750",
+      "speed_bottleneck": "GPU count is the primary bottleneck — oracle profiling of 18 configs × 500 instances is embarrassingly parallel but requires 4+ A100s to finish in <2 weeks. Secondary bottleneck is SWE-bench instance setup time (~2min per Docker container).",
+      "risk_note": "Agent may over-explore policy architecture space (trying complex RL formulations) when simpler supervised learning suffices, wasting GPU on diminishing-return experiments. Without human judgment on when results are 'good enough,' auto mode risks scope creep into tangential ablations."
+    }
+  },
+  "target_venues": [
+    "ICSE 2027 Research Track (abstract: June 23, 2026; paper: June 30, 2026)",
+    "AAAI 2027 (abstract: July 25, 2026; paper: August 1, 2026)",
+    "EMNLP 2026 via ARR May cycle (submission: May 25, 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "A Study on the Impact of Fault Localization Granularity for Repository-Scale Code Repair Tasks (arXiv 2026)",
+    "On the Role of Fault Localization Context for LLM-Based Program Repair (arXiv 2026)",
+    "Compressing Code Context for LLM-based Issue Resolution (arXiv 2026)",
+    "Hierarchical Knowledge Injection for Improving LLM-based Program Repair (ASE 2025)",
+    "ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair (arXiv 2026)",
+    "Agentless: Demystifying LLM-based Software Engineering Agents (FSE 2025)",
+    "SWE-RL: Advancing LLM Reasoning via Reinforcement Learning on Open Software Evolution (NeurIPS 2025)",
+    "SIADAFIX: Issue Description Response for Adaptive Program Repair (arXiv 2025)",
+    "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents (arXiv 2026)"
+  ],
+  "description": "Two concurrent April 2026 studies reveal that optimal fault-localization granularity and context amount for repository-level program repair are task-dependent, yet all existing systems use fixed configurations. We propose a learned context-orchestration policy that, given bug-signal features (error type, stack trace structure, test failure pattern), jointly selects the optimal FL granularity (file/function/line) and context budget per bug instance. Training labels are obtained by exhaustively profiling the Agentless pipeline across 18 granularity-budget configurations on SWE-bench Verified. A lightweight cross-encoder (0.6B parameters, fine-tuned from Qwen3-Reranker) predicts the best configuration, with an auxiliary RL stage using patch correctness as reward. The policy integrates as a drop-in module upstream of any localize-then-repair pipeline. We target evaluation on SWE-bench using Qwen3-Coder-Next as the open-source repair backbone, comparing against fixed-configuration baselines and concurrent adaptive methods (SIADAFIX, SWE-Pruner, SWEzze). Resource requirements center on ~600-2,500 A100 GPU-hours depending on research mode, with the main cost in exhaustive configuration profiling. Primary targets are ICSE 2027 and AAAI 2027.",
+  "project_name": "adaptive_context_orchestration",
+  "source": "web_research"
+}
+
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "7b92132c-6051-4cc8-a56d-06860d0a484b",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-11T22:40:10.497Z_
+
+```json
+{
+  "parentUuid": "7b92132c-6051-4cc8-a56d-06860d0a484b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "4ffabfa3-6d86-40f3-a5ae-46d8ab5efbfe",
+  "timestamp": "2026-05-11T22:40:10.497Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-11T22:40:10.497Z_
+
+```json
+{
+  "parentUuid": "4ffabfa3-6d86-40f3-a5ae-46d8ab5efbfe",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "42668484-ee83-440f-880f-7844992242d3",
+  "timestamp": "2026-05-11T22:40:10.497Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "42668484-ee83-440f-880f-7844992242d3",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of adaptive context orchestration for code repair",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-11T22:40:15.947Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea by conducting independent research. I need to verify:
+
+1. SOTA freshness - Are the cited papers real and current?
+2. Gap validity - Does the claimed gap actually exist?
+3. Novelty - Is this sufficiently different from existing work?
+4. Feasibility - Can this be done within the stated constraints?
+5. Resource estimates - Are they realistic?
+6. Venue fit - Does this match the user's requirements?
+
+Let me start by searching for the key papers and claims.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42668484-ee83-440f-880f-7844992242d3",
+  "isSidechain": false,
+  "requestId": "req_011Cawaw4wx6X3qKS9Wd6ecF",
+  "type": "assistant",
+  "uuid": "6482c4ff-98a2-41b5-9b4f-ff9d9ec1dfa6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xzy5dAsyE8KghhZdkSiZS9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11654,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 238,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11654,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 238,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11654,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11654
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-11T22:40:16.809Z_
+
+I'll conduct a thorough independent review of this idea. Let me start by verifying the key claims and searching for competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6482c4ff-98a2-41b5-9b4f-ff9d9ec1dfa6",
+  "isSidechain": false,
+  "requestId": "req_011Cawaw4wx6X3qKS9Wd6ecF",
+  "type": "assistant",
+  "uuid": "9aabd1a5-27b7-457a-b8ca-3d63f386bcc0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xzy5dAsyE8KghhZdkSiZS9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11654,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 238,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11654,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 238,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11654,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11654
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-11T22:40:17.507Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01AaRnSUFaf2aMPGweUha4GY`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9aabd1a5-27b7-457a-b8ca-3d63f386bcc0",
+  "isSidechain": false,
+  "requestId": "req_011Cawaw4wx6X3qKS9Wd6ecF",
+  "type": "assistant",
+  "uuid": "93c1ef88-afc9-4770-b2ce-c37fdda1b364",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xzy5dAsyE8KghhZdkSiZS9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11654,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 238,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11654,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 238,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11654,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11654
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-11T22:40:17.513Z_
+
+<details><summary>↩ Tool result · `toolu_01AaRnSUFaf2aMPGweUha4GY`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "93c1ef88-afc9-4770-b2ce-c37fdda1b364",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "0f9f92df-d026-4e1c-8310-26e60f555066",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "93c1ef88-afc9-4770-b2ce-c37fdda1b364",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-11T22:40:21.340Z_
+
+Now let me begin my systematic verification. I'll start with multiple parallel searches to verify the key papers and check for competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f9f92df-d026-4e1c-8310-26e60f555066",
+  "isSidechain": false,
+  "requestId": "req_011Cawawac9uqbqpWFoBNGFC",
+  "type": "assistant",
+  "uuid": "e1f745e2-545d-4259-a89d-89c96b2ed090",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0117wdPtrg7AiCmPSpjx47hA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1258,
+      "cache_read_input_tokens": 23495,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1258,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 23495,
+          "cache_creation_input_tokens": 1258,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1258
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-11T22:40:21.918Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XpD7JYL5BcamZAD5NNFC1i`</summary>
+
+```json
+{
+  "query": "arXiv 2604.00167 fault localization granularity repository code repair 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1f745e2-545d-4259-a89d-89c96b2ed090",
+  "isSidechain": false,
+  "requestId": "req_011Cawawac9uqbqpWFoBNGFC",
+  "type": "assistant",
+  "uuid": "275d2690-8545-41ba-855d-48f701d070a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0117wdPtrg7AiCmPSpjx47hA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1258,
+      "cache_read_input_tokens": 23495,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1258,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 23495,
+          "cache_creation_input_tokens": 1258,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1258
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-11T22:40:29.075Z_
+
+<details><summary>↩ Tool result · `toolu_01XpD7JYL5BcamZAD5NNFC1i`</summary>
+
+```text
+Web search results for query: "arXiv 2604.00167 fault localization granularity repository code repair 2026"
+
+Links: [{"title":"[2604.00167] A Study on the Impact of Fault localization Granularity for Repository-Scale Code Repair Tasks","url":"https://arxiv.org/abs/2604.00167"},{"title":"A Study on the Impact of Fault localization Granularity for Repository-Scale Code Repair Tasks","url":"https://arxiv.org/html/2604.00167"},{"title":"A Study on the Impact of Fault localization Granularity for Repository-Scale","url":"https://arxiv.org/pdf/2604.00167"},{"title":"On the Role of Fault Localization Context for LLM-Based Program Repair","url":"https://arxiv.org/html/2604.05481v1"},{"title":"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair","url":"https://arxiv.org/html/2605.03117"},{"title":"GALA: Multimodal Graph Alignment for Bug Localization in Automated Program Repair","url":"https://arxiv.org/html/2604.08089"},{"title":"Black-Box Test Code Fault Localization Driven by Large Language Models and Execution Estimation","url":"https://arxiv.org/html/2506.19045v1"},{"title":"Explainable Fault Localization for Programming Assignments via LLM-Guided Annotation","url":"https://arxiv.org/html/2509.25676v1"},{"title":"[2604.05481] On the Role of Fault Localization Context for LLM-Based Program Repair","url":"https://arxiv.org/abs/2604.05481"},{"title":"CI-Repair-Bench: A Repository-Aware Benchmark for Automated Patch Validation via CI Workflows","url":"https://arxiv.org/html/2604.27148"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## A Study on the Impact of Fault Localization Granularity for Repository-Scale Code Repair Tasks
+
+This paper by Joseph Townsend, Chandresh Pravin, Kwun Ho Ngan, and Matthieu Parizy addresses automatic program repair at a repository level, which involves issue reproduction, fault localization, code repair, testing and validation.
+
+### Key Focus
+
+To the best of the authors' knowledge, no repository-scale studies have explicitly investigated granularity under the assumption of perfect fault localization, nor conducted a systematic empirical comparison of granularity levels in isolation.
+
+### Methodology and Results
+
+The authors propose a framework by modifying the localization phase of the Agentless framework to retrieve ground-truth localization data and include this as context in the prompt fed to the repair phase. Using this configuration and generalizing over the SWE-Bench-Mini dataset, function-level granularity yields the highest repair rate against line-level and file-level. However, a deeper dive suggests that the ideal granularity may in fact be task dependent.
+
+The paper was submitted to arXiv on March 31, 2026, and aims to provide a proof of concept for investigating how fault localization impacts automatic code repair in repository-scale scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "275d2690-8545-41ba-855d-48f701d070a1",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "9979d984-3c82-46ce-aa36-8b8e350a9edd",
+  "toolUseResult": {
+    "query": "arXiv 2604.00167 fault localization granularity repository code repair 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UqNQeBaH2JfWpNgTnj7oRj",
+        "content": [
+          {
+            "title": "[2604.00167] A Study on the Impact of Fault localization Granularity for Repository-Scale Code Repair Tasks",
+            "url": "https://arxiv.org/abs/2604.00167"
+          },
+          {
+            "title": "A Study on the Impact of Fault localization Granularity for Repository-Scale Code Repair Tasks",
+            "url": "https://arxiv.org/html/2604.00167"
+          },
+          {
+            "title": "A Study on the Impact of Fault localization Granularity for Repository-Scale",
+            "url": "https://arxiv.org/pdf/2604.00167"
+          },
+          {
+            "title": "On the Role of Fault Localization Context for LLM-Based Program Repair",
+            "url": "https://arxiv.org/html/2604.05481v1"
+          },
+          {
+            "title": "ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair",
+            "url": "https://arxiv.org/html/2605.03117"
+          },
+          {
+            "title": "GALA: Multimodal Graph Alignment for Bug Localization in Automated Program Repair",
+            "url": "https://arxiv.org/html/2604.08089"
+          },
+          {
+            "title": "Black-Box Test Code Fault Localization Driven by Large Language Models and Execution Estimation",
+            "url": "https://arxiv.org/html/2506.19045v1"
+          },
+          {
+            "title": "Explainable Fault Localization for Programming Assignments via LLM-Guided Annotation",
+            "url": "https://arxiv.org/html/2509.25676v1"
+          },
+          {
+            "title": "[2604.05481] On the Role of Fault Localization Context for LLM-Based Program Repair",
+            "url": "https://arxiv.org/abs/2604.05481"
+          },
+          {
+            "title": "CI-Repair-Bench: A Repository-Aware Benchmark for Automated Patch Validation via CI Workflows",
+            "url": "https://arxiv.org/html/2604.27148"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n## A Study on the Impact of Fault Localization Granularity for Repository-Scale Code Repair Tasks\n\nThis paper by Joseph Townsend, Chandresh Pravin, Kwun Ho Ngan, and Matthieu Parizy addresses automatic program repair at a repository level, which involves issue reproduction, fault localization, code repair, testing and validation.\n\n### Key Focus\n\nTo the best of the authors' knowledge, no repository-scale studies have explicitly investigated granularity under the assumption of perfect fault localization, nor conducted a systematic empirical comparison of granularity levels in isolation.\n\n### Methodology and Results\n\nThe authors propose a framework by modifying the localization phase of the Agentless framework to retrieve ground-truth localization data and include this as context in the prompt fed to the repair phase. Using this configuration and generalizing over the SWE-Bench-Mini dataset, function-level granularity yields the highest repair rate against line-level and file-level. However, a deeper dive suggests that the ideal granularity may in fact be task dependent.\n\nThe paper was submitted to arXiv on March 31, 2026, and aims to provide a proof of concept for investigating how fault localization impacts automatic code repair in repository-scale scenarios."
+    ],
+    "durationSeconds": 7.152424427
+  },
+  "sourceToolAssistantUUID": "275d2690-8545-41ba-855d-48f701d070a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-11T22:40:31.952Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0153pdNb4wmAyUgqx2p4X6fT`</summary>
+
+```json
+{
+  "query": "arXiv 2604.05481 fault localization context LLM program repair 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9979d984-3c82-46ce-aa36-8b8e350a9edd",
+  "isSidechain": false,
+  "requestId": "req_011CawaxRSmdQa1sVf2YJfi3",
+  "type": "assistant",
+  "uuid": "06ea03bc-8e98-4fa5-ba54-f6e2bd0a7a00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GCn3agSsMuHQRSvB3qiw2T",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 914,
+      "cache_read_input_tokens": 24753,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 914,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 24753,
+          "cache_creation_input_tokens": 914,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 914
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-11T22:40:38.873Z_
+
+<details><summary>↩ Tool result · `toolu_0153pdNb4wmAyUgqx2p4X6fT`</summary>
+
+```text
+Web search results for query: "arXiv 2604.05481 fault localization context LLM program repair 2026"
+
+Links: [{"title":"[2604.05481] On the Role of Fault Localization Context for LLM-Based Program Repair","url":"https://arxiv.org/abs/2604.05481"},{"title":"[2604.05481v1] On the Role of Fault Localization Context for LLM-Based Program Repair","url":"https://arxiv.org/abs/2604.05481v1"},{"title":"On the Role of Fault Localization Context for LLM-Based Program Repair","url":"https://arxiv.org/html/2604.05481"},{"title":"On the Role of Fault Localization Context for LLM-Based ...","url":"https://arxiv.org/pdf/2604.05481"},{"title":"Automated Repair of C Programs Using Large Language Models","url":"https://arxiv.org/html/2509.01947v1"},{"title":"Improving LLM-Based Fault Localization with External Memory and Project Context","url":"https://arxiv.org/html/2506.03585v1"},{"title":"Towards LLM-Based Failure Localization in Production-Scale Networks | Proceedings of the ACM SIGCOMM 2025 Conference","url":"https://dl.acm.org/doi/10.1145/3718958.3750505"},{"title":"Integrating Various Software Artifacts for Better LLM-based Bug Localization and Program Repair","url":"https://arxiv.org/html/2412.03905"},{"title":"GALA: Multimodal Graph Alignment for Bug Localization in Automated Program Repair","url":"https://arxiv.org/html/2604.08089"},{"title":"A Quantitative and Qualitative Evaluation of LLM-Based Explainable Fault Localization | Proceedings of the ACM on Software Engineering","url":"https://dl.acm.org/doi/10.1145/3660771"}]
+
+Based on the search results, I found the paper you're looking for:
+
+The paper "On the Role of Fault Localization Context for LLM-Based Program Repair" by Melika Sepidband and 2 other authors addresses how fault localization context impacts automated program repair using LLMs.
+
+Key findings from the paper include:
+
+- The researchers conducted a large-scale empirical study on 500 SWE-bench Verified instances using GPT-5-mini, evaluating 61 configurations that vary file-level, element-level, and line-level context.
+
+- Expanding file context is often associated with improved performance, with successful repairs most commonly observed in configurations with approximately 6-10 relevant files.
+
+- Element-level context expansion provides conditional gains that depend strongly on the file context quality, while line-level context expansion frequently degrades performance due to noise amplification.
+
+- LLM-based retrieval generally outperforms structural heuristics while using fewer files and tokens, and the most effective FL context strategy typically combines a broad semantic understanding at higher abstraction levels with precise line-level localization.
+
+- File-level localization is the dominant factor, yielding a 15-17x improvement over a no-file baseline.
+
+The paper was submitted on April 7, 2026, to arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "06ea03bc-8e98-4fa5-ba54-f6e2bd0a7a00",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "ee27b292-b29b-4b7f-954d-37672fd09168",
+  "toolUseResult": {
+    "query": "arXiv 2604.05481 fault localization context LLM program repair 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CZZRHb4JHqQk3GqbPwcFsz",
+        "content": [
+          {
+            "title": "[2604.05481] On the Role of Fault Localization Context for LLM-Based Program Repair",
+            "url": "https://arxiv.org/abs/2604.05481"
+          },
+          {
+            "title": "[2604.05481v1] On the Role of Fault Localization Context for LLM-Based Program Repair",
+            "url": "https://arxiv.org/abs/2604.05481v1"
+          },
+          {
+            "title": "On the Role of Fault Localization Context for LLM-Based Program Repair",
+            "url": "https://arxiv.org/html/2604.05481"
+          },
+          {
+            "title": "On the Role of Fault Localization Context for LLM-Based ...",
+            "url": "https://arxiv.org/pdf/2604.05481"
+          },
+          {
+            "title": "Automated Repair of C Programs Using Large Language Models",
+            "url": "https://arxiv.org/html/2509.01947v1"
+          },
+          {
+            "title": "Improving LLM-Based Fault Localization with External Memory and Project Context",
+            "url": "https://arxiv.org/html/2506.03585v1"
+          },
+          {
+            "title": "Towards LLM-Based Failure Localization in Production-Scale Networks | Proceedings of the ACM SIGCOMM 2025 Conference",
+            "url": "https://dl.acm.org/doi/10.1145/3718958.3750505"
+          },
+          {
+            "title": "Integrating Various Software Artifacts for Better LLM-based Bug Localization and Program Repair",
+            "url": "https://arxiv.org/html/2412.03905"
+          },
+          {
+            "title": "GALA: Multimodal Graph Alignment for Bug Localization in Automated Program Repair",
+            "url": "https://arxiv.org/html/2604.08089"
+          },
+          {
+            "title": "A Quantitative and Qualitative Evaluation of LLM-Based Explainable Fault Localization | Proceedings of the ACM on Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1145/3660771"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\nThe paper \"On the Role of Fault Localization Context for LLM-Based Program Repair\" by Melika Sepidband and 2 other authors addresses how fault localization context impacts automated program repair using LLMs.\n\nKey findings from the paper include:\n\n- The researchers conducted a large-scale empirical study on 500 SWE-bench Verified instances using GPT-5-mini, evaluating 61 configurations that vary file-level, element-level, and line-level context.\n\n- Expanding file context is often associated with improved performance, with successful repairs most commonly observed in configurations with approximately 6-10 relevant files.\n\n- Element-level context expansion provides conditional gains that depend strongly on the file context quality, while line-level context expansion frequently degrades performance due to noise amplification.\n\n- LLM-based retrieval generally outperforms structural heuristics while using fewer files and tokens, and the most effective FL context strategy typically combines a broad semantic understanding at higher abstraction levels with precise line-level localization.\n\n- File-level localization is the dominant factor, yielding a 15-17x improvement over a no-file baseline.\n\nThe paper was submitted on April 7, 2026, to arXiv."
+    ],
+    "durationSeconds": 6.91568217
+  },
+  "sourceToolAssistantUUID": "06ea03bc-8e98-4fa5-ba54-f6e2bd0a7a00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-11T22:40:43.155Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AA3qZQFLgtjHv2664aDPBW`</summary>
+
+```json
+{
+  "query": "arXiv 2605.03117 ARISE repository graph fault localization program repair 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee27b292-b29b-4b7f-954d-37672fd09168",
+  "isSidechain": false,
+  "requestId": "req_011Caway9e3BmsEUQ9jSu658",
+  "type": "assistant",
+  "uuid": "6be4f6be-41bf-4672-913b-84908b0a6870",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GMX5CPP6DFfwW7Sp9QaLH8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 896,
+      "cache_read_input_tokens": 25667,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 896,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 25667,
+          "cache_creation_input_tokens": 896,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 896
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-11T22:40:50.314Z_
+
+<details><summary>↩ Tool result · `toolu_01AA3qZQFLgtjHv2664aDPBW`</summary>
+
+```text
+Web search results for query: "arXiv 2605.03117 ARISE repository graph fault localization program repair 2026"
+
+Links: [{"title":"[2605.03117] ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair","url":"https://arxiv.org/abs/2605.03117"},{"title":"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair","url":"https://arxiv.org/html/2605.03117"},{"title":"Towards Better Graph Neural Network-based Fault Localization Through Enhanced Code Representation","url":"https://arxiv.org/html/2404.04496"},{"title":"A Multi-Agent Approach to Fault Localization via Graph-Based Retrieval and Reflexion","url":"https://arxiv.org/html/2409.13642v2"},{"title":"[2404.04496] Towards Better Graph Neural Network-based Fault Localization Through Enhanced Code Representation","url":"https://arxiv.org/abs/2404.04496"},{"title":"A Multi-Agent Approach to Fault Localization via Graph-Based","url":"https://www.arxiv.org/pdf/2409.13642"},{"title":"GraphLocator: Graph-guided Causal Reasoning for Issue Localization","url":"https://arxiv.org/html/2512.22469v1"},{"title":"[2409.13642] A Multi-Agent Approach to Fault Localization via Graph-Based Retrieval and Reflexion","url":"https://arxiv.org/abs/2409.13642"},{"title":"GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥","url":"https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation"},{"title":"Alibaba LingmaAgent: Improving Automated Issue Resolution via Comprehensive Repository Exploration","url":"https://arxiv.org/html/2406.01422"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair** (arXiv:2605.03117) was submitted on May 4, 2026 by Shahd Seddik and Fatemeh Fard.
+
+**Overview:**
+Repository-level fault localization and automated program repair require an agent to identify the relevant code units across files, follow call and data dependencies, and generate a valid patch. Existing graph-based systems provide structural representations of repositories but do not model how variable values flow within procedures, leaving agents without the semantic precision needed for function- and line-level localization.
+
+**Key Contributions:**
+ARISE augments an LLM-based agent with a multi-granularity program graph that extends structural relationships down to statement-level nodes. Compared to the unmodified SWE-agent baseline, ARISE improves Function Recall@1 by 17.0 points and Line Recall@1 by 15.0 points, with these localization gains translating into repair success of 22.0% Pass@1 (66/300), a 4.7 percentage-point improvement over SWE-agent.
+
+The graph builder and slicing API are designed as a framework-agnostic, drop-in toolset for future APR research.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6be4f6be-41bf-4672-913b-84908b0a6870",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "c878bc89-e2a3-4539-ad2d-cae9898c4189",
+  "toolUseResult": {
+    "query": "arXiv 2605.03117 ARISE repository graph fault localization program repair 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KXTKsRPJd7innbpoSSvoMM",
+        "content": [
+          {
+            "title": "[2605.03117] ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair",
+            "url": "https://arxiv.org/abs/2605.03117"
+          },
+          {
+            "title": "ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair",
+            "url": "https://arxiv.org/html/2605.03117"
+          },
+          {
+            "title": "Towards Better Graph Neural Network-based Fault Localization Through Enhanced Code Representation",
+            "url": "https://arxiv.org/html/2404.04496"
+          },
+          {
+            "title": "A Multi-Agent Approach to Fault Localization via Graph-Based Retrieval and Reflexion",
+            "url": "https://arxiv.org/html/2409.13642v2"
+          },
+          {
+            "title": "[2404.04496] Towards Better Graph Neural Network-based Fault Localization Through Enhanced Code Representation",
+            "url": "https://arxiv.org/abs/2404.04496"
+          },
+          {
+            "title": "A Multi-Agent Approach to Fault Localization via Graph-Based",
+            "url": "https://www.arxiv.org/pdf/2409.13642"
+          },
+          {
+            "title": "GraphLocator: Graph-guided Causal Reasoning for Issue Localization",
+            "url": "https://arxiv.org/html/2512.22469v1"
+          },
+          {
+            "title": "[2409.13642] A Multi-Agent Approach to Fault Localization via Graph-Based Retrieval and Reflexion",
+            "url": "https://arxiv.org/abs/2409.13642"
+          },
+          {
+            "title": "GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥",
+            "url": "https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation"
+          },
+          {
+            "title": "Alibaba LingmaAgent: Improving Automated Issue Resolution via Comprehensive Repository Exploration",
+            "url": "https://arxiv.org/html/2406.01422"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair** (arXiv:2605.03117) was submitted on May 4, 2026 by Shahd Seddik and Fatemeh Fard.\n\n**Overview:**\nRepository-level fault localization and automated program repair require an agent to identify the relevant code units across files, follow call and data dependencies, and generate a valid patch. Existing graph-based systems provide structural representations of repositories but do not model how variable values flow within procedures, leaving agents without the semantic precision needed for function- and line-level localization.\n\n**Key Contributions:**\nARISE augments an LLM-based agent with a multi-granularity program graph that extends structural relationships down to statement-level nodes. Compared to the unmodified SWE-agent baseline, ARISE improves Function Recall@1 by 17.0 points and Line Recall@1 by 15.0 points, with these localization gains translating into repair success of 22.0% Pass@1 (66/300), a 4.7 percentage-point improvement over SWE-agent.\n\nThe graph builder and slicing API are designed as a framework-agnostic, drop-in toolset for future APR research."
+    ],
+    "durationSeconds": 7.154288035999998
+  },
+  "sourceToolAssistantUUID": "6be4f6be-41bf-4672-913b-84908b0a6870",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-11T22:40:52.926Z_
+
+Good, the three key papers are verified. Now let me search for competing work and potential overlaps.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c878bc89-e2a3-4539-ad2d-cae9898c4189",
+  "isSidechain": false,
+  "requestId": "req_011CawayzKycCX6RANEL3GNr",
+  "type": "assistant",
+  "uuid": "0f20bdf6-4ff0-4a54-b7d8-d1bd8e07a667",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CsR4fu41JRPNSq41Vim3co",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 26563,
+      "output_tokens": 89,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 89,
+          "cache_read_input_tokens": 26563,
+          "cache_creation_input_tokens": 930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-11T22:40:53.449Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VY4R9j887agKT1VQ4xvC3U`</summary>
+
+```json
+{
+  "query": "adaptive fault localization granularity selection program repair 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f20bdf6-4ff0-4a54-b7d8-d1bd8e07a667",
+  "isSidechain": false,
+  "requestId": "req_011CawayzKycCX6RANEL3GNr",
+  "type": "assistant",
+  "uuid": "4d083c4d-d1f3-4296-9639-6d4cea57134a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CsR4fu41JRPNSq41Vim3co",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 26563,
+      "output_tokens": 89,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 89,
+          "cache_read_input_tokens": 26563,
+          "cache_creation_input_tokens": 930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "4d083c4d-d1f3-4296-9639-6d4cea57134a",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of adaptive context orchestration for code repair",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-11T22:41:01.677Z_
+
+<details><summary>↩ Tool result · `toolu_01VY4R9j887agKT1VQ4xvC3U`</summary>
+
+```text
+Web search results for query: "adaptive fault localization granularity selection program repair 2025 2026"
+
+Links: [{"title":"A Study on the Impact of Fault localization Granularity for Repository-Scale Code Repair Tasks","url":"https://arxiv.org/html/2604.00167"},{"title":"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair","url":"https://arxiv.org/html/2605.03117"},{"title":"On the Role of Fault Localization Context for LLM-Based Program Repair","url":"https://arxiv.org/html/2604.05481v1"},{"title":"GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4APR"},{"title":"RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2026arXiv260118044S/abstract"},{"title":"(PDF) An Empirical Study on the Usage of Fault Localization in Automated Program Repair","url":"https://www.researchgate.net/publication/320884604_An_Empirical_Study_on_the_Usage_of_Fault_Localization_in_Automated_Program_Repair"},{"title":"Advancements in automated program repair: a comprehensive review | Knowledge and Information Systems | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10115-025-02383-9"},{"title":"[2604.00167] A Study on the Impact of Fault localization Granularity for Repository-Scale Code Repair Tasks","url":"https://arxiv.org/abs/2604.00167"},{"title":"Evaluating Fault Localization and Program Repair Capabilities of Existing Closed-Source General-Purpose LLMs (LLM4Code 2024) - ICSE 2024","url":"https://conf.researchr.org/details/icse-2024/llm4code-2024-papers/24/Evaluating-Fault-Localization-and-Program-Repair-Capabilities-of-Existing-Closed-Sour"},{"title":"Can test cases generated by large language models facilitate automated program repair? | Empirical Software Engineering | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10664-026-10802-w"}]
+
+I found relevant research results on adaptive fault localization granularity selection for program repair from recent 2025-2026 studies. Here are the key findings:
+
+## Key Research Findings
+
+**Granularity Impact on Program Repair:**
+
+Function-level granularity dominates on average, but the relative ordering across granularities shifts with difficulty tier, suggesting that the optimal level of localization granularity is not fixed but instance-dependent.
+
+**Adaptive Strategies:**
+
+Some bugs benefit from broader context, while others require more focused localization, suggesting that adaptive or ensemble context strategies, which dynamically adjust localization based on bug characteristics, may outperform any fixed configuration.
+
+The best performance comes from combining LLM-based file and element context with precise "buggy lines", showing that broader context helps at higher levels, while line-level localization should remain precise.
+
+**Related Approaches:**
+
+Recent systems are exploring graph-based and multi-granular approaches. Common retrieval pipelines treat the repository as a flat bag of files or snippets and rely on embeddings or full-file indexing, with limited mechanisms for dynamic exploration or adaptive granularity during reasoning.
+
+**No Universal Optimum:**
+
+Different configurations resolve different subsets of instances, indicating that no single strategy is universally optimal.
+
+The research suggests that effective automated program repair with LLMs requires adaptive approaches that select localization granularity based on the specific characteristics of each bug instance rather than using a fixed granularity level.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d083c4d-d1f3-4296-9639-6d4cea57134a",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "e4a3ba14-ce20-4055-aa7e-d3491cd92a4a",
+  "toolUseResult": {
+    "query": "adaptive fault localization granularity selection program repair 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012TokmkC3AQkPFtX4Rha2qQ",
+        "content": [
+          {
+            "title": "A Study on the Impact of Fault localization Granularity for Repository-Scale Code Repair Tasks",
+            "url": "https://arxiv.org/html/2604.00167"
+          },
+          {
+            "title": "ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair",
+            "url": "https://arxiv.org/html/2605.03117"
+          },
+          {
+            "title": "On the Role of Fault Localization Context for LLM-Based Program Repair",
+            "url": "https://arxiv.org/html/2604.05481v1"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4APR"
+          },
+          {
+            "title": "RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv260118044S/abstract"
+          },
+          {
+            "title": "(PDF) An Empirical Study on the Usage of Fault Localization in Automated Program Repair",
+            "url": "https://www.researchgate.net/publication/320884604_An_Empirical_Study_on_the_Usage_of_Fault_Localization_in_Automated_Program_Repair"
+          },
+          {
+            "title": "Advancements in automated program repair: a comprehensive review | Knowledge and Information Systems | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10115-025-02383-9"
+          },
+          {
+            "title": "[2604.00167] A Study on the Impact of Fault localization Granularity for Repository-Scale Code Repair Tasks",
+            "url": "https://arxiv.org/abs/2604.00167"
+          },
+          {
+            "title": "Evaluating Fault Localization and Program Repair Capabilities of Existing Closed-Source General-Purpose LLMs (LLM4Code 2024) - ICSE 2024",
+            "url": "https://conf.researchr.org/details/icse-2024/llm4code-2024-papers/24/Evaluating-Fault-Localization-and-Program-Repair-Capabilities-of-Existing-Closed-Sour"
+          },
+          {
+            "title": "Can test cases generated by large language models facilitate automated program repair? | Empirical Software Engineering | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10664-026-10802-w"
+          }
+        ]
+      },
+      "I found relevant research results on adaptive fault localization granularity selection for program repair from recent 2025-2026 studies. Here are the key findings:\n\n## Key Research Findings\n\n**Granularity Impact on Program Repair:**\n\nFunction-level granularity dominates on average, but the relative ordering across granularities shifts with difficulty tier, suggesting that the optimal level of localization granularity is not fixed but instance-dependent.\n\n**Adaptive Strategies:**\n\nSome bugs benefit from broader context, while others require more focused localization, suggesting that adaptive or ensemble context strategies, which dynamically adjust localization based on bug characteristics, may outperform any fixed configuration.\n\nThe best performance comes from combining LLM-based file and element context with precise \"buggy lines\", showing that broader context helps at higher levels, while line-level localization should remain precise.\n\n**Related Approaches:**\n\nRecent systems are exploring graph-based and multi-granular approaches. Common retrieval pipelines treat the repository as a flat bag of files or snippets and rely on embeddings or full-file indexing, with limited mechanisms for dynamic exploration or adaptive granularity during reasoning.\n\n**No Universal Optimum:**\n\nDifferent configurations resolve different subsets of instances, indicating that no single strategy is universally optimal.\n\nThe research suggests that effective automated program repair with LLMs requires adaptive approaches that select localization granularity based on the specific characteristics of each bug instance rather than using a fixed granularity level."
+    ],
+    "durationSeconds": 8.224166173000006
+  },
+  "sourceToolAssistantUUID": "4d083c4d-d1f3-4296-9639-6d4cea57134a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-11T22:41:04.470Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FBv5FCtcvvK6cJYbqwo6Gm`</summary>
+
+```json
+{
+  "query": "SWEzze arXiv 2603.28119 minimal context reranker code repair 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4a3ba14-ce20-4055-aa7e-d3491cd92a4a",
+  "isSidechain": false,
+  "requestId": "req_011CawazpsjGjWrjoNgyRBz8",
+  "type": "assistant",
+  "uuid": "a71e7ede-a272-4dcf-b9a2-e252e4e4ba95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E9aEA3XefkM6DVAiZDkqoN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1090,
+      "cache_read_input_tokens": 27493,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1090,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 27493,
+          "cache_creation_input_tokens": 1090,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1090
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-11T22:41:11.709Z_
+
+<details><summary>↩ Tool result · `toolu_01FBv5FCtcvvK6cJYbqwo6Gm`</summary>
+
+```text
+Web search results for query: "SWEzze arXiv 2603.28119 minimal context reranker code repair 2026"
+
+Links: [{"title":"Compressing Code Context for LLM-based Issue Resolution","url":"https://arxiv.org/html/2603.28119"},{"title":"[2603.28119] Compressing Code Context for LLM-based Issue Resolution","url":"https://arxiv.org/abs/2603.28119"},{"title":"Fix the Tests: Augmenting LLMs to Repair Test Cases with Static Collector and Neural Reranker","url":"https://arxiv.org/html/2407.03625"},{"title":"Neural Variable Name Repair: Learning to Rename Identifiers for Readability","url":"https://arxiv.org/pdf/2512.01141"},{"title":"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://www.arxiv.org/pdf/2601.16746"},{"title":"SweRank: Software Issue Localization with Code Ranking","url":"https://arxiv.org/html/2505.07849v2"},{"title":"RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair","url":"https://arxiv.org/html/2603.01048"},{"title":"Embedding-Based Context-Aware Reranker","url":"https://arxiv.org/html/2510.13329v1"},{"title":"SweRank+: Multilingual, Multi-Turn Code Ranking for Software Issue Localization","url":"https://arxiv.org/html/2512.20482"},{"title":"[2603.00897] Detect Repair Verify for Securing LLM Generated Code: A Multi-Language Empirical Study","url":"https://arxiv.org/abs/2603.00897"}]
+
+I found information about the arXiv paper 2603.28119. Here's what I found:
+
+The paper proposes a framework with two main components: Oracle-guided Code Distillation (OCD), a context distillation algorithm that combines genetic search and delta debugging to systematically reduce code contexts to their minimal sufficient subsequence - retaining only the ingredients required for a successful fix.
+
+The distilled examples serve as the training signal for SWEzze, a cross-encoder fine-tuned from Qwen3-Reranker-0.6B via parameter-efficient LoRA adaptation.
+
+Unlike prior compressors that rely on perplexity or lexical similarity, SWEzze is trained on minimal sufficient contexts produced by Oracle-guided Code Distillation (OCD), a two-phase search combining genetic algorithms and hierarchical delta debugging. OCD identifies the smallest context subsequence that still enables a correct patch, thus capturing ingredients required for issue resolution rather than surface-level relatedness.
+
+Evaluated on SWE-bench Verified with three frontier LLMs, SWEzze achieves stable compression while also improving resolution rates over previous compression baselines.
+
+The paper addresses code repair for LLM-based issue resolution by focusing on compressing code context to minimal essential components needed for bug fixes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a71e7ede-a272-4dcf-b9a2-e252e4e4ba95",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "63d2c3a3-34ad-4994-8a23-41dde2c9c404",
+  "toolUseResult": {
+    "query": "SWEzze arXiv 2603.28119 minimal context reranker code repair 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TGb3XxBbkKLVbmmTat6dqh",
+        "content": [
+          {
+            "title": "Compressing Code Context for LLM-based Issue Resolution",
+            "url": "https://arxiv.org/html/2603.28119"
+          },
+          {
+            "title": "[2603.28119] Compressing Code Context for LLM-based Issue Resolution",
+            "url": "https://arxiv.org/abs/2603.28119"
+          },
+          {
+            "title": "Fix the Tests: Augmenting LLMs to Repair Test Cases with Static Collector and Neural Reranker",
+            "url": "https://arxiv.org/html/2407.03625"
+          },
+          {
+            "title": "Neural Variable Name Repair: Learning to Rename Identifiers for Readability",
+            "url": "https://arxiv.org/pdf/2512.01141"
+          },
+          {
+            "title": "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://www.arxiv.org/pdf/2601.16746"
+          },
+          {
+            "title": "SweRank: Software Issue Localization with Code Ranking",
+            "url": "https://arxiv.org/html/2505.07849v2"
+          },
+          {
+            "title": "RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair",
+            "url": "https://arxiv.org/html/2603.01048"
+          },
+          {
+            "title": "Embedding-Based Context-Aware Reranker",
+            "url": "https://arxiv.org/html/2510.13329v1"
+          },
+          {
+            "title": "SweRank+: Multilingual, Multi-Turn Code Ranking for Software Issue Localization",
+            "url": "https://arxiv.org/html/2512.20482"
+          },
+          {
+            "title": "[2603.00897] Detect Repair Verify for Securing LLM Generated Code: A Multi-Language Empirical Study",
+            "url": "https://arxiv.org/abs/2603.00897"
+          }
+        ]
+      },
+      "I found information about the arXiv paper 2603.28119. Here's what I found:\n\nThe paper proposes a framework with two main components: Oracle-guided Code Distillation (OCD), a context distillation algorithm that combines genetic search and delta debugging to systematically reduce code contexts to their minimal sufficient subsequence - retaining only the ingredients required for a successful fix.\n\nThe distilled examples serve as the training signal for SWEzze, a cross-encoder fine-tuned from Qwen3-Reranker-0.6B via parameter-efficient LoRA adaptation.\n\nUnlike prior compressors that rely on perplexity or lexical similarity, SWEzze is trained on minimal sufficient contexts produced by Oracle-guided Code Distillation (OCD), a two-phase search combining genetic algorithms and hierarchical delta debugging. OCD identifies the smallest context subsequence that still enables a correct patch, thus capturing ingredients required for issue resolution rather than surface-level relatedness.\n\nEvaluated on SWE-bench Verified with three frontier LLMs, SWEzze achieves stable compression while also improving resolution rates over previous compression baselines.\n\nThe paper addresses code repair for LLM-based issue resolution by focusing on compressing code context to minimal essential components needed for bug fixes."
+    ],
+    "durationSeconds": 7.233786341000006
+  },
+  "sourceToolAssistantUUID": "a71e7ede-a272-4dcf-b9a2-e252e4e4ba95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-11T22:41:14.952Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VnfwR1BtNpd4tdsigVVoSy`</summary>
+
+```json
+{
+  "query": "SIADAFIX arXiv 2510.16059 adaptive program repair issue classification 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63d2c3a3-34ad-4994-8a23-41dde2c9c404",
+  "isSidechain": false,
+  "requestId": "req_011Cawb1Zmfc3RKwfqydsohr",
+  "type": "assistant",
+  "uuid": "97035285-9f1e-43cd-8a75-6a8f33ddec7b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GCcuZ97g8xVnKEmD5z8i1q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 845,
+      "cache_read_input_tokens": 28583,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 845,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 28583,
+          "cache_creation_input_tokens": 845,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 845
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-11T22:41:21.698Z_
+
+<details><summary>↩ Tool result · `toolu_01VnfwR1BtNpd4tdsigVVoSy`</summary>
+
+```text
+Web search results for query: "SIADAFIX arXiv 2510.16059 adaptive program repair issue classification 2025"
+
+Links: [{"title":"[2510.16059] SIADAFIX: issue description response for adaptive program repair","url":"https://arxiv.org/abs/2510.16059"},{"title":"SIADAFIX: Issue Description Response for Adaptive program repair","url":"https://arxiv.org/html/2510.16059"},{"title":"(PDF) SIADAFIX: issue description response for adaptive program repair","url":"https://www.researchgate.net/publication/396714590_SIADAFIX_issue_description_response_for_adaptive_program_repair"},{"title":"Less is More: Adaptive Program Repair with Bug Localization and Preference Learning","url":"https://arxiv.org/html/2503.06510v1"},{"title":"[2503.06510] Less is More: Adaptive Program Repair with Bug Localization and Preference Learning","url":"https://arxiv.org/abs/2503.06510"},{"title":"[2510.11059] Defects4C: Benchmarking Large Language Model Repair Capability with C/C++ Bugs","url":"https://arxiv.org/abs/2510.11059"},{"title":"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v1"},{"title":"Automated Program Repair of Uncompilable Student Code","url":"https://arxiv.org/html/2510.06187"},{"title":"PathFix: Automated Program Repair with Expected Path Xu He","url":"https://arxiv.org/pdf/2510.14341"},{"title":"[2510.03217] Abstain and Validate: A Dual-LLM Policy for Reducing Noise in Agentic Program Repair","url":"https://arxiv.org/abs/2510.03217"}]
+
+Based on the search results, here's what I found about SIADAFIX arXiv 2510.16059:
+
+## Overview
+
+SIADAFIX is an adaptive program repair method based on issue description response. It proposes utilizing fast and slow thinking to enhance the capabilities of large language model-based agents on complex tasks such as program repair.
+
+## Key Features
+
+The proposed method utilizes slow thinking bug fix agent to complete complex program repair tasks, and employs fast thinking workflow decision components to optimize and classify issue descriptions, using issue description response results to guide the orchestration of bug fix agent workflows.
+
+SIADAFIX adaptively selects three repair modes, i.e., easy, middle and hard mode, based on problem complexity. It employs fast generalization for simple problems and test-time scaling techniques for complex problems.
+
+## Framework Structure
+
+The framework consists of two main phases: (1) Workflow Decision Phase with Issue Description Optimizer and Classifier, and (2) Workflow Execution Phase with bug fix agent, Checkers, and Selectors operating in Easy, Middle, and Hard modes.
+
+## Performance Results
+
+Experimental results on the SWE-bench Lite show that the proposed method achieves 60.67% pass@1 performance using the Claude-4 Sonnet model, reaching state-of-the-art levels among all open-source methods.
+
+The paper was published on arXiv on October 17, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "97035285-9f1e-43cd-8a75-6a8f33ddec7b",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "be7edcc8-846a-40d4-bbb3-9f815f3fa952",
+  "toolUseResult": {
+    "query": "SIADAFIX arXiv 2510.16059 adaptive program repair issue classification 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014XGmgPXUsoAHthRKkQgk3N",
+        "content": [
+          {
+            "title": "[2510.16059] SIADAFIX: issue description response for adaptive program repair",
+            "url": "https://arxiv.org/abs/2510.16059"
+          },
+          {
+            "title": "SIADAFIX: Issue Description Response for Adaptive program repair",
+            "url": "https://arxiv.org/html/2510.16059"
+          },
+          {
+            "title": "(PDF) SIADAFIX: issue description response for adaptive program repair",
+            "url": "https://www.researchgate.net/publication/396714590_SIADAFIX_issue_description_response_for_adaptive_program_repair"
+          },
+          {
+            "title": "Less is More: Adaptive Program Repair with Bug Localization and Preference Learning",
+            "url": "https://arxiv.org/html/2503.06510v1"
+          },
+          {
+            "title": "[2503.06510] Less is More: Adaptive Program Repair with Bug Localization and Preference Learning",
+            "url": "https://arxiv.org/abs/2503.06510"
+          },
+          {
+            "title": "[2510.11059] Defects4C: Benchmarking Large Language Model Repair Capability with C/C++ Bugs",
+            "url": "https://arxiv.org/abs/2510.11059"
+          },
+          {
+            "title": "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v1"
+          },
+          {
+            "title": "Automated Program Repair of Uncompilable Student Code",
+            "url": "https://arxiv.org/html/2510.06187"
+          },
+          {
+            "title": "PathFix: Automated Program Repair with Expected Path Xu He",
+            "url": "https://arxiv.org/pdf/2510.14341"
+          },
+          {
+            "title": "[2510.03217] Abstain and Validate: A Dual-LLM Policy for Reducing Noise in Agentic Program Repair",
+            "url": "https://arxiv.org/abs/2510.03217"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SIADAFIX arXiv 2510.16059:\n\n## Overview\n\nSIADAFIX is an adaptive program repair method based on issue description response. It proposes utilizing fast and slow thinking to enhance the capabilities of large language model-based agents on complex tasks such as program repair.\n\n## Key Features\n\nThe proposed method utilizes slow thinking bug fix agent to complete complex program repair tasks, and employs fast thinking workflow decision components to optimize and classify issue descriptions, using issue description response results to guide the orchestration of bug fix agent workflows.\n\nSIADAFIX adaptively selects three repair modes, i.e., easy, middle and hard mode, based on problem complexity. It employs fast generalization for simple problems and test-time scaling techniques for complex problems.\n\n## Framework Structure\n\nThe framework consists of two main phases: (1) Workflow Decision Phase with Issue Description Optimizer and Classifier, and (2) Workflow Execution Phase with bug fix agent, Checkers, and Selectors operating in Easy, Middle, and Hard modes.\n\n## Performance Results\n\nExperimental results on the SWE-bench Lite show that the proposed method achieves 60.67% pass@1 performance using the Claude-4 Sonnet model, reaching state-of-the-art levels among all open-source methods.\n\nThe paper was published on arXiv on October 17, 2025."
+    ],
+    "durationSeconds": 6.741648939999999
+  },
+  "sourceToolAssistantUUID": "97035285-9f1e-43cd-8a75-6a8f33ddec7b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28 · 2026-05-11T22:41:21.701Z_
+
+```json
+{
+  "parentUuid": "be7edcc8-846a-40d4-bbb3-9f815f3fa952",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "080366bf-aeb6-4f80-8edc-65d82c30ca69",
+  "timestamp": "2026-05-11T22:41:21.701Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-11T22:41:24.363Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UpWedXWSfoqq55isARrnR8`</summary>
+
+```json
+{
+  "query": "SWE-Pruner arXiv 2601.16746 self-adaptive context pruning coding agents 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "080366bf-aeb6-4f80-8edc-65d82c30ca69",
+  "isSidechain": false,
+  "requestId": "req_011Cawb2JShZXeLTWdvjQyg1",
+  "type": "assistant",
+  "uuid": "6246f938-e88d-4c43-864e-26bb47fa5d8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017jCdFRLkzihVX1odRmAoHy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1012,
+      "cache_read_input_tokens": 29428,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1012,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 29428,
+          "cache_creation_input_tokens": 1012,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1012
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-11T22:41:32.181Z_
+
+<details><summary>↩ Tool result · `toolu_01UpWedXWSfoqq55isARrnR8`</summary>
+
+```text
+Web search results for query: "SWE-Pruner arXiv 2601.16746 self-adaptive context pruning coding agents 2026"
+
+Links: [{"title":"[2601.16746] SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://arxiv.org/abs/2601.16746"},{"title":"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://arxiv.org/html/2601.16746v1"},{"title":"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://www.arxiv.org/pdf/2601.16746"},{"title":"GitHub - Ayanami1314/swe-pruner · GitHub","url":"https://github.com/Ayanami1314/swe-pruner"},{"title":"(PDF) SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://www.researchgate.net/publication/400071923_SWE-Pruner_Self-Adaptive_Context_Pruning_for_Coding_Agents"},{"title":"Paper page - SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://huggingface.co/papers/2601.16746"},{"title":"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents | alphaXiv","url":"https://www.alphaxiv.org/overview/2601.16746"},{"title":"Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents","url":"https://arxiv.org/html/2604.04979"},{"title":"ayanami-kitasan/code-pruner · Hugging Face","url":"https://huggingface.co/ayanami-kitasan/code-pruner"},{"title":"Software Engineering on X: \"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents Yuhang Wang, Yuling Shi, Mo Yang, Rongrui Zhang, Shilin He, Heng Lian, Yuting Chen, Siyu Ye, Kai Cai, Xiaodong Gu https://t.co/7gw9yLhyMf [𝚌𝚜.𝚂𝙴 𝚌𝚜.𝙲𝙻] https://t.co/kRlOYQc5jb\" / X","url":"https://x.com/ComputerPapers/status/2015694356875727079"}]
+
+Based on the search results, I found comprehensive information about the SWE-Pruner paper:
+
+## SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents
+
+SWE-Pruner is a self-adaptive context pruning framework tailored for coding agents. LLM agents have demonstrated remarkable capabilities in software development, but their performance is hampered by long interaction contexts, which incur high API costs and latency.
+
+### Key Innovation
+
+Drawing inspiration from how human programmers "selectively skim" source code during development and debugging, SWE-Pruner performs task-aware adaptive pruning for long contexts. Given the current task, the agent formulates an explicit goal (e.g., "focus on error handling") as a hint to guide the pruning targets.
+
+### Problem It Addresses
+
+While various context compression approaches such as LongLLMLingua have emerged to tackle this challenge, they typically rely on fixed metrics such as PPL, ignoring the task-specific nature of code understanding. As a result, they frequently disrupt syntactic and logical structure and fail to retain critical implementation details.
+
+### Performance Benefits
+
+SWE-Pruner can save 20~40% of Claude Code cost without sacrificing performance.
+
+### Paper Details
+
+The paper was submitted on January 23, 2026, with a revised version on February 4, 2026. The authors include Yuhang Wang, Yuling Shi, Mo Yang, Rongrui Zhang, and others from the ByteDance Douyin Team. The paper is available on arXiv and has accompanying code on GitHub and Hugging Face.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6246f938-e88d-4c43-864e-26bb47fa5d8e",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "62a93419-9506-478e-afb8-a37dec2402bd",
+  "toolUseResult": {
+    "query": "SWE-Pruner arXiv 2601.16746 self-adaptive context pruning coding agents 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WW6Vm3VE9tvNswssBA92Sx",
+        "content": [
+          {
+            "title": "[2601.16746] SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://arxiv.org/abs/2601.16746"
+          },
+          {
+            "title": "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://arxiv.org/html/2601.16746v1"
+          },
+          {
+            "title": "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://www.arxiv.org/pdf/2601.16746"
+          },
+          {
+            "title": "GitHub - Ayanami1314/swe-pruner · GitHub",
+            "url": "https://github.com/Ayanami1314/swe-pruner"
+          },
+          {
+            "title": "(PDF) SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://www.researchgate.net/publication/400071923_SWE-Pruner_Self-Adaptive_Context_Pruning_for_Coding_Agents"
+          },
+          {
+            "title": "Paper page - SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://huggingface.co/papers/2601.16746"
+          },
+          {
+            "title": "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2601.16746"
+          },
+          {
+            "title": "Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents",
+            "url": "https://arxiv.org/html/2604.04979"
+          },
+          {
+            "title": "ayanami-kitasan/code-pruner · Hugging Face",
+            "url": "https://huggingface.co/ayanami-kitasan/code-pruner"
+          },
+          {
+            "title": "Software Engineering on X: \"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents Yuhang Wang, Yuling Shi, Mo Yang, Rongrui Zhang, Shilin He, Heng Lian, Yuting Chen, Siyu Ye, Kai Cai, Xiaodong Gu https://t.co/7gw9yLhyMf [𝚌𝚜.𝚂𝙴 𝚌𝚜.𝙲𝙻] https://t.co/kRlOYQc5jb\" / X",
+            "url": "https://x.com/ComputerPapers/status/2015694356875727079"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the SWE-Pruner paper:\n\n## SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents\n\nSWE-Pruner is a self-adaptive context pruning framework tailored for coding agents. LLM agents have demonstrated remarkable capabilities in software development, but their performance is hampered by long interaction contexts, which incur high API costs and latency.\n\n### Key Innovation\n\nDrawing inspiration from how human programmers \"selectively skim\" source code during development and debugging, SWE-Pruner performs task-aware adaptive pruning for long contexts. Given the current task, the agent formulates an explicit goal (e.g., \"focus on error handling\") as a hint to guide the pruning targets.\n\n### Problem It Addresses\n\nWhile various context compression approaches such as LongLLMLingua have emerged to tackle this challenge, they typically rely on fixed metrics such as PPL, ignoring the task-specific nature of code understanding. As a result, they frequently disrupt syntactic and logical structure and fail to retain critical implementation details.\n\n### Performance Benefits\n\nSWE-Pruner can save 20~40% of Claude Code cost without sacrificing performance.\n\n### Paper Details\n\nThe paper was submitted on January 23, 2026, with a revised version on February 4, 2026. The authors include Yuhang Wang, Yuling Shi, Mo Yang, Rongrui Zhang, and others from the ByteDance Douyin Team. The paper is available on arXiv and has accompanying code on GitHub and Hugging Face."
+    ],
+    "durationSeconds": 7.814476110000003
+  },
+  "sourceToolAssistantUUID": "6246f938-e88d-4c43-864e-26bb47fa5d8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "62a93419-9506-478e-afb8-a37dec2402bd",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of adaptive context orchestration for code repair",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-11T22:41:34.724Z_
+
+Now let me search for more recent competing work that the generator might have missed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62a93419-9506-478e-afb8-a37dec2402bd",
+  "isSidechain": false,
+  "requestId": "req_011Cawb35HxH9j3Pe73RgjaM",
+  "type": "assistant",
+  "uuid": "8d8c5ef0-9194-4cad-96b9-59fba95f5f32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012DKp2Ntef1dXJ8MVimdr6C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1133,
+      "cache_read_input_tokens": 30440,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1133,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 30440,
+          "cache_creation_input_tokens": 1133,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1133
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-11T22:41:35.204Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017UPtT7TpsKSD4dFidexEvM`</summary>
+
+```json
+{
+  "query": "learned context selection policy code repair SWE-bench 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d8c5ef0-9194-4cad-96b9-59fba95f5f32",
+  "isSidechain": false,
+  "requestId": "req_011Cawb35HxH9j3Pe73RgjaM",
+  "type": "assistant",
+  "uuid": "079d7762-5a18-408f-bd75-672062171564",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012DKp2Ntef1dXJ8MVimdr6C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1133,
+      "cache_read_input_tokens": 30440,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1133,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 30440,
+          "cache_creation_input_tokens": 1133,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1133
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-11T22:41:44.406Z_
+
+<details><summary>↩ Tool result · `toolu_017UPtT7TpsKSD4dFidexEvM`</summary>
+
+```text
+Web search results for query: "learned context selection policy code repair SWE-bench 2026"
+
+Links: [{"title":"SWE Context Bench: A Benchmark for Context Learning in Coding","url":"https://arxiv.org/html/2602.08316v3"},{"title":"SWE-bench Verified | Epoch AI","url":"https://epoch.ai/benchmarks/swe-bench-verified"},{"title":"[2602.08316] SWE Context Bench: A Benchmark for Context Learning in Coding","url":"https://arxiv.org/abs/2602.08316"},{"title":"Overview - SWE-bench","url":"https://www.swebench.com/SWE-bench/"},{"title":"SWE-bench Verified","url":"https://www.swebench.com/verified.html"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4APR"},{"title":"GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub","url":"https://github.com/swe-bench/SWE-bench"},{"title":"SWE-PRBench: Benchmarking AI Code Review Quality Against Pull Request Feedback","url":"https://arxiv.org/html/2603.26130v1"},{"title":"SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean","url":"https://www.codeant.ai/blogs/swe-bench-scores"}]
+
+Based on the search results, here's what I found about learned context selection policy for code repair in relation to SWE-bench 2026:
+
+## SWE-ContextBench
+
+SWE-ContextBench is a benchmark designed to explicitly evaluate context understanding and retrieval in coding agents. The benchmark is built upon SWE-Bench Lite, SWE-Bench Multilingual, and SWE-Bench Verified, where related instances are carefully selected by humans, containing 1,476 tasks from 51 unique GitHub repositories spanning 9 programming languages.
+
+## Context Selection and Performance
+
+The research reveals important findings about context selection policies: Accurately summarized and retrieved previous experience can significantly improve resolution accuracy and reduce runtime and token cost, particularly on harder tasks, whereas unfiltered or incorrectly selected context provides limited or negative benefits.
+
+Oracle Summary Learning achieves the best accuracy, improving resolution from 26.26% for the No-Context baseline to 34.34%, while Oracle Context Learning provides a small gain to 27.27%, with the oracle–free gap being much larger for summaries than for full trajectories.
+
+## Key Insight
+
+Concise summaries are highly effective when correctly selected, but misleading when irrelevant. This suggests that learned context selection policies must be carefully tuned to identify and utilize truly relevant prior experiences rather than including all available context.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "079d7762-5a18-408f-bd75-672062171564",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "56cc096f-1231-4a95-91be-ecaf5fbbd2ca",
+  "toolUseResult": {
+    "query": "learned context selection policy code repair SWE-bench 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01X1zZdL37FweGVnP7VNACw6",
+        "content": [
+          {
+            "title": "SWE Context Bench: A Benchmark for Context Learning in Coding",
+            "url": "https://arxiv.org/html/2602.08316v3"
+          },
+          {
+            "title": "SWE-bench Verified | Epoch AI",
+            "url": "https://epoch.ai/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "[2602.08316] SWE Context Bench: A Benchmark for Context Learning in Coding",
+            "url": "https://arxiv.org/abs/2602.08316"
+          },
+          {
+            "title": "Overview - SWE-bench",
+            "url": "https://www.swebench.com/SWE-bench/"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.swebench.com/verified.html"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4APR"
+          },
+          {
+            "title": "GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub",
+            "url": "https://github.com/swe-bench/SWE-bench"
+          },
+          {
+            "title": "SWE-PRBench: Benchmarking AI Code Review Quality Against Pull Request Feedback",
+            "url": "https://arxiv.org/html/2603.26130v1"
+          },
+          {
+            "title": "SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean",
+            "url": "https://www.codeant.ai/blogs/swe-bench-scores"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about learned context selection policy for code repair in relation to SWE-bench 2026:\n\n## SWE-ContextBench\n\nSWE-ContextBench is a benchmark designed to explicitly evaluate context understanding and retrieval in coding agents. The benchmark is built upon SWE-Bench Lite, SWE-Bench Multilingual, and SWE-Bench Verified, where related instances are carefully selected by humans, containing 1,476 tasks from 51 unique GitHub repositories spanning 9 programming languages.\n\n## Context Selection and Performance\n\nThe research reveals important findings about context selection policies: Accurately summarized and retrieved previous experience can significantly improve resolution accuracy and reduce runtime and token cost, particularly on harder tasks, whereas unfiltered or incorrectly selected context provides limited or negative benefits.\n\nOracle Summary Learning achieves the best accuracy, improving resolution from 26.26% for the No-Context baseline to 34.34%, while Oracle Context Learning provides a small gain to 27.27%, with the oracle–free gap being much larger for summaries than for full trajectories.\n\n## Key Insight\n\nConcise summaries are highly effective when correctly selected, but misleading when irrelevant. This suggests that learned context selection policies must be carefully tuned to identify and utilize truly relevant prior experiences rather than including all available context."
+    ],
+    "durationSeconds": 9.197684407000008
+  },
+  "sourceToolAssistantUUID": "079d7762-5a18-408f-bd75-672062171564",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-11T22:41:46.818Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GwDGoaBLg1eUvVEbKGhcsY`</summary>
+
+```json
+{
+  "query": "dynamic context orchestration repository level code understanding 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56cc096f-1231-4a95-91be-ecaf5fbbd2ca",
+  "isSidechain": false,
+  "requestId": "req_011Cawb3yXDkZgmQeHQcxX41",
+  "type": "assistant",
+  "uuid": "5d82c630-89f1-48bf-8e88-b5c2a1e95b38",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DHv9FCT9TVh1aJ8NLh9Tp4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 867,
+      "cache_read_input_tokens": 31573,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 867,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 31573,
+          "cache_creation_input_tokens": 867,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 867
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-11T22:41:56.281Z_
+
+<details><summary>↩ Tool result · `toolu_01GwDGoaBLg1eUvVEbKGhcsY`</summary>
+
+```text
+Web search results for query: "dynamic context orchestration repository level code understanding 2025 2026 arXiv"
+
+Links: [{"title":"Codified Context: Infrastructure for AI Agents in a Complex Codebase","url":"https://arxiv.org/html/2602.20478v1"},{"title":"In Line with Context: Repository-Level Code Generation via Context Inlining","url":"https://arxiv.org/html/2601.00376v1"},{"title":"Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches","url":"https://arxiv.org/html/2510.04905v1"},{"title":"A Scalable Benchmark for Repository-Oriented Long-Horizon Conversational Context Management","url":"https://arxiv.org/html/2603.06358v1"},{"title":"[2602.20478] Codified Context: Infrastructure for AI Agents in a Complex Codebase","url":"https://arxiv.org/abs/2602.20478"},{"title":"Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?","url":"https://arxiv.org/html/2602.11988v1"},{"title":"[2510.04905] Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches","url":"https://arxiv.org/abs/2510.04905"},{"title":"Context Engineering: From Prompts to Corporate Multi-Agent Architecture","url":"https://arxiv.org/pdf/2603.09619"},{"title":"Context Engineering for AI Agents in Open-Source Software","url":"https://arxiv.org/html/2510.21413v3"},{"title":"On the Impacts of Contexts on Repository-Level Code Generation","url":"https://arxiv.org/html/2406.11927v3"}]
+
+I found several relevant arXiv papers on dynamic context orchestration and repository-level code understanding from 2025-2026. Here are the key results:
+
+## Primary Findings
+
+**1. "Codified Context: Infrastructure for AI Agents in a Complex Codebase"** (February 2026)
+
+This paper presents a three-component codified context infrastructure developed during construction of a 108,000-line C# distributed system: (1) a hot-memory constitution encoding conventions, retrieval hooks, and orchestration protocols; (2) 19 specialized domain-expert agents; and (3) a cold-memory knowledge base of 34 on-demand specification documents. Quantitative metrics on infrastructure growth and interaction patterns across 283 development sessions are reported alongside four observational case studies illustrating how codified context propagates across sessions to prevent failures and maintain consistency.
+
+**2. "In Line with Context: Repository-Level Code Generation via Context Inlining"** (January 2026)
+
+This paper presents InlineCoder, an approach to repository-level code generation. On RepoExec, it achieves average relative gains of 29.73% in EM, 20.82% in ES, and 49.34% in BLEU compared to the strongest baseline.
+
+**3. "A Scalable Benchmark for Repository-Oriented Long-Horizon Conversational Context Management"** (March 2026)
+
+The researchers develop an improved variant of Mem0, termed Mem0R, by enabling preliminary integration of conversation history and code repository, which outperforms the strongest baseline agent.
+
+**4. "Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches"** (October 2025)
+
+Repository-Level Code Generation (RLCG) is a challenging task where models must capture long-range dependencies, ensure global semantic consistency, and generate coherent code spanning multiple files or modules.
+
+**5. "Context Engineering: From Prompts to Corporate Multi-Agent Architecture"** (2026)
+
+LangChain published a programmatic definition of context engineering in early 2025; Anthropic incorporated the concept into its developer documentation; Google's Agent Development Kit operationalized context pipelines at the platform level.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5d82c630-89f1-48bf-8e88-b5c2a1e95b38",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "91bb03f9-c1bd-45f6-967a-abab675ce4a1",
+  "toolUseResult": {
+    "query": "dynamic context orchestration repository level code understanding 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019faAHpPGLNFkpLn7jni8ZC",
+        "content": [
+          {
+            "title": "Codified Context: Infrastructure for AI Agents in a Complex Codebase",
+            "url": "https://arxiv.org/html/2602.20478v1"
+          },
+          {
+            "title": "In Line with Context: Repository-Level Code Generation via Context Inlining",
+            "url": "https://arxiv.org/html/2601.00376v1"
+          },
+          {
+            "title": "Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches",
+            "url": "https://arxiv.org/html/2510.04905v1"
+          },
+          {
+            "title": "A Scalable Benchmark for Repository-Oriented Long-Horizon Conversational Context Management",
+            "url": "https://arxiv.org/html/2603.06358v1"
+          },
+          {
+            "title": "[2602.20478] Codified Context: Infrastructure for AI Agents in a Complex Codebase",
+            "url": "https://arxiv.org/abs/2602.20478"
+          },
+          {
+            "title": "Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?",
+            "url": "https://arxiv.org/html/2602.11988v1"
+          },
+          {
+            "title": "[2510.04905] Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches",
+            "url": "https://arxiv.org/abs/2510.04905"
+          },
+          {
+            "title": "Context Engineering: From Prompts to Corporate Multi-Agent Architecture",
+            "url": "https://arxiv.org/pdf/2603.09619"
+          },
+          {
+            "title": "Context Engineering for AI Agents in Open-Source Software",
+            "url": "https://arxiv.org/html/2510.21413v3"
+          },
+          {
+            "title": "On the Impacts of Contexts on Repository-Level Code Generation",
+            "url": "https://arxiv.org/html/2406.11927v3"
+          }
+        ]
+      },
+      "I found several relevant arXiv papers on dynamic context orchestration and repository-level code understanding from 2025-2026. Here are the key results:\n\n## Primary Findings\n\n**1. \"Codified Context: Infrastructure for AI Agents in a Complex Codebase\"** (February 2026)\n\nThis paper presents a three-component codified context infrastructure developed during construction of a 108,000-line C# distributed system: (1) a hot-memory constitution encoding conventions, retrieval hooks, and orchestration protocols; (2) 19 specialized domain-expert agents; and (3) a cold-memory knowledge base of 34 on-demand specification documents. Quantitative metrics on infrastructure growth and interaction patterns across 283 development sessions are reported alongside four observational case studies illustrating how codified context propagates across sessions to prevent failures and maintain consistency.\n\n**2. \"In Line with Context: Repository-Level Code Generation via Context Inlining\"** (January 2026)\n\nThis paper presents InlineCoder, an approach to repository-level code generation. On RepoExec, it achieves average relative gains of 29.73% in EM, 20.82% in ES, and 49.34% in BLEU compared to the strongest baseline.\n\n**3. \"A Scalable Benchmark for Repository-Oriented Long-Horizon Conversational Context Management\"** (March 2026)\n\nThe researchers develop an improved variant of Mem0, termed Mem0R, by enabling preliminary integration of conversation history and code repository, which outperforms the strongest baseline agent.\n\n**4. \"Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches\"** (October 2025)\n\nRepository-Level Code Generation (RLCG) is a challenging task where models must capture long-range dependencies, ensure global semantic consistency, and generate coherent code spanning multiple files or modules.\n\n**5. \"Context Engineering: From Prompts to Corporate Multi-Agent Architecture\"** (2026)\n\nLangChain published a programmatic definition of context engineering in early 2025; Anthropic incorporated the concept into its developer documentation; Google's Agent Development Kit operationalized context pipelines at the platform level."
+    ],
+    "durationSeconds": 9.457543191000005
+  },
+  "sourceToolAssistantUUID": "5d82c630-89f1-48bf-8e88-b5c2a1e95b38",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-11T22:41:59.137Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QnQeUNDdvyiUEe5JKBGnuz`</summary>
+
+```json
+{
+  "query": "\"Less is More\" adaptive program repair bug localization preference learning 2025 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "91bb03f9-c1bd-45f6-967a-abab675ce4a1",
+  "isSidechain": false,
+  "requestId": "req_011Cawb4rLtn1CydgZmqjk1z",
+  "type": "assistant",
+  "uuid": "04b44fe8-67c8-4362-a47d-51adb4ed5939",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNN1SbXAzixcgKtBZLsfdN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1039,
+      "cache_read_input_tokens": 32440,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1039,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 32440,
+          "cache_creation_input_tokens": 1039,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1039
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-11T22:42:06.166Z_
+
+<details><summary>↩ Tool result · `toolu_01QnQeUNDdvyiUEe5JKBGnuz`</summary>
+
+```text
+Web search results for query: ""Less is More" adaptive program repair bug localization preference learning 2025 arXiv"
+
+Links: [{"title":"[2503.06510] Less is More: Adaptive Program Repair with Bug Localization and Preference Learning","url":"https://arxiv.org/abs/2503.06510"},{"title":"Less is More: Adaptive Program Repair with Bug Localization and Preference Learning","url":"https://arxiv.org/html/2503.06510v1"},{"title":"Less is More: Adaptive Program Repair","url":"https://arxiv.org/pdf/2503.06510"},{"title":"[Literature Review] Less is More: Adaptive Program Repair with Bug Localization and Preference Learning","url":"https://www.themoonlight.io/en/review/less-is-more-adaptive-program-repair-with-bug-localization-and-preference-learning"},{"title":"Less Is More: Adaptive Program Repair with Bug Localization and Preference Learning | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/31988"},{"title":"(PDF) Less is More: Adaptive Program Repair with Bug Localization and Preference Learning","url":"https://www.researchgate.net/publication/389715232_Less_is_More_Adaptive_Program_Repair_with_Bug_Localization_and_Preference_Learning"},{"title":"GitHub - zhenlongDai/AdaPatcher: Adaptive Program Repair with Bug Localization and Preference Learning","url":"https://github.com/zhenlongDai/AdaPatcher"},{"title":"GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4APR"},{"title":"Computer Science Mar 2025","url":"https://arxiv.org/list/cs/2025-03?skip=3300"},{"title":"Software Engineering Mar 2025","url":"https://www.arxiv.org/list/cs.SE/2025-03?skip=75&show=2000"}]
+
+I found the paper! Here's a summary of "Less is More: Adaptive Program Repair with Bug Localization and Preference Learning":
+
+## Overview
+
+The paper introduces a novel task called AdaPR (Adaptive Program Repair) and proposes a two-stage approach called AdaPatcher (Adaptive Patch Generator) to enhance program repair while maintaining consistency.
+
+## Key Problem
+
+Most research on Automated Program Repair (APR) focuses on generating correct patches while ignoring the consistency between the fixed code and the original buggy code, and how to conduct adaptive bug fixing and generate patches with minimal modifications have seldom been investigated.
+
+## Methodology
+
+The framework consists of two stages:
+
+**Stage 1 - Bug Localization:** In the first stage, the framework utilizes a Bug Locator with self-debug learning to accurately pinpoint bug locations.
+
+**Stage 2 - Program Modification:** The Program Modifier is enhanced with a location-aware repair learning strategy to generate patches based on identified buggy lines, a hybrid training strategy for selective reference and an adaptive preference learning to prioritize fewer changes.
+
+## Results
+
+The experimental results show that the approach outperforms a set of baselines by a large margin, validating the effectiveness of the two-stage framework for the newly proposed AdaPR task.
+
+The paper was accepted by AAAI2025 as an oral presentation and is available on arXiv as paper 2503.06510 (posted March 9, 2025).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "04b44fe8-67c8-4362-a47d-51adb4ed5939",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "933ba3d7-9a08-4feb-b531-3ae9a04568da",
+  "toolUseResult": {
+    "query": "\"Less is More\" adaptive program repair bug localization preference learning 2025 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014W4YN9DykAM3DQmuDUVd1j",
+        "content": [
+          {
+            "title": "[2503.06510] Less is More: Adaptive Program Repair with Bug Localization and Preference Learning",
+            "url": "https://arxiv.org/abs/2503.06510"
+          },
+          {
+            "title": "Less is More: Adaptive Program Repair with Bug Localization and Preference Learning",
+            "url": "https://arxiv.org/html/2503.06510v1"
+          },
+          {
+            "title": "Less is More: Adaptive Program Repair",
+            "url": "https://arxiv.org/pdf/2503.06510"
+          },
+          {
+            "title": "[Literature Review] Less is More: Adaptive Program Repair with Bug Localization and Preference Learning",
+            "url": "https://www.themoonlight.io/en/review/less-is-more-adaptive-program-repair-with-bug-localization-and-preference-learning"
+          },
+          {
+            "title": "Less Is More: Adaptive Program Repair with Bug Localization and Preference Learning | Proceedings of the AAAI Conference on Artificial Intelligence",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/31988"
+          },
+          {
+            "title": "(PDF) Less is More: Adaptive Program Repair with Bug Localization and Preference Learning",
+            "url": "https://www.researchgate.net/publication/389715232_Less_is_More_Adaptive_Program_Repair_with_Bug_Localization_and_Preference_Learning"
+          },
+          {
+            "title": "GitHub - zhenlongDai/AdaPatcher: Adaptive Program Repair with Bug Localization and Preference Learning",
+            "url": "https://github.com/zhenlongDai/AdaPatcher"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4APR"
+          },
+          {
+            "title": "Computer Science Mar 2025",
+            "url": "https://arxiv.org/list/cs/2025-03?skip=3300"
+          },
+          {
+            "title": "Software Engineering Mar 2025",
+            "url": "https://www.arxiv.org/list/cs.SE/2025-03?skip=75&show=2000"
+          }
+        ]
+      },
+      "I found the paper! Here's a summary of \"Less is More: Adaptive Program Repair with Bug Localization and Preference Learning\":\n\n## Overview\n\nThe paper introduces a novel task called AdaPR (Adaptive Program Repair) and proposes a two-stage approach called AdaPatcher (Adaptive Patch Generator) to enhance program repair while maintaining consistency.\n\n## Key Problem\n\nMost research on Automated Program Repair (APR) focuses on generating correct patches while ignoring the consistency between the fixed code and the original buggy code, and how to conduct adaptive bug fixing and generate patches with minimal modifications have seldom been investigated.\n\n## Methodology\n\nThe framework consists of two stages:\n\n**Stage 1 - Bug Localization:** In the first stage, the framework utilizes a Bug Locator with self-debug learning to accurately pinpoint bug locations.\n\n**Stage 2 - Program Modification:** The Program Modifier is enhanced with a location-aware repair learning strategy to generate patches based on identified buggy lines, a hybrid training strategy for selective reference and an adaptive preference learning to prioritize fewer changes.\n\n## Results\n\nThe experimental results show that the approach outperforms a set of baselines by a large margin, validating the effectiveness of the two-stage framework for the newly proposed AdaPR task.\n\nThe paper was accepted by AAAI2025 as an oral presentation and is available on arXiv as paper 2503.06510 (posted March 9, 2025)."
+    ],
+    "durationSeconds": 7.024777357999992
+  },
+  "sourceToolAssistantUUID": "04b44fe8-67c8-4362-a47d-51adb4ed5939",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-11T22:42:10.282Z_
+
+This is very important — AdaPatcher (AAAI 2025) is a closely related work that the generator didn't cite. Let me now search for more competing work and verify the resource constraints.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "933ba3d7-9a08-4feb-b531-3ae9a04568da",
+  "isSidechain": false,
+  "requestId": "req_011Cawb5aqmTz6TUBfifV4zm",
+  "type": "assistant",
+  "uuid": "2a09fd9e-bfd1-4a6d-be56-03b0be6971dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019MKzHaLhyEsc7kL6PwCJ6v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 977,
+      "cache_read_input_tokens": 33479,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 977,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 33479,
+          "cache_creation_input_tokens": 977,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 977
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-11T22:42:10.882Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CYCEReMp47495nvPGSZTpq`</summary>
+
+```json
+{
+  "query": "Qwen3-Reranker-0.6B model huggingface availability 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a09fd9e-bfd1-4a6d-be56-03b0be6971dc",
+  "isSidechain": false,
+  "requestId": "req_011Cawb5aqmTz6TUBfifV4zm",
+  "type": "assistant",
+  "uuid": "1f4f0e13-1f69-48f5-9fc0-569bfd5bb882",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019MKzHaLhyEsc7kL6PwCJ6v",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 977,
+      "cache_read_input_tokens": 33479,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 977,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 33479,
+          "cache_creation_input_tokens": 977,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 977
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-11T22:42:16.349Z_
+
+<details><summary>↩ Tool result · `toolu_01CYCEReMp47495nvPGSZTpq`</summary>
+
+```text
+Web search results for query: "Qwen3-Reranker-0.6B model huggingface availability 2026"
+
+Links: [{"title":"Qwen/Qwen3-Reranker-0.6B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-Reranker-0.6B"},{"title":"Qwen/Qwen3-Embedding-0.6B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-Embedding-0.6B"},{"title":"tomaarsen/Qwen3-Reranker-0.6B-seq-cls · Hugging Face","url":"https://huggingface.co/tomaarsen/Qwen3-Reranker-0.6B-seq-cls"},{"title":"Qwen3-Reranker - a Qwen Collection","url":"https://huggingface.co/collections/Qwen/qwen3-reranker"},{"title":"Qwen/Qwen3-Reranker-8B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-Reranker-8B"},{"title":"Mungert/Qwen3-Reranker-4B-GGUF · Hugging Face","url":"https://huggingface.co/Mungert/Qwen3-Reranker-4B-GGUF"},{"title":"Qwen/Qwen3-Reranker-0.6B · Converting a reranker model to a single label classification model","url":"https://huggingface.co/Qwen/Qwen3-Reranker-0.6B/discussions/3"},{"title":"Mungert/Qwen3-Reranker-0.6B-GGUF · Hugging Face","url":"https://huggingface.co/Mungert/Qwen3-Reranker-0.6B-GGUF"},{"title":"Qwen/Qwen3-Reranker-4B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-Reranker-4B"},{"title":"QuantFactory/Qwen3-Reranker-0.6B-GGUF · Hugging Face","url":"https://huggingface.co/QuantFactory/Qwen3-Reranker-0.6B-GGUF"}]
+
+Based on the search results, here's what I found about the Qwen3-Reranker-0.6B model's availability on Hugging Face in 2026:
+
+## Availability in 2026
+
+The Qwen3-Reranker-0.6B is part of the Qwen3 Embedding series, which offers a full spectrum of sizes (from 0.6B to 8B) for both embedding and reranking models.
+
+The model is available in the Qwen3-Reranker collection on Hugging Face, which was updated on December 31, 2025, indicating active maintenance as of the end of 2025.
+
+## Model Details
+
+The Qwen3 Embedding model series is the latest proprietary model of the Qwen family, specifically designed for text embedding and ranking tasks, providing a comprehensive range of text embeddings and reranking models in various sizes (0.6B, 4B, and 8B).
+
+The model isn't deployed by any Inference Provider, meaning users need to deploy it themselves if they want to use hosted inference.
+
+The model appears to be actively maintained and available on Hugging Face at the official repository: https://huggingface.co/Qwen/Qwen3-Reranker-0.6B
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f4f0e13-1f69-48f5-9fc0-569bfd5bb882",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "824034d3-69bb-483b-941b-7696301a3659",
+  "toolUseResult": {
+    "query": "Qwen3-Reranker-0.6B model huggingface availability 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YYqHQyFsW3yYJWt6WxEvUA",
+        "content": [
+          {
+            "title": "Qwen/Qwen3-Reranker-0.6B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-Reranker-0.6B"
+          },
+          {
+            "title": "Qwen/Qwen3-Embedding-0.6B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-Embedding-0.6B"
+          },
+          {
+            "title": "tomaarsen/Qwen3-Reranker-0.6B-seq-cls · Hugging Face",
+            "url": "https://huggingface.co/tomaarsen/Qwen3-Reranker-0.6B-seq-cls"
+          },
+          {
+            "title": "Qwen3-Reranker - a Qwen Collection",
+            "url": "https://huggingface.co/collections/Qwen/qwen3-reranker"
+          },
+          {
+            "title": "Qwen/Qwen3-Reranker-8B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-Reranker-8B"
+          },
+          {
+            "title": "Mungert/Qwen3-Reranker-4B-GGUF · Hugging Face",
+            "url": "https://huggingface.co/Mungert/Qwen3-Reranker-4B-GGUF"
+          },
+          {
+            "title": "Qwen/Qwen3-Reranker-0.6B · Converting a reranker model to a single label classification model",
+            "url": "https://huggingface.co/Qwen/Qwen3-Reranker-0.6B/discussions/3"
+          },
+          {
+            "title": "Mungert/Qwen3-Reranker-0.6B-GGUF · Hugging Face",
+            "url": "https://huggingface.co/Mungert/Qwen3-Reranker-0.6B-GGUF"
+          },
+          {
+            "title": "Qwen/Qwen3-Reranker-4B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-Reranker-4B"
+          },
+          {
+            "title": "QuantFactory/Qwen3-Reranker-0.6B-GGUF · Hugging Face",
+            "url": "https://huggingface.co/QuantFactory/Qwen3-Reranker-0.6B-GGUF"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the Qwen3-Reranker-0.6B model's availability on Hugging Face in 2026:\n\n## Availability in 2026\n\nThe Qwen3-Reranker-0.6B is part of the Qwen3 Embedding series, which offers a full spectrum of sizes (from 0.6B to 8B) for both embedding and reranking models.\n\nThe model is available in the Qwen3-Reranker collection on Hugging Face, which was updated on December 31, 2025, indicating active maintenance as of the end of 2025.\n\n## Model Details\n\nThe Qwen3 Embedding model series is the latest proprietary model of the Qwen family, specifically designed for text embedding and ranking tasks, providing a comprehensive range of text embeddings and reranking models in various sizes (0.6B, 4B, and 8B).\n\nThe model isn't deployed by any Inference Provider, meaning users need to deploy it themselves if they want to use hosted inference.\n\nThe model appears to be actively maintained and available on Hugging Face at the official repository: https://huggingface.co/Qwen/Qwen3-Reranker-0.6B"
+    ],
+    "durationSeconds": 5.463537616999995
+  },
+  "sourceToolAssistantUUID": "1f4f0e13-1f69-48f5-9fc0-569bfd5bb882",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "824034d3-69bb-483b-941b-7696301a3659",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of adaptive context orchestration for code repair",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-11T22:42:19.644Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GaykvkJjwVhjbwz8uxebAA`</summary>
+
+```json
+{
+  "query": "Qwen3-Coder-Next 80B MoE code model 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "824034d3-69bb-483b-941b-7696301a3659",
+  "isSidechain": false,
+  "requestId": "req_011Cawb6L6H9EuxGnn8W2KZT",
+  "type": "assistant",
+  "uuid": "1997b497-48d7-4d92-a44d-e6efdef951e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A5dFapqK3aVXVMc1gT8pCM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 34456,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 34456,
+          "cache_creation_input_tokens": 1077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-11T22:42:26.448Z_
+
+<details><summary>↩ Tool result · `toolu_01GaykvkJjwVhjbwz8uxebAA`</summary>
+
+```text
+Web search results for query: "Qwen3-Coder-Next 80B MoE code model 2026"
+
+Links: [{"title":"Qwen/Qwen3-Coder-Next · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-Coder-Next"},{"title":"Qwen3-Coder-Next: Pushing Small Hybrid Models","url":"https://qwen.ai/blog?id=qwen3-coder-next"},{"title":"qwen3-coder-next","url":"https://ollama.com/library/qwen3-coder-next"},{"title":"Qwen3-Coder-Next: How to Run Locally | Unsloth Documentation","url":"https://unsloth.ai/docs/models/qwen3-coder-next"},{"title":"Qwen3-Coder-Next: The Complete 2026 Guide to Running Powerful AI Coding Agents Locally - DEV Community","url":"https://dev.to/sienna/qwen3-coder-next-the-complete-2026-guide-to-running-powerful-ai-coding-agents-locally-1k95"},{"title":"qwen/qwen3-coder-next • LM Studio","url":"https://lmstudio.ai/models/qwen/qwen3-coder-next"},{"title":"GitHub - QwenLM/Qwen3-Coder: Qwen3-Coder is the code version of Qwen3, the large language model series developed by Qwen team. · GitHub","url":"https://github.com/QwenLM/Qwen3-Coder"},{"title":"Qwen3-Coder-Next Hardware Guide — GPU, VRAM & RAM (2026) | Compute Market","url":"https://www.compute-market.com/blog/qwen-3-coder-next-local-hardware-guide-2026"},{"title":"Run Qwen3-Coder-Next Locally: Install Guide 2026","url":"https://codersera.com/blog/run-qwen3-coder-next-locally-2026/"},{"title":"Qwen3 Coder Next - API Pricing & Benchmarks | OpenRouter","url":"https://openrouter.ai/qwen/qwen3-coder-next"}]
+
+Based on the search results, here's comprehensive information about Qwen3-Coder-Next:
+
+## Overview
+
+Qwen3-Coder-Next is an open-weight language model designed specifically for coding agents and local development. It was released by Alibaba's Qwen team in February 2026.
+
+## Architecture & Parameters
+
+The model features 80B total parameters with only 3B activated parameters, achieving performance comparable to models with 10–20x more active parameters. It's built on top of Qwen3-Next-80B-A3B-Base, which adopts a novel architecture with hybrid attention and MoE, and has been agentically trained at scale on large-scale executable task synthesis, environment interaction, and reinforcement learning.
+
+## Key Features
+
+- **Context Length**: It features a 256k context length, combined with adaptability to various scaffold templates, enabling seamless integration with different CLI/IDE platforms.
+
+- **Agentic Capabilities**: Through an elaborate training recipe, it excels at long-horizon reasoning, complex tool usage, and recovery from execution failures.
+
+- **Performance**: Qwen3-Coder-Next achieves over 70% on SWE-Bench Verified using the SWE-Agent scaffold.
+
+## Local Deployment
+
+For local use, applications such as Ollama, LMStudio, MLX-LM, llama.cpp, and KTransformers have supported Qwen3, and for deployment, you can use the latest sglang or vllm to create an OpenAI-compatible API endpoint.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1997b497-48d7-4d92-a44d-e6efdef951e7",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "d631ef1d-dcd8-487d-9fe7-aea7c353ed85",
+  "toolUseResult": {
+    "query": "Qwen3-Coder-Next 80B MoE code model 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QtYXT2o9W7P8FjQ4fDiuEX",
+        "content": [
+          {
+            "title": "Qwen/Qwen3-Coder-Next · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-Coder-Next"
+          },
+          {
+            "title": "Qwen3-Coder-Next: Pushing Small Hybrid Models",
+            "url": "https://qwen.ai/blog?id=qwen3-coder-next"
+          },
+          {
+            "title": "qwen3-coder-next",
+            "url": "https://ollama.com/library/qwen3-coder-next"
+          },
+          {
+            "title": "Qwen3-Coder-Next: How to Run Locally | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/qwen3-coder-next"
+          },
+          {
+            "title": "Qwen3-Coder-Next: The Complete 2026 Guide to Running Powerful AI Coding Agents Locally - DEV Community",
+            "url": "https://dev.to/sienna/qwen3-coder-next-the-complete-2026-guide-to-running-powerful-ai-coding-agents-locally-1k95"
+          },
+          {
+            "title": "qwen/qwen3-coder-next • LM Studio",
+            "url": "https://lmstudio.ai/models/qwen/qwen3-coder-next"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3-Coder: Qwen3-Coder is the code version of Qwen3, the large language model series developed by Qwen team. · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3-Coder"
+          },
+          {
+            "title": "Qwen3-Coder-Next Hardware Guide — GPU, VRAM & RAM (2026) | Compute Market",
+            "url": "https://www.compute-market.com/blog/qwen-3-coder-next-local-hardware-guide-2026"
+          },
+          {
+            "title": "Run Qwen3-Coder-Next Locally: Install Guide 2026",
+            "url": "https://codersera.com/blog/run-qwen3-coder-next-locally-2026/"
+          },
+          {
+            "title": "Qwen3 Coder Next - API Pricing & Benchmarks | OpenRouter",
+            "url": "https://openrouter.ai/qwen/qwen3-coder-next"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about Qwen3-Coder-Next:\n\n## Overview\n\nQwen3-Coder-Next is an open-weight language model designed specifically for coding agents and local development. It was released by Alibaba's Qwen team in February 2026.\n\n## Architecture & Parameters\n\nThe model features 80B total parameters with only 3B activated parameters, achieving performance comparable to models with 10–20x more active parameters. It's built on top of Qwen3-Next-80B-A3B-Base, which adopts a novel architecture with hybrid attention and MoE, and has been agentically trained at scale on large-scale executable task synthesis, environment interaction, and reinforcement learning.\n\n## Key Features\n\n- **Context Length**: It features a 256k context length, combined with adaptability to various scaffold templates, enabling seamless integration with different CLI/IDE platforms.\n\n- **Agentic Capabilities**: Through an elaborate training recipe, it excels at long-horizon reasoning, complex tool usage, and recovery from execution failures.\n\n- **Performance**: Qwen3-Coder-Next achieves over 70% on SWE-Bench Verified using the SWE-Agent scaffold.\n\n## Local Deployment\n\nFor local use, applications such as Ollama, LMStudio, MLX-LM, llama.cpp, and KTransformers have supported Qwen3, and for deployment, you can use the latest sglang or vllm to create an OpenAI-compatible API endpoint."
+    ],
+    "durationSeconds": 6.799155352000001
+  },
+  "sourceToolAssistantUUID": "1997b497-48d7-4d92-a44d-e6efdef951e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-11T22:42:28.823Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GQmNEwMdm8xMHPyqGtg3Vx`</summary>
+
+```json
+{
+  "query": "SWE-bench verified current SOTA leaderboard May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d631ef1d-dcd8-487d-9fe7-aea7c353ed85",
+  "isSidechain": false,
+  "requestId": "req_011Cawb75HpHZAcefoXWGTCE",
+  "type": "assistant",
+  "uuid": "0865e244-e39e-4243-84c3-04c759bfd641",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CMUsakhWbCRraoNwZ415k5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1033,
+      "cache_read_input_tokens": 35533,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1033,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 35533,
+          "cache_creation_input_tokens": 1033,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1033
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-11T22:42:34.663Z_
+
+<details><summary>↩ Tool result · `toolu_01GQmNEwMdm8xMHPyqGtg3Vx`</summary>
+
+```text
+Web search results for query: "SWE-bench verified current SOTA leaderboard May 2026"
+
+Links: [{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"SWE-Bench Verified Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/swe-bench-verified"},{"title":"SWE-bench Leaderboard: AI Coding Agent SOTA Results | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/browse/agentic/swe-bench"},{"title":"SWE-rebench Leaderboard","url":"https://swe-rebench.com/"},{"title":"SWE-bench Verified Benchmark 2026: 44 LLM scores | BenchLM.ai","url":"https://benchlm.ai/benchmarks/sweVerified"},{"title":"SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean","url":"https://www.codeant.ai/blogs/swe-bench-scores"},{"title":"SWE-bench Verified","url":"https://www.swebench.com/verified.html"},{"title":"AI Coding Benchmark Leaderboard 2026: Code Generation and SWE-bench | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/code-generation"},{"title":"SWE-bench Verified | Epoch AI","url":"https://epoch.ai/benchmarks/swe-bench-verified"},{"title":"SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%","url":"https://www.morphllm.com/swe-bench-pro"}]
+
+Based on the search results, here's the current SWE-bench Verified SOTA leaderboard status as of May 2026:
+
+## Top Performers
+
+As of May 7, 2026, Claude Mythos Preview leads the SWE-bench Verified leaderboard with 93.9%, followed by Claude Opus 4.7 (Adaptive) (87.6%) and GPT-5.3 Codex (85%).
+
+Claude Mythos Preview from Anthropic currently leads the SWE-bench Verified leaderboard with a score of 0.939 across 89 evaluated AI models.
+
+## Key Context
+
+SWE-bench Verified is a verified subset of 500 software engineering problems from real GitHub issues, validated by human annotators for evaluating language models' ability to resolve real-world coding issues by generating patches for Python codebases.
+
+Claude Mythos Preview leads SWE-bench Verified at 93.9%, but the same model scores only 45.9% on SWE-bench Pro — the harder, contamination-free version. This significant difference highlights an important caveat: OpenAI has stopped reporting Verified scores due to confirmed contamination. The audit found that all frontier models are contaminated on it, and 59.4% of hard tasks have flawed tests.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0865e244-e39e-4243-84c3-04c759bfd641",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "fab218ca-8cc8-4064-bdb2-358ed1b4319a",
+  "toolUseResult": {
+    "query": "SWE-bench verified current SOTA leaderboard May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HCm4SvoPHswUyLyFXwu5kX",
+        "content": [
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "SWE-Bench Verified Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "SWE-bench Leaderboard: AI Coding Agent SOTA Results | CodeSOTA | CodeSOTA",
+            "url": "https://www.codesota.com/browse/agentic/swe-bench"
+          },
+          {
+            "title": "SWE-rebench Leaderboard",
+            "url": "https://swe-rebench.com/"
+          },
+          {
+            "title": "SWE-bench Verified Benchmark 2026: 44 LLM scores | BenchLM.ai",
+            "url": "https://benchlm.ai/benchmarks/sweVerified"
+          },
+          {
+            "title": "SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean",
+            "url": "https://www.codeant.ai/blogs/swe-bench-scores"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.swebench.com/verified.html"
+          },
+          {
+            "title": "AI Coding Benchmark Leaderboard 2026: Code Generation and SWE-bench | CodeSOTA | CodeSOTA",
+            "url": "https://www.codesota.com/code-generation"
+          },
+          {
+            "title": "SWE-bench Verified | Epoch AI",
+            "url": "https://epoch.ai/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%",
+            "url": "https://www.morphllm.com/swe-bench-pro"
+          }
+        ]
+      },
+      "Based on the search results, here's the current SWE-bench Verified SOTA leaderboard status as of May 2026:\n\n## Top Performers\n\nAs of May 7, 2026, Claude Mythos Preview leads the SWE-bench Verified leaderboard with 93.9%, followed by Claude Opus 4.7 (Adaptive) (87.6%) and GPT-5.3 Codex (85%).\n\nClaude Mythos Preview from Anthropic currently leads the SWE-bench Verified leaderboard with a score of 0.939 across 89 evaluated AI models.\n\n## Key Context\n\nSWE-bench Verified is a verified subset of 500 software engineering problems from real GitHub issues, validated by human annotators for evaluating language models' ability to resolve real-world coding issues by generating patches for Python codebases.\n\nClaude Mythos Preview leads SWE-bench Verified at 93.9%, but the same model scores only 45.9% on SWE-bench Pro — the harder, contamination-free version. This significant difference highlights an important caveat: OpenAI has stopped reporting Verified scores due to confirmed contamination. The audit found that all frontier models are contaminated on it, and 59.4% of hard tasks have flawed tests."
+    ],
+    "durationSeconds": 5.836487534000015
+  },
+  "sourceToolAssistantUUID": "0865e244-e39e-4243-84c3-04c759bfd641",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-11T22:42:38.712Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017ULX8JGjkEcENvXL1j6cPh`</summary>
+
+```json
+{
+  "query": "ARR May 2026 submission deadline EMNLP rolling review"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fab218ca-8cc8-4064-bdb2-358ed1b4319a",
+  "isSidechain": false,
+  "requestId": "req_011Cawb7gQST3edGmTwjpfQC",
+  "type": "assistant",
+  "uuid": "689294c3-787c-4301-af02-31c86b7607b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018gqPmmAp9B5yNpSSiKrJr2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 824,
+      "cache_read_input_tokens": 36566,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 824,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 36566,
+          "cache_creation_input_tokens": 824,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 824
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-11T22:42:44.780Z_
+
+<details><summary>↩ Tool result · `toolu_017ULX8JGjkEcENvXL1j6cPh`</summary>
+
+```text
+Web search results for query: "ARR May 2026 submission deadline EMNLP rolling review"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"EMNLP 2026 on X: \"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\" / X","url":"https://x.com/emnlpmeeting/status/1892259536137785419"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"https://aclrollingreview.org/"}]
+
+Based on the search results, here is the information about the ARR May 2026 submission deadline for EMNLP:
+
+## ARR May 2026 Submission Deadline for EMNLP
+
+The ARR submission deadline for EMNLP 2026 (for both long and short papers) is May 25, 2026.
+
+### Key Related Dates:
+
+The reviewer registration deadline for all authors is May 27, 2026, author response and author-reviewer discussion runs July 7-13, 2026, meta reviews are released July 30, 2026, and the EMNLP commitment deadline is August 2, 2026.
+
+### Important Policy Notes:
+
+For the ARR 2026 May cycle aligned with EMNLP and AACL, authors must explicitly declare which conference they intend to commit to at submission time, and this choice is binding for EMNLP 2026—submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.
+
+Papers must be submitted by the ARR 2026 May cycle at the latest to be considered for EMNLP 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "689294c3-787c-4301-af02-31c86b7607b8",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "d864324f-9f65-41c6-aee3-ac669d15cae7",
+  "toolUseResult": {
+    "query": "ARR May 2026 submission deadline EMNLP rolling review",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014nv8q18Ao6SecjL1PFEGbP",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\" / X",
+            "url": "https://x.com/emnlpmeeting/status/1892259536137785419"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "https://aclrollingreview.org/"
+          }
+        ]
+      },
+      "Based on the search results, here is the information about the ARR May 2026 submission deadline for EMNLP:\n\n## ARR May 2026 Submission Deadline for EMNLP\n\nThe ARR submission deadline for EMNLP 2026 (for both long and short papers) is May 25, 2026.\n\n### Key Related Dates:\n\nThe reviewer registration deadline for all authors is May 27, 2026, author response and author-reviewer discussion runs July 7-13, 2026, meta reviews are released July 30, 2026, and the EMNLP commitment deadline is August 2, 2026.\n\n### Important Policy Notes:\n\nFor the ARR 2026 May cycle aligned with EMNLP and AACL, authors must explicitly declare which conference they intend to commit to at submission time, and this choice is binding for EMNLP 2026—submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.\n\nPapers must be submitted by the ARR 2026 May cycle at the latest to be considered for EMNLP 2026."
+    ],
+    "durationSeconds": 6.064763835999998
+  },
+  "sourceToolAssistantUUID": "689294c3-787c-4301-af02-31c86b7607b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 51 · 2026-05-11T22:42:44.788Z_
+
+```json
+{
+  "parentUuid": "d864324f-9f65-41c6-aee3-ac669d15cae7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "455df023-1d0f-4f14-bfee-6246c332db25",
+  "timestamp": "2026-05-11T22:42:44.788Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-11T22:42:47.850Z_
+
+Good — the deadline is confirmed as May 25, 2026. Now let me check the user's compute constraint against this idea, and search for more competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "455df023-1d0f-4f14-bfee-6246c332db25",
+  "isSidechain": false,
+  "requestId": "req_011Cawb8RjuoMKgy5QXZk9Qy",
+  "type": "assistant",
+  "uuid": "b168afc4-e276-400e-a7de-a2f09586dc83",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AnnrTL8imHM7ueeQ4ukMQh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1074,
+      "cache_read_input_tokens": 37390,
+      "output_tokens": 109,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1074,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 109,
+          "cache_read_input_tokens": 37390,
+          "cache_creation_input_tokens": 1074,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1074
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-11T22:42:48.656Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01F5PhZBrCxtAt8bcWxw73Lv`</summary>
+
+```json
+{
+  "query": "Agentless pipeline SWE-bench configuration profiling cost GPU hours 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b168afc4-e276-400e-a7de-a2f09586dc83",
+  "isSidechain": false,
+  "requestId": "req_011Cawb8RjuoMKgy5QXZk9Qy",
+  "type": "assistant",
+  "uuid": "f6d58651-4cbb-4ed6-9bc9-3c2afd0f3bf8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AnnrTL8imHM7ueeQ4ukMQh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1074,
+      "cache_read_input_tokens": 37390,
+      "output_tokens": 109,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1074,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 109,
+          "cache_read_input_tokens": 37390,
+          "cache_creation_input_tokens": 1074,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1074
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-11T22:42:56.582Z_
+
+<details><summary>↩ Tool result · `toolu_01F5PhZBrCxtAt8bcWxw73Lv`</summary>
+
+```text
+Web search results for query: "Agentless pipeline SWE-bench configuration profiling cost GPU hours 2025 2026"
+
+Links: [{"title":"AI Agent Benchmarking Infrastructure on GPU Cloud: Run SWE-bench, GAIA, Terminal-Bench, and OSWorld at Scale (2026 Guide) | Spheron Blog","url":"https://www.spheron.network/blog/ai-agent-benchmarking-gpu-cloud-swebench-gaia/"},{"title":"SWE-Effi: Re-Evaluating Software AI Agent System ...","url":"https://arxiv.org/pdf/2509.09853"},{"title":"GitHub - sorendunn/Agentless-Lite: Agentless Lite: RAG-based SWE-Bench software engineering scaffold · GitHub","url":"https://github.com/sorendunn/Agentless-Lite"},{"title":"Dissecting the SWE-Bench Leaderboards: Profiling Submitters and Architectures of LLM- and Agent-Based Repair Systems","url":"https://arxiv.org/html/2506.17208v2"},{"title":"GitHub - OpenAutoCoder/Agentless: Agentless🐱: an agentless approach to automatically solve software development problems","url":"https://github.com/OpenAutoCoder/Agentless"},{"title":"GitHub - zplus1/swe-bench-agentless: Agentless🐱: an agentless approach to automatically solve software development problems","url":"https://github.com/zplus1/swe-bench-agentless"},{"title":"SWE-rebench: An Automated Pipeline for Task Collection ...","url":"https://arxiv.org/pdf/2505.20411"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"Kimi-Dev: Agentless Training as Skill Prior for SWE-agents | OpenReview","url":"https://openreview.net/forum?id=tYppHuGhxJ"},{"title":"SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?","url":"https://arxiv.org/html/2509.16941v1"}]
+
+Based on the search results, here are key findings related to agentless pipeline configurations for SWE-bench with profiling information about costs and GPU hours:
+
+## Computational Efficiency and Costs
+
+Agentless pipelines spend the majority of runtime on CPU tasks like running tests, as opposed to agentic approaches which spend more time on inference operations.
+
+## Cost per Issue
+
+Agentless Lite is a RAG-only scaffold for SWE-bench that costs only $0.21 per instance ($0.12 if using prepared retrieval contexts), demonstrating significant cost efficiency compared to more complex approaches. Additionally, Agentless on SWE-bench lite costs on average $0.34 per issue.
+
+## GPU Hours for Full Benchmarks
+
+Running 500 SWE-bench tasks serially with a 70B model takes approximately 250 hours, but with 20 H200s and Ray for parallel dispatch using 10 parallel workers (2 GPUs each), that time comes down to roughly 25 hours.
+
+## Infrastructure for 2025-2026
+
+Every major lab published SWE-bench numbers in 2026, with infrastructure consisting of Docker sandboxes, parallel rollout workers, judge models, and structured results pipelines.
+
+The agentless approach offers a more efficient alternative to agentic methods by reducing the reliance on GPU-intensive inference operations while maintaining competitive performance on SWE-bench.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f6d58651-4cbb-4ed6-9bc9-3c2afd0f3bf8",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "bf695c02-27a6-4630-a83e-58f30c8d839e",
+  "toolUseResult": {
+    "query": "Agentless pipeline SWE-bench configuration profiling cost GPU hours 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VfHt2qej3dEfTdQaguwyBU",
+        "content": [
+          {
+            "title": "AI Agent Benchmarking Infrastructure on GPU Cloud: Run SWE-bench, GAIA, Terminal-Bench, and OSWorld at Scale (2026 Guide) | Spheron Blog",
+            "url": "https://www.spheron.network/blog/ai-agent-benchmarking-gpu-cloud-swebench-gaia/"
+          },
+          {
+            "title": "SWE-Effi: Re-Evaluating Software AI Agent System ...",
+            "url": "https://arxiv.org/pdf/2509.09853"
+          },
+          {
+            "title": "GitHub - sorendunn/Agentless-Lite: Agentless Lite: RAG-based SWE-Bench software engineering scaffold · GitHub",
+            "url": "https://github.com/sorendunn/Agentless-Lite"
+          },
+          {
+            "title": "Dissecting the SWE-Bench Leaderboards: Profiling Submitters and Architectures of LLM- and Agent-Based Repair Systems",
+            "url": "https://arxiv.org/html/2506.17208v2"
+          },
+          {
+            "title": "GitHub - OpenAutoCoder/Agentless: Agentless🐱: an agentless approach to automatically solve software development problems",
+            "url": "https://github.com/OpenAutoCoder/Agentless"
+          },
+          {
+            "title": "GitHub - zplus1/swe-bench-agentless: Agentless🐱: an agentless approach to automatically solve software development problems",
+            "url": "https://github.com/zplus1/swe-bench-agentless"
+          },
+          {
+            "title": "SWE-rebench: An Automated Pipeline for Task Collection ...",
+            "url": "https://arxiv.org/pdf/2505.20411"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "Kimi-Dev: Agentless Training as Skill Prior for SWE-agents | OpenReview",
+            "url": "https://openreview.net/forum?id=tYppHuGhxJ"
+          },
+          {
+            "title": "SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?",
+            "url": "https://arxiv.org/html/2509.16941v1"
+          }
+        ]
+      },
+      "Based on the search results, here are key findings related to agentless pipeline configurations for SWE-bench with profiling information about costs and GPU hours:\n\n## Computational Efficiency and Costs\n\nAgentless pipelines spend the majority of runtime on CPU tasks like running tests, as opposed to agentic approaches which spend more time on inference operations.\n\n## Cost per Issue\n\nAgentless Lite is a RAG-only scaffold for SWE-bench that costs only $0.21 per instance ($0.12 if using prepared retrieval contexts), demonstrating significant cost efficiency compared to more complex approaches. Additionally, Agentless on SWE-bench lite costs on average $0.34 per issue.\n\n## GPU Hours for Full Benchmarks\n\nRunning 500 SWE-bench tasks serially with a 70B model takes approximately 250 hours, but with 20 H200s and Ray for parallel dispatch using 10 parallel workers (2 GPUs each), that time comes down to roughly 25 hours.\n\n## Infrastructure for 2025-2026\n\nEvery major lab published SWE-bench numbers in 2026, with infrastructure consisting of Docker sandboxes, parallel rollout workers, judge models, and structured results pipelines.\n\nThe agentless approach offers a more efficient alternative to agentic methods by reducing the reliance on GPU-intensive inference operations while maintaining competitive performance on SWE-bench."
+    ],
+    "durationSeconds": 7.920754722000012
+  },
+  "sourceToolAssistantUUID": "f6d58651-4cbb-4ed6-9bc9-3c2afd0f3bf8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-11T22:42:58.977Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011oWXLAxUUfXVzoWPjHM67C`</summary>
+
+```json
+{
+  "query": "meta-learning configuration selection automated program repair reinforcement learning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bf695c02-27a6-4630-a83e-58f30c8d839e",
+  "isSidechain": false,
+  "requestId": "req_011Cawb9J9nbDUhD4twXPcZr",
+  "type": "assistant",
+  "uuid": "c6b629bd-ff03-45be-bed9-2c372c886f7a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZzDqmy9v1yBhHP3D1zMSw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1008,
+      "cache_read_input_tokens": 38464,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 38464,
+          "cache_creation_input_tokens": 1008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "c6b629bd-ff03-45be-bed9-2c372c886f7a",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of adaptive context orchestration for code repair",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-11T22:43:05.892Z_
+
+<details><summary>↩ Tool result · `toolu_011oWXLAxUUfXVzoWPjHM67C`</summary>
+
+```text
+Web search results for query: "meta-learning configuration selection automated program repair reinforcement learning 2025 2026"
+
+Links: [{"title":"Reinforcement learning for mutation operator selection in automated program repair - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11910396/"},{"title":"Reinforcement learning for mutation operator selection in automated program repair | Automated Software Engineering | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10515-025-00501-z"},{"title":"[2306.05792] Reinforcement Learning for Mutation Operator Selection in Automated Program Repair","url":"https://arxiv.org/abs/2306.05792"},{"title":"Artificial Intelligence Feb 2025","url":"https://arxiv.org/list/cs.AI/2025-02?skip=1625&show=50"},{"title":"A Tutorial on Meta-Reinforcement Learning","url":"https://www.nowpublishers.com/article/DownloadSummary/MAL-080"},{"title":"Reinforcement Learning Journal 2025 Cover Page","url":"https://rlj.cs.umass.edu/2025/papers/RLJ_RLC_2025_218.pdf"},{"title":"Meta-RHDC: Meta Reinforcement Learning Driven Hybrid ...","url":"https://ieeexplore.ieee.org/iel8/6287639/10820123/10900381.pdf"},{"title":"Meta-Learning | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-3-030-05318-5_2"},{"title":"Using meta-learning for automated algorithms selection and configuration: an experimental framework for industrial big data | Journal of Big Data | Full Text","url":"https://journalofbigdata.springeropen.com/articles/10.1186/s40537-022-00612-4"},{"title":"AI 101: The State of Reinforcement Learning in 2025","url":"https://www.turingpost.com/p/stateofrl2025"}]
+
+Based on the search results, here's what I found related to your query about meta-learning, configuration selection, automated program repair, and reinforcement learning in 2025-2026:
+
+## Key Findings
+
+**Reinforcement Learning for Automated Program Repair:**
+
+Recent research investigates reinforcement learning-based approaches for automated program repair techniques that aim to aid software developers with fixing bugs, specifically focusing on the selection of mutation operators in heuristic-based program repair. Most commonly, mutation operator selection during search is performed uniformly at random, which can generate many buggy or uncompilable programs that waste considerable resources.
+
+**Recent Work (2025):**
+
+Heuristic-based automated program repair has been recently used for automated end-to-end repair at scale at Meta, with a paper published in the Automated Software Engineering journal in March 2025.
+
+**Meta-Learning Developments:**
+
+The search results show active research in meta-learning for reinforcement learning algorithms. Meta-learned algorithms are learned algorithms which replace certain components in RL training, and researchers seek to find the best meta-learning algorithms for training learned algorithms.
+
+**Broader Context:**
+
+In 2025, reinforcement learning achieved various advances, with momentum continuing into 2026, though the field continues to face challenges in terms of performance and stability compared to other machine learning approaches.
+
+The search results indicate active recent research in these areas, particularly on using RL for mutation operator selection in program repair, though I didn't find papers specifically combining all four elements (meta-learning + configuration selection + APR + RL) in a single recent work.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c6b629bd-ff03-45be-bed9-2c372c886f7a",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "fbf175b0-0011-44f3-9c3b-41abfc5bada0",
+  "toolUseResult": {
+    "query": "meta-learning configuration selection automated program repair reinforcement learning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PvdVU6zUAcGsMWfCE4S9rW",
+        "content": [
+          {
+            "title": "Reinforcement learning for mutation operator selection in automated program repair - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11910396/"
+          },
+          {
+            "title": "Reinforcement learning for mutation operator selection in automated program repair | Automated Software Engineering | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10515-025-00501-z"
+          },
+          {
+            "title": "[2306.05792] Reinforcement Learning for Mutation Operator Selection in Automated Program Repair",
+            "url": "https://arxiv.org/abs/2306.05792"
+          },
+          {
+            "title": "Artificial Intelligence Feb 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025-02?skip=1625&show=50"
+          },
+          {
+            "title": "A Tutorial on Meta-Reinforcement Learning",
+            "url": "https://www.nowpublishers.com/article/DownloadSummary/MAL-080"
+          },
+          {
+            "title": "Reinforcement Learning Journal 2025 Cover Page",
+            "url": "https://rlj.cs.umass.edu/2025/papers/RLJ_RLC_2025_218.pdf"
+          },
+          {
+            "title": "Meta-RHDC: Meta Reinforcement Learning Driven Hybrid ...",
+            "url": "https://ieeexplore.ieee.org/iel8/6287639/10820123/10900381.pdf"
+          },
+          {
+            "title": "Meta-Learning | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-3-030-05318-5_2"
+          },
+          {
+            "title": "Using meta-learning for automated algorithms selection and configuration: an experimental framework for industrial big data | Journal of Big Data | Full Text",
+            "url": "https://journalofbigdata.springeropen.com/articles/10.1186/s40537-022-00612-4"
+          },
+          {
+            "title": "AI 101: The State of Reinforcement Learning in 2025",
+            "url": "https://www.turingpost.com/p/stateofrl2025"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found related to your query about meta-learning, configuration selection, automated program repair, and reinforcement learning in 2025-2026:\n\n## Key Findings\n\n**Reinforcement Learning for Automated Program Repair:**\n\nRecent research investigates reinforcement learning-based approaches for automated program repair techniques that aim to aid software developers with fixing bugs, specifically focusing on the selection of mutation operators in heuristic-based program repair. Most commonly, mutation operator selection during search is performed uniformly at random, which can generate many buggy or uncompilable programs that waste considerable resources.\n\n**Recent Work (2025):**\n\nHeuristic-based automated program repair has been recently used for automated end-to-end repair at scale at Meta, with a paper published in the Automated Software Engineering journal in March 2025.\n\n**Meta-Learning Developments:**\n\nThe search results show active research in meta-learning for reinforcement learning algorithms. Meta-learned algorithms are learned algorithms which replace certain components in RL training, and researchers seek to find the best meta-learning algorithms for training learned algorithms.\n\n**Broader Context:**\n\nIn 2025, reinforcement learning achieved various advances, with momentum continuing into 2026, though the field continues to face challenges in terms of performance and stability compared to other machine learning approaches.\n\nThe search results indicate active recent research in these areas, particularly on using RL for mutation operator selection in program repair, though I didn't find papers specifically combining all four elements (meta-learning + configuration selection + APR + RL) in a single recent work."
+    ],
+    "durationSeconds": 6.911240833000018
+  },
+  "sourceToolAssistantUUID": "c6b629bd-ff03-45be-bed9-2c372c886f7a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-11T22:43:08.600Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0158VcLB6f3e47e7mq6DZrEE`</summary>
+
+```json
+{
+  "query": "RGFL reasoning guided fault localization automated program repair 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fbf175b0-0011-44f3-9c3b-41abfc5bada0",
+  "isSidechain": false,
+  "requestId": "req_011Cawb9yuTQRgvhNja7Wkp5",
+  "type": "assistant",
+  "uuid": "7150f890-c932-4a4f-a505-7c21c622c5ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012f6cDRKd4kyvawytWeRJcQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 950,
+      "cache_read_input_tokens": 39472,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 950,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 39472,
+          "cache_creation_input_tokens": 950,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 950
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-11T22:43:17.402Z_
+
+<details><summary>↩ Tool result · `toolu_0158VcLB6f3e47e7mq6DZrEE`</summary>
+
+```text
+Web search results for query: "RGFL reasoning guided fault localization automated program repair 2026 arXiv"
+
+Links: [{"title":"RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2026arXiv260118044S/abstract"},{"title":"RGFL: Reasoning Guided Fault Localization for Automated Program Repair","url":"https://www.arxiv.org/pdf/2601.18044"},{"title":"RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models","url":"https://arxiv.org/html/2601.18044v1"},{"title":"[2601.18044] RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models","url":"https://arxiv.org/abs/2601.18044"},{"title":"RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models | alphaXiv","url":"https://www.alphaxiv.org/abs/2601.18044"},{"title":"RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models | Scilit","url":"https://www.scilit.com/publications/93a4ab9613be0ae41a0609c084a46a24"},{"title":"[2604.05481v1] On the Role of Fault Localization Context for LLM-Based Program Repair","url":"https://arxiv.org/abs/2604.05481v1"},{"title":"Accepted at the 2026 IEEE International Conference on Software Testing, Verification and Validation (ICST 2026) Assessing the Impact of Code Changes on the Fault Localizability of Large Language Models","url":"https://arxiv.org/html/2504.04372"},{"title":"RGFL: Reasoning Guided Fault Localization for Automated ...","url":"https://www.researchgate.net/publication/400083995_RGFL_Reasoning_Guided_Fault_Localization_for_Automated_Program_Repair_Using_Large_Language_Models"},{"title":"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair","url":"https://arxiv.org/html/2605.03117"}]
+
+I found the research paper you were looking for. Here's what I found:
+
+## RGFL: Reasoning Guided Fault Localization for Automated Program Repair
+
+The paper "RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models" was authored by Melika Sepidband, Hamed Taherkhani, Hung Viet Pham, and Hadi Hemmati and published in January 2026.
+
+### Overview
+
+Fault Localization (FL) is a critical step in Automated Program Repair (APR), and its importance has increased with the rise of Large Language Model (LLM)-based repair agents. In realistic project-level repair scenarios, software repositories often span millions of tokens, far exceeding current LLM context limits. Consequently, models must first identify a small, relevant subset of code, making accurate FL essential for effective repair.
+
+### Key Approach
+
+The paper presents a novel project-level FL approach that improves both file- and element-level localization, with a hierarchical reasoning module that generates structured, bug-specific explanations for candidate files and elements, and leverages these explanations in a two-stage ranking scheme combining LLM-based and embedding-based signals.
+
+RGFL is based on the observation that LLM-as-Judge ranking over many files or code elements is effective for filtering candidates, but often insufficient for precisely identifying the most relevant ones. To address this, RGFL introduces an explicit per-candidate reasoning stage: for each file or element individually, the LLM explains its functionality, and this explanation is causally related to the reported symptom. These reasoning outputs are then used as ranking signals.
+
+### Results
+
+The average cost of RGFL per sample is around $4.4, so it incurs a higher computational cost than Agentless (3.7×). However, the resulting improvement in fault localization and repair accuracy is substantial, with a +12.8% absolute increase in resolved rate.
+
+The paper is available on arXiv with the identifier 2601.18044.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7150f890-c932-4a4f-a505-7c21c622c5ed",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "23067edf-1f53-47fa-969e-16dbed455acc",
+  "toolUseResult": {
+    "query": "RGFL reasoning guided fault localization automated program repair 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SvUtCGQBbAimzaqVHqzdjg",
+        "content": [
+          {
+            "title": "RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv260118044S/abstract"
+          },
+          {
+            "title": "RGFL: Reasoning Guided Fault Localization for Automated Program Repair",
+            "url": "https://www.arxiv.org/pdf/2601.18044"
+          },
+          {
+            "title": "RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models",
+            "url": "https://arxiv.org/html/2601.18044v1"
+          },
+          {
+            "title": "[2601.18044] RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models",
+            "url": "https://arxiv.org/abs/2601.18044"
+          },
+          {
+            "title": "RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2601.18044"
+          },
+          {
+            "title": "RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models | Scilit",
+            "url": "https://www.scilit.com/publications/93a4ab9613be0ae41a0609c084a46a24"
+          },
+          {
+            "title": "[2604.05481v1] On the Role of Fault Localization Context for LLM-Based Program Repair",
+            "url": "https://arxiv.org/abs/2604.05481v1"
+          },
+          {
+            "title": "Accepted at the 2026 IEEE International Conference on Software Testing, Verification and Validation (ICST 2026) Assessing the Impact of Code Changes on the Fault Localizability of Large Language Models",
+            "url": "https://arxiv.org/html/2504.04372"
+          },
+          {
+            "title": "RGFL: Reasoning Guided Fault Localization for Automated ...",
+            "url": "https://www.researchgate.net/publication/400083995_RGFL_Reasoning_Guided_Fault_Localization_for_Automated_Program_Repair_Using_Large_Language_Models"
+          },
+          {
+            "title": "ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair",
+            "url": "https://arxiv.org/html/2605.03117"
+          }
+        ]
+      },
+      "I found the research paper you were looking for. Here's what I found:\n\n## RGFL: Reasoning Guided Fault Localization for Automated Program Repair\n\nThe paper \"RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models\" was authored by Melika Sepidband, Hamed Taherkhani, Hung Viet Pham, and Hadi Hemmati and published in January 2026.\n\n### Overview\n\nFault Localization (FL) is a critical step in Automated Program Repair (APR), and its importance has increased with the rise of Large Language Model (LLM)-based repair agents. In realistic project-level repair scenarios, software repositories often span millions of tokens, far exceeding current LLM context limits. Consequently, models must first identify a small, relevant subset of code, making accurate FL essential for effective repair.\n\n### Key Approach\n\nThe paper presents a novel project-level FL approach that improves both file- and element-level localization, with a hierarchical reasoning module that generates structured, bug-specific explanations for candidate files and elements, and leverages these explanations in a two-stage ranking scheme combining LLM-based and embedding-based signals.\n\nRGFL is based on the observation that LLM-as-Judge ranking over many files or code elements is effective for filtering candidates, but often insufficient for precisely identifying the most relevant ones. To address this, RGFL introduces an explicit per-candidate reasoning stage: for each file or element individually, the LLM explains its functionality, and this explanation is causally related to the reported symptom. These reasoning outputs are then used as ranking signals.\n\n### Results\n\nThe average cost of RGFL per sample is around $4.4, so it incurs a higher computational cost than Agentless (3.7×). However, the resulting improvement in fault localization and repair accuracy is substantial, with a +12.8% absolute increase in resolved rate.\n\nThe paper is available on arXiv with the identifier 2601.18044."
+    ],
+    "durationSeconds": 8.798072359000013
+  },
+  "sourceToolAssistantUUID": "7150f890-c932-4a4f-a505-7c21c622c5ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-11T22:43:20.781Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Feh8ekpanYkQVrNGjRKki9`</summary>
+
+```json
+{
+  "query": "Squeez task-conditioned tool output pruning coding agents 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "23067edf-1f53-47fa-969e-16dbed455acc",
+  "isSidechain": false,
+  "requestId": "req_011CawbAqBrmmTgVijnGgFxi",
+  "type": "assistant",
+  "uuid": "433e2ca8-8d33-4f46-a116-cb7c7d62e27f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Jj74zZVBCcSFLLsL7PZkr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1152,
+      "cache_read_input_tokens": 40422,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1152,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 40422,
+          "cache_creation_input_tokens": 1152,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1152
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-11T22:43:31.033Z_
+
+<details><summary>↩ Tool result · `toolu_01Feh8ekpanYkQVrNGjRKki9`</summary>
+
+```text
+Web search results for query: "Squeez task-conditioned tool output pruning coding agents 2026"
+
+Links: [{"title":"Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents","url":"https://arxiv.org/html/2604.04979"},{"title":"Paper page - Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents","url":"https://huggingface.co/papers/2604.04979"},{"title":"[2604.04979] Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents","url":"https://arxiv.org/abs/2604.04979"},{"title":"GitHub - KRLabsOrg/squeez: Squeeze verbose LLM agent tool output down to only the relevant lines · GitHub","url":"https://github.com/KRLabsOrg/squeez"},{"title":"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://arxiv.org/html/2601.16746"},{"title":"Runtime-Adaptive Pruning for LLM Inference","url":"https://arxiv.org/html/2505.17138v3"},{"title":"GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub","url":"https://github.com/VoltAgent/awesome-ai-agent-papers"},{"title":"RUNTIME-ADAPTIVE PRUNING FOR LLM INFERENCE","url":"https://openreview.net/pdf/18ad5a55d8da4a9d82e6395b0de09469dd6824de.pdf"},{"title":"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents","url":"https://www.arxiv.org/pdf/2601.16746"},{"title":"AI Coding Benchmarks 2026: Every Major Eval Explained and Ranked","url":"https://www.morphllm.com/ai-coding-benchmarks-2026"}]
+
+I found relevant information about Squeez. Here's what the search results show:
+
+## Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents
+
+Squeez is a task-conditioned tool-output pruner for coding agents. The benchmark pairs grounded span annotations over 27 tool types with real SWE-bench workflows and synthetic multi-ecosystem observations.
+
+### Purpose and Problem
+
+Coding agents work over streams of file reads, grep hits, stack traces, build logs, API responses, and version-control history. In such observations, only a small fraction of the tokens is relevant to the next decision, yet the agent often has to re-read the entire output.
+
+### How It Works
+
+The task is to provide task-conditioned tool-output pruning: given a focused query and one tool output, return the smallest verbatim evidence block the agent should inspect next. The model works as a CLI pipe (cat output.txt | squeez "find the bug"), a Python library, or a vLLM server, you can drop it into any coding agent with one line of config.
+
+### Performance
+
+The model reaches 0.86 recall and 0.80 F1 while removing 92% of input tokens, outperforming zero-shot Qwen 3.5 35B A3B by 11 recall points and all heuristic baselines by a wide margin. Squeez is a LoRA-tuned Qwen 3.5 2B model that extracts only the relevant lines from raw tool observations (pytest, grep, git log, kubectl, build logs, etc.
+
+The paper (arxiv 2604.04979) was published in April 2026 by Ádám Kovács from KR Labs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "433e2ca8-8d33-4f46-a116-cb7c7d62e27f",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "ae6b243d-418d-49d3-8f14-564cc8131f4d",
+  "toolUseResult": {
+    "query": "Squeez task-conditioned tool output pruning coding agents 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JvV3DHemt3h8cFH47SDKVA",
+        "content": [
+          {
+            "title": "Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents",
+            "url": "https://arxiv.org/html/2604.04979"
+          },
+          {
+            "title": "Paper page - Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents",
+            "url": "https://huggingface.co/papers/2604.04979"
+          },
+          {
+            "title": "[2604.04979] Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents",
+            "url": "https://arxiv.org/abs/2604.04979"
+          },
+          {
+            "title": "GitHub - KRLabsOrg/squeez: Squeeze verbose LLM agent tool output down to only the relevant lines · GitHub",
+            "url": "https://github.com/KRLabsOrg/squeez"
+          },
+          {
+            "title": "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://arxiv.org/html/2601.16746"
+          },
+          {
+            "title": "Runtime-Adaptive Pruning for LLM Inference",
+            "url": "https://arxiv.org/html/2505.17138v3"
+          },
+          {
+            "title": "GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub",
+            "url": "https://github.com/VoltAgent/awesome-ai-agent-papers"
+          },
+          {
+            "title": "RUNTIME-ADAPTIVE PRUNING FOR LLM INFERENCE",
+            "url": "https://openreview.net/pdf/18ad5a55d8da4a9d82e6395b0de09469dd6824de.pdf"
+          },
+          {
+            "title": "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents",
+            "url": "https://www.arxiv.org/pdf/2601.16746"
+          },
+          {
+            "title": "AI Coding Benchmarks 2026: Every Major Eval Explained and Ranked",
+            "url": "https://www.morphllm.com/ai-coding-benchmarks-2026"
+          }
+        ]
+      },
+      "I found relevant information about Squeez. Here's what the search results show:\n\n## Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents\n\nSqueez is a task-conditioned tool-output pruner for coding agents. The benchmark pairs grounded span annotations over 27 tool types with real SWE-bench workflows and synthetic multi-ecosystem observations.\n\n### Purpose and Problem\n\nCoding agents work over streams of file reads, grep hits, stack traces, build logs, API responses, and version-control history. In such observations, only a small fraction of the tokens is relevant to the next decision, yet the agent often has to re-read the entire output.\n\n### How It Works\n\nThe task is to provide task-conditioned tool-output pruning: given a focused query and one tool output, return the smallest verbatim evidence block the agent should inspect next. The model works as a CLI pipe (cat output.txt | squeez \"find the bug\"), a Python library, or a vLLM server, you can drop it into any coding agent with one line of config.\n\n### Performance\n\nThe model reaches 0.86 recall and 0.80 F1 while removing 92% of input tokens, outperforming zero-shot Qwen 3.5 35B A3B by 11 recall points and all heuristic baselines by a wide margin. Squeez is a LoRA-tuned Qwen 3.5 2B model that extracts only the relevant lines from raw tool observations (pytest, grep, git log, kubectl, build logs, etc.\n\nThe paper (arxiv 2604.04979) was published in April 2026 by Ádám Kovács from KR Labs."
+    ],
+    "durationSeconds": 10.246457272999978
+  },
+  "sourceToolAssistantUUID": "433e2ca8-8d33-4f46-a116-cb7c7d62e27f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-11T22:43:34.429Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018AagWQ6ML5zgm3QwJ6hqsy`</summary>
+
+```json
+{
+  "query": "SweRank software issue localization code ranking 2026 adaptive context"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae6b243d-418d-49d3-8f14-564cc8131f4d",
+  "isSidechain": false,
+  "requestId": "req_011CawbBqRXhziUD5BSAidGw",
+  "type": "assistant",
+  "uuid": "ec9342a0-b037-412a-bf0a-7a0674b2ed17",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XEwTpje6xVBa92rEgSD7Y9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1002,
+      "cache_read_input_tokens": 41574,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1002,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 41574,
+          "cache_creation_input_tokens": 1002,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1002
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-11T22:43:44.531Z_
+
+<details><summary>↩ Tool result · `toolu_018AagWQ6ML5zgm3QwJ6hqsy`</summary>
+
+```text
+Web search results for query: "SweRank software issue localization code ranking 2026 adaptive context"
+
+Links: [{"title":"SweRank: Software Issue Localization with Code Ranking","url":"https://arxiv.org/pdf/2505.07849"},{"title":"[2505.07849] SweRank: Software Issue Localization with Code Ranking","url":"https://arxiv.org/abs/2505.07849"},{"title":"SWERANK+: Multilingual, Multi-Turn Code Ranking for Software Issue Localization","url":"https://arxiv.org/pdf/2512.20482"},{"title":"SWERANK: SOFTWARE ISSUE LOCALIZATION","url":"https://openreview.net/pdf/c5d768be17e43c352d20b47d5e4abc4c716b54a8.pdf"},{"title":"Paper page - SweRank: Software Issue Localization with Code Ranking","url":"https://huggingface.co/papers/2505.07849"},{"title":"SweRank: Software Issue Localization with Code Ranking - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250507849G/abstract"},{"title":"[2512.20482] SweRank+: Multilingual, Multi-Turn Code Ranking for Software Issue Localization","url":"https://arxiv.org/abs/2512.20482"},{"title":"GitHub - SalesforceAIResearch/SweRank","url":"https://github.com/SalesforceAIResearch/SweRank"},{"title":"(PDF) SweRank: Software Issue Localization with Code Ranking","url":"https://www.researchgate.net/publication/391706826_SweRank_Software_Issue_Localization_with_Code_Ranking"},{"title":"SweRank: How AI is Revolutionizing Software Issue Localization","url":"https://www.salesforce.com/blog/swerank-software-issue-localization/"}]
+
+Based on the search results, here's what I found about SweRank:
+
+## Overview
+
+SweRank is an efficient and effective retrieve-and-rerank framework for software issue localization. Software issue localization is the task of identifying the precise code locations (files, classes, or functions) relevant to a natural language issue description (e.g., bug report, feature request).
+
+## The Problem It Addresses
+
+While recent LLM-based agentic approaches demonstrate promise, they often incur significant latency and cost due to complex multi-step reasoning and relying on closed-source LLMs. Alternatively, traditional code ranking models, typically optimized for query-to-code or code-to-code retrieval, struggle with the verbose and failure-descriptive nature of issue localization queries.
+
+## Framework Components
+
+SweRank comprises SweRankEmbed, a bi-encoder code retriever and SweRankLLM, a listwise LLM code reranker.
+
+## Training Dataset
+
+To facilitate training, SweLoc was constructed, a large-scale dataset curated from public GitHub repositories, featuring real-world issue descriptions paired with corresponding code modifications.
+
+## Performance
+
+Empirical results on SWE-Bench-Lite and LocBench show that SweRank achieves state-of-the-art performance, outperforming both prior ranking models and costly agent-based systems using closed-source LLMs like Claude-3.5.
+
+## Recent Development
+
+SweRank+ was introduced, a framework that couples SweRankMulti, a cross-lingual code ranking tool, with SweRankAgent, an agentic search setup, for iterative, multi-turn reasoning over the code repository. SweRankMulti comprises a code embedding retriever and a listwise LLM reranker, and is trained using a carefully curated large-scale issue localization dataset spanning multiple popular programming languages. SweRankAgent adopts an agentic search loop that moves beyond single-shot localization with a memory buffer to reason and accumulate relevant localization candidates over multiple turns.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ec9342a0-b037-412a-bf0a-7a0674b2ed17",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "319b3958-f748-4706-9d77-46f432f2efe7",
+  "toolUseResult": {
+    "query": "SweRank software issue localization code ranking 2026 adaptive context",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Kpg8RToX3krpMNvE265zXj",
+        "content": [
+          {
+            "title": "SweRank: Software Issue Localization with Code Ranking",
+            "url": "https://arxiv.org/pdf/2505.07849"
+          },
+          {
+            "title": "[2505.07849] SweRank: Software Issue Localization with Code Ranking",
+            "url": "https://arxiv.org/abs/2505.07849"
+          },
+          {
+            "title": "SWERANK+: Multilingual, Multi-Turn Code Ranking for Software Issue Localization",
+            "url": "https://arxiv.org/pdf/2512.20482"
+          },
+          {
+            "title": "SWERANK: SOFTWARE ISSUE LOCALIZATION",
+            "url": "https://openreview.net/pdf/c5d768be17e43c352d20b47d5e4abc4c716b54a8.pdf"
+          },
+          {
+            "title": "Paper page - SweRank: Software Issue Localization with Code Ranking",
+            "url": "https://huggingface.co/papers/2505.07849"
+          },
+          {
+            "title": "SweRank: Software Issue Localization with Code Ranking - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250507849G/abstract"
+          },
+          {
+            "title": "[2512.20482] SweRank+: Multilingual, Multi-Turn Code Ranking for Software Issue Localization",
+            "url": "https://arxiv.org/abs/2512.20482"
+          },
+          {
+            "title": "GitHub - SalesforceAIResearch/SweRank",
+            "url": "https://github.com/SalesforceAIResearch/SweRank"
+          },
+          {
+            "title": "(PDF) SweRank: Software Issue Localization with Code Ranking",
+            "url": "https://www.researchgate.net/publication/391706826_SweRank_Software_Issue_Localization_with_Code_Ranking"
+          },
+          {
+            "title": "SweRank: How AI is Revolutionizing Software Issue Localization",
+            "url": "https://www.salesforce.com/blog/swerank-software-issue-localization/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SweRank:\n\n## Overview\n\nSweRank is an efficient and effective retrieve-and-rerank framework for software issue localization. Software issue localization is the task of identifying the precise code locations (files, classes, or functions) relevant to a natural language issue description (e.g., bug report, feature request).\n\n## The Problem It Addresses\n\nWhile recent LLM-based agentic approaches demonstrate promise, they often incur significant latency and cost due to complex multi-step reasoning and relying on closed-source LLMs. Alternatively, traditional code ranking models, typically optimized for query-to-code or code-to-code retrieval, struggle with the verbose and failure-descriptive nature of issue localization queries.\n\n## Framework Components\n\nSweRank comprises SweRankEmbed, a bi-encoder code retriever and SweRankLLM, a listwise LLM code reranker.\n\n## Training Dataset\n\nTo facilitate training, SweLoc was constructed, a large-scale dataset curated from public GitHub repositories, featuring real-world issue descriptions paired with corresponding code modifications.\n\n## Performance\n\nEmpirical results on SWE-Bench-Lite and LocBench show that SweRank achieves state-of-the-art performance, outperforming both prior ranking models and costly agent-based systems using closed-source LLMs like Claude-3.5.\n\n## Recent Development\n\nSweRank+ was introduced, a framework that couples SweRankMulti, a cross-lingual code ranking tool, with SweRankAgent, an agentic search setup, for iterative, multi-turn reasoning over the code repository. SweRankMulti comprises a code embedding retriever and a listwise LLM reranker, and is trained using a carefully curated large-scale issue localization dataset spanning multiple popular programming languages. SweRankAgent adopts an agentic search loop that moves beyond single-shot localization with a memory buffer to reason and accumulate relevant localization candidates over multiple turns."
+    ],
+    "durationSeconds": 10.098078680000006
+  },
+  "sourceToolAssistantUUID": "ec9342a0-b037-412a-bf0a-7a0674b2ed17",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "319b3958-f748-4706-9d77-46f432f2efe7",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of adaptive context orchestration for code repair",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-11T22:43:51.284Z_
+
+Now let me check two critical things: the user's hard compute constraint (≤200 H100-hours) and search for the most directly competing "adaptive context/granularity" approach.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "319b3958-f748-4706-9d77-46f432f2efe7",
+  "isSidechain": false,
+  "requestId": "req_011CawbCqBAtgJYmmCktfvuh",
+  "type": "assistant",
+  "uuid": "c5f49d40-0142-4cf4-94bf-b4b178135a55",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018H4icZh4rWyN3jSKZmfHWZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1054,
+      "cache_read_input_tokens": 42576,
+      "output_tokens": 109,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1054,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 109,
+          "cache_read_input_tokens": 42576,
+          "cache_creation_input_tokens": 1054,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1054
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-11T22:43:51.984Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QtEddACed4D9bDsJqVh4sT`</summary>
+
+```json
+{
+  "query": "adaptive context budget selection bug features program repair learned policy 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c5f49d40-0142-4cf4-94bf-b4b178135a55",
+  "isSidechain": false,
+  "requestId": "req_011CawbCqBAtgJYmmCktfvuh",
+  "type": "assistant",
+  "uuid": "e46a0665-f32a-4cd8-b0b7-171d47599578",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018H4icZh4rWyN3jSKZmfHWZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1054,
+      "cache_read_input_tokens": 42576,
+      "output_tokens": 109,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1054,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 109,
+          "cache_read_input_tokens": 42576,
+          "cache_creation_input_tokens": 1054,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1054
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-11T22:44:03.214Z_
+
+<details><summary>↩ Tool result · `toolu_01QtEddACed4D9bDsJqVh4sT`</summary>
+
+```text
+Web search results for query: "adaptive context budget selection bug features program repair learned policy 2025 2026"
+
+Links: [{"title":"[2503.06510] Less is More: Adaptive Program Repair with Bug Localization and Preference Learning","url":"https://arxiv.org/abs/2503.06510"},{"title":"The Missing Line Item in Your 2026 AI Budget: Context Infrastructure - CDO Magazine","url":"https://www.cdomagazine.tech/branded-content/the-missing-line-item-in-your-2026-ai-budget-context-infrastructure"},{"title":"Budget-Aware GRPO Optimization","url":"https://www.emergentmind.com/topics/budget-aware-training-objectives-grpo"},{"title":"From Empirical Evaluation to Context-Aware Enhancement: Repairing Regression Errors with LLMs","url":"https://arxiv.org/html/2506.13182v1"},{"title":"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v1"},{"title":"Evolving Paradigms in Automated Program Repair: Taxonomy, Challenges, and Opportunities | ACM Computing Surveys","url":"https://dl.acm.org/doi/10.1145/3696450"},{"title":"GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub","url":"https://github.com/VoltAgent/awesome-ai-agent-papers"},{"title":"8 of the best adaptive planning software to try in 2026","url":"https://monday.com/blog/project-management/adaptive-planning-software/"},{"title":"Advancements in automated program repair: a comprehensive review | Knowledge and Information Systems | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10115-025-02383-9"},{"title":"[2505.24149] RCCDA: Adaptive Model Updates in the Presence of Concept Drift under a Constrained Resource Budget","url":"https://arxiv.org/abs/2505.24149"}]
+
+Based on the web search results, here are the relevant findings related to your query:
+
+## Adaptive Program Repair with Learned Policies
+
+A recent research paper introduces AdaPR (Adaptive Program Repair) and proposes AdaPatcher (Adaptive Patch Generator) as a two-stage approach to enhance program repair while maintaining consistency. The first stage utilizes a Bug Locator with self-debug learning to accurately pinpoint bug locations, while the second stage trains a Program Modifier to ensure consistency between the post-modified fixed code and the pre-modified buggy code.
+
+## Budget-Aware Context Management
+
+Context window sizes define the scope of code analysis around potential bug locations, influencing how much surrounding code context is considered during repair generation. This is particularly relevant to adaptive context budget selection in program repair systems.
+
+Budget-aware training objectives in GRPO reallocate resources for efficient policy improvement and robust RL fine-tuning under strict computational constraints. Under annotation budgets, allocating budget entirely to the hardest samples yields the largest generalization gains.
+
+## Recent LLM-Based Program Repair
+
+A survey reviews 63 recent state-of-the-art APR systems published between Jan 2022 and June 2025, summarizing their design trade-offs, common trends, and open questions. Reinforcement learning fine-tuning trains the model with execution or security rewards so that it optimizes for functional correctness instead of log likelihood.
+
+The search results show active research in 2025-2026 on adaptive approaches to program repair that incorporate learned policies and budget-aware resource allocation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e46a0665-f32a-4cd8-b0b7-171d47599578",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "3c056c8c-8c49-431f-9d9b-12b3e57b2ed2",
+  "toolUseResult": {
+    "query": "adaptive context budget selection bug features program repair learned policy 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Xv1NuJ6MeuuHk7YW8Kgmd3",
+        "content": [
+          {
+            "title": "[2503.06510] Less is More: Adaptive Program Repair with Bug Localization and Preference Learning",
+            "url": "https://arxiv.org/abs/2503.06510"
+          },
+          {
+            "title": "The Missing Line Item in Your 2026 AI Budget: Context Infrastructure - CDO Magazine",
+            "url": "https://www.cdomagazine.tech/branded-content/the-missing-line-item-in-your-2026-ai-budget-context-infrastructure"
+          },
+          {
+            "title": "Budget-Aware GRPO Optimization",
+            "url": "https://www.emergentmind.com/topics/budget-aware-training-objectives-grpo"
+          },
+          {
+            "title": "From Empirical Evaluation to Context-Aware Enhancement: Repairing Regression Errors with LLMs",
+            "url": "https://arxiv.org/html/2506.13182v1"
+          },
+          {
+            "title": "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v1"
+          },
+          {
+            "title": "Evolving Paradigms in Automated Program Repair: Taxonomy, Challenges, and Opportunities | ACM Computing Surveys",
+            "url": "https://dl.acm.org/doi/10.1145/3696450"
+          },
+          {
+            "title": "GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub",
+            "url": "https://github.com/VoltAgent/awesome-ai-agent-papers"
+          },
+          {
+            "title": "8 of the best adaptive planning software to try in 2026",
+            "url": "https://monday.com/blog/project-management/adaptive-planning-software/"
+          },
+          {
+            "title": "Advancements in automated program repair: a comprehensive review | Knowledge and Information Systems | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10115-025-02383-9"
+          },
+          {
+            "title": "[2505.24149] RCCDA: Adaptive Model Updates in the Presence of Concept Drift under a Constrained Resource Budget",
+            "url": "https://arxiv.org/abs/2505.24149"
+          }
+        ]
+      },
+      "Based on the web search results, here are the relevant findings related to your query:\n\n## Adaptive Program Repair with Learned Policies\n\nA recent research paper introduces AdaPR (Adaptive Program Repair) and proposes AdaPatcher (Adaptive Patch Generator) as a two-stage approach to enhance program repair while maintaining consistency. The first stage utilizes a Bug Locator with self-debug learning to accurately pinpoint bug locations, while the second stage trains a Program Modifier to ensure consistency between the post-modified fixed code and the pre-modified buggy code.\n\n## Budget-Aware Context Management\n\nContext window sizes define the scope of code analysis around potential bug locations, influencing how much surrounding code context is considered during repair generation. This is particularly relevant to adaptive context budget selection in program repair systems.\n\nBudget-aware training objectives in GRPO reallocate resources for efficient policy improvement and robust RL fine-tuning under strict computational constraints. Under annotation budgets, allocating budget entirely to the hardest samples yields the largest generalization gains.\n\n## Recent LLM-Based Program Repair\n\nA survey reviews 63 recent state-of-the-art APR systems published between Jan 2022 and June 2025, summarizing their design trade-offs, common trends, and open questions. Reinforcement learning fine-tuning trains the model with execution or security rewards so that it optimizes for functional correctness instead of log likelihood.\n\nThe search results show active research in 2025-2026 on adaptive approaches to program repair that incorporate learned policies and budget-aware resource allocation."
+    ],
+    "durationSeconds": 11.226395428000018
+  },
+  "sourceToolAssistantUUID": "e46a0665-f32a-4cd8-b0b7-171d47599578",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-11T22:44:07.098Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VQgxkWnB4yXkiNDBZCXj1Q`</summary>
+
+```json
+{
+  "query": "oracle exhaustive configuration profiling SWE-bench Agentless cost API calls 500 instances"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c056c8c-8c49-431f-9d9b-12b3e57b2ed2",
+  "isSidechain": false,
+  "requestId": "req_011CawbED2MLph2V1mr8ZfBh",
+  "type": "assistant",
+  "uuid": "1a496b01-c8ce-4d5c-b17a-259049a83bc3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017THGYWyxXdp7ZpycELtJWY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1029,
+      "cache_read_input_tokens": 43630,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 43630,
+          "cache_creation_input_tokens": 1029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-11T22:44:12.735Z_
+
+<details><summary>↩ Tool result · `toolu_01VQgxkWnB4yXkiNDBZCXj1Q`</summary>
+
+```text
+Web search results for query: "oracle exhaustive configuration profiling SWE-bench Agentless cost API calls 500 instances"
+
+Links: [{"title":"Dissecting the SWE-Bench Leaderboards: Profiling Submitters and Architectures of LLM- and Agent-Based Repair Systems","url":"https://arxiv.org/html/2506.17208v2"},{"title":"Unable to Reproduce SWE-Bench 53% Success Rate with Default Configuration · Issue #10767 · OpenHands/OpenHands","url":"https://github.com/OpenHands/OpenHands/issues/10767"},{"title":"Oracle Utilities Load Profiling and Settlement","url":"https://docs.oracle.com/cd/F17691_01/index.htm"},{"title":"Dissecting the SWE-Bench Leaderboards: Profiling Submitters and","url":"https://arxiv.org/pdf/2506.17208"},{"title":"Introducing SWE-bench Verified | OpenAI","url":"https://openai.com/index/introducing-swe-bench-verified/"},{"title":"Using Application Performance Monitoring","url":"https://docs.oracle.com/en-us/iaas/application-performance-monitoring/doc/application-performance-monitoring-metrics.html"},{"title":"Enabling Monitoring for Compute Instances","url":"https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/enablingmonitoring.htm"},{"title":"Are “Solved Issues” in SWE-bench Really Solved Correctly? An Empirical Study","url":"https://arxiv.org/html/2503.15223v1"},{"title":"SWE-bench Verified","url":"https://www.swebench.com/verified.html"},{"title":"princeton-nlp/SWE-bench_Lite_oracle · Datasets at Hugging Face","url":"https://huggingface.co/datasets/princeton-nlp/SWE-bench_Lite_oracle"}]
+
+Based on the search results, I found information related to your query. The most relevant finding is:
+
+SWE-bench Verified is a subset of the original test set from SWE-bench, consisting of 500 samples verified to be non-problematic by human annotators. This dataset has become a standard benchmark for evaluating software engineering agents and language models.
+
+The search results also reference OrcaLoca, which is built on top of Agentless-1.5 and improves the issue localization component. This appears to be related to the "oracle" aspect you mentioned, though the results don't contain specific information about "exhaustive configuration profiling," API costs, or the detailed cost metrics you're asking about.
+
+The search results do mention a SWE-Bench evaluation on the standard 500-instance dataset with API request failures, which relates to the 500 instances aspect of your query.
+
+However, the specific details about exhaustive configuration profiling, cost analysis, and API call metrics don't appear in these search results. If you're looking for a specific research paper or technical report with those details, you may need to refine your search query or provide additional context.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a496b01-c8ce-4d5c-b17a-259049a83bc3",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "ff77b27c-3573-4b4f-ab9a-da57a4a2c5bf",
+  "toolUseResult": {
+    "query": "oracle exhaustive configuration profiling SWE-bench Agentless cost API calls 500 instances",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013fZWDkT6cwKPHaRDLi9xMf",
+        "content": [
+          {
+            "title": "Dissecting the SWE-Bench Leaderboards: Profiling Submitters and Architectures of LLM- and Agent-Based Repair Systems",
+            "url": "https://arxiv.org/html/2506.17208v2"
+          },
+          {
+            "title": "Unable to Reproduce SWE-Bench 53% Success Rate with Default Configuration · Issue #10767 · OpenHands/OpenHands",
+            "url": "https://github.com/OpenHands/OpenHands/issues/10767"
+          },
+          {
+            "title": "Oracle Utilities Load Profiling and Settlement",
+            "url": "https://docs.oracle.com/cd/F17691_01/index.htm"
+          },
+          {
+            "title": "Dissecting the SWE-Bench Leaderboards: Profiling Submitters and",
+            "url": "https://arxiv.org/pdf/2506.17208"
+          },
+          {
+            "title": "Introducing SWE-bench Verified | OpenAI",
+            "url": "https://openai.com/index/introducing-swe-bench-verified/"
+          },
+          {
+            "title": "Using Application Performance Monitoring",
+            "url": "https://docs.oracle.com/en-us/iaas/application-performance-monitoring/doc/application-performance-monitoring-metrics.html"
+          },
+          {
+            "title": "Enabling Monitoring for Compute Instances",
+            "url": "https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/enablingmonitoring.htm"
+          },
+          {
+            "title": "Are “Solved Issues” in SWE-bench Really Solved Correctly? An Empirical Study",
+            "url": "https://arxiv.org/html/2503.15223v1"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.swebench.com/verified.html"
+          },
+          {
+            "title": "princeton-nlp/SWE-bench_Lite_oracle · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/princeton-nlp/SWE-bench_Lite_oracle"
+          }
+        ]
+      },
+      "Based on the search results, I found information related to your query. The most relevant finding is:\n\nSWE-bench Verified is a subset of the original test set from SWE-bench, consisting of 500 samples verified to be non-problematic by human annotators. This dataset has become a standard benchmark for evaluating software engineering agents and language models.\n\nThe search results also reference OrcaLoca, which is built on top of Agentless-1.5 and improves the issue localization component. This appears to be related to the \"oracle\" aspect you mentioned, though the results don't contain specific information about \"exhaustive configuration profiling,\" API costs, or the detailed cost metrics you're asking about.\n\nThe search results do mention a SWE-Bench evaluation on the standard 500-instance dataset with API request failures, which relates to the 500 instances aspect of your query.\n\nHowever, the specific details about exhaustive configuration profiling, cost analysis, and API call metrics don't appear in these search results. If you're looking for a specific research paper or technical report with those details, you may need to refine your search query or provide additional context."
+    ],
+    "durationSeconds": 5.628715316000016
+  },
+  "sourceToolAssistantUUID": "1a496b01-c8ce-4d5c-b17a-259049a83bc3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-11T22:44:15.955Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VcLdZ5RfJbtmXu4SZy7uQ8`</summary>
+
+```json
+{
+  "query": "Agentless repair pipeline API cost per instance SWE-bench GPT Claude inference 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff77b27c-3573-4b4f-ab9a-da57a4a2c5bf",
+  "isSidechain": false,
+  "requestId": "req_011CawbEum4PyJKg1NejJVaj",
+  "type": "assistant",
+  "uuid": "33ce844f-f9ac-4eb6-b3dc-76ea02654775",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GWX8ADBh5BRNn3uNnjMQ4Z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 849,
+      "cache_read_input_tokens": 44659,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 849,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 44659,
+          "cache_creation_input_tokens": 849,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 849
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-11T22:44:24.219Z_
+
+<details><summary>↩ Tool result · `toolu_01VcLdZ5RfJbtmXu4SZy7uQ8`</summary>
+
+```text
+Web search results for query: "Agentless repair pipeline API cost per instance SWE-bench GPT Claude inference 2025 2026"
+
+Links: [{"title":"SWE-Bench Coding Agent Leaderboard 2026: Claude vs GPT | Awesome Agents","url":"https://awesomeagents.ai/leaderboards/swe-bench-coding-agent-leaderboard/"},{"title":"LLM API Pricing 2026 — Compare GPT-5, Claude 4, Gemini 2.5, DeepSeek Costs | TLDL | TLDL","url":"https://www.tldl.io/resources/llm-api-pricing-2026"},{"title":"Pricing - Claude API Docs","url":"https://platform.claude.com/docs/en/about-claude/pricing"},{"title":"Agentless-Lite/README.md at main · sorendunn/Agentless-Lite","url":"https://github.com/sorendunn/Agentless-Lite/blob/main/README.md"},{"title":"LLM API Pricing Comparison 2026 — Cost Per Token for GPT, Claude, Gemini & More | BenchLM.ai","url":"https://benchlm.ai/llm-pricing"},{"title":"Anthropic API Pricing in 2026: Complete Guide — Models, Caching, Batch & Optimization","url":"https://www.finout.io/blog/anthropic-api-pricing"},{"title":"LLM API Pricing Comparison (2025): OpenAI, Gemini, Claude | IntuitionLabs","url":"https://intuitionlabs.ai/articles/llm-api-pricing-comparison-2025"},{"title":"GitHub - sorendunn/Agentless-Lite: Agentless Lite: RAG-based SWE-Bench software engineering scaffold · GitHub","url":"https://github.com/sorendunn/Agentless-Lite"},{"title":"AI API Pricing Comparison (2026): Grok vs Gemini vs GPT-4o vs Claude | IntuitionLabs","url":"https://intuitionlabs.ai/articles/ai-api-pricing-comparison-grok-gemini-openai-claude"},{"title":"LLM API Pricing Comparison 2026: 30+ Models, Every Provider | Inference.net","url":"https://inference.net/content/llm-api-pricing-comparison/"}]
+
+Based on the search results, here's what I found regarding Agentless repair pipeline API costs and related information:
+
+## Agentless Repair Pipeline Cost Per Instance
+
+Agentless Lite costs only $0.21 per instance ($0.12 if using the prepared retrieval contexts). This is from the Agentless Lite implementation released in February 2025, which increased RAG performance on the lite subset from 4.33% to 32.33%.
+
+## Performance on SWE-bench
+
+The Agentless approach is a deliberate counter-example: no tool calls, no iterative repair, just a structured three-stage pipeline (localization, repair, validation) that makes one shot at the patch. Its 34.2% at a fraction of the token cost of iterative agents makes it relevant for cost-sensitive use cases.
+
+## API Pricing Context (2025-2026)
+
+For inference costs using Claude and GPT models:
+
+- Claude Opus 4.7 (current flagship) — $5.00 input / $25.00 output per million tokens
+- Claude Sonnet 4.6 — $3.00 input / $15.00 output per million tokens
+- GPT-5.4 $2.50/M input, Claude Sonnet $3/$15 output as of April 2026
+
+The Agentless approach's low cost per instance ($0.12-$0.21) makes it an efficient alternative to more complex iterative repair pipelines for SWE-bench tasks, despite achieving lower pass rates than fully agentic approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "33ce844f-f9ac-4eb6-b3dc-76ea02654775",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "8fac8c9d-7190-46d5-9cdc-4a3883cffa04",
+  "toolUseResult": {
+    "query": "Agentless repair pipeline API cost per instance SWE-bench GPT Claude inference 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KwJF7zTPcdA7DSAEpjq5VM",
+        "content": [
+          {
+            "title": "SWE-Bench Coding Agent Leaderboard 2026: Claude vs GPT | Awesome Agents",
+            "url": "https://awesomeagents.ai/leaderboards/swe-bench-coding-agent-leaderboard/"
+          },
+          {
+            "title": "LLM API Pricing 2026 — Compare GPT-5, Claude 4, Gemini 2.5, DeepSeek Costs | TLDL | TLDL",
+            "url": "https://www.tldl.io/resources/llm-api-pricing-2026"
+          },
+          {
+            "title": "Pricing - Claude API Docs",
+            "url": "https://platform.claude.com/docs/en/about-claude/pricing"
+          },
+          {
+            "title": "Agentless-Lite/README.md at main · sorendunn/Agentless-Lite",
+            "url": "https://github.com/sorendunn/Agentless-Lite/blob/main/README.md"
+          },
+          {
+            "title": "LLM API Pricing Comparison 2026 — Cost Per Token for GPT, Claude, Gemini & More | BenchLM.ai",
+            "url": "https://benchlm.ai/llm-pricing"
+          },
+          {
+            "title": "Anthropic API Pricing in 2026: Complete Guide — Models, Caching, Batch & Optimization",
+            "url": "https://www.finout.io/blog/anthropic-api-pricing"
+          },
+          {
+            "title": "LLM API Pricing Comparison (2025): OpenAI, Gemini, Claude | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/llm-api-pricing-comparison-2025"
+          },
+          {
+            "title": "GitHub - sorendunn/Agentless-Lite: Agentless Lite: RAG-based SWE-Bench software engineering scaffold · GitHub",
+            "url": "https://github.com/sorendunn/Agentless-Lite"
+          },
+          {
+            "title": "AI API Pricing Comparison (2026): Grok vs Gemini vs GPT-4o vs Claude | IntuitionLabs",
+            "url": "https://intuitionlabs.ai/articles/ai-api-pricing-comparison-grok-gemini-openai-claude"
+          },
+          {
+            "title": "LLM API Pricing Comparison 2026: 30+ Models, Every Provider | Inference.net",
+            "url": "https://inference.net/content/llm-api-pricing-comparison/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding Agentless repair pipeline API costs and related information:\n\n## Agentless Repair Pipeline Cost Per Instance\n\nAgentless Lite costs only $0.21 per instance ($0.12 if using the prepared retrieval contexts). This is from the Agentless Lite implementation released in February 2025, which increased RAG performance on the lite subset from 4.33% to 32.33%.\n\n## Performance on SWE-bench\n\nThe Agentless approach is a deliberate counter-example: no tool calls, no iterative repair, just a structured three-stage pipeline (localization, repair, validation) that makes one shot at the patch. Its 34.2% at a fraction of the token cost of iterative agents makes it relevant for cost-sensitive use cases.\n\n## API Pricing Context (2025-2026)\n\nFor inference costs using Claude and GPT models:\n\n- Claude Opus 4.7 (current flagship) — $5.00 input / $25.00 output per million tokens\n- Claude Sonnet 4.6 — $3.00 input / $15.00 output per million tokens\n- GPT-5.4 $2.50/M input, Claude Sonnet $3/$15 output as of April 2026\n\nThe Agentless approach's low cost per instance ($0.12-$0.21) makes it an efficient alternative to more complex iterative repair pipelines for SWE-bench tasks, despite achieving lower pass rates than fully agentic approaches."
+    ],
+    "durationSeconds": 8.258860689999972
+  },
+  "sourceToolAssistantUUID": "33ce844f-f9ac-4eb6-b3dc-76ea02654775",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 74 · 2026-05-11T22:44:24.224Z_
+
+```json
+{
+  "parentUuid": "8fac8c9d-7190-46d5-9cdc-4a3883cffa04",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "8852cf83-6208-488a-a7ad-1f75e6782571",
+  "timestamp": "2026-05-11T22:44:24.224Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-11T22:44:27.300Z_
+
+Let me now do critical feasibility analysis on the compute budget and check for a major gap in the proposal.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8852cf83-6208-488a-a7ad-1f75e6782571",
+  "isSidechain": false,
+  "requestId": "req_011CawbFkpZuTuhyz2b4dA3p",
+  "type": "assistant",
+  "uuid": "fbb3b0fc-9e56-48b6-a740-3d66ab4127a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XP89ktfNxVoy4UKhafKj1J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1168,
+      "cache_read_input_tokens": 45508,
+      "output_tokens": 90,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1168,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 90,
+          "cache_read_input_tokens": 45508,
+          "cache_creation_input_tokens": 1168,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1168
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-11T22:44:27.873Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TZb1khZKAk2bnAivbF2BZR`</summary>
+
+```json
+{
+  "query": "Hierarchical Knowledge Injection LLM program repair ASE 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fbb3b0fc-9e56-48b6-a740-3d66ab4127a0",
+  "isSidechain": false,
+  "requestId": "req_011CawbFkpZuTuhyz2b4dA3p",
+  "type": "assistant",
+  "uuid": "4e4bac6c-95bb-4830-af9c-56395630ab2b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XP89ktfNxVoy4UKhafKj1J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1168,
+      "cache_read_input_tokens": 45508,
+      "output_tokens": 90,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1168,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 90,
+          "cache_read_input_tokens": 45508,
+          "cache_creation_input_tokens": 1168,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1168
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-11T22:44:34.443Z_
+
+<details><summary>↩ Tool result · `toolu_01TZb1khZKAk2bnAivbF2BZR`</summary>
+
+```text
+Web search results for query: "Hierarchical Knowledge Injection LLM program repair ASE 2025"
+
+Links: [{"title":"Hierarchical Knowledge Injection for Improving LLM-based Program Repair","url":"https://arxiv.org/html/2506.24015"},{"title":"[2506.24015] Hierarchical Knowledge Injection for Improving LLM-based Program Repair","url":"https://arxiv.org/abs/2506.24015"},{"title":"Hierarchical Knowledge Injection for Improving LLM-based Program Repair | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/11334717/"},{"title":"Bug Fixing with Broader Context: Enhancing LLM-Based Program Repair via Layered Knowledge Injection","url":"https://arxiv.org/html/2506.24015v1"},{"title":"GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4APR"},{"title":"AwesomeLLM4APR/README.md at main · iSEngLab/AwesomeLLM4APR","url":"https://github.com/iSEngLab/AwesomeLLM4APR/blob/main/README.md"},{"title":"Our paper on LLM-based Program Repair accepted at ASE ...","url":"https://www.linkedin.com/posts/preetha-chatterjee_hierarchical-knowledge-injection-for-improving-activity-7362238509417467904-J5xA"},{"title":"A Systematic Literature Review on Large Language Models","url":"https://arxiv.org/pdf/2405.01466"},{"title":"GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4SE"},{"title":"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v1"}]
+
+Based on the search results, here's what I found about the "Hierarchical Knowledge Injection for Improving LLM-based Program Repair" research:
+
+## Overview
+
+This paper investigates how automatically extracting and providing broader context can improve LLM-based program repair, beyond just bug-related information like error messages and stack traces.
+
+## Methodology
+
+The researchers propose a layered knowledge injection framework that incrementally augments LLMs with structured context, starting with the Bug Knowledge Layer (which includes information such as the buggy function and failing tests), expanding to the Repository Knowledge Layer (which adds structural dependencies, related files, and commit history), and finally injecting the Project Knowledge Layer.
+
+## Results
+
+The framework was evaluated on a dataset of 314 bugs from BugsInPy using two LLMs (Llama 3.3 and GPT-4o-mini), achieving a fix rate of 79% (250/314) using Llama 3.3, a significant improvement of 23% over previous work.
+
+All bug types show improvement with the addition of repository-level context, while only a subset benefit further from project-level knowledge, highlighting that different bug types require different levels of contextual information for effective repair.
+
+## Conference Publication
+
+This paper was published at ASE 2025 (Automated Software Engineering conference).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4e4bac6c-95bb-4830-af9c-56395630ab2b",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "0142b587-b1bb-4fe5-aeb9-8110acd15bd3",
+  "toolUseResult": {
+    "query": "Hierarchical Knowledge Injection LLM program repair ASE 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WM84Xq2JYQvVMdWviEBPHd",
+        "content": [
+          {
+            "title": "Hierarchical Knowledge Injection for Improving LLM-based Program Repair",
+            "url": "https://arxiv.org/html/2506.24015"
+          },
+          {
+            "title": "[2506.24015] Hierarchical Knowledge Injection for Improving LLM-based Program Repair",
+            "url": "https://arxiv.org/abs/2506.24015"
+          },
+          {
+            "title": "Hierarchical Knowledge Injection for Improving LLM-based Program Repair | IEEE Conference Publication | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/11334717/"
+          },
+          {
+            "title": "Bug Fixing with Broader Context: Enhancing LLM-Based Program Repair via Layered Knowledge Injection",
+            "url": "https://arxiv.org/html/2506.24015v1"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4APR"
+          },
+          {
+            "title": "AwesomeLLM4APR/README.md at main · iSEngLab/AwesomeLLM4APR",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4APR/blob/main/README.md"
+          },
+          {
+            "title": "Our paper on LLM-based Program Repair accepted at ASE ...",
+            "url": "https://www.linkedin.com/posts/preetha-chatterjee_hierarchical-knowledge-injection-for-improving-activity-7362238509417467904-J5xA"
+          },
+          {
+            "title": "A Systematic Literature Review on Large Language Models",
+            "url": "https://arxiv.org/pdf/2405.01466"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4SE"
+          },
+          {
+            "title": "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the \"Hierarchical Knowledge Injection for Improving LLM-based Program Repair\" research:\n\n## Overview\n\nThis paper investigates how automatically extracting and providing broader context can improve LLM-based program repair, beyond just bug-related information like error messages and stack traces.\n\n## Methodology\n\nThe researchers propose a layered knowledge injection framework that incrementally augments LLMs with structured context, starting with the Bug Knowledge Layer (which includes information such as the buggy function and failing tests), expanding to the Repository Knowledge Layer (which adds structural dependencies, related files, and commit history), and finally injecting the Project Knowledge Layer.\n\n## Results\n\nThe framework was evaluated on a dataset of 314 bugs from BugsInPy using two LLMs (Llama 3.3 and GPT-4o-mini), achieving a fix rate of 79% (250/314) using Llama 3.3, a significant improvement of 23% over previous work.\n\nAll bug types show improvement with the addition of repository-level context, while only a subset benefit further from project-level knowledge, highlighting that different bug types require different levels of contextual information for effective repair.\n\n## Conference Publication\n\nThis paper was published at ASE 2025 (Automated Software Engineering conference)."
+    ],
+    "durationSeconds": 6.56472411499999
+  },
+  "sourceToolAssistantUUID": "4e4bac6c-95bb-4830-af9c-56395630ab2b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 78_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "0142b587-b1bb-4fe5-aeb9-8110acd15bd3",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of adaptive context orchestration for code repair",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-11T22:44:37.676Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MJTq96QB85eJqUnULZ28MX`</summary>
+
+```json
+{
+  "query": "SWE-bench Agentless open source model self-hosted GPU hours per run Qwen CodeLlama DeepSeek"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0142b587-b1bb-4fe5-aeb9-8110acd15bd3",
+  "isSidechain": false,
+  "requestId": "req_011CawbGWXs7hRR3dRhu1NmE",
+  "type": "assistant",
+  "uuid": "48631091-3f36-4b85-99bb-ce2822e70fb6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N6CqEHKHvEcfuzPqdrjUyr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 981,
+      "cache_read_input_tokens": 46676,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 981,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 46676,
+          "cache_creation_input_tokens": 981,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 981
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-11T22:44:44.977Z_
+
+<details><summary>↩ Tool result · `toolu_01MJTq96QB85eJqUnULZ28MX`</summary>
+
+```text
+Web search results for query: "SWE-bench Agentless open source model self-hosted GPU hours per run Qwen CodeLlama DeepSeek"
+
+Links: [{"title":"Best Open Source Self-Hosted LLMs for Coding in 2026 - Pinggy","url":"https://pinggy.io/blog/best_open_source_self_hosted_llms_for_coding/"},{"title":"SWE-bench Results Viewer","url":"https://www.swebench.com/viewer.html"},{"title":"The Best Open-Source LLMs for Agentic Coding in 2026 | MindStudio","url":"https://www.mindstudio.ai/blog/best-open-source-llms-agentic-coding-2026"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"SWE-bench Verified","url":"https://www.vals.ai/benchmarks/swebench"},{"title":"SWE-bench + | OpenLM.ai","url":"https://openlm.ai/swe-bench/"},{"title":"Dissecting the SWE-Bench Leaderboards: Profiling Submitters and Architectures of LLM- and Agent-Based Repair Systems","url":"https://arxiv.org/html/2506.17208v2"},{"title":"SWE-rebench Leaderboard","url":"https://swe-rebench.com/"},{"title":"Open Source AI vs Paid AI for Coding: The Ultimate 2026 Comparison Guide | by Aarambh Dev Hub | Medium","url":"https://aarambhdevhub.medium.com/open-source-ai-vs-paid-ai-for-coding-the-ultimate-2026-comparison-guide-ab2ba6813c1d"},{"title":"Best AI for Coding (2026): Every Model Ranked by Real Benchmarks","url":"https://www.morphllm.com/best-ai-model-for-coding"}]
+
+Based on the search results, I found information about SWE-bench performance for Qwen, DeepSeek, and CodeLlama models, though the specific information about "GPU hours per run" for Agentless on self-hosted systems is limited. Here's what I found:
+
+## SWE-bench Performance
+
+DeepSeek V3.2 scores 73.1% on SWE-bench Verified, while DeepSeek V3.2 scores 72-74% SWE-bench at $0.28/$0.42 in API pricing.
+
+The Qwen3-Coder family from Alibaba represents one of the most comprehensive open source coding model lineups available. SWE-Fixer uses fine-tuned open-source models (Qwen 2.5) trained using Chain-of-Thought (CoT) data, achieving 24.67% on Lite, 32.8% on Verified.
+
+## Self-Hosting Capabilities
+
+For self-hosting, DeepSeek V3.2 and Qwen 2.5 Coder 32B run on consumer hardware.
+
+The initial SWE-bench baseline fine-tuned CodeLlama on 19,000 issues to create the SWE-LLAMA model, which is used during the repair stage.
+
+## Agentless Approach
+
+Agentless is a repair workflow based on LLMs, composed of three main stages: Localization, Repair and Validation (27.33% on Lite).
+
+Unfortunately, the search results do not contain specific information about GPU hours per run for Agentless with these open-source models on self-hosted systems. You may need to consult the official Agentless repository or research papers for those specific computational requirements.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "48631091-3f36-4b85-99bb-ce2822e70fb6",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "d43a9c35-10f3-4650-81d1-8c05eacd3bd0",
+  "toolUseResult": {
+    "query": "SWE-bench Agentless open source model self-hosted GPU hours per run Qwen CodeLlama DeepSeek",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RAjXKoCC7JvuioH5JdxM9G",
+        "content": [
+          {
+            "title": "Best Open Source Self-Hosted LLMs for Coding in 2026 - Pinggy",
+            "url": "https://pinggy.io/blog/best_open_source_self_hosted_llms_for_coding/"
+          },
+          {
+            "title": "SWE-bench Results Viewer",
+            "url": "https://www.swebench.com/viewer.html"
+          },
+          {
+            "title": "The Best Open-Source LLMs for Agentic Coding in 2026 | MindStudio",
+            "url": "https://www.mindstudio.ai/blog/best-open-source-llms-agentic-coding-2026"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.vals.ai/benchmarks/swebench"
+          },
+          {
+            "title": "SWE-bench + | OpenLM.ai",
+            "url": "https://openlm.ai/swe-bench/"
+          },
+          {
+            "title": "Dissecting the SWE-Bench Leaderboards: Profiling Submitters and Architectures of LLM- and Agent-Based Repair Systems",
+            "url": "https://arxiv.org/html/2506.17208v2"
+          },
+          {
+            "title": "SWE-rebench Leaderboard",
+            "url": "https://swe-rebench.com/"
+          },
+          {
+            "title": "Open Source AI vs Paid AI for Coding: The Ultimate 2026 Comparison Guide | by Aarambh Dev Hub | Medium",
+            "url": "https://aarambhdevhub.medium.com/open-source-ai-vs-paid-ai-for-coding-the-ultimate-2026-comparison-guide-ab2ba6813c1d"
+          },
+          {
+            "title": "Best AI for Coding (2026): Every Model Ranked by Real Benchmarks",
+            "url": "https://www.morphllm.com/best-ai-model-for-coding"
+          }
+        ]
+      },
+      "Based on the search results, I found information about SWE-bench performance for Qwen, DeepSeek, and CodeLlama models, though the specific information about \"GPU hours per run\" for Agentless on self-hosted systems is limited. Here's what I found:\n\n## SWE-bench Performance\n\nDeepSeek V3.2 scores 73.1% on SWE-bench Verified, while DeepSeek V3.2 scores 72-74% SWE-bench at $0.28/$0.42 in API pricing.\n\nThe Qwen3-Coder family from Alibaba represents one of the most comprehensive open source coding model lineups available. SWE-Fixer uses fine-tuned open-source models (Qwen 2.5) trained using Chain-of-Thought (CoT) data, achieving 24.67% on Lite, 32.8% on Verified.\n\n## Self-Hosting Capabilities\n\nFor self-hosting, DeepSeek V3.2 and Qwen 2.5 Coder 32B run on consumer hardware.\n\nThe initial SWE-bench baseline fine-tuned CodeLlama on 19,000 issues to create the SWE-LLAMA model, which is used during the repair stage.\n\n## Agentless Approach\n\nAgentless is a repair workflow based on LLMs, composed of three main stages: Localization, Repair and Validation (27.33% on Lite).\n\nUnfortunately, the search results do not contain specific information about GPU hours per run for Agentless with these open-source models on self-hosted systems. You may need to consult the official Agentless repository or research papers for those specific computational requirements."
+    ],
+    "durationSeconds": 7.2973485290000095
+  },
+  "sourceToolAssistantUUID": "48631091-3f36-4b85-99bb-ce2822e70fb6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82 · 2026-05-11T22:44:49.147Z_
+
+Now let me do the critical computation. The user's hard constraint is **≤200 H100-hours**. Let me verify whether the oracle profiling step is feasible within this budget.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d43a9c35-10f3-4650-81d1-8c05eacd3bd0",
+  "isSidechain": false,
+  "requestId": "req_011CawbHHdFeFm9STsCYhVkB",
+  "type": "assistant",
+  "uuid": "8fae9f8d-c82c-4bdf-8b87-7870bce78ba9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CRP16DpEZwGQEJTbcH23xN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1013,
+      "cache_read_input_tokens": 47657,
+      "output_tokens": 119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1013,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 119,
+          "cache_read_input_tokens": 47657,
+          "cache_creation_input_tokens": 1013,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1013
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-11T22:44:49.950Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T5HwrcZiCRGCXv9K2sXuFr`</summary>
+
+```json
+{
+  "query": "Agentless SWE-bench Verified 500 instances inference time per instance self-hosted 80B model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8fae9f8d-c82c-4bdf-8b87-7870bce78ba9",
+  "isSidechain": false,
+  "requestId": "req_011CawbHHdFeFm9STsCYhVkB",
+  "type": "assistant",
+  "uuid": "7af68b3c-ecee-4386-9da4-87dfb5728f52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CRP16DpEZwGQEJTbcH23xN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1013,
+      "cache_read_input_tokens": 47657,
+      "output_tokens": 119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1013,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 119,
+          "cache_read_input_tokens": 47657,
+          "cache_creation_input_tokens": 1013,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1013
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-11T22:45:00.324Z_
+
+<details><summary>↩ Tool result · `toolu_01T5HwrcZiCRGCXv9K2sXuFr`</summary>
+
+```text
+Web search results for query: "Agentless SWE-bench Verified 500 instances inference time per instance self-hosted 80B model"
+
+Links: [{"title":"Introducing SWE-bench Verified | OpenAI","url":"https://openai.com/index/introducing-swe-bench-verified/"},{"title":"SWE-bench Verified","url":"https://www.swebench.com/verified.html"},{"title":"SWE-bench Verified | Epoch AI","url":"https://epoch.ai/benchmarks/swe-bench-verified"},{"title":"SWE-bench/SWE-bench_Verified · Datasets at Hugging Face","url":"https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified"},{"title":"SWE-TRACE: Optimizing Long-Horizon SWE Agents through Rubric Process Reward Models and Heuristic Test-Time Scaling","url":"https://arxiv.org/html/2604.14820"},{"title":"SWE-bench Verified","url":"https://www.vals.ai/benchmarks/swebench"},{"title":"Dissecting the SWE-Bench Leaderboards: Profiling Submitters and Architectures of LLM- and Agent-Based Repair Systems","url":"https://arxiv.org/html/2506.17208v2"},{"title":"Kimi-Dev: Agentless Training as Skill Prior for SWE-agents | OpenReview","url":"https://openreview.net/forum?id=tYppHuGhxJ"},{"title":"SWE-Bench Verified Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/swe-bench-verified"},{"title":"Inference - SWE-bench","url":"https://www.swebench.com/SWE-bench/reference/inference/"}]
+
+I found information about SWE-bench Verified and Agentless, but the search results don't contain specific data about inference time per instance for self-hosted 80B models. Let me try a more targeted search for that specific information.
+
+Links: [{"title":"Serverless vs. self-hosted LLM inference | LLM Inference Handbook","url":"https://bentoml.com/llm/llm-inference-basics/serverless-vs-self-hosted-llm-inference"},{"title":"The Best Open-Source LLMs in 2026","url":"https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models"},{"title":"Run Your First Custom Inference Workload | Self-hosted | Run:ai Documentation","url":"https://run-ai-docs.nvidia.com/self-hosted/workloads-in-nvidia-run-ai/using-inference/quick-starts/inference-quickstart"},{"title":"Atlassian’s Inference Engine, our self-hosted AI inference service - Inside Atlassian","url":"https://www.atlassian.com/blog/atlassian-engineering/inference-engine"},{"title":"LLM Inference as a Service vs. Self-Hosted | Decision Guide","url":"https://deepsense.ai/blog/llm-inference-as-a-service-vs-self-hosted-which-is-right-for-your-business/"},{"title":"SelfHostLLM - GPU Memory Calculator for LLM Inference","url":"https://selfhostllm.org/"},{"title":"GitHub - ThreeSR/Awesome-Inference-Time-Scaling: Paper List of Inference/Test Time Scaling/Computing · GitHub","url":"https://github.com/ThreeSR/Awesome-Inference-Time-Scaling"},{"title":"Self-Hosting Your First LLM | Towards Data Science","url":"https://towardsdatascience.com/self-hosting-your-first-llm/"},{"title":"Self-Hosted AI Agents","url":"https://inference.sh/self-hosted-agents"},{"title":"Serverless Inference | Together AI","url":"https://www.together.ai/serverless-inference"}]
+
+Let me search more directly for the Agentless research paper which likely contains the performance metrics you're asking about.
+
+Links: [{"title":"[2407.01489] Agentless: Demystifying LLM-based Software Engineering Agents","url":"https://arxiv.org/abs/2407.01489"},{"title":"Paper page - Agentless: Demystifying LLM-based Software Engineering Agents","url":"https://huggingface.co/papers/2407.01489"},{"title":"AGENTLESS : Demystifying LLM-based Software Engineering Agents","url":"https://arxiv.org/pdf/2407.01489"},{"title":"[2407.01489v2] Agentless: Demystifying LLM-based Software Engineering Agents","url":"https://arxiv.org/abs/2407.01489v2"},{"title":"[2407.01489v1] Agentless: Demystifying LLM-based Software Engineering Agents","url":"https://arxiv.org/abs/2407.01489v1"},{"title":"(PDF) Agentless: Demystifying LLM-based Software Engineering Agents","url":"https://www.researchgate.net/publication/381911059_Agentless_Demystifying_LLM-based_Software_Engineering_Agents"},{"title":"Agentless: Demystifying LLM-based Software Engineering Agents - Welcome to Soren Dunn’s Homepage","url":"https://sorendunn.github.io/publication/Agentless"},{"title":"Agentless: Demystifying LLM-based Software Engineering Agents","url":"https://www.emergentmind.com/papers/2407.01489"},{"title":"dblp: Agentless: Demystifying LLM-based Software Engineering Agents.","url":"https://dblp.org/rec/journals/corr/abs-2407-01489.html"},{"title":"GitHub - OpenAutoCoder/Agentless: Agentless🐱: an agentless approach to automatically solve software development problems","url":"https://github.com/OpenAutoCoder/Agentless"}]
+
+Based on my search results, I found information about SWE-bench Verified, which is a subset of the original test set from SWE-bench, consisting of 500 samples verified to be non-problematic by human annotators. I also found the Agentless paper reference (arxiv 2407.01489).
+
+However, the search results do not contain specific data about **inference time per instance for a self-hosted 80B model** when evaluating Agentless on the SWE-bench Verified 500 instances. While the search returned references to the Agentless paper and general information about the benchmark, the actual performance metrics you're asking for—specifically the inference latency for an 80B model—are not included in the accessible summaries from these search results.
+
+To find this specific information, you would likely need to:
+1. Access the full PDF of the Agentless paper directly from arXiv (arxiv.org/abs/2407.01489)
+2. Check if there's a supplementary materials document with detailed performance benchmarks
+3. Look at the GitHub repository (github.com/OpenAutoCoder/Agentless) for any published performance metrics or reproducibility notes
+
+The paper may contain timing data in its experiments or appendix sections that aren't captured in the web summaries I found.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7af68b3c-ecee-4386-9da4-87dfb5728f52",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "c0926fcf-f510-48b2-85e2-55de8f2ac6cc",
+  "toolUseResult": {
+    "query": "Agentless SWE-bench Verified 500 instances inference time per instance self-hosted 80B model",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MaEAYHhsGUHCGqt8RbMiWW",
+        "content": [
+          {
+            "title": "Introducing SWE-bench Verified | OpenAI",
+            "url": "https://openai.com/index/introducing-swe-bench-verified/"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.swebench.com/verified.html"
+          },
+          {
+            "title": "SWE-bench Verified | Epoch AI",
+            "url": "https://epoch.ai/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "SWE-bench/SWE-bench_Verified · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified"
+          },
+          {
+            "title": "SWE-TRACE: Optimizing Long-Horizon SWE Agents through Rubric Process Reward Models and Heuristic Test-Time Scaling",
+            "url": "https://arxiv.org/html/2604.14820"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.vals.ai/benchmarks/swebench"
+          },
+          {
+            "title": "Dissecting the SWE-Bench Leaderboards: Profiling Submitters and Architectures of LLM- and Agent-Based Repair Systems",
+            "url": "https://arxiv.org/html/2506.17208v2"
+          },
+          {
+            "title": "Kimi-Dev: Agentless Training as Skill Prior for SWE-agents | OpenReview",
+            "url": "https://openreview.net/forum?id=tYppHuGhxJ"
+          },
+          {
+            "title": "SWE-Bench Verified Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "Inference - SWE-bench",
+            "url": "https://www.swebench.com/SWE-bench/reference/inference/"
+          }
+        ]
+      },
+      "I found information about SWE-bench Verified and Agentless, but the search results don't contain specific data about inference time per instance for self-hosted 80B models. Let me try a more targeted search for that specific information.",
+      {
+        "tool_use_id": "srvtoolu_01QUFKy8UxVwJrczkrP8KaKw",
+        "content": [
+          {
+            "title": "Serverless vs. self-hosted LLM inference | LLM Inference Handbook",
+            "url": "https://bentoml.com/llm/llm-inference-basics/serverless-vs-self-hosted-llm-inference"
+          },
+          {
+            "title": "The Best Open-Source LLMs in 2026",
+            "url": "https://www.bentoml.com/blog/navigating-the-world-of-open-source-large-language-models"
+          },
+          {
+            "title": "Run Your First Custom Inference Workload | Self-hosted | Run:ai Documentation",
+            "url": "https://run-ai-docs.nvidia.com/self-hosted/workloads-in-nvidia-run-ai/using-inference/quick-starts/inference-quickstart"
+          },
+          {
+            "title": "Atlassian’s Inference Engine, our self-hosted AI inference service - Inside Atlassian",
+            "url": "https://www.atlassian.com/blog/atlassian-engineering/inference-engine"
+          },
+          {
+            "title": "LLM Inference as a Service vs. Self-Hosted | Decision Guide",
+            "url": "https://deepsense.ai/blog/llm-inference-as-a-service-vs-self-hosted-which-is-right-for-your-business/"
+          },
+          {
+            "title": "SelfHostLLM - GPU Memory Calculator for LLM Inference",
+            "url": "https://selfhostllm.org/"
+          },
+          {
+            "title": "GitHub - ThreeSR/Awesome-Inference-Time-Scaling: Paper List of Inference/Test Time Scaling/Computing · GitHub",
+            "url": "https://github.com/ThreeSR/Awesome-Inference-Time-Scaling"
+          },
+          {
+            "title": "Self-Hosting Your First LLM | Towards Data Science",
+            "url": "https://towardsdatascience.com/self-hosting-your-first-llm/"
+          },
+          {
+            "title": "Self-Hosted AI Agents",
+            "url": "https://inference.sh/self-hosted-agents"
+          },
+          {
+            "title": "Serverless Inference | Together AI",
+            "url": "https://www.together.ai/serverless-inference"
+          }
+        ]
+      },
+      "Let me search more directly for the Agentless research paper which likely contains the performance metrics you're asking about.",
+      {
+        "tool_use_id": "srvtoolu_01KiUmYLrZ17MKJnGH4Tjae8",
+        "content": [
+          {
+            "title": "[2407.01489] Agentless: Demystifying LLM-based Software Engineering Agents",
+            "url": "https://arxiv.org/abs/2407.01489"
+          },
+          {
+            "title": "Paper page - Agentless: Demystifying LLM-based Software Engineering Agents",
+            "url": "https://huggingface.co/papers/2407.01489"
+          },
+          {
+            "title": "AGENTLESS : Demystifying LLM-based Software Engineering Agents",
+            "url": "https://arxiv.org/pdf/2407.01489"
+          },
+          {
+            "title": "[2407.01489v2] Agentless: Demystifying LLM-based Software Engineering Agents",
+            "url": "https://arxiv.org/abs/2407.01489v2"
+          },
+          {
+            "title": "[2407.01489v1] Agentless: Demystifying LLM-based Software Engineering Agents",
+            "url": "https://arxiv.org/abs/2407.01489v1"
+          },
+          {
+            "title": "(PDF) Agentless: Demystifying LLM-based Software Engineering Agents",
+            "url": "https://www.researchgate.net/publication/381911059_Agentless_Demystifying_LLM-based_Software_Engineering_Agents"
+          },
+          {
+            "title": "Agentless: Demystifying LLM-based Software Engineering Agents - Welcome to Soren Dunn’s Homepage",
+            "url": "https://sorendunn.github.io/publication/Agentless"
+          },
+          {
+            "title": "Agentless: Demystifying LLM-based Software Engineering Agents",
+            "url": "https://www.emergentmind.com/papers/2407.01489"
+          },
+          {
+            "title": "dblp: Agentless: Demystifying LLM-based Software Engineering Agents.",
+            "url": "https://dblp.org/rec/journals/corr/abs-2407-01489.html"
+          },
+          {
+            "title": "GitHub - OpenAutoCoder/Agentless: Agentless🐱: an agentless approach to automatically solve software development problems",
+            "url": "https://github.com/OpenAutoCoder/Agentless"
+          }
+        ]
+      },
+      "Based on my search results, I found information about SWE-bench Verified, which is a subset of the original test set from SWE-bench, consisting of 500 samples verified to be non-problematic by human annotators. I also found the Agentless paper reference (arxiv 2407.01489).\n\nHowever, the search results do not contain specific data about **inference time per instance for a self-hosted 80B model** when evaluating Agentless on the SWE-bench Verified 500 instances. While the search returned references to the Agentless paper and general information about the benchmark, the actual performance metrics you're asking for—specifically the inference latency for an 80B model—are not included in the accessible summaries from these search results.\n\nTo find this specific information, you would likely need to:\n1. Access the full PDF of the Agentless paper directly from arXiv (arxiv.org/abs/2407.01489)\n2. Check if there's a supplementary materials document with detailed performance benchmarks\n3. Look at the GitHub repository (github.com/OpenAutoCoder/Agentless) for any published performance metrics or reproducibility notes\n\nThe paper may contain timing data in its experiments or appendix sections that aren't captured in the web summaries I found."
+    ],
+    "durationSeconds": 10.368487762000004
+  },
+  "sourceToolAssistantUUID": "7af68b3c-ecee-4386-9da4-87dfb5728f52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-11T22:45:03.821Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EsvE1yFwZW4TvEKUR8dbHP`</summary>
+
+```json
+{
+  "query": "Qwen3-Coder-Next 80B SWE-bench inference cost GPU memory VRAM requirement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0926fcf-f510-48b2-85e2-55de8f2ac6cc",
+  "isSidechain": false,
+  "requestId": "req_011CawbJRChL8SMJ8wPffiFZ",
+  "type": "assistant",
+  "uuid": "4892f2cd-5348-4b20-b164-db1eaa0a7d33",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ryii4TkGkHac26qaJTZmwp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1970,
+      "cache_read_input_tokens": 48670,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1970,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 48670,
+          "cache_creation_input_tokens": 1970,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1970
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-11T22:45:13.047Z_
+
+<details><summary>↩ Tool result · `toolu_01EsvE1yFwZW4TvEKUR8dbHP`</summary>
+
+```text
+Web search results for query: "Qwen3-Coder-Next 80B SWE-bench inference cost GPU memory VRAM requirement"
+
+Links: [{"title":"Qwen3-Coder-Next: Local Coding AI, 70% SWE-Bench (2026) | Local AI Master","url":"https://localaimaster.com/models/qwen-3-coder-next"},{"title":"Qwen3-Coder-Next: The Complete 2026 Guide to Running Powerful AI Coding Agents Locally - DEV Community","url":"https://dev.to/sienna/qwen3-coder-next-the-complete-2026-guide-to-running-powerful-ai-coding-agents-locally-1k95"},{"title":"Qwen3-Coder-Next: How to Run Locally | Unsloth Documentation","url":"https://unsloth.ai/docs/models/qwen3-coder-next"},{"title":"Qwen/Qwen3-Coder-Next · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-Coder-Next"},{"title":"Qwen/Qwen3-Coder-Next","url":"https://lambda.ai/inference-models/qwen/qwen3-coder-next"},{"title":"Qwen3-Coder-Next Hardware Guide — GPU, VRAM & RAM (2026) | Compute Market","url":"https://www.compute-market.com/blog/qwen-3-coder-next-local-hardware-guide-2026"},{"title":"Qwen/Qwen3-Next-80B-A3B-Instruct · How much GPU memory is needed for local deployment?","url":"https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct/discussions/7"},{"title":"Qwen3-Coder-Next: Pushing Small Hybrid Models","url":"https://qwen.ai/blog?id=qwen3-coder-next"},{"title":"Qwen/Qwen3-Next-80B-A3B-Thinking · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Thinking"},{"title":"Qwen3 Coder Next 80B A3B: what it takes to run it locally","url":"https://www.hardware-corner.net/qwen3-coder-next-hardware-requirements/"}]
+
+Based on the search results, here's comprehensive information about Qwen3-Coder-Next's GPU memory requirements, SWE-bench performance, and inference costs:
+
+## GPU Memory (VRAM) Requirements
+
+At Q4_K_M quantization (the most common balance of quality and size), Qwen3-Coder-Next needs ~52 GB of VRAM. Here's the breakdown by quantization level:
+
+- Q5_K_M is ~64 GB, Q6 is ~75 GB, BF16 is ~160 GB
+- It runs on 46GB RAM/VRAM/unified memory (85GB for 8-bit)
+
+That fits in 2× RTX 5090 (32 GB each), 1× H100 (80 GB), 1× A100 80GB, 2× RTX 4090 (24 GB each — tight, may need to reduce context), or 1× M3 Ultra Mac Studio with 96 GB unified memory.
+
+## SWE-Bench Performance
+
+Qwen3-Coder-Next is an 80B/3B active MoE model with 70.6% SWE-Bench Verified score, which is the best coding score for any open-weight model.
+
+## Inference Performance & Speed
+
+With only 3B parameters active per token, the model achieves fast inference — typically 60-120 tokens/second on a single H100.
+
+## Key Hardware Consideration
+
+A dense 80B model would need ~48GB of pure VRAM — two RTX 4090s minimum. Qwen3-Coder-Next's MoE structure lets you keep the 3B active experts in fast VRAM and park the remaining 77B of idle experts in system RAM or NVMe, swapping them in on demand.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4892f2cd-5348-4b20-b164-db1eaa0a7d33",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "d62fb74b-925d-447b-988c-26547252fe85",
+  "toolUseResult": {
+    "query": "Qwen3-Coder-Next 80B SWE-bench inference cost GPU memory VRAM requirement",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014hKtDu4CAvmXjTs4AFZ5kB",
+        "content": [
+          {
+            "title": "Qwen3-Coder-Next: Local Coding AI, 70% SWE-Bench (2026) | Local AI Master",
+            "url": "https://localaimaster.com/models/qwen-3-coder-next"
+          },
+          {
+            "title": "Qwen3-Coder-Next: The Complete 2026 Guide to Running Powerful AI Coding Agents Locally - DEV Community",
+            "url": "https://dev.to/sienna/qwen3-coder-next-the-complete-2026-guide-to-running-powerful-ai-coding-agents-locally-1k95"
+          },
+          {
+            "title": "Qwen3-Coder-Next: How to Run Locally | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/qwen3-coder-next"
+          },
+          {
+            "title": "Qwen/Qwen3-Coder-Next · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-Coder-Next"
+          },
+          {
+            "title": "Qwen/Qwen3-Coder-Next",
+            "url": "https://lambda.ai/inference-models/qwen/qwen3-coder-next"
+          },
+          {
+            "title": "Qwen3-Coder-Next Hardware Guide — GPU, VRAM & RAM (2026) | Compute Market",
+            "url": "https://www.compute-market.com/blog/qwen-3-coder-next-local-hardware-guide-2026"
+          },
+          {
+            "title": "Qwen/Qwen3-Next-80B-A3B-Instruct · How much GPU memory is needed for local deployment?",
+            "url": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct/discussions/7"
+          },
+          {
+            "title": "Qwen3-Coder-Next: Pushing Small Hybrid Models",
+            "url": "https://qwen.ai/blog?id=qwen3-coder-next"
+          },
+          {
+            "title": "Qwen/Qwen3-Next-80B-A3B-Thinking · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Thinking"
+          },
+          {
+            "title": "Qwen3 Coder Next 80B A3B: what it takes to run it locally",
+            "url": "https://www.hardware-corner.net/qwen3-coder-next-hardware-requirements/"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about Qwen3-Coder-Next's GPU memory requirements, SWE-bench performance, and inference costs:\n\n## GPU Memory (VRAM) Requirements\n\nAt Q4_K_M quantization (the most common balance of quality and size), Qwen3-Coder-Next needs ~52 GB of VRAM. Here's the breakdown by quantization level:\n\n- Q5_K_M is ~64 GB, Q6 is ~75 GB, BF16 is ~160 GB\n- It runs on 46GB RAM/VRAM/unified memory (85GB for 8-bit)\n\nThat fits in 2× RTX 5090 (32 GB each), 1× H100 (80 GB), 1× A100 80GB, 2× RTX 4090 (24 GB each — tight, may need to reduce context), or 1× M3 Ultra Mac Studio with 96 GB unified memory.\n\n## SWE-Bench Performance\n\nQwen3-Coder-Next is an 80B/3B active MoE model with 70.6% SWE-Bench Verified score, which is the best coding score for any open-weight model.\n\n## Inference Performance & Speed\n\nWith only 3B parameters active per token, the model achieves fast inference — typically 60-120 tokens/second on a single H100.\n\n## Key Hardware Consideration\n\nA dense 80B model would need ~48GB of pure VRAM — two RTX 4090s minimum. Qwen3-Coder-Next's MoE structure lets you keep the 3B active experts in fast VRAM and park the remaining 77B of idle experts in system RAM or NVMe, swapping them in on demand."
+    ],
+    "durationSeconds": 9.221327465000039
+  },
+  "sourceToolAssistantUUID": "4892f2cd-5348-4b20-b164-db1eaa0a7d33",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87 · 2026-05-11T22:46:12.183Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a much clearer picture. Let me do the critical feasibility analysis:
+
+**Compute Budget Analysis:**
+
+The user's hard constraint is ≤200 H100-hours.
+
+The proposal calls for:
+- Oracle profiling: Running Agentless pipeline across 18 configurations × N training instances
+- The proposal says "200 training instances" in manual mode
+- But the auto research mode says "500 instances"
+
+Let me calculate: 
+- If using Qwen3-Coder-Next 80B as the repair backbone, it can run on a single H100
+- Agentless pipeline per instance costs ~$0.34 (with API calls) but with self-hosted, it's about GPU time
+
+
+- Each run involves localization with multiple LLM calls, patch generation, and test validation
+- At 10-15 minutes per instance with a self-hosted 80B model, 18 configs × 200 instances would need 600-900 GPU-hours, which massively exceeds the 200 H100-hour budget
+- Even optimistically at 5 minutes per instance, that's still 300 H100-hours just for the oracle profiling step, before accounting for policy training and evaluation
+
+But wait—Qwen3-Coder-Next is an MoE model with only 3B active parameters, hitting 60-120 tokens/sec on H100. The Agentless pipeline is actually more token-efficient than I initially thought: localization needs a few LLM calls generating 1-2K tokens each, repair generates 5-10 patch candidates at 500-1000 tokens each, so roughly 20-50K tokens per instance total. At 60 tokens/sec, that's only about 250-500 seconds per run, which is much more feasible.
+
+Recalculating with 7.5 minutes per configuration: 18 configs × 200 instances × 7.5 minutes gives 450 H100-hours, still 2.25x over budget. Even cutting to 100 instances only gets me to 225 H100-hours, which is still too high. The real question is whether they're actually self-hosting Qwen3-Coder-Next for inference or relying on API calls, because that fundamentally changes the compute requirements.
+
+Looking at the proposal's stated 600-800 A100-hours for manual mode—that's already a massive red flag. Converting to H100 equivalents (roughly 2x faster), that's still 300-400 H100-hours, which blows past the 200-hour constraint. So I'm facing a critical feasibility problem: the compute budget the proposal requires far exceeds what the user has available, and there's also a 16-day timeline constraint to consider.
+
+The generator estimates 4-6 months for manual work, with even the automated research path taking 10-18 days—that's cutting it extremely close to the deadline. Beyond the timeline crunch, there's a venue mismatch: the user wants EMNLP 2026 via the ARR May cycle, but the generator lists ICSE 2027 and AAAI 2027 as primary targets. The work itself leans more toward software engineering (program repair, fault localization) than NLP, so EMNLP might not be the right fit. On novelty, the core contribution—learning a meta-controller to select optimal configurations per bug—is reasonably novel in its specific formulation, though there are some existing approaches in this space.
+
+Looking at the related work more carefully, AdaPatcher already does adaptive program repair with bug localization, SWEzze trains a reranker for minimal context, and SWE-Pruner handles adaptive context pruning. The proposed approach essentially combines two existing insights—that granularity and context amount both matter—into a joint selector, which feels somewhat incremental. More fundamentally, this is a software engineering paper about repair pipeline orchestration, which belongs at venues like ICSE, ASE, or FSE rather than EMNLP. The NLP component—training a small cross-encoder—is relatively thin for an NLP-focused venue. I'm also noticing the generator didn't cite AdaPatcher from AAAI 2025, which is a notable omission given it's an oral presentation and directly relevant.
+
+The oracle profiling approach of running 18 exhaustive configurations is expensive and methodologically problematic because the Agentless pipeline has significant randomness from temperature and sampling, so the labels would be quite noisy without multiple runs per configuration. There's also a contamination issue with SWE-bench Verified that affects both the oracle profiling and evaluation, raising questions about generalizability.
+
+When I examine the claimed gap more closely—that no existing system jointly adapts both granularity and context amount—it doesn't quite hold up. SIADAFIX adapts repair difficulty based on issue classification, which implicitly affects context and approach. SWE-Pruner already does per-task context pruning, SWEzze trains to select minimal sufficient context, and ARISE provides multi-granularity graph representations.
+
+The joint granularity-budget formulation is novel in its specific framing, but I'm not convinced the joint optimization is actually better than doing it sequentially—first selecting granularity, then budget. The 18-configuration grid is also quite small and might not capture meaningful variation. The bug signal features like error type and stack trace may not be predictive enough to reliably guide configuration selection.
+
+Looking at the scoring, the learned meta-controller for joint selection is incremental and timely as a natural follow-up to empirical studies, but it's primarily an engineering contribution—combining two existing insights into a selector rather than introducing new methodology. The novelty score feels like 3/5, and feasibility-wise, the compute requirements are substantial at 600-800 A100-hours minimum.
+
+The real problem is the feasibility gap: even in automated mode, the compute needs (1800-2500 A100-hours) far exceed the 200 H100-hour constraint, and the timeline stretches well beyond the 16-day limit. That's a 1-2/5 on feasibility. The idea itself is clearly presented with thorough landscape analysis, so clarity is solid at 4/5, but the impact is likely marginal—moving from a fixed optimal config to an adaptive one probably yields only a few percentage points improvement, and this is fundamentally a software engineering paper that doesn't fit well with EMNLP's scope. That brings impact down to 2-3/5, averaging out to around 2.75 overall.
+
+Looking at the critical blockers: the compute and timeline violations are fatal constraints that can't be worked around, the venue is a poor match for an SE-focused contribution, there's a missing citation to AdaPatcher from AAAI 2025, and the NLP component is thin—mostly just fine-tuning a cross-encoder. This clearly needs major revisions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d62fb74b-925d-447b-988c-26547252fe85",
+  "isSidechain": false,
+  "requestId": "req_011CawbKMawQxFMooFY84LfU",
+  "type": "assistant",
+  "uuid": "20ed1b4e-22ff-487a-867f-008542e242a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011C9TtcPVEMnmKUw5QDZG4e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1150,
+      "cache_read_input_tokens": 50640,
+      "output_tokens": 2307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1150,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2307,
+          "cache_read_input_tokens": 50640,
+          "cache_creation_input_tokens": 1150,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1150
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88 · 2026-05-11T22:46:12.300Z_
+
+Now let me fetch the AdaPatcher paper to understand how close it is to this proposal, since it's a key competitor the generator missed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "20ed1b4e-22ff-487a-867f-008542e242a0",
+  "isSidechain": false,
+  "requestId": "req_011CawbKMawQxFMooFY84LfU",
+  "type": "assistant",
+  "uuid": "ca6629ea-8020-44d7-9d83-474c24c7f91b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011C9TtcPVEMnmKUw5QDZG4e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1150,
+      "cache_read_input_tokens": 50640,
+      "output_tokens": 2307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1150,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2307,
+          "cache_read_input_tokens": 50640,
+          "cache_creation_input_tokens": 1150,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1150
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-11T22:46:13.326Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01DUMJ9Q7TNLrMV1e6gYyEcu`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2503.06510",
+  "prompt": "Extract the full abstract. What does AdaPatcher do? Does it adapt fault localization granularity or context budget? What is its architecture? What benchmarks does it evaluate on?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca6629ea-8020-44d7-9d83-474c24c7f91b",
+  "isSidechain": false,
+  "requestId": "req_011CawbKMawQxFMooFY84LfU",
+  "type": "assistant",
+  "uuid": "54dcee4a-23e3-4d53-8c69-fa089c3b385c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011C9TtcPVEMnmKUw5QDZG4e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1150,
+      "cache_read_input_tokens": 50640,
+      "output_tokens": 2307,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1150,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2307,
+          "cache_read_input_tokens": 50640,
+          "cache_creation_input_tokens": 1150,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1150
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "54dcee4a-23e3-4d53-8c69-fa089c3b385c",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 91_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of adaptive context orchestration for code repair",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-11T22:46:19.762Z_
+
+<details><summary>↩ Tool result · `toolu_01DUMJ9Q7TNLrMV1e6gYyEcu`</summary>
+
+```text
+# Analysis of "Less is More: Adaptive Program Repair"
+
+## Full Abstract
+
+"Automated Program Repair (APR) is a task to automatically generate patches for the buggy code. However, most research focuses on generating correct patches while ignoring the consistency between the fixed code and the original buggy code. How to conduct adaptive bug fixing and generate patches with minimal modifications have seldom been investigated. To bridge this gap, we first introduce a novel task, namely AdaPR (Adaptive Program Repair). We then propose a two-stage approach AdaPatcher (Adaptive Patch Generator) to enhance program repair while maintaining the consistency. In the first stage, we utilize a Bug Locator with self-debug learning to accurately pinpoint bug locations. In the second stage, we train a Program Modifier to ensure consistency between the post-modified fixed code and the pre-modified buggy code. The Program Modifier is enhanced with a location-aware repair learning strategy to generate patches based on identified buggy lines, a hybrid training strategy for selective reference and an adaptive preference learning to prioritize fewer changes. The experimental results show that our approach outperforms a set of baselines by a large margin, validating the effectiveness of our two-stage framework for the newly proposed AdaPR task."
+
+## What AdaPatcher Does
+
+AdaPatcher generates code patches while prioritizing minimal changes and consistency with original code through a two-stage approach.
+
+## Fault Localization & Context Adaptability
+
+The paper does not explicitly discuss adapting fault localization granularity or context budget. It mentions using "a Bug Locator with self-debug learning," but no details about granularity or budget adaptation appear in the abstract.
+
+## Architecture
+
+Two-stage framework:
+1. **Stage 1**: Bug Locator with self-debug learning identifies buggy locations
+2. **Stage 2**: Program Modifier with location-aware repair learning, hybrid training strategy, and adaptive preference learning
+
+## Benchmarks
+
+The abstract does not specify which benchmarks were used for evaluation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54dcee4a-23e3-4d53-8c69-fa089c3b385c",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "c8cd83bc-1fcf-4f14-9618-d93e94242b01",
+  "toolUseResult": {
+    "bytes": 47151,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of \"Less is More: Adaptive Program Repair\"\n\n## Full Abstract\n\n\"Automated Program Repair (APR) is a task to automatically generate patches for the buggy code. However, most research focuses on generating correct patches while ignoring the consistency between the fixed code and the original buggy code. How to conduct adaptive bug fixing and generate patches with minimal modifications have seldom been investigated. To bridge this gap, we first introduce a novel task, namely AdaPR (Adaptive Program Repair). We then propose a two-stage approach AdaPatcher (Adaptive Patch Generator) to enhance program repair while maintaining the consistency. In the first stage, we utilize a Bug Locator with self-debug learning to accurately pinpoint bug locations. In the second stage, we train a Program Modifier to ensure consistency between the post-modified fixed code and the pre-modified buggy code. The Program Modifier is enhanced with a location-aware repair learning strategy to generate patches based on identified buggy lines, a hybrid training strategy for selective reference and an adaptive preference learning to prioritize fewer changes. The experimental results show that our approach outperforms a set of baselines by a large margin, validating the effectiveness of our two-stage framework for the newly proposed AdaPR task.\"\n\n## What AdaPatcher Does\n\nAdaPatcher generates code patches while prioritizing minimal changes and consistency with original code through a two-stage approach.\n\n## Fault Localization & Context Adaptability\n\nThe paper does not explicitly discuss adapting fault localization granularity or context budget. It mentions using \"a Bug Locator with self-debug learning,\" but no details about granularity or budget adaptation appear in the abstract.\n\n## Architecture\n\nTwo-stage framework:\n1. **Stage 1**: Bug Locator with self-debug learning identifies buggy locations\n2. **Stage 2**: Program Modifier with location-aware repair learning, hybrid training strategy, and adaptive preference learning\n\n## Benchmarks\n\nThe abstract does not specify which benchmarks were used for evaluation.",
+    "durationMs": 6431,
+    "url": "https://arxiv.org/abs/2503.06510"
+  },
+  "sourceToolAssistantUUID": "54dcee4a-23e3-4d53-8c69-fa089c3b385c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-11T22:46:24.490Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01WmpUnTMiRAgEH4xAxSEVJY`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.00167",
+  "prompt": "Extract the abstract and key findings. How many configurations are tested? What granularities? What dataset? How many instances? What is the total experiment time/cost reported?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8cd83bc-1fcf-4f14-9618-d93e94242b01",
+  "isSidechain": false,
+  "requestId": "req_011CawbQGt45PQPPRnexVacQ",
+  "type": "assistant",
+  "uuid": "3196a470-d6ff-4cc6-b92c-317e285700d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V1fxqjMwVUGwk6aEqNDCoW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2752,
+      "cache_read_input_tokens": 51790,
+      "output_tokens": 117,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2752,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 117,
+          "cache_read_input_tokens": 51790,
+          "cache_creation_input_tokens": 2752,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2752
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-11T22:46:29.052Z_
+
+<details><summary>↩ Tool result · `toolu_01WmpUnTMiRAgEH4xAxSEVJY`</summary>
+
+```text
+# Abstract and Key Findings
+
+**Abstract Summary:**
+The study investigates how fault localization granularity affects automatic code repair at repository scale. Researchers modified the Agentless framework to test repair performance under perfect fault localization assumptions, isolating granularity as a variable. They found "function-level granularity yields the highest repair rate against line-level and file-level," though results suggest "the ideal granularity may in fact be task dependent."
+
+**Key Details:**
+
+- **Granularities Tested:** Three levels—file, function, and line
+- **Dataset:** SWE-Bench-Mini
+- **Number of Instances:** Not specified in the abstract
+- **Configurations:** The abstract doesn't explicitly state the total number of configurations tested
+- **Experiment Time/Cost:** No timing or cost data reported in the provided content
+
+**Important Caveat:**
+The authors emphasize this is "a proof of concept" and explicitly state they "do not intend for results to be compared against any complete agentic frameworks," positioning this as preliminary research encouraging further investigation rather than state-of-the-art advancement.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3196a470-d6ff-4cc6-b92c-317e285700d8",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "8c05affe-cb79-49b5-8d1d-a08c3e125bc5",
+  "toolUseResult": {
+    "bytes": 48410,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Abstract and Key Findings\n\n**Abstract Summary:**\nThe study investigates how fault localization granularity affects automatic code repair at repository scale. Researchers modified the Agentless framework to test repair performance under perfect fault localization assumptions, isolating granularity as a variable. They found \"function-level granularity yields the highest repair rate against line-level and file-level,\" though results suggest \"the ideal granularity may in fact be task dependent.\"\n\n**Key Details:**\n\n- **Granularities Tested:** Three levels—file, function, and line\n- **Dataset:** SWE-Bench-Mini\n- **Number of Instances:** Not specified in the abstract\n- **Configurations:** The abstract doesn't explicitly state the total number of configurations tested\n- **Experiment Time/Cost:** No timing or cost data reported in the provided content\n\n**Important Caveat:**\nThe authors emphasize this is \"a proof of concept\" and explicitly state they \"do not intend for results to be compared against any complete agentic frameworks,\" positioning this as preliminary research encouraging further investigation rather than state-of-the-art advancement.",
+    "durationMs": 4558,
+    "url": "https://arxiv.org/abs/2604.00167"
+  },
+  "sourceToolAssistantUUID": "3196a470-d6ff-4cc6-b92c-317e285700d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-11T22:46:34.879Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R7Q3xMnTRukiXNiYTxfpcS`</summary>
+
+```json
+{
+  "query": "SWE-bench Mini dataset size how many instances subset 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c05affe-cb79-49b5-8d1d-a08c3e125bc5",
+  "isSidechain": false,
+  "requestId": "req_011CawbQyfVDbVTfZCxXe4SE",
+  "type": "assistant",
+  "uuid": "88d19611-b56d-47d5-b5f6-be93c6c5a490",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FKQxFPko8iHYi68muAaXiK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 374,
+      "cache_read_input_tokens": 54542,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 374,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 54542,
+          "cache_creation_input_tokens": 374,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 374
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-11T22:46:39.416Z_
+
+<details><summary>↩ Tool result · `toolu_01R7Q3xMnTRukiXNiYTxfpcS`</summary>
+
+```text
+Web search results for query: "SWE-bench Mini dataset size how many instances subset 2025 2026"
+
+Links: [{"title":"SWE-bench Verified","url":"https://www.vals.ai/benchmarks/swebench"},{"title":"GitHub - SWE-bench/SWE-smith: [NeurIPS 2025 D&B Spotlight] Scaling Data for SWE-agents · GitHub","url":"https://github.com/SWE-bench/SWE-smith"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"SWE-bench/SWE-bench_Verified · Datasets at Hugging Face","url":"https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified"},{"title":"Datasets - SWE-bench","url":"https://www.swebench.com/SWE-bench/guides/datasets/"},{"title":"SWE-bench Verified","url":"https://www.swebench.com/verified.html"},{"title":"SWE-bench | EvalScope - Read the Docs","url":"https://evalscope.readthedocs.io/en/latest/third_party/swe_bench.html"},{"title":"GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub","url":"https://github.com/SWE-bench/SWE-bench"},{"title":"SWE-bench Goes Live!","url":"https://arxiv.org/html/2505.23419v2"},{"title":"princeton-nlp/SWE-bench · Datasets at Hugging Face","url":"https://huggingface.co/datasets/princeton-nlp/SWE-bench"}]
+
+Based on the search results, I found information about SWE-bench Mini dataset:
+
+SWE-bench Verified Mini is a lightweight subset containing 50 data points, requiring only 5GB storage (compared to the original 130GB).
+
+Additionally, there are other SWE-bench subsets mentioned:
+
+- SWE-bench Verified is a human-filtered subset of 500 instances from SWE-bench
+- A lite subset of SWE-bench-Live was constructed by sampling 50 instances per month from issues created between October 2024 and March 2025, resulting in a compact set of 300 instances
+
+So the SWE-bench Verified Mini specifically contains **50 instances** as a lightweight evaluation subset.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "88d19611-b56d-47d5-b5f6-be93c6c5a490",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "4354cd71-dff3-4833-ac49-35c1ad7742f1",
+  "toolUseResult": {
+    "query": "SWE-bench Mini dataset size how many instances subset 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DC6GyXp3foiRAtg6VFPc3x",
+        "content": [
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.vals.ai/benchmarks/swebench"
+          },
+          {
+            "title": "GitHub - SWE-bench/SWE-smith: [NeurIPS 2025 D&B Spotlight] Scaling Data for SWE-agents · GitHub",
+            "url": "https://github.com/SWE-bench/SWE-smith"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "SWE-bench/SWE-bench_Verified · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified"
+          },
+          {
+            "title": "Datasets - SWE-bench",
+            "url": "https://www.swebench.com/SWE-bench/guides/datasets/"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.swebench.com/verified.html"
+          },
+          {
+            "title": "SWE-bench | EvalScope - Read the Docs",
+            "url": "https://evalscope.readthedocs.io/en/latest/third_party/swe_bench.html"
+          },
+          {
+            "title": "GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub",
+            "url": "https://github.com/SWE-bench/SWE-bench"
+          },
+          {
+            "title": "SWE-bench Goes Live!",
+            "url": "https://arxiv.org/html/2505.23419v2"
+          },
+          {
+            "title": "princeton-nlp/SWE-bench · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/princeton-nlp/SWE-bench"
+          }
+        ]
+      },
+      "Based on the search results, I found information about SWE-bench Mini dataset:\n\nSWE-bench Verified Mini is a lightweight subset containing 50 data points, requiring only 5GB storage (compared to the original 130GB).\n\nAdditionally, there are other SWE-bench subsets mentioned:\n\n- SWE-bench Verified is a human-filtered subset of 500 instances from SWE-bench\n- A lite subset of SWE-bench-Live was constructed by sampling 50 instances per month from issues created between October 2024 and March 2025, resulting in a compact set of 300 instances\n\nSo the SWE-bench Verified Mini specifically contains **50 instances** as a lightweight evaluation subset."
+    ],
+    "durationSeconds": 4.5327349329999995
+  },
+  "sourceToolAssistantUUID": "88d19611-b56d-47d5-b5f6-be93c6c5a490",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 97 · 2026-05-11T22:46:39.420Z_
+
+```json
+{
+  "parentUuid": "4354cd71-dff3-4833-ac49-35c1ad7742f1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1419f632-f2c9-427b-b97d-ef5297a9d8b2",
+  "timestamp": "2026-05-11T22:46:39.420Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-11T22:46:43.412Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Uk4xCyTEbnNjSwaVQCjHn8`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 NLP code models track topics program repair fault localization"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1419f632-f2c9-427b-b97d-ef5297a9d8b2",
+  "isSidechain": false,
+  "requestId": "req_011CawbRivFPFVQmynVHFf5m",
+  "type": "assistant",
+  "uuid": "448367cc-8311-48d9-a21f-57782022f763",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TP1sUTW9NXKc52PEG7N7Ag",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 820,
+      "cache_read_input_tokens": 54916,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 54916,
+          "cache_creation_input_tokens": 820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-11T22:46:49.649Z_
+
+<details><summary>↩ Tool result · `toolu_01Uk4xCyTEbnNjSwaVQCjHn8`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 NLP code models track topics program repair fault localization"
+
+Links: [{"title":"Call for Papers: EMNLP 2026 Industry Track - EMNLP 2026","url":"https://2026.emnlp.org/calls/industry_track/"},{"title":"EMNLP: Empirical Methods in Natural Language Processing 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=883"},{"title":"RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2026arXiv260118044S/abstract"},{"title":"EMNLP 2026: Conference on Empirical Methods in Natural Language Processing","url":"https://www.myhuiban.com/conference/424?lang=en_us"},{"title":"Automatic Program Repair Using Large Language Models in Model-Based Development","url":"https://www.scitepress.org/Papers/2026/144911/144911.pdf"},{"title":"EMNLP 2026 on X: \"The First Call for Industry Track Papers for EMNLP 2026 is officially out! Are you deploying NLP in real-world applications? Share your insights, challenges, and deployed systems with the community. 🗓️ Deadline: June 16, 2026 🔗 Link: https://t.co/ga3k6CJcm0 #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2048750521696072166"},{"title":"Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal","url":"https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026"},{"title":"dblp: EMNLP 2024 - Industry Track","url":"https://dblp.org/db/conf/emnlp/emnlp2024i.html"},{"title":"Exploring the potential and limitations of large language models for novice program fault localization - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0164121225004005"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting"}]
+
+Based on the search results, here's what I found about EMNLP 2026:
+
+## Conference Overview
+EMNLP 2026 will be held October 24-29th in Budapest.
+
+## Track Topics Including Code Models
+EMNLP 2026 includes "NLP and Code Models" as one of its relevant topics for the conference. The conference aims to have a broad technical program covering various areas of NLP and computational linguistics.
+
+## Program Structure
+The conference has multiple submission tracks, including an Industry Track that invites submissions describing the design, development, deployment, or analysis of NLP and speech systems in real-world settings, with a focus on innovations and implementations in all areas of speech and language technologies.
+
+## Related Research Areas
+While the search results show that program repair and fault localization are active research areas in the broader NLP and code understanding community, I did not find specific information about dedicated tracks or programs within EMNLP 2026 specifically focused on program repair or fault localization. The conference does include "NLP and Code Models" as a topic area, which could encompass such work, but there doesn't appear to be a dedicated specialized track for these topics in the current publicly available information about EMNLP 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "448367cc-8311-48d9-a21f-57782022f763",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "2bcb85a6-0d2a-4fd3-8d6a-2cc63bf385ea",
+  "toolUseResult": {
+    "query": "EMNLP 2026 NLP code models track topics program repair fault localization",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018KiPvvgikoszTFXQGCPPQg",
+        "content": [
+          {
+            "title": "Call for Papers: EMNLP 2026 Industry Track - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/industry_track/"
+          },
+          {
+            "title": "EMNLP: Empirical Methods in Natural Language Processing 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=883"
+          },
+          {
+            "title": "RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv260118044S/abstract"
+          },
+          {
+            "title": "EMNLP 2026: Conference on Empirical Methods in Natural Language Processing",
+            "url": "https://www.myhuiban.com/conference/424?lang=en_us"
+          },
+          {
+            "title": "Automatic Program Repair Using Large Language Models in Model-Based Development",
+            "url": "https://www.scitepress.org/Papers/2026/144911/144911.pdf"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"The First Call for Industry Track Papers for EMNLP 2026 is officially out! Are you deploying NLP in real-world applications? Share your insights, challenges, and deployed systems with the community. 🗓️ Deadline: June 16, 2026 🔗 Link: https://t.co/ga3k6CJcm0 #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2048750521696072166"
+          },
+          {
+            "title": "Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026"
+          },
+          {
+            "title": "dblp: EMNLP 2024 - Industry Track",
+            "url": "https://dblp.org/db/conf/emnlp/emnlp2024i.html"
+          },
+          {
+            "title": "Exploring the potential and limitations of large language models for novice program fault localization - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0164121225004005"
+          },
+          {
+            "title": "EMNLP 2026 (@emnlpmeeting) / Posts / X",
+            "url": "https://x.com/emnlpmeeting"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about EMNLP 2026:\n\n## Conference Overview\nEMNLP 2026 will be held October 24-29th in Budapest.\n\n## Track Topics Including Code Models\nEMNLP 2026 includes \"NLP and Code Models\" as one of its relevant topics for the conference. The conference aims to have a broad technical program covering various areas of NLP and computational linguistics.\n\n## Program Structure\nThe conference has multiple submission tracks, including an Industry Track that invites submissions describing the design, development, deployment, or analysis of NLP and speech systems in real-world settings, with a focus on innovations and implementations in all areas of speech and language technologies.\n\n## Related Research Areas\nWhile the search results show that program repair and fault localization are active research areas in the broader NLP and code understanding community, I did not find specific information about dedicated tracks or programs within EMNLP 2026 specifically focused on program repair or fault localization. The conference does include \"NLP and Code Models\" as a topic area, which could encompass such work, but there doesn't appear to be a dedicated specialized track for these topics in the current publicly available information about EMNLP 2026."
+    ],
+    "durationSeconds": 6.232479674000002
+  },
+  "sourceToolAssistantUUID": "448367cc-8311-48d9-a21f-57782022f763",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-11T22:46:54.219Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01553bUiDodTFDKLiSA4SAqp`</summary>
+
+```json
+{
+  "url": "https://2026.emnlp.org/calls/main_conference_papers/",
+  "prompt": "What are the topic areas listed for EMNLP 2026? Is \"code\" or \"program repair\" or \"fault localization\" or \"software engineering\" listed? What NLP-related code topics are covered? Extract the complete list of topic areas."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2bcb85a6-0d2a-4fd3-8d6a-2cc63bf385ea",
+  "isSidechain": false,
+  "requestId": "req_011CawbSUcJQ4bLsKgegPVxv",
+  "type": "assistant",
+  "uuid": "d7a32d3b-8dc1-49b7-8a5c-066016c61b4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KGJkzcmxS9Fq6C2FpwS8Uw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1021,
+      "cache_read_input_tokens": 55736,
+      "output_tokens": 143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1021,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 143,
+          "cache_read_input_tokens": 55736,
+          "cache_creation_input_tokens": 1021,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1021
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-11T22:46:59.863Z_
+
+<details><summary>↩ Tool result · `toolu_01553bUiDodTFDKLiSA4SAqp`</summary>
+
+```text
+# EMNLP 2026 Topic Areas
+
+## Complete List of Topics
+
+The conference lists these submission areas:
+
+- Clinical and Biomedical Applications
+- NLP and Code Models
+- Computational Social Science and Cultural Analytics
+- Dialogue and Interactive Systems
+- Discourse and Pragmatics
+- Efficient Methods for NLP
+- Ethics, Bias, and Fairness
+- NLP and Symbolic Reasoning
+- Generation
+- Human-Centered NLP and Human-AI Interaction
+- Information Extraction
+- Information Retrieval and Text Mining
+- Interpretability and Analysis of Models for NLP
+- Language Modeling
+- LLM Agents
+- Linguistic Theories, Cognitive Modeling, and Psycholinguistics
+- Machine Learning for NLP
+- Machine Translation
+- Multilingualism and Cross-Lingual NLP
+- Multimodality and Language Grounding to Vision, Robotics and Beyond
+- NLP Applications
+- Phonology, Morphology, and Word Segmentation
+- Question Answering
+- Resources and Evaluation
+- Semantics: Lexical and Sentence-Level
+- Sentiment Analysis, Stylistic Analysis, and Argument Mining
+- Speech Recognition, Text-to-Speech and Spoken Language Understanding
+- Summarization
+- Syntax: Tagging, Chunking and Parsing
+- Special Theme: New Missions for NLP Research
+
+## Code-Related Topics
+
+Only one topic explicitly addresses code: **"NLP and Code Models."** The document does not mention program repair, fault localization, or traditional software engineering topics. The code focus appears limited to language model applications involving source code.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7a32d3b-8dc1-49b7-8a5c-066016c61b4f",
+  "isSidechain": false,
+  "promptId": "8bdae962-e869-4708-b32f-0fa5e78d8f32",
+  "type": "user",
+  "uuid": "bf95c298-0e6c-41c4-969c-18292dbe6293",
+  "toolUseResult": {
+    "bytes": 26681,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# EMNLP 2026 Topic Areas\n\n## Complete List of Topics\n\nThe conference lists these submission areas:\n\n- Clinical and Biomedical Applications\n- NLP and Code Models\n- Computational Social Science and Cultural Analytics\n- Dialogue and Interactive Systems\n- Discourse and Pragmatics\n- Efficient Methods for NLP\n- Ethics, Bias, and Fairness\n- NLP and Symbolic Reasoning\n- Generation\n- Human-Centered NLP and Human-AI Interaction\n- Information Extraction\n- Information Retrieval and Text Mining\n- Interpretability and Analysis of Models for NLP\n- Language Modeling\n- LLM Agents\n- Linguistic Theories, Cognitive Modeling, and Psycholinguistics\n- Machine Learning for NLP\n- Machine Translation\n- Multilingualism and Cross-Lingual NLP\n- Multimodality and Language Grounding to Vision, Robotics and Beyond\n- NLP Applications\n- Phonology, Morphology, and Word Segmentation\n- Question Answering\n- Resources and Evaluation\n- Semantics: Lexical and Sentence-Level\n- Sentiment Analysis, Stylistic Analysis, and Argument Mining\n- Speech Recognition, Text-to-Speech and Spoken Language Understanding\n- Summarization\n- Syntax: Tagging, Chunking and Parsing\n- Special Theme: New Missions for NLP Research\n\n## Code-Related Topics\n\nOnly one topic explicitly addresses code: **\"NLP and Code Models.\"** The document does not mention program repair, fault localization, or traditional software engineering topics. The code focus appears limited to language model applications involving source code.",
+    "durationMs": 5640,
+    "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+  },
+  "sourceToolAssistantUUID": "d7a32d3b-8dc1-49b7-8a5c-066016c61b4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102 · 2026-05-11T22:47:34.197Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. EMNLP 2026 does have "NLP and Code Models" as a topic area. However, the user specified the direction as "Code understanding and generation — repo-level comprehension, program repair, code reasoning, debugging, test generation, code-to-documentation, cross-language code transfer."
+
+So program repair is within the user's stated direction. But the question is: is this specific idea (a meta-controller for selecting FL granularity and context budget) primarily an NLP/ML contribution, or is it primarily a software engineering contribution?
+
+The ML contribution here is training a small cross-encoder (0.6B) to predict configurations. 
+
+The NLP angle feels thin — this is really about optimizing pipeline configuration for software engineering tasks rather than advancing language understanding itself.
+
+Looking at the compute requirements, there's a serious problem. The user's budget is capped at 200 H100-hours, but the proposal needs 300-400 H100-hours for the manual approach and 900-1250 H100-hours for the automatic approach. Even just the oracle profiling phase across all configurations and test instances would exceed the budget significantly.
+
+The timeline is equally problematic. The user needs results within 16 days, but the manual approach takes 4-6 months and the human-in-loop variant needs 6-10 weeks. The automatic approach barely squeezes into the window at 10-18 days, but that's only if the compute budget weren't already blown.
+
+There's also a venue mismatch to consider. EMNLP does cover NLP and code models, but this proposal is fundamentally about orchestrating repair pipelines rather than making a meaningful NLP contribution. The actual ML novelty — training a lightweight cross-encoder for configuration selection — feels incremental for a top-tier venue.
+
+I'm noticing AdaPatcher from AAAI 2025 wasn't cited, which is a significant oversight since it's working in the same adaptive repair space, even if their definition of "adaptive" differs slightly.
+
+The evaluation methodology has real problems too. SWE-bench Verified has documented contamination issues, and using it for both generating oracle labels and final evaluation undermines the validity of the results. Plus, the Agentless pipeline introduces noise through temperature sampling and other stochastic elements, so running it just once per configuration-instance pair produces unreliable labels. Getting trustworthy oracles would require multiple runs, which pushes the compute costs even higher.
+
+The magnitude of improvement from the function-level fault localization study also seems questionable.
+
+Looking at the scores now: the novelty is moderate at best—the joint formulation of granularity and budget selection is reasonable but incremental, combining existing ideas from concurrent work, and the ML component itself is just a small cross-encoder for configuration selection. The feasibility is severely constrained—the resource requirements of 600-800 A100-hours far exceed the stated limit of 200 H100-hours, and the timeline of 4-6 months is unrealistic against a 16-day constraint. Even with aggressive optimization, these gaps can't be closed. The clarity is solid though, with a well-articulated idea and clear pipeline.
+
+The impact is where this really struggles—improvements over fixed baselines are likely to be marginal, maybe just a few percentage points on SWE-bench, and EMNLP isn't the right venue for this work since it's fundamentally a software engineering contribution, not an NLP one. The ML component is too thin for that community.
+
+Averaging the scores gives 2.5, which clearly points to revise. The core concept has some merit, but it directly violates the compute and timeline constraints, and it's a poor fit for the target venue.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bf95c298-0e6c-41c4-969c-18292dbe6293",
+  "isSidechain": false,
+  "requestId": "req_011CawbTEFPCgW2sXKkHBCXE",
+  "type": "assistant",
+  "uuid": "d3300e4d-60a8-429f-ae81-2f8c9c8ed9b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015fd4bw2HyAAdzC16xS1SQw",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 527,
+      "cache_read_input_tokens": 56757,
+      "output_tokens": 2787,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 527,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2787,
+          "cache_read_input_tokens": 56757,
+          "cache_creation_input_tokens": 527,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 527
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 103 · 2026-05-11T22:48:06.952Z_
+
+I now have sufficient evidence to render my verdict. Let me compile the final assessment.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {
+      "score": 3,
+      "rationale": "The joint (granularity × context budget) selection formulation is a timely and reasonable incremental contribution, but the ML component (18-way configuration classifier using a 0.6B cross-encoder) is technically straightforward. AdaPatcher (AAAI 2025 oral, arXiv 2503.06510) — an adaptive program repair method with learned bug localization — was not cited. SWEzze already trains the same base model (Qwen3-Reranker-0.6B) for context selection, making the model choice overlapping rather than novel."
+    },
+    "feasibility": {
+      "score": 1,
+      "rationale": "FATAL constraint violation: the proposal estimates 600-800 A100-hours minimum (≈300-400 H100-equiv), which is 2-4x the user's hard constraint of ≤200 H100-hours. The oracle profiling step alone (18 configs × 200+ instances × full Agentless pipeline with 80B model inference) is computationally prohibitive. Timeline is similarly violated: 4-6 months manual vs. 16-day constraint; even auto mode (10-18 days) requires 1800-2500 A100-hours (10x over budget)."
+    },
+    "clarity": {
+      "score": 4,
+      "rationale": "The idea is clearly articulated with a well-defined pipeline, thorough landscape analysis of concurrent work, and crisp problem framing linking two April 2026 empirical studies. The approach section is specific about architecture, training procedure, and evaluation plan."
+    },
+    "impact": {
+      "score": 2,
+      "rationale": "Poor venue fit: this is fundamentally a software engineering pipeline orchestration contribution, not an NLP/code understanding contribution. The ML component (18-way classifier) is thin for EMNLP. The improvement over a fixed function-level baseline is likely marginal (the source study used only SWE-bench Mini with 50 instances). SWE-bench Verified has confirmed contamination issues, weakening evaluation validity."
+    }
+  },
+  "issues": [
+    "FATAL: Compute budget violation — proposal minimum (600-800 A100-hours ≈ 300-400 H100-equiv) is 2-4x the user's hard constraint of ≤200 H100-hours. Oracle profiling of 18 configs × 200+ instances with a self-hosted 80B model is the dominant cost and cannot be reduced without fundamentally changing the approach.",
+    "FATAL: Timeline violation — manual estimate is 4-6 months, human-in-loop is 6-10 weeks, even auto mode is 10-18 days with 4× A100s. The 16-day constraint is incompatible with exhaustive oracle profiling.",
+    "Poor EMNLP venue fit — the contribution is repair pipeline orchestration (an SE topic), not NLP/code understanding. The ML component (fine-tuning a 0.6B cross-encoder for 18-way classification) is too thin for an NLP venue. This work fits ICSE/ASE/FSE far better.",
+    "Missing key competitor: AdaPatcher (AAAI 2025 oral, arXiv 2503.06510) — an adaptive program repair method with learned bug localization and preference learning — was not cited or discussed in the landscape.",
+    "Oracle label noise: the Agentless pipeline has inherent randomness (temperature, sampling). Single runs per (config, instance) pair yield noisy training labels. Multiple runs per config would further inflate compute costs.",
+    "Weak empirical foundation: the function-level FL granularity study (arXiv 2604.00167) was conducted on SWE-bench Mini (only 50 instances). Extrapolating that adaptive granularity selection will yield significant gains on the full 500-instance Verified set is speculative.",
+    "SWE-bench Verified contamination: OpenAI's audit confirmed frontier models are contaminated on this benchmark, and 59.4% of hard tasks have flawed tests. Using it for both oracle label collection AND evaluation creates validity concerns.",
+    "Overlap with SWEzze: the proposal uses the same base model (Qwen3-Reranker-0.6B) and same general approach (train a cross-encoder to select context) as SWEzze. The delta is adding granularity selection, which may not justify a separate paper at a top venue."
+  ],
+  "feedback": "The core insight (adaptive granularity + context budget selection) is sound but the execution plan fundamentally violates the user's constraints. To make this viable for EMNLP 2026 within ≤200 H100-hours and ≤16 days, the generator must: (1) **Eliminate exhaustive oracle profiling** — instead of running 18 configs × N instances, use a much cheaper proxy: analyze the already-published results from arXiv 2604.00167 and 2604.05481 to derive heuristic-based labels, or use a small pilot (3-5 configs × 50 instances) with API-based models (not self-hosted 80B) to collect training signal. (2) **Reframe for EMNLP** — the current framing is SE-centric (fault localization, repair pipelines). To fit EMNLP's 'NLP and Code Models' track, reframe around code understanding: how do LLMs process code at different granularities? What structural features of code predict optimal context? This shifts from pipeline engineering to understanding LLM code comprehension. (3) **Cite AdaPatcher (AAAI 2025)** and SWE-ContextBench (arXiv 2602.08316) in the landscape. (4) **Use API-based models for oracle collection** (e.g., Qwen3-Coder-Next via API at ~$0.30/instance) instead of self-hosting, converting GPU cost to manageable API cost. (5) **Address SWE-bench contamination** — consider using SWE-bench-Live or SWE-rebench for evaluation instead of Verified. (6) **Reduce scope** — rather than a full learned policy with RL fine-tuning, consider a simpler but more insightful contribution: a systematic empirical study of what bug features predict optimal granularity, with a lightweight rule-based or logistic-regression selector. This is more achievable in 16 days and more publishable at EMNLP if paired with analysis of LLM code understanding at different granularities.",
+  "reason": "Idea fundamentally violates compute (2-4x over ≤200 H100-hour budget) and timeline (months vs. 16 days) constraints, has poor EMNLP venue fit (SE pipeline work, not NLP), and misses key competitor AdaPatcher (AAAI 2025)."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3300e4d-60a8-429f-ae81-2f8c9c8ed9b6",
+  "isSidechain": false,
+  "requestId": "req_011CawbTEFPCgW2sXKkHBCXE",
+  "type": "assistant",
+  "uuid": "51bb49fd-2108-4965-b856-580586dadb37",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015fd4bw2HyAAdzC16xS1SQw",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 527,
+      "cache_read_input_tokens": 56757,
+      "output_tokens": 2787,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 527,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2787,
+          "cache_read_input_tokens": 56757,
+          "cache_creation_input_tokens": 527,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 527
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 104_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "51bb49fd-2108-4965-b856-580586dadb37",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 105_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of adaptive context orchestration for code repair",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 106_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "51bb49fd-2108-4965-b856-580586dadb37",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 107_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of adaptive context orchestration for code repair",
+  "sessionId": "79da2c56-251c-4777-a49a-d3a3a468fcbd"
+}
+```
+
+---

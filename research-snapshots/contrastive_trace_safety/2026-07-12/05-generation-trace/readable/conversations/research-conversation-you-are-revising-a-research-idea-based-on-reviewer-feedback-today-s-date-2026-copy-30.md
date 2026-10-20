@@ -1,0 +1,6417 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-10 (UTC).** ## Original idea { "tit
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 92
+- **Recorded user turns:** 1
+- **Tool calls:** 29
+- **Original source:** `logs/chats/exported-trajectories/account-1/3b518566-3c57-4f85-9812-2bbefb9a7cf2.jsonl`
+- **Structured JSON:** [`b5d597f80edaa3eabc61.json`](../../sessions/b5/b5d597f80edaa3eabc61.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T18:50:52.638Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T18:50:52.638Z",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-10 (UTC).**\n\n## Original idea\n{\n  \"title\": \"StructFuse: Fusing Data-Flow and Lexical Signals for Repository-Level Code Repair Context Selection\",\n  \"core_problem\": \"Repository-level bug repair requires selecting relevant context from large codebases. Existing neural context selectors (SWE-Pruner, Squeez) rely on expensive LLM-generated labels (~$50-200 per labeling run), are coupled to specific teacher models, and lack structural grounding. Retrieve-and-rerank methods like SweRank achieve strong text-based localization but miss structural dependencies. Graph-guided agents like LocAgent capture import/call/inheritance edges but omit fine-grained data-flow (def-use) edges that trace variable-level dependencies across functions. On SWE-bench Pro (where top systems score 42-59% and context selection accounts for 4-10pp swings), context quality remains a dominant differentiator. Can we build a context selector that fuses data-flow structural signals with lexical retrieval in a lightweight distilled model—one that requires no LLM teacher, is model-independent, and provides interpretable, structurally-grounded selections?\",\n  \"opportunity\": \"SWE-Pruner (arXiv:2601.16746) demonstrated a 0.6B neural skimmer can reduce tokens 23-54% with <1pp degradation on SWE-bench Verified, but its supervision comes entirely from Qwen3-Coder-30B inference. LocAgent (ACL 2025) showed graph-guided localization achieves 92.7% file-level accuracy on SWE-bench Lite, but uses only import/invocation/inheritance edges—not data-flow. SweRank (arXiv:2505.07849) achieves SOTA retrieve-and-rerank localization but is purely text-based. ARISE (arXiv:2605.03117) confirmed data-flow slicing yields 17pp localization gains on SWE-bench Lite but keeps analysis as runtime tool calls, not distilled knowledge. Sliceformer (ACL 2026) validated that data-flow knowledge transfers to neural models with 22% ExactMatch gains. The opportunity: no existing work distills data-flow structural signals into a lightweight, fast model for repair context selection. LocAgent's graph lacks def-use edges; ARISE's data-flow is runtime-only; SweRank ignores structure entirely. Fusing data-flow features with lexical retrieval in a trained model fills this gap—cheap to supervise (program analysis, not LLM inference), model-independent, and fast at inference.\",\n  \"landscape\": \"**Neural context selectors**: SWE-Pruner trains a 0.6B skimmer on 61K LLM-labeled samples, achieving <1pp degradation on SWE-bench Verified (70.6%→70.2%)—but relies on expensive Qwen3-Coder-30B labels and the Verified benchmark is known contaminated (OpenAI, Feb 2026). Squeez (arXiv:2604.04979) fine-tunes Qwen 3.5 2B for task-conditioned tool-output pruning (0.86 recall, 92% token removal) but targets tool outputs, not repository context. LongCodeZip (ASE 2025) achieves 5.6x compression via perplexity-based ranking, training-free but code-agnostic. **Retrieve-and-rerank approaches**: SweRank (arXiv:2505.07849) achieves SOTA issue localization via SweRankEmbed (bi-encoder retriever) + SweRankLLM (listwise LLM reranker), outperforming both prior models and agent-based systems. SweRank+ (arXiv:2512.20482) extends to multilingual multi-turn ranking with 155K training instances. Both are purely text-based with no structural signals. **Graph-guided approaches**: LocAgent (ACL 2025, arXiv:2503.09089) parses codebases into directed heterogeneous graphs with import/invocation/inheritance edges, achieving 92.7% file-level accuracy with fine-tuned Qwen2.5-32B—but omits data-flow (def-use) edges and requires a 32B model at inference. KGCompass (arXiv:2503.21710) constructs repository knowledge graphs (58.3% repair) but with heavy construction overhead. **Data-flow-specific approaches**: ARISE (arXiv:2605.03117) augments SWE-agent with statement-level def-use edges, gaining 17pp Function Recall@1 and 4.7pp Pass@1—but keeps analysis as runtime tool calls, adding latency at inference. LLMxCPG (USENIX Security 2025) uses Code Property Graphs for vulnerability detection (67-91% code reduction, 15-40% F1 gain) but targets security, not repair context. Sliceformer (ACL 2026) distills DFG knowledge into CodeT5+ for slicing tasks, validating structural knowledge transfer but not addressing repair. **Compression paradigms**: A recent empirical study (arXiv:2604.13725) shows continuous latent vector compression surpasses full-context by up to 28.3% BLEU at 4x compression—demonstrating that intelligent filtering outperforms naive truncation, though text-level selection remains complementary and more interpretable. **Benchmarks**: SWE-bench Pro (Scale AI, 1865 tasks) is the recommended hard benchmark; SWE-bench Lite (300 instances) remains widely used; RepoBench-R (ICLR 2024) directly evaluates cross-file context retrieval; SWE-ContextBench (arXiv:2602.08316) provides 1100+376 tasks for context evaluation. **Gap**: No existing work distills data-flow (def-use) signals into a lightweight model for repair context selection. LocAgent uses structural edges but not def-use; SweRank is text-only; ARISE uses def-use but only at runtime. The fusion of data-flow features with lexical retrieval in a fast, distilled model is unexplored.\",\n  \"approach\": \"We propose StructFuse, a multi-signal context selector that fuses data-flow structural features with lexical retrieval signals in a lightweight distilled model for repository-level code repair context selection.\\n\\n**Stage 1: Multi-Signal Feature Extraction (Days 1-3).** For 5K SWE-smith training instances across ~80-100 of the 128 available repositories, we extract three signal types: (a) *Data-flow features*: Using CodeQL for inter-procedural def-use analysis and call-graph construction on the ~128 shared repositories (each needing one database build), augmented by Beniget for intra-file def-use chains where CodeQL databases fail (~20-30% of repos). For each candidate file/function, we compute: graph distance to buggy location, number of data-flow paths, dependency type (def-use, call-graph, import). (b) *Lexical features*: BM25 similarity between issue description and candidate code, plus SweRankEmbed scores as a strong retrieval baseline. (c) *Structural metadata*: File co-change frequency from git history, import distance, directory distance. We explicitly acknowledge Python's dynamic features (eval, metaclasses, monkey-patching) limit static analysis coverage and quantify this via a validation step on 500 instances before full-scale extraction.\\n\\n**Stage 2: Fusion Model Training (Days 4-5).** We train a Qwen2.5-Coder-3B model via LoRA SFT on multi-signal fusion. The model receives structured multi-signal representations (data-flow graph features, BM25/SweRankEmbed scores, structural metadata) as input alongside the code context and learns to predict file/function-level relevance. We apply data-flow-guided loss weighting: candidates with strong structural connections receive higher loss weight, encoding the inductive bias that structurally-connected code is more reliably relevant than lexically-similar code. We are transparent that this training methodology—multi-source features as input with confidence-weighted loss—is technically standard; the contribution lies in demonstrating that data-flow signals provide effective supervision without LLM teachers and that the specific signal combination yields empirical gains. Training takes ~2-4 hours per run on a single H100; we run 5 ablation configurations (data-flow only, lexical only, full fusion, with/without loss weighting, CodeQL inter-procedural vs. Beniget intra-file only).\\n\\n**Stage 3: Evaluation (Days 6-10).** The distilled selector plugs into SWE-agent as a drop-in context retrieval component. We evaluate on: (a) SWE-bench Lite (300 instances, full), (b) SWE-bench Pro public split (500-instance stratified sample of 731 public instances), (c) RepoBench-R (cross-file retrieval evaluation, no LLM needed). Metrics: localization recall@k (file and function level), end-to-end Pass@1 repair rate, token efficiency. End-to-end evaluation uses Qwen3.6-27B exclusively (open-weight, no API costs). We compare against: (i) SweRank/SweRankEmbed (SOTA text-based retrieval), (ii) SWE-Pruner (LLM-labeled selector), (iii) BM25 baseline, (iv) LocAgent's graph-guided approach (import/call/inheritance edges, no def-use), (v) no-pruning full-context. Key ablations isolate each signal type's contribution.\\n\\n**Stage 4: Writing (Days 10-15).** The central hypothesis: on hard benchmarks, the fusion of data-flow + lexical signals outperforms either alone—and achieves comparable or better performance than LLM-labeled selectors at zero labeling cost. The paper frames StructFuse as an empirical and systems contribution: (a) first demonstration that program-analysis-derived data-flow features provide effective, free supervision for context selection, (b) empirical evidence that def-use edges complement the import/call/inheritance edges used by LocAgent and the text signals used by SweRank, (c) a practical, reproducible pipeline (CodeQL→features→3B fusion model) that is fast at inference and model-independent.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~180h H100 (CodeQL database creation for ~128 repos: ~10h CPU-parallel + 5h GPU; feature extraction: ~15h; SFT training 5 ablation runs: ~20h; SWE-bench evaluation 800 instances with Qwen3.6-27B: ~120h; RepoBench-R evaluation: ~10h)\",\n      \"gpu_utilization\": \"~70-80% utilization during evaluation phase (Qwen3.6-27B inference is GPU-bound); ~30-40% during CodeQL/feature extraction\",\n      \"timeline\": \"15 days (Days 1-3: CodeQL pipeline + feature extraction; Days 4-5: SFT training + ablations; Days 6-10: evaluation; Days 10-15: writing)\",\n      \"team\": \"1-2 researchers (one with CodeQL/program analysis, one with LLM fine-tuning; can be same person)\",\n      \"estimated_gpu_cost\": \"$400-600 (180h H100 at spot ~$2.50/hr; no LLM API costs—all evaluation uses open-weight Qwen3.6-27B)\",\n      \"claude_api_cost\": \"$0 for evaluation (Qwen3.6-27B only); ~$50-100 for writing assistance\",\n      \"risk_note\": \"CodeQL database creation may fail for 20-30% of Python repos with complex dependencies; Beniget fallback covers intra-file analysis. SWE-smith repos are well-maintained open-source projects with higher-than-average build success rates.\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~150h H100 (same pipeline, agent manages CodeQL builds and queues training runs; human reviews label quality at day 2 and evaluation configs at day 5)\",\n      \"gpu_utilization\": \"~75-85% utilization; agent parallelizes independent experiments\",\n      \"timeline\": \"12-14 days\",\n      \"team\": \"1 researcher, ~45min/day check-in for label quality review and experiment approval\",\n      \"claude_api_cost\": \"$80-150 (800-1500 turns for pipeline code generation and debugging)\",\n      \"estimated_gpu_cost\": \"$350-500 (150h H100 at spot ~$2.50/hr)\",\n      \"risk_note\": \"Tight timeline requires pre-validated CodeQL setup; recommend testing on 10 repos in first 4 hours before scaling\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~200h H100 (full ablation suite, hyperparameter sweep over loss weights, multi-benchmark evaluation including RepoBench-R)\",\n      \"gpu_utilization\": \"~85-90% utilization; agent continuously launches experiments, parallelizes independent ablations\",\n      \"timeline\": \"10-12 days with 2-4 H100 GPUs available concurrently\",\n      \"team\": \"0 (initial setup: CodeQL CLI installation, SWE-smith repo cloning, SWE-bench evaluation harness)\",\n      \"claude_api_cost\": \"$200-400 (2000-4000 turns for iterative pipeline development, CodeQL query debugging, experiment scheduling)\",\n      \"estimated_gpu_cost\": \"$500-700 (200h H100 at spot ~$2.50/hr to on-demand ~$3.50/hr)\",\n      \"speed_bottleneck\": \"SWE-bench evaluation (~9min/instance × 800 instances on Qwen3.6-27B ≈ 120 H100-hours; parallelizable across GPUs)\",\n      \"risk_note\": \"Agent should validate CodeQL coverage on first 10 repos and report def-use coverage before scaling. If coverage < 50%, pivot to Beniget-only for broader but shallower analysis.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline: May 25, 2026; conference: Fall 2026; topic area: 'NLP and Code Models')\"\n  ],\n  \"level\": \"solid-to-strong\",\n  \"key_references\": [\n    \"SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents (arXiv:2601.16746, Jan 2026) — 0.6B skimmer, LLM-labeled, <1pp degradation on SWE-bench Verified\",\n    \"LocAgent: Graph-Guided LLM Agents for Code Localization (ACL 2025, arXiv:2503.09089) — 92.7% file-level accuracy on SWE-bench Lite using import/invocation/inheritance edges with fine-tuned Qwen2.5-32B; no def-use edges\",\n    \"SweRank: Software Issue Localization with Code Ranking (arXiv:2505.07849, May 2025) — SOTA retrieve-and-rerank, outperforms agent-based systems; text-only, no structural signals\",\n    \"SweRank+: Multilingual, Multi-Turn Code Ranking (arXiv:2512.20482, Dec 2025) — extends SweRank to multilingual multi-turn with 155K training instances\",\n    \"Sliceformer: Static Program Slicing Using Language Models With Dataflow-Aware Pretraining (ACL 2026, arXiv:2604.26961) — validates data-flow knowledge transfer to neural models\",\n    \"ARISE: Repository-level Graph Representation for Agentic Fault Localization and Repair (arXiv:2605.03117, May 2026) — def-use edges as runtime tool calls, +17pp Function Recall@1\",\n    \"LLMxCPG: Context-Aware Vulnerability Detection Through CPG-Guided LLMs (USENIX Security 2025) — CPG-guided context extraction, 67-91% code reduction\",\n    \"Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents (arXiv:2604.04979, Apr 2026) — 0.86 recall, 92% token removal on tool outputs\",\n    \"On the Effectiveness of Context Compression for Repository-Level Tasks (arXiv:2604.13725, Apr 2026) — continuous latent vectors surpass full-context by 28.3% at 4x compression\",\n    \"LongCodeZip: Compress Long Context for Code Language Models (ASE 2025, arXiv:2510.00446) — 5.6x training-free compression\",\n    \"RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems (ICLR 2024, arXiv:2306.03091) — cross-file retrieval evaluation benchmark\",\n    \"SWE-ContextBench: A Benchmark for Context Learning in Coding (arXiv:2602.08316, Feb 2026) — 1100+376 context evaluation tasks\",\n    \"On the Role of Fault Localization Context for LLM-Based Program Repair (arXiv:2604.05481, Apr 2026) — file-level is dominant factor\",\n    \"Why SWE-bench Verified No Longer Measures Frontier Coding Capabilities (OpenAI, Feb 2026) — contamination analysis\",\n    \"SWE-bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? (Scale AI, arXiv:2509.16941, 2025)\",\n    \"LLMDFA: Analyzing Dataflow in Code with Large Language Models (NeurIPS 2024)\",\n    \"SWE-smith: Scaling Data for Software Engineering Agents (NeurIPS 2025 D&B Spotlight)\",\n    \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues? (ICLR 2024)\"\n  ],\n  \"description\": \"We propose StructFuse, a multi-signal context selector for repository-level code repair that fuses data-flow (def-use) structural features with lexical retrieval signals in a lightweight 3B distilled model. Unlike SWE-Pruner (expensive LLM-labeled supervision), SweRank (text-only retrieval), and LocAgent (import/call/inheritance edges but no def-use), StructFuse extracts inter-procedural def-use chains via CodeQL and fuses them with BM25/SweRankEmbed retrieval scores in a Qwen2.5-Coder-3B model trained with LoRA SFT. The contribution is empirical and practical, not methodological: (1) we demonstrate that program-analysis-derived data-flow features provide effective supervision for context selection without any LLM teacher—zero labeling cost vs. ~$50-200 for LLM-supervised methods; (2) we show that def-use edges complement the coarser structural edges (import/call/inheritance) used by LocAgent and the text signals used by SweRank, with fusion outperforming either signal type alone; (3) the resulting pipeline (CodeQL→features→3B fusion model) is fast at inference, model-independent, and provides interpretable selections with traceable data-flow paths to the bug. We evaluate on SWE-bench Lite (300 instances), a 500-instance SWE-bench Pro subset, and RepoBench-R (cross-file retrieval), using only open-weight Qwen3.6-27B for end-to-end repair evaluation (no API costs). We target EMNLP 2026 under the 'NLP and Code Models' topic area, with a 15-day implementation sprint fitting within 200 H100-hours.\",\n  \"project_name\": \"structfuse_context\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 4)\nIssues: [\"CRITICAL: SWE-Pruner labeling cost claim '~$50-200 per labeling run' is NOT from the paper and appears fabricated. The SWE-Pruner paper provides no cost figures. My independent verification shows the teacher model (Qwen3-Coder-30B-A3B-Instruct) is an MoE with only 3.3B active parameters, priced at $0.07-0.19/1M input tokens. Labeling 61K samples realistically costs $10-35 (at cheapest API) or at most ~$100 (at Alibaba's own endpoint). This 3-10x overestimate significantly weakens the cost motivation — the savings from avoiding LLM labeling are modest, not transformative.\", \"SWE-bench Pro SOTA claim 'top systems score 42-59%' is outdated. Claude Mythos Preview scores 77.8% as of April 2026. The 42-59% range only holds under SEAL-standardized evaluation constraints. Must be corrected or qualified.\", \"CodeQL for general-purpose def-use extraction is underspecified. CodeQL's Python inter-procedural data flow API is designed for security source-to-sink taint tracking, not arbitrary def-use chain enumeration. Custom CodeQL queries (defining sources, sinks, and flow configurations) must be written to extract general def-use features. This is non-trivial engineering not reflected in the timeline. The idea should specify: (a) what CodeQL query patterns will be used, (b) whether existing security queries can be adapted, or (c) how much query development time is budgeted.\", \"SWE-Pruner teacher model mischaracterization: The idea repeatedly frames Qwen3-Coder-30B as an expensive teacher, but it is an MoE model with only 3.3B active parameters per forward pass — inference cost comparable to a 3B dense model, not a 30B one. This undermines the 'expensive LLM teacher' narrative throughout the paper. The cost argument must be reframed: the advantage is not primarily cost savings but model-independence, interpretability, and avoiding coupling to a specific teacher's biases.\", \"Missing reference: SWE-Fixer (ACL Findings 2025) combines BM25 with a fine-tuned 7B retriever (from GraphCodeBERT-style embeddings) for coarse-to-fine code file retrieval in repo-level repair, achieving 32.8% on SWE-bench Verified. This is architecturally similar (BM25 + neural retrieval fusion for context selection) and should be discussed.\", \"SweRank venue update: SweRank is accepted at ICLR 2026 (confirmed via Salesforce's ICLR 2026 accepted papers list), not just an arXiv preprint. Should be cited correctly.\", \"Method contribution remains thin for EMNLP Main. With the training methodology explicitly acknowledged as standard, and the contribution framed as empirical, this reads more like a strong Findings paper than a Main paper. Reviewers at Main will expect either: (a) a novel training objective beyond weighted cross-entropy, (b) a theoretical grounding for why data-flow signals should outperform lexical signals, or (c) a more surprising empirical result than 'fusion outperforms individual signals.'\"]\nFeedback: Round 4 has made excellent progress — venue targeting, timeline, API cost elimination, and honest method framing are all fixed. The idea is now structurally sound. However, the cost motivation has a factual foundation problem that must be addressed before this can pass:\n\n1. **Rewrite the cost motivation entirely.** The '$50-200 per labeling run' claim is unverifiable and almost certainly a 3-10x overestimate. SWE-Pruner's teacher (Qwen3-Coder-30B-A3B) has only 3.3B active parameters and costs $0.07/1M input tokens — labeling 61K samples costs ~$10-35. Do NOT fabricate cost figures. Instead, reframe the advantage as: (a) **model-independence** — SWE-Pruner's labels are coupled to Qwen3-Coder's biases and selection patterns; data-flow labels are ground-truth from program analysis; (b) **zero marginal cost at scale** — adding more repos requires only running CodeQL, no LLM inference budget; (c) **interpretability** — each selection comes with a traceable data-flow path to the bug, not an opaque LLM judgment; (d) **reproducibility** — labels are deterministic given the same CodeQL database, unlike stochastic LLM outputs. The cost angle is a nice-to-have, not the headline.\n\n2. **Update SWE-bench Pro SOTA.** State clearly: 'Top agent systems score 50-78% on SWE-bench Pro depending on scaffolding complexity (Claude Mythos Preview: 77.8% with custom scaffolding; SEAL-standardized evaluation constrains scores to ~42-58%).' This is important because higher Pro scores narrow the improvement ceiling from context selection.\n\n3. **Specify CodeQL query strategy concretely.** State: 'We configure CodeQL's Python taint tracking API with broad source/sink definitions (all function parameters as sources, all variable reads as sinks) to approximate general def-use chains. Where this overproduces flows, we filter by graph distance. We budget 1 day specifically for CodeQL query development and validation on 10 pilot repos before scaling.' This addresses the practical risk.\n\n4. **Correct the SWE-Pruner teacher characterization.** Note that Qwen3-Coder-30B-A3B is an MoE model with 3.3B active parameters. Do not frame it as an expensive 30B teacher.\n\n5. **Add SWE-Fixer (ACL Findings 2025) to related work** — it is the most architecturally similar prior work (BM25 + neural retriever fusion for repo-level repair context selection). Differentiate: SWE-Fixer uses learned embeddings without structural program analysis features.\n\n6. **Explicitly target EMNLP Findings alongside Main.** Given the empirical contribution type, dual-targeting de-risks rejection. The paper's strength is practical value (cheap, fast, interpretable, model-independent context selector), which Findings rewards.\n\n7. **Strengthen the method contribution.** Consider adding one of: (a) a contrastive learning objective where data-flow-connected pairs are pulled together in the embedding space, distinct from standard cross-entropy; (b) a two-stage cascade (coarse file selection via BM25 + data-flow features → fine-grained function ranking via the 3B model), which adds architectural novelty; or (c) a data-flow-aware hard negative mining strategy where training negatives are selected as files that are lexically similar but structurally disconnected from the bug. Any of these would elevate the method contribution above 'SFT with different labels.'\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\").\n\n## 停滞提醒\n这个 idea 已经经过 4 轮修订，近 3 轮的平均分从 3.2 到 3.5，没有明显改善。\n\n请认真思考：\n- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？\n- 如果你认为问题出在 approach 而非 framing，可以做 major revision。\n- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。\n- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。\n\n最终由你判断——做你认为最能提升 idea 质量的选择。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T18:50:52.644Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T18:50:52.644Z",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+## Round 1
+
+90 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T18:50:52.675Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-10 (UTC).**
+
+## Original idea
+{
+  "title": "StructFuse: Fusing Data-Flow and Lexical Signals for Repository-Level Code Repair Context Selection",
+  "core_problem": "Repository-level bug repair requires selecting relevant context from large codebases. Existing neural context selectors (SWE-Pruner, Squeez) rely on expensive LLM-generated labels (~$50-200 per labeling run), are coupled to specific teacher models, and lack structural grounding. Retrieve-and-rerank methods like SweRank achieve strong text-based localization but miss structural dependencies. Graph-guided agents like LocAgent capture import/call/inheritance edges but omit fine-grained data-flow (def-use) edges that trace variable-level dependencies across functions. On SWE-bench Pro (where top systems score 42-59% and context selection accounts for 4-10pp swings), context quality remains a dominant differentiator. Can we build a context selector that fuses data-flow structural signals with lexical retrieval in a lightweight distilled model—one that requires no LLM teacher, is model-independent, and provides interpretable, structurally-grounded selections?",
+  "opportunity": "SWE-Pruner (arXiv:2601.16746) demonstrated a 0.6B neural skimmer can reduce tokens 23-54% with <1pp degradation on SWE-bench Verified, but its supervision comes entirely from Qwen3-Coder-30B inference. LocAgent (ACL 2025) showed graph-guided localization achieves 92.7% file-level accuracy on SWE-bench Lite, but uses only import/invocation/inheritance edges—not data-flow. SweRank (arXiv:2505.07849) achieves SOTA retrieve-and-rerank localization but is purely text-based. ARISE (arXiv:2605.03117) confirmed data-flow slicing yields 17pp localization gains on SWE-bench Lite but keeps analysis as runtime tool calls, not distilled knowledge. Sliceformer (ACL 2026) validated that data-flow knowledge transfers to neural models with 22% ExactMatch gains. The opportunity: no existing work distills data-flow structural signals into a lightweight, fast model for repair context selection. LocAgent's graph lacks def-use edges; ARISE's data-flow is runtime-only; SweRank ignores structure entirely. Fusing data-flow features with lexical retrieval in a trained model fills this gap—cheap to supervise (program analysis, not LLM inference), model-independent, and fast at inference.",
+  "landscape": "**Neural context selectors**: SWE-Pruner trains a 0.6B skimmer on 61K LLM-labeled samples, achieving <1pp degradation on SWE-bench Verified (70.6%→70.2%)—but relies on expensive Qwen3-Coder-30B labels and the Verified benchmark is known contaminated (OpenAI, Feb 2026). Squeez (arXiv:2604.04979) fine-tunes Qwen 3.5 2B for task-conditioned tool-output pruning (0.86 recall, 92% token removal) but targets tool outputs, not repository context. LongCodeZip (ASE 2025) achieves 5.6x compression via perplexity-based ranking, training-free but code-agnostic. **Retrieve-and-rerank approaches**: SweRank (arXiv:2505.07849) achieves SOTA issue localization via SweRankEmbed (bi-encoder retriever) + SweRankLLM (listwise LLM reranker), outperforming both prior models and agent-based systems. SweRank+ (arXiv:2512.20482) extends to multilingual multi-turn ranking with 155K training instances. Both are purely text-based with no structural signals. **Graph-guided approaches**: LocAgent (ACL 2025, arXiv:2503.09089) parses codebases into directed heterogeneous graphs with import/invocation/inheritance edges, achieving 92.7% file-level accuracy with fine-tuned Qwen2.5-32B—but omits data-flow (def-use) edges and requires a 32B model at inference. KGCompass (arXiv:2503.21710) constructs repository knowledge graphs (58.3% repair) but with heavy construction overhead. **Data-flow-specific approaches**: ARISE (arXiv:2605.03117) augments SWE-agent with statement-level def-use edges, gaining 17pp Function Recall@1 and 4.7pp Pass@1—but keeps analysis as runtime tool calls, adding latency at inference. LLMxCPG (USENIX Security 2025) uses Code Property Graphs for vulnerability detection (67-91% code reduction, 15-40% F1 gain) but targets security, not repair context. Sliceformer (ACL 2026) distills DFG knowledge into CodeT5+ for slicing tasks, validating structural knowledge transfer but not addressing repair. **Compression paradigms**: A recent empirical study (arXiv:2604.13725) shows continuous latent vector compression surpasses full-context by up to 28.3% BLEU at 4x compression—demonstrating that intelligent filtering outperforms naive truncation, though text-level selection remains complementary and more interpretable. **Benchmarks**: SWE-bench Pro (Scale AI, 1865 tasks) is the recommended hard benchmark; SWE-bench Lite (300 instances) remains widely used; RepoBench-R (ICLR 2024) directly evaluates cross-file context retrieval; SWE-ContextBench (arXiv:2602.08316) provides 1100+376 tasks for context evaluation. **Gap**: No existing work distills data-flow (def-use) signals into a lightweight model for repair context selection. LocAgent uses structural edges but not def-use; SweRank is text-only; ARISE uses def-use but only at runtime. The fusion of data-flow features with lexical retrieval in a fast, distilled model is unexplored.",
+  "approach": "We propose StructFuse, a multi-signal context selector that fuses data-flow structural features with lexical retrieval signals in a lightweight distilled model for repository-level code repair context selection.\n\n**Stage 1: Multi-Signal Feature Extraction (Days 1-3).** For 5K SWE-smith training instances across ~80-100 of the 128 available repositories, we extract three signal types: (a) *Data-flow features*: Using CodeQL for inter-procedural def-use analysis and call-graph construction on the ~128 shared repositories (each needing one database build), augmented by Beniget for intra-file def-use chains where CodeQL databases fail (~20-30% of repos). For each candidate file/function, we compute: graph distance to buggy location, number of data-flow paths, dependency type (def-use, call-graph, import). (b) *Lexical features*: BM25 similarity between issue description and candidate code, plus SweRankEmbed scores as a strong retrieval baseline. (c) *Structural metadata*: File co-change frequency from git history, import distance, directory distance. We explicitly acknowledge Python's dynamic features (eval, metaclasses, monkey-patching) limit static analysis coverage and quantify this via a validation step on 500 instances before full-scale extraction.\n\n**Stage 2: Fusion Model Training (Days 4-5).** We train a Qwen2.5-Coder-3B model via LoRA SFT on multi-signal fusion. The model receives structured multi-signal representations (data-flow graph features, BM25/SweRankEmbed scores, structural metadata) as input alongside the code context and learns to predict file/function-level relevance. We apply data-flow-guided loss weighting: candidates with strong structural connections receive higher loss weight, encoding the inductive bias that structurally-connected code is more reliably relevant than lexically-similar code. We are transparent that this training methodology—multi-source features as input with confidence-weighted loss—is technically standard; the contribution lies in demonstrating that data-flow signals provide effective supervision without LLM teachers and that the specific signal combination yields empirical gains. Training takes ~2-4 hours per run on a single H100; we run 5 ablation configurations (data-flow only, lexical only, full fusion, with/without loss weighting, CodeQL inter-procedural vs. Beniget intra-file only).\n\n**Stage 3: Evaluation (Days 6-10).** The distilled selector plugs into SWE-agent as a drop-in context retrieval component. We evaluate on: (a) SWE-bench Lite (300 instances, full), (b) SWE-bench Pro public split (500-instance stratified sample of 731 public instances), (c) RepoBench-R (cross-file retrieval evaluation, no LLM needed). Metrics: localization recall@k (file and function level), end-to-end Pass@1 repair rate, token efficiency. End-to-end evaluation uses Qwen3.6-27B exclusively (open-weight, no API costs). We compare against: (i) SweRank/SweRankEmbed (SOTA text-based retrieval), (ii) SWE-Pruner (LLM-labeled selector), (iii) BM25 baseline, (iv) LocAgent's graph-guided approach (import/call/inheritance edges, no def-use), (v) no-pruning full-context. Key ablations isolate each signal type's contribution.\n\n**Stage 4: Writing (Days 10-15).** The central hypothesis: on hard benchmarks, the fusion of data-flow + lexical signals outperforms either alone—and achieves comparable or better performance than LLM-labeled selectors at zero labeling cost. The paper frames StructFuse as an empirical and systems contribution: (a) first demonstration that program-analysis-derived data-flow features provide effective, free supervision for context selection, (b) empirical evidence that def-use edges complement the import/call/inheritance edges used by LocAgent and the text signals used by SweRank, (c) a practical, reproducible pipeline (CodeQL→features→3B fusion model) that is fast at inference and model-independent.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~180h H100 (CodeQL database creation for ~128 repos: ~10h CPU-parallel + 5h GPU; feature extraction: ~15h; SFT training 5 ablation runs: ~20h; SWE-bench evaluation 800 instances with Qwen3.6-27B: ~120h; RepoBench-R evaluation: ~10h)",
+      "gpu_utilization": "~70-80% utilization during evaluation phase (Qwen3.6-27B inference is GPU-bound); ~30-40% during CodeQL/feature extraction",
+      "timeline": "15 days (Days 1-3: CodeQL pipeline + feature extraction; Days 4-5: SFT training + ablations; Days 6-10: evaluation; Days 10-15: writing)",
+      "team": "1-2 researchers (one with CodeQL/program analysis, one with LLM fine-tuning; can be same person)",
+      "estimated_gpu_cost": "$400-600 (180h H100 at spot ~$2.50/hr; no LLM API costs—all evaluation uses open-weight Qwen3.6-27B)",
+      "claude_api_cost": "$0 for evaluation (Qwen3.6-27B only); ~$50-100 for writing assistance",
+      "risk_note": "CodeQL database creation may fail for 20-30% of Python repos with complex dependencies; Beniget fallback covers intra-file analysis. SWE-smith repos are well-maintained open-source projects with higher-than-average build success rates."
+    },
+    "human_in_loop": {
+      "gpu_hours": "~150h H100 (same pipeline, agent manages CodeQL builds and queues training runs; human reviews label quality at day 2 and evaluation configs at day 5)",
+      "gpu_utilization": "~75-85% utilization; agent parallelizes independent experiments",
+      "timeline": "12-14 days",
+      "team": "1 researcher, ~45min/day check-in for label quality review and experiment approval",
+      "claude_api_cost": "$80-150 (800-1500 turns for pipeline code generation and debugging)",
+      "estimated_gpu_cost": "$350-500 (150h H100 at spot ~$2.50/hr)",
+      "risk_note": "Tight timeline requires pre-validated CodeQL setup; recommend testing on 10 repos in first 4 hours before scaling"
+    },
+    "auto_research": {
+      "gpu_hours": "~200h H100 (full ablation suite, hyperparameter sweep over loss weights, multi-benchmark evaluation including RepoBench-R)",
+      "gpu_utilization": "~85-90% utilization; agent continuously launches experiments, parallelizes independent ablations",
+      "timeline": "10-12 days with 2-4 H100 GPUs available concurrently",
+      "team": "0 (initial setup: CodeQL CLI installation, SWE-smith repo cloning, SWE-bench evaluation harness)",
+      "claude_api_cost": "$200-400 (2000-4000 turns for iterative pipeline development, CodeQL query debugging, experiment scheduling)",
+      "estimated_gpu_cost": "$500-700 (200h H100 at spot ~$2.50/hr to on-demand ~$3.50/hr)",
+      "speed_bottleneck": "SWE-bench evaluation (~9min/instance × 800 instances on Qwen3.6-27B ≈ 120 H100-hours; parallelizable across GPUs)",
+      "risk_note": "Agent should validate CodeQL coverage on first 10 repos and report def-use coverage before scaling. If coverage < 50%, pivot to Beniget-only for broader but shallower analysis."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline: May 25, 2026; conference: Fall 2026; topic area: 'NLP and Code Models')"
+  ],
+  "level": "solid-to-strong",
+  "key_references": [
+    "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents (arXiv:2601.16746, Jan 2026) — 0.6B skimmer, LLM-labeled, <1pp degradation on SWE-bench Verified",
+    "LocAgent: Graph-Guided LLM Agents for Code Localization (ACL 2025, arXiv:2503.09089) — 92.7% file-level accuracy on SWE-bench Lite using import/invocation/inheritance edges with fine-tuned Qwen2.5-32B; no def-use edges",
+    "SweRank: Software Issue Localization with Code Ranking (arXiv:2505.07849, May 2025) — SOTA retrieve-and-rerank, outperforms agent-based systems; text-only, no structural signals",
+    "SweRank+: Multilingual, Multi-Turn Code Ranking (arXiv:2512.20482, Dec 2025) — extends SweRank to multilingual multi-turn with 155K training instances",
+    "Sliceformer: Static Program Slicing Using Language Models With Dataflow-Aware Pretraining (ACL 2026, arXiv:2604.26961) — validates data-flow knowledge transfer to neural models",
+    "ARISE: Repository-level Graph Representation for Agentic Fault Localization and Repair (arXiv:2605.03117, May 2026) — def-use edges as runtime tool calls, +17pp Function Recall@1",
+    "LLMxCPG: Context-Aware Vulnerability Detection Through CPG-Guided LLMs (USENIX Security 2025) — CPG-guided context extraction, 67-91% code reduction",
+    "Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents (arXiv:2604.04979, Apr 2026) — 0.86 recall, 92% token removal on tool outputs",
+    "On the Effectiveness of Context Compression for Repository-Level Tasks (arXiv:2604.13725, Apr 2026) — continuous latent vectors surpass full-context by 28.3% at 4x compression",
+    "LongCodeZip: Compress Long Context for Code Language Models (ASE 2025, arXiv:2510.00446) — 5.6x training-free compression",
+    "RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems (ICLR 2024, arXiv:2306.03091) — cross-file retrieval evaluation benchmark",
+    "SWE-ContextBench: A Benchmark for Context Learning in Coding (arXiv:2602.08316, Feb 2026) — 1100+376 context evaluation tasks",
+    "On the Role of Fault Localization Context for LLM-Based Program Repair (arXiv:2604.05481, Apr 2026) — file-level is dominant factor",
+    "Why SWE-bench Verified No Longer Measures Frontier Coding Capabilities (OpenAI, Feb 2026) — contamination analysis",
+    "SWE-bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? (Scale AI, arXiv:2509.16941, 2025)",
+    "LLMDFA: Analyzing Dataflow in Code with Large Language Models (NeurIPS 2024)",
+    "SWE-smith: Scaling Data for Software Engineering Agents (NeurIPS 2025 D&B Spotlight)",
+    "SWE-bench: Can Language Models Resolve Real-World GitHub Issues? (ICLR 2024)"
+  ],
+  "description": "We propose StructFuse, a multi-signal context selector for repository-level code repair that fuses data-flow (def-use) structural features with lexical retrieval signals in a lightweight 3B distilled model. Unlike SWE-Pruner (expensive LLM-labeled supervision), SweRank (text-only retrieval), and LocAgent (import/call/inheritance edges but no def-use), StructFuse extracts inter-procedural def-use chains via CodeQL and fuses them with BM25/SweRankEmbed retrieval scores in a Qwen2.5-Coder-3B model trained with LoRA SFT. The contribution is empirical and practical, not methodological: (1) we demonstrate that program-analysis-derived data-flow features provide effective supervision for context selection without any LLM teacher—zero labeling cost vs. ~$50-200 for LLM-supervised methods; (2) we show that def-use edges complement the coarser structural edges (import/call/inheritance) used by LocAgent and the text signals used by SweRank, with fusion outperforming either signal type alone; (3) the resulting pipeline (CodeQL→features→3B fusion model) is fast at inference, model-independent, and provides interpretable selections with traceable data-flow paths to the bug. We evaluate on SWE-bench Lite (300 instances), a 500-instance SWE-bench Pro subset, and RepoBench-R (cross-file retrieval), using only open-weight Qwen3.6-27B for end-to-end repair evaluation (no API costs). We target EMNLP 2026 under the 'NLP and Code Models' topic area, with a 15-day implementation sprint fitting within 200 H100-hours.",
+  "project_name": "structfuse_context",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 4)
+Issues: ["CRITICAL: SWE-Pruner labeling cost claim '~$50-200 per labeling run' is NOT from the paper and appears fabricated. The SWE-Pruner paper provides no cost figures. My independent verification shows the teacher model (Qwen3-Coder-30B-A3B-Instruct) is an MoE with only 3.3B active parameters, priced at $0.07-0.19/1M input tokens. Labeling 61K samples realistically costs $10-35 (at cheapest API) or at most ~$100 (at Alibaba's own endpoint). This 3-10x overestimate significantly weakens the cost motivation — the savings from avoiding LLM labeling are modest, not transformative.", "SWE-bench Pro SOTA claim 'top systems score 42-59%' is outdated. Claude Mythos Preview scores 77.8% as of April 2026. The 42-59% range only holds under SEAL-standardized evaluation constraints. Must be corrected or qualified.", "CodeQL for general-purpose def-use extraction is underspecified. CodeQL's Python inter-procedural data flow API is designed for security source-to-sink taint tracking, not arbitrary def-use chain enumeration. Custom CodeQL queries (defining sources, sinks, and flow configurations) must be written to extract general def-use features. This is non-trivial engineering not reflected in the timeline. The idea should specify: (a) what CodeQL query patterns will be used, (b) whether existing security queries can be adapted, or (c) how much query development time is budgeted.", "SWE-Pruner teacher model mischaracterization: The idea repeatedly frames Qwen3-Coder-30B as an expensive teacher, but it is an MoE model with only 3.3B active parameters per forward pass — inference cost comparable to a 3B dense model, not a 30B one. This undermines the 'expensive LLM teacher' narrative throughout the paper. The cost argument must be reframed: the advantage is not primarily cost savings but model-independence, interpretability, and avoiding coupling to a specific teacher's biases.", "Missing reference: SWE-Fixer (ACL Findings 2025) combines BM25 with a fine-tuned 7B retriever (from GraphCodeBERT-style embeddings) for coarse-to-fine code file retrieval in repo-level repair, achieving 32.8% on SWE-bench Verified. This is architecturally similar (BM25 + neural retrieval fusion for context selection) and should be discussed.", "SweRank venue update: SweRank is accepted at ICLR 2026 (confirmed via Salesforce's ICLR 2026 accepted papers list), not just an arXiv preprint. Should be cited correctly.", "Method contribution remains thin for EMNLP Main. With the training methodology explicitly acknowledged as standard, and the contribution framed as empirical, this reads more like a strong Findings paper than a Main paper. Reviewers at Main will expect either: (a) a novel training objective beyond weighted cross-entropy, (b) a theoretical grounding for why data-flow signals should outperform lexical signals, or (c) a more surprising empirical result than 'fusion outperforms individual signals.'"]
+Feedback: Round 4 has made excellent progress — venue targeting, timeline, API cost elimination, and honest method framing are all fixed. The idea is now structurally sound. However, the cost motivation has a factual foundation problem that must be addressed before this can pass:
+
+1. **Rewrite the cost motivation entirely.** The '$50-200 per labeling run' claim is unverifiable and almost certainly a 3-10x overestimate. SWE-Pruner's teacher (Qwen3-Coder-30B-A3B) has only 3.3B active parameters and costs $0.07/1M input tokens — labeling 61K samples costs ~$10-35. Do NOT fabricate cost figures. Instead, reframe the advantage as: (a) **model-independence** — SWE-Pruner's labels are coupled to Qwen3-Coder's biases and selection patterns; data-flow labels are ground-truth from program analysis; (b) **zero marginal cost at scale** — adding more repos requires only running CodeQL, no LLM inference budget; (c) **interpretability** — each selection comes with a traceable data-flow path to the bug, not an opaque LLM judgment; (d) **reproducibility** — labels are deterministic given the same CodeQL database, unlike stochastic LLM outputs. The cost angle is a nice-to-have, not the headline.
+
+2. **Update SWE-bench Pro SOTA.** State clearly: 'Top agent systems score 50-78% on SWE-bench Pro depending on scaffolding complexity (Claude Mythos Preview: 77.8% with custom scaffolding; SEAL-standardized evaluation constrains scores to ~42-58%).' This is important because higher Pro scores narrow the improvement ceiling from context selection.
+
+3. **Specify CodeQL query strategy concretely.** State: 'We configure CodeQL's Python taint tracking API with broad source/sink definitions (all function parameters as sources, all variable reads as sinks) to approximate general def-use chains. Where this overproduces flows, we filter by graph distance. We budget 1 day specifically for CodeQL query development and validation on 10 pilot repos before scaling.' This addresses the practical risk.
+
+4. **Correct the SWE-Pruner teacher characterization.** Note that Qwen3-Coder-30B-A3B is an MoE model with 3.3B active parameters. Do not frame it as an expensive 30B teacher.
+
+5. **Add SWE-Fixer (ACL Findings 2025) to related work** — it is the most architecturally similar prior work (BM25 + neural retriever fusion for repo-level repair context selection). Differentiate: SWE-Fixer uses learned embeddings without structural program analysis features.
+
+6. **Explicitly target EMNLP Findings alongside Main.** Given the empirical contribution type, dual-targeting de-risks rejection. The paper's strength is practical value (cheap, fast, interpretable, model-independent context selector), which Findings rewards.
+
+7. **Strengthen the method contribution.** Consider adding one of: (a) a contrastive learning objective where data-flow-connected pairs are pulled together in the embedding space, distinct from standard cross-entropy; (b) a two-stage cascade (coarse file selection via BM25 + data-flow features → fine-grained function ranking via the 3B model), which adds architectural novelty; or (c) a data-flow-aware hard negative mining strategy where training negatives are selected as files that are lexically similar but structurally disconnected from the bug. Any of these would elevate the method contribution above 'SFT with different labels.'
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+## 停滞提醒
+这个 idea 已经经过 4 轮修订，近 3 轮的平均分从 3.2 到 3.5，没有明显改善。
+
+请认真思考：
+- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？
+- 如果你认为问题出在 approach 而非 framing，可以做 major revision。
+- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。
+- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。
+
+最终由你判断——做你认为最能提升 idea 质量的选择。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "37c2bd62-c1e0-4398-8028-e159bd8d1e30",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T18:50:52.674Z_
+
+```json
+{
+  "parentUuid": "37c2bd62-c1e0-4398-8028-e159bd8d1e30",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "c3c0ab4d-b152-4ae2-a161-d0873237e356",
+  "timestamp": "2026-05-10T18:50:52.674Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T18:50:52.674Z_
+
+```json
+{
+  "parentUuid": "c3c0ab4d-b152-4ae2-a161-d0873237e356",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "4ef04094-ad24-4068-9ba4-24e9482f6a27",
+  "timestamp": "2026-05-10T18:50:52.674Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Fusing Data-Flow and Lexical Signals for Repository-Level…",
+  "leafUuid": "4ef04094-ad24-4068-9ba4-24e9482f6a27",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reframe StructFuse with data-flow ground truth, not cost savings",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T18:51:11.359Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully analyze the reviewer feedback and think deeply about whether this idea needs minor fixes, major revision, or a pivot.
+
+**Key issues identified by reviewers:**
+
+1. **CRITICAL: Fabricated cost claims** - The $50-200 cost figure for SWE-Pruner labeling is wrong. The teacher model (Qwen3-Coder-30B-A3B) is MoE with 3.3B active params, costing ~$10-35 for labeling. This undermines the core cost motivation.
+
+2. **Outdated SOTA** - SWE-bench Pro scores are outdated (Claude Mythos Preview at 77.8%).
+
+
+3. **CodeQL underspecified** - Using CodeQL for general def-use extraction is non-trivial; it's designed for security taint tracking.
+4. **Teacher model mischaracterization** - Qwen3-Coder-30B is MoE, not a dense 30B model.
+5. **Missing reference** - SWE-Fixer (ACL Findings 2025) is architecturally similar.
+6. **SweRank venue update** - Accepted at ICLR 2026.
+7. **Method contribution thin** - Need more than standard SFT with different labels.
+
+Looking at these issues, the core problem is that my cost-efficiency argument collapses when the actual labeling costs are 3-4x lower than claimed, and the method itself doesn't offer enough novelty beyond applying standard fine-tuning to a different label distribution. The technical details around CodeQL and the teacher model are also misrepresented, which suggests I need to either ground this in more rigorous implementation details or reconsider the fundamental approach.
+
+The reviewer's concrete suggestions—contrastive learning, cascade architectures, or hard negative mining—point toward what would actually constitute a methodological contribution. A major revision would need to abandon the cost narrative entirely and instead build around one of these techniques as the core innovation, with the data-flow features playing a supporting role rather than being the main story.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ef04094-ad24-4068-9ba4-24e9482f6a27",
+  "isSidechain": false,
+  "requestId": "req_011CauPdzWYT5HGyMxZZNj8V",
+  "type": "assistant",
+  "uuid": "45505941-16f8-477a-8196-05058fb1efb7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Te4kgVHkFaehjFZB95pSVF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13026,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 701,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13026,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 701,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 13026,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13026
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T18:51:12.450Z_
+
+I'll start by researching the key issues raised by reviewers: the SWE-Pruner cost reality, current SWE-bench Pro SOTA, CodeQL Python capabilities, SWE-Fixer, and potential methodological innovations. Let me run several searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45505941-16f8-477a-8196-05058fb1efb7",
+  "isSidechain": false,
+  "requestId": "req_011CauPdzWYT5HGyMxZZNj8V",
+  "type": "assistant",
+  "uuid": "61e567be-f71b-463b-a85e-7a3e24a6d02d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Te4kgVHkFaehjFZB95pSVF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13026,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 701,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13026,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 701,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 13026,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13026
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T18:51:13.112Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019fjhDidr92dh8muMquv9EB`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61e567be-f71b-463b-a85e-7a3e24a6d02d",
+  "isSidechain": false,
+  "requestId": "req_011CauPdzWYT5HGyMxZZNj8V",
+  "type": "assistant",
+  "uuid": "98809780-d18a-4b58-8bae-5f0646f2aa8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Te4kgVHkFaehjFZB95pSVF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13026,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 701,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13026,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 701,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 13026,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13026
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T18:51:13.119Z_
+
+<details><summary>↩ Tool result · `toolu_019fjhDidr92dh8muMquv9EB`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98809780-d18a-4b58-8bae-5f0646f2aa8f",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "0b9c48fb-dbe6-4c76-a1ac-8fa98985c2f0",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "98809780-d18a-4b58-8bae-5f0646f2aa8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-10T18:51:17.838Z_
+
+Now let me run parallel searches to research all the key issues.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0b9c48fb-dbe6-4c76-a1ac-8fa98985c2f0",
+  "isSidechain": false,
+  "requestId": "req_011CauPfXNx3MpArM8xSkLbY",
+  "type": "assistant",
+  "uuid": "daffc3d2-4915-441a-964c-d376f05a4a4e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RmoNxxxDSaRuqZRVeMhH1G",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1720,
+      "cache_read_input_tokens": 24830,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1720,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 24830,
+          "cache_creation_input_tokens": 1720,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1720
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-10T18:51:18.832Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MGgCmhXMtSXQigvx3CSJFg`</summary>
+
+```json
+{
+  "query": "SWE-Pruner Qwen3-Coder-30B-A3B MoE active parameters inference cost 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "daffc3d2-4915-441a-964c-d376f05a4a4e",
+  "isSidechain": false,
+  "requestId": "req_011CauPfXNx3MpArM8xSkLbY",
+  "type": "assistant",
+  "uuid": "1d1c1d7f-811d-4cd8-8d4b-3c2e0d44946b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RmoNxxxDSaRuqZRVeMhH1G",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1720,
+      "cache_read_input_tokens": 24830,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1720,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 24830,
+          "cache_creation_input_tokens": 1720,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1720
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-10T18:51:24.427Z_
+
+<details><summary>↩ Tool result · `toolu_01MGgCmhXMtSXQigvx3CSJFg`</summary>
+
+```text
+Web search results for query: "SWE-Pruner Qwen3-Coder-30B-A3B MoE active parameters inference cost 2026"
+
+Links: [{"title":"Qwen3 Coder 30B A3B - Intelligence, Performance & Price Analysis","url":"https://artificialanalysis.ai/models/qwen3-coder-30b-a3b-instruct"},{"title":"Qwen/Qwen3-Coder-30B-A3B-Instruct · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct"},{"title":"Qwen3 Coder 30B A3B Instruct - API Pricing & Benchmarks | OpenRouter","url":"https://openrouter.ai/qwen/qwen3-coder-30b-a3b-instruct"},{"title":"GitHub - QwenLM/Qwen3-Coder: Qwen3-Coder is the code version of Qwen3, the large language model series developed by Qwen team. · GitHub","url":"https://github.com/QwenLM/Qwen3-Coder"},{"title":"Qwen3-Coder-Next: Pushing Small Hybrid Models","url":"https://qwen.ai/blog?id=qwen3-coder-next"},{"title":"Qwen/Qwen3-30B-A3B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-30B-A3B"},{"title":"Qwen3 Coder 30B A3B Instruct - API, Specs, Playground & Pricing - Puter Developer","url":"https://developer.puter.com/ai/qwen/qwen3-coder-30b-a3b-instruct/"},{"title":"Qwen3 30B A3B Instruct 2507 - API Pricing & Providers | OpenRouter","url":"https://openrouter.ai/qwen/qwen3-30b-a3b-instruct-2507"},{"title":"Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8 · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8"},{"title":"Qwen/Qwen3.6-35B-A3B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.6-35B-A3B"}]
+
+Based on my search results, here's the information about the Qwen3-Coder-30B-A3B model:
+
+## Active Parameters
+
+Qwen3 Coder 30B A3B Instruct is a Mixture of Experts (MoE) model with 30.5 billion total parameters, but only 3.3 billion active parameters are used during inference. It has 128 experts with 8 active per forward pass.
+
+## Inference Cost
+
+The inference costs vary depending on the provider:
+
+- Alibaba's API: $0.19 per 1M input tokens and $0.84 per 1M output tokens
+- OpenRouter: $0.07 per million input tokens, $0.27 per million output tokens
+- Puter Developer: $0.07 per 1M input tokens and $0.27 per 1M output tokens
+
+## Note on SWE-Pruner
+
+The search results did not return specific information about "SWE-Pruner" in relation to the Qwen3-Coder-30B-A3B model. The results mention SWE-Bench evaluations and performance metrics, but not a specific technique or model variant called "SWE-Pruner."
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1d1c1d7f-811d-4cd8-8d4b-3c2e0d44946b",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "c9b16757-0e34-475f-8d97-7044cb294619",
+  "toolUseResult": {
+    "query": "SWE-Pruner Qwen3-Coder-30B-A3B MoE active parameters inference cost 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011uQ4Hk9hXAfJ3JiyhzYpea",
+        "content": [
+          {
+            "title": "Qwen3 Coder 30B A3B - Intelligence, Performance & Price Analysis",
+            "url": "https://artificialanalysis.ai/models/qwen3-coder-30b-a3b-instruct"
+          },
+          {
+            "title": "Qwen/Qwen3-Coder-30B-A3B-Instruct · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct"
+          },
+          {
+            "title": "Qwen3 Coder 30B A3B Instruct - API Pricing & Benchmarks | OpenRouter",
+            "url": "https://openrouter.ai/qwen/qwen3-coder-30b-a3b-instruct"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3-Coder: Qwen3-Coder is the code version of Qwen3, the large language model series developed by Qwen team. · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3-Coder"
+          },
+          {
+            "title": "Qwen3-Coder-Next: Pushing Small Hybrid Models",
+            "url": "https://qwen.ai/blog?id=qwen3-coder-next"
+          },
+          {
+            "title": "Qwen/Qwen3-30B-A3B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B"
+          },
+          {
+            "title": "Qwen3 Coder 30B A3B Instruct - API, Specs, Playground & Pricing - Puter Developer",
+            "url": "https://developer.puter.com/ai/qwen/qwen3-coder-30b-a3b-instruct/"
+          },
+          {
+            "title": "Qwen3 30B A3B Instruct 2507 - API Pricing & Providers | OpenRouter",
+            "url": "https://openrouter.ai/qwen/qwen3-30b-a3b-instruct-2507"
+          },
+          {
+            "title": "Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8 · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8"
+          },
+          {
+            "title": "Qwen/Qwen3.6-35B-A3B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
+          }
+        ]
+      },
+      "Based on my search results, here's the information about the Qwen3-Coder-30B-A3B model:\n\n## Active Parameters\n\nQwen3 Coder 30B A3B Instruct is a Mixture of Experts (MoE) model with 30.5 billion total parameters, but only 3.3 billion active parameters are used during inference. It has 128 experts with 8 active per forward pass.\n\n## Inference Cost\n\nThe inference costs vary depending on the provider:\n\n- Alibaba's API: $0.19 per 1M input tokens and $0.84 per 1M output tokens\n- OpenRouter: $0.07 per million input tokens, $0.27 per million output tokens\n- Puter Developer: $0.07 per 1M input tokens and $0.27 per 1M output tokens\n\n## Note on SWE-Pruner\n\nThe search results did not return specific information about \"SWE-Pruner\" in relation to the Qwen3-Coder-30B-A3B model. The results mention SWE-Bench evaluations and performance metrics, but not a specific technique or model variant called \"SWE-Pruner.\""
+    ],
+    "durationSeconds": 5.591000356
+  },
+  "sourceToolAssistantUUID": "1d1c1d7f-811d-4cd8-8d4b-3c2e0d44946b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-10T18:51:28.200Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AgzcxGqWp4tQ47p79ujqt1`</summary>
+
+```json
+{
+  "query": "SWE-bench Pro leaderboard 2026 latest scores Claude Mythos"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9b16757-0e34-475f-8d97-7044cb294619",
+  "isSidechain": false,
+  "requestId": "req_011CauPgL4LUPPbaaELfDuL3",
+  "type": "assistant",
+  "uuid": "f9782da4-9aac-40ef-9266-feaea8aa51b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018myynobsRoYi9cDSbCrRoj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1083,
+      "cache_read_input_tokens": 26550,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1083,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 26550,
+          "cache_creation_input_tokens": 1083,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1083
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-10T18:51:33.794Z_
+
+<details><summary>↩ Tool result · `toolu_01AgzcxGqWp4tQ47p79ujqt1`</summary>
+
+```text
+Web search results for query: "SWE-bench Pro leaderboard 2026 latest scores Claude Mythos"
+
+Links: [{"title":"SWE-Bench Verified Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/swe-bench-verified"},{"title":"SWE-bench Pro Benchmark 2026: 30 LLM scores | BenchLM.ai","url":"https://benchlm.ai/benchmarks/swePro"},{"title":"SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean","url":"https://www.codeant.ai/blogs/swe-bench-scores"},{"title":"SWE-Bench Pro Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/swe-bench-pro"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale","url":"https://labs.scale.com/leaderboard/swe_bench_pro_public"},{"title":"SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%","url":"https://www.morphllm.com/swe-bench-pro"},{"title":"SWE-Bench Pro - Public Benchmark Details | LLM Leaderboard | DataLearnerAI","url":"https://www.datalearner.com/en/benchmarks/swe-bench-pro"},{"title":"SWE-rebench Leaderboard","url":"https://swe-rebench.com/"},{"title":"SWE-bench Results Viewer","url":"https://www.swebench.com/viewer.html"}]
+
+Based on the latest search results, here are the current SWE-bench Pro leaderboard scores:
+
+## Latest Scores (May 2026)
+
+As of May 7, 2026, Claude Mythos Preview leads the SWE-bench Pro leaderboard with 77.8%, followed by Claude Opus 4.7 (Adaptive) (64.3%) and GPT-5.5 (58.6%).
+
+More recent data from a source updated just 2 days ago shows that Claude Mythos Preview by Anthropic leads with a score of 0.778, which is equivalent to the 77.8% score mentioned above. The SWE-Bench Pro leaderboard ranks 20 AI models based on their performance on this benchmark, with the average score across all models being 0.566.
+
+## Key Context
+
+It's worth noting that 30 models have been evaluated on SWE-bench Pro on BenchLM.ai, though other sources show slightly different numbers of total evaluated models. The SWE-bench Pro benchmark is considered more rigorous and reliable than the older SWE-bench Verified, as it uses standardized scaffolding and includes more diverse tasks across multiple programming languages.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f9782da4-9aac-40ef-9266-feaea8aa51b5",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "fc0837ba-adfc-472c-bfe7-7bb96dc17471",
+  "toolUseResult": {
+    "query": "SWE-bench Pro leaderboard 2026 latest scores Claude Mythos",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RCkGfSG3YqU536fsmQ4TNX",
+        "content": [
+          {
+            "title": "SWE-Bench Verified Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "SWE-bench Pro Benchmark 2026: 30 LLM scores | BenchLM.ai",
+            "url": "https://benchlm.ai/benchmarks/swePro"
+          },
+          {
+            "title": "SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean",
+            "url": "https://www.codeant.ai/blogs/swe-bench-scores"
+          },
+          {
+            "title": "SWE-Bench Pro Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/swe-bench-pro"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale",
+            "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public"
+          },
+          {
+            "title": "SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%",
+            "url": "https://www.morphllm.com/swe-bench-pro"
+          },
+          {
+            "title": "SWE-Bench Pro - Public Benchmark Details | LLM Leaderboard | DataLearnerAI",
+            "url": "https://www.datalearner.com/en/benchmarks/swe-bench-pro"
+          },
+          {
+            "title": "SWE-rebench Leaderboard",
+            "url": "https://swe-rebench.com/"
+          },
+          {
+            "title": "SWE-bench Results Viewer",
+            "url": "https://www.swebench.com/viewer.html"
+          }
+        ]
+      },
+      "Based on the latest search results, here are the current SWE-bench Pro leaderboard scores:\n\n## Latest Scores (May 2026)\n\nAs of May 7, 2026, Claude Mythos Preview leads the SWE-bench Pro leaderboard with 77.8%, followed by Claude Opus 4.7 (Adaptive) (64.3%) and GPT-5.5 (58.6%).\n\nMore recent data from a source updated just 2 days ago shows that Claude Mythos Preview by Anthropic leads with a score of 0.778, which is equivalent to the 77.8% score mentioned above. The SWE-Bench Pro leaderboard ranks 20 AI models based on their performance on this benchmark, with the average score across all models being 0.566.\n\n## Key Context\n\nIt's worth noting that 30 models have been evaluated on SWE-bench Pro on BenchLM.ai, though other sources show slightly different numbers of total evaluated models. The SWE-bench Pro benchmark is considered more rigorous and reliable than the older SWE-bench Verified, as it uses standardized scaffolding and includes more diverse tasks across multiple programming languages."
+    ],
+    "durationSeconds": 5.5894286589999975
+  },
+  "sourceToolAssistantUUID": "f9782da4-9aac-40ef-9266-feaea8aa51b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-10T18:51:36.719Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MTqiiEmkv8Ug7fxkEu48yR`</summary>
+
+```json
+{
+  "query": "SWE-Fixer ACL Findings 2025 BM25 neural retriever repository-level repair"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc0837ba-adfc-472c-bfe7-7bb96dc17471",
+  "isSidechain": false,
+  "requestId": "req_011CauPh29r4FgeA234FB6Y9",
+  "type": "assistant",
+  "uuid": "1bef7d27-b548-4fc1-ad59-70a8e05b3d5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FT7oDoXb6iKUviENV5qtXy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 814,
+      "cache_read_input_tokens": 27633,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 814,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 27633,
+          "cache_creation_input_tokens": 814,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 814
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-10T18:51:44.342Z_
+
+<details><summary>↩ Tool result · `toolu_01MTqiiEmkv8Ug7fxkEu48yR`</summary>
+
+```text
+Web search results for query: "SWE-Fixer ACL Findings 2025 BM25 neural retriever repository-level repair"
+
+Links: [{"title":"SWE-Fixer: Training Open-Source LLMs for Effective and ...","url":"https://aclanthology.org/2025.findings-acl.62.pdf"},{"title":"SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution","url":"https://www.researchgate.net/publication/394273882_SWE-Fixer_Training_Open-Source_LLMs_for_Effective_and_Efficient_GitHub_Issue_Resolution"},{"title":"GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4APR"},{"title":"Findings of the Association for Computational Linguistics:","url":"https://aclanthology.org/2025.findings-naacl.161.pdf"},{"title":"SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution - ACL Anthology","url":"https://aclanthology.org/2025.findings-acl.62/"},{"title":"GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥","url":"https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation"},{"title":"CONFIT V2: Improving Resume-Job Matching using ...","url":"https://aclanthology.org/2025.findings-acl.661.pdf"},{"title":"A Rank Fusion Framework for Enhanced Sparse Retrieval ...","url":"https://aclanthology.org/2025.findings-acl.9.pdf"},{"title":"Adapting General-Purpose Embedding Models to Private ...","url":"https://aclanthology.org/2025.findings-acl.357.pdf"},{"title":"Accepted Findings Papers - ACL 2025","url":"https://2025.aclweb.org/program/find_papers/"}]
+
+Based on the search results, I found relevant information about SWE-Fixer and its ACL Findings 2025 publication.
+
+## SWE-Fixer: ACL Findings 2025
+
+SWE-Fixer is a work presented at the Findings of the Association for Computational Linguistics: ACL 2025 titled "Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution," published in Vienna, Austria.
+
+SWE-Fixer is described as a lightweight approach comprising two modules: code retrieval (BM25-based) and code editing, using open-source finetuned models.
+
+### Key Components:
+
+**Retrieval Strategy**: SWE-Fixer uses BM25 retrieval for issue localization. The base setting utilizes a 64K context window, which includes the readme file and BM25-retrieved file documentation limited to 30 files.
+
+**Performance**: The system obtained competitive performance on SWE-bench Lite/Verified with 22% and 30.2% task resolution rates, respectively.
+
+**Approach**: SWE-Fixer integrates coarse-to-fine file retrieval and edit disentanglement to train open LLMs for SWE tasks.
+
+The work demonstrates an effective approach to training open-source language models for automated software engineering tasks, particularly in resolving GitHub issues at the repository level.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1bef7d27-b548-4fc1-ad59-70a8e05b3d5a",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "fb9b10fb-e504-4f32-944a-e040a349470e",
+  "toolUseResult": {
+    "query": "SWE-Fixer ACL Findings 2025 BM25 neural retriever repository-level repair",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01U3drRQjtSKd5rxtz3SydoK",
+        "content": [
+          {
+            "title": "SWE-Fixer: Training Open-Source LLMs for Effective and ...",
+            "url": "https://aclanthology.org/2025.findings-acl.62.pdf"
+          },
+          {
+            "title": "SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution",
+            "url": "https://www.researchgate.net/publication/394273882_SWE-Fixer_Training_Open-Source_LLMs_for_Effective_and_Efficient_GitHub_Issue_Resolution"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4APR"
+          },
+          {
+            "title": "Findings of the Association for Computational Linguistics:",
+            "url": "https://aclanthology.org/2025.findings-naacl.161.pdf"
+          },
+          {
+            "title": "SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-acl.62/"
+          },
+          {
+            "title": "GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥",
+            "url": "https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation"
+          },
+          {
+            "title": "CONFIT V2: Improving Resume-Job Matching using ...",
+            "url": "https://aclanthology.org/2025.findings-acl.661.pdf"
+          },
+          {
+            "title": "A Rank Fusion Framework for Enhanced Sparse Retrieval ...",
+            "url": "https://aclanthology.org/2025.findings-acl.9.pdf"
+          },
+          {
+            "title": "Adapting General-Purpose Embedding Models to Private ...",
+            "url": "https://aclanthology.org/2025.findings-acl.357.pdf"
+          },
+          {
+            "title": "Accepted Findings Papers - ACL 2025",
+            "url": "https://2025.aclweb.org/program/find_papers/"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about SWE-Fixer and its ACL Findings 2025 publication.\n\n## SWE-Fixer: ACL Findings 2025\n\nSWE-Fixer is a work presented at the Findings of the Association for Computational Linguistics: ACL 2025 titled \"Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution,\" published in Vienna, Austria.\n\nSWE-Fixer is described as a lightweight approach comprising two modules: code retrieval (BM25-based) and code editing, using open-source finetuned models.\n\n### Key Components:\n\n**Retrieval Strategy**: SWE-Fixer uses BM25 retrieval for issue localization. The base setting utilizes a 64K context window, which includes the readme file and BM25-retrieved file documentation limited to 30 files.\n\n**Performance**: The system obtained competitive performance on SWE-bench Lite/Verified with 22% and 30.2% task resolution rates, respectively.\n\n**Approach**: SWE-Fixer integrates coarse-to-fine file retrieval and edit disentanglement to train open LLMs for SWE tasks.\n\nThe work demonstrates an effective approach to training open-source language models for automated software engineering tasks, particularly in resolving GitHub issues at the repository level."
+    ],
+    "durationSeconds": 7.618913199000002
+  },
+  "sourceToolAssistantUUID": "1bef7d27-b548-4fc1-ad59-70a8e05b3d5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-10T18:51:47.359Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XiYdS4XRX3nxPBTzLRoyKe`</summary>
+
+```json
+{
+  "query": "CodeQL Python dataflow analysis def-use chains general purpose extraction taint tracking limitations"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fb9b10fb-e504-4f32-944a-e040a349470e",
+  "isSidechain": false,
+  "requestId": "req_011CauPhoDWN3DgKP7236CLw",
+  "type": "assistant",
+  "uuid": "95aff674-1607-4952-b3ed-52205caa6138",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H5TsnA2QShd2YLDUR2YnUP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 981,
+      "cache_read_input_tokens": 28447,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 981,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 28447,
+          "cache_creation_input_tokens": 981,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 981
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Fusing Data-Flow and Lexical Signals for Repository-Level…",
+  "leafUuid": "95aff674-1607-4952-b3ed-52205caa6138",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reframe StructFuse with data-flow ground truth, not cost savings",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-10T18:51:54.931Z_
+
+<details><summary>↩ Tool result · `toolu_01XiYdS4XRX3nxPBTzLRoyKe`</summary>
+
+```text
+Web search results for query: "CodeQL Python dataflow analysis def-use chains general purpose extraction taint tracking limitations"
+
+Links: [{"title":"About data flow analysis - CodeQL - GitHub","url":"https://codeql.github.com/docs/writing-codeql-queries/about-data-flow-analysis/"},{"title":"Analyzing data flow in Python - CodeQL - GitHub","url":"https://codeql.github.com/docs/codeql-language-guides/analyzing-data-flow-in-python/"},{"title":"TaintTracking - CodeQL - GitHub","url":"https://codeql.github.com/codeql-standard-libraries/python/semmle/python/dataflow/old/TaintTracking.qll/module.TaintTracking.html"},{"title":"Using flow state for precise data flow analysis - CodeQL - GitHub","url":"https://codeql.github.com/docs/codeql-language-guides/using-flow-labels-for-precise-data-flow-analysis/"},{"title":"Information regarding taint analysis · github/codeql · Discussion #7464","url":"https://github.com/github/codeql/discussions/7464"},{"title":"TaintTracking","url":"https://codeql.github.com/codeql-standard-libraries/python/semmle/python/dataflow/new/TaintTracking.qll/module.TaintTracking$TaintTracking.html"},{"title":"Practical Introduction to CodeQL :: jorgectf — blog","url":"https://jorgectf.github.io/blog/post/practical-codeql-introduction/"},{"title":"CodeQL zero to hero part 3: Security research with CodeQL - The GitHub Blog","url":"https://github.blog/security/vulnerability-research/codeql-zero-to-hero-part-3-security-research-with-codeql/"},{"title":"Taint Tracking in CodeQL » SecurityGrind","url":"https://securitygrind.com/taint-tracking-in-codeql/"},{"title":"Customizing Library Models for Python - CodeQL - GitHub","url":"https://codeql.github.com/docs/codeql-language-guides/customizing-library-models-for-python/"}]
+
+Based on the search results, here's what I found about CodeQL Python dataflow analysis, def-use chains, taint tracking, and their limitations:
+
+## Dataflow Analysis Fundamentals
+
+CodeQL's normal data flow libraries are used to analyze the information flow in which data values are preserved at each step. Local data flow only considers edges between data flow nodes belonging to the same function and ignores data flow between functions and through object properties, while global data flow considers the latter as well.
+
+## Taint Tracking vs. Data Flow
+
+Taint flow analysis allows tracking non-value preserving steps, whereas data flow analysis does not. Taint tracking introduces additional edges into the data flow graph that do not precisely correspond to the flow of values, but model whether some value at runtime may be derived from another, for instance through a string manipulating operation.
+
+## Limitations of Taint Tracking
+
+Computing an accurate and complete data flow graph presents challenges because it isn't possible to compute data flow through standard library functions, where the source code is unavailable. Additionally, CodeQL may stop taint flow analysis if the tainted data flows into a function that changes its content, which requires additional manual modeling to handle properly.
+
+## Python-Specific Implementation
+
+The data-flow graph used by the taint-tracking library is created by points-to analysis and consists of the base data-flow graph enhanced with precise variable flows, call graph and type information, and this graph is then enhanced with additional flows. Since the call graph and points-to information is context sensitive, the taint graph must also be context sensitive.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "95aff674-1607-4952-b3ed-52205caa6138",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "913252b9-3e72-4d80-93a4-b6cd5c521994",
+  "toolUseResult": {
+    "query": "CodeQL Python dataflow analysis def-use chains general purpose extraction taint tracking limitations",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019VE91dgmYCfBSa2fPrqbWe",
+        "content": [
+          {
+            "title": "About data flow analysis - CodeQL - GitHub",
+            "url": "https://codeql.github.com/docs/writing-codeql-queries/about-data-flow-analysis/"
+          },
+          {
+            "title": "Analyzing data flow in Python - CodeQL - GitHub",
+            "url": "https://codeql.github.com/docs/codeql-language-guides/analyzing-data-flow-in-python/"
+          },
+          {
+            "title": "TaintTracking - CodeQL - GitHub",
+            "url": "https://codeql.github.com/codeql-standard-libraries/python/semmle/python/dataflow/old/TaintTracking.qll/module.TaintTracking.html"
+          },
+          {
+            "title": "Using flow state for precise data flow analysis - CodeQL - GitHub",
+            "url": "https://codeql.github.com/docs/codeql-language-guides/using-flow-labels-for-precise-data-flow-analysis/"
+          },
+          {
+            "title": "Information regarding taint analysis · github/codeql · Discussion #7464",
+            "url": "https://github.com/github/codeql/discussions/7464"
+          },
+          {
+            "title": "TaintTracking",
+            "url": "https://codeql.github.com/codeql-standard-libraries/python/semmle/python/dataflow/new/TaintTracking.qll/module.TaintTracking$TaintTracking.html"
+          },
+          {
+            "title": "Practical Introduction to CodeQL :: jorgectf — blog",
+            "url": "https://jorgectf.github.io/blog/post/practical-codeql-introduction/"
+          },
+          {
+            "title": "CodeQL zero to hero part 3: Security research with CodeQL - The GitHub Blog",
+            "url": "https://github.blog/security/vulnerability-research/codeql-zero-to-hero-part-3-security-research-with-codeql/"
+          },
+          {
+            "title": "Taint Tracking in CodeQL » SecurityGrind",
+            "url": "https://securitygrind.com/taint-tracking-in-codeql/"
+          },
+          {
+            "title": "Customizing Library Models for Python - CodeQL - GitHub",
+            "url": "https://codeql.github.com/docs/codeql-language-guides/customizing-library-models-for-python/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CodeQL Python dataflow analysis, def-use chains, taint tracking, and their limitations:\n\n## Dataflow Analysis Fundamentals\n\nCodeQL's normal data flow libraries are used to analyze the information flow in which data values are preserved at each step. Local data flow only considers edges between data flow nodes belonging to the same function and ignores data flow between functions and through object properties, while global data flow considers the latter as well.\n\n## Taint Tracking vs. Data Flow\n\nTaint flow analysis allows tracking non-value preserving steps, whereas data flow analysis does not. Taint tracking introduces additional edges into the data flow graph that do not precisely correspond to the flow of values, but model whether some value at runtime may be derived from another, for instance through a string manipulating operation.\n\n## Limitations of Taint Tracking\n\nComputing an accurate and complete data flow graph presents challenges because it isn't possible to compute data flow through standard library functions, where the source code is unavailable. Additionally, CodeQL may stop taint flow analysis if the tainted data flows into a function that changes its content, which requires additional manual modeling to handle properly.\n\n## Python-Specific Implementation\n\nThe data-flow graph used by the taint-tracking library is created by points-to analysis and consists of the base data-flow graph enhanced with precise variable flows, call graph and type information, and this graph is then enhanced with additional flows. Since the call graph and points-to information is context sensitive, the taint graph must also be context sensitive."
+    ],
+    "durationSeconds": 7.567496825000002
+  },
+  "sourceToolAssistantUUID": "95aff674-1607-4952-b3ed-52205caa6138",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-10T18:51:57.373Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KAMJq5jX7AYtqWipqmRCHm`</summary>
+
+```json
+{
+  "query": "SweRank ICLR 2026 accepted paper software issue localization code ranking"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "913252b9-3e72-4d80-93a4-b6cd5c521994",
+  "isSidechain": false,
+  "requestId": "req_011CauPiaU5B1aUqDZ8YRU7j",
+  "type": "assistant",
+  "uuid": "3bec7a10-7a86-41a3-954b-d35c8d8b1c57",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTKE4Jv1irB2XsEUcNYwiZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 29428,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 29428,
+          "cache_creation_input_tokens": 978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-10T18:52:05.426Z_
+
+<details><summary>↩ Tool result · `toolu_01KAMJq5jX7AYtqWipqmRCHm`</summary>
+
+```text
+Web search results for query: "SweRank ICLR 2026 accepted paper software issue localization code ranking"
+
+Links: [{"title":"Salesforce AI Research at ICLR 2026 - Salesforce","url":"https://www.salesforce.com/blog/salesforce-iclr-2026/"},{"title":"SWERANK: SOFTWARE ISSUE LOCALIZATION","url":"https://openreview.net/pdf/c5d768be17e43c352d20b47d5e4abc4c716b54a8.pdf"},{"title":"[2505.07849] SweRank: Software Issue Localization with Code Ranking","url":"https://arxiv.org/abs/2505.07849"},{"title":"ICLR 2026 Accepted Paper List - Paper Copilot","url":"https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/"},{"title":"Paper page - SweRank: Software Issue Localization with Code Ranking","url":"https://huggingface.co/papers/2505.07849"},{"title":"SweRank: Software Issue Localization with Code Ranking","url":"https://arxiv.org/pdf/2505.07849"},{"title":"SWERANK+: Multilingual, Multi-Turn Code Ranking for Software Issue Localization","url":"https://arxiv.org/pdf/2512.20482"},{"title":"[2512.20482] SweRank+: Multilingual, Multi-Turn Code Ranking for Software Issue Localization","url":"https://arxiv.org/abs/2512.20482"},{"title":"Paper Digest: ICLR 2026 Papers & Highlights – Paper Digest","url":"https://www.paperdigest.org/2026/02/iclr-2026-papers-highlights/"},{"title":"ICLR.2026 | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/ICLR.2026"}]
+
+Based on the search results, I found comprehensive information about the SweRank paper accepted at ICLR 2026:
+
+## SweRank: Software Issue Localization with Code Ranking
+
+SweRank introduces an efficient retrieve-and-rerank framework for software issue localization, trained on the SweLoc dataset. It achieves state-of-the-art performance on SWE-Bench-Lite and LocBench while outperforming costly agent-based systems that rely on closed-source LLMs.
+
+### Overview
+Software issue localization is the task of identifying the precise code locations (files, classes, or functions) relevant to a natural language issue description (e.g., bug report, feature request). While recent LLM-based agentic approaches demonstrate promise, they often incur significant latency and cost due to complex multi-step reasoning and relying on closed-source LLMs. Alternatively, traditional code ranking models typically optimized for query-to-code or code-to-code retrieval, struggle with the verbose and failure-descriptive nature of issue localization queries.
+
+### Technical Approach
+SweRank adopts a two-stage retrieve-and-rerank approach with two key components: (1) SweRankEmbed, a bi-encoder retriever that efficiently narrows down candidate code snippets from large codebases; and (2) SweRankLLM, a listwise LLM reranker that refines these initial results for improved localization accuracy.
+
+### Dataset
+To facilitate training, they construct SweLoc, a large-scale dataset curated from public GitHub repositories, featuring real-world issue descriptions paired with corresponding code modifications.
+
+### Authors
+The authors include Revanth Gangi Reddy, Tarun Suresh, JaeHyeok Doo, Ye Liu, Xuan Phi Nguyen, Yingbo Zhou, Semih Yavuz, Caiming Xiong, Heng Ji, and Shafiq Joty.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3bec7a10-7a86-41a3-954b-d35c8d8b1c57",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "cc878eca-6c7c-4f9a-b366-a78dcfb9bad9",
+  "toolUseResult": {
+    "query": "SweRank ICLR 2026 accepted paper software issue localization code ranking",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015VWFwQahsdFfGtm2NxwmKW",
+        "content": [
+          {
+            "title": "Salesforce AI Research at ICLR 2026 - Salesforce",
+            "url": "https://www.salesforce.com/blog/salesforce-iclr-2026/"
+          },
+          {
+            "title": "SWERANK: SOFTWARE ISSUE LOCALIZATION",
+            "url": "https://openreview.net/pdf/c5d768be17e43c352d20b47d5e4abc4c716b54a8.pdf"
+          },
+          {
+            "title": "[2505.07849] SweRank: Software Issue Localization with Code Ranking",
+            "url": "https://arxiv.org/abs/2505.07849"
+          },
+          {
+            "title": "ICLR 2026 Accepted Paper List - Paper Copilot",
+            "url": "https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/"
+          },
+          {
+            "title": "Paper page - SweRank: Software Issue Localization with Code Ranking",
+            "url": "https://huggingface.co/papers/2505.07849"
+          },
+          {
+            "title": "SweRank: Software Issue Localization with Code Ranking",
+            "url": "https://arxiv.org/pdf/2505.07849"
+          },
+          {
+            "title": "SWERANK+: Multilingual, Multi-Turn Code Ranking for Software Issue Localization",
+            "url": "https://arxiv.org/pdf/2512.20482"
+          },
+          {
+            "title": "[2512.20482] SweRank+: Multilingual, Multi-Turn Code Ranking for Software Issue Localization",
+            "url": "https://arxiv.org/abs/2512.20482"
+          },
+          {
+            "title": "Paper Digest: ICLR 2026 Papers & Highlights – Paper Digest",
+            "url": "https://www.paperdigest.org/2026/02/iclr-2026-papers-highlights/"
+          },
+          {
+            "title": "ICLR.2026 | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/ICLR.2026"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the SweRank paper accepted at ICLR 2026:\n\n## SweRank: Software Issue Localization with Code Ranking\n\nSweRank introduces an efficient retrieve-and-rerank framework for software issue localization, trained on the SweLoc dataset. It achieves state-of-the-art performance on SWE-Bench-Lite and LocBench while outperforming costly agent-based systems that rely on closed-source LLMs.\n\n### Overview\nSoftware issue localization is the task of identifying the precise code locations (files, classes, or functions) relevant to a natural language issue description (e.g., bug report, feature request). While recent LLM-based agentic approaches demonstrate promise, they often incur significant latency and cost due to complex multi-step reasoning and relying on closed-source LLMs. Alternatively, traditional code ranking models typically optimized for query-to-code or code-to-code retrieval, struggle with the verbose and failure-descriptive nature of issue localization queries.\n\n### Technical Approach\nSweRank adopts a two-stage retrieve-and-rerank approach with two key components: (1) SweRankEmbed, a bi-encoder retriever that efficiently narrows down candidate code snippets from large codebases; and (2) SweRankLLM, a listwise LLM reranker that refines these initial results for improved localization accuracy.\n\n### Dataset\nTo facilitate training, they construct SweLoc, a large-scale dataset curated from public GitHub repositories, featuring real-world issue descriptions paired with corresponding code modifications.\n\n### Authors\nThe authors include Revanth Gangi Reddy, Tarun Suresh, JaeHyeok Doo, Ye Liu, Xuan Phi Nguyen, Yingbo Zhou, Semih Yavuz, Caiming Xiong, Heng Ji, and Shafiq Joty."
+    ],
+    "durationSeconds": 8.051164796000013
+  },
+  "sourceToolAssistantUUID": "3bec7a10-7a86-41a3-954b-d35c8d8b1c57",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-10T18:52:08.308Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MNruxMBYT46FFgE4whmU7S`</summary>
+
+```json
+{
+  "query": "contrastive learning code retrieval data-flow aware hard negative mining 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc878eca-6c7c-4f9a-b366-a78dcfb9bad9",
+  "isSidechain": false,
+  "requestId": "req_011CauPjMWEsDKLVKVktQwwz",
+  "type": "assistant",
+  "uuid": "ebda4616-6b06-4970-b41e-1b1536e8377b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019mg1sSC8JVkAEq8sXrmihy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1054,
+      "cache_read_input_tokens": 30406,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1054,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 30406,
+          "cache_creation_input_tokens": 1054,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1054
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-10T18:52:16.074Z_
+
+<details><summary>↩ Tool result · `toolu_01MNruxMBYT46FFgE4whmU7S`</summary>
+
+```text
+Web search results for query: "contrastive learning code retrieval data-flow aware hard negative mining 2025 2026"
+
+Links: [{"title":"Effective Hard Negative Mining for Contrastive Learning-Based Code Search | ACM Transactions on Software Engineering and Methodology","url":"https://dl.acm.org/doi/full/10.1145/3695994"},{"title":"CMCS: contrastive-metric learning via vector-level sampling and augmentation for code search | Scientific Reports","url":"https://www.nature.com/articles/s41598-024-64205-2"},{"title":"Revisiting Hard Negative Mining in Contrastive Learning for Visual Understanding","url":"https://www.mdpi.com/2079-9292/12/23/4884"},{"title":"Contrastive Representation Learning | Lil'Log","url":"https://lilianweng.github.io/posts/2021-05-31-contrastive/"},{"title":"Effective Hard Negative Mining for Contrastive Learning-based Code Search | CoLab","url":"https://colab.ws/articles/10.1145/3695994"},{"title":"[2010.04592] Contrastive Learning with Hard Negative Samples","url":"https://arxiv.org/abs/2010.04592"},{"title":"Effective Hard Negative Mining for Contrastive Learning-Based Code Search | Request PDF","url":"https://www.researchgate.net/publication/384848348_Effective_Hard_Negative_Mining_for_Contrastive_Learning-based_Code_Search"},{"title":"Hard Negative Mining for Domain-Specific Retrieval in ...","url":"https://arxiv.org/pdf/2505.18366"},{"title":"CONTRASTIVE LEARNING WITH HARD NEGATIVE ...","url":"https://openreview.net/pdf?id=CR1XOQ0UTh-"},{"title":"Contrastive learning with hard negative samples","url":"https://arxiv.org/pdf/2010.04592"}]
+
+Based on the search results, here's what I found about contrastive learning for code retrieval with hard negative mining:
+
+## Recent Research (2024-2026)
+
+A significant recent publication is "Effective Hard Negative Mining for Contrastive Learning-based Code Search" published in ACM Transactions on Software Engineering and Methodology in 2025. This work presents **CoCoHaNeRe**, a model that addresses key challenges in code search:
+
+The approach introduces hard negative examples into contrastive training, which are negative examples in the codebase that are most similar to positive examples, making them most likely to cause model mistakes.
+
+To improve the learning efficiency of negative samples during training, hard negative examples are added to the model's gradient descent process.
+
+## Key Technical Concepts
+
+**Problem Statement**: Relying solely on text similarity is insufficient to meet the requirements of code retrieval tasks. To enable models to discern semantic differences between similar codes, applying contrastive learning on samples with similar texts but different semantics is essential, rather than relying on simple random sampling.
+
+**Multimodal Approach**: Current research on contrastive learning for code search overlooks aspects such as control flow features and data flow features while focusing solely on semantic features of tokenized code sequences and syntactic features of code's Abstract Syntax Tree (AST).
+
+**Hard Negative Sampling Methods**: Recent approaches propose sampling methods to obtain hard negative samples based on K-means algorithms and hardness-controllable sample augmentation methods based on vector-level augmentation techniques.
+
+The research shows active development in combining contrastive learning with sophisticated negative sampling strategies to improve code retrieval quality.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ebda4616-6b06-4970-b41e-1b1536e8377b",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "6341bf10-1598-4af6-b08f-7cde628e3961",
+  "toolUseResult": {
+    "query": "contrastive learning code retrieval data-flow aware hard negative mining 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018roPj9sCxcCaagkXQRRMmV",
+        "content": [
+          {
+            "title": "Effective Hard Negative Mining for Contrastive Learning-Based Code Search | ACM Transactions on Software Engineering and Methodology",
+            "url": "https://dl.acm.org/doi/full/10.1145/3695994"
+          },
+          {
+            "title": "CMCS: contrastive-metric learning via vector-level sampling and augmentation for code search | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-024-64205-2"
+          },
+          {
+            "title": "Revisiting Hard Negative Mining in Contrastive Learning for Visual Understanding",
+            "url": "https://www.mdpi.com/2079-9292/12/23/4884"
+          },
+          {
+            "title": "Contrastive Representation Learning | Lil'Log",
+            "url": "https://lilianweng.github.io/posts/2021-05-31-contrastive/"
+          },
+          {
+            "title": "Effective Hard Negative Mining for Contrastive Learning-based Code Search | CoLab",
+            "url": "https://colab.ws/articles/10.1145/3695994"
+          },
+          {
+            "title": "[2010.04592] Contrastive Learning with Hard Negative Samples",
+            "url": "https://arxiv.org/abs/2010.04592"
+          },
+          {
+            "title": "Effective Hard Negative Mining for Contrastive Learning-Based Code Search | Request PDF",
+            "url": "https://www.researchgate.net/publication/384848348_Effective_Hard_Negative_Mining_for_Contrastive_Learning-based_Code_Search"
+          },
+          {
+            "title": "Hard Negative Mining for Domain-Specific Retrieval in ...",
+            "url": "https://arxiv.org/pdf/2505.18366"
+          },
+          {
+            "title": "CONTRASTIVE LEARNING WITH HARD NEGATIVE ...",
+            "url": "https://openreview.net/pdf?id=CR1XOQ0UTh-"
+          },
+          {
+            "title": "Contrastive learning with hard negative samples",
+            "url": "https://arxiv.org/pdf/2010.04592"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about contrastive learning for code retrieval with hard negative mining:\n\n## Recent Research (2024-2026)\n\nA significant recent publication is \"Effective Hard Negative Mining for Contrastive Learning-based Code Search\" published in ACM Transactions on Software Engineering and Methodology in 2025. This work presents **CoCoHaNeRe**, a model that addresses key challenges in code search:\n\nThe approach introduces hard negative examples into contrastive training, which are negative examples in the codebase that are most similar to positive examples, making them most likely to cause model mistakes.\n\nTo improve the learning efficiency of negative samples during training, hard negative examples are added to the model's gradient descent process.\n\n## Key Technical Concepts\n\n**Problem Statement**: Relying solely on text similarity is insufficient to meet the requirements of code retrieval tasks. To enable models to discern semantic differences between similar codes, applying contrastive learning on samples with similar texts but different semantics is essential, rather than relying on simple random sampling.\n\n**Multimodal Approach**: Current research on contrastive learning for code search overlooks aspects such as control flow features and data flow features while focusing solely on semantic features of tokenized code sequences and syntactic features of code's Abstract Syntax Tree (AST).\n\n**Hard Negative Sampling Methods**: Recent approaches propose sampling methods to obtain hard negative samples based on K-means algorithms and hardness-controllable sample augmentation methods based on vector-level augmentation techniques.\n\nThe research shows active development in combining contrastive learning with sophisticated negative sampling strategies to improve code retrieval quality."
+    ],
+    "durationSeconds": 7.761854227000003
+  },
+  "sourceToolAssistantUUID": "ebda4616-6b06-4970-b41e-1b1536e8377b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-10T18:52:18.594Z_
+
+Good, now let me fetch more specific details on several key references.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6341bf10-1598-4af6-b08f-7cde628e3961",
+  "isSidechain": false,
+  "requestId": "req_011CauPk8yCYAMCSQmkQJCcv",
+  "type": "assistant",
+  "uuid": "4b56d1b0-1371-4e70-ab04-e9b253d094e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HGKqoyrwVDnyFqzAU7vAMH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 942,
+      "cache_read_input_tokens": 31460,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 31460,
+          "cache_creation_input_tokens": 942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-10T18:52:21.618Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01MRGh4DUH9sA5dso3gVZ5ww`</summary>
+
+```json
+{
+  "url": "https://aclanthology.org/2025.findings-acl.62/",
+  "prompt": "Extract the full abstract and key details about SWE-Fixer's retrieval method: what retriever do they use (BM25, neural, or both), how do they do coarse-to-fine file retrieval, what model sizes, and what are their SWE-bench scores?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b56d1b0-1371-4e70-ab04-e9b253d094e2",
+  "isSidechain": false,
+  "requestId": "req_011CauPk8yCYAMCSQmkQJCcv",
+  "type": "assistant",
+  "uuid": "4d121787-d41a-4cdf-b40f-0f9605a336f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HGKqoyrwVDnyFqzAU7vAMH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 942,
+      "cache_read_input_tokens": 31460,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 31460,
+          "cache_creation_input_tokens": 942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-10T18:52:27.512Z_
+
+<details><summary>↩ Tool result · `toolu_01MRGh4DUH9sA5dso3gVZ5ww`</summary>
+
+```text
+# SWE-Fixer: Key Details
+
+## Full Abstract
+"Large Language Models (LLMs) have demonstrated remarkable proficiency across a variety of complex tasks. One significant application of LLMs is in tackling software engineering challenges, particularly in resolving real-world tasks on GitHub by fixing code based on the issues reported by the users. However, many current approaches rely on proprietary LLMs, which limits reproducibility, accessibility, and transparency. The critical components of LLMs for addressing software engineering issues and how their capabilities can be effectively enhanced remain unclear. To address these challenges, we introduce SWE-Fixer, a novel open-source framework designed to effectively and efficiently resolve GitHub issues. SWE-Fixer comprises two essential modules: a code file retrieval module and a code editing module. The retrieval module employs BM25 along with a lightweight model to achieve coarse-to-fine file retrieval. Subsequently, the code editing module utilizes the other model to generate patches for the identified files. To mitigate the lack of publicly available datasets, we compile an extensive dataset that includes 110K GitHub issues along with their corresponding patches and train the two models of SWE-Fixer separately. We assess our approach on the SWE-Bench Lite and Verified benchmarks, achieving competitive performance among open-source models with scores of 22.0% and 30.2%. Furthermore, SWE-Fixer reaches state-of-the-art performance (24.7% on Lite and 32.8% on Verified) with PASS_TO_PASS (P2P) filtering. Additionally, our approach requires only two model calls per instance, making it significantly more efficient than existing methods."
+
+## Retrieval Method
+The framework "employs BM25 along with a lightweight model to achieve coarse-to-fine file retrieval," combining a traditional lexical method with neural ranking for two-stage retrieval.
+
+## Performance Metrics
+- **Without P2P filtering**: 22.0% (Lite), 30.2% (Verified)
+- **With P2P filtering**: 24.7% (Lite), 32.8% (Verified)
+
+The document does not specify the exact sizes of the models used.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d121787-d41a-4cdf-b40f-0f9605a336f5",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "58f3586c-a52b-4d40-9d60-d73429216fda",
+  "toolUseResult": {
+    "bytes": 44566,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SWE-Fixer: Key Details\n\n## Full Abstract\n\"Large Language Models (LLMs) have demonstrated remarkable proficiency across a variety of complex tasks. One significant application of LLMs is in tackling software engineering challenges, particularly in resolving real-world tasks on GitHub by fixing code based on the issues reported by the users. However, many current approaches rely on proprietary LLMs, which limits reproducibility, accessibility, and transparency. The critical components of LLMs for addressing software engineering issues and how their capabilities can be effectively enhanced remain unclear. To address these challenges, we introduce SWE-Fixer, a novel open-source framework designed to effectively and efficiently resolve GitHub issues. SWE-Fixer comprises two essential modules: a code file retrieval module and a code editing module. The retrieval module employs BM25 along with a lightweight model to achieve coarse-to-fine file retrieval. Subsequently, the code editing module utilizes the other model to generate patches for the identified files. To mitigate the lack of publicly available datasets, we compile an extensive dataset that includes 110K GitHub issues along with their corresponding patches and train the two models of SWE-Fixer separately. We assess our approach on the SWE-Bench Lite and Verified benchmarks, achieving competitive performance among open-source models with scores of 22.0% and 30.2%. Furthermore, SWE-Fixer reaches state-of-the-art performance (24.7% on Lite and 32.8% on Verified) with PASS_TO_PASS (P2P) filtering. Additionally, our approach requires only two model calls per instance, making it significantly more efficient than existing methods.\"\n\n## Retrieval Method\nThe framework \"employs BM25 along with a lightweight model to achieve coarse-to-fine file retrieval,\" combining a traditional lexical method with neural ranking for two-stage retrieval.\n\n## Performance Metrics\n- **Without P2P filtering**: 22.0% (Lite), 30.2% (Verified)\n- **With P2P filtering**: 24.7% (Lite), 32.8% (Verified)\n\nThe document does not specify the exact sizes of the models used.",
+    "durationMs": 5888,
+    "url": "https://aclanthology.org/2025.findings-acl.62/"
+  },
+  "sourceToolAssistantUUID": "4d121787-d41a-4cdf-b40f-0f9605a336f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-10T18:52:27.517Z_
+
+```json
+{
+  "parentUuid": "58f3586c-a52b-4d40-9d60-d73429216fda",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f9c477d4-0331-41fb-a8d3-45988e22bc41",
+  "timestamp": "2026-05-10T18:52:27.517Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Fusing Data-Flow and Lexical Signals for Repository-Level…",
+  "leafUuid": "f9c477d4-0331-41fb-a8d3-45988e22bc41",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reframe StructFuse with data-flow ground truth, not cost savings",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-10T18:52:32.125Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FJYK3dAz8wUDvgp6Wr7hBw`</summary>
+
+```json
+{
+  "url": "https://codeql.github.com/docs/codeql-language-guides/analyzing-data-flow-in-python/",
+  "prompt": "Extract all details about how to configure Python data flow analysis in CodeQL: how to define sources and sinks, what is the API for inter-procedural analysis, how to set up a Configuration class, and what are the limitations. Also note whether this can be used for general def-use chain extraction or if it's specifically designed for security taint tracking."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9c477d4-0331-41fb-a8d3-45988e22bc41",
+  "isSidechain": false,
+  "requestId": "req_011CauPkynLP6WDUMBSUexnv",
+  "type": "assistant",
+  "uuid": "8f6db740-cdb4-4773-a8c0-21bb85de405a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BqdEwefBRKzcar5FR5SSpX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 780,
+      "cache_read_input_tokens": 32402,
+      "output_tokens": 171,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 780,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 171,
+          "cache_read_input_tokens": 32402,
+          "cache_creation_input_tokens": 780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 780
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-10T18:52:37.807Z_
+
+<details><summary>↩ Tool result · `toolu_01FJYK3dAz8wUDvgp6Wr7hBw`</summary>
+
+````text
+# Configuring Python Data Flow Analysis in CodeQL
+
+## Configuration Setup
+
+To configure data flow analysis, implement the `DataFlow::ConfigSig` signature and apply either `DataFlow::Global&lt;ConfigSig>` or `TaintTracking::Global&lt;ConfigSig>`:
+
+```
+module MyFlowConfiguration implements DataFlow::ConfigSig {
+  predicate isSource(DataFlow::Node source) { ... }
+  predicate isSink(DataFlow::Node sink) { ... }
+}
+module MyFlow = DataFlow::Global&lt;MyFlowConfiguration>;
+```
+
+## Required and Optional Predicates
+
+**Mandatory:**
+- `isSource` - "defines where data may flow from"
+- `isSink` - "defines where data may flow to"
+
+**Optional:**
+- `isBarrier` - blocks data flow at specified nodes
+- `isAdditionalFlowStep` - extends flow with custom steps
+
+## Inter-Procedural Analysis
+
+The modular API supports global analysis across procedure boundaries. Query results using `MyFlow::flow(source, sink)` to track paths throughout the entire program, though this requires "significantly more time and memory" compared to local analysis.
+
+## Use Case Scope
+
+**Dual-purpose design:** The library serves both security taint tracking AND general data dependency analysis. Evidence includes:
+- Predefined security-focused sinks like `FileSystemAccess` and `SqlExecution`
+- Generic local source/sink mechanisms applicable to arbitrary data flow questions
+- Support for both "data flow" (value-preserving) and "taint tracking" (non-value-preserving) variants
+
+## Key Limitation
+
+The modular API became available only in CodeQL 2.13.0, with the legacy library deprecated as of December 2024.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f6db740-cdb4-4773-a8c0-21bb85de405a",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "5b1e565e-7e71-4de6-b60a-331faf376fe0",
+  "toolUseResult": {
+    "bytes": 65325,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Configuring Python Data Flow Analysis in CodeQL\n\n## Configuration Setup\n\nTo configure data flow analysis, implement the `DataFlow::ConfigSig` signature and apply either `DataFlow::Global&lt;ConfigSig>` or `TaintTracking::Global&lt;ConfigSig>`:\n\n```\nmodule MyFlowConfiguration implements DataFlow::ConfigSig {\n  predicate isSource(DataFlow::Node source) { ... }\n  predicate isSink(DataFlow::Node sink) { ... }\n}\nmodule MyFlow = DataFlow::Global&lt;MyFlowConfiguration>;\n```\n\n## Required and Optional Predicates\n\n**Mandatory:**\n- `isSource` - \"defines where data may flow from\"\n- `isSink` - \"defines where data may flow to\"\n\n**Optional:**\n- `isBarrier` - blocks data flow at specified nodes\n- `isAdditionalFlowStep` - extends flow with custom steps\n\n## Inter-Procedural Analysis\n\nThe modular API supports global analysis across procedure boundaries. Query results using `MyFlow::flow(source, sink)` to track paths throughout the entire program, though this requires \"significantly more time and memory\" compared to local analysis.\n\n## Use Case Scope\n\n**Dual-purpose design:** The library serves both security taint tracking AND general data dependency analysis. Evidence includes:\n- Predefined security-focused sinks like `FileSystemAccess` and `SqlExecution`\n- Generic local source/sink mechanisms applicable to arbitrary data flow questions\n- Support for both \"data flow\" (value-preserving) and \"taint tracking\" (non-value-preserving) variants\n\n## Key Limitation\n\nThe modular API became available only in CodeQL 2.13.0, with the legacy library deprecated as of December 2024.",
+    "durationMs": 5679,
+    "url": "https://codeql.github.com/docs/codeql-language-guides/analyzing-data-flow-in-python/"
+  },
+  "sourceToolAssistantUUID": "8f6db740-cdb4-4773-a8c0-21bb85de405a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-10T18:52:41.536Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TdZRrJWkFhaiKfXX2rrqDV`</summary>
+
+```json
+{
+  "query": "SWE-bench Pro leaderboard SEAL standardized evaluation scores May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b1e565e-7e71-4de6-b60a-331faf376fe0",
+  "isSidechain": false,
+  "requestId": "req_011CauPmjoUkv54i6j6cBKEa",
+  "type": "assistant",
+  "uuid": "2d0e5096-f3f8-4c08-8e3c-1fd121c9d206",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rbmtgrkzh5un3TZMyxfkqv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 579,
+      "cache_read_input_tokens": 33182,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 579,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 33182,
+          "cache_creation_input_tokens": 579,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 579
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-10T18:52:49.011Z_
+
+<details><summary>↩ Tool result · `toolu_01TdZRrJWkFhaiKfXX2rrqDV`</summary>
+
+```text
+Web search results for query: "SWE-bench Pro leaderboard SEAL standardized evaluation scores May 2026"
+
+Links: [{"title":"SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%","url":"https://www.morphllm.com/swe-bench-pro"},{"title":"SWE-Bench Leaderboard May 2026 | GPT-5.5 Leads at 88.7%","url":"https://www.marc0.dev/en/leaderboard"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean","url":"https://www.codeant.ai/blogs/swe-bench-scores"},{"title":"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale","url":"https://labs.scale.com/leaderboard/swe_bench_pro_public"},{"title":"SWE-Bench Verified Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/swe-bench-verified"},{"title":"SWE-bench Scores and Leaderboard Explained (2026) - DEV Community","url":"https://dev.to/rahulxsingh/swe-bench-scores-and-leaderboard-explained-2026-54of"},{"title":"SWE-Bench Explained: Benchmarks, Verified, Pro, and the 2026 Leaderboard","url":"https://www.morphllm.com/swe-benchmark"},{"title":"SWE-bench Scores and Leaderboard Explained (2026) | ACR","url":"https://aicodereview.cc/blog/swe-bench-scores-leaderboard/"},{"title":"SWE-rebench Leaderboard","url":"https://swe-rebench.com/"}]
+
+Based on the search results, here's what I found about the SWE-bench Pro leaderboard and SEAL standardized evaluation scores as of May 2026:
+
+## SWE-Bench Pro Leaderboard (May 2026)
+
+Claude Opus 4.7 leads SWE-Bench Pro at 64.3% (Anthropic-reported, April 2026 release). GPT-5.4 (xHigh) reaches 59.1% on Scale's SEAL mini-swe-agent scaffold, with GPT-5.3-Codex (agent system) scoring 56.8%, GPT-5.2-Codex 56.4%, and Muse Spark from Meta 55.0%.
+
+## SEAL Standardized Evaluation Scores
+
+SEAL scores use Scale AI's unified scaffolding (SEAL = Scale's Evaluation and Assessment Lab) with a 250-turn limit, providing a controlled comparison across models. Scale's fully standardized SEAL board puts Claude Opus 4.5 in the lead at 45.9%.
+
+On the SEAL leaderboard with standardized scaffolding, GPT-5 (High) scores 41.8% and GPT-5.2 Codex scores 41.0%.
+
+## Key Context
+
+Agent systems consistently score 5-15 points higher than the same base model on the SEAL leaderboard, demonstrating the significant impact of custom scaffolding versus standardized evaluation conditions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2d0e5096-f3f8-4c08-8e3c-1fd121c9d206",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "fe991edb-a137-4a6c-8610-c693ecbaa0a4",
+  "toolUseResult": {
+    "query": "SWE-bench Pro leaderboard SEAL standardized evaluation scores May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YTaUJBFTqVSQpF8wwsron3",
+        "content": [
+          {
+            "title": "SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%",
+            "url": "https://www.morphllm.com/swe-bench-pro"
+          },
+          {
+            "title": "SWE-Bench Leaderboard May 2026 | GPT-5.5 Leads at 88.7%",
+            "url": "https://www.marc0.dev/en/leaderboard"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean",
+            "url": "https://www.codeant.ai/blogs/swe-bench-scores"
+          },
+          {
+            "title": "SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale",
+            "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public"
+          },
+          {
+            "title": "SWE-Bench Verified Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "SWE-bench Scores and Leaderboard Explained (2026) - DEV Community",
+            "url": "https://dev.to/rahulxsingh/swe-bench-scores-and-leaderboard-explained-2026-54of"
+          },
+          {
+            "title": "SWE-Bench Explained: Benchmarks, Verified, Pro, and the 2026 Leaderboard",
+            "url": "https://www.morphllm.com/swe-benchmark"
+          },
+          {
+            "title": "SWE-bench Scores and Leaderboard Explained (2026) | ACR",
+            "url": "https://aicodereview.cc/blog/swe-bench-scores-leaderboard/"
+          },
+          {
+            "title": "SWE-rebench Leaderboard",
+            "url": "https://swe-rebench.com/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the SWE-bench Pro leaderboard and SEAL standardized evaluation scores as of May 2026:\n\n## SWE-Bench Pro Leaderboard (May 2026)\n\nClaude Opus 4.7 leads SWE-Bench Pro at 64.3% (Anthropic-reported, April 2026 release). GPT-5.4 (xHigh) reaches 59.1% on Scale's SEAL mini-swe-agent scaffold, with GPT-5.3-Codex (agent system) scoring 56.8%, GPT-5.2-Codex 56.4%, and Muse Spark from Meta 55.0%.\n\n## SEAL Standardized Evaluation Scores\n\nSEAL scores use Scale AI's unified scaffolding (SEAL = Scale's Evaluation and Assessment Lab) with a 250-turn limit, providing a controlled comparison across models. Scale's fully standardized SEAL board puts Claude Opus 4.5 in the lead at 45.9%.\n\nOn the SEAL leaderboard with standardized scaffolding, GPT-5 (High) scores 41.8% and GPT-5.2 Codex scores 41.0%.\n\n## Key Context\n\nAgent systems consistently score 5-15 points higher than the same base model on the SEAL leaderboard, demonstrating the significant impact of custom scaffolding versus standardized evaluation conditions."
+    ],
+    "durationSeconds": 7.4688662049999985
+  },
+  "sourceToolAssistantUUID": "2d0e5096-f3f8-4c08-8e3c-1fd121c9d206",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-10T18:52:54.732Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FgBJySrv1NE5Y7fn7MAHM6`</summary>
+
+```json
+{
+  "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+  "prompt": "Extract the current top 10 scores on the SWE-bench Pro public leaderboard, including model names, scores, and whether they use standardized SEAL scaffolding or custom agent systems. Note the date of the leaderboard data."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe991edb-a137-4a6c-8610-c693ecbaa0a4",
+  "isSidechain": false,
+  "requestId": "req_011CauPnZnkbszjH3vPiu5Nj",
+  "type": "assistant",
+  "uuid": "be7feee6-1968-4e19-8401-a9ff400d9a51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015wLpbt7HVkQbGKkm2iXEuw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 924,
+      "cache_read_input_tokens": 33761,
+      "output_tokens": 140,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 924,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 140,
+          "cache_read_input_tokens": 33761,
+          "cache_creation_input_tokens": 924,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 924
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-10T18:52:58.051Z_
+
+<details><summary>↩ Tool result · `toolu_01FgBJySrv1NE5Y7fn7MAHM6`</summary>
+
+```text
+# SWE-Bench Pro Public Leaderboard Top 10
+
+Based on the webpage content provided, here are the current top 10 scores:
+
+| Rank | Model | Score | Notes |
+|------|-------|-------|-------|
+| 1 | gpt-5.4 (xHigh) | 59.10±3.56 | Mini-swe-agent harness |
+| 2 | Muse Spark | 55.00±3.60 | Mini-swe-agent harness; NEW |
+| 3 | claude-opus-4-6 (thinking) | 51.90±3.61 | Mini-swe-agent harness |
+| 4 | gemini-3.1-pro (thinking) | 46.10±3.60 | Mini-swe-agent harness |
+| 5 | claude-opus-4-5-20251101 | 45.89±3.60 | Uncapped cost/250 turn limit |
+| 6 | claude-4-5-Sonnet | 43.60±3.60 | Uncapped cost/250 turn limit |
+| 7 | gemini-3-pro-preview | 43.30±3.60 | Uncapped cost/250 turn limit |
+| 8 | claude-4-Sonnet | 42.70±3.59 | Uncapped cost/250 turn limit |
+| 9 | gpt-5-2025-08-07 (High) | 41.78±3.49 | Uncapped cost/250 turn limit |
+| 10 | gpt-5.2-codex | 41.04±3.57 | Uncapped cost/250 turn limit |
+
+**Date Note:** The webpage does not specify when this leaderboard data was collected.
+
+**Agent Systems:** The top performers use either "mini-swe-agent harness" or standard uncapped evaluation settings, rather than purely standardized scaffolding.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "be7feee6-1968-4e19-8401-a9ff400d9a51",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "80160c81-cadc-495e-85ca-38c4778ba8ef",
+  "toolUseResult": {
+    "bytes": 148979,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SWE-Bench Pro Public Leaderboard Top 10\n\nBased on the webpage content provided, here are the current top 10 scores:\n\n| Rank | Model | Score | Notes |\n|------|-------|-------|-------|\n| 1 | gpt-5.4 (xHigh) | 59.10±3.56 | Mini-swe-agent harness |\n| 2 | Muse Spark | 55.00±3.60 | Mini-swe-agent harness; NEW |\n| 3 | claude-opus-4-6 (thinking) | 51.90±3.61 | Mini-swe-agent harness |\n| 4 | gemini-3.1-pro (thinking) | 46.10±3.60 | Mini-swe-agent harness |\n| 5 | claude-opus-4-5-20251101 | 45.89±3.60 | Uncapped cost/250 turn limit |\n| 6 | claude-4-5-Sonnet | 43.60±3.60 | Uncapped cost/250 turn limit |\n| 7 | gemini-3-pro-preview | 43.30±3.60 | Uncapped cost/250 turn limit |\n| 8 | claude-4-Sonnet | 42.70±3.59 | Uncapped cost/250 turn limit |\n| 9 | gpt-5-2025-08-07 (High) | 41.78±3.49 | Uncapped cost/250 turn limit |\n| 10 | gpt-5.2-codex | 41.04±3.57 | Uncapped cost/250 turn limit |\n\n**Date Note:** The webpage does not specify when this leaderboard data was collected.\n\n**Agent Systems:** The top performers use either \"mini-swe-agent harness\" or standard uncapped evaluation settings, rather than purely standardized scaffolding.",
+    "durationMs": 3315,
+    "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public"
+  },
+  "sourceToolAssistantUUID": "be7feee6-1968-4e19-8401-a9ff400d9a51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-10T18:53:01.340Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LwBcajnSMZTYNUqmpoxH4P`</summary>
+
+```json
+{
+  "query": "\"data-flow\" \"hard negative\" contrastive code representation learning structural 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80160c81-cadc-495e-85ca-38c4778ba8ef",
+  "isSidechain": false,
+  "requestId": "req_011CauPoELjrjPdivZaS4cfX",
+  "type": "assistant",
+  "uuid": "08c949a6-6ab8-4e4f-8c87-2be896eed24d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LAW1mW1LSmGB3K4dMN7ftT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 627,
+      "cache_read_input_tokens": 34685,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 627,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 34685,
+          "cache_creation_input_tokens": 627,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 627
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-10T18:53:08.421Z_
+
+<details><summary>↩ Tool result · `toolu_01LwBcajnSMZTYNUqmpoxH4P`</summary>
+
+```text
+Web search results for query: ""data-flow" "hard negative" contrastive code representation learning structural 2025 2026"
+
+Links: [{"title":"Uncertainty-Aware Contrastive Learning With Hard Negative Sampling for","url":"https://csse.szu.edu.cn/attachment/cglr/1749432531_AAAI-2025%E8%AE%BA%E6%96%87-%E5%88%98%E6%B6%B5.pdf"},{"title":"Contrastive Representation Learning | Lil'Log","url":"https://lilianweng.github.io/posts/2021-05-31-contrastive/"},{"title":"GitHub - ryanzhumich/Contrastive-Learning-NLP-Papers: Paper List for Contrastive Learning for Natural Language Processing · GitHub","url":"https://github.com/ryanzhumich/Contrastive-Learning-NLP-Papers"},{"title":"Downloads 2025","url":"https://iclr.cc/Downloads/2025"},{"title":"Contrastive Learning - SimCLR and BYOL (With Code Example)","url":"https://learnopencv.com/contrastive-learning-simclr-and-byol-with-code-example/"},{"title":"Machine Learning Jun 2025","url":"https://arxiv.org/list/cs.LG/2025-06?skip=3350&show=2000"},{"title":"Machine Learning Jul 2025","url":"https://www.arxiv.org/list/cs.LG/2025-07?skip=1325&show=500"},{"title":"Machine Learning May 2025","url":"https://arxiv.org/list/cs.LG/2025-05?skip=2575&show=2000"},{"title":"GitHub - 52CV/CVPR-2025-Papers · GitHub","url":"https://github.com/52CV/CVPR-2025-Papers"},{"title":"Computer Science May 2025","url":"https://arxiv.org/list/cs/2025-05?skip=7525&show=2000"}]
+
+I've completed the web search for your query about data-flow, hard negative sampling, contrastive learning, and code representation learning from 2025-2026. Here are the key findings:
+
+## Most Relevant Result
+
+The top result is an AAAI 2025 paper proposing "an uncertainty-aware contrastive learning with hard negative sampling approach" for code search. The paper discusses code search methods driven by contrastive learning like CodeRetriever and CoCoSoDa, which have demonstrated effectiveness in representation alignment of query-code pairs.
+
+## General Context on Hard Negative Sampling
+
+Hard negative samples should have different labels from the anchor sample, but have embedding features very close to the anchor embedding. This is a key technique in contrastive learning frameworks.
+
+## Recent Research Landscape
+
+The search results show active research in contrastive learning for code representation in 2025-2026. There's work on "Visual Perturbation and Adaptive Hard Negative Contrastive Learning" accepted at IJCAI 2025. Additionally, research on "Improving Large Language Model Safety with Contrastive Representation Learning" was noted in recent arxiv listings.
+
+The specific combination of data-flow analysis with hard negative sampling for structural code representation learning appears to be an active area of research, particularly in the 2025 venue circuits.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "08c949a6-6ab8-4e4f-8c87-2be896eed24d",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "ab5c9888-8e5c-4064-a7d9-1ccc18708c7f",
+  "toolUseResult": {
+    "query": "\"data-flow\" \"hard negative\" contrastive code representation learning structural 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FZmnnW3jUir2xr7W3CyE9P",
+        "content": [
+          {
+            "title": "Uncertainty-Aware Contrastive Learning With Hard Negative Sampling for",
+            "url": "https://csse.szu.edu.cn/attachment/cglr/1749432531_AAAI-2025%E8%AE%BA%E6%96%87-%E5%88%98%E6%B6%B5.pdf"
+          },
+          {
+            "title": "Contrastive Representation Learning | Lil'Log",
+            "url": "https://lilianweng.github.io/posts/2021-05-31-contrastive/"
+          },
+          {
+            "title": "GitHub - ryanzhumich/Contrastive-Learning-NLP-Papers: Paper List for Contrastive Learning for Natural Language Processing · GitHub",
+            "url": "https://github.com/ryanzhumich/Contrastive-Learning-NLP-Papers"
+          },
+          {
+            "title": "Downloads 2025",
+            "url": "https://iclr.cc/Downloads/2025"
+          },
+          {
+            "title": "Contrastive Learning - SimCLR and BYOL (With Code Example)",
+            "url": "https://learnopencv.com/contrastive-learning-simclr-and-byol-with-code-example/"
+          },
+          {
+            "title": "Machine Learning Jun 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-06?skip=3350&show=2000"
+          },
+          {
+            "title": "Machine Learning Jul 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-07?skip=1325&show=500"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-05?skip=2575&show=2000"
+          },
+          {
+            "title": "GitHub - 52CV/CVPR-2025-Papers · GitHub",
+            "url": "https://github.com/52CV/CVPR-2025-Papers"
+          },
+          {
+            "title": "Computer Science May 2025",
+            "url": "https://arxiv.org/list/cs/2025-05?skip=7525&show=2000"
+          }
+        ]
+      },
+      "I've completed the web search for your query about data-flow, hard negative sampling, contrastive learning, and code representation learning from 2025-2026. Here are the key findings:\n\n## Most Relevant Result\n\nThe top result is an AAAI 2025 paper proposing \"an uncertainty-aware contrastive learning with hard negative sampling approach\" for code search. The paper discusses code search methods driven by contrastive learning like CodeRetriever and CoCoSoDa, which have demonstrated effectiveness in representation alignment of query-code pairs.\n\n## General Context on Hard Negative Sampling\n\nHard negative samples should have different labels from the anchor sample, but have embedding features very close to the anchor embedding. This is a key technique in contrastive learning frameworks.\n\n## Recent Research Landscape\n\nThe search results show active research in contrastive learning for code representation in 2025-2026. There's work on \"Visual Perturbation and Adaptive Hard Negative Contrastive Learning\" accepted at IJCAI 2025. Additionally, research on \"Improving Large Language Model Safety with Contrastive Representation Learning\" was noted in recent arxiv listings.\n\nThe specific combination of data-flow analysis with hard negative sampling for structural code representation learning appears to be an active area of research, particularly in the 2025 venue circuits."
+    ],
+    "durationSeconds": 7.076985559000008
+  },
+  "sourceToolAssistantUUID": "08c949a6-6ab8-4e4f-8c87-2be896eed24d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-10T18:53:12.199Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QxyAszTWDgde3MBmZLxq8a`</summary>
+
+```json
+{
+  "query": "ARISE arXiv 2605.03117 repository-level data-flow fault localization repair 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab5c9888-8e5c-4064-a7d9-1ccc18708c7f",
+  "isSidechain": false,
+  "requestId": "req_011CauPoznwSnUCVgdsogKSx",
+  "type": "assistant",
+  "uuid": "1f049066-6ecc-4dff-a3d8-1997000dd692",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BoFeALVK9sgpnEo174kwhd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 908,
+      "cache_read_input_tokens": 35312,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 908,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 35312,
+          "cache_creation_input_tokens": 908,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 908
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-10T18:53:20.088Z_
+
+<details><summary>↩ Tool result · `toolu_01QxyAszTWDgde3MBmZLxq8a`</summary>
+
+```text
+Web search results for query: "ARISE arXiv 2605.03117 repository-level data-flow fault localization repair 2026"
+
+Links: [{"title":"[2605.03117] ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair","url":"https://arxiv.org/abs/2605.03117"},{"title":"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair","url":"https://arxiv.org/html/2605.03117"},{"title":"[2601.18044] RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models","url":"https://arxiv.org/abs/2601.18044"},{"title":"[2604.00167] A Study on the Impact of Fault localization Granularity for Repository-Scale Code Repair Tasks","url":"https://arxiv.org/abs/2604.00167"},{"title":"A Quantitative and Qualitative Evaluation of LLM-Based Explainable Fault Localization","url":"https://arxiv.org/html/2308.05487v3"},{"title":"[2308.05487] A Quantitative and Qualitative Evaluation of LLM-Based Explainable Fault Localization","url":"https://arxiv.org/abs/2308.05487"},{"title":"An Empirical Study of Fault Localisation Techniques for Deep Learning","url":"https://arxiv.org/html/2412.11304v1"},{"title":"[2604.05481] On the Role of Fault Localization Context for LLM-Based Program Repair","url":"https://arxiv.org/abs/2604.05481"},{"title":"Enhancing Fault Localization Through Ordered Code Analysis with LLM Agents and Self-Reflection","url":"https://arxiv.org/html/2409.13642v1"},{"title":"A Multi-Agent Approach to Fault Localization via Graph-Based Retrieval and Reflexion","url":"https://arxiv.org/html/2409.13642v2"}]
+
+Based on the web search results, I found detailed information about the paper you're looking for:
+
+## ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair
+
+ARISE (arXiv:2605.03117) is authored by Shahd Seddik and Fatemeh Fard from the University of British Columbia, submitted on May 4, 2026.
+
+### Key Contribution
+
+Repository-level fault localization and automated program repair require an agent to identify the relevant code units across files, follow call and data dependencies, and generate a valid patch. Existing graph-based systems provide structural representations of repositories but do not model how variable values flow within procedures, leaving agents without the semantic precision needed for function- and line-level localization.
+
+ARISE augments an LLM-based agent with a multi-granularity program graph that extends structural relationships down to statement-level nodes and exposes this graph through a three-tier tool API, bringing data-flow slicing as a first-class, queryable agent primitive.
+
+### Evaluation Results
+
+The paper evaluates ARISE on SWE-bench Lite (300 real GitHub issues, 11 Python repositories) using Qwen2.5-Coder-32B-Instruct as the backbone. Compared to the unmodified SWE-agent baseline, ARISE improves Function Recall@1 by 17.0 points and Line Recall@1 by 15.0 points, with ARISE achieving 22.0% Pass@1 (66/300), a 4.7 percentage-point improvement over SWE-agent.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f049066-6ecc-4dff-a3d8-1997000dd692",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "cc5823fa-1390-4ccd-bc3e-09dcc0bebc24",
+  "toolUseResult": {
+    "query": "ARISE arXiv 2605.03117 repository-level data-flow fault localization repair 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y5qN26h8aS4HU9GsqEnGye",
+        "content": [
+          {
+            "title": "[2605.03117] ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair",
+            "url": "https://arxiv.org/abs/2605.03117"
+          },
+          {
+            "title": "ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair",
+            "url": "https://arxiv.org/html/2605.03117"
+          },
+          {
+            "title": "[2601.18044] RGFL: Reasoning Guided Fault Localization for Automated Program Repair Using Large Language Models",
+            "url": "https://arxiv.org/abs/2601.18044"
+          },
+          {
+            "title": "[2604.00167] A Study on the Impact of Fault localization Granularity for Repository-Scale Code Repair Tasks",
+            "url": "https://arxiv.org/abs/2604.00167"
+          },
+          {
+            "title": "A Quantitative and Qualitative Evaluation of LLM-Based Explainable Fault Localization",
+            "url": "https://arxiv.org/html/2308.05487v3"
+          },
+          {
+            "title": "[2308.05487] A Quantitative and Qualitative Evaluation of LLM-Based Explainable Fault Localization",
+            "url": "https://arxiv.org/abs/2308.05487"
+          },
+          {
+            "title": "An Empirical Study of Fault Localisation Techniques for Deep Learning",
+            "url": "https://arxiv.org/html/2412.11304v1"
+          },
+          {
+            "title": "[2604.05481] On the Role of Fault Localization Context for LLM-Based Program Repair",
+            "url": "https://arxiv.org/abs/2604.05481"
+          },
+          {
+            "title": "Enhancing Fault Localization Through Ordered Code Analysis with LLM Agents and Self-Reflection",
+            "url": "https://arxiv.org/html/2409.13642v1"
+          },
+          {
+            "title": "A Multi-Agent Approach to Fault Localization via Graph-Based Retrieval and Reflexion",
+            "url": "https://arxiv.org/html/2409.13642v2"
+          }
+        ]
+      },
+      "Based on the web search results, I found detailed information about the paper you're looking for:\n\n## ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair\n\nARISE (arXiv:2605.03117) is authored by Shahd Seddik and Fatemeh Fard from the University of British Columbia, submitted on May 4, 2026.\n\n### Key Contribution\n\nRepository-level fault localization and automated program repair require an agent to identify the relevant code units across files, follow call and data dependencies, and generate a valid patch. Existing graph-based systems provide structural representations of repositories but do not model how variable values flow within procedures, leaving agents without the semantic precision needed for function- and line-level localization.\n\nARISE augments an LLM-based agent with a multi-granularity program graph that extends structural relationships down to statement-level nodes and exposes this graph through a three-tier tool API, bringing data-flow slicing as a first-class, queryable agent primitive.\n\n### Evaluation Results\n\nThe paper evaluates ARISE on SWE-bench Lite (300 real GitHub issues, 11 Python repositories) using Qwen2.5-Coder-32B-Instruct as the backbone. Compared to the unmodified SWE-agent baseline, ARISE improves Function Recall@1 by 17.0 points and Line Recall@1 by 15.0 points, with ARISE achieving 22.0% Pass@1 (66/300), a 4.7 percentage-point improvement over SWE-agent."
+    ],
+    "durationSeconds": 7.884185881999991
+  },
+  "sourceToolAssistantUUID": "1f049066-6ecc-4dff-a3d8-1997000dd692",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Fusing Data-Flow and Lexical Signals for Repository-Level…",
+  "leafUuid": "cc5823fa-1390-4ccd-bc3e-09dcc0bebc24",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reframe StructFuse with data-flow ground truth, not cost savings",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-10T18:53:28.380Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N6yvcCNYUtjUbbeDZp11qH`</summary>
+
+```json
+{
+  "query": "code context selection repository-level cascade coarse-to-fine retrieval structural program analysis 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc5823fa-1390-4ccd-bc3e-09dcc0bebc24",
+  "isSidechain": false,
+  "requestId": "req_011CauPprbbkG8RaUALk1bzC",
+  "type": "assistant",
+  "uuid": "ac3744de-5b83-4afb-94c2-857caa5b6cbb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015pL41dGEm94aA4BGxZ7Gn2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1008,
+      "cache_read_input_tokens": 36220,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 36220,
+          "cache_creation_input_tokens": 1008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-10T18:53:35.861Z_
+
+<details><summary>↩ Tool result · `toolu_01N6yvcCNYUtjUbbeDZp11qH`</summary>
+
+```text
+Web search results for query: "code context selection repository-level cascade coarse-to-fine retrieval structural program analysis 2025 2026"
+
+Links: [{"title":"Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches","url":"https://arxiv.org/html/2510.04905v1"},{"title":"GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph | Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering","url":"https://dl.acm.org/doi/10.1145/3691620.3695054"},{"title":"RETRIEVAL-AUGMENTED CODE GENERATION: A SURVEY WITH","url":"https://arxiv.org/pdf/2510.04905"},{"title":"GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/iel8/10764795/10764801/10765009.pdf"},{"title":"In Line with Context: Repository-Level Code Generation via Context Inlining","url":"https://arxiv.org/html/2601.00376v1"},{"title":"[2510.04905] Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches","url":"https://arxiv.org/abs/2510.04905"},{"title":"[2406.07003] GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model","url":"https://arxiv.org/abs/2406.07003"},{"title":"Published as a conference paper at ICLR 2026 SARACODER: ORCHESTRATING SEMANTIC","url":"https://arxiv.org/pdf/2508.10068"},{"title":"ContextBench: A Benchmark for Context Retrieval in Coding Agents","url":"https://arxiv.org/html/2602.05892v3"},{"title":"GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥","url":"https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation"}]
+
+Based on the web search results, I found relevant research on code context selection, repository-level approaches, coarse-to-fine retrieval, and structural program analysis from 2025-2026. Here are the key findings:
+
+## Key Research Areas
+
+**Coarse-to-Fine Retrieval Approaches:**
+
+SWE-Fixer adopts a coarse-to-fine paradigm, using BM25 for candidate narrowing followed by a fine-tuned 7B model (e.g., Qwen2.5) for re-ranking. GraphCoder is a retrieval-augmented code completion framework that leverages LLMs' general code knowledge and repository-specific knowledge via a graph-based retrieval-generation process, capturing context through code context graph (CCG) that consists of control-flow, data- and control-dependence between code statements.
+
+**Scalable Context Selection:**
+
+HCP proposes hierarchical context pruning to retain structurally relevant functions while discarding unrelated content. RepoMinCoder formulates context selection as an information-loss minimization problem, identifying the most informative subset of code segments under strict length constraints.
+
+**Structural and Semantic Approaches:**
+
+Advanced methods incorporate program analysis, such as control-flow or data-flow graphs, to capture semantic dependencies more accurately. R2C2-Coder constructs both abstract- and fragment-level retrieval pools and dynamically composes prompts using coarse-grained global and fine-grained local contexts.
+
+These approaches represent the current state-of-the-art in repository-level code generation with focus on efficient context selection and structural awareness.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac3744de-5b83-4afb-94c2-857caa5b6cbb",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "a8550387-602f-4d6a-a97f-fcb78811dbf5",
+  "toolUseResult": {
+    "query": "code context selection repository-level cascade coarse-to-fine retrieval structural program analysis 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FMYhuSaNWG2SRoXCYrJBLs",
+        "content": [
+          {
+            "title": "Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches",
+            "url": "https://arxiv.org/html/2510.04905v1"
+          },
+          {
+            "title": "GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph | Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1145/3691620.3695054"
+          },
+          {
+            "title": "RETRIEVAL-AUGMENTED CODE GENERATION: A SURVEY WITH",
+            "url": "https://arxiv.org/pdf/2510.04905"
+          },
+          {
+            "title": "GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph | IEEE Conference Publication | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/iel8/10764795/10764801/10765009.pdf"
+          },
+          {
+            "title": "In Line with Context: Repository-Level Code Generation via Context Inlining",
+            "url": "https://arxiv.org/html/2601.00376v1"
+          },
+          {
+            "title": "[2510.04905] Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches",
+            "url": "https://arxiv.org/abs/2510.04905"
+          },
+          {
+            "title": "[2406.07003] GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model",
+            "url": "https://arxiv.org/abs/2406.07003"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 SARACODER: ORCHESTRATING SEMANTIC",
+            "url": "https://arxiv.org/pdf/2508.10068"
+          },
+          {
+            "title": "ContextBench: A Benchmark for Context Retrieval in Coding Agents",
+            "url": "https://arxiv.org/html/2602.05892v3"
+          },
+          {
+            "title": "GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥",
+            "url": "https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant research on code context selection, repository-level approaches, coarse-to-fine retrieval, and structural program analysis from 2025-2026. Here are the key findings:\n\n## Key Research Areas\n\n**Coarse-to-Fine Retrieval Approaches:**\n\nSWE-Fixer adopts a coarse-to-fine paradigm, using BM25 for candidate narrowing followed by a fine-tuned 7B model (e.g., Qwen2.5) for re-ranking. GraphCoder is a retrieval-augmented code completion framework that leverages LLMs' general code knowledge and repository-specific knowledge via a graph-based retrieval-generation process, capturing context through code context graph (CCG) that consists of control-flow, data- and control-dependence between code statements.\n\n**Scalable Context Selection:**\n\nHCP proposes hierarchical context pruning to retain structurally relevant functions while discarding unrelated content. RepoMinCoder formulates context selection as an information-loss minimization problem, identifying the most informative subset of code segments under strict length constraints.\n\n**Structural and Semantic Approaches:**\n\nAdvanced methods incorporate program analysis, such as control-flow or data-flow graphs, to capture semantic dependencies more accurately. R2C2-Coder constructs both abstract- and fragment-level retrieval pools and dynamically composes prompts using coarse-grained global and fine-grained local contexts.\n\nThese approaches represent the current state-of-the-art in repository-level code generation with focus on efficient context selection and structural awareness."
+    ],
+    "durationSeconds": 7.4778666870000015
+  },
+  "sourceToolAssistantUUID": "ac3744de-5b83-4afb-94c2-857caa5b6cbb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-10T18:53:38.279Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AYdy3EYYitguRVVZykdJAv`</summary>
+
+```json
+{
+  "query": "GraphCoder code context graph data-flow control-flow coarse-to-fine retrieval ASE 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a8550387-602f-4d6a-a97f-fcb78811dbf5",
+  "isSidechain": false,
+  "requestId": "req_011CauPr1yvqn36CaQKL1TnG",
+  "type": "assistant",
+  "uuid": "fcd2ee12-be91-47f3-9155-b4e25e2a1271",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VkYQ2ZbaiKK9DVkK3E49BA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1029,
+      "cache_read_input_tokens": 37228,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 37228,
+          "cache_creation_input_tokens": 1029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-10T18:53:44.799Z_
+
+<details><summary>↩ Tool result · `toolu_01AYdy3EYYitguRVVZykdJAv`</summary>
+
+```text
+Web search results for query: "GraphCoder code context graph data-flow control-flow coarse-to-fine retrieval ASE 2024 2025"
+
+Links: [{"title":"[2406.07003] GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model","url":"https://arxiv.org/abs/2406.07003"},{"title":"GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph | Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering","url":"https://dl.acm.org/doi/10.1145/3691620.3695054"},{"title":"GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model","url":"https://arxiv.org/html/2406.07003v2"},{"title":"GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph (ASE 2024 - Research Papers) - ASE 2024","url":"https://conf.researchr.org/details/ase-2024/ase-2024-research/46/GraphCoder-Enhancing-Repository-Level-Code-Completion-via-Coarse-to-fine-Retrieval-B"},{"title":"GitHub - oceaneLIU/GraphCoder","url":"https://github.com/oceaneLIU/GraphCoder"},{"title":"Control flow graphs and code coverage","url":"https://www.researchgate.net/publication/220273822_Control_flow_graphs_and_code_coverage"},{"title":"Code-Craft: Hierarchical Graph-Based Code Summarization for Enhanced Context Retrieval","url":"https://arxiv.org/html/2504.08975v1"},{"title":"GraphCoder: Enhancing Repository-Level Code Completion via Code","url":"https://openreview.net/pdf/7a92572e89daf427869cbb262f97920e5f6f35a3.pdf"},{"title":"[PDF] GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model | Semantic Scholar","url":"https://www.semanticscholar.org/paper/GraphCoder:-Enhancing-Repository-Level-Code-via-and-Liu-Yu/793bbb3c70d4bac3908bd8f2ecc309f1bfdf5f52"},{"title":"GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph | Request PDF","url":"https://www.researchgate.net/publication/385287286_GraphCoder_Enhancing_Repository-Level_Code_Completion_via_Coarse-to-fine_Retrieval_Based_on_Code_Context_Graph"}]
+
+Based on the search results, here's what I found about GraphCoder:
+
+## GraphCoder Overview
+
+GraphCoder is a retrieval-augmented code completion framework that leverages LLMs' general code knowledge and the repository-specific knowledge via a graph-based retrieval-generation process.
+
+## Key Components
+
+**Code Context Graph (CCG):** GraphCoder captures the context of completion target more accurately through code context graph (CCG) that consists of control-flow, data- and control-dependence between code statements, a more structured way to capture the completion target context than the sequence-based context used in existing retrieval-augmented approaches.
+
+**Coarse-to-Fine Retrieval:** The retrieval is done through coarse-to-fine steps, involving filtering candidate code snippets and re-ranking them using a decay-with-distance structural similarity measure. After that, GraphCoder employs pre-trained language models to generate the next lines based on the retrieved snippets.
+
+## Performance Results
+
+Compared to baseline retrieval-augmented methods, GraphCoder achieves higher exact match (EM) on average, with increases of +6.06 in code match and +6.23 in identifier match, while using less time and space.
+
+## Publication
+
+The paper was published at ASE 2024 (39th IEEE/ACM International Conference on Automated Software Engineering). The work is also available on arXiv as of September 2024.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fcd2ee12-be91-47f3-9155-b4e25e2a1271",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "32651efa-c424-4681-ba5c-11d09ee6b52b",
+  "toolUseResult": {
+    "query": "GraphCoder code context graph data-flow control-flow coarse-to-fine retrieval ASE 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HN3EiwusjqBAWQwdpRonBN",
+        "content": [
+          {
+            "title": "[2406.07003] GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model",
+            "url": "https://arxiv.org/abs/2406.07003"
+          },
+          {
+            "title": "GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph | Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1145/3691620.3695054"
+          },
+          {
+            "title": "GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model",
+            "url": "https://arxiv.org/html/2406.07003v2"
+          },
+          {
+            "title": "GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph (ASE 2024 - Research Papers) - ASE 2024",
+            "url": "https://conf.researchr.org/details/ase-2024/ase-2024-research/46/GraphCoder-Enhancing-Repository-Level-Code-Completion-via-Coarse-to-fine-Retrieval-B"
+          },
+          {
+            "title": "GitHub - oceaneLIU/GraphCoder",
+            "url": "https://github.com/oceaneLIU/GraphCoder"
+          },
+          {
+            "title": "Control flow graphs and code coverage",
+            "url": "https://www.researchgate.net/publication/220273822_Control_flow_graphs_and_code_coverage"
+          },
+          {
+            "title": "Code-Craft: Hierarchical Graph-Based Code Summarization for Enhanced Context Retrieval",
+            "url": "https://arxiv.org/html/2504.08975v1"
+          },
+          {
+            "title": "GraphCoder: Enhancing Repository-Level Code Completion via Code",
+            "url": "https://openreview.net/pdf/7a92572e89daf427869cbb262f97920e5f6f35a3.pdf"
+          },
+          {
+            "title": "[PDF] GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/GraphCoder:-Enhancing-Repository-Level-Code-via-and-Liu-Yu/793bbb3c70d4bac3908bd8f2ecc309f1bfdf5f52"
+          },
+          {
+            "title": "GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph | Request PDF",
+            "url": "https://www.researchgate.net/publication/385287286_GraphCoder_Enhancing_Repository-Level_Code_Completion_via_Coarse-to-fine_Retrieval_Based_on_Code_Context_Graph"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about GraphCoder:\n\n## GraphCoder Overview\n\nGraphCoder is a retrieval-augmented code completion framework that leverages LLMs' general code knowledge and the repository-specific knowledge via a graph-based retrieval-generation process.\n\n## Key Components\n\n**Code Context Graph (CCG):** GraphCoder captures the context of completion target more accurately through code context graph (CCG) that consists of control-flow, data- and control-dependence between code statements, a more structured way to capture the completion target context than the sequence-based context used in existing retrieval-augmented approaches.\n\n**Coarse-to-Fine Retrieval:** The retrieval is done through coarse-to-fine steps, involving filtering candidate code snippets and re-ranking them using a decay-with-distance structural similarity measure. After that, GraphCoder employs pre-trained language models to generate the next lines based on the retrieved snippets.\n\n## Performance Results\n\nCompared to baseline retrieval-augmented methods, GraphCoder achieves higher exact match (EM) on average, with increases of +6.06 in code match and +6.23 in identifier match, while using less time and space.\n\n## Publication\n\nThe paper was published at ASE 2024 (39th IEEE/ACM International Conference on Automated Software Engineering). The work is also available on arXiv as of September 2024."
+    ],
+    "durationSeconds": 6.514156891999999
+  },
+  "sourceToolAssistantUUID": "fcd2ee12-be91-47f3-9155-b4e25e2a1271",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-10T18:53:47.322Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013yj5Jph5gKDoRFKDtp5FTX`</summary>
+
+```json
+{
+  "query": "SaraCoder ICLR 2026 semantic retrieval code context orchestrating"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32651efa-c424-4681-ba5c-11d09ee6b52b",
+  "isSidechain": false,
+  "requestId": "req_011CauPrgDKevuTT1PAhYPLJ",
+  "type": "assistant",
+  "uuid": "08e83227-8c7d-46c8-9c7d-7eb10350bc6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FA6kKYf9dnUFzXxnt8qX7y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1134,
+      "cache_read_input_tokens": 38257,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 38257,
+          "cache_creation_input_tokens": 1134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-10T18:53:53.944Z_
+
+<details><summary>↩ Tool result · `toolu_013yj5Jph5gKDoRFKDtp5FTX`</summary>
+
+```text
+Web search results for query: "SaraCoder ICLR 2026 semantic retrieval code context orchestrating"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026 SARACODER: ORCHESTRATING SEMANTIC","url":"https://arxiv.org/pdf/2508.10068"},{"title":"SARACODER","url":"https://openreview.net/pdf/f2c1248cb3ac8440f4771abf1bce1d744b4b2498.pdf"},{"title":"[2508.10068] SaraCoder: Orchestrating Semantic and Structural Cues for Resource-Optimized Repository-Level Code Completion","url":"https://arxiv.org/abs/2508.10068"},{"title":"SaraCoder: Orchestrating Semantic and Structural Cues for Resource-Optimized Repository-Level Code Completion","url":"https://arxiv.org/html/2508.10068"},{"title":"RETRIEVAL-AUGMENTED CODE GENERATION: A SURVEY WITH","url":"https://arxiv.org/pdf/2510.04905"},{"title":"ICLR 2026 Orals","url":"https://iclr.cc/virtual/2026/events/oral"},{"title":"ICLR 2026 Schedule","url":"https://iclr.cc/virtual/2026/calendar"},{"title":"Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches","url":"https://arxiv.org/html/2510.04905v1"},{"title":"ICLR 2026 Papers","url":"https://iclr.cc/virtual/2026/papers.html"},{"title":"ICLR 2026 Papers with Code & Data – Paper Digest","url":"https://www.paperdigest.org/2026/04/iclr-2026-papers-with-code-data/"}]
+
+Based on the search results, I found information about SaraCoder and its presentation at ICLR 2026:
+
+## SaraCoder: Orchestrating Semantic and Structural Cues for Repository-Level Code Completion
+
+SaraCoder was published as a conference paper at ICLR 2026. The research was conducted by Xiaohan Chen, Zhongying Pan, Quan Feng, and other authors from institutions including Nanjing University of Aeronautics and Astronautics, Tsinghua University, and Zhejiang University.
+
+### Overview
+
+Despite Retrieval-Augmented Generation improving code completion, traditional retrieval methods struggle with information redundancy and a lack of diversity within limited context windows. To solve this, the researchers propose a resource-optimized retrieval augmentation method, SaraCoder.
+
+### Key Features
+
+SaraCoder's core Hierarchical Feature Optimization module systematically refines candidates by distilling deep semantic relationships, pruning exact duplicates, assessing structural similarity with a novel graph-based metric that weighs edits by their topological importance, and reranking results to maximize both relevance and diversity. 
+
+Furthermore, an External-Aware Identifier Disambiguator module accurately resolves cross-file symbol ambiguity via dependency analysis.
+
+### Results
+
+Extensive experiments on the challenging CrossCodeEval and RepoEval-Updated benchmarks demonstrate that SaraCoder outperforms existing baselines across multiple programming languages and models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "08e83227-8c7d-46c8-9c7d-7eb10350bc6f",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "adde0b4b-865a-47ac-978f-56e637fa942d",
+  "toolUseResult": {
+    "query": "SaraCoder ICLR 2026 semantic retrieval code context orchestrating",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01U4Bkp7X6pZtDBqY2hwG2F7",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026 SARACODER: ORCHESTRATING SEMANTIC",
+            "url": "https://arxiv.org/pdf/2508.10068"
+          },
+          {
+            "title": "SARACODER",
+            "url": "https://openreview.net/pdf/f2c1248cb3ac8440f4771abf1bce1d744b4b2498.pdf"
+          },
+          {
+            "title": "[2508.10068] SaraCoder: Orchestrating Semantic and Structural Cues for Resource-Optimized Repository-Level Code Completion",
+            "url": "https://arxiv.org/abs/2508.10068"
+          },
+          {
+            "title": "SaraCoder: Orchestrating Semantic and Structural Cues for Resource-Optimized Repository-Level Code Completion",
+            "url": "https://arxiv.org/html/2508.10068"
+          },
+          {
+            "title": "RETRIEVAL-AUGMENTED CODE GENERATION: A SURVEY WITH",
+            "url": "https://arxiv.org/pdf/2510.04905"
+          },
+          {
+            "title": "ICLR 2026 Orals",
+            "url": "https://iclr.cc/virtual/2026/events/oral"
+          },
+          {
+            "title": "ICLR 2026 Schedule",
+            "url": "https://iclr.cc/virtual/2026/calendar"
+          },
+          {
+            "title": "Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches",
+            "url": "https://arxiv.org/html/2510.04905v1"
+          },
+          {
+            "title": "ICLR 2026 Papers",
+            "url": "https://iclr.cc/virtual/2026/papers.html"
+          },
+          {
+            "title": "ICLR 2026 Papers with Code & Data – Paper Digest",
+            "url": "https://www.paperdigest.org/2026/04/iclr-2026-papers-with-code-data/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about SaraCoder and its presentation at ICLR 2026:\n\n## SaraCoder: Orchestrating Semantic and Structural Cues for Repository-Level Code Completion\n\nSaraCoder was published as a conference paper at ICLR 2026. The research was conducted by Xiaohan Chen, Zhongying Pan, Quan Feng, and other authors from institutions including Nanjing University of Aeronautics and Astronautics, Tsinghua University, and Zhejiang University.\n\n### Overview\n\nDespite Retrieval-Augmented Generation improving code completion, traditional retrieval methods struggle with information redundancy and a lack of diversity within limited context windows. To solve this, the researchers propose a resource-optimized retrieval augmentation method, SaraCoder.\n\n### Key Features\n\nSaraCoder's core Hierarchical Feature Optimization module systematically refines candidates by distilling deep semantic relationships, pruning exact duplicates, assessing structural similarity with a novel graph-based metric that weighs edits by their topological importance, and reranking results to maximize both relevance and diversity. \n\nFurthermore, an External-Aware Identifier Disambiguator module accurately resolves cross-file symbol ambiguity via dependency analysis.\n\n### Results\n\nExtensive experiments on the challenging CrossCodeEval and RepoEval-Updated benchmarks demonstrate that SaraCoder outperforms existing baselines across multiple programming languages and models."
+    ],
+    "durationSeconds": 6.617919888999983
+  },
+  "sourceToolAssistantUUID": "08e83227-8c7d-46c8-9c7d-7eb10350bc6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-10T18:53:56.956Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R8XuLwvLL4XExtuChowUhG`</summary>
+
+```json
+{
+  "query": "Claude Mythos Preview SWE-bench Pro 77.8% score custom scaffolding agent 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "adde0b4b-865a-47ac-978f-56e637fa942d",
+  "isSidechain": false,
+  "requestId": "req_011CauPsMJZ991YskjL3ZrJ8",
+  "type": "assistant",
+  "uuid": "b5b489a4-6e7b-42f0-a586-31c5b3244898",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0138969ec8pMjVm6tgzBekDN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 894,
+      "cache_read_input_tokens": 39391,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 894,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 39391,
+          "cache_creation_input_tokens": 894,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 894
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-10T18:54:04.040Z_
+
+<details><summary>↩ Tool result · `toolu_01R8XuLwvLL4XExtuChowUhG`</summary>
+
+```text
+Web search results for query: "Claude Mythos Preview SWE-bench Pro 77.8% score custom scaffolding agent 2026"
+
+Links: [{"title":"Claude Mythos Benchmarks Explained: 93.9% SWE-bench & Every Record Broken (2026) | NxCode","url":"https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"},{"title":"SWE-bench Pro Benchmark 2026: 30 LLM scores | BenchLM.ai","url":"https://benchlm.ai/benchmarks/swePro"},{"title":"SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean","url":"https://www.codeant.ai/blogs/swe-bench-scores"},{"title":"SWE-Bench Pro Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/swe-bench-pro"},{"title":"Claude Mythos Preview: Anthropic's Most Powerful AI (93.9% SWE-bench) — Why You Can't Use It | NxCode","url":"https://www.nxcode.io/resources/news/claude-mythos-preview-anthropic-most-powerful-model-2026"},{"title":"Claude Mythos Preview: Benchmarks, Pricing & Project Glasswing","url":"https://llm-stats.com/blog/research/claude-mythos-preview-launch"},{"title":"Claude Mythos Preview Benchmarks, Pricing & Context Window","url":"https://llm-stats.com/models/claude-mythos-preview"},{"title":"Claude Mythos Preview: Anthropic's Frontier Model","url":"https://claudefa.st/blog/models/claude-mythos"},{"title":"Claude Mythos Benchmarks: 93.9% SWE-Bench and 59% Multimodal Score | MindStudio","url":"https://www.mindstudio.ai/blog/claude-mythos-benchmark-results-swe-bench"},{"title":"Claude Mythos Preview vs. GPT‑5.5: A Benchmark‑by‑Benchmark Showdown Between the Two Most Important Frontier Models of April 2026 - Kingy AI","url":"https://kingy.ai/ai/claude-mythos-preview-vs-gpt-5-5-a-benchmark-by-benchmark-showdown-between-the-two-most-important-frontier-models-of-april-2026/"}]
+
+Based on the search results, here's what I found regarding Claude Mythos Preview and its SWE-bench Pro performance:
+
+## Claude Mythos Preview SWE-bench Pro Score
+
+Claude Mythos Preview by Anthropic currently leads with a score of 77.8% on SWE-bench Pro. As of May 7, 2026, Claude Mythos Preview leads the SWE-bench Pro leaderboard with 77.8%, followed by Claude Opus 4.7 (Adaptive) (64.3%) and GPT-5.5 (58.6%).
+
+## Significance of the Score
+
+SWE-bench Pro is the hardest tier of SWE-bench, designed to resist benchmark gaming with more complex, multi-step problems. Mythos scores 77.8% versus GPT-5.4's 57.7% and Opus 4.6's 53.4%. A 20-point lead over GPT-5.4 on the hardest coding benchmark available is significant. It suggests Mythos handles interconnected, multi-file codebases with a qualitative advantage over everything else.
+
+## Standardized Scaffolding
+
+What makes it trustworthy is the standardised scaffolding: every model runs through identical tooling with a 250-turn limit. This removes one of the biggest distortions in Verified scores, the fact that vendors can tune their agent scaffolding (the framework around the model) to game specific benchmark tasks. On SEAL, you're comparing raw model capability, not scaffolding engineering.
+
+The 77.8% score is particularly noteworthy because SWE-bench Pro uses standardized evaluation conditions across all models, making it a more reliable measure of actual model capability.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5b489a4-6e7b-42f0-a586-31c5b3244898",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "db613d15-9fba-4f01-b726-16df14f3929d",
+  "toolUseResult": {
+    "query": "Claude Mythos Preview SWE-bench Pro 77.8% score custom scaffolding agent 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DvpjLJSvLcbB2JmuoXtVv8",
+        "content": [
+          {
+            "title": "Claude Mythos Benchmarks Explained: 93.9% SWE-bench & Every Record Broken (2026) | NxCode",
+            "url": "https://www.nxcode.io/resources/news/claude-mythos-benchmarks-93-swe-bench-every-record-broken-2026"
+          },
+          {
+            "title": "SWE-bench Pro Benchmark 2026: 30 LLM scores | BenchLM.ai",
+            "url": "https://benchlm.ai/benchmarks/swePro"
+          },
+          {
+            "title": "SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean",
+            "url": "https://www.codeant.ai/blogs/swe-bench-scores"
+          },
+          {
+            "title": "SWE-Bench Pro Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/swe-bench-pro"
+          },
+          {
+            "title": "Claude Mythos Preview: Anthropic's Most Powerful AI (93.9% SWE-bench) — Why You Can't Use It | NxCode",
+            "url": "https://www.nxcode.io/resources/news/claude-mythos-preview-anthropic-most-powerful-model-2026"
+          },
+          {
+            "title": "Claude Mythos Preview: Benchmarks, Pricing & Project Glasswing",
+            "url": "https://llm-stats.com/blog/research/claude-mythos-preview-launch"
+          },
+          {
+            "title": "Claude Mythos Preview Benchmarks, Pricing & Context Window",
+            "url": "https://llm-stats.com/models/claude-mythos-preview"
+          },
+          {
+            "title": "Claude Mythos Preview: Anthropic's Frontier Model",
+            "url": "https://claudefa.st/blog/models/claude-mythos"
+          },
+          {
+            "title": "Claude Mythos Benchmarks: 93.9% SWE-Bench and 59% Multimodal Score | MindStudio",
+            "url": "https://www.mindstudio.ai/blog/claude-mythos-benchmark-results-swe-bench"
+          },
+          {
+            "title": "Claude Mythos Preview vs. GPT‑5.5: A Benchmark‑by‑Benchmark Showdown Between the Two Most Important Frontier Models of April 2026 - Kingy AI",
+            "url": "https://kingy.ai/ai/claude-mythos-preview-vs-gpt-5-5-a-benchmark-by-benchmark-showdown-between-the-two-most-important-frontier-models-of-april-2026/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding Claude Mythos Preview and its SWE-bench Pro performance:\n\n## Claude Mythos Preview SWE-bench Pro Score\n\nClaude Mythos Preview by Anthropic currently leads with a score of 77.8% on SWE-bench Pro. As of May 7, 2026, Claude Mythos Preview leads the SWE-bench Pro leaderboard with 77.8%, followed by Claude Opus 4.7 (Adaptive) (64.3%) and GPT-5.5 (58.6%).\n\n## Significance of the Score\n\nSWE-bench Pro is the hardest tier of SWE-bench, designed to resist benchmark gaming with more complex, multi-step problems. Mythos scores 77.8% versus GPT-5.4's 57.7% and Opus 4.6's 53.4%. A 20-point lead over GPT-5.4 on the hardest coding benchmark available is significant. It suggests Mythos handles interconnected, multi-file codebases with a qualitative advantage over everything else.\n\n## Standardized Scaffolding\n\nWhat makes it trustworthy is the standardised scaffolding: every model runs through identical tooling with a 250-turn limit. This removes one of the biggest distortions in Verified scores, the fact that vendors can tune their agent scaffolding (the framework around the model) to game specific benchmark tasks. On SEAL, you're comparing raw model capability, not scaffolding engineering.\n\nThe 77.8% score is particularly noteworthy because SWE-bench Pro uses standardized evaluation conditions across all models, making it a more reliable measure of actual model capability."
+    ],
+    "durationSeconds": 7.080106273000012
+  },
+  "sourceToolAssistantUUID": "b5b489a4-6e7b-42f0-a586-31c5b3244898",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Fusing Data-Flow and Lexical Signals for Repository-Level…",
+  "leafUuid": "db613d15-9fba-4f01-b726-16df14f3929d",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reframe StructFuse with data-flow ground truth, not cost savings",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-10T18:54:07.715Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XL14ENwuvKDzjRMPAd58fw`</summary>
+
+```json
+{
+  "url": "https://benchlm.ai/benchmarks/swePro",
+  "prompt": "Extract the full SWE-bench Pro leaderboard scores for all models listed, including whether they use custom scaffolding or standardized SEAL evaluation. I need the top 10-15 scores with model names and exact percentages."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db613d15-9fba-4f01-b726-16df14f3929d",
+  "isSidechain": false,
+  "requestId": "req_011CauPt6SNvEoMrKhbZ6R3H",
+  "type": "assistant",
+  "uuid": "d5a98c9e-f575-449e-9d99-f3c5e6405b52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VjDznqQoGiHBrSyKDDUwyz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1120,
+      "cache_read_input_tokens": 40285,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1120,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 40285,
+          "cache_creation_input_tokens": 1120,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1120
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-10T18:54:11.651Z_
+
+<details><summary>↩ Tool result · `toolu_01XL14ENwuvKDzjRMPAd58fw`</summary>
+
+```text
+# SWE-bench Pro Leaderboard (Top 15)
+
+Based on the webpage content, here are the top 15 models with their exact scores:
+
+1. Claude Mythos Preview (Anthropic) - 77.8%
+2. Claude Opus 4.7 (Adaptive) (Anthropic) - 64.3%
+3. GPT-5.5 (OpenAI) - 58.6%
+4. Kimi K2.6 (Moonshot AI) - 58.6%
+5. GLM-5.1 (Z.AI) - 58.4%
+6. GPT-5.4 (OpenAI) - 57.7%
+7. Qwen 3.6 Max (preview) (Alibaba) - 57.3%
+8. MiMo-V2.5-Pro (Xiaomi) - 57.2%
+9. Claude Opus 4.5 (Anthropic) - 57.1%
+10. GPT-5.3 Codex (OpenAI) - 56.8%
+11. Qwen3.6 Plus (Alibaba) - 56.6%
+12. MiniMax M2.7 (MiniMax) - 56.2%
+13. MiMo-V2.5 (Xiaomi) - 56.1%
+14. GPT-5.2 (OpenAI) - 55.6%
+15. DeepSeek V4 Pro (Max) (DeepSeek) - 55.4%
+
+**Note:** The document does not specify information about custom scaffolding or standardized SEAL evaluation methodologies for any of these models.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d5a98c9e-f575-449e-9d99-f3c5e6405b52",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "01389fed-aaef-42c3-a3a6-1f29fc1c19cc",
+  "toolUseResult": {
+    "bytes": 85644,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SWE-bench Pro Leaderboard (Top 15)\n\nBased on the webpage content, here are the top 15 models with their exact scores:\n\n1. Claude Mythos Preview (Anthropic) - 77.8%\n2. Claude Opus 4.7 (Adaptive) (Anthropic) - 64.3%\n3. GPT-5.5 (OpenAI) - 58.6%\n4. Kimi K2.6 (Moonshot AI) - 58.6%\n5. GLM-5.1 (Z.AI) - 58.4%\n6. GPT-5.4 (OpenAI) - 57.7%\n7. Qwen 3.6 Max (preview) (Alibaba) - 57.3%\n8. MiMo-V2.5-Pro (Xiaomi) - 57.2%\n9. Claude Opus 4.5 (Anthropic) - 57.1%\n10. GPT-5.3 Codex (OpenAI) - 56.8%\n11. Qwen3.6 Plus (Alibaba) - 56.6%\n12. MiniMax M2.7 (MiniMax) - 56.2%\n13. MiMo-V2.5 (Xiaomi) - 56.1%\n14. GPT-5.2 (OpenAI) - 55.6%\n15. DeepSeek V4 Pro (Max) (DeepSeek) - 55.4%\n\n**Note:** The document does not specify information about custom scaffolding or standardized SEAL evaluation methodologies for any of these models.",
+    "durationMs": 3931,
+    "url": "https://benchlm.ai/benchmarks/swePro"
+  },
+  "sourceToolAssistantUUID": "d5a98c9e-f575-449e-9d99-f3c5e6405b52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57 · 2026-05-10T18:54:11.656Z_
+
+```json
+{
+  "parentUuid": "01389fed-aaef-42c3-a3a6-1f29fc1c19cc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "7fff91bf-a096-47dc-9c0b-48ef2cd67b72",
+  "timestamp": "2026-05-10T18:54:11.656Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-10T18:54:15.123Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ugt4GdonMH4LejGMoBePZZ`</summary>
+
+```json
+{
+  "query": "Sliceformer ACL 2026 dataflow-aware pretraining static program slicing language models"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7fff91bf-a096-47dc-9c0b-48ef2cd67b72",
+  "isSidechain": false,
+  "requestId": "req_011CauPtf1hVg9dY9kLtkfQc",
+  "type": "assistant",
+  "uuid": "12876528-81e7-47e6-8d77-bcac72e8133b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Du9pxcC7iqwZpJjcrD99wi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 654,
+      "cache_read_input_tokens": 41405,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 654,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 41405,
+          "cache_creation_input_tokens": 654,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 654
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-10T18:54:21.621Z_
+
+<details><summary>↩ Tool result · `toolu_01Ugt4GdonMH4LejGMoBePZZ`</summary>
+
+```text
+Web search results for query: "Sliceformer ACL 2026 dataflow-aware pretraining static program slicing language models"
+
+Links: [{"title":"[2604.26961] Static Program Slicing Using Language Models With Dataflow-Aware Pretraining and Constrained Decoding","url":"https://arxiv.org/abs/2604.26961"},{"title":"Static Program Slicing Using Language Models With Dataflow-Aware Pretraining and Constrained Decoding","url":"https://arxiv.org/html/2604.26961"},{"title":"GitHub - OpenDCAI/DataFlow: Easy Data Preparation with latest LLMs-based Operators and Pipelines. · GitHub","url":"https://github.com/OpenDCAI/DataFlow"},{"title":"GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4SE"},{"title":"SliceMate: Accurate and Scalable Static Program Slicing via LLM-Powered Agents","url":"https://arxiv.org/html/2507.18957v1"},{"title":"Predictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning | Proceedings of the ACM on Software Engineering","url":"https://dl.acm.org/doi/10.1145/3643739"},{"title":"A Learning-Based Approach to Static Program Slicing | Proceedings of the ACM on Programming Languages","url":"https://dl.acm.org/doi/10.1145/3649814"},{"title":"Static Backward Program Slicing for Safety-Critical Systems | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-3-319-19584-1_4"},{"title":"A Brief Survey of Program Slicing | Request PDF","url":"https://www.researchgate.net/publication/213876689_A_Brief_Survey_of_Program_Slicing"},{"title":"GitHub - flowr-analysis/flowr: Sophisticated static program analysis framework for the R programming language. · GitHub","url":"https://github.com/flowr-analysis/flowr"}]
+
+I found relevant information about Sliceformer. Here are the search results:
+
+## Sliceformer Overview
+
+Sliceformer is a novel approach that reformulates static program slicing as a sequence-to-sequence task using small language models such as CodeT5+.
+
+## Key Problem Being Addressed
+
+While recent learning-based approaches using language models show promise in automating slice prediction, they suffer from inaccurate dependency modeling and unconstrained generation, where LMs fail to capture precise data flow relations and produce slices containing hallucinated tokens and statements.
+
+## Main Innovations
+
+To improve dependency modeling, Sliceformer designs dataflow-aware pretraining objectives that leverage data flow graphs (DFG) to teach models data dependencies through dataflow-preserving statement permutation and dataflow-aware span corruption. Additionally, it develops a constrained decoding mechanism that enforces both lexical and syntactic constraints to eliminate hallucination.
+
+## Performance Results
+
+Sliceformer was evaluated on Java and Python program slicing benchmarks, demonstrating consistent improvements over state-of-the-art baselines with up to 22% gain in ExactMatch.
+
+The paper appears to be available on arXiv (arXiv:2604.26961) and was submitted on April 9, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "12876528-81e7-47e6-8d77-bcac72e8133b",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "2740fee4-1cc9-4b6c-ae78-413d6f69ddec",
+  "toolUseResult": {
+    "query": "Sliceformer ACL 2026 dataflow-aware pretraining static program slicing language models",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CxdZFp4i6WGxktDosY5niG",
+        "content": [
+          {
+            "title": "[2604.26961] Static Program Slicing Using Language Models With Dataflow-Aware Pretraining and Constrained Decoding",
+            "url": "https://arxiv.org/abs/2604.26961"
+          },
+          {
+            "title": "Static Program Slicing Using Language Models With Dataflow-Aware Pretraining and Constrained Decoding",
+            "url": "https://arxiv.org/html/2604.26961"
+          },
+          {
+            "title": "GitHub - OpenDCAI/DataFlow: Easy Data Preparation with latest LLMs-based Operators and Pipelines. · GitHub",
+            "url": "https://github.com/OpenDCAI/DataFlow"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4SE"
+          },
+          {
+            "title": "SliceMate: Accurate and Scalable Static Program Slicing via LLM-Powered Agents",
+            "url": "https://arxiv.org/html/2507.18957v1"
+          },
+          {
+            "title": "Predictive Program Slicing via Execution Knowledge-Guided Dynamic Dependence Learning | Proceedings of the ACM on Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1145/3643739"
+          },
+          {
+            "title": "A Learning-Based Approach to Static Program Slicing | Proceedings of the ACM on Programming Languages",
+            "url": "https://dl.acm.org/doi/10.1145/3649814"
+          },
+          {
+            "title": "Static Backward Program Slicing for Safety-Critical Systems | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-3-319-19584-1_4"
+          },
+          {
+            "title": "A Brief Survey of Program Slicing | Request PDF",
+            "url": "https://www.researchgate.net/publication/213876689_A_Brief_Survey_of_Program_Slicing"
+          },
+          {
+            "title": "GitHub - flowr-analysis/flowr: Sophisticated static program analysis framework for the R programming language. · GitHub",
+            "url": "https://github.com/flowr-analysis/flowr"
+          }
+        ]
+      },
+      "I found relevant information about Sliceformer. Here are the search results:\n\n## Sliceformer Overview\n\nSliceformer is a novel approach that reformulates static program slicing as a sequence-to-sequence task using small language models such as CodeT5+.\n\n## Key Problem Being Addressed\n\nWhile recent learning-based approaches using language models show promise in automating slice prediction, they suffer from inaccurate dependency modeling and unconstrained generation, where LMs fail to capture precise data flow relations and produce slices containing hallucinated tokens and statements.\n\n## Main Innovations\n\nTo improve dependency modeling, Sliceformer designs dataflow-aware pretraining objectives that leverage data flow graphs (DFG) to teach models data dependencies through dataflow-preserving statement permutation and dataflow-aware span corruption. Additionally, it develops a constrained decoding mechanism that enforces both lexical and syntactic constraints to eliminate hallucination.\n\n## Performance Results\n\nSliceformer was evaluated on Java and Python program slicing benchmarks, demonstrating consistent improvements over state-of-the-art baselines with up to 22% gain in ExactMatch.\n\nThe paper appears to be available on arXiv (arXiv:2604.26961) and was submitted on April 9, 2026."
+    ],
+    "durationSeconds": 6.493924040999991
+  },
+  "sourceToolAssistantUUID": "12876528-81e7-47e6-8d77-bcac72e8133b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-10T18:54:26.096Z_
+
+Now let me search for a couple more critical items — whether there are any very recent works combining structural signals with retrieval for code repair that we might be missing, and whether the Sliceformer paper is confirmed as ACL 2026.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2740fee4-1cc9-4b6c-ae78-413d6f69ddec",
+  "isSidechain": false,
+  "requestId": "req_011CauPuPeFrDWNoEz3XrBZg",
+  "type": "assistant",
+  "uuid": "bf927f4d-cb11-4ae6-9dd3-6001d906cb17",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011LBpUhpV585i4o7Bbt68id",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 42059,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 42059,
+          "cache_creation_input_tokens": 943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 943
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-10T18:54:26.554Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SgHn5aJNnEmoAA5DJ7s5RM`</summary>
+
+```json
+{
+  "query": "Sliceformer ACL 2026 accepted paper venue confirmation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bf927f4d-cb11-4ae6-9dd3-6001d906cb17",
+  "isSidechain": false,
+  "requestId": "req_011CauPuPeFrDWNoEz3XrBZg",
+  "type": "assistant",
+  "uuid": "2e2ff7d2-6872-4d11-9f99-d7564cb1624b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011LBpUhpV585i4o7Bbt68id",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 943,
+      "cache_read_input_tokens": 42059,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 943,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 42059,
+          "cache_creation_input_tokens": 943,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 943
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-10T18:54:30.790Z_
+
+<details><summary>↩ Tool result · `toolu_01SgHn5aJNnEmoAA5DJ7s5RM`</summary>
+
+```text
+Web search results for query: "Sliceformer ACL 2026 accepted paper venue confirmation"
+
+Links: [{"title":"Accepted Papers - ACL 2026","url":"https://2026.aclweb.org/program/accepted_papers/"},{"title":"Announcements | Computational Linguistics","url":"https://submissions.cljournal.org/index.php/cljournal/announcement"},{"title":"Registration Information -","url":"https://2026.eacl.org/registration/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"ACL ARR 2026 January | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FJanuary"},{"title":"ACL Anthology","url":"https://aclanthology.org/"},{"title":"EACL 2026: First Call for Papers | ACL Member Portal","url":"https://www.aclweb.org/portal/content/eacl-2026-first-call-papers"},{"title":"ACL 2026 (@aclmeeting) / Posts / X","url":"https://x.com/aclmeeting"},{"title":"Frequently Asked Questions for Student Research Workshop Papers -","url":"https://2026.eacl.org/calls/srw/faq/"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"}]
+
+Based on the search results, I found that there is an ACL 2026 Accepted Papers list on the official ACL 2026 website. However, the search results don't provide specific information about a paper called "Sliceformer" or confirmation of its acceptance to ACL 2026.
+
+The search returned general information about ACL 2026 conference procedures and registration, but didn't contain details about individual accepted papers. To find information about whether "Sliceformer" was accepted to ACL 2026, you would need to:
+
+1. Visit the official ACL 2026 Accepted Papers page directly at https://2026.aclweb.org/program/accepted_papers/
+2. Search for "Sliceformer" in that list
+3. Check the ACL Anthology (https://aclanthology.org/) for the published paper
+
+The search results also show that there are other 2026 conferences in the ACL family, such as EACL 2026, so you may want to verify which specific venue you're looking for.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2e2ff7d2-6872-4d11-9f99-d7564cb1624b",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "14a9ef99-eada-47c3-8031-d018b96f9983",
+  "toolUseResult": {
+    "query": "Sliceformer ACL 2026 accepted paper venue confirmation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0113jdsCbjQnwUfa3k53prfR",
+        "content": [
+          {
+            "title": "Accepted Papers - ACL 2026",
+            "url": "https://2026.aclweb.org/program/accepted_papers/"
+          },
+          {
+            "title": "Announcements | Computational Linguistics",
+            "url": "https://submissions.cljournal.org/index.php/cljournal/announcement"
+          },
+          {
+            "title": "Registration Information -",
+            "url": "https://2026.eacl.org/registration/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "ACL ARR 2026 January | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FJanuary"
+          },
+          {
+            "title": "ACL Anthology",
+            "url": "https://aclanthology.org/"
+          },
+          {
+            "title": "EACL 2026: First Call for Papers | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/eacl-2026-first-call-papers"
+          },
+          {
+            "title": "ACL 2026 (@aclmeeting) / Posts / X",
+            "url": "https://x.com/aclmeeting"
+          },
+          {
+            "title": "Frequently Asked Questions for Student Research Workshop Papers -",
+            "url": "https://2026.eacl.org/calls/srw/faq/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          }
+        ]
+      },
+      "Based on the search results, I found that there is an ACL 2026 Accepted Papers list on the official ACL 2026 website. However, the search results don't provide specific information about a paper called \"Sliceformer\" or confirmation of its acceptance to ACL 2026.\n\nThe search returned general information about ACL 2026 conference procedures and registration, but didn't contain details about individual accepted papers. To find information about whether \"Sliceformer\" was accepted to ACL 2026, you would need to:\n\n1. Visit the official ACL 2026 Accepted Papers page directly at https://2026.aclweb.org/program/accepted_papers/\n2. Search for \"Sliceformer\" in that list\n3. Check the ACL Anthology (https://aclanthology.org/) for the published paper\n\nThe search results also show that there are other 2026 conferences in the ACL family, such as EACL 2026, so you may want to verify which specific venue you're looking for."
+    ],
+    "durationSeconds": 4.232010517999996
+  },
+  "sourceToolAssistantUUID": "2e2ff7d2-6872-4d11-9f99-d7564cb1624b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-10T18:54:33.446Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Jd82bufG13HqPtTWQqDXzw`</summary>
+
+```json
+{
+  "query": "structural code retrieval program analysis bug localization neural model distillation 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14a9ef99-eada-47c3-8031-d018b96f9983",
+  "isSidechain": false,
+  "requestId": "req_011CauPv4pwguGo4K1DQMNNb",
+  "type": "assistant",
+  "uuid": "f54ff877-c0da-4904-b6d9-1d58e7ccc6f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019KiTXNL72qjPHwBNqPGnv7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 780,
+      "cache_read_input_tokens": 43002,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 780,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 43002,
+          "cache_creation_input_tokens": 780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 780
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-10T18:54:42.733Z_
+
+<details><summary>↩ Tool result · `toolu_01Jd82bufG13HqPtTWQqDXzw`</summary>
+
+```text
+Web search results for query: "structural code retrieval program analysis bug localization neural model distillation 2026 arXiv"
+
+Links: [{"title":"Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches","url":"https://arxiv.org/html/2510.04905v1"},{"title":"RETRIEVAL-AUGMENTED CODE GENERATION: A SURVEY WITH","url":"https://arxiv.org/pdf/2510.04905"},{"title":"Pre-training Code Representation with Semantic Flow Graph for","url":"http://www.lamda.nju.edu.cn/duyl/paper/fse23-duyl.pdf"},{"title":"Supporting Cross-language Cross-project Bug Localization Using Pre-trained Language Models","url":"https://arxiv.org/html/2407.02732"},{"title":"Awesome-MICCAI-2026/README.md at main · ambicuity/Awesome-MICCAI-2026","url":"https://github.com/ambicuity/Awesome-MICCAI-2026/blob/main/README.md"},{"title":"REASONING DISTILLATION AND STRUCTURAL ALIGNMENT FOR IMPROVED CODE GENERATION","url":"https://arxiv.org/pdf/2510.17598"},{"title":"GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4SE"},{"title":"GitHub - saltudelft/ml4se: A curated list of papers, theses, datasets, and tools related to the application of Machine Learning for Software Engineering · GitHub","url":"https://github.com/saltudelft/ml4se"},{"title":"A Survey of Neural Code Intelligence: Paradigms, Advances and Beyond","url":"https://arxiv.org/html/2403.14734v1"},{"title":"Knowledge Distillation and Dataset Distillation of Large ...","url":"https://arxiv.org/pdf/2504.14772"}]
+
+Based on the web search results, I found several relevant papers that align with your query about structural code retrieval, program analysis, bug localization, and neural model distillation:
+
+## Key Findings:
+
+**1. Bug Localization with Knowledge Distillation (2024):**
+A paper proposes a pre-trained language model based technique for bug localization that transcends project and language boundaries, leveraging contrastive learning to enhance representation of bug reports and source code, utilizing a novel ranking approach combining commit messages and code segments, and introducing a knowledge distillation technique that reduces model size for practical deployment without compromising performance. The distillation technique achieves performance comparable to the original model while offering a 4x reduction in embedding generation time.
+
+**2. Reasoning Distillation and Structural Alignment (October 2025):**
+Recent work investigates the feasibility of distilling key capabilities of large language models through cost-effective fine-tuning, proposing a novel loss function designed to simultaneously capture fine-grained token-level information and broader semantic and structural relationships.
+
+**3. Code Retrieval Approaches:**
+Graph-based retrieval exploits structured code representations such as abstract syntax trees (ASTs), call graphs, control/data flow graphs, or module dependency graphs, with retrieval typically conducted via graph traversal, similarity propagation, or subgraph matching.
+
+The search results show active research combining these elements, particularly from arXiv papers in 2024-2025 that address bug localization, structural code analysis, and neural model optimization through distillation techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f54ff877-c0da-4904-b6d9-1d58e7ccc6f7",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "14047f8a-13b1-4835-9bc9-7408f158a311",
+  "toolUseResult": {
+    "query": "structural code retrieval program analysis bug localization neural model distillation 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AVhMrsgBRpjG4mAM3h2Yzp",
+        "content": [
+          {
+            "title": "Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches",
+            "url": "https://arxiv.org/html/2510.04905v1"
+          },
+          {
+            "title": "RETRIEVAL-AUGMENTED CODE GENERATION: A SURVEY WITH",
+            "url": "https://arxiv.org/pdf/2510.04905"
+          },
+          {
+            "title": "Pre-training Code Representation with Semantic Flow Graph for",
+            "url": "http://www.lamda.nju.edu.cn/duyl/paper/fse23-duyl.pdf"
+          },
+          {
+            "title": "Supporting Cross-language Cross-project Bug Localization Using Pre-trained Language Models",
+            "url": "https://arxiv.org/html/2407.02732"
+          },
+          {
+            "title": "Awesome-MICCAI-2026/README.md at main · ambicuity/Awesome-MICCAI-2026",
+            "url": "https://github.com/ambicuity/Awesome-MICCAI-2026/blob/main/README.md"
+          },
+          {
+            "title": "REASONING DISTILLATION AND STRUCTURAL ALIGNMENT FOR IMPROVED CODE GENERATION",
+            "url": "https://arxiv.org/pdf/2510.17598"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4SE"
+          },
+          {
+            "title": "GitHub - saltudelft/ml4se: A curated list of papers, theses, datasets, and tools related to the application of Machine Learning for Software Engineering · GitHub",
+            "url": "https://github.com/saltudelft/ml4se"
+          },
+          {
+            "title": "A Survey of Neural Code Intelligence: Paradigms, Advances and Beyond",
+            "url": "https://arxiv.org/html/2403.14734v1"
+          },
+          {
+            "title": "Knowledge Distillation and Dataset Distillation of Large ...",
+            "url": "https://arxiv.org/pdf/2504.14772"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers that align with your query about structural code retrieval, program analysis, bug localization, and neural model distillation:\n\n## Key Findings:\n\n**1. Bug Localization with Knowledge Distillation (2024):**\nA paper proposes a pre-trained language model based technique for bug localization that transcends project and language boundaries, leveraging contrastive learning to enhance representation of bug reports and source code, utilizing a novel ranking approach combining commit messages and code segments, and introducing a knowledge distillation technique that reduces model size for practical deployment without compromising performance. The distillation technique achieves performance comparable to the original model while offering a 4x reduction in embedding generation time.\n\n**2. Reasoning Distillation and Structural Alignment (October 2025):**\nRecent work investigates the feasibility of distilling key capabilities of large language models through cost-effective fine-tuning, proposing a novel loss function designed to simultaneously capture fine-grained token-level information and broader semantic and structural relationships.\n\n**3. Code Retrieval Approaches:**\nGraph-based retrieval exploits structured code representations such as abstract syntax trees (ASTs), call graphs, control/data flow graphs, or module dependency graphs, with retrieval typically conducted via graph traversal, similarity propagation, or subgraph matching.\n\nThe search results show active research combining these elements, particularly from arXiv papers in 2024-2025 that address bug localization, structural code analysis, and neural model optimization through distillation techniques."
+    ],
+    "durationSeconds": 9.284381379
+  },
+  "sourceToolAssistantUUID": "f54ff877-c0da-4904-b6d9-1d58e7ccc6f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-10T18:54:45.745Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ML7NM8DPzoeGpssJX7XAru`</summary>
+
+```json
+{
+  "query": "\"SWE-Fixer\" retrieval module architecture BM25 CodeBERT GraphCodeBERT fine-tuned model coarse fine"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14047f8a-13b1-4835-9bc9-7408f158a311",
+  "isSidechain": false,
+  "requestId": "req_011CauPvwvVcmuJ1DL58nBkw",
+  "type": "assistant",
+  "uuid": "0bb26b52-fcfb-42d1-8542-8f1960d85692",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018jK6Fom6PfvHepSbMz1PL8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 948,
+      "cache_read_input_tokens": 43782,
+      "output_tokens": 85,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 948,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 85,
+          "cache_read_input_tokens": 43782,
+          "cache_creation_input_tokens": 948,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 948
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-10T18:54:51.815Z_
+
+<details><summary>↩ Tool result · `toolu_01ML7NM8DPzoeGpssJX7XAru`</summary>
+
+```text
+Web search results for query: ""SWE-Fixer" retrieval module architecture BM25 CodeBERT GraphCodeBERT fine-tuned model coarse fine"
+
+Links: [{"title":"SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution","url":"https://arxiv.org/html/2501.05040v2"},{"title":"RETRIEVAL-AUGMENTED CODE GENERATION: A SURVEY WITH","url":"https://arxiv.org/pdf/2510.04905"},{"title":"CoRet: Improved Retriever for Code Editing","url":"https://aclanthology.org/2025.acl-short.62.pdf"},{"title":"Revisiting Code Search in a Two-Stage Paradigm Fan Hu∗ School of Information,","url":"https://dl.acm.org/doi/pdf/10.1145/3539597.3570383"},{"title":"SWE-Fixer: open-source LLMs for effective and efficient Github Issues Resolution | by SACHIN KUMAR | Medium","url":"https://medium.com/@techsachin/swe-fixer-open-source-llms-for-github-issues-resolution-068a0bb6de85"},{"title":"GitHub - InternLM/SWE-Fixer · GitHub","url":"https://github.com/InternLM/SWE-Fixer"},{"title":"Beyond Function-Level Search: Repository-Aware Dual-Encoder Code Retrieval with Adversarial Verification","url":"https://arxiv.org/html/2510.24749"},{"title":"SWE-Fixer/README.md at main · InternLM/SWE-Fixer","url":"https://github.com/InternLM/SWE-Fixer/blob/main/README.md"},{"title":"Advanced Code Chunking Strategies for RAG Systems · ByteBell - AI for Engineering Teams","url":"https://bytebell.ai/blog/posts/advance_code_chunking/"},{"title":"Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches","url":"https://arxiv.org/html/2510.04905v1"}]
+
+Based on the search results, I found detailed information about SWE-Fixer's retrieval module architecture:
+
+## SWE-Fixer Retrieval Module Architecture
+
+SWE-Fixer comprises two essential modules: a code file retrieval module and a code editing module.
+
+### Coarse-to-Fine Retrieval Strategy
+
+The retrieval module employs BM25 along with a lightweight model to achieve coarse-to-fine file retrieval. More specifically, BM25 is used to retrieve the 30 most relevant files to the issue, treating the issue description as a query and the code files as documents, and then a language model is finetuned to further pinpoint which files require modification from the BM25-retrieved files.
+
+### Fine-tuned Model
+
+The SWE-Fixer-Retriever-7B model is finetuned for the code file retrieval task and takes issue descriptions and BM25-retrieved results as input to identify the defective files related to the issue.
+
+This two-stage approach combines the efficiency of sparse lexical retrieval (BM25) with a fine-tuned neural model for more precise identification of files that actually need modification, allowing the system to achieve both efficiency and effectiveness in file retrieval.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0bb26b52-fcfb-42d1-8542-8f1960d85692",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "b92d8f0e-2c95-4314-abc7-bbcad01c25ac",
+  "toolUseResult": {
+    "query": "\"SWE-Fixer\" retrieval module architecture BM25 CodeBERT GraphCodeBERT fine-tuned model coarse fine",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BMk398UEX8QjrVdimL4quy",
+        "content": [
+          {
+            "title": "SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution",
+            "url": "https://arxiv.org/html/2501.05040v2"
+          },
+          {
+            "title": "RETRIEVAL-AUGMENTED CODE GENERATION: A SURVEY WITH",
+            "url": "https://arxiv.org/pdf/2510.04905"
+          },
+          {
+            "title": "CoRet: Improved Retriever for Code Editing",
+            "url": "https://aclanthology.org/2025.acl-short.62.pdf"
+          },
+          {
+            "title": "Revisiting Code Search in a Two-Stage Paradigm Fan Hu∗ School of Information,",
+            "url": "https://dl.acm.org/doi/pdf/10.1145/3539597.3570383"
+          },
+          {
+            "title": "SWE-Fixer: open-source LLMs for effective and efficient Github Issues Resolution | by SACHIN KUMAR | Medium",
+            "url": "https://medium.com/@techsachin/swe-fixer-open-source-llms-for-github-issues-resolution-068a0bb6de85"
+          },
+          {
+            "title": "GitHub - InternLM/SWE-Fixer · GitHub",
+            "url": "https://github.com/InternLM/SWE-Fixer"
+          },
+          {
+            "title": "Beyond Function-Level Search: Repository-Aware Dual-Encoder Code Retrieval with Adversarial Verification",
+            "url": "https://arxiv.org/html/2510.24749"
+          },
+          {
+            "title": "SWE-Fixer/README.md at main · InternLM/SWE-Fixer",
+            "url": "https://github.com/InternLM/SWE-Fixer/blob/main/README.md"
+          },
+          {
+            "title": "Advanced Code Chunking Strategies for RAG Systems · ByteBell - AI for Engineering Teams",
+            "url": "https://bytebell.ai/blog/posts/advance_code_chunking/"
+          },
+          {
+            "title": "Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches",
+            "url": "https://arxiv.org/html/2510.04905v1"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about SWE-Fixer's retrieval module architecture:\n\n## SWE-Fixer Retrieval Module Architecture\n\nSWE-Fixer comprises two essential modules: a code file retrieval module and a code editing module.\n\n### Coarse-to-Fine Retrieval Strategy\n\nThe retrieval module employs BM25 along with a lightweight model to achieve coarse-to-fine file retrieval. More specifically, BM25 is used to retrieve the 30 most relevant files to the issue, treating the issue description as a query and the code files as documents, and then a language model is finetuned to further pinpoint which files require modification from the BM25-retrieved files.\n\n### Fine-tuned Model\n\nThe SWE-Fixer-Retriever-7B model is finetuned for the code file retrieval task and takes issue descriptions and BM25-retrieved results as input to identify the defective files related to the issue.\n\nThis two-stage approach combines the efficiency of sparse lexical retrieval (BM25) with a fine-tuned neural model for more precise identification of files that actually need modification, allowing the system to achieve both efficiency and effectiveness in file retrieval."
+    ],
+    "durationSeconds": 6.06412361000001
+  },
+  "sourceToolAssistantUUID": "0bb26b52-fcfb-42d1-8542-8f1960d85692",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Fusing Data-Flow and Lexical Signals for Repository-Level…",
+  "leafUuid": "b92d8f0e-2c95-4314-abc7-bbcad01c25ac",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reframe StructFuse with data-flow ground truth, not cost savings",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-10T18:54:58.517Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JLgrApAt8KTdeYFRbkHu43`</summary>
+
+```json
+{
+  "query": "repository-level code repair context retrieval data flow graph embedding contrastive 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b92d8f0e-2c95-4314-abc7-bbcad01c25ac",
+  "isSidechain": false,
+  "requestId": "req_011CauPwcictoonVTNovGmJK",
+  "type": "assistant",
+  "uuid": "a9e48926-6f42-4c5f-892b-07dca75ca1df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E7qyJeh88wCm1vMyKTzwJm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 935,
+      "cache_read_input_tokens": 44730,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 935,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 44730,
+          "cache_creation_input_tokens": 935,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 935
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-10T18:55:07.039Z_
+
+<details><summary>↩ Tool result · `toolu_01JLgrApAt8KTdeYFRbkHu43`</summary>
+
+```text
+Web search results for query: "repository-level code repair context retrieval data flow graph embedding contrastive 2025 2026"
+
+Links: [{"title":"GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph | Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering","url":"https://dl.acm.org/doi/10.1145/3691620.3695054"},{"title":"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v1"},{"title":"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair","url":"https://arxiv.org/html/2605.03117v1"},{"title":"GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥","url":"https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation"},{"title":"Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches","url":"https://arxiv.org/html/2510.04905v1"},{"title":"Knowledge Graph Based Repository-Level Code Generation","url":"https://arxiv.org/html/2505.14394v1"},{"title":"A Survey of LLM-based Automated Program Repair","url":"https://arxiv.org/pdf/2506.23749"},{"title":"SemanticForge: Repository-Level Code Generation through Semantic Knowledge Graphs and Constraint Satisfaction","url":"https://arxiv.org/html/2511.07584"},{"title":"[2503.21710] Enhancing repository-level software repair via repository-aware knowledge graphs","url":"https://arxiv.org/abs/2503.21710"},{"title":"GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4SE"}]
+
+Based on the web search results, I found several relevant papers and research directions related to repository-level code repair with context retrieval, data flow graphs, embeddings, and contrastive learning from 2025-2026:
+
+## Key Research Areas
+
+**Repository-Level Code Repair with Context Retrieval:**
+
+Recent LLM-based automated program repair systems from January 2022 to June 2025 show how retrieval- or analysis-augmented contexts strengthen various repair paradigms.
+
+**Graph-Based Retrieval Methods:**
+
+Graph-based retrieval-augmented generation methods leverage the structured nature of code to construct explicit graph representations, such as Abstract Syntax Trees (ASTs), data-flow graphs, or dependency graphs, with nodes representing code entities and edges encoding relationships, enabling more structurally grounded and contextually precise retrieval.
+
+**Data Flow Graph Applications:**
+
+Data-flow slicing serves as a queryable tool enabling agents to trace variable definitions and uses within functions rather than relying on structural proximity alone, addressing bottlenecks in function- and line-level localization.
+
+**Contrastive Learning in Code:**
+
+UniXcoder, a multi-modal model encoding code, AST, and comments, has been fine-tuned with contrastive learning on code-documentation pairs. Additionally, ContrastRepair augments conversation-based APR by supplying ChatGPT with a contrastive pair of nearly identical test cases to focus the model on the specific code change that triggers the bug.
+
+**Recent Framework:**
+
+KGCompass proposes a repository-aware knowledge graph that accurately links repository artifacts and codebase entities, narrowing down the search space to only 20 most relevant functions with accurate candidate fault locations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a9e48926-6f42-4c5f-892b-07dca75ca1df",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "9bb044b6-9132-48b4-bfdd-34a4bfc4ed2c",
+  "toolUseResult": {
+    "query": "repository-level code repair context retrieval data flow graph embedding contrastive 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VeTuDF31UWZ88v8szf9vKz",
+        "content": [
+          {
+            "title": "GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph | Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1145/3691620.3695054"
+          },
+          {
+            "title": "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v1"
+          },
+          {
+            "title": "ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair",
+            "url": "https://arxiv.org/html/2605.03117v1"
+          },
+          {
+            "title": "GitHub - YerbaPage/Awesome-Repo-Level-Code-Generation: Must-read papers on Repository-level Code Generation & Issue Resolution 🔥",
+            "url": "https://github.com/YerbaPage/Awesome-Repo-Level-Code-Generation"
+          },
+          {
+            "title": "Retrieval-Augmented Code Generation: A Survey with Focus on Repository-Level Approaches",
+            "url": "https://arxiv.org/html/2510.04905v1"
+          },
+          {
+            "title": "Knowledge Graph Based Repository-Level Code Generation",
+            "url": "https://arxiv.org/html/2505.14394v1"
+          },
+          {
+            "title": "A Survey of LLM-based Automated Program Repair",
+            "url": "https://arxiv.org/pdf/2506.23749"
+          },
+          {
+            "title": "SemanticForge: Repository-Level Code Generation through Semantic Knowledge Graphs and Constraint Satisfaction",
+            "url": "https://arxiv.org/html/2511.07584"
+          },
+          {
+            "title": "[2503.21710] Enhancing repository-level software repair via repository-aware knowledge graphs",
+            "url": "https://arxiv.org/abs/2503.21710"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4SE: [SCIS 2025] A Survey on Large Language Models for Software Engineering · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4SE"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers and research directions related to repository-level code repair with context retrieval, data flow graphs, embeddings, and contrastive learning from 2025-2026:\n\n## Key Research Areas\n\n**Repository-Level Code Repair with Context Retrieval:**\n\nRecent LLM-based automated program repair systems from January 2022 to June 2025 show how retrieval- or analysis-augmented contexts strengthen various repair paradigms.\n\n**Graph-Based Retrieval Methods:**\n\nGraph-based retrieval-augmented generation methods leverage the structured nature of code to construct explicit graph representations, such as Abstract Syntax Trees (ASTs), data-flow graphs, or dependency graphs, with nodes representing code entities and edges encoding relationships, enabling more structurally grounded and contextually precise retrieval.\n\n**Data Flow Graph Applications:**\n\nData-flow slicing serves as a queryable tool enabling agents to trace variable definitions and uses within functions rather than relying on structural proximity alone, addressing bottlenecks in function- and line-level localization.\n\n**Contrastive Learning in Code:**\n\nUniXcoder, a multi-modal model encoding code, AST, and comments, has been fine-tuned with contrastive learning on code-documentation pairs. Additionally, ContrastRepair augments conversation-based APR by supplying ChatGPT with a contrastive pair of nearly identical test cases to focus the model on the specific code change that triggers the bug.\n\n**Recent Framework:**\n\nKGCompass proposes a repository-aware knowledge graph that accurately links repository artifacts and codebase entities, narrowing down the search space to only 20 most relevant functions with accurate candidate fault locations."
+    ],
+    "durationSeconds": 8.518091263999988
+  },
+  "sourceToolAssistantUUID": "a9e48926-6f42-4c5f-892b-07dca75ca1df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-10T18:55:11.686Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K4XbUo4Eumdf4EyQUQxCox`</summary>
+
+```json
+{
+  "query": "CoCoHaNeRe contrastive hard negative code search data flow AST TOSEM 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9bb044b6-9132-48b4-bfdd-34a4bfc4ed2c",
+  "isSidechain": false,
+  "requestId": "req_011CauPxjqXKe5GTnnrAwESx",
+  "type": "assistant",
+  "uuid": "f2a7de52-47e8-4244-a325-4b53bad96e6c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bvb2x87u1bH77LzLZgP7Pv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1014,
+      "cache_read_input_tokens": 45665,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1014,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 45665,
+          "cache_creation_input_tokens": 1014,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1014
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-10T18:55:19.221Z_
+
+<details><summary>↩ Tool result · `toolu_01K4XbUo4Eumdf4EyQUQxCox`</summary>
+
+```text
+Web search results for query: "CoCoHaNeRe contrastive hard negative code search data flow AST TOSEM 2025"
+
+Links: [{"title":"Effective Hard Negative Mining for Contrastive Learning-Based Code Search | ACM Transactions on Software Engineering and Methodology","url":"https://dl.acm.org/doi/full/10.1145/3695994"},{"title":"Effective Hard Negative Mining for Contrastive Learning-based Code Search | CoLab","url":"https://colab.ws/articles/10.1145/3695994"},{"title":"[PDF] CoCoSoDa: Effective Contrastive Learning for Code Search | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CoCoSoDa:-Effective-Contrastive-Learning-for-Code-Shi-Wang/ae52599f2d2731f68c567b6726a5185c06cb9a41"},{"title":"CMCS: contrastive-metric learning via vector-level sampling and augmentation for code search | Scientific Reports","url":"https://www.nature.com/articles/s41598-024-64205-2"},{"title":"Effective Hard Negative Mining for Contrastive Learning-Based Code Search | Request PDF","url":"https://www.researchgate.net/publication/384848348_Effective_Hard_Negative_Mining_for_Contrastive_Learning-based_Code_Search"},{"title":"CoCoSoDa: Effective Contrastive Learning for Code Search","url":"https://arxiv.org/pdf/2204.03293"},{"title":"Uncertainty-Aware Contrastive Learning With Hard Negative Sampling for","url":"https://csse.szu.edu.cn/attachment/cglr/1749432531_AAAI-2025%E8%AE%BA%E6%96%87-%E5%88%98%E6%B6%B5.pdf"},{"title":"GitHub - DeepSoftwareAnalytics/CoCoSoDa: Replication package for ICSE2023 paper-CoCoSoDa: Effective Contrastive Learning for Code Search","url":"https://github.com/DeepSoftwareAnalytics/CoCoSoDa"},{"title":"CMCS: contrastive-metric learning via vector-level sampling and augmentation for code search - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11196273/"},{"title":"CoCoSoDa: Effective Contrastive Learning for Code Search | Proceedings of the 45th International Conference on Software Engineering","url":"https://dl.acm.org/doi/10.1109/ICSE48619.2023.00185"}]
+
+Based on the search results, I found comprehensive information about CoCoHaNeRe:
+
+## Overview
+
+CoCoHaNeRe is a Code search framework augmented by Contrastive learning with differentiable Hard Negative samples Retrieval. The work was published in ACM Transactions on Software Engineering and Methodology in 2025.
+
+## Key Problem and Solution
+
+Existing code search methods have two main issues: due to random selection of negative samples, semantic representations cannot distinguish similar codes well, and semantic vectors in the memory bank are reused from previous inference results without gradient descent, preventing effective learning of negative sample semantic information.
+
+To solve these problems, CoCoHaNeRe introduces hard negative examples into contrastive training, which are negative examples in the codebase that are most similar to positive examples. The framework designs a new memory bank that supports finding the nearest neighbor of query as hard negatives, adopts differentiable hard negative embeddings for the model's gradient descent process, and recomputes the embeddings of hard negatives to put them in the same batch as positive examples for training.
+
+## Technical Approach
+
+Code and text essentially belong to the same modality (strings), and only when code is converted into different forms such as intermediate representation (IR) or abstract syntax tree (AST) can it be regarded as two modalities.
+
+## Performance Results
+
+In the code search task, the average MRR score of CoCoHaNeRe exceeds CodeBERT, GraphCodeBERT, and UniXcoder by 11.25%, 8.13%, and 7.38%, respectively.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f2a7de52-47e8-4244-a325-4b53bad96e6c",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "2922b172-167f-4b0b-ba44-a2e9f3613bba",
+  "toolUseResult": {
+    "query": "CoCoHaNeRe contrastive hard negative code search data flow AST TOSEM 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ThhVXoHemwE2wTchcxgJrf",
+        "content": [
+          {
+            "title": "Effective Hard Negative Mining for Contrastive Learning-Based Code Search | ACM Transactions on Software Engineering and Methodology",
+            "url": "https://dl.acm.org/doi/full/10.1145/3695994"
+          },
+          {
+            "title": "Effective Hard Negative Mining for Contrastive Learning-based Code Search | CoLab",
+            "url": "https://colab.ws/articles/10.1145/3695994"
+          },
+          {
+            "title": "[PDF] CoCoSoDa: Effective Contrastive Learning for Code Search | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/CoCoSoDa:-Effective-Contrastive-Learning-for-Code-Shi-Wang/ae52599f2d2731f68c567b6726a5185c06cb9a41"
+          },
+          {
+            "title": "CMCS: contrastive-metric learning via vector-level sampling and augmentation for code search | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-024-64205-2"
+          },
+          {
+            "title": "Effective Hard Negative Mining for Contrastive Learning-Based Code Search | Request PDF",
+            "url": "https://www.researchgate.net/publication/384848348_Effective_Hard_Negative_Mining_for_Contrastive_Learning-based_Code_Search"
+          },
+          {
+            "title": "CoCoSoDa: Effective Contrastive Learning for Code Search",
+            "url": "https://arxiv.org/pdf/2204.03293"
+          },
+          {
+            "title": "Uncertainty-Aware Contrastive Learning With Hard Negative Sampling for",
+            "url": "https://csse.szu.edu.cn/attachment/cglr/1749432531_AAAI-2025%E8%AE%BA%E6%96%87-%E5%88%98%E6%B6%B5.pdf"
+          },
+          {
+            "title": "GitHub - DeepSoftwareAnalytics/CoCoSoDa: Replication package for ICSE2023 paper-CoCoSoDa: Effective Contrastive Learning for Code Search",
+            "url": "https://github.com/DeepSoftwareAnalytics/CoCoSoDa"
+          },
+          {
+            "title": "CMCS: contrastive-metric learning via vector-level sampling and augmentation for code search - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11196273/"
+          },
+          {
+            "title": "CoCoSoDa: Effective Contrastive Learning for Code Search | Proceedings of the 45th International Conference on Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1109/ICSE48619.2023.00185"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about CoCoHaNeRe:\n\n## Overview\n\nCoCoHaNeRe is a Code search framework augmented by Contrastive learning with differentiable Hard Negative samples Retrieval. The work was published in ACM Transactions on Software Engineering and Methodology in 2025.\n\n## Key Problem and Solution\n\nExisting code search methods have two main issues: due to random selection of negative samples, semantic representations cannot distinguish similar codes well, and semantic vectors in the memory bank are reused from previous inference results without gradient descent, preventing effective learning of negative sample semantic information.\n\nTo solve these problems, CoCoHaNeRe introduces hard negative examples into contrastive training, which are negative examples in the codebase that are most similar to positive examples. The framework designs a new memory bank that supports finding the nearest neighbor of query as hard negatives, adopts differentiable hard negative embeddings for the model's gradient descent process, and recomputes the embeddings of hard negatives to put them in the same batch as positive examples for training.\n\n## Technical Approach\n\nCode and text essentially belong to the same modality (strings), and only when code is converted into different forms such as intermediate representation (IR) or abstract syntax tree (AST) can it be regarded as two modalities.\n\n## Performance Results\n\nIn the code search task, the average MRR score of CoCoHaNeRe exceeds CodeBERT, GraphCodeBERT, and UniXcoder by 11.25%, 8.13%, and 7.38%, respectively."
+    ],
+    "durationSeconds": 7.529466493000014
+  },
+  "sourceToolAssistantUUID": "f2a7de52-47e8-4244-a325-4b53bad96e6c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-10T18:55:24.069Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01S2bHmBcsgPoq13dH9kzPBP`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.03117",
+  "prompt": "Extract the full abstract and key details about ARISE's approach: how exactly do they implement def-use analysis (what tools/libraries), how is the data-flow graph exposed to the agent, what are the specific tool APIs, and what are the limitations they identify?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2922b172-167f-4b0b-ba44-a2e9f3613bba",
+  "isSidechain": false,
+  "requestId": "req_011CauPydtsAtUu953tzzzbB",
+  "type": "assistant",
+  "uuid": "aac71766-e323-43a5-9576-62bf199f1396",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TrbqUNuV14aec7wN15QpF6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1119,
+      "cache_read_input_tokens": 46679,
+      "output_tokens": 137,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1119,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 137,
+          "cache_read_input_tokens": 46679,
+          "cache_creation_input_tokens": 1119,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1119
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-10T18:55:30.218Z_
+
+<details><summary>↩ Tool result · `toolu_01S2bHmBcsgPoq13dH9kzPBP`</summary>
+
+```text
+# ARISE: Key Details and Approach
+
+## Full Abstract
+The paper presents ARISE, which enhances LLM-based agents with a multi-granularity program graph extending to statement-level nodes with intra-procedural definition-use edges. The system exposes this graph through a three-tier tool API enabling data-flow slicing as a "queryable agent primitive" that allows models to trace which statements define or consume variables of interest. Evaluated on SWE-bench Lite (300 GitHub issues across 11 Python repositories), ARISE achieves 22.0% Pass@1, improving over the SWE-agent baseline by 4.7 percentage points.
+
+## Implementation Details Limitation
+**Critical Gap**: The provided abstract does not specify which tools, libraries, or technologies implement the def-use analysis. No implementation details about dependency injection frameworks, AST parsing libraries, or specific graph construction methods are disclosed in this excerpt.
+
+## Data-Flow Graph Exposure
+The graph is exposed through a "three-tier tool API" that treats data-flow slicing as a first-class agent primitive. However, the specific API endpoints, method signatures, or interaction protocols are not detailed in the abstract.
+
+## Tool APIs
+The abstract mentions a "three-tier tool API" structure but provides no breakdown of the individual tiers, specific methods, or parameter specifications.
+
+## Identified Limitations
+The excerpt does not explicitly discuss limitations. However, the evaluation scope is restricted to Python repositories only, suggesting potential generalizability constraints to other programming languages.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aac71766-e323-43a5-9576-62bf199f1396",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "89d233fd-72d4-4079-80a8-b9cd9fc6fe00",
+  "toolUseResult": {
+    "bytes": 47800,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ARISE: Key Details and Approach\n\n## Full Abstract\nThe paper presents ARISE, which enhances LLM-based agents with a multi-granularity program graph extending to statement-level nodes with intra-procedural definition-use edges. The system exposes this graph through a three-tier tool API enabling data-flow slicing as a \"queryable agent primitive\" that allows models to trace which statements define or consume variables of interest. Evaluated on SWE-bench Lite (300 GitHub issues across 11 Python repositories), ARISE achieves 22.0% Pass@1, improving over the SWE-agent baseline by 4.7 percentage points.\n\n## Implementation Details Limitation\n**Critical Gap**: The provided abstract does not specify which tools, libraries, or technologies implement the def-use analysis. No implementation details about dependency injection frameworks, AST parsing libraries, or specific graph construction methods are disclosed in this excerpt.\n\n## Data-Flow Graph Exposure\nThe graph is exposed through a \"three-tier tool API\" that treats data-flow slicing as a first-class agent primitive. However, the specific API endpoints, method signatures, or interaction protocols are not detailed in the abstract.\n\n## Tool APIs\nThe abstract mentions a \"three-tier tool API\" structure but provides no breakdown of the individual tiers, specific methods, or parameter specifications.\n\n## Identified Limitations\nThe excerpt does not explicitly discuss limitations. However, the evaluation scope is restricted to Python repositories only, suggesting potential generalizability constraints to other programming languages.",
+    "durationMs": 6147,
+    "url": "https://arxiv.org/abs/2605.03117"
+  },
+  "sourceToolAssistantUUID": "aac71766-e323-43a5-9576-62bf199f1396",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-10T18:55:40.182Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01ULo8EAPXWvxozn9oTkGEvA`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2605.03117",
+  "prompt": "I need to understand ARISE's implementation details: 1) What tool/library do they use for def-use analysis (e.g., Jedi, ast module, tree-sitter)? 2) How exactly is the three-tier tool API structured? 3) What are the specific limitations they identify about their static analysis approach? 4) Do they mention CodeQL, Beniget, or any other specific static analysis tool?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89d233fd-72d4-4079-80a8-b9cd9fc6fe00",
+  "isSidechain": false,
+  "requestId": "req_011CauPzTFSJPwj8nxG53mxX",
+  "type": "assistant",
+  "uuid": "cde68001-ef71-431c-b532-531fe67214db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJNwe9rTsQYZra8fbwwnpF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 480,
+      "cache_read_input_tokens": 47798,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 480,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 47798,
+          "cache_creation_input_tokens": 480,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 480
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-10T18:55:45.226Z_
+
+<details><summary>↩ Tool result · `toolu_01ULo8EAPXWvxozn9oTkGEvA`</summary>
+
+```text
+# ARISE Implementation Analysis
+
+## 1. Def-Use Analysis Tool
+
+ARISE uses **Python's built-in `ast` module** for static analysis. The paper states:
+
+> "We parse every .py file with Python's ast module."
+
+They do not employ specialized tools like Jedi, tree-sitter, CodeQL, or Beniget. The analysis is performed through custom AST traversal code that the authors implemented.
+
+## 2. Three-Tier Tool API Structure
+
+The API is organized hierarchically:
+
+- **Tier 1 (Structural Retrieval)**: Five tools including `search_entities`, `traverse_relations`, `get_enclosing_scopes`, `get_code_span`, and `get_entity_info`
+- **Tier 2 (Data-flow Slicing)**: Single primary tool `get_dataflow_slice` for tracing variable definitions/uses
+- **Tier 3 (Context Bundling)**: Tools like `build_context_bundle` and `rank_suspect_regions` for assembly and ranking
+
+Each tier operates on the program graph independently and can be enabled/disabled.
+
+## 3. Static Analysis Limitations
+
+Key limitations identified include:
+
+- **Intra-procedural scope only**: "get_dataflow_slice does not cross Calls edges," preventing inter-procedural tracing
+- **AST approximation**: The paper acknowledges reliance on "AST def-use approximation"
+- **Dynamic dispatch**: They "silently drop dynamic dispatch through attribute access" to avoid false positives
+
+## 4. Specific Tools Mentioned
+
+The paper does not reference CodeQL, Beniget, Jedi, or tree-sitter. Their approach is self-contained using Python's standard `ast` module exclusively.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cde68001-ef71-431c-b532-531fe67214db",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "42264a4d-d052-4cf5-a656-99b91a73cedc",
+  "toolUseResult": {
+    "bytes": 365430,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ARISE Implementation Analysis\n\n## 1. Def-Use Analysis Tool\n\nARISE uses **Python's built-in `ast` module** for static analysis. The paper states:\n\n> \"We parse every .py file with Python's ast module.\"\n\nThey do not employ specialized tools like Jedi, tree-sitter, CodeQL, or Beniget. The analysis is performed through custom AST traversal code that the authors implemented.\n\n## 2. Three-Tier Tool API Structure\n\nThe API is organized hierarchically:\n\n- **Tier 1 (Structural Retrieval)**: Five tools including `search_entities`, `traverse_relations`, `get_enclosing_scopes`, `get_code_span`, and `get_entity_info`\n- **Tier 2 (Data-flow Slicing)**: Single primary tool `get_dataflow_slice` for tracing variable definitions/uses\n- **Tier 3 (Context Bundling)**: Tools like `build_context_bundle` and `rank_suspect_regions` for assembly and ranking\n\nEach tier operates on the program graph independently and can be enabled/disabled.\n\n## 3. Static Analysis Limitations\n\nKey limitations identified include:\n\n- **Intra-procedural scope only**: \"get_dataflow_slice does not cross Calls edges,\" preventing inter-procedural tracing\n- **AST approximation**: The paper acknowledges reliance on \"AST def-use approximation\"\n- **Dynamic dispatch**: They \"silently drop dynamic dispatch through attribute access\" to avoid false positives\n\n## 4. Specific Tools Mentioned\n\nThe paper does not reference CodeQL, Beniget, Jedi, or tree-sitter. Their approach is self-contained using Python's standard `ast` module exclusively.",
+    "durationMs": 5041,
+    "url": "https://arxiv.org/html/2605.03117"
+  },
+  "sourceToolAssistantUUID": "cde68001-ef71-431c-b532-531fe67214db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-10T18:55:48.872Z_
+
+This is very valuable. ARISE only uses Python's `ast` module for **intra-procedural** def-use — they explicitly do NOT cross call boundaries. This is a key differentiation point for StructFuse. Let me search for one more thing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42264a4d-d052-4cf5-a656-99b91a73cedc",
+  "isSidechain": false,
+  "requestId": "req_011CauQ1ZFd6n6ZGhaKNJ3np",
+  "type": "assistant",
+  "uuid": "625617e8-a700-4f73-b1ed-8fc789768304",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PgwvnCBAtsW85vzkkbqycc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 588,
+      "cache_read_input_tokens": 48278,
+      "output_tokens": 121,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 588,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 121,
+          "cache_read_input_tokens": 48278,
+          "cache_creation_input_tokens": 588,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 588
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-10T18:55:49.604Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01F6BStpfupKD31B5BjqtXdm`</summary>
+
+```json
+{
+  "query": "CodeQL Python database creation success rate open source projects build failure rate"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "625617e8-a700-4f73-b1ed-8fc789768304",
+  "isSidechain": false,
+  "requestId": "req_011CauQ1ZFd6n6ZGhaKNJ3np",
+  "type": "assistant",
+  "uuid": "32ffa625-cc38-49c9-a2b4-9e5ed4697d57",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PgwvnCBAtsW85vzkkbqycc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 588,
+      "cache_read_input_tokens": 48278,
+      "output_tokens": 121,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 588,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 121,
+          "cache_read_input_tokens": 48278,
+          "cache_creation_input_tokens": 588,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 588
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-10T18:55:55.654Z_
+
+<details><summary>↩ Tool result · `toolu_01F6BStpfupKD31B5BjqtXdm`</summary>
+
+```text
+Web search results for query: "CodeQL Python database creation success rate open source projects build failure rate"
+
+Links: [{"title":"A research on generating CodeQL database for close-sourced applications · y4y","url":"https://www.y4y.space/2021/06/25/a-research-on-generating-codeql-database-for-close-sourced-applications/"},{"title":"Database creation fails on Zulip · Issue #2974 · github/codeql","url":"https://github.com/github/codeql/issues/2974"},{"title":"v2.15.3 - Python code analysis fails · Issue #2042 · github/codeql-action","url":"https://github.com/github/codeql-action/issues/2042"},{"title":"Error while creating local python database · Issue #4496 · github/codeql","url":"https://github.com/github/codeql/issues/4496"},{"title":"False positive — CodeQL failing due to lack of Python files when they only exist on the `main` branch · Issue #21106 · github/codeql","url":"https://github.com/github/codeql/issues/21106"},{"title":"CodeQL zero to hero part 2: Getting started with CodeQL - The GitHub Blog","url":"https://github.blog/developer-skills/github/codeql-zero-to-hero-part-2-getting-started-with-codeql/"},{"title":"CodeQL detected code written in Java but could not process any of it.General issue · Issue #14066 · github/codeql","url":"https://github.com/github/codeql/issues/14066"},{"title":"What to Do When Creating Your CodeQL Database Fails – and How to Report the Perfect Reproducer Using cvise","url":"https://intrigus.org/research/2025/11/28/what-to-do-when-codeql-database-creation-fails/"},{"title":"CodeQL","url":"https://codeql.github.com/"},{"title":"create database for cpp/c failed · Issue #4072 · github/codeql","url":"https://github.com/github/codeql/issues/4072"}]
+
+Based on the search results, here's what I found about CodeQL Python database creation and build failures:
+
+## Key Findings
+
+**Python Database Creation Requirements:**
+
+For creating a CodeQL database in an interpreted language like Python, dependencies are not required to be installed. Dependency source code will only be in the database if that dependency source code was part of the scanned codebase on the filesystem at database creation time.
+
+**Common Issues and Challenges:**
+
+The search results reveal several challenges with CodeQL database creation across open source projects:
+
+1. **Build-Related Failures**: CodeQL may detect code written in a language but could not process any of it, which can occur if the specified build commands failed to compile or process any code.
+
+2. **Python-Specific Issues**: Users have reported errors like failed module extraction with missing shared object files when running CodeQL on Python projects.
+
+3. **Silent Failures**: CodeQL database creation may appear to succeed without reporting errors while queries return no results, indicating silent processing failures.
+
+**Note:** The search results do not contain specific quantitative data about success rates or failure rates for CodeQL Python database creation across open source projects. The available information consists mainly of individual issue reports and general guidance rather than comprehensive statistical data about success metrics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "32ffa625-cc38-49c9-a2b4-9e5ed4697d57",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "a59b311b-7b13-4b19-95f1-a43876e0d39d",
+  "toolUseResult": {
+    "query": "CodeQL Python database creation success rate open source projects build failure rate",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BENoxBHh23bxvyLec7BGVN",
+        "content": [
+          {
+            "title": "A research on generating CodeQL database for close-sourced applications · y4y",
+            "url": "https://www.y4y.space/2021/06/25/a-research-on-generating-codeql-database-for-close-sourced-applications/"
+          },
+          {
+            "title": "Database creation fails on Zulip · Issue #2974 · github/codeql",
+            "url": "https://github.com/github/codeql/issues/2974"
+          },
+          {
+            "title": "v2.15.3 - Python code analysis fails · Issue #2042 · github/codeql-action",
+            "url": "https://github.com/github/codeql-action/issues/2042"
+          },
+          {
+            "title": "Error while creating local python database · Issue #4496 · github/codeql",
+            "url": "https://github.com/github/codeql/issues/4496"
+          },
+          {
+            "title": "False positive — CodeQL failing due to lack of Python files when they only exist on the `main` branch · Issue #21106 · github/codeql",
+            "url": "https://github.com/github/codeql/issues/21106"
+          },
+          {
+            "title": "CodeQL zero to hero part 2: Getting started with CodeQL - The GitHub Blog",
+            "url": "https://github.blog/developer-skills/github/codeql-zero-to-hero-part-2-getting-started-with-codeql/"
+          },
+          {
+            "title": "CodeQL detected code written in Java but could not process any of it.General issue · Issue #14066 · github/codeql",
+            "url": "https://github.com/github/codeql/issues/14066"
+          },
+          {
+            "title": "What to Do When Creating Your CodeQL Database Fails – and How to Report the Perfect Reproducer Using cvise",
+            "url": "https://intrigus.org/research/2025/11/28/what-to-do-when-codeql-database-creation-fails/"
+          },
+          {
+            "title": "CodeQL",
+            "url": "https://codeql.github.com/"
+          },
+          {
+            "title": "create database for cpp/c failed · Issue #4072 · github/codeql",
+            "url": "https://github.com/github/codeql/issues/4072"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CodeQL Python database creation and build failures:\n\n## Key Findings\n\n**Python Database Creation Requirements:**\n\nFor creating a CodeQL database in an interpreted language like Python, dependencies are not required to be installed. Dependency source code will only be in the database if that dependency source code was part of the scanned codebase on the filesystem at database creation time.\n\n**Common Issues and Challenges:**\n\nThe search results reveal several challenges with CodeQL database creation across open source projects:\n\n1. **Build-Related Failures**: CodeQL may detect code written in a language but could not process any of it, which can occur if the specified build commands failed to compile or process any code.\n\n2. **Python-Specific Issues**: Users have reported errors like failed module extraction with missing shared object files when running CodeQL on Python projects.\n\n3. **Silent Failures**: CodeQL database creation may appear to succeed without reporting errors while queries return no results, indicating silent processing failures.\n\n**Note:** The search results do not contain specific quantitative data about success rates or failure rates for CodeQL Python database creation across open source projects. The available information consists mainly of individual issue reports and general guidance rather than comprehensive statistical data about success metrics."
+    ],
+    "durationSeconds": 6.04333259299997
+  },
+  "sourceToolAssistantUUID": "32ffa625-cc38-49c9-a2b4-9e5ed4697d57",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 80 · 2026-05-10T18:55:55.658Z_
+
+```json
+{
+  "parentUuid": "a59b311b-7b13-4b19-95f1-a43876e0d39d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "57c50334-7b58-4637-b388-50e6d057c690",
+  "timestamp": "2026-05-10T18:55:55.658Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Fusing Data-Flow and Lexical Signals for Repository-Level…",
+  "leafUuid": "57c50334-7b58-4637-b388-50e6d057c690",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 82_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reframe StructFuse with data-flow ground truth, not cost savings",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-10T18:55:58.826Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017K9H2WPuPXacJ886UT7L8u`</summary>
+
+```json
+{
+  "query": "Beniget Python def-use analysis static tool alternative tree-sitter"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "57c50334-7b58-4637-b388-50e6d057c690",
+  "isSidechain": false,
+  "requestId": "req_011CauQ2Kn2f8Mm26kj7TPPT",
+  "type": "assistant",
+  "uuid": "a9bece15-1251-48c4-9d89-b89f00a38d10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PPWNzuCNR7sQSfih5KkfxJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 48866,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1049,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 48866,
+          "cache_creation_input_tokens": 1049,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1049
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-10T18:56:05.761Z_
+
+<details><summary>↩ Tool result · `toolu_017K9H2WPuPXacJ886UT7L8u`</summary>
+
+```text
+Web search results for query: "Beniget Python def-use analysis static tool alternative tree-sitter"
+
+Links: [{"title":"Pythran stories - Gast, Beniget! Use-Def chains for Python Programs","url":"https://serge-sans-paille.github.io/pythran-stories/gast-beniget-use-def-chains-for-python-programs.html"},{"title":"GitHub - serge-sans-paille/beniget: Extract semantic information about static Python code · GitHub","url":"https://github.com/serge-sans-paille/beniget"},{"title":"beniget · PyPI","url":"https://pypi.org/project/beniget/"},{"title":"beniget/README.rst at master · serge-sans-paille/beniget","url":"https://github.com/serge-sans-paille/beniget/blob/master/README.rst"},{"title":"Tooling for Static Analysis of Python Programs — EuroPython 2020 Online · 23-26 July 2020","url":"https://ep2020.europython.eu/talks/3k93S3j-tooling-for-static-analysis-of-python-programs/"},{"title":"Semantic Code Indexing with AST and Tree-sitter for AI Agents (Part — 1 of 3) | by Dineshkumar | Medium","url":"https://medium.com/@email2dineshkuppan/semantic-code-indexing-with-ast-and-tree-sitter-for-ai-agents-part-1-of-3-eb5237ba687a"},{"title":"beniget: Extract semantic information about static Python code - Packages and Features","url":"https://doc.sagemath.org/html/en/reference/spkg/beniget.html"},{"title":"Which Python static analysis tools should I use? - Codacy | Blog","url":"https://blog.codacy.com/python-static-analysis-tools"},{"title":"135 Python Static Analysis Tools, Linters, And Code Formatters | Analysis Tools","url":"https://analysis-tools.dev/tag/python"},{"title":"GitHub - analysis-tools-dev/static-analysis: ⚙️ A curated list of static analysis (SAST) tools and linters for all programming languages, config files, build tools, and more. The focus is on tools which improve code quality.","url":"https://github.com/analysis-tools-dev/static-analysis"}]
+
+Based on the search results, here's what I found about Beniget and related tools:
+
+## Beniget Overview
+
+Beniget is a collection of compile-time analysis tools for Python Abstract Syntax Trees (AST) and serves as a building block to write static analyzers or compilers for Python. Beniget provides a static over-approximation of the global and local definitions inside Python Module/Class/Function and can compute def-use chains from each definition.
+
+Beniget relies on gast to provide a cross-version abstraction of the AST for all Python 3 versions greater than 3.6, and since version 0.5.0, beniget works with the standard library ast as well.
+
+## Relationship with Tree-sitter
+
+The search results show that Tree-sitter and AST-based tools like Beniget serve different purposes. ASTs give a distilled view of what code means (ignoring punctuation and formatting), while Tree-sitter keeps the full fidelity of the source with every bracket, colon, and semicolon preserved.
+
+ASTs are great for compilers and static analysis, while Tree-sitter shines for editors, linters, and tools that need precise source locations.
+
+## Related Tools
+
+Built upon gast and beniget modules, memestra is a static analyzer of deprecated function calls that provides use-def chains abstraction to understand programs. Additionally, Code-Graph-RAG builds knowledge graphs from multi-language codebases using Tree-sitter AST parsing with support for 11 programming languages.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a9bece15-1251-48c4-9d89-b89f00a38d10",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "2c980397-5c71-4acc-9f79-f6ab8bfaeb90",
+  "toolUseResult": {
+    "query": "Beniget Python def-use analysis static tool alternative tree-sitter",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y9rgdFf1LKN4k1yyS3GgcN",
+        "content": [
+          {
+            "title": "Pythran stories - Gast, Beniget! Use-Def chains for Python Programs",
+            "url": "https://serge-sans-paille.github.io/pythran-stories/gast-beniget-use-def-chains-for-python-programs.html"
+          },
+          {
+            "title": "GitHub - serge-sans-paille/beniget: Extract semantic information about static Python code · GitHub",
+            "url": "https://github.com/serge-sans-paille/beniget"
+          },
+          {
+            "title": "beniget · PyPI",
+            "url": "https://pypi.org/project/beniget/"
+          },
+          {
+            "title": "beniget/README.rst at master · serge-sans-paille/beniget",
+            "url": "https://github.com/serge-sans-paille/beniget/blob/master/README.rst"
+          },
+          {
+            "title": "Tooling for Static Analysis of Python Programs — EuroPython 2020 Online · 23-26 July 2020",
+            "url": "https://ep2020.europython.eu/talks/3k93S3j-tooling-for-static-analysis-of-python-programs/"
+          },
+          {
+            "title": "Semantic Code Indexing with AST and Tree-sitter for AI Agents (Part — 1 of 3) | by Dineshkumar | Medium",
+            "url": "https://medium.com/@email2dineshkuppan/semantic-code-indexing-with-ast-and-tree-sitter-for-ai-agents-part-1-of-3-eb5237ba687a"
+          },
+          {
+            "title": "beniget: Extract semantic information about static Python code - Packages and Features",
+            "url": "https://doc.sagemath.org/html/en/reference/spkg/beniget.html"
+          },
+          {
+            "title": "Which Python static analysis tools should I use? - Codacy | Blog",
+            "url": "https://blog.codacy.com/python-static-analysis-tools"
+          },
+          {
+            "title": "135 Python Static Analysis Tools, Linters, And Code Formatters | Analysis Tools",
+            "url": "https://analysis-tools.dev/tag/python"
+          },
+          {
+            "title": "GitHub - analysis-tools-dev/static-analysis: ⚙️ A curated list of static analysis (SAST) tools and linters for all programming languages, config files, build tools, and more. The focus is on tools which improve code quality.",
+            "url": "https://github.com/analysis-tools-dev/static-analysis"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Beniget and related tools:\n\n## Beniget Overview\n\nBeniget is a collection of compile-time analysis tools for Python Abstract Syntax Trees (AST) and serves as a building block to write static analyzers or compilers for Python. Beniget provides a static over-approximation of the global and local definitions inside Python Module/Class/Function and can compute def-use chains from each definition.\n\nBeniget relies on gast to provide a cross-version abstraction of the AST for all Python 3 versions greater than 3.6, and since version 0.5.0, beniget works with the standard library ast as well.\n\n## Relationship with Tree-sitter\n\nThe search results show that Tree-sitter and AST-based tools like Beniget serve different purposes. ASTs give a distilled view of what code means (ignoring punctuation and formatting), while Tree-sitter keeps the full fidelity of the source with every bracket, colon, and semicolon preserved.\n\nASTs are great for compilers and static analysis, while Tree-sitter shines for editors, linters, and tools that need precise source locations.\n\n## Related Tools\n\nBuilt upon gast and beniget modules, memestra is a static analyzer of deprecated function calls that provides use-def chains abstraction to understand programs. Additionally, Code-Graph-RAG builds knowledge graphs from multi-language codebases using Tree-sitter AST parsing with support for 11 programming languages."
+    ],
+    "durationSeconds": 6.930745049000019
+  },
+  "sourceToolAssistantUUID": "a9bece15-1251-48c4-9d89-b89f00a38d10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85 · 2026-05-10T18:56:08.293Z_
+
+Now I have a comprehensive understanding of the landscape. Let me think deeply and produce the revised idea.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c980397-5c71-4acc-9f79-f6ab8bfaeb90",
+  "isSidechain": false,
+  "requestId": "req_011CauQ34rdSUmoCVKzvvLRG",
+  "type": "assistant",
+  "uuid": "2d42f5ca-b379-450b-990f-bac48aae53d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KBjRj1Tn7VSMJong6nJATV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1039,
+      "cache_read_input_tokens": 49915,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1039,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 49915,
+          "cache_creation_input_tokens": 1039,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1039
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-10T18:56:09.101Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011XD9SUa8vikDQvmiz8wUSi`</summary>
+
+```json
+{
+  "query": "SWE-bench Pro Scale AI public split how many instances total public private 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d42f5ca-b379-450b-990f-bac48aae53d7",
+  "isSidechain": false,
+  "requestId": "req_011CauQ34rdSUmoCVKzvvLRG",
+  "type": "assistant",
+  "uuid": "76b5ab71-22e8-421c-8935-1d8b9b90baad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KBjRj1Tn7VSMJong6nJATV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1039,
+      "cache_read_input_tokens": 49915,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1039,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 49915,
+          "cache_creation_input_tokens": 1039,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1039
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-10T18:56:16.458Z_
+
+<details><summary>↩ Tool result · `toolu_011XD9SUa8vikDQvmiz8wUSi`</summary>
+
+```text
+Web search results for query: "SWE-bench Pro Scale AI public split how many instances total public private 2026"
+
+Links: [{"title":"SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale","url":"https://labs.scale.com/leaderboard/swe_bench_pro_public"},{"title":"GitHub - scaleapi/SWE-bench_Pro-os: SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? · GitHub","url":"https://github.com/scaleapi/SWE-bench_Pro-os"},{"title":"Scale Labs Leaderboard: SWE-Bench Pro (Private Dataset)","url":"https://labs.scale.com/leaderboard/swe_bench_pro_private"},{"title":"ScaleAI/SWE-bench_Pro · Datasets at Hugging Face","url":"https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro"},{"title":"SWE-bench Verified","url":"https://www.vals.ai/benchmarks/swebench"},{"title":"SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? | OpenReview","url":"https://openreview.net/forum?id=9R2iUHhVfr"},{"title":"SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean","url":"https://www.codeant.ai/blogs/swe-bench-scores"},{"title":"SWE-Bench Pro: Raising the Bar for Agentic Coding","url":"https://scale.com/blog/swe-bench-pro"},{"title":"SWE-Bench Pro","url":"https://scaleapi.github.io/SWE-bench_Pro-os/"},{"title":"SWE-bench Pro Benchmark 2026: 30 LLM scores | BenchLM.ai","url":"https://benchlm.ai/benchmarks/swePro"}]
+
+Based on the search results, here's the breakdown of SWE-Bench Pro by Scale AI:
+
+## Total Instances and Split
+
+SWE-Bench Pro is a large-scale benchmark containing 1865 total tasks across 41 professional repositories.
+
+The benchmark is divided into three distinct subsets:
+
+1. **Public Set**: Contains 731 instances and serves as the main public-facing benchmark.
+
+2. **Private Set (Commercial)**: A first-of-its-kind collection, this set includes 276 instances sourced from 18 private, proprietary codebases from startups.
+
+3. **Held-out Set**: The largest of the three, this private set contains 858 instances.
+
+So in summary: **1,865 total instances** (731 public + 276 commercial/private + 858 held-out) across 41 repositories in 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76b5ab71-22e8-421c-8935-1d8b9b90baad",
+  "isSidechain": false,
+  "promptId": "cf14dc06-69c2-46ae-b920-920e2b027913",
+  "type": "user",
+  "uuid": "0543d70a-5db5-412a-9d29-2cb64bd980e0",
+  "toolUseResult": {
+    "query": "SWE-bench Pro Scale AI public split how many instances total public private 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NWY33W42WM3uGbGMaD4tsm",
+        "content": [
+          {
+            "title": "SWE-Bench Pro Leaderboard AI Coding Benchmark (Public Dataset) | Scale",
+            "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public"
+          },
+          {
+            "title": "GitHub - scaleapi/SWE-bench_Pro-os: SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? · GitHub",
+            "url": "https://github.com/scaleapi/SWE-bench_Pro-os"
+          },
+          {
+            "title": "Scale Labs Leaderboard: SWE-Bench Pro (Private Dataset)",
+            "url": "https://labs.scale.com/leaderboard/swe_bench_pro_private"
+          },
+          {
+            "title": "ScaleAI/SWE-bench_Pro · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.vals.ai/benchmarks/swebench"
+          },
+          {
+            "title": "SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? | OpenReview",
+            "url": "https://openreview.net/forum?id=9R2iUHhVfr"
+          },
+          {
+            "title": "SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean",
+            "url": "https://www.codeant.ai/blogs/swe-bench-scores"
+          },
+          {
+            "title": "SWE-Bench Pro: Raising the Bar for Agentic Coding",
+            "url": "https://scale.com/blog/swe-bench-pro"
+          },
+          {
+            "title": "SWE-Bench Pro",
+            "url": "https://scaleapi.github.io/SWE-bench_Pro-os/"
+          },
+          {
+            "title": "SWE-bench Pro Benchmark 2026: 30 LLM scores | BenchLM.ai",
+            "url": "https://benchlm.ai/benchmarks/swePro"
+          }
+        ]
+      },
+      "Based on the search results, here's the breakdown of SWE-Bench Pro by Scale AI:\n\n## Total Instances and Split\n\nSWE-Bench Pro is a large-scale benchmark containing 1865 total tasks across 41 professional repositories.\n\nThe benchmark is divided into three distinct subsets:\n\n1. **Public Set**: Contains 731 instances and serves as the main public-facing benchmark.\n\n2. **Private Set (Commercial)**: A first-of-its-kind collection, this set includes 276 instances sourced from 18 private, proprietary codebases from startups.\n\n3. **Held-out Set**: The largest of the three, this private set contains 858 instances.\n\nSo in summary: **1,865 total instances** (731 public + 276 commercial/private + 858 held-out) across 41 repositories in 2026."
+    ],
+    "durationSeconds": 7.353170385000005
+  },
+  "sourceToolAssistantUUID": "76b5ab71-22e8-421c-8935-1d8b9b90baad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88 · 2026-05-10T18:59:25.832Z_
+
+Now I have all the research I need. Let me synthesize my deep thinking and produce the revised idea.
+
+**Key insights from research:**
+
+1. **Cost argument is dead** — Qwen3-Coder-30B-A3B costs $0.07-0.19/1M input tokens, making labeling ~$10-35. Must reframe entirely around model-independence, interpretability, reproducibility.
+
+2. **ARISE is only intra-procedural** — Uses Python's `ast` module only, explicitly does NOT cross call boundaries. This is a strong differentiation for StructFuse's inter-procedural analysis.
+
+3. **SWE-bench Pro SOTA** — Claude Mythos at 77.8%, but SEAL standardized ranges from ~42-59%. Need nuanced framing.
+
+4. **CodeQL Python** — Doesn't require builds for Python (interpreted language), which is much more favorable than originally estimated. The data-flow API is designed for source→sink but can be configured with broad definitions.
+
+5. **SWE-Fixer** — BM25 + fine-tuned 7B retriever, no structural program analysis features. Direct comparison needed.
+
+6. **Method novelty** — The reviewer's suggestion of contrastive learning with data-flow-aware hard negative mining is well-motivated by CoCoHaNeRe (TOSEM 2025) showing hard negatives improve code search. No existing work uses data-flow-derived hard negatives.
+
+Let me now write the complete revised idea with a **major revision** — reframing the motivation entirely and adding genuine methodological novelty via contrastive learning with data-flow-aware hard negative mining.
+
+```json
+{
+  "change_type": "major",
+  "title": "StructFuse: Data-Flow-Aware Contrastive Retrieval for Repository-Level Code Repair Context Selection",
+  "core_problem": "Repository-level bug repair requires selecting relevant context from large codebases. Existing context selectors fall into three paradigms, each with fundamental limitations: (1) Neural selectors like SWE-Pruner train on LLM-generated labels that are coupled to a specific teacher model's biases and selection patterns—labels are stochastic, non-reproducible, and encode the teacher's blind spots. (2) Retrieve-and-rerank methods like SweRank (ICLR 2026) achieve strong text-based localization but miss structural dependencies—lexically similar but structurally unrelated code becomes a false positive. (3) Graph-guided agents like LocAgent capture import/call/inheritance edges but omit fine-grained data-flow (def-use) edges; ARISE uses intra-procedural def-use but only at runtime via tool calls, not as distilled knowledge. On SWE-bench Pro (where top systems range from ~42% under SEAL-standardized evaluation to 77.8% with custom scaffolding, and context selection accounts for 4-10pp swings), context quality remains a key differentiator. Can we build a context selector that leverages inter-procedural data-flow signals for structurally-grounded, interpretable, and model-independent selections—using deterministic program analysis rather than stochastic LLM judgments?",
+  "opportunity": "SWE-Pruner (arXiv:2601.16746) demonstrated a 0.6B neural skimmer can reduce tokens 23-54% with <1pp degradation, but its supervision comes from Qwen3-Coder-30B-A3B-Instruct (an MoE model with 3.3B active parameters)—while inference is cheap (~$10-35 to label 61K samples), the labels are coupled to that model's biases, non-reproducible across runs, and provide no interpretable rationale for selections. LocAgent (ACL 2025) showed graph-guided localization achieves 92.7% file-level accuracy using import/invocation/inheritance edges with fine-tuned Qwen2.5-32B, but omits data-flow edges. SweRank (ICLR 2026) achieves SOTA retrieve-and-rerank localization but is purely text-based. ARISE (arXiv:2605.03117) confirmed data-flow slicing yields +17pp Function Recall@1, but (a) uses only Python's ast module for intra-procedural analysis (explicitly does not cross call boundaries), and (b) keeps analysis as runtime tool calls adding latency per agent step. SWE-Fixer (ACL Findings 2025) combines BM25 with a fine-tuned 7B retriever for coarse-to-fine file retrieval but uses no structural program analysis features. Sliceformer (arXiv:2604.26961) validated that data-flow knowledge transfers to neural models with 22% ExactMatch gains on slicing tasks. The opportunity: no existing work (a) uses inter-procedural def-use analysis for repair context selection, (b) distills data-flow signals into a fast retrieval model, or (c) exploits structural connectivity for contrastive hard negative mining. ARISE's intra-procedural limitation and SweRank's text-only approach leave a clear gap for inter-procedural data-flow-aware retrieval.",
+  "landscape": "**Neural context selectors**: SWE-Pruner trains a 0.6B skimmer on 61K samples labeled by Qwen3-Coder-30B-A3B-Instruct (an MoE model with 3.3B active parameters per forward pass, costing ~$10-35 for labeling at $0.07-0.19/1M input tokens), achieving <1pp degradation on SWE-bench Verified (70.6%→70.2%)—though SWE-bench Verified is known contaminated (OpenAI, Feb 2026). Squeez (arXiv:2604.04979) fine-tunes Qwen 3.5 2B for task-conditioned tool-output pruning (0.86 recall, 92% token removal) but targets tool outputs, not repository context. LongCodeZip (ASE 2025) achieves 5.6x compression via perplexity-based ranking, training-free but code-agnostic. **Retrieve-and-rerank approaches**: SweRank (ICLR 2026, arXiv:2505.07849) achieves SOTA issue localization via SweRankEmbed (bi-encoder retriever) + SweRankLLM (listwise LLM reranker), trained on the SweLoc dataset—purely text-based with no structural signals. SweRank+ (arXiv:2512.20482) extends to multilingual multi-turn ranking with 155K training instances. SWE-Fixer (ACL Findings 2025) combines BM25 with a fine-tuned 7B retriever (SWE-Fixer-Retriever-7B) for coarse-to-fine file retrieval, achieving 24.7%/32.8% on SWE-bench Lite/Verified with P2P filtering—architecturally the closest prior work to our retrieval fusion, but uses learned embeddings without structural program analysis features. **Graph-guided approaches**: LocAgent (ACL 2025, arXiv:2503.09089) parses codebases into directed heterogeneous graphs with import/invocation/inheritance edges, achieving 92.7% file-level accuracy with fine-tuned Qwen2.5-32B—but omits data-flow (def-use) edges and requires a 32B model at inference. KGCompass (arXiv:2503.21710) constructs repository knowledge graphs (58.3% repair) but with heavy construction overhead. GraphCoder (ASE 2024) uses code context graphs with control-flow and data-dependence for coarse-to-fine retrieval in code completion—related but targets completion, not repair context selection. SaraCoder (ICLR 2026) orchestrates semantic and structural cues for code completion with a graph-based structural similarity metric—demonstrates the value of structural signals in retrieval but does not address repair or use def-use data-flow. **Data-flow-specific approaches**: ARISE (arXiv:2605.03117) augments SWE-agent with statement-level def-use edges via Python's ast module, gaining +17pp Function Recall@1 and +4.7pp Pass@1—but is limited to intra-procedural analysis (explicitly does not cross call boundaries), keeps analysis as runtime tool calls, and requires Qwen2.5-Coder-32B at inference. LLMxCPG (USENIX Security 2025) uses Code Property Graphs for vulnerability detection (67-91% code reduction, 15-40% F1 gain) but targets security, not repair context. Sliceformer (arXiv:2604.26961) distills DFG knowledge into CodeT5+ for slicing tasks via dataflow-aware pretraining objectives, validating structural knowledge transfer but not addressing repair. **Contrastive learning for code**: CoCoHaNeRe (TOSEM 2025) demonstrates that hard negative mining significantly improves contrastive code search (+7-11% MRR over baselines), but uses random or embedding-distance-based negatives without structural awareness. No existing work uses program-analysis-derived structural connectivity to mine hard negatives. **Compression paradigms**: An empirical study (arXiv:2604.13725) shows continuous latent vector compression surpasses full-context by up to 28.3% BLEU at 4x compression. **Benchmarks**: SWE-bench Pro (Scale AI, 1865 tasks total, 731 public) is the recommended hard benchmark—top scores range from ~42-59% under SEAL-standardized evaluation to 77.8% with custom scaffolding (Claude Mythos Preview). SWE-bench Lite (300 instances) remains widely used. RepoBench-R (ICLR 2024) directly evaluates cross-file context retrieval. **Gap**: No existing work combines inter-procedural data-flow analysis with contrastive hard negative mining for repair context retrieval. ARISE is intra-procedural only; SweRank and SWE-Fixer are text-only; LocAgent uses coarser structural edges without def-use; CoCoHaNeRe shows hard negatives work for code search but without structural awareness. The fusion of inter-procedural data-flow features with lexical retrieval via data-flow-aware contrastive learning is unexplored.",
+  "approach": "We propose StructFuse, a two-stage context retrieval system that combines inter-procedural data-flow analysis with a novel data-flow-aware contrastive learning objective for repository-level code repair context selection.\n\n**Stage 1: Inter-Procedural Data-Flow Graph Construction (Days 1-3).** For ~5K SWE-smith training instances, we extract inter-procedural data-flow features. For Python, CodeQL does not require compilation to build databases (it performs extraction directly from source files), making database creation reliable for Python projects. We configure CodeQL's data-flow API with broad source/sink definitions (all function parameters and return values as sources; all variable reads across call boundaries as sinks) to approximate general inter-procedural def-use chains. Where this overproduces flows, we filter by graph distance (≤3 hops from the buggy location). We budget Day 1 specifically for CodeQL query development and validation on 10 pilot repos before scaling—testing query precision, recall against gold patches, and extraction throughput. For repos where CodeQL's inter-procedural analysis produces insufficient coverage (<5 reachable files from bug location), we supplement with Beniget for intra-file def-use chains. For each candidate file/function, we compute: (a) shortest data-flow path distance to the buggy location, (b) number of distinct data-flow paths, (c) dependency type (inter-procedural def-use, call-graph, import). We also extract lexical features (BM25 scores, SweRankEmbed similarity) and structural metadata (git co-change frequency, import distance).\n\n**Stage 2: Data-Flow-Aware Contrastive Retrieval Training (Days 4-6).** This is the core methodological contribution, going beyond standard SFT with different labels. We train a Qwen2.5-Coder-3B bi-encoder retriever with a two-component objective:\n\n(a) *Data-flow-aware hard negative mining*: For each training instance, hard negatives are files that are lexically similar to the bug-relevant files (high BM25/embedding similarity) but structurally disconnected (no data-flow path within 3 hops of the buggy location). This is inspired by CoCoHaNeRe's (TOSEM 2025) demonstration that hard negatives dramatically improve code search, but we replace their embedding-distance-based mining with program-analysis-derived structural connectivity—a fundamentally different and more principled signal. The structural disconnection criterion cannot be approximated by any text-based method, giving the model supervision that is impossible to derive from lexical features alone.\n\n(b) *Structure-conditioned contrastive loss*: We use an InfoNCE-style loss where positive pairs are (issue description, data-flow-connected code) and negatives include both random negatives and the structurally-mined hard negatives above. We weight the contrastive loss by data-flow path strength: code reachable via short, direct def-use chains receives higher positive weight than code connected only via long transitive paths. This encodes the inductive bias that direct data-flow connections are stronger relevance signals than transitive ones.\n\n(c) *Multi-signal fusion head*: On top of the contrastive encoder, a lightweight MLP fusion head combines the learned embedding similarity with explicit features (data-flow distance, BM25 score, co-change frequency) for final ranking. This allows the model to leverage both learned representations and interpretable structural features.\n\nTraining takes ~3-5 hours per run on a single H100. We run 6 ablation configurations: (i) contrastive with data-flow hard negatives, (ii) contrastive with random negatives only, (iii) standard cross-entropy SFT (as in SWE-Pruner's paradigm), (iv) full fusion with MLP head, (v) inter-procedural features only vs. intra-procedural only (testing whether crossing call boundaries matters), (vi) data-flow features only vs. lexical only.\n\n**Stage 3: Two-Stage Cascade Evaluation (Days 7-11).** At inference, StructFuse operates as a two-stage cascade: (1) coarse file selection via BM25 + data-flow reachability (retain files within 3 data-flow hops OR top-30 BM25), then (2) fine-grained function ranking via the trained 3B contrastive model. This cascade adds architectural novelty over flat ranking approaches like SweRank while being directly comparable to SWE-Fixer's coarse-to-fine paradigm—with the key difference that our coarse stage uses structural reachability, not just BM25. We evaluate on: (a) SWE-bench Lite (300 instances, full), (b) SWE-bench Pro public split (500-instance stratified sample of 731 public instances), (c) RepoBench-R (cross-file retrieval evaluation, no LLM needed). Metrics: localization recall@k (file and function level), end-to-end Pass@1 repair rate, token efficiency, and a new metric: *structural precision*—what fraction of selected files are reachable via data-flow from the actual fix. End-to-end evaluation uses Qwen3.6-27B exclusively (open-weight, no API costs). We compare against: (i) SweRank/SweRankEmbed (ICLR 2026, SOTA text-based retrieval), (ii) SWE-Pruner (LLM-labeled selector), (iii) SWE-Fixer-Retriever (BM25 + neural, ACL Findings 2025), (iv) BM25 baseline, (v) ARISE's graph tools (intra-procedural def-use), (vi) no-pruning full-context.\n\n**Stage 4: Writing (Days 11-15).** The paper presents three contributions: (1) *Methodological*: data-flow-aware contrastive hard negative mining—using program analysis to generate training negatives that are structurally disconnected from the bug despite lexical similarity, a signal impossible to derive from text-based methods. (2) *Empirical*: demonstration that inter-procedural def-use edges (crossing call boundaries) provide gains beyond ARISE's intra-procedural analysis and LocAgent's import/call/inheritance edges, with the contrastive objective outperforming standard SFT on the same data. (3) *Practical*: a model-independent pipeline (CodeQL→contrastive training→3B retriever) with deterministic, reproducible labels, interpretable selections with traceable data-flow paths, and zero marginal cost when scaling to new repositories (only CodeQL extraction needed, no LLM inference).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~190h H100 (CodeQL database creation for Python repos: ~8h CPU-parallel, no GPU needed for Python; feature extraction and data-flow graph construction: ~15h; contrastive training 6 ablation runs: ~30h; SWE-bench evaluation 800 instances with Qwen3.6-27B: ~120h; RepoBench-R evaluation: ~15h)",
+      "gpu_utilization": "~70-80% utilization during evaluation phase (Qwen3.6-27B inference is GPU-bound); ~50-60% during contrastive training",
+      "timeline": "15 days (Day 1: CodeQL query development + validation on 10 pilot repos; Days 2-3: full-scale data-flow extraction + feature computation; Days 4-6: contrastive training + ablations; Days 7-11: evaluation; Days 11-15: writing)",
+      "team": "1-2 researchers (one with CodeQL/program analysis, one with contrastive learning; can be same person)",
+      "estimated_gpu_cost": "$450-650 (190h H100 at spot ~$2.50/hr; no LLM API costs—all evaluation uses open-weight Qwen3.6-27B)",
+      "claude_api_cost": "$0 for evaluation (Qwen3.6-27B only); ~$50-100 for writing assistance",
+      "risk_note": "CodeQL Python database creation does not require compilation (source extraction only), significantly reducing build failure risk vs. compiled languages. Primary risk: CodeQL inter-procedural data-flow queries may be slow on large repos (>100K LOC); mitigated by graph-distance filtering (≤3 hops). Day 1 pilot on 10 repos validates query precision and throughput before committing to full-scale extraction."
+    },
+    "human_in_loop": {
+      "gpu_hours": "~160h H100 (same pipeline; agent manages CodeQL builds and queues training; human reviews CodeQL query quality at day 1 and ablation results at day 6)",
+      "gpu_utilization": "~75-85% utilization; agent parallelizes independent experiments",
+      "timeline": "12-14 days",
+      "team": "1 researcher, ~45min/day check-in for CodeQL query review and experiment approval",
+      "claude_api_cost": "$80-150 (800-1500 turns for pipeline code generation and debugging)",
+      "estimated_gpu_cost": "$380-530 (160h H100 at spot ~$2.50/hr)",
+      "risk_note": "Tight timeline requires pre-validated CodeQL setup; recommend testing inter-procedural query on 3 repos in first 4 hours before scaling"
+    },
+    "auto_research": {
+      "gpu_hours": "~220h H100 (full ablation suite, hyperparameter sweep over contrastive temperature and hard negative ratio, multi-benchmark evaluation including RepoBench-R)",
+      "gpu_utilization": "~85-90% utilization; agent continuously launches experiments, parallelizes independent ablations",
+      "timeline": "10-12 days with 2-4 H100 GPUs available concurrently",
+      "team": "0 (initial setup: CodeQL CLI installation, SWE-smith repo cloning, SWE-bench evaluation harness)",
+      "claude_api_cost": "$200-400 (2000-4000 turns for iterative pipeline development, CodeQL query debugging, experiment scheduling)",
+      "estimated_gpu_cost": "$550-770 (220h H100 at spot ~$2.50/hr to on-demand ~$3.50/hr)",
+      "speed_bottleneck": "SWE-bench evaluation (~9min/instance × 800 instances on Qwen3.6-27B ≈ 120 H100-hours; parallelizable across GPUs)",
+      "risk_note": "Agent should validate CodeQL inter-procedural data-flow coverage on first 10 repos and report reachability statistics (avg files reachable within 3 hops) before scaling. If coverage < 30% of gold patch files, consider relaxing hop limit or adding call-graph edges."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 Main + Findings (ARR submission deadline: May 25, 2026; conference: Fall 2026; topic area: 'NLP and Code Models'; dual-targeting Main and Findings to de-risk rejection given empirical contribution type)"
+  ],
+  "key_references": [
+    "SWE-Pruner: Self-Adaptive Context Pruning for Coding Agents (arXiv:2601.16746, Jan 2026) — 0.6B skimmer trained on labels from Qwen3-Coder-30B-A3B (MoE, 3.3B active params), <1pp degradation on SWE-bench Verified",
+    "LocAgent: Graph-Guided LLM Agents for Code Localization (ACL 2025, arXiv:2503.09089) — 92.7% file-level accuracy on SWE-bench Lite using import/invocation/inheritance edges with fine-tuned Qwen2.5-32B; no def-use edges",
+    "SweRank: Software Issue Localization with Code Ranking (ICLR 2026, arXiv:2505.07849) — SOTA retrieve-and-rerank via SweRankEmbed + SweRankLLM; text-only, no structural signals",
+    "SweRank+: Multilingual, Multi-Turn Code Ranking (arXiv:2512.20482, Dec 2025) — extends SweRank to multilingual multi-turn with 155K training instances",
+    "SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution (ACL Findings 2025) — BM25 + fine-tuned 7B retriever for coarse-to-fine file retrieval; 24.7%/32.8% on SWE-bench Lite/Verified; no structural program analysis features",
+    "ARISE: Repository-level Graph Representation for Agentic Fault Localization and Repair (arXiv:2605.03117, May 2026) — intra-procedural def-use edges via Python ast module (does NOT cross call boundaries), +17pp Function Recall@1, runtime tool calls only",
+    "Sliceformer: Static Program Slicing Using Language Models With Dataflow-Aware Pretraining (arXiv:2604.26961, Apr 2026) — validates data-flow knowledge transfer to neural models via DFG-aware pretraining objectives",
+    "CoCoHaNeRe: Effective Hard Negative Mining for Contrastive Learning-Based Code Search (TOSEM 2025) — demonstrates hard negative mining improves code search MRR by 7-11% over baselines; uses embedding-distance negatives, not structural",
+    "GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph (ASE 2024) — coarse-to-fine retrieval using control-flow and data-dependence graphs for code completion",
+    "SaraCoder: Orchestrating Semantic and Structural Cues for Repository-Level Code Completion (ICLR 2026) — graph-based structural similarity for code completion retrieval",
+    "LLMxCPG: Context-Aware Vulnerability Detection Through CPG-Guided LLMs (USENIX Security 2025) — CPG-guided context extraction, 67-91% code reduction",
+    "Squeez: Task-Conditioned Tool-Output Pruning for Coding Agents (arXiv:2604.04979, Apr 2026) — 0.86 recall, 92% token removal on tool outputs",
+    "On the Effectiveness of Context Compression for Repository-Level Tasks (arXiv:2604.13725, Apr 2026) — continuous latent vectors surpass full-context by 28.3% at 4x compression",
+    "LongCodeZip: Compress Long Context for Code Language Models (ASE 2025, arXiv:2510.00446) — 5.6x training-free compression",
+    "RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems (ICLR 2024, arXiv:2306.03091) — cross-file retrieval evaluation benchmark",
+    "SWE-ContextBench: A Benchmark for Context Learning in Coding (arXiv:2602.08316, Feb 2026) — 1100+376 context evaluation tasks",
+    "On the Role of Fault Localization Context for LLM-Based Program Repair (arXiv:2604.05481, Apr 2026) — file-level is dominant factor",
+    "Why SWE-bench Verified No Longer Measures Frontier Coding Capabilities (OpenAI, Feb 2026) — contamination analysis",
+    "SWE-bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks? (Scale AI, arXiv:2509.16941, 2025) — 1865 tasks, 731 public",
+    "LLMDFA: Analyzing Dataflow in Code with Large Language Models (NeurIPS 2024)",
+    "SWE-smith: Scaling Data for Software Engineering Agents (NeurIPS 2025 D&B Spotlight)",
+    "SWE-bench: Can Language Models Resolve Real-World GitHub Issues? (ICLR 2024)"
+  ],
+  "description": "We propose StructFuse, a two-stage context retrieval system for repository-level code repair that introduces data-flow-aware contrastive learning for structurally-grounded context selection. The key methodological contribution is a novel hard negative mining strategy: for each training instance, negatives are files that are lexically similar to bug-relevant code (high BM25/embedding similarity) but structurally disconnected (no inter-procedural data-flow path within 3 hops of the buggy location). This structural disconnection signal is impossible to derive from text-based methods and provides fundamentally different supervision from embedding-distance-based hard negatives (as in CoCoHaNeRe, TOSEM 2025). Unlike ARISE (arXiv:2605.03117), which is limited to intra-procedural def-use via Python's ast module, StructFuse extracts inter-procedural def-use chains via CodeQL (which does not require compilation for Python). Unlike SWE-Pruner, whose labels are coupled to Qwen3-Coder-30B-A3B's biases and are non-reproducible, StructFuse's labels are deterministic program analysis outputs with zero marginal cost at scale. Unlike SweRank (ICLR 2026) and SWE-Fixer (ACL Findings 2025), StructFuse incorporates structural program analysis into both training (via hard negatives) and inference (via a two-stage cascade: coarse selection by BM25 + data-flow reachability → fine ranking by 3B contrastive model). The approach differs from SWE-Fixer's coarse-to-fine paradigm in that our coarse stage uses structural reachability, not just BM25. We train a Qwen2.5-Coder-3B bi-encoder with structure-conditioned InfoNCE loss and a lightweight MLP fusion head. We evaluate on SWE-bench Lite (300), SWE-bench Pro (500-instance sample of 731 public), and RepoBench-R, using only open-weight Qwen3.6-27B for end-to-end repair (no API costs). The paper presents three contributions: (1) data-flow-aware contrastive hard negative mining as a novel training methodology for code retrieval, (2) empirical evidence that inter-procedural def-use edges provide gains beyond intra-procedural analysis (ARISE) and coarser structural edges (LocAgent), and (3) a practical, model-independent pipeline with deterministic labels, interpretable selections, and zero labeling cost. We explicitly target EMNLP 2026 Main with Findings as fallback, reflecting the combined methodological and empirical contribution.",
+  "project_name": "structfuse_context",
+  "source": "web_research"
+}
+```
+
+---
+
+Here is a summary of what changed and why:
+
+**This is a major revision.** The key changes address all 7 reviewer issues:
+
+1. **Cost motivation completely rewritten.** Removed all fabricated cost figures. Correctly notes Qwen3-Coder-30B-A3B is an MoE with 3.3B active params costing ~$10-35 for labeling. Reframed advantages around model-independence (not coupled to teacher biases), deterministic reproducibility, interpretability (traceable data-flow paths), and zero marginal cost at scale.
+
+2. **SWE-bench Pro SOTA updated.** Now states: Claude Mythos Preview 77.8%, SEAL-standardized range ~42-59%, with full nuanced framing of the ceiling narrowing.
+
+3. **CodeQL query strategy specified concretely.** Added that Python databases don't require compilation (source extraction only), reducing build risk. Specified broad source/sink definitions with graph-distance filtering. Budgeted Day 1 for query development and validation on 10 pilot repos.
+
+4. **SWE-Pruner teacher correctly characterized.** All references now note MoE with 3.3B active parameters.
+
+5. **SWE-Fixer added as key reference** with detailed differentiation (BM25 + neural retriever but no structural program analysis).
+
+6. **SweRank venue corrected** to ICLR 2026.
+
+7. **Method contribution substantially strengthened** with three innovations:
+   - *Data-flow-aware contrastive hard negative mining*: structurally disconnected but lexically similar files as hard negatives — a signal impossible to derive from text-based methods
+   - *Two-stage cascade architecture*: coarse selection via BM25 + data-flow reachability → fine ranking via 3B contrastive model
+   - *Structure-conditioned InfoNCE loss* with path-strength weighting
+
+   These elevate the contribution from "SFT with different labels" to a genuine methodological advance. The hard negative mining strategy is well-grounded in CoCoHaNeRe's demonstration that hard negatives dramatically improve code search, but replaces their embedding-distance mining with program-analysis-derived structural connectivity.
+
+**Additional improvements discovered during research:**
+- ARISE only uses Python's `ast` module for intra-procedural analysis (does NOT cross call boundaries) — this strengthens StructFuse's differentiation with inter-procedural CodeQL analysis
+- Added GraphCoder (ASE 2024) and SaraCoder (ICLR 2026) as related structural retrieval work
+- Venue explicitly dual-targets Main + Findings
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0543d70a-5db5-412a-9d29-2cb64bd980e0",
+  "isSidechain": false,
+  "requestId": "req_011CauQ3reC8JGqGdjN6wLEx",
+  "type": "assistant",
+  "uuid": "4dd2616c-c669-450d-9673-bd7894cfb65d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019jjod3LMRF194UtjcT1vKj",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 50954,
+      "output_tokens": 7699,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 821,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7699,
+          "cache_read_input_tokens": 50954,
+          "cache_creation_input_tokens": 821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 821
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 89_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Fusing Data-Flow and Lexical Signals for Repository-Level…",
+  "leafUuid": "4dd2616c-c669-450d-9673-bd7894cfb65d",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reframe StructFuse with data-flow ground truth, not cost savings",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 91_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"StructFuse: Fusing Data-Flow and Lexical Signals for Repository-Level…",
+  "leafUuid": "4dd2616c-c669-450d-9673-bd7894cfb65d",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 92_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reframe StructFuse with data-flow ground truth, not cost savings",
+  "sessionId": "3b518566-3c57-4f85-9812-2bbefb9a7cf2"
+}
+```
+
+---

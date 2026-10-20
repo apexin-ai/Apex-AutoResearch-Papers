@@ -1,0 +1,2515 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-11 (UTC).** Your job: indep
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 30
+- **Recorded user turns:** 1
+- **Tool calls:** 5
+- **Original source:** `logs/chats/exported-trajectories/account-3/f798b600-6634-458d-b3ae-c38ff9f70c19.jsonl`
+- **Structured JSON:** [`dfa7933d1344f051e510.json`](../../sessions/df/dfa7933d1344f051e510.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-12T02:29:45.899Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-12T02:29:45.899Z",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-11 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: NLP and Code Models.\n\nDirection: Code understanding and generation — repo-level comprehension, program repair, code reasoning, debugging, test generation, code-to-documentation, cross-language code transfer. NOT just code completion — focus on higher-level code reasoning tasks.\n\nContribution type: METHOD ONLY. Propose new training methods, retrieval-augmented code repair, or inference algorithms for code tasks. Not a new benchmark or leaderboard entry.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Code models are often evaluated zero-shot or few-shot — budget goes to SFT/LoRA if fine-tuning.\n2. Time: ≤16 days. Build on existing code models (DeepSeek-Coder-V2, StarCoder2, CodeLlama, Qwen2.5-Coder) and frameworks (aider, SWE-agent, Moatless).\n3. Eval: SWE-bench Verified, HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, CodeContests.\n\nLook for: repo-level context compression for code understanding, retrieval-augmented repair with semantic code search, code reasoning via execution feedback, cross-repo transfer learning. Avoid: simple prompt templates for code completion.\n\nTag: direction=code_models, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 9/10)\n{\n  \"title\": \"ExeSpec: Verifiable Specification Reasoning for Code LLMs via Execution Grounding\",\n  \"core_problem\": \"Training-free inference-time methods for LLM code improvement—AlphaCodium (arXiv 2401.08500), CodeT (ICLR 2023), Self-Debugging (arXiv 2304.05128), S* (EMNLP 2025 Findings)—have demonstrated that execution feedback substantially boosts code generation quality using test cases as intermediate representations. Recently, PGS (arXiv 2506.18315, revised May 2026) showed that property-based feedback—abstract behavioral properties rather than I/O test cases—outperforms test-driven methods by 23.1–37.3% relative pass@1 on HumanEval, MBPP, and LiveCodeBench, validating that properties provide richer reasoning scaffolds than point-sample tests. However, three critical limitations remain unresolved. (1) Property reliability: LLM-generated properties are unreliable at scale—PGS reports property generation accuracy of only 48.9% on hard LiveCodeBench problems, ContractEval (arXiv 2510.12047) finds 0% contract satisfaction under standard prompting despite 75–82% pass@1, and CodeSpecBench (arXiv 2604.12268) reveals only 20.2% success at repo-level spec generation—yet no method systematically execution-grounds properties before use to catch hallucinated or internally contradictory specifications. PGS validates properties against public test cases for soundness but does not check inter-property consistency or proactively detect contradictions within the property set. (2) Task generalization: PGS and all property/test-based inference-time methods evaluate exclusively on code generation and simple repair (HumanEval, MBPP, LiveCodeBench), without extension to debugging (where intended-vs-observed behavioral contrasts are needed), issue resolution (where behavioral changes must be extracted from issue context and failing tests), or cross-file completion (where interface contracts must be inferred). NL-Debugging (EMNLP 2025 Main) demonstrated that natural language intermediate representations improve debugging by 4–6pp over code-level methods, but NL descriptions lack the structured, execution-verifiable format needed for systematic property checking. (3) Property decomposition: all property-based methods treat properties as a monolithic category—no work decomposes which property types (preconditions, postconditions, invariants, type constraints, I/O examples) contribute to which task types, preventing targeted optimization. Can execution-grounded, decomposed behavioral specifications address property reliability while extending property-based reasoning across diverse code tasks without model training?\",\n  \"opportunity\": \"Five research threads converge but remain disconnected: (1) Test-based inference-time refinement (AlphaCodium, CodeT, Self-Debugging, S*, BACE) proves execution feedback improves code generation—AlphaCodium raises CodeContests pass@5 from 19% to 44% on the validation set (12% to 29% on the 165-problem test set), CodeT improves HumanEval pass@1 by +18.8pp via dual execution agreement, S* enables a 3B model to outperform GPT-4o-mini on LiveCodeBench—but all use test cases (point samples) as the intermediate representation. (2) Property-based refinement: PGS (arXiv 2506.18315) demonstrates that LLM-generated abstract properties outperform test-driven feedback by 23.1–37.3% relative pass@1, establishing that property-level reasoning is superior to test-level reasoning for code refinement. However, PGS evaluates only on HumanEval/MBPP/LiveCodeBench (not CodeContests, SWE-bench, or debugging benchmarks), reports property generation accuracy dropping to 48.9% on hard problems, and does not verify inter-property consistency before use. Self-Spec (Agents4Science 2025) showed model-authored specs improve generation by +2–5pp but never verifies specs against execution. ContractEval (arXiv 2510.12047) reveals 0% contract satisfaction under standard prompting despite 75–82% pass@1, rising to only 23–41% with explicit contracts—demonstrating that even when contracts are provided, LLMs struggle to enforce them, motivating execution-based verification. 'From Prompts to Properties' (FSE Companion 2025/LLanMER) finds 30–32% of LLM-generated solutions exhibit partial property failures that pass@k metrics miss entirely. (3) Structured intermediate representations for code: NL-Debugging (EMNLP 2025 Main, arXiv 2505.15356) uses natural language as an intermediate representation for debugging via backtranslation → NL refinement → regeneration, outperforming code-level debugging by 4–6pp on APPS and Codeforces—establishing that higher-level abstractions aid debugging at ExeSpec's target venue. StoryCoder (ACL 2026 Main, arXiv 2604.14631) demonstrates narrative reformulation as structured intermediate reasoning, achieving +18.7% pass@10 across 11 models—concurrent work validating that structured intermediate representations improve code generation. Both use natural language (unverified against execution), not execution-grounded behavioral specifications. (4) Execution-grounded training (Think Like You Execute, RLEF at ICML 2025, FixAudit arXiv 2604.05560) achieves dramatic gains but requires fine-tuning—not usable with frozen models. FixAudit jointly trains fixer and auditor achieving 35–37% improvement on CodeContests, demonstrating the value of audit-style verification but requiring training. (5) Specification quality challenges: CodeSpecBench reveals 20.2% repo-level spec accuracy; 'Revisit Self-Debugging with Self-Generated Tests' (ACL 2025) shows self-generated test feedback introduces systematic bias—motivating richer, verified intermediate representations. The unexploited synthesis: PGS proved properties outperform tests, but property reliability remains the bottleneck (48.9% accuracy on hard problems). Execution grounding can close this gap—verifying LLM-generated property-level specs before use, catching hallucinated and contradictory properties. Additionally, decomposing properties into typed components (pre/postconditions, invariants, type constraints) and evaluating across task types (generation, debugging, issue resolution, completion) addresses the generalization gap that no prior work has tested.\",\n  \"landscape\": \"**Test-based inference-time methods.** AlphaCodium (arXiv 2401.08500, Jan 2024) is a training-free multi-stage flow with problem reflection, AI test generation, and iterative execution-based refinement with test anchoring, raising CodeContests validation-set pass@5 from 19% to 44% and test-set pass@5 from 12% to 29% with GPT-4. CodeT (ICLR 2023, arXiv 2207.10397) generates tests via LLMs and uses dual execution agreement for solution selection, improving HumanEval pass@1 by +18.8pp. Self-Debugging (arXiv 2304.05128) teaches LLMs to iteratively debug using execution results and natural language explanations, achieving up to 12% improvement on TransCoder and MBPP. 'Revisit Self-Debugging with Self-Generated Tests' (ACL 2025 Long, arXiv 2501.12793) reveals systematic bias in self-generated tests—in-execution debugging using intermediate program states mitigates this, demonstrating that test quality is a fundamental bottleneck for test-based methods. S* (EMNLP 2025 Findings, arXiv 2502.14382) combines parallel sampling with sequential debugging and adaptive distinguishing input synthesis, enabling a 3B model to outperform GPT-4o-mini on LiveCodeBench. BACE (GECCO 2026, arXiv 2603.28653) treats generated tests as noisy sensors via Bayesian updates, outperforming CodeSIM by +2.5–5.4pp on LiveCodeBench v6. All use test cases as the intermediate representation—point samples that verify specific inputs but don't capture universal behavioral properties.\\n\\n**Property-based and specification approaches.** PGS (arXiv 2506.18315, June 2025; revised as 'Effective LLM Code Refinement via Property-Oriented and Structurally Minimal Feedback', May 2026) is the closest prior work. PGS introduces a Generator-Tester framework where the Tester generates abstract behavioral properties (e.g., 'the product of output factors must equal the input integer') and validates code against them using property-based testing, with structurally minimal counterexamples as feedback. PGS achieves 23.1–37.3% relative pass@1 improvement over TDD methods (Reflexion, Self-Debugging, MGDebugger) using DeepSeek-Coder-V2, Qwen2.5-Coder, and DeepSeek-R1-Distilled-32B on HumanEval, MBPP, and LiveCodeBench. PGS validates properties against public test cases for soundness, reporting property generation accuracy of 82.4% (easy), 62.8% (medium), and 48.9% (hard) on LiveCodeBench. Critically, PGS does not check inter-property consistency, does not evaluate on CodeContests, SWE-bench, or debugging benchmarks, and treats properties as a monolithic category without decomposing which property types contribute to which tasks. ExeSpec differs from PGS in three ways: (a) execution grounding verifies specs before use via candidate-code probes and cross-spec consistency checks, catching hallucinated and contradictory specs that PGS's public-test validation misses; (b) evaluation spans four task types (generation, debugging, issue resolution, completion) on benchmarks PGS does not cover (CodeContests, SWE-bench Pro, DebugBench); (c) a 5-component schema with controlled ablation decomposes property contributions per task type. Self-Spec (Agents4Science 2025) has LLMs author specification languages before code generation, improving GPT-4o HumanEval pass@1 from 87% to 92%, but only evaluates on HumanEval and never verifies specs against execution. ContractEval (arXiv 2510.12047) benchmarks contract satisfaction in code generation, finding 0% satisfaction under standard prompting despite 75–82% pass@1 scores, 23–41% with explicit contracts, and 49–53% with example-augmented specifications—simultaneously validating that LLMs need external grounding for contract/spec enforcement AND quantifying the difficulty of the spec quality challenge. 'From Prompts to Properties' (FSE Companion 2025/LLanMER) applies property-based testing to evaluate LLM code, finding 30–32% partial property failures that pass@k metrics miss, motivating property-level evaluation. SpecRover/AutoCodeRover-v2 (ICSE 2025) performs iterative NL specification inference for automated program repair, achieving 19.31% on SWE-bench. VibeRepair (arXiv 2602.08263) translates code into NL behavioral specs for repair but specs are imprecise. SSDE (FSE Companion 2026, arXiv 2605.02455) uses Gherkin specifications and domain models for repo-level MVC generation—concurrent work demonstrating structured specs guide LLM generation, but requires human-authored specifications. CodeSpecBench (arXiv 2604.12268) benchmarks LLM spec generation showing only 20.2% repo-level pass rate, motivating execution-based verification.\\n\\n**Structured intermediate representations.** NL-Debugging (EMNLP 2025 Main, ACL Anthology 2025.emnlp-main.80, arXiv 2505.15356) uses natural language as an intermediate representation for code debugging via a three-stage pipeline: backtranslation (buggy code → NL sketch), NL refinement (identify and correct logical flaws in the NL representation using execution feedback), and regeneration (refined NL → corrected code). NL-Debugging outperforms code-level Self-Debugging by 4–6pp pass@1 on APPS and Codeforces across difficulty levels using GPT-4o-mini, Claude-3.5-Sonnet, and DeepSeek-Coder-V2-Lite. The key finding is that the 'Sketch' NL format—detailed natural language descriptions—enables broader modification space than code-level edits, and that refinement in the NL space (not NL→code translation) drives the gains. This establishes structured intermediate representations as valuable for debugging at ExeSpec's target venue (EMNLP). ExeSpec's specifications provide a more structured, execution-verifiable intermediate representation than free-form NL sketches—enabling systematic property checking rather than holistic NL reasoning. StoryCoder (ACL 2026 Main, arXiv 2604.14631) transforms code generation problems into structured narratives (task overview, constraints, test examples), achieving +18.7% zero-shot pass@10 across 11 models on HumanEval, LiveCodeBench, and Codeforces—concurrent training-free work validating structured reformulation, but using narrative structure rather than behavioral specifications. SCoT (ACL 2024) adds program structure to CoT without execution grounding.\\n\\n**Execution-grounded and RL training methods.** Think Like You Execute (arXiv 2512.00127) achieves +22–27pp on CRUXEval/LiveCodeBench via fine-tuning on 54K execution-trace-verified rationales. EG-CFG (NeurIPS 2025, arXiv 2506.10948) uses real-time execution via beam search over candidate lines—computationally expensive and generation-only. RLEF (ICML 2025) trains code LLMs with RL execution feedback. Think Anywhere (arXiv 2603.29957) enables on-demand reasoning during code generation via RL training. CURE (NeurIPS 2025 Spotlight) co-evolves coder and tester via RL. FixAudit (arXiv 2604.05560) jointly trains a fixer and auditor—the auditor generates new tests revealing implementation-specific bugs in the fixer's candidate code, achieving 35–37% pass@1 improvement on APPS, CodeContests, and xCodeEval with a 7B model. All require training—not applicable with frozen models.\\n\\n**The gap.** PGS established that property-based feedback outperforms test-based feedback for code generation. Three open questions remain: (1) Can execution grounding improve property reliability beyond PGS's public-test validation (addressing the 48.9% accuracy on hard problems)? (2) Do property-based approaches generalize to debugging, issue resolution, and completion—task types no property-based method has evaluated? (3) Which property types contribute to which tasks? No work addresses all three questions in a unified, training-free framework with controlled experimental design.\",\n  \"approach\": \"We propose ExeSpec, a training-free inference-time framework that uses execution-grounded behavioral specifications as verifiable structured intermediate reasoning for LLM code tasks. Building on PGS's demonstration that property-based feedback outperforms test-based feedback for code generation, ExeSpec advances the property-based paradigm in three directions: (1) execution grounding that verifies spec consistency and catches hallucinated properties before downstream use, (2) extension to debugging, issue resolution, and cross-file completion beyond generation/repair, and (3) decomposition of specifications into typed components with controlled ablation.\\n\\n**Stage 1: Spec Elicitation.** Given a task input, prompt the LLM to generate structured behavioral specifications in a lightweight JSON schema containing five component types: (a) I/O example pairs (shared with both PGS properties and AlphaCodium test cases—the overlap region), (b) preconditions (constraints on valid inputs/states, e.g., 'n >= 0', 'input list is non-empty'), (c) postconditions (properties guaranteed on outputs, e.g., 'output is sorted in ascending order', 'len(output) == len(input)'), (d) type constraints (parameter and return type annotations with generics), and (e) invariants (loop invariants, monotonicity, ordering properties). The schema is task-adapted: generation tasks derive specs from docstrings; debugging tasks elicit intended-vs-observed behavioral contrasts; issue resolution tasks extract expected behavioral changes from issue descriptions and failing test context; completion tasks infer interface contracts from cross-file context.\\n\\n**Stage 2: Execution Grounding.** This is ExeSpec's primary differentiator from PGS. While PGS validates properties against public test cases for soundness, ExeSpec additionally performs: (i) cross-spec consistency checking—verifying that preconditions, postconditions, invariants, and type constraints are mutually satisfiable and non-contradictory (e.g., a postcondition asserting 'output is sorted' does not contradict an invariant asserting 'elements maintain original order'); (ii) candidate-code probing—generating a quick candidate solution, executing against spec-derived assertions including both I/O examples AND postcondition property checks, identifying spec-execution mismatches, and revising contradicted specs before final generation. For debugging tasks: execute the buggy code, compare execution traces against specs to identify precisely which behavioral constraints are violated, producing structured violation reports. For issue resolution (SWE-bench Pro): extract behavioral expectations from issue descriptions and failing tests, generate specs characterizing the intended fix behavior, and validate spec consistency against the existing test suite via Docker-based execution. For cross-file completion: static grounding via type inference from imported modules, parameter/return types from call-site usage context, and validation via type checkers (mypy/pyright for Python, tsc for TypeScript). When full execution is unavailable, static grounding serves as fallback: cross-spec consistency checking, type inference, and contradiction detection.\\n\\n**Stage 3: Spec-Guided Task Completion.** Feed grounded specs alongside the original task input to the LLM for final output. When outputs violate specs, structured violation reports (which constraints failed, expected vs. actual, which spec component) feed back for iterative refinement (up to 3 rounds). Unlike PGS's structurally minimal counterexamples, ExeSpec's feedback references typed behavioral properties ('postcondition: output must be monotonically increasing') with component attribution, enabling the LLM to reason about which aspect of behavioral intent was violated.\\n\\n**Baselines and controlled experiments.** The experimental design isolates contributions through six controlled conditions: (a) ExeSpec full (5-component specs + execution grounding), (b) PGS baseline (property-based testing following PGS's Generator-Tester framework, reimplemented on our benchmarks—the paper's critical comparison, isolating the contribution of execution grounding and component decomposition beyond PGS's approach), (c) AlphaCodium-style baseline (problem reflection + AI test generation + iterative execution/refinement with test anchoring—isolating the property-vs-test distinction, extending PGS's finding to new benchmarks), (d) Self-Spec baseline (specs without execution grounding—isolating the grounding contribution), (e) direct prompting (no intermediate reasoning), (f) NL-Debugging baseline on DebugBench only (NL intermediate representation via backtranslation/refinement/regeneration—isolating structured specs vs. free-form NL for debugging, providing venue-relevant comparison to EMNLP 2025 work). The delta between (a) and (b) is the paper's core contribution—whether execution grounding and component decomposition provide gains beyond PGS's property-based approach. The delta between (b) and (c) replicates PGS's finding (properties > tests) on new benchmarks (CodeContests, DebugBench, SWE-bench Pro) where PGS has not been evaluated. A critical spec-component ablation further decomposes: (i) full specs (I/O + pre/postconditions + invariants + type constraints), (ii) I/O-only specs (functionally equivalent to test cases—if this matches full specs, the novelty claim collapses), (iii) structural specs only (pre/postconditions + invariants + type constraints, no I/O)—this ablation is the critical honesty test.\\n\\n**Benchmarks.** Primary benchmarks with all six conditions + spec-component ablation: DebugBench (C++/Java/Python debugging—specs naturally capture intended-vs-observed behavioral contrasts, and NL-Debugging comparison is venue-relevant), CodeContests (competitive programming—direct comparison to AlphaCodium on its home benchmark, and first evaluation of PGS-style property feedback on CodeContests), and SWE-bench Pro (real-world issue resolution—adopted as co-primary benchmark given that SWE-bench Verified is compromised by contamination in frontier models; OpenAI stopped reporting Verified scores in February 2026 after finding frontier models could reproduce verbatim gold patches. We use Qwen2.5-Coder-7B/32B, sub-frontier models unlikely to exhibit the verbatim gold-patch reproduction observed in GPT-5.2 and Claude Opus 4.5, providing a contamination-resistant evaluation baseline. We report results on both SWE-bench Pro and Verified for completeness, noting the community's shift toward Pro for reliable evaluation). Supplementary benchmarks with ExeSpec vs. direct prompting only: HumanEval+/MBPP+ (for Self-Spec and PGS comparability—PGS reports results on these benchmarks, enabling direct numerical comparison), CrossCodeEval and RepoBench (cross-file completion with static grounding via type checkers). We explicitly acknowledge that cross-file completion relies on weaker static grounding than dynamic execution and report the proportion of instances where only static grounding was available.\\n\\n**Models.** We use Qwen2.5-Coder-7B-Instruct and Qwen2.5-Coder-32B-Instruct as established dense models with strong code performance and reproducible vLLM inference; the method is model-agnostic and we expect gains to transfer to newer architectures including MoE models (e.g., Qwen3-Coder-Next). Using established models enables direct comparison with PGS, which evaluates Qwen2.5-Coder on the same model family.\\n\\n**Analysis.** Beyond standard metrics: (1) spec quality analysis—correlation between spec correctness and downstream task performance; (2) grounding effectiveness—proportion of hallucinated specs caught by execution grounding vs. PGS's public-test validation (the key comparison); (3) spec-component contribution—which spec types most improve each task type; (4) test overfitting rates—proportion of solutions passing visible tests but failing held-out tests, comparing ExeSpec vs. baselines; (5) property accuracy by difficulty—replicating PGS's accuracy breakdown (82.4%/62.8%/48.9% by difficulty) on our benchmarks and measuring whether execution grounding improves it; (6) qualitative case studies showing where execution-grounded specs enable corrections that both test-only and ungrounded property methods miss.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~150–200 H100-hours (primary benchmarks DebugBench + CodeContests + SWE-bench Pro with 6 conditions × 2 models + NL-Debugging on DebugBench + spec-component ablation on primary benchmarks; supplementary HumanEval+/MBPP+ + CrossCodeEval + RepoBench with ExeSpec vs. direct prompting × 2 models; PGS baseline reimplementation on all primary benchmarks; using vLLM batch inference with Qwen2.5-Coder-7B on 1 H100 and 32B on 1–2 H100s)\",\n      \"gpu_utilization\": \"Moderate (~40–55%): alternating between inference bursts and execution-grounding phases; SWE-bench Pro Docker execution and DebugBench compilation are CPU-bottlenecked\",\n      \"timeline\": \"18–22 days (days 1–4: framework implementation + PGS baseline reimplementation following published Generator-Tester method + AlphaCodium baseline adaptation from open-source code + NL-Debugging baseline setup + eval harness configuration leveraging SWE-bench Docker harness and EvalPlus; days 5–8: primary benchmarks DebugBench + CodeContests with all 6 conditions; days 9–12: SWE-bench Pro + SWE-bench Verified with all 6 conditions; days 13–14: supplementary benchmarks HumanEval+/MBPP+ + CrossCodeEval + RepoBench with ExeSpec vs. direct prompting; days 15–17: spec-component ablation + grounding effectiveness analysis + property accuracy comparison vs. PGS; days 18–22: writing + analysis)\",\n      \"team\": \"2 researchers (1 lead for ExeSpec framework + execution-grounding pipeline + spec-component ablation design, 1 for PGS/AlphaCodium/NL-Debugging baseline reimplementation + benchmark integration + evaluation infrastructure)\",\n      \"estimated_gpu_cost\": \"$450–600 (on-demand H100 at ~$3/hr)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~170–230 H100-hours (same scope as manual with more systematic spec quality validation, PGS comparison analysis, and additional analysis iterations)\",\n      \"gpu_utilization\": \"Moderate–High (~50–65%): agent queues experiment batches across benchmarks while human reviews spec quality and PGS baseline fidelity between rounds\",\n      \"timeline\": \"14–18 days (agent handles framework code, experiment orchestration, and result collection; human validates spec schema design, reviews PGS and AlphaCodium baseline fidelity, and guides ablation priorities)\",\n      \"team\": \"1 researcher, ~3–4 hrs/day reviewing spec elicitation outputs, validating PGS baseline implementation matches the published Generator-Tester framework, reviewing NL-Debugging baseline, approving experiment plans, and analyzing results\",\n      \"claude_api_cost\": \"$150–250 (1500–2500 orchestration turns at ~$0.10/turn)\",\n      \"estimated_gpu_cost\": \"$510–690\",\n      \"risk_note\": \"PGS baseline reimplementation fidelity is critical—must reproduce the Generator-Tester property-based testing framework faithfully; NL-Debugging baseline must reproduce the backtranslation→NL refinement→regeneration pipeline; SWE-bench Pro evaluation infrastructure may require additional setup compared to the established Verified harness\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~200–270 H100-hours (systematic sweeps over spec granularity levels, grounding strategies per benchmark, additional model backbone DeepSeek-R1-Distilled-32B for PGS comparability, temperature and sample-count variations)\",\n      \"gpu_utilization\": \"High (~80–90%): agent pipelines experiments back-to-back with minimal idle; parallel runs across benchmarks on multiple H100s\",\n      \"timeline\": \"8–12 days with 4–8 H100s available concurrently (bottlenecked by SWE-bench Pro Docker execution and DebugBench compilation)\",\n      \"team\": \"0 (initial setup ~4–5 hours for benchmark harness configuration, PGS/AlphaCodium/NL-Debugging baseline setup, and vLLM model serving, then fully autonomous)\",\n      \"claude_api_cost\": \"$250–450 (2500–4500 turns for iterative experiment design, cross-benchmark analysis, and paper drafting)\",\n      \"estimated_gpu_cost\": \"$600–810\",\n      \"speed_bottleneck\": \"SWE-bench Pro Docker-based test execution and DebugBench compilation/execution; inference itself is fast with vLLM on H100\",\n      \"risk_note\": \"Agent may over-optimize for one benchmark; need guardrails to ensure PGS baseline is faithfully implemented (not strawmanned), NL-Debugging baseline is accurate, and spec-component ablation runs completely even if early results are unfavorable\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission May 25, 2026; commitment Aug 2, 2026; NLP and Code Models track; Budapest, Hungary)\",\n    \"ACL 2027 (expected ARR commitment ~Jan 2027; fallback if EMNLP revision needed)\",\n    \"NAACL 2027 (expected ARR commitment ~Mar 2027; second fallback)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Use Property-Based Testing to Bridge LLM Code Generation and Validation / Effective LLM Code Refinement via Property-Oriented and Structurally Minimal Feedback (PGS; arXiv 2506.18315, June 2025, revised May 2026)\",\n    \"NL-Debugging: Exploiting Natural Language as an Intermediate Representation for Code Debugging (EMNLP 2025 Main, ACL Anthology 2025.emnlp-main.80, arXiv 2505.15356)\",\n    \"ContractEval: A Benchmark for Evaluating Contract-Satisfying Assertions in Code Generation (arXiv 2510.12047)\",\n    \"AlphaCodium: Code Generation through Flow Engineering (arXiv 2401.08500, Jan 2024)\",\n    \"CodeT: Code Generation with Generated Tests (ICLR 2023, arXiv 2207.10397)\",\n    \"Teaching Large Language Models to Self-Debug (Self-Debugging; arXiv 2304.05128, 2023)\",\n    \"Revisit Self-Debugging with Self-Generated Tests for Code Generation (ACL 2025 Long, arXiv 2501.12793)\",\n    \"S*: Test Time Scaling for Code Generation (EMNLP 2025 Findings, arXiv 2502.14382)\",\n    \"BACE: Bayesian Anchored Co-Evolution of Code and Test Populations (GECCO 2026, arXiv 2603.28653)\",\n    \"Self-Spec: Model-Authored Specifications for Reliable LLM Code Generation (Agents4Science 2025)\",\n    \"StoryCoder: Narrative Reformulation for Structured Reasoning in LLM Code Generation (ACL 2026 Main, arXiv 2604.14631)\",\n    \"FixAudit: An Iterative Test-and-Repair Framework for Competitive Code Generation (arXiv 2604.05560)\",\n    \"From Prompts to Properties: Rethinking LLM Code Generation with Property-Based Testing (FSE Companion 2025/LLanMER, ACM 10.1145/3696630.3728702)\",\n    \"Execution Guided Line-by-Line Code Generation (EG-CFG; NeurIPS 2025, arXiv 2506.10948)\",\n    \"Think Like You Execute: Verifiable Chain of Thought from Program Traces (arXiv 2512.00127)\",\n    \"Think Anywhere in Code Generation (arXiv 2603.29957, Mar 2026)\",\n    \"SpecRover: Code Intent Extraction via LLMs (ICSE 2025)\",\n    \"CURE: Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning (NeurIPS 2025 Spotlight)\",\n    \"Code Execution as Grounded Supervision for LLM Reasoning (EMNLP 2025)\",\n    \"CodeSpecBench: Benchmarking LLMs for Executable Behavioral Specification Generation (arXiv 2604.12268, Apr 2026)\",\n    \"Specification Vibing for Automated Program Repair (VibeRepair; arXiv 2602.08263, Feb 2026)\",\n    \"LLM-Assisted Repository-Level Generation with Structured Spec-Driven Engineering (SSDE; FSE Companion 2026, arXiv 2605.02455)\",\n    \"Investigating Test Overfitting on SWE-bench (arXiv 2511.16858)\",\n    \"The Undecidability of Overfitting in Automated Program Repair (ICSE 2026 NIER)\",\n    \"RLEF: Grounding Code LLMs in Execution Feedback with Reinforcement Learning (ICML 2025)\",\n    \"Structured Chain-of-Thought Prompting for Code Generation (SCoT; ACL 2024)\",\n    \"Qwen2.5-Coder Technical Report (arXiv 2409.12186)\"\n  ],\n  \"description\": \"We propose ExeSpec, a training-free inference-time framework that uses execution-grounded behavioral specifications as verifiable structured intermediate reasoning for LLM code tasks. Building on PGS's demonstration (arXiv 2506.18315) that property-based feedback outperforms test-based methods by 23.1–37.3% relative pass@1 on generation benchmarks, ExeSpec advances the property-based paradigm in three directions: (1) execution grounding that verifies spec consistency and catches hallucinated properties before downstream use—addressing PGS's property accuracy drop to 48.9% on hard problems and ContractEval's finding of 0% contract satisfaction under standard prompting; (2) extension to four task types (generation, debugging, issue resolution, completion) on benchmarks PGS does not cover (CodeContests, DebugBench, SWE-bench Pro); (3) decomposition into 5 typed spec components (I/O examples, preconditions, postconditions, invariants, type constraints) with controlled ablation revealing which components aid which tasks. The method operates in three stages: Spec Elicitation (task-adapted structured spec generation), Execution Grounding (cross-spec consistency checking + candidate-code probing to verify specs before use), and Spec-Guided Completion (grounded specs as verified intermediate reasoning with typed violation feedback). The experimental design isolates contributions through six conditions: (a) ExeSpec full, (b) PGS baseline (property-based testing reimplemented on our benchmarks—the critical comparison isolating execution grounding's contribution), (c) AlphaCodium-style baseline (test-based—extending PGS's property-vs-test finding to new benchmarks), (d) Self-Spec baseline (specs without grounding), (e) direct prompting, (f) NL-Debugging baseline on DebugBench (NL intermediate representation from EMNLP 2025—venue-relevant comparison). The spec-component ablation tests whether I/O-only specs match full specs (if so, the novelty claim collapses—reported honestly). Primary benchmarks: DebugBench (debugging), CodeContests (competitive programming, AlphaCodium's benchmark), SWE-bench Pro (issue resolution, replacing Verified as primary due to contamination—Qwen2.5-Coder-7B/32B are sub-frontier models unlikely to exhibit the verbatim gold-patch reproduction observed in frontier models). Supplementary: HumanEval+/MBPP+ (PGS/Self-Spec comparability), CrossCodeEval/RepoBench (completion with static grounding). Models: Qwen2.5-Coder-7B/32B-Instruct as established dense models with reproducible vLLM inference; the method is model-agnostic. Within 150–200 H100-hours and ~20 days. Primary target: EMNLP 2026 (ARR May 25, 2026).\",\n  \"project_name\": \"test_spec_guided_repair\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL VENUE MISMATCH: User explicitly requested EMNLP 2026 (ARR deadline 2026-05-25, NLP and Code Models track), but the idea targets ICSE 2027, AAAI 2027, and FSE 2027 — all SE venues. The idea must be redesigned or reframed for EMNLP.\", \"CRITICAL COMPUTE VIOLATION: User constrained to ≤200 H100-hours total. The idea estimates 250-400 A100-80GB hours (manual mode). Running Kimi K2-Instruct (1T params MoE, requiring 4×A100 per instance) adds substantial inference costs not fully accounted for.\", \"CRITICAL TIMELINE VIOLATION: User has ~14 days. The idea estimates 3-5 months (manual), 6-10 weeks (HIL), or 1-3 weeks with 8-16 A100s (auto). None of these fit the user's constraint.\", \"EVAL BENCHMARK MISMATCH: User requested evaluation on SWE-bench Verified, HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, and CodeContests. The idea only covers SWE-bench Verified and Defects4J (which isn't even in the user's list). Missing 5 of 6 required benchmarks.\", \"MISSING CRITICAL RELATED WORK: (1) SpecRover/AutoCodeRover-v2 (ICSE 2025) — already does specification inference for patching; (2) CURE (NeurIPS 2025 Spotlight) — RL co-evolution of coder and tester; (3) CodeSpecBench (arXiv 2604.12268, Apr 2026) — benchmark showing LLMs achieve only 20.2% on repo-level behavioral spec generation; (4) Test overfitting undecidability (ICSE 2026 NIER) + empirical study (arXiv 2511.16858) showing 21-33% of LLM patches overfit on visible tests; (5) Dynamic Cogeneration at Google (arXiv 2601.19066); (6) SWE-Tester (arXiv 2601.13713).\", \"NOVELTY CONCERN: The idea is too similar to VibeRepair (arXiv 2602.08263, Feb 2026). VibeRepair already translates code into structured behavioral specifications for repair, achieving SOTA on Defects4J. The proposed delta — using test assertions instead of NL as the specification source — is an incremental variant, not a fundamentally new paradigm. SpecRover (ICSE 2025) also does specification inference for repair.\", \"TOPIC SCOPE TOO NARROW: User asked for 'code understanding and generation' covering repo-level comprehension, code reasoning, debugging, test generation, code-to-documentation, cross-language transfer. The idea focuses narrowly on Java program repair via Defects4J, which is only one subtask and one language.\", \"MISLEADING CLAIMS: '174/178 correct repairs' reads as a fraction but actually means 174 on v1.2 and 178 on v2.0. 'Proving specification-level repair is superior' overstates VibeRepair's own conclusions. The 48.29% for Repair-R1 represents only a 2.68pp improvement over baseline.\", \"TEST OVERFITTING NOT ADDRESSED: An ICSE 2026 NIER paper proves test overfitting is theoretically undecidable when full specifications are unavailable. An empirical study shows 21-33% of LLM patches overfit on visible tests. The idea's reliance on auto-generated tests as specifications is directly vulnerable to this fundamental limitation.\"]\nFeedback: This idea has a reasonable technical intuition (test assertions as behavioral specs) but fundamentally fails to meet the user's requirements. Here is what needs to change:\n\n1. **VENUE**: Reframe for EMNLP 2026 (NLP and Code Models track) or propose a different idea entirely. For EMNLP, the contribution must emphasize NLP methodology (e.g., how LLMs reason about code specifications, a new inference-time algorithm for code understanding) rather than SE pipeline engineering. EMNLP reviewers care about language model capabilities, not Defects4J leaderboard numbers.\n\n2. **SCOPE**: Broaden beyond Java program repair. The user wants 'code understanding and generation' covering multiple tasks (debugging, test generation, code reasoning, cross-language transfer). Consider a method that applies across multiple code tasks, not just APR.\n\n3. **BENCHMARKS**: Must evaluate on the user's required benchmarks: SWE-bench Verified, HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, CodeContests. Drop Defects4J (not requested).\n\n4. **COMPUTE**: Stay within ≤200 H100-hours. Use smaller models (DeepSeek-Coder-V2-Lite-Instruct 16B, StarCoder2-15B, Qwen2.5-Coder-7B/32B) as the user suggested, not 1T-param Kimi K2. This also aligns with the user's suggested model list.\n\n5. **TIMELINE**: Design for ≤16 days of execution. Build on existing frameworks (aider, SWE-agent, Moatless) as the user suggested. The current 3-5 month estimate is a non-starter.\n\n6. **NOVELTY BOOST**: Differentiate more clearly from VibeRepair and SpecRover. Instead of 'yet another spec-guided repair pipeline,' consider: (a) a novel inference algorithm that uses execution feedback to iteratively refine code understanding, (b) a retrieval-augmented approach with semantic code search for cross-repo transfer, or (c) a method for repo-level context compression that enables better code reasoning — all directions the user explicitly suggested.\n\n7. **ADDRESS TEST OVERFITTING**: Any test-based approach must engage with the ICSE 2026 undecidability result and the empirical overfitting findings. Propose concrete mitigation strategies.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"MISSING CRITICAL BASELINES: AlphaCodium (arXiv 2401.08500, Jan 2024) is a training-free, inference-time, test-based iterative flow with problem analysis + AI test generation + iterative refinement against tests. It is the most direct conceptual predecessor to ExeSpec and MUST be cited and compared as a baseline. CodeT (ICLR 2022) and Self-Debugging (arXiv 2304.05128, 2023) are also missing—both are foundational works in execution-based code refinement at inference time.\", \"MISSING CONCURRENT WORK: BACE (arXiv 2603.28653, Mar 2026) addresses the same 'noisy self-generated tests' problem via Bayesian co-evolution of code and test populations. 'Revisit Self-Debugging with Self-Generated Tests' (arXiv 2501.12793, Jan 2025) directly studies post-execution vs. in-execution self-debugging paradigms with LLM-generated tests. Both must be discussed.\", \"THIN NOVELTY BOUNDARY: The distinction between 'structured behavioral specifications' (I/O example pairs, pre/postconditions, invariants in JSON schema) and 'self-generated test assertions' is conceptually thin. I/O examples ARE test cases. Pre/postconditions and invariants add something, but AlphaCodium's 'problem analysis' + 'edge case identification' phase also generates structured problem understanding before coding. The paper needs to sharpen why spec-mediated reasoning is fundamentally different from test-mediated refinement, with controlled experiments isolating this distinction.\", \"HUMANEVAL SATURATION: HumanEval+ and MBPP+ are listed as primary benchmarks, but frontier models already score 93%+ on HumanEval. Even with EvalPlus's harder tests, the benchmark is near saturation. The paper should emphasize DebugBench, CrossCodeEval, CodeContests, and SWE-bench Verified as primary evaluation, and use HumanEval+/MBPP+ only for comparability with Self-Spec.\", \"SPEC QUALITY BOOTSTRAPPING RISK: CodeSpecBench shows LLMs achieve only 20.2% on repo-level spec generation. If the LLM generates mostly bad specs, execution grounding catches them—but then the method degrades to 'generate specs → discard most → fall back to direct generation.' The paper needs analysis of what happens when spec generation quality is low (e.g., on CrossCodeEval/RepoBench repo-level tasks), including a failure mode analysis.\", \"TIMELINE IS VERY AGGRESSIVE: 12–16 days for implementing a 3-stage framework with task-adapted spec schemas, integrating 6 benchmarks (including SWE-bench Docker), running 48+ experiment configurations (6 benchmarks × 2 models × 4 baselines + ablations), AND writing a full paper. SWE-bench Verified Docker setup alone can take 2–3 days. Recommend reducing scope: run full comparison on 3 primary benchmarks (DebugBench, CodeContests, SWE-bench Verified) and use 3 others (HumanEval+/MBPP+, CrossCodeEval/RepoBench) for supplementary evaluation with fewer baselines.\", \"COST ESTIMATE MISSING API COSTS FOR EG-CFG BASELINE: Reproducing an EG-CFG-style execution-only baseline requires beam search with per-line execution, which is substantially more expensive than standard inference. This is either infeasible within budget or needs to be replaced with a simpler 'execution feedback without specs' baseline.\"]\nFeedback: The revision successfully addresses the critical venue, compute, and scope issues from Round 1. The idea is now properly scoped for EMNLP 2026 with correct benchmarks, models, and budget. However, several issues need resolution:\n\n1. **Sharpen novelty vs. AlphaCodium/CodeT**: These are the most important missing baselines. AlphaCodium (2024) already does training-free, multi-stage, test-based iterative refinement at inference time. ExeSpec must demonstrate that specification-mediated reasoning (structured I/O examples + pre/postconditions + invariants) provides gains BEYOND what test-based refinement alone achieves. Add a controlled experiment: (a) ExeSpec with full specs, (b) AlphaCodium-style test-only refinement, (c) Self-Spec without execution grounding, (d) direct prompting. The delta between (a) and (b) is the paper's core contribution.\n\n2. **De-emphasize saturated benchmarks**: Make DebugBench, CodeContests, and SWE-bench Verified the primary evaluation. Use HumanEval+/MBPP+ for Self-Spec comparability only. Consider adding LiveCodeBench for contamination resistance.\n\n3. **Address spec quality gracefully**: Add a spec quality analysis section showing: (a) what fraction of elicited specs survive execution grounding, (b) how grounding changes spec accuracy, (c) what happens when most specs fail (does the method degrade gracefully?). This directly responds to the CodeSpecBench 20.2% finding and strengthens the paper's analytical contribution.\n\n4. **Simplify the EG-CFG baseline**: Replace the full EG-CFG-style baseline (beam search + per-line execution) with a simpler 'execution feedback without specs' baseline: generate code → execute → feed error messages back → regenerate. This is cheaper and more directly tests the spec contribution.\n\n5. **Reduce timeline risk**: Implement the framework first on HumanEval+/MBPP+ (fast turnaround), validate the approach, then extend to harder benchmarks. Consider submitting to ARR May 25 with 4 benchmarks instead of 6, adding the remaining 2 for the camera-ready.\n\n6. **Cite and discuss**: AlphaCodium (2401.08500), CodeT (ICLR 2022), Self-Debugging (2304.05128), BACE (2603.28653), Revisit Self-Debugging (2501.12793). Position ExeSpec as advancing beyond test-only refinement by introducing verifiable specification reasoning as a structured intermediate representation.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"CRITICAL UNADDRESSED R2 FEEDBACK: AlphaCodium (arXiv 2401.08500, Jan 2024), CodeT (ICLR 2023), Self-Debugging (arXiv 2304.05128, 2023), BACE (arXiv 2603.28653, Mar 2026), and 'Revisit Self-Debugging with Self-Generated Tests' (ACL 2025, arXiv 2501.12793) are ALL still missing from key_references and baselines. Round 2 explicitly stated these MUST be cited and compared. AlphaCodium is the most direct conceptual predecessor — a training-free, multi-stage flow with problem reflection, test generation, and iterative execution-based refinement — and must be a baseline, not just a citation.\", \"NEW MISSING WORK — S* (EMNLP 2025 Findings, arXiv 2502.14382): A training-free test-time scaling framework for code generation that uses execution-based selection with adaptive distinguishing input synthesis. Enables a 3B model to outperform GPT-4o-mini. Published at EMNLP 2025 — the same venue being targeted. This is a highly relevant prior art that directly competes in the 'training-free inference-time code improvement' space.\", \"NEW MISSING CONCURRENT WORK — SSDE (arXiv 2605.02455, May 2026): 'LLM-Assisted Repository-Level Generation with Structured Spec-Driven Engineering' uses Gherkin specifications and domain models to guide LLM generation with verification against test suites. Concurrent work that overlaps with ExeSpec's structured specification approach at the repo level.\", \"THIN NOVELTY BOUNDARY WITH ALPHACODIUM: AlphaCodium's pre-processing phase (problem reflection → public tests reasoning → possible solutions ranking) IS structured problem analysis before code generation. AlphaCodium's iterative phase (generate → execute → fix against public + AI tests) IS execution-grounded refinement. ExeSpec's I/O example specs are functionally identical to AlphaCodium's AI-generated test cases. The actual novelty delta — pre/postconditions, invariants, type constraints in JSON schema — must be isolated via controlled ablation: (a) ExeSpec full specs, (b) I/O-only specs (≈ test-only, AlphaCodium-style), (c) structural specs only (pre/postconditions + invariants without I/O). Without this, reviewers will reject for insufficient novelty.\", \"UNDERSPECIFIED NON-GENERATION TASKS: The approach for cross-file completion (CrossCodeEval, RepoBench) says 'type-check and partially execute the surrounding context to verify inferred specs.' This is vague. How do you generate behavioral specs for incomplete code in a multi-file context? What executable probes work for partial programs? CodeSpecBench shows only 20.2% success at repo-level spec generation — the method may degrade to fallback (soft grounding) for most repo-level instances, making the execution grounding contribution negligible on these benchmarks.\", \"HUMANEVAL+ STILL NOT DE-EMPHASIZED: Round 2 explicitly recommended making DebugBench, CodeContests, and SWE-bench Verified primary, with HumanEval+/MBPP+ for Self-Spec comparability only. The idea still lists them alongside other benchmarks without prioritization. Frontier models score 93%+ on HumanEval — gains here are not impressive.\", \"AGGRESSIVE TIMELINE NOT MITIGATED: Round 2 suggested reducing to 3 primary benchmarks + 3 supplementary. The idea still plans full comparison on all 6 benchmarks within 12–16 days. SWE-bench Docker setup alone takes 2–3 days. Recommend: primary (DebugBench, CodeContests, SWE-bench Verified) with full baselines; supplementary (HumanEval+/MBPP+, CrossCodeEval, RepoBench) with ExeSpec vs. direct prompting only.\"]\nFeedback: This is Round 3, and the idea has improved significantly from Round 1 (correct venue, benchmarks, compute budget) but has failed to address the MOST CRITICAL Round 2 feedback: citing and comparing against AlphaCodium, CodeT, Self-Debugging, BACE, and 'Revisit Self-Debugging.' This is not optional — these are the papers that define the competitive landscape for training-free, execution-based code improvement methods.\n\nHere is exactly what needs to change:\n\n1. **ADD ALPHACODIUM AS PRIMARY BASELINE** (non-negotiable): Replace the 'EG-CFG-style execution-only feedback' baseline with an AlphaCodium-style baseline: problem analysis → AI test generation → iterative code execution/refinement (no structured specs). This directly tests the paper's core claim that specification-mediated reasoning provides gains beyond test-based refinement. The controlled experiment should be: (a) ExeSpec full (specs + execution grounding), (b) AlphaCodium-style (tests + execution feedback, no specs), (c) Self-Spec (specs, no execution grounding), (d) direct prompting. The delta between (a) and (b) is the paper's contribution.\n\n2. **CITE AND POSITION AGAINST S* (EMNLP 2025 Findings)**: S* is the most recent training-free test-time scaling method for code generation, published at your target venue. Position ExeSpec as complementary: S* focuses on parallel/sequential scaling with execution-based selection; ExeSpec focuses on structured intermediate reasoning via verified specs. They could potentially be combined.\n\n3. **SHARPEN THE SPEC VS. TEST DISTINCTION**: The paper must clearly argue why structured behavioral specifications (pre/postconditions, invariants, type constraints) provide fundamentally different reasoning scaffolding compared to test cases. Add a controlled ablation: (a) full specs (I/O + pre/postconditions + invariants), (b) I/O-only specs (≈ test cases), (c) structural specs only (pre/postconditions + invariants, no I/O). If (b) performs similarly to (a), the novelty claim collapses.\n\n4. **SPECIFY THE CROSS-FILE COMPLETION APPROACH**: Describe concretely how ExeSpec generates and validates specs for CrossCodeEval/RepoBench tasks. What does the spec schema look like for incomplete code with cross-file dependencies? What 'lightweight probes' execute for partial programs? If the approach fundamentally differs from function-level generation, say so explicitly.\n\n5. **REDUCE SCOPE TO FIT TIMELINE**: Primary benchmarks with full baselines: DebugBench, CodeContests, SWE-bench Verified. Supplementary with ExeSpec vs. direct prompting only: HumanEval+/MBPP+, CrossCodeEval, RepoBench. This halves the experiment matrix.\n\n6. **ADD TO KEY REFERENCES**: AlphaCodium (2401.08500), CodeT (ICLR 2023, 2207.10397), Self-Debugging (2304.05128), BACE (2603.28653), 'Revisit Self-Debugging' (ACL 2025, 2501.12793), S* (EMNLP 2025 Findings, 2502.14382), SSDE (2605.02455).\n\n### Round 4 review\nVerdict: revise\nIssues: [\"CRITICAL MISSING COMPETITOR: PGS (Property-Generated Solver, arXiv:2506.18315, June 2025, revised May 2026) uses high-level program properties instead of test cases as feedback for LLM code refinement, with execution-based property verification and minimal counterexample generation. It achieves 13.4% pass@1 improvement over TDD methods and 1.4-1.6x higher bug fix rate. This shares ExeSpec's core insight (properties > tests) and must be cited, compared against, and clearly differentiated.\", \"MISSING RELATED WORK: (1) 'From Prompts to Properties: Rethinking LLM Code Generation with Property-Based Testing' (FSE 2025) directly challenges test-based paradigm in favor of properties; (2) ContractEval/PACT (arXiv:2510.12047) benchmarks LLM contract satisfaction showing 0% under standard prompting, validating the problem but also raising spec generation quality concerns; (3) 'Preconditions and Postconditions as Design Constraints for LLM Code Generation' (IEEE Access 2024/2025) directly studies ExeSpec's premise with controlled experiments; (4) StoryCoder (arXiv:2604.14631, ACL 2026) is another training-free structured intermediate reasoning method achieving 18.7% improvement.\", \"SWE-BENCH VERIFIED CONTAMINATION: The benchmark is now severely contaminated — top score is 93.9% (Claude Mythos), while the same models score only ~46% on SWE-bench Pro. OpenAI has stopped reporting Verified scores. The paper acknowledges contamination but should more seriously consider using SWE-bench Pro as the primary evaluation or running both and comparing. Reporting only Verified results risks reviewer skepticism.\", \"MODEL CURRENCY: Qwen3-Coder has been released since the idea was designed. EMNLP reviewers may question why the paper uses Qwen2.5-Coder-7B/32B rather than the latest version. Either justify the choice (reproducibility, available at experiment time) or update.\", \"SPEC GENERATION QUALITY RISK INSUFFICIENTLY ADDRESSED: ContractEval shows 0% contract satisfaction under standard prompting and only 23-41% with explicit contracts. CodeSpecBench shows 20.2% repo-level success. The paper's execution grounding is meant to catch bad specs, but if >60% of specs fail grounding, the method effectively degrades to 'generate specs → discard most → fall back to whatever survives' — potentially no better than test-only methods with fewer but higher-quality tests. The paper should include analysis of spec survival rates and graceful degradation behavior.\", \"TIMELINE MARGINAL: The manual estimate of 14-18 days with 2 researchers overlaps but can exceed the 16-day deadline. The upper bound should be trimmed to fit. Consider dropping one supplementary benchmark (e.g., RepoBench) to ensure the primary benchmarks are completed thoroughly.\"]\nFeedback: This is now a well-structured idea that has improved substantially through four rounds. The controlled experimental design with honest ablations is the strongest aspect. However, one critical competitor was discovered that must be addressed before this can pass:\n\n1. **CITE AND DIFFERENTIATE FROM PGS** (most important): PGS (arXiv:2506.18315) shares ExeSpec's core insight that properties outperform tests as LLM code feedback. Differentiate on: (a) ExeSpec execution-grounds the specs themselves (catches hallucinated specs before use), while PGS assumes properties are correct; (b) ExeSpec applies across 4 task types (generation, debugging, completion, issue resolution), PGS focuses on generation/repair; (c) ExeSpec's comprehensive spec schema (5 component types) vs. PGS's single-property checking; (d) ExeSpec's controlled ablation isolates each spec component's contribution. Add PGS as a fifth baseline condition, or at minimum cite and discuss in Related Work with clear differentiation.\n\n2. **CITE FSE 2025 AND ContractEval**: 'From Prompts to Properties' (FSE 2025) validates the property-vs-test framing from a PBT perspective. ContractEval (arXiv:2510.12047) both validates your problem (LLMs fail at contracts) and raises spec quality concerns — use it to motivate your execution grounding stage.\n\n3. **ADDRESS SWE-BENCH CONTAMINATION SERIOUSLY**: Either (a) add SWE-bench Pro as the primary SE benchmark alongside Verified, or (b) follow the paper's current plan but add a contamination analysis section comparing performance on instances with/without known gold patch exposure. Option (a) is safer but adds implementation effort.\n\n4. **ADD SPEC SURVIVAL RATE ANALYSIS**: Report what fraction of generated specs survive execution grounding by task type and model. If survival is low, analyze whether the surviving specs still provide gains over test-only methods. This directly addresses the CodeSpecBench/ContractEval concern and strengthens the paper's analytical contribution.\n\n5. **JUSTIFY MODEL CHOICE**: Add a sentence noting that Qwen2.5-Coder was selected as the strongest open-source code model available at experiment design time, and that the method is model-agnostic. If time permits, add one data point with a newer model.\n\nThese are all fixable in one more revision round. The idea's core structure, experimental design, and positioning are sound — the main gap is incomplete coverage of the competitive landscape.\n\n### Round 5 review\nVerdict: revise\nIssues: [\"CRITICAL — PGS STILL NOT CITED (Round 4 issue unresolved): PGS (arXiv:2506.18315, 'Use Property-Based Testing to Bridge LLM Code Generation and Validation', June 2025, revised May 2026) shares ExeSpec's core contribution: using program properties instead of test cases for LLM code refinement at inference time. PGS achieves 97.6% HumanEval, 87.2% MBPP, 76.5% LiveCodeBench, 49.7% CodeContests, 37.3% SWE-bench Verified using DeepSeek-R1-32B. It reports 23.1-37.3% relative pass@1 gains over TDD methods and 1.4-1.6x higher bug fix rates. This paper validates ExeSpec's hypothesis but also substantially reduces its novelty. Without citing and differentiating from PGS, any informed reviewer will reject on novelty grounds.\", \"ROUND 4 ISSUES LARGELY UNADDRESSED: (1) ContractEval/PACT (arXiv:2510.12047) — shows 0% contract satisfaction under standard prompting, motivates execution grounding but raises spec quality concerns — not cited; (2) 'From Prompts to Properties' (FSE 2025 LLanMER) — validates property-vs-test framing — not cited; (3) 'Preconditions and Postconditions as Design Constraints' (IEEE Access 2025) — directly studies ExeSpec's premise with controlled experiments — not cited; (4) StoryCoder (arXiv:2604.14631) — concurrent training-free structured intermediate reasoning — not cited.\", \"SWE-BENCH VERIFIED CONTAMINATION INSUFFICIENTLY ADDRESSED: OpenAI has officially stopped reporting SWE-bench Verified scores (blog post: 'Why SWE-bench Verified no longer measures frontier coding capabilities'). Top score is 93.9% vs. ~46% on SWE-bench Pro. The idea mentions 'noting contamination concerns per OpenAI's 2026 audit' but still uses Verified as a primary benchmark without proposing SWE-bench Pro as an alternative or replacement. EMNLP reviewers aware of the contamination will question evaluation credibility.\", \"MODEL CURRENCY: Qwen3-Coder-Next (3B/80B MoE, 256k context, >70% SWE-bench Verified) and DeepSeek V4 have been released. Using Qwen2.5-Coder without justification looks dated. Either justify the choice (available at experiment design time, reproducibility) or add a data point with a newer model.\", \"NOVELTY BOUNDARY WITH PGS IS THIN: PGS uses LLM-generated abstract properties with execution-based validation and minimal counterexample feedback. ExeSpec uses LLM-generated behavioral specifications (pre/postconditions, invariants, type constraints) with execution grounding and structured violation reports. Both are training-free, inference-time, property-level-rather-than-test-level approaches. The genuine differentiators — (a) execution grounding of specs themselves (PGS assumes properties are ~87% accurate), (b) structured 5-component schema with component ablation, (c) multi-task applicability beyond generation — must be explicitly argued. Without this, the paper reads as a PGS variant with a different spec format.\", \"MISSING NL-DEBUGGING (EMNLP 2025 Oral): 'Natural Language as Intermediate Representation for Code Debugging' (arXiv:2505.15356) was accepted as an Oral at EMNLP 2025 — the same venue being targeted. It uses NL (not specifications) as an intermediate representation for debugging and shows consistent gains over code-level debugging. This is a strong baseline for the debugging task (DebugBench) and establishes the 'intermediate representation for code tasks' paradigm at this exact venue.\"]\nFeedback: The idea has matured substantially over 5 rounds — the experimental design with honest ablations, primary/supplementary benchmark distinction, and AlphaCodium baseline are all strong. However, the most critical Round 4 issue (PGS) remains unaddressed, and this is now blocking passage. Here is exactly what needs to change:\n\n1. **CITE AND DIFFERENTIATE FROM PGS** (highest priority, non-negotiable): Add PGS to key_references and landscape. Position ExeSpec's contributions BEYOND PGS's established result (properties > tests): (a) ExeSpec execution-grounds the specs themselves — PGS's verification asymmetry (87% property accuracy) means ~13% of properties are wrong, and PGS has no mechanism to catch them before use; ExeSpec's Stage 2 catches hallucinated specs via execution probes; (b) ExeSpec evaluates across 4 task types (generation, debugging, completion, issue resolution) while PGS evaluates generation and repair; (c) ExeSpec's 5-component schema with component ablation provides fine-grained analysis of which spec types help which tasks — PGS treats properties as a monolithic category. Consider adding PGS as a 5th baseline condition on at least CodeContests and DebugBench, or at minimum cite and discuss with clear differentiation.\n\n2. **ADDRESS SWE-BENCH CONTAMINATION**: Either (a) replace SWE-bench Verified with SWE-bench Pro as primary (preferred — aligns with community trend), or (b) keep Verified but add contamination analysis comparing performance on high-contamination vs. low-contamination instances (requires the contamination labels from OpenAI's audit). Option (a) adds implementation effort but makes the paper future-proof.\n\n3. **CITE ADDITIONAL MISSING WORK**: Add to key_references and discuss in landscape: ContractEval/PACT (2510.12047), NL-Debugging (2505.15356, EMNLP 2025 Oral — important as it's at the same venue), 'From Prompts to Properties' (FSE 2025). These validate ExeSpec's problem framing and provide important context.\n\n4. **JUSTIFY OR UPDATE MODEL CHOICE**: Add one sentence: 'We use Qwen2.5-Coder as the strongest open-source code model with publicly available weights at experiment design time; the method is model-agnostic and we expect consistent gains across model generations.' If feasible within budget, add one supplementary data point with Qwen3-Coder-Next-3B to demonstrate model-agnostic applicability.\n\n5. **SHARPEN THE NARRATIVE**: After citing PGS, reframe ExeSpec's contribution as: 'PGS demonstrated that property-level feedback outperforms test-based feedback for code generation. We advance this finding in three ways: (1) we show that execution-grounded specification verification catches ~X% of hallucinated specs that would corrupt reasoning, (2) we extend property-level reasoning beyond generation to debugging, completion, and issue resolution, and (3) we decompose the contribution of different spec components (I/O, preconditions, postconditions, invariants, type constraints) across task types, providing actionable guidance for spec-mediated code reasoning.'\n\nThese changes are all feasible in one revision round. The idea's core structure is sound — it just needs to acknowledge and position against the competitive landscape that has emerged.\n\n### Round 6 review\nVerdict: revise\nIssues: [\"CRITICAL — PGS STILL NOT CITED (4th consecutive round): PGS (arXiv:2506.18315, 'Use Property-Based Testing to Bridge LLM Code Generation and Validation', June 2025, revised May 2026) shares ExeSpec's core contribution: using LLM-generated properties (not tests) for code refinement with execution-based validation. PGS validates properties via soundness checks against public tests + sensitivity to known errors, then provides minimal counterexample feedback. It evaluates on HumanEval (97.6%), MBPP (81.2%), and LiveCodeBench (74.5%) with DeepSeek-R1-Distilled-32B. Note: PGS does NOT evaluate on CodeContests or SWE-bench (the Round 5 reviewer's numbers for those benchmarks were incorrect). ExeSpec's genuine differentiators vs. PGS: (1) execution-grounds specs themselves before use via probes, catching hallucinated specs; (2) covers 4 task types vs. PGS's generation-only scope; (3) structured 5-component schema with component ablation vs. PGS's monolithic property checking; (4) structured violation reports vs. minimal counterexamples. These are meaningful but incremental. This is the 4th consecutive round raising this issue — if unaddressed in the next round, this should be grounds for failure.\", \"NL-DEBUGGING STILL NOT CITED (EMNLP 2025 ORAL): NL-Debugging (arXiv:2505.15356, ACL Anthology 2025.emnlp-main.80) uses natural language as an intermediate representation for debugging, demonstrating gains over code-level debugging. Published as an ORAL at EMNLP 2025 — the exact target venue. This establishes the 'intermediate representation for code tasks' paradigm at this venue and is a critical baseline for DebugBench evaluation. Reviewers at EMNLP 2026 will know this paper.\", \"CONTRACTEVAL STILL NOT CITED: ContractEval (arXiv:2510.12047) shows 0% contract satisfaction under standard prompting, 23-41% with explicit contracts, 49-53% with contract-violating test examples. This validates ExeSpec's motivation (LLMs need grounding for spec generation) but also quantifies the spec quality challenge. Must be cited to strengthen the execution grounding motivation.\", \"SWE-BENCH VERIFIED CONTAMINATION INSUFFICIENTLY ADDRESSED: OpenAI has officially stopped reporting SWE-bench Verified scores. All frontier models show training data contamination — models can reproduce exact gold patches verbatim. Claude Opus 4.5 scores 80.9% on Verified but only 45.9% on Pro. While Qwen2.5-Coder (sub-frontier) may be less contaminated, the benchmark's credibility is severely damaged. The paper's approach of 'noting contamination concerns per OpenAI's 2026 audit' and 'reporting held-out test pass rates alongside standard metrics' is insufficient. Either: (a) add SWE-bench Pro as a co-primary benchmark, (b) demonstrate Qwen2.5-Coder-7B/32B are not contaminated on Verified via gold-patch reproduction tests, or (c) at minimum acknowledge that the community has moved to Pro and explain why Verified remains informative for sub-frontier models.\", \"MODEL CURRENCY UNJUSTIFIED: Qwen3-Coder-Next (3B active / 80B total MoE, 256k context, >70% SWE-bench Verified) has been released. Qwen2.5-Coder remains a valid reproducibility choice, but the paper needs one sentence justifying it (e.g., 'strongest open-source code model with dense architecture available at experiment design time; the method is model-agnostic'). Without justification, EMNLP reviewers may question currency.\", \"'FROM PROMPTS TO PROPERTIES' (FSE 2025/LLanMER) STILL NOT CITED: This paper applied property-based testing to evaluate StarCoder and CodeLlama on MBPP/HumanEval, finding 30-32% of generated solutions only partially adhere to correctness properties and 18-23% fail outright. Validates ExeSpec's property-vs-test framing from the evaluation side.\"]\nFeedback: This is Round 6, and the idea's experimental design, controlled baselines, and honest ablation commitment are genuinely strong. However, the repeated failure to cite PGS — now raised for the 4th consecutive round as non-negotiable — is becoming a disqualifying pattern. Here is exactly what must change:\n\n1. **CITE AND DIFFERENTIATE FROM PGS** (FINAL WARNING — if unaddressed in Round 7, this warrants failure): Add PGS to key_references and landscape. Note that PGS evaluates ONLY on HumanEval/MBPP/LiveCodeBench and does NOT evaluate on CodeContests, SWE-bench, or DebugBench — this is actually ExeSpec's opportunity. Position ExeSpec's contributions BEYOND PGS: (a) ExeSpec execution-grounds specs before use (probes catch hallucinated specs); PGS validates properties against public tests but doesn't catch internally inconsistent properties before use. (b) ExeSpec evaluates across 4 task types including debugging and issue resolution — PGS only covers generation. (c) ExeSpec's 5-component ablation decomposes which spec types help which tasks — PGS treats properties as monolithic. (d) ExeSpec directly compares against AlphaCodium on CodeContests (PGS's home turf overlap — neither AlphaCodium nor PGS compares against each other). Reframe the narrative: 'PGS demonstrated that property-level feedback outperforms test-based feedback for code generation. We advance this finding by: (1) showing execution-grounded spec verification catches hallucinated specs that corrupt reasoning, (2) extending property-level reasoning to debugging, completion, and issue resolution, (3) providing fine-grained ablation of which specification components help which task types.'\n\n2. **CITE NL-DEBUGGING AS DEBUGGING BASELINE**: Add NL-Debugging (2505.15356, EMNLP 2025 Oral) to key_references. Position ExeSpec's debugging approach as advancing beyond NL-level debugging by providing structured, execution-verified behavioral constraints (not just NL descriptions). If feasible, add NL-Debugging as a 5th baseline condition on DebugBench — this would strongly differentiate ExeSpec.\n\n3. **ADDRESS SWE-BENCH CONTAMINATION CONCRETELY**: Add one of: (a) 'We additionally evaluate on SWE-bench Pro on a representative subset to validate that gains generalize beyond Verified'; (b) 'We verify Qwen2.5-Coder models are not contaminated by testing gold-patch reproduction rates'; (c) 'We acknowledge SWE-bench Verified's contamination concerns are most severe for frontier models; Qwen2.5-Coder-7B/32B are sub-frontier models unlikely to have been trained on the SWE-bench gold patches.' Option (c) is the minimum acceptable response.\n\n4. **CITE CONTRACTEVAL AND 'FROM PROMPTS TO PROPERTIES'**: ContractEval (2510.12047) motivates execution grounding (0% contract satisfaction without it). 'From Prompts to Properties' (FSE 2025) validates the property-vs-test evaluation framing. Both strengthen ExeSpec's problem statement.\n\n5. **ADD MODEL JUSTIFICATION**: One sentence: 'We use Qwen2.5-Coder-7B/32B-Instruct as well-established dense models with strong code performance and reproducible inference via vLLM; the method is model-agnostic and we expect consistent gains across model generations.' If time/budget permit, add one supplementary data point with a Qwen3 model.\n\nThe core idea is sound and the experimental design is rigorous. But an EMNLP reviewer who has read PGS (published June 2025, revised May 2026 — highly visible) will immediately recognize the overlap and reject if PGS is not acknowledged. This is the most critical fix.\n\n### Round 7 review\nVerdict: revise\nIssues: [\"CRITICAL — PGS STILL NOT CITED (5TH CONSECUTIVE ROUND): PGS (arXiv:2506.18315, 'Use Property-Based Testing to Bridge LLM Code Generation and Validation', June 2025, revised as 'Effective LLM Code Refinement via Property-Oriented and Structurally Minimal Feedback', May 2026) shares ExeSpec's core contribution: using LLM-generated abstract properties instead of test cases for code refinement with execution-based validation at inference time, training-free. PGS evaluates on HumanEval, MBPP, and LiveCodeBench ONLY (NOT CodeContests or SWE-bench — earlier reviewer claims about PGS's CodeContests/SWE-bench numbers were incorrect). PGS achieves 23.1-37.3% relative pass@1 improvement over TDD methods using DeepSeek-R1-Distilled-32B. This has been raised in Rounds 4, 5, 6, and 7 — all unaddressed. If unaddressed in Round 8, this MUST result in failure. No exceptions.\", \"NL-DEBUGGING STILL NOT CITED (3RD ROUND): NL-Debugging (arXiv:2505.15356, ACL Anthology 2025.emnlp-main.80) was accepted as an ORAL at EMNLP 2025 — the exact target venue. It uses natural language as an intermediate representation for debugging via backtranslation → NL refinement → regeneration, achieving substantial gains on APPS and Codeforces. EMNLP 2026 reviewers WILL know this paper. It establishes the 'structured intermediate representation for code tasks' paradigm at this venue and is a critical baseline for DebugBench evaluation.\", \"CONTRACTEVAL STILL NOT CITED (3RD ROUND): ContractEval (arXiv:2510.12047) shows 0% contract satisfaction under standard prompting, 23-41% with explicit contracts, 49-53% with example-augmented specification. This simultaneously validates ExeSpec's motivation (LLMs need grounding for contract/spec generation) AND quantifies the spec quality challenge. Must be cited to strengthen execution grounding motivation.\", \"ALPHACODIUM 44% CLAIM IS MISLEADING: The idea states 'AlphaCodium's flow engineering raises CodeContests pass@5 from 19% to 44%.' This is the VALIDATION SET result (117 problems). On the TEST SET (165 problems), AlphaCodium achieves 29% pass@5 (up from 12% baseline). The distinction must be clarified to avoid misleading readers.\", \"SWE-BENCH VERIFIED CONTAMINATION REMAINS INADEQUATELY ADDRESSED: OpenAI officially stopped reporting Verified scores in February 2026 after finding frontier models could reproduce verbatim gold patches. The current response ('noting contamination concerns, we report held-out test pass rates alongside standard metrics') is insufficient. Minimum acceptable: explicitly argue that Qwen2.5-Coder-7B/32B are sub-frontier models unlikely to exhibit the same contamination patterns as GPT-5.2/Claude Opus 4.5, and note that the community has moved to SWE-bench Pro. Better: add SWE-bench Pro as a co-primary benchmark.\", \"MODEL CURRENCY UNJUSTIFIED: Qwen3-Coder-Next (3B active/80B total MoE, 256k context, >70% SWE-bench Verified) was released February 2026. Using Qwen2.5-Coder without a justification sentence will invite reviewer questions. Add: 'We use Qwen2.5-Coder-7B/32B-Instruct as established dense models with reproducible vLLM inference; the method is model-agnostic.'\", \"MISSING ADDITIONAL RELEVANT WORK: (1) StoryCoder (arXiv:2604.14631, ACL 2026 Main) — training-free structured intermediate reasoning via narrative reformulation, +18.7% pass@10 across 11 models. Concurrent work using structured intermediate representations for code. (2) FixAudit (arXiv:2604.05560, April 2026) — jointly trains fixer and auditor, 35-37% improvement on CodeContests. (3) 'From Prompts to Properties' (FSE Companion 2025/LLanMER) — applies PBT to evaluate LLM code, finding 30-32% partial failures that pass@k misses. These should be cited in landscape or related work.\"]\nFeedback: This is Round 7, and the idea's experimental design, controlled baselines, and honest ablation commitment are the strongest aspects of the proposal. However, the repeated failure to cite PGS — now flagged for the 5TH CONSECUTIVE ROUND — is approaching disqualification territory. Here is exactly what must change:\n\n1. **CITE AND DIFFERENTIATE FROM PGS** (ABSOLUTE FINAL CHANCE — failure to address in Round 8 means automatic fail): Add PGS (arXiv:2506.18315) to key_references and landscape. Critically, note that PGS evaluates ONLY on HumanEval/MBPP/LiveCodeBench and does NOT evaluate on CodeContests, SWE-bench, or DebugBench. ExeSpec's differentiators vs. PGS: (a) ExeSpec execution-grounds specs BEFORE use via probes, catching hallucinated/contradictory specs — PGS validates properties against public tests but assumes ~87% property accuracy without catching internally inconsistent properties; (b) ExeSpec evaluates across 4 task types (generation, debugging, completion, issue resolution) — PGS covers generation/repair only; (c) ExeSpec's 5-component schema with component ablation decomposes which spec types help which tasks — PGS treats properties as a monolithic category; (d) ExeSpec directly compares against AlphaCodium on CodeContests, a benchmark neither PGS nor AlphaCodium compares against each other on. Reframe narrative: 'PGS demonstrated that property-level feedback outperforms test-based feedback for code generation. We advance this by: (1) execution-grounding specs to catch hallucinated properties, (2) extending to debugging/completion/issue-resolution, (3) decomposing spec component contributions via controlled ablation.'\n\n2. **CITE NL-DEBUGGING** (EMNLP 2025 Oral — reviewers at your target venue will know this): Add NL-Debugging (2505.15356) to key_references and landscape. Position ExeSpec's debugging as advancing beyond NL-level intermediate reasoning by providing structured, execution-verified behavioral constraints. Consider adding NL-Debugging as a 5th baseline condition on DebugBench for a strong venue-specific comparison.\n\n3. **CITE CONTRACTEVAL**: Add ContractEval (2510.12047) to motivate execution grounding: '0% contract satisfaction under standard prompting validates the need for execution-based spec verification.'\n\n4. **FIX ALPHACODIUM 44% CLAIM**: Clarify as 'AlphaCodium raises CodeContests validation-set pass@5 from 19% to 44% (test-set: 12% to 29%)' or simply cite the test-set numbers.\n\n5. **ADDRESS SWE-BENCH CONTAMINATION**: Add one paragraph: 'We use Qwen2.5-Coder-7B/32B, sub-frontier models unlikely to exhibit the verbatim gold-patch reproduction observed in frontier models (GPT-5.2, Claude Opus 4.5). We additionally note that the community has moved toward SWE-bench Pro for frontier evaluation; our results on sub-frontier models provide a contamination-resistant baseline.'\n\n6. **ADD MODEL JUSTIFICATION**: One sentence: 'We use Qwen2.5-Coder as established dense models with strong code performance and reproducible vLLM inference; the method is model-agnostic.'\n\nThe core structure is sound. Fix the competitive landscape and this can pass.\n\n### Round 8 review\nVerdict: revise\nIssues: [\"CRITICAL FACTUAL ERROR — PGS v2 BENCHMARK COVERAGE: The idea states 'PGS does not evaluate on CodeContests, SWE-bench, or debugging benchmarks' (landscape section) and 'evaluation spans four task types on benchmarks PGS does not cover (CodeContests, SWE-bench Pro, DebugBench)' (approach section). PGS v2 (revised May 1, 2026, title 'Effective LLM Code Refinement via Property-Oriented and Structurally Minimal Feedback') evaluates on FIVE benchmarks: HumanEval, MBPP, LiveCodeBench, CodeContests, AND SWE-bench. On CodeContests with Qwen2.5-Coder: PGS achieves ~22.4% pass@1 vs. baseline ~15%. On SWE-bench with Qwen2.5-Coder: PGS achieves ~12.8% vs. baseline ~10%. PGS v2 uses 6 models including Qwen3-30B, DeepSeek-V3.1, and Claude-Sonnet-4. The idea claims awareness of the v2 revision ('revised May 2026') but bases its differentiation on v1's benchmark scope. This invalidates one of ExeSpec's three claimed differentiators and must be corrected.\", \"CRITICAL — PGS PROPERTY ACCURACY NUMBERS ARE INCORRECT: The idea cites 'property generation accuracy of 82.4% (easy), 62.8% (medium), and 48.9% (hard) on LiveCodeBench.' PGS v2 Table 2 reports property GENERATION accuracy of 90.6% (easy), 67.6% (medium), 32.4% (hard), with VERIFICATION accuracy of 93.8%/91.2%/76.5%. Neither metric matches the idea's cited numbers. The hard-problem generation accuracy (32.4%) is actually WORSE than claimed (48.9%), which ironically strengthens ExeSpec's motivation—but the numbers must be corrected for credibility.\", \"TIMELINE VIOLATION: The manual estimate of 18–22 days exceeds the user's hard constraint of ≤16 days. The HIL estimate of 14–18 days barely fits at the low end. The idea should scope to fit within 16 days—either by using the HIL/auto mode as the primary plan or by reducing scope (e.g., dropping one supplementary benchmark).\", \"NOVELTY REPOSITIONING NEEDED: With PGS v2 covering CodeContests and SWE-bench, ExeSpec's narrative must shift from 'extending PGS to new benchmarks' to 'improving upon PGS via execution grounding on shared benchmarks (catching hallucinated specs that PGS misses) + extending to genuinely new tasks (debugging on DebugBench, cross-file completion on CrossCodeEval/RepoBench) + providing component-level decomposition PGS lacks.' The remaining differentiators are valid: (1) execution grounding catches internally inconsistent specs (PGS validates against public tests but doesn't check inter-property consistency), (2) DebugBench evaluation (PGS doesn't cover debugging), (3) 5-component decomposition with ablation, (4) SWE-bench Pro (contamination-resistant vs. PGS's standard SWE-bench), (5) cross-file completion. But the narrative must be honest about overlap.\", \"PGS BASELINE COMPARISON MORE COMPLEX THAN ACKNOWLEDGED: PGS v2 already reports Qwen2.5-Coder results on CodeContests and SWE-bench. Rather than reimplementing PGS from scratch, ExeSpec should cite PGS v2's published numbers as the baseline on these benchmarks (with appropriate caveats about experimental setup differences), and reimplement PGS only for DebugBench/CrossCodeEval where PGS has no published numbers. This saves significant implementation time and avoids the risk of a strawmanned reimplementation.\", \"MODEL CURRENCY GAP WIDENED: PGS v2 uses Qwen3-30B, DeepSeek-V3.1, and Claude-Sonnet-4 alongside Qwen2.5-Coder. ExeSpec uses only Qwen2.5-Coder-7B/32B. While the method is model-agnostic and using Qwen2.5-Coder enables model-controlled comparison with PGS v2, EMNLP reviewers may question why ExeSpec doesn't also evaluate on at least one newer model. Consider adding one data point with Qwen3-30B (used by PGS v2) on a primary benchmark.\"]\nFeedback: The idea has improved dramatically over 8 rounds — PGS is finally cited, NL-Debugging is a baseline, ContractEval motivates execution grounding, the experimental design is rigorous, and the honest ablation commitment is the proposal's strongest feature. However, a critical factual error undermines the paper's positioning: PGS v2 (May 1, 2026) now evaluates on CodeContests AND SWE-bench, directly contradicting the idea's central differentiator claim. Here is exactly what must change:\n\n1. **CORRECT PGS v2 CLAIMS** (non-negotiable): Update the landscape section to accurately reflect PGS v2's benchmark coverage (5 benchmarks: HumanEval, MBPP, LiveCodeBench, CodeContests, SWE-bench) and model coverage (6 models including Qwen3-30B and Claude-Sonnet-4). Fix the property accuracy numbers to match v2's Table 2 (generation: 90.6%/67.6%/32.4%; verification: 93.8%/91.2%/76.5%). Note that the 32.4% generation accuracy on hard problems actually STRENGTHENS ExeSpec's execution-grounding motivation.\n\n2. **REPOSITION NOVELTY**: Reframe from 'extending PGS to new benchmarks' to: (a) 'Execution grounding catches internally inconsistent and hallucinated specs that PGS's public-test validation misses—particularly critical given PGS v2's 32.4% generation accuracy on hard problems'; (b) 'Extending property-based reasoning to debugging (DebugBench) and cross-file completion (CrossCodeEval/RepoBench)—task types PGS v2 still does not cover'; (c) 'Component-level decomposition revealing which spec types help which tasks—PGS treats properties monolithically'; (d) 'SWE-bench Pro for contamination-resistant evaluation vs. PGS's standard SWE-bench.'\n\n3. **USE PGS v2 PUBLISHED NUMBERS**: On CodeContests and SWE-bench, cite PGS v2's published Qwen2.5-Coder results as the baseline rather than reimplementing from scratch. Reimplement PGS only for DebugBench and CrossCodeEval where PGS v2 has no numbers. This saves time and avoids strawmanning.\n\n4. **FIT TIMELINE TO 16 DAYS**: Either (a) commit to HIL mode with reduced scope (3 primary benchmarks with full baselines, 3 supplementary with ExeSpec vs. direct only), or (b) leverage PGS v2's published numbers to reduce reimplementation effort. The manual 18–22 day estimate violates the user's constraint.\n\n5. **CONSIDER ADDING ONE NEWER MODEL**: PGS v2 uses Qwen3-30B. Adding one data point on a primary benchmark would demonstrate model-agnostic applicability and enable direct comparison with PGS v2's newer-model results.\n\nThe core value proposition—execution grounding to catch the 67.6% of hard-problem specs that PGS's generation gets wrong—remains strong. But the paper must be honest about where PGS v2 has already gone and position ExeSpec's contributions accurately.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-12T02:29:45.904Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-12T02:29:45.904Z",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19"
+}
+```
+
+---
+
+## Round 1
+
+28 recorded events
+
+### User
+
+_source line 3 · 2026-05-12T02:29:45.939Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-11 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: NLP and Code Models.
+
+Direction: Code understanding and generation — repo-level comprehension, program repair, code reasoning, debugging, test generation, code-to-documentation, cross-language code transfer. NOT just code completion — focus on higher-level code reasoning tasks.
+
+Contribution type: METHOD ONLY. Propose new training methods, retrieval-augmented code repair, or inference algorithms for code tasks. Not a new benchmark or leaderboard entry.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Code models are often evaluated zero-shot or few-shot — budget goes to SFT/LoRA if fine-tuning.
+2. Time: ≤16 days. Build on existing code models (DeepSeek-Coder-V2, StarCoder2, CodeLlama, Qwen2.5-Coder) and frameworks (aider, SWE-agent, Moatless).
+3. Eval: SWE-bench Verified, HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, CodeContests.
+
+Look for: repo-level context compression for code understanding, retrieval-augmented repair with semantic code search, code reasoning via execution feedback, cross-repo transfer learning. Avoid: simple prompt templates for code completion.
+
+Tag: direction=code_models, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 9/10)
+{
+  "title": "ExeSpec: Verifiable Specification Reasoning for Code LLMs via Execution Grounding",
+  "core_problem": "Training-free inference-time methods for LLM code improvement—AlphaCodium (arXiv 2401.08500), CodeT (ICLR 2023), Self-Debugging (arXiv 2304.05128), S* (EMNLP 2025 Findings)—have demonstrated that execution feedback substantially boosts code generation quality using test cases as intermediate representations. Recently, PGS (arXiv 2506.18315, revised May 2026) showed that property-based feedback—abstract behavioral properties rather than I/O test cases—outperforms test-driven methods by 23.1–37.3% relative pass@1 on HumanEval, MBPP, and LiveCodeBench, validating that properties provide richer reasoning scaffolds than point-sample tests. However, three critical limitations remain unresolved. (1) Property reliability: LLM-generated properties are unreliable at scale—PGS reports property generation accuracy of only 48.9% on hard LiveCodeBench problems, ContractEval (arXiv 2510.12047) finds 0% contract satisfaction under standard prompting despite 75–82% pass@1, and CodeSpecBench (arXiv 2604.12268) reveals only 20.2% success at repo-level spec generation—yet no method systematically execution-grounds properties before use to catch hallucinated or internally contradictory specifications. PGS validates properties against public test cases for soundness but does not check inter-property consistency or proactively detect contradictions within the property set. (2) Task generalization: PGS and all property/test-based inference-time methods evaluate exclusively on code generation and simple repair (HumanEval, MBPP, LiveCodeBench), without extension to debugging (where intended-vs-observed behavioral contrasts are needed), issue resolution (where behavioral changes must be extracted from issue context and failing tests), or cross-file completion (where interface contracts must be inferred). NL-Debugging (EMNLP 2025 Main) demonstrated that natural language intermediate representations improve debugging by 4–6pp over code-level methods, but NL descriptions lack the structured, execution-verifiable format needed for systematic property checking. (3) Property decomposition: all property-based methods treat properties as a monolithic category—no work decomposes which property types (preconditions, postconditions, invariants, type constraints, I/O examples) contribute to which task types, preventing targeted optimization. Can execution-grounded, decomposed behavioral specifications address property reliability while extending property-based reasoning across diverse code tasks without model training?",
+  "opportunity": "Five research threads converge but remain disconnected: (1) Test-based inference-time refinement (AlphaCodium, CodeT, Self-Debugging, S*, BACE) proves execution feedback improves code generation—AlphaCodium raises CodeContests pass@5 from 19% to 44% on the validation set (12% to 29% on the 165-problem test set), CodeT improves HumanEval pass@1 by +18.8pp via dual execution agreement, S* enables a 3B model to outperform GPT-4o-mini on LiveCodeBench—but all use test cases (point samples) as the intermediate representation. (2) Property-based refinement: PGS (arXiv 2506.18315) demonstrates that LLM-generated abstract properties outperform test-driven feedback by 23.1–37.3% relative pass@1, establishing that property-level reasoning is superior to test-level reasoning for code refinement. However, PGS evaluates only on HumanEval/MBPP/LiveCodeBench (not CodeContests, SWE-bench, or debugging benchmarks), reports property generation accuracy dropping to 48.9% on hard problems, and does not verify inter-property consistency before use. Self-Spec (Agents4Science 2025) showed model-authored specs improve generation by +2–5pp but never verifies specs against execution. ContractEval (arXiv 2510.12047) reveals 0% contract satisfaction under standard prompting despite 75–82% pass@1, rising to only 23–41% with explicit contracts—demonstrating that even when contracts are provided, LLMs struggle to enforce them, motivating execution-based verification. 'From Prompts to Properties' (FSE Companion 2025/LLanMER) finds 30–32% of LLM-generated solutions exhibit partial property failures that pass@k metrics miss entirely. (3) Structured intermediate representations for code: NL-Debugging (EMNLP 2025 Main, arXiv 2505.15356) uses natural language as an intermediate representation for debugging via backtranslation → NL refinement → regeneration, outperforming code-level debugging by 4–6pp on APPS and Codeforces—establishing that higher-level abstractions aid debugging at ExeSpec's target venue. StoryCoder (ACL 2026 Main, arXiv 2604.14631) demonstrates narrative reformulation as structured intermediate reasoning, achieving +18.7% pass@10 across 11 models—concurrent work validating that structured intermediate representations improve code generation. Both use natural language (unverified against execution), not execution-grounded behavioral specifications. (4) Execution-grounded training (Think Like You Execute, RLEF at ICML 2025, FixAudit arXiv 2604.05560) achieves dramatic gains but requires fine-tuning—not usable with frozen models. FixAudit jointly trains fixer and auditor achieving 35–37% improvement on CodeContests, demonstrating the value of audit-style verification but requiring training. (5) Specification quality challenges: CodeSpecBench reveals 20.2% repo-level spec accuracy; 'Revisit Self-Debugging with Self-Generated Tests' (ACL 2025) shows self-generated test feedback introduces systematic bias—motivating richer, verified intermediate representations. The unexploited synthesis: PGS proved properties outperform tests, but property reliability remains the bottleneck (48.9% accuracy on hard problems). Execution grounding can close this gap—verifying LLM-generated property-level specs before use, catching hallucinated and contradictory properties. Additionally, decomposing properties into typed components (pre/postconditions, invariants, type constraints) and evaluating across task types (generation, debugging, issue resolution, completion) addresses the generalization gap that no prior work has tested.",
+  "landscape": "**Test-based inference-time methods.** AlphaCodium (arXiv 2401.08500, Jan 2024) is a training-free multi-stage flow with problem reflection, AI test generation, and iterative execution-based refinement with test anchoring, raising CodeContests validation-set pass@5 from 19% to 44% and test-set pass@5 from 12% to 29% with GPT-4. CodeT (ICLR 2023, arXiv 2207.10397) generates tests via LLMs and uses dual execution agreement for solution selection, improving HumanEval pass@1 by +18.8pp. Self-Debugging (arXiv 2304.05128) teaches LLMs to iteratively debug using execution results and natural language explanations, achieving up to 12% improvement on TransCoder and MBPP. 'Revisit Self-Debugging with Self-Generated Tests' (ACL 2025 Long, arXiv 2501.12793) reveals systematic bias in self-generated tests—in-execution debugging using intermediate program states mitigates this, demonstrating that test quality is a fundamental bottleneck for test-based methods. S* (EMNLP 2025 Findings, arXiv 2502.14382) combines parallel sampling with sequential debugging and adaptive distinguishing input synthesis, enabling a 3B model to outperform GPT-4o-mini on LiveCodeBench. BACE (GECCO 2026, arXiv 2603.28653) treats generated tests as noisy sensors via Bayesian updates, outperforming CodeSIM by +2.5–5.4pp on LiveCodeBench v6. All use test cases as the intermediate representation—point samples that verify specific inputs but don't capture universal behavioral properties.\n\n**Property-based and specification approaches.** PGS (arXiv 2506.18315, June 2025; revised as 'Effective LLM Code Refinement via Property-Oriented and Structurally Minimal Feedback', May 2026) is the closest prior work. PGS introduces a Generator-Tester framework where the Tester generates abstract behavioral properties (e.g., 'the product of output factors must equal the input integer') and validates code against them using property-based testing, with structurally minimal counterexamples as feedback. PGS achieves 23.1–37.3% relative pass@1 improvement over TDD methods (Reflexion, Self-Debugging, MGDebugger) using DeepSeek-Coder-V2, Qwen2.5-Coder, and DeepSeek-R1-Distilled-32B on HumanEval, MBPP, and LiveCodeBench. PGS validates properties against public test cases for soundness, reporting property generation accuracy of 82.4% (easy), 62.8% (medium), and 48.9% (hard) on LiveCodeBench. Critically, PGS does not check inter-property consistency, does not evaluate on CodeContests, SWE-bench, or debugging benchmarks, and treats properties as a monolithic category without decomposing which property types contribute to which tasks. ExeSpec differs from PGS in three ways: (a) execution grounding verifies specs before use via candidate-code probes and cross-spec consistency checks, catching hallucinated and contradictory specs that PGS's public-test validation misses; (b) evaluation spans four task types (generation, debugging, issue resolution, completion) on benchmarks PGS does not cover (CodeContests, SWE-bench Pro, DebugBench); (c) a 5-component schema with controlled ablation decomposes property contributions per task type. Self-Spec (Agents4Science 2025) has LLMs author specification languages before code generation, improving GPT-4o HumanEval pass@1 from 87% to 92%, but only evaluates on HumanEval and never verifies specs against execution. ContractEval (arXiv 2510.12047) benchmarks contract satisfaction in code generation, finding 0% satisfaction under standard prompting despite 75–82% pass@1 scores, 23–41% with explicit contracts, and 49–53% with example-augmented specifications—simultaneously validating that LLMs need external grounding for contract/spec enforcement AND quantifying the difficulty of the spec quality challenge. 'From Prompts to Properties' (FSE Companion 2025/LLanMER) applies property-based testing to evaluate LLM code, finding 30–32% partial property failures that pass@k metrics miss, motivating property-level evaluation. SpecRover/AutoCodeRover-v2 (ICSE 2025) performs iterative NL specification inference for automated program repair, achieving 19.31% on SWE-bench. VibeRepair (arXiv 2602.08263) translates code into NL behavioral specs for repair but specs are imprecise. SSDE (FSE Companion 2026, arXiv 2605.02455) uses Gherkin specifications and domain models for repo-level MVC generation—concurrent work demonstrating structured specs guide LLM generation, but requires human-authored specifications. CodeSpecBench (arXiv 2604.12268) benchmarks LLM spec generation showing only 20.2% repo-level pass rate, motivating execution-based verification.\n\n**Structured intermediate representations.** NL-Debugging (EMNLP 2025 Main, ACL Anthology 2025.emnlp-main.80, arXiv 2505.15356) uses natural language as an intermediate representation for code debugging via a three-stage pipeline: backtranslation (buggy code → NL sketch), NL refinement (identify and correct logical flaws in the NL representation using execution feedback), and regeneration (refined NL → corrected code). NL-Debugging outperforms code-level Self-Debugging by 4–6pp pass@1 on APPS and Codeforces across difficulty levels using GPT-4o-mini, Claude-3.5-Sonnet, and DeepSeek-Coder-V2-Lite. The key finding is that the 'Sketch' NL format—detailed natural language descriptions—enables broader modification space than code-level edits, and that refinement in the NL space (not NL→code translation) drives the gains. This establishes structured intermediate representations as valuable for debugging at ExeSpec's target venue (EMNLP). ExeSpec's specifications provide a more structured, execution-verifiable intermediate representation than free-form NL sketches—enabling systematic property checking rather than holistic NL reasoning. StoryCoder (ACL 2026 Main, arXiv 2604.14631) transforms code generation problems into structured narratives (task overview, constraints, test examples), achieving +18.7% zero-shot pass@10 across 11 models on HumanEval, LiveCodeBench, and Codeforces—concurrent training-free work validating structured reformulation, but using narrative structure rather than behavioral specifications. SCoT (ACL 2024) adds program structure to CoT without execution grounding.\n\n**Execution-grounded and RL training methods.** Think Like You Execute (arXiv 2512.00127) achieves +22–27pp on CRUXEval/LiveCodeBench via fine-tuning on 54K execution-trace-verified rationales. EG-CFG (NeurIPS 2025, arXiv 2506.10948) uses real-time execution via beam search over candidate lines—computationally expensive and generation-only. RLEF (ICML 2025) trains code LLMs with RL execution feedback. Think Anywhere (arXiv 2603.29957) enables on-demand reasoning during code generation via RL training. CURE (NeurIPS 2025 Spotlight) co-evolves coder and tester via RL. FixAudit (arXiv 2604.05560) jointly trains a fixer and auditor—the auditor generates new tests revealing implementation-specific bugs in the fixer's candidate code, achieving 35–37% pass@1 improvement on APPS, CodeContests, and xCodeEval with a 7B model. All require training—not applicable with frozen models.\n\n**The gap.** PGS established that property-based feedback outperforms test-based feedback for code generation. Three open questions remain: (1) Can execution grounding improve property reliability beyond PGS's public-test validation (addressing the 48.9% accuracy on hard problems)? (2) Do property-based approaches generalize to debugging, issue resolution, and completion—task types no property-based method has evaluated? (3) Which property types contribute to which tasks? No work addresses all three questions in a unified, training-free framework with controlled experimental design.",
+  "approach": "We propose ExeSpec, a training-free inference-time framework that uses execution-grounded behavioral specifications as verifiable structured intermediate reasoning for LLM code tasks. Building on PGS's demonstration that property-based feedback outperforms test-based feedback for code generation, ExeSpec advances the property-based paradigm in three directions: (1) execution grounding that verifies spec consistency and catches hallucinated properties before downstream use, (2) extension to debugging, issue resolution, and cross-file completion beyond generation/repair, and (3) decomposition of specifications into typed components with controlled ablation.\n\n**Stage 1: Spec Elicitation.** Given a task input, prompt the LLM to generate structured behavioral specifications in a lightweight JSON schema containing five component types: (a) I/O example pairs (shared with both PGS properties and AlphaCodium test cases—the overlap region), (b) preconditions (constraints on valid inputs/states, e.g., 'n >= 0', 'input list is non-empty'), (c) postconditions (properties guaranteed on outputs, e.g., 'output is sorted in ascending order', 'len(output) == len(input)'), (d) type constraints (parameter and return type annotations with generics), and (e) invariants (loop invariants, monotonicity, ordering properties). The schema is task-adapted: generation tasks derive specs from docstrings; debugging tasks elicit intended-vs-observed behavioral contrasts; issue resolution tasks extract expected behavioral changes from issue descriptions and failing test context; completion tasks infer interface contracts from cross-file context.\n\n**Stage 2: Execution Grounding.** This is ExeSpec's primary differentiator from PGS. While PGS validates properties against public test cases for soundness, ExeSpec additionally performs: (i) cross-spec consistency checking—verifying that preconditions, postconditions, invariants, and type constraints are mutually satisfiable and non-contradictory (e.g., a postcondition asserting 'output is sorted' does not contradict an invariant asserting 'elements maintain original order'); (ii) candidate-code probing—generating a quick candidate solution, executing against spec-derived assertions including both I/O examples AND postcondition property checks, identifying spec-execution mismatches, and revising contradicted specs before final generation. For debugging tasks: execute the buggy code, compare execution traces against specs to identify precisely which behavioral constraints are violated, producing structured violation reports. For issue resolution (SWE-bench Pro): extract behavioral expectations from issue descriptions and failing tests, generate specs characterizing the intended fix behavior, and validate spec consistency against the existing test suite via Docker-based execution. For cross-file completion: static grounding via type inference from imported modules, parameter/return types from call-site usage context, and validation via type checkers (mypy/pyright for Python, tsc for TypeScript). When full execution is unavailable, static grounding serves as fallback: cross-spec consistency checking, type inference, and contradiction detection.\n\n**Stage 3: Spec-Guided Task Completion.** Feed grounded specs alongside the original task input to the LLM for final output. When outputs violate specs, structured violation reports (which constraints failed, expected vs. actual, which spec component) feed back for iterative refinement (up to 3 rounds). Unlike PGS's structurally minimal counterexamples, ExeSpec's feedback references typed behavioral properties ('postcondition: output must be monotonically increasing') with component attribution, enabling the LLM to reason about which aspect of behavioral intent was violated.\n\n**Baselines and controlled experiments.** The experimental design isolates contributions through six controlled conditions: (a) ExeSpec full (5-component specs + execution grounding), (b) PGS baseline (property-based testing following PGS's Generator-Tester framework, reimplemented on our benchmarks—the paper's critical comparison, isolating the contribution of execution grounding and component decomposition beyond PGS's approach), (c) AlphaCodium-style baseline (problem reflection + AI test generation + iterative execution/refinement with test anchoring—isolating the property-vs-test distinction, extending PGS's finding to new benchmarks), (d) Self-Spec baseline (specs without execution grounding—isolating the grounding contribution), (e) direct prompting (no intermediate reasoning), (f) NL-Debugging baseline on DebugBench only (NL intermediate representation via backtranslation/refinement/regeneration—isolating structured specs vs. free-form NL for debugging, providing venue-relevant comparison to EMNLP 2025 work). The delta between (a) and (b) is the paper's core contribution—whether execution grounding and component decomposition provide gains beyond PGS's property-based approach. The delta between (b) and (c) replicates PGS's finding (properties > tests) on new benchmarks (CodeContests, DebugBench, SWE-bench Pro) where PGS has not been evaluated. A critical spec-component ablation further decomposes: (i) full specs (I/O + pre/postconditions + invariants + type constraints), (ii) I/O-only specs (functionally equivalent to test cases—if this matches full specs, the novelty claim collapses), (iii) structural specs only (pre/postconditions + invariants + type constraints, no I/O)—this ablation is the critical honesty test.\n\n**Benchmarks.** Primary benchmarks with all six conditions + spec-component ablation: DebugBench (C++/Java/Python debugging—specs naturally capture intended-vs-observed behavioral contrasts, and NL-Debugging comparison is venue-relevant), CodeContests (competitive programming—direct comparison to AlphaCodium on its home benchmark, and first evaluation of PGS-style property feedback on CodeContests), and SWE-bench Pro (real-world issue resolution—adopted as co-primary benchmark given that SWE-bench Verified is compromised by contamination in frontier models; OpenAI stopped reporting Verified scores in February 2026 after finding frontier models could reproduce verbatim gold patches. We use Qwen2.5-Coder-7B/32B, sub-frontier models unlikely to exhibit the verbatim gold-patch reproduction observed in GPT-5.2 and Claude Opus 4.5, providing a contamination-resistant evaluation baseline. We report results on both SWE-bench Pro and Verified for completeness, noting the community's shift toward Pro for reliable evaluation). Supplementary benchmarks with ExeSpec vs. direct prompting only: HumanEval+/MBPP+ (for Self-Spec and PGS comparability—PGS reports results on these benchmarks, enabling direct numerical comparison), CrossCodeEval and RepoBench (cross-file completion with static grounding via type checkers). We explicitly acknowledge that cross-file completion relies on weaker static grounding than dynamic execution and report the proportion of instances where only static grounding was available.\n\n**Models.** We use Qwen2.5-Coder-7B-Instruct and Qwen2.5-Coder-32B-Instruct as established dense models with strong code performance and reproducible vLLM inference; the method is model-agnostic and we expect gains to transfer to newer architectures including MoE models (e.g., Qwen3-Coder-Next). Using established models enables direct comparison with PGS, which evaluates Qwen2.5-Coder on the same model family.\n\n**Analysis.** Beyond standard metrics: (1) spec quality analysis—correlation between spec correctness and downstream task performance; (2) grounding effectiveness—proportion of hallucinated specs caught by execution grounding vs. PGS's public-test validation (the key comparison); (3) spec-component contribution—which spec types most improve each task type; (4) test overfitting rates—proportion of solutions passing visible tests but failing held-out tests, comparing ExeSpec vs. baselines; (5) property accuracy by difficulty—replicating PGS's accuracy breakdown (82.4%/62.8%/48.9% by difficulty) on our benchmarks and measuring whether execution grounding improves it; (6) qualitative case studies showing where execution-grounded specs enable corrections that both test-only and ungrounded property methods miss.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~150–200 H100-hours (primary benchmarks DebugBench + CodeContests + SWE-bench Pro with 6 conditions × 2 models + NL-Debugging on DebugBench + spec-component ablation on primary benchmarks; supplementary HumanEval+/MBPP+ + CrossCodeEval + RepoBench with ExeSpec vs. direct prompting × 2 models; PGS baseline reimplementation on all primary benchmarks; using vLLM batch inference with Qwen2.5-Coder-7B on 1 H100 and 32B on 1–2 H100s)",
+      "gpu_utilization": "Moderate (~40–55%): alternating between inference bursts and execution-grounding phases; SWE-bench Pro Docker execution and DebugBench compilation are CPU-bottlenecked",
+      "timeline": "18–22 days (days 1–4: framework implementation + PGS baseline reimplementation following published Generator-Tester method + AlphaCodium baseline adaptation from open-source code + NL-Debugging baseline setup + eval harness configuration leveraging SWE-bench Docker harness and EvalPlus; days 5–8: primary benchmarks DebugBench + CodeContests with all 6 conditions; days 9–12: SWE-bench Pro + SWE-bench Verified with all 6 conditions; days 13–14: supplementary benchmarks HumanEval+/MBPP+ + CrossCodeEval + RepoBench with ExeSpec vs. direct prompting; days 15–17: spec-component ablation + grounding effectiveness analysis + property accuracy comparison vs. PGS; days 18–22: writing + analysis)",
+      "team": "2 researchers (1 lead for ExeSpec framework + execution-grounding pipeline + spec-component ablation design, 1 for PGS/AlphaCodium/NL-Debugging baseline reimplementation + benchmark integration + evaluation infrastructure)",
+      "estimated_gpu_cost": "$450–600 (on-demand H100 at ~$3/hr)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~170–230 H100-hours (same scope as manual with more systematic spec quality validation, PGS comparison analysis, and additional analysis iterations)",
+      "gpu_utilization": "Moderate–High (~50–65%): agent queues experiment batches across benchmarks while human reviews spec quality and PGS baseline fidelity between rounds",
+      "timeline": "14–18 days (agent handles framework code, experiment orchestration, and result collection; human validates spec schema design, reviews PGS and AlphaCodium baseline fidelity, and guides ablation priorities)",
+      "team": "1 researcher, ~3–4 hrs/day reviewing spec elicitation outputs, validating PGS baseline implementation matches the published Generator-Tester framework, reviewing NL-Debugging baseline, approving experiment plans, and analyzing results",
+      "claude_api_cost": "$150–250 (1500–2500 orchestration turns at ~$0.10/turn)",
+      "estimated_gpu_cost": "$510–690",
+      "risk_note": "PGS baseline reimplementation fidelity is critical—must reproduce the Generator-Tester property-based testing framework faithfully; NL-Debugging baseline must reproduce the backtranslation→NL refinement→regeneration pipeline; SWE-bench Pro evaluation infrastructure may require additional setup compared to the established Verified harness"
+    },
+    "auto_research": {
+      "gpu_hours": "~200–270 H100-hours (systematic sweeps over spec granularity levels, grounding strategies per benchmark, additional model backbone DeepSeek-R1-Distilled-32B for PGS comparability, temperature and sample-count variations)",
+      "gpu_utilization": "High (~80–90%): agent pipelines experiments back-to-back with minimal idle; parallel runs across benchmarks on multiple H100s",
+      "timeline": "8–12 days with 4–8 H100s available concurrently (bottlenecked by SWE-bench Pro Docker execution and DebugBench compilation)",
+      "team": "0 (initial setup ~4–5 hours for benchmark harness configuration, PGS/AlphaCodium/NL-Debugging baseline setup, and vLLM model serving, then fully autonomous)",
+      "claude_api_cost": "$250–450 (2500–4500 turns for iterative experiment design, cross-benchmark analysis, and paper drafting)",
+      "estimated_gpu_cost": "$600–810",
+      "speed_bottleneck": "SWE-bench Pro Docker-based test execution and DebugBench compilation/execution; inference itself is fast with vLLM on H100",
+      "risk_note": "Agent may over-optimize for one benchmark; need guardrails to ensure PGS baseline is faithfully implemented (not strawmanned), NL-Debugging baseline is accurate, and spec-component ablation runs completely even if early results are unfavorable"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission May 25, 2026; commitment Aug 2, 2026; NLP and Code Models track; Budapest, Hungary)",
+    "ACL 2027 (expected ARR commitment ~Jan 2027; fallback if EMNLP revision needed)",
+    "NAACL 2027 (expected ARR commitment ~Mar 2027; second fallback)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Use Property-Based Testing to Bridge LLM Code Generation and Validation / Effective LLM Code Refinement via Property-Oriented and Structurally Minimal Feedback (PGS; arXiv 2506.18315, June 2025, revised May 2026)",
+    "NL-Debugging: Exploiting Natural Language as an Intermediate Representation for Code Debugging (EMNLP 2025 Main, ACL Anthology 2025.emnlp-main.80, arXiv 2505.15356)",
+    "ContractEval: A Benchmark for Evaluating Contract-Satisfying Assertions in Code Generation (arXiv 2510.12047)",
+    "AlphaCodium: Code Generation through Flow Engineering (arXiv 2401.08500, Jan 2024)",
+    "CodeT: Code Generation with Generated Tests (ICLR 2023, arXiv 2207.10397)",
+    "Teaching Large Language Models to Self-Debug (Self-Debugging; arXiv 2304.05128, 2023)",
+    "Revisit Self-Debugging with Self-Generated Tests for Code Generation (ACL 2025 Long, arXiv 2501.12793)",
+    "S*: Test Time Scaling for Code Generation (EMNLP 2025 Findings, arXiv 2502.14382)",
+    "BACE: Bayesian Anchored Co-Evolution of Code and Test Populations (GECCO 2026, arXiv 2603.28653)",
+    "Self-Spec: Model-Authored Specifications for Reliable LLM Code Generation (Agents4Science 2025)",
+    "StoryCoder: Narrative Reformulation for Structured Reasoning in LLM Code Generation (ACL 2026 Main, arXiv 2604.14631)",
+    "FixAudit: An Iterative Test-and-Repair Framework for Competitive Code Generation (arXiv 2604.05560)",
+    "From Prompts to Properties: Rethinking LLM Code Generation with Property-Based Testing (FSE Companion 2025/LLanMER, ACM 10.1145/3696630.3728702)",
+    "Execution Guided Line-by-Line Code Generation (EG-CFG; NeurIPS 2025, arXiv 2506.10948)",
+    "Think Like You Execute: Verifiable Chain of Thought from Program Traces (arXiv 2512.00127)",
+    "Think Anywhere in Code Generation (arXiv 2603.29957, Mar 2026)",
+    "SpecRover: Code Intent Extraction via LLMs (ICSE 2025)",
+    "CURE: Co-Evolving LLM Coder and Unit Tester via Reinforcement Learning (NeurIPS 2025 Spotlight)",
+    "Code Execution as Grounded Supervision for LLM Reasoning (EMNLP 2025)",
+    "CodeSpecBench: Benchmarking LLMs for Executable Behavioral Specification Generation (arXiv 2604.12268, Apr 2026)",
+    "Specification Vibing for Automated Program Repair (VibeRepair; arXiv 2602.08263, Feb 2026)",
+    "LLM-Assisted Repository-Level Generation with Structured Spec-Driven Engineering (SSDE; FSE Companion 2026, arXiv 2605.02455)",
+    "Investigating Test Overfitting on SWE-bench (arXiv 2511.16858)",
+    "The Undecidability of Overfitting in Automated Program Repair (ICSE 2026 NIER)",
+    "RLEF: Grounding Code LLMs in Execution Feedback with Reinforcement Learning (ICML 2025)",
+    "Structured Chain-of-Thought Prompting for Code Generation (SCoT; ACL 2024)",
+    "Qwen2.5-Coder Technical Report (arXiv 2409.12186)"
+  ],
+  "description": "We propose ExeSpec, a training-free inference-time framework that uses execution-grounded behavioral specifications as verifiable structured intermediate reasoning for LLM code tasks. Building on PGS's demonstration (arXiv 2506.18315) that property-based feedback outperforms test-based methods by 23.1–37.3% relative pass@1 on generation benchmarks, ExeSpec advances the property-based paradigm in three directions: (1) execution grounding that verifies spec consistency and catches hallucinated properties before downstream use—addressing PGS's property accuracy drop to 48.9% on hard problems and ContractEval's finding of 0% contract satisfaction under standard prompting; (2) extension to four task types (generation, debugging, issue resolution, completion) on benchmarks PGS does not cover (CodeContests, DebugBench, SWE-bench Pro); (3) decomposition into 5 typed spec components (I/O examples, preconditions, postconditions, invariants, type constraints) with controlled ablation revealing which components aid which tasks. The method operates in three stages: Spec Elicitation (task-adapted structured spec generation), Execution Grounding (cross-spec consistency checking + candidate-code probing to verify specs before use), and Spec-Guided Completion (grounded specs as verified intermediate reasoning with typed violation feedback). The experimental design isolates contributions through six conditions: (a) ExeSpec full, (b) PGS baseline (property-based testing reimplemented on our benchmarks—the critical comparison isolating execution grounding's contribution), (c) AlphaCodium-style baseline (test-based—extending PGS's property-vs-test finding to new benchmarks), (d) Self-Spec baseline (specs without grounding), (e) direct prompting, (f) NL-Debugging baseline on DebugBench (NL intermediate representation from EMNLP 2025—venue-relevant comparison). The spec-component ablation tests whether I/O-only specs match full specs (if so, the novelty claim collapses—reported honestly). Primary benchmarks: DebugBench (debugging), CodeContests (competitive programming, AlphaCodium's benchmark), SWE-bench Pro (issue resolution, replacing Verified as primary due to contamination—Qwen2.5-Coder-7B/32B are sub-frontier models unlikely to exhibit the verbatim gold-patch reproduction observed in frontier models). Supplementary: HumanEval+/MBPP+ (PGS/Self-Spec comparability), CrossCodeEval/RepoBench (completion with static grounding). Models: Qwen2.5-Coder-7B/32B-Instruct as established dense models with reproducible vLLM inference; the method is model-agnostic. Within 150–200 H100-hours and ~20 days. Primary target: EMNLP 2026 (ARR May 25, 2026).",
+  "project_name": "test_spec_guided_repair",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL VENUE MISMATCH: User explicitly requested EMNLP 2026 (ARR deadline 2026-05-25, NLP and Code Models track), but the idea targets ICSE 2027, AAAI 2027, and FSE 2027 — all SE venues. The idea must be redesigned or reframed for EMNLP.", "CRITICAL COMPUTE VIOLATION: User constrained to ≤200 H100-hours total. The idea estimates 250-400 A100-80GB hours (manual mode). Running Kimi K2-Instruct (1T params MoE, requiring 4×A100 per instance) adds substantial inference costs not fully accounted for.", "CRITICAL TIMELINE VIOLATION: User has ~14 days. The idea estimates 3-5 months (manual), 6-10 weeks (HIL), or 1-3 weeks with 8-16 A100s (auto). None of these fit the user's constraint.", "EVAL BENCHMARK MISMATCH: User requested evaluation on SWE-bench Verified, HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, and CodeContests. The idea only covers SWE-bench Verified and Defects4J (which isn't even in the user's list). Missing 5 of 6 required benchmarks.", "MISSING CRITICAL RELATED WORK: (1) SpecRover/AutoCodeRover-v2 (ICSE 2025) — already does specification inference for patching; (2) CURE (NeurIPS 2025 Spotlight) — RL co-evolution of coder and tester; (3) CodeSpecBench (arXiv 2604.12268, Apr 2026) — benchmark showing LLMs achieve only 20.2% on repo-level behavioral spec generation; (4) Test overfitting undecidability (ICSE 2026 NIER) + empirical study (arXiv 2511.16858) showing 21-33% of LLM patches overfit on visible tests; (5) Dynamic Cogeneration at Google (arXiv 2601.19066); (6) SWE-Tester (arXiv 2601.13713).", "NOVELTY CONCERN: The idea is too similar to VibeRepair (arXiv 2602.08263, Feb 2026). VibeRepair already translates code into structured behavioral specifications for repair, achieving SOTA on Defects4J. The proposed delta — using test assertions instead of NL as the specification source — is an incremental variant, not a fundamentally new paradigm. SpecRover (ICSE 2025) also does specification inference for repair.", "TOPIC SCOPE TOO NARROW: User asked for 'code understanding and generation' covering repo-level comprehension, code reasoning, debugging, test generation, code-to-documentation, cross-language transfer. The idea focuses narrowly on Java program repair via Defects4J, which is only one subtask and one language.", "MISLEADING CLAIMS: '174/178 correct repairs' reads as a fraction but actually means 174 on v1.2 and 178 on v2.0. 'Proving specification-level repair is superior' overstates VibeRepair's own conclusions. The 48.29% for Repair-R1 represents only a 2.68pp improvement over baseline.", "TEST OVERFITTING NOT ADDRESSED: An ICSE 2026 NIER paper proves test overfitting is theoretically undecidable when full specifications are unavailable. An empirical study shows 21-33% of LLM patches overfit on visible tests. The idea's reliance on auto-generated tests as specifications is directly vulnerable to this fundamental limitation."]
+Feedback: This idea has a reasonable technical intuition (test assertions as behavioral specs) but fundamentally fails to meet the user's requirements. Here is what needs to change:
+
+1. **VENUE**: Reframe for EMNLP 2026 (NLP and Code Models track) or propose a different idea entirely. For EMNLP, the contribution must emphasize NLP methodology (e.g., how LLMs reason about code specifications, a new inference-time algorithm for code understanding) rather than SE pipeline engineering. EMNLP reviewers care about language model capabilities, not Defects4J leaderboard numbers.
+
+2. **SCOPE**: Broaden beyond Java program repair. The user wants 'code understanding and generation' covering multiple tasks (debugging, test generation, code reasoning, cross-language transfer). Consider a method that applies across multiple code tasks, not just APR.
+
+3. **BENCHMARKS**: Must evaluate on the user's required benchmarks: SWE-bench Verified, HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, CodeContests. Drop Defects4J (not requested).
+
+4. **COMPUTE**: Stay within ≤200 H100-hours. Use smaller models (DeepSeek-Coder-V2-Lite-Instruct 16B, StarCoder2-15B, Qwen2.5-Coder-7B/32B) as the user suggested, not 1T-param Kimi K2. This also aligns with the user's suggested model list.
+
+5. **TIMELINE**: Design for ≤16 days of execution. Build on existing frameworks (aider, SWE-agent, Moatless) as the user suggested. The current 3-5 month estimate is a non-starter.
+
+6. **NOVELTY BOOST**: Differentiate more clearly from VibeRepair and SpecRover. Instead of 'yet another spec-guided repair pipeline,' consider: (a) a novel inference algorithm that uses execution feedback to iteratively refine code understanding, (b) a retrieval-augmented approach with semantic code search for cross-repo transfer, or (c) a method for repo-level context compression that enables better code reasoning — all directions the user explicitly suggested.
+
+7. **ADDRESS TEST OVERFITTING**: Any test-based approach must engage with the ICSE 2026 undecidability result and the empirical overfitting findings. Propose concrete mitigation strategies.
+
+### Round 2 review
+Verdict: revise
+Issues: ["MISSING CRITICAL BASELINES: AlphaCodium (arXiv 2401.08500, Jan 2024) is a training-free, inference-time, test-based iterative flow with problem analysis + AI test generation + iterative refinement against tests. It is the most direct conceptual predecessor to ExeSpec and MUST be cited and compared as a baseline. CodeT (ICLR 2022) and Self-Debugging (arXiv 2304.05128, 2023) are also missing—both are foundational works in execution-based code refinement at inference time.", "MISSING CONCURRENT WORK: BACE (arXiv 2603.28653, Mar 2026) addresses the same 'noisy self-generated tests' problem via Bayesian co-evolution of code and test populations. 'Revisit Self-Debugging with Self-Generated Tests' (arXiv 2501.12793, Jan 2025) directly studies post-execution vs. in-execution self-debugging paradigms with LLM-generated tests. Both must be discussed.", "THIN NOVELTY BOUNDARY: The distinction between 'structured behavioral specifications' (I/O example pairs, pre/postconditions, invariants in JSON schema) and 'self-generated test assertions' is conceptually thin. I/O examples ARE test cases. Pre/postconditions and invariants add something, but AlphaCodium's 'problem analysis' + 'edge case identification' phase also generates structured problem understanding before coding. The paper needs to sharpen why spec-mediated reasoning is fundamentally different from test-mediated refinement, with controlled experiments isolating this distinction.", "HUMANEVAL SATURATION: HumanEval+ and MBPP+ are listed as primary benchmarks, but frontier models already score 93%+ on HumanEval. Even with EvalPlus's harder tests, the benchmark is near saturation. The paper should emphasize DebugBench, CrossCodeEval, CodeContests, and SWE-bench Verified as primary evaluation, and use HumanEval+/MBPP+ only for comparability with Self-Spec.", "SPEC QUALITY BOOTSTRAPPING RISK: CodeSpecBench shows LLMs achieve only 20.2% on repo-level spec generation. If the LLM generates mostly bad specs, execution grounding catches them—but then the method degrades to 'generate specs → discard most → fall back to direct generation.' The paper needs analysis of what happens when spec generation quality is low (e.g., on CrossCodeEval/RepoBench repo-level tasks), including a failure mode analysis.", "TIMELINE IS VERY AGGRESSIVE: 12–16 days for implementing a 3-stage framework with task-adapted spec schemas, integrating 6 benchmarks (including SWE-bench Docker), running 48+ experiment configurations (6 benchmarks × 2 models × 4 baselines + ablations), AND writing a full paper. SWE-bench Verified Docker setup alone can take 2–3 days. Recommend reducing scope: run full comparison on 3 primary benchmarks (DebugBench, CodeContests, SWE-bench Verified) and use 3 others (HumanEval+/MBPP+, CrossCodeEval/RepoBench) for supplementary evaluation with fewer baselines.", "COST ESTIMATE MISSING API COSTS FOR EG-CFG BASELINE: Reproducing an EG-CFG-style execution-only baseline requires beam search with per-line execution, which is substantially more expensive than standard inference. This is either infeasible within budget or needs to be replaced with a simpler 'execution feedback without specs' baseline."]
+Feedback: The revision successfully addresses the critical venue, compute, and scope issues from Round 1. The idea is now properly scoped for EMNLP 2026 with correct benchmarks, models, and budget. However, several issues need resolution:
+
+1. **Sharpen novelty vs. AlphaCodium/CodeT**: These are the most important missing baselines. AlphaCodium (2024) already does training-free, multi-stage, test-based iterative refinement at inference time. ExeSpec must demonstrate that specification-mediated reasoning (structured I/O examples + pre/postconditions + invariants) provides gains BEYOND what test-based refinement alone achieves. Add a controlled experiment: (a) ExeSpec with full specs, (b) AlphaCodium-style test-only refinement, (c) Self-Spec without execution grounding, (d) direct prompting. The delta between (a) and (b) is the paper's core contribution.
+
+2. **De-emphasize saturated benchmarks**: Make DebugBench, CodeContests, and SWE-bench Verified the primary evaluation. Use HumanEval+/MBPP+ for Self-Spec comparability only. Consider adding LiveCodeBench for contamination resistance.
+
+3. **Address spec quality gracefully**: Add a spec quality analysis section showing: (a) what fraction of elicited specs survive execution grounding, (b) how grounding changes spec accuracy, (c) what happens when most specs fail (does the method degrade gracefully?). This directly responds to the CodeSpecBench 20.2% finding and strengthens the paper's analytical contribution.
+
+4. **Simplify the EG-CFG baseline**: Replace the full EG-CFG-style baseline (beam search + per-line execution) with a simpler 'execution feedback without specs' baseline: generate code → execute → feed error messages back → regenerate. This is cheaper and more directly tests the spec contribution.
+
+5. **Reduce timeline risk**: Implement the framework first on HumanEval+/MBPP+ (fast turnaround), validate the approach, then extend to harder benchmarks. Consider submitting to ARR May 25 with 4 benchmarks instead of 6, adding the remaining 2 for the camera-ready.
+
+6. **Cite and discuss**: AlphaCodium (2401.08500), CodeT (ICLR 2022), Self-Debugging (2304.05128), BACE (2603.28653), Revisit Self-Debugging (2501.12793). Position ExeSpec as advancing beyond test-only refinement by introducing verifiable specification reasoning as a structured intermediate representation.
+
+### Round 3 review
+Verdict: revise
+Issues: ["CRITICAL UNADDRESSED R2 FEEDBACK: AlphaCodium (arXiv 2401.08500, Jan 2024), CodeT (ICLR 2023), Self-Debugging (arXiv 2304.05128, 2023), BACE (arXiv 2603.28653, Mar 2026), and 'Revisit Self-Debugging with Self-Generated Tests' (ACL 2025, arXiv 2501.12793) are ALL still missing from key_references and baselines. Round 2 explicitly stated these MUST be cited and compared. AlphaCodium is the most direct conceptual predecessor — a training-free, multi-stage flow with problem reflection, test generation, and iterative execution-based refinement — and must be a baseline, not just a citation.", "NEW MISSING WORK — S* (EMNLP 2025 Findings, arXiv 2502.14382): A training-free test-time scaling framework for code generation that uses execution-based selection with adaptive distinguishing input synthesis. Enables a 3B model to outperform GPT-4o-mini. Published at EMNLP 2025 — the same venue being targeted. This is a highly relevant prior art that directly competes in the 'training-free inference-time code improvement' space.", "NEW MISSING CONCURRENT WORK — SSDE (arXiv 2605.02455, May 2026): 'LLM-Assisted Repository-Level Generation with Structured Spec-Driven Engineering' uses Gherkin specifications and domain models to guide LLM generation with verification against test suites. Concurrent work that overlaps with ExeSpec's structured specification approach at the repo level.", "THIN NOVELTY BOUNDARY WITH ALPHACODIUM: AlphaCodium's pre-processing phase (problem reflection → public tests reasoning → possible solutions ranking) IS structured problem analysis before code generation. AlphaCodium's iterative phase (generate → execute → fix against public + AI tests) IS execution-grounded refinement. ExeSpec's I/O example specs are functionally identical to AlphaCodium's AI-generated test cases. The actual novelty delta — pre/postconditions, invariants, type constraints in JSON schema — must be isolated via controlled ablation: (a) ExeSpec full specs, (b) I/O-only specs (≈ test-only, AlphaCodium-style), (c) structural specs only (pre/postconditions + invariants without I/O). Without this, reviewers will reject for insufficient novelty.", "UNDERSPECIFIED NON-GENERATION TASKS: The approach for cross-file completion (CrossCodeEval, RepoBench) says 'type-check and partially execute the surrounding context to verify inferred specs.' This is vague. How do you generate behavioral specs for incomplete code in a multi-file context? What executable probes work for partial programs? CodeSpecBench shows only 20.2% success at repo-level spec generation — the method may degrade to fallback (soft grounding) for most repo-level instances, making the execution grounding contribution negligible on these benchmarks.", "HUMANEVAL+ STILL NOT DE-EMPHASIZED: Round 2 explicitly recommended making DebugBench, CodeContests, and SWE-bench Verified primary, with HumanEval+/MBPP+ for Self-Spec comparability only. The idea still lists them alongside other benchmarks without prioritization. Frontier models score 93%+ on HumanEval — gains here are not impressive.", "AGGRESSIVE TIMELINE NOT MITIGATED: Round 2 suggested reducing to 3 primary benchmarks + 3 supplementary. The idea still plans full comparison on all 6 benchmarks within 12–16 days. SWE-bench Docker setup alone takes 2–3 days. Recommend: primary (DebugBench, CodeContests, SWE-bench Verified) with full baselines; supplementary (HumanEval+/MBPP+, CrossCodeEval, RepoBench) with ExeSpec vs. direct prompting only."]
+Feedback: This is Round 3, and the idea has improved significantly from Round 1 (correct venue, benchmarks, compute budget) but has failed to address the MOST CRITICAL Round 2 feedback: citing and comparing against AlphaCodium, CodeT, Self-Debugging, BACE, and 'Revisit Self-Debugging.' This is not optional — these are the papers that define the competitive landscape for training-free, execution-based code improvement methods.
+
+Here is exactly what needs to change:
+
+1. **ADD ALPHACODIUM AS PRIMARY BASELINE** (non-negotiable): Replace the 'EG-CFG-style execution-only feedback' baseline with an AlphaCodium-style baseline: problem analysis → AI test generation → iterative code execution/refinement (no structured specs). This directly tests the paper's core claim that specification-mediated reasoning provides gains beyond test-based refinement. The controlled experiment should be: (a) ExeSpec full (specs + execution grounding), (b) AlphaCodium-style (tests + execution feedback, no specs), (c) Self-Spec (specs, no execution grounding), (d) direct prompting. The delta between (a) and (b) is the paper's contribution.
+
+2. **CITE AND POSITION AGAINST S* (EMNLP 2025 Findings)**: S* is the most recent training-free test-time scaling method for code generation, published at your target venue. Position ExeSpec as complementary: S* focuses on parallel/sequential scaling with execution-based selection; ExeSpec focuses on structured intermediate reasoning via verified specs. They could potentially be combined.
+
+3. **SHARPEN THE SPEC VS. TEST DISTINCTION**: The paper must clearly argue why structured behavioral specifications (pre/postconditions, invariants, type constraints) provide fundamentally different reasoning scaffolding compared to test cases. Add a controlled ablation: (a) full specs (I/O + pre/postconditions + invariants), (b) I/O-only specs (≈ test cases), (c) structural specs only (pre/postconditions + invariants, no I/O). If (b) performs similarly to (a), the novelty claim collapses.
+
+4. **SPECIFY THE CROSS-FILE COMPLETION APPROACH**: Describe concretely how ExeSpec generates and validates specs for CrossCodeEval/RepoBench tasks. What does the spec schema look like for incomplete code with cross-file dependencies? What 'lightweight probes' execute for partial programs? If the approach fundamentally differs from function-level generation, say so explicitly.
+
+5. **REDUCE SCOPE TO FIT TIMELINE**: Primary benchmarks with full baselines: DebugBench, CodeContests, SWE-bench Verified. Supplementary with ExeSpec vs. direct prompting only: HumanEval+/MBPP+, CrossCodeEval, RepoBench. This halves the experiment matrix.
+
+6. **ADD TO KEY REFERENCES**: AlphaCodium (2401.08500), CodeT (ICLR 2023, 2207.10397), Self-Debugging (2304.05128), BACE (2603.28653), 'Revisit Self-Debugging' (ACL 2025, 2501.12793), S* (EMNLP 2025 Findings, 2502.14382), SSDE (2605.02455).
+
+### Round 4 review
+Verdict: revise
+Issues: ["CRITICAL MISSING COMPETITOR: PGS (Property-Generated Solver, arXiv:2506.18315, June 2025, revised May 2026) uses high-level program properties instead of test cases as feedback for LLM code refinement, with execution-based property verification and minimal counterexample generation. It achieves 13.4% pass@1 improvement over TDD methods and 1.4-1.6x higher bug fix rate. This shares ExeSpec's core insight (properties > tests) and must be cited, compared against, and clearly differentiated.", "MISSING RELATED WORK: (1) 'From Prompts to Properties: Rethinking LLM Code Generation with Property-Based Testing' (FSE 2025) directly challenges test-based paradigm in favor of properties; (2) ContractEval/PACT (arXiv:2510.12047) benchmarks LLM contract satisfaction showing 0% under standard prompting, validating the problem but also raising spec generation quality concerns; (3) 'Preconditions and Postconditions as Design Constraints for LLM Code Generation' (IEEE Access 2024/2025) directly studies ExeSpec's premise with controlled experiments; (4) StoryCoder (arXiv:2604.14631, ACL 2026) is another training-free structured intermediate reasoning method achieving 18.7% improvement.", "SWE-BENCH VERIFIED CONTAMINATION: The benchmark is now severely contaminated — top score is 93.9% (Claude Mythos), while the same models score only ~46% on SWE-bench Pro. OpenAI has stopped reporting Verified scores. The paper acknowledges contamination but should more seriously consider using SWE-bench Pro as the primary evaluation or running both and comparing. Reporting only Verified results risks reviewer skepticism.", "MODEL CURRENCY: Qwen3-Coder has been released since the idea was designed. EMNLP reviewers may question why the paper uses Qwen2.5-Coder-7B/32B rather than the latest version. Either justify the choice (reproducibility, available at experiment time) or update.", "SPEC GENERATION QUALITY RISK INSUFFICIENTLY ADDRESSED: ContractEval shows 0% contract satisfaction under standard prompting and only 23-41% with explicit contracts. CodeSpecBench shows 20.2% repo-level success. The paper's execution grounding is meant to catch bad specs, but if >60% of specs fail grounding, the method effectively degrades to 'generate specs → discard most → fall back to whatever survives' — potentially no better than test-only methods with fewer but higher-quality tests. The paper should include analysis of spec survival rates and graceful degradation behavior.", "TIMELINE MARGINAL: The manual estimate of 14-18 days with 2 researchers overlaps but can exceed the 16-day deadline. The upper bound should be trimmed to fit. Consider dropping one supplementary benchmark (e.g., RepoBench) to ensure the primary benchmarks are completed thoroughly."]
+Feedback: This is now a well-structured idea that has improved substantially through four rounds. The controlled experimental design with honest ablations is the strongest aspect. However, one critical competitor was discovered that must be addressed before this can pass:
+
+1. **CITE AND DIFFERENTIATE FROM PGS** (most important): PGS (arXiv:2506.18315) shares ExeSpec's core insight that properties outperform tests as LLM code feedback. Differentiate on: (a) ExeSpec execution-grounds the specs themselves (catches hallucinated specs before use), while PGS assumes properties are correct; (b) ExeSpec applies across 4 task types (generation, debugging, completion, issue resolution), PGS focuses on generation/repair; (c) ExeSpec's comprehensive spec schema (5 component types) vs. PGS's single-property checking; (d) ExeSpec's controlled ablation isolates each spec component's contribution. Add PGS as a fifth baseline condition, or at minimum cite and discuss in Related Work with clear differentiation.
+
+2. **CITE FSE 2025 AND ContractEval**: 'From Prompts to Properties' (FSE 2025) validates the property-vs-test framing from a PBT perspective. ContractEval (arXiv:2510.12047) both validates your problem (LLMs fail at contracts) and raises spec quality concerns — use it to motivate your execution grounding stage.
+
+3. **ADDRESS SWE-BENCH CONTAMINATION SERIOUSLY**: Either (a) add SWE-bench Pro as the primary SE benchmark alongside Verified, or (b) follow the paper's current plan but add a contamination analysis section comparing performance on instances with/without known gold patch exposure. Option (a) is safer but adds implementation effort.
+
+4. **ADD SPEC SURVIVAL RATE ANALYSIS**: Report what fraction of generated specs survive execution grounding by task type and model. If survival is low, analyze whether the surviving specs still provide gains over test-only methods. This directly addresses the CodeSpecBench/ContractEval concern and strengthens the paper's analytical contribution.
+
+5. **JUSTIFY MODEL CHOICE**: Add a sentence noting that Qwen2.5-Coder was selected as the strongest open-source code model available at experiment design time, and that the method is model-agnostic. If time permits, add one data point with a newer model.
+
+These are all fixable in one more revision round. The idea's core structure, experimental design, and positioning are sound — the main gap is incomplete coverage of the competitive landscape.
+
+### Round 5 review
+Verdict: revise
+Issues: ["CRITICAL — PGS STILL NOT CITED (Round 4 issue unresolved): PGS (arXiv:2506.18315, 'Use Property-Based Testing to Bridge LLM Code Generation and Validation', June 2025, revised May 2026) shares ExeSpec's core contribution: using program properties instead of test cases for LLM code refinement at inference time. PGS achieves 97.6% HumanEval, 87.2% MBPP, 76.5% LiveCodeBench, 49.7% CodeContests, 37.3% SWE-bench Verified using DeepSeek-R1-32B. It reports 23.1-37.3% relative pass@1 gains over TDD methods and 1.4-1.6x higher bug fix rates. This paper validates ExeSpec's hypothesis but also substantially reduces its novelty. Without citing and differentiating from PGS, any informed reviewer will reject on novelty grounds.", "ROUND 4 ISSUES LARGELY UNADDRESSED: (1) ContractEval/PACT (arXiv:2510.12047) — shows 0% contract satisfaction under standard prompting, motivates execution grounding but raises spec quality concerns — not cited; (2) 'From Prompts to Properties' (FSE 2025 LLanMER) — validates property-vs-test framing — not cited; (3) 'Preconditions and Postconditions as Design Constraints' (IEEE Access 2025) — directly studies ExeSpec's premise with controlled experiments — not cited; (4) StoryCoder (arXiv:2604.14631) — concurrent training-free structured intermediate reasoning — not cited.", "SWE-BENCH VERIFIED CONTAMINATION INSUFFICIENTLY ADDRESSED: OpenAI has officially stopped reporting SWE-bench Verified scores (blog post: 'Why SWE-bench Verified no longer measures frontier coding capabilities'). Top score is 93.9% vs. ~46% on SWE-bench Pro. The idea mentions 'noting contamination concerns per OpenAI's 2026 audit' but still uses Verified as a primary benchmark without proposing SWE-bench Pro as an alternative or replacement. EMNLP reviewers aware of the contamination will question evaluation credibility.", "MODEL CURRENCY: Qwen3-Coder-Next (3B/80B MoE, 256k context, >70% SWE-bench Verified) and DeepSeek V4 have been released. Using Qwen2.5-Coder without justification looks dated. Either justify the choice (available at experiment design time, reproducibility) or add a data point with a newer model.", "NOVELTY BOUNDARY WITH PGS IS THIN: PGS uses LLM-generated abstract properties with execution-based validation and minimal counterexample feedback. ExeSpec uses LLM-generated behavioral specifications (pre/postconditions, invariants, type constraints) with execution grounding and structured violation reports. Both are training-free, inference-time, property-level-rather-than-test-level approaches. The genuine differentiators — (a) execution grounding of specs themselves (PGS assumes properties are ~87% accurate), (b) structured 5-component schema with component ablation, (c) multi-task applicability beyond generation — must be explicitly argued. Without this, the paper reads as a PGS variant with a different spec format.", "MISSING NL-DEBUGGING (EMNLP 2025 Oral): 'Natural Language as Intermediate Representation for Code Debugging' (arXiv:2505.15356) was accepted as an Oral at EMNLP 2025 — the same venue being targeted. It uses NL (not specifications) as an intermediate representation for debugging and shows consistent gains over code-level debugging. This is a strong baseline for the debugging task (DebugBench) and establishes the 'intermediate representation for code tasks' paradigm at this exact venue."]
+Feedback: The idea has matured substantially over 5 rounds — the experimental design with honest ablations, primary/supplementary benchmark distinction, and AlphaCodium baseline are all strong. However, the most critical Round 4 issue (PGS) remains unaddressed, and this is now blocking passage. Here is exactly what needs to change:
+
+1. **CITE AND DIFFERENTIATE FROM PGS** (highest priority, non-negotiable): Add PGS to key_references and landscape. Position ExeSpec's contributions BEYOND PGS's established result (properties > tests): (a) ExeSpec execution-grounds the specs themselves — PGS's verification asymmetry (87% property accuracy) means ~13% of properties are wrong, and PGS has no mechanism to catch them before use; ExeSpec's Stage 2 catches hallucinated specs via execution probes; (b) ExeSpec evaluates across 4 task types (generation, debugging, completion, issue resolution) while PGS evaluates generation and repair; (c) ExeSpec's 5-component schema with component ablation provides fine-grained analysis of which spec types help which tasks — PGS treats properties as a monolithic category. Consider adding PGS as a 5th baseline condition on at least CodeContests and DebugBench, or at minimum cite and discuss with clear differentiation.
+
+2. **ADDRESS SWE-BENCH CONTAMINATION**: Either (a) replace SWE-bench Verified with SWE-bench Pro as primary (preferred — aligns with community trend), or (b) keep Verified but add contamination analysis comparing performance on high-contamination vs. low-contamination instances (requires the contamination labels from OpenAI's audit). Option (a) adds implementation effort but makes the paper future-proof.
+
+3. **CITE ADDITIONAL MISSING WORK**: Add to key_references and discuss in landscape: ContractEval/PACT (2510.12047), NL-Debugging (2505.15356, EMNLP 2025 Oral — important as it's at the same venue), 'From Prompts to Properties' (FSE 2025). These validate ExeSpec's problem framing and provide important context.
+
+4. **JUSTIFY OR UPDATE MODEL CHOICE**: Add one sentence: 'We use Qwen2.5-Coder as the strongest open-source code model with publicly available weights at experiment design time; the method is model-agnostic and we expect consistent gains across model generations.' If feasible within budget, add one supplementary data point with Qwen3-Coder-Next-3B to demonstrate model-agnostic applicability.
+
+5. **SHARPEN THE NARRATIVE**: After citing PGS, reframe ExeSpec's contribution as: 'PGS demonstrated that property-level feedback outperforms test-based feedback for code generation. We advance this finding in three ways: (1) we show that execution-grounded specification verification catches ~X% of hallucinated specs that would corrupt reasoning, (2) we extend property-level reasoning beyond generation to debugging, completion, and issue resolution, and (3) we decompose the contribution of different spec components (I/O, preconditions, postconditions, invariants, type constraints) across task types, providing actionable guidance for spec-mediated code reasoning.'
+
+These changes are all feasible in one revision round. The idea's core structure is sound — it just needs to acknowledge and position against the competitive landscape that has emerged.
+
+### Round 6 review
+Verdict: revise
+Issues: ["CRITICAL — PGS STILL NOT CITED (4th consecutive round): PGS (arXiv:2506.18315, 'Use Property-Based Testing to Bridge LLM Code Generation and Validation', June 2025, revised May 2026) shares ExeSpec's core contribution: using LLM-generated properties (not tests) for code refinement with execution-based validation. PGS validates properties via soundness checks against public tests + sensitivity to known errors, then provides minimal counterexample feedback. It evaluates on HumanEval (97.6%), MBPP (81.2%), and LiveCodeBench (74.5%) with DeepSeek-R1-Distilled-32B. Note: PGS does NOT evaluate on CodeContests or SWE-bench (the Round 5 reviewer's numbers for those benchmarks were incorrect). ExeSpec's genuine differentiators vs. PGS: (1) execution-grounds specs themselves before use via probes, catching hallucinated specs; (2) covers 4 task types vs. PGS's generation-only scope; (3) structured 5-component schema with component ablation vs. PGS's monolithic property checking; (4) structured violation reports vs. minimal counterexamples. These are meaningful but incremental. This is the 4th consecutive round raising this issue — if unaddressed in the next round, this should be grounds for failure.", "NL-DEBUGGING STILL NOT CITED (EMNLP 2025 ORAL): NL-Debugging (arXiv:2505.15356, ACL Anthology 2025.emnlp-main.80) uses natural language as an intermediate representation for debugging, demonstrating gains over code-level debugging. Published as an ORAL at EMNLP 2025 — the exact target venue. This establishes the 'intermediate representation for code tasks' paradigm at this venue and is a critical baseline for DebugBench evaluation. Reviewers at EMNLP 2026 will know this paper.", "CONTRACTEVAL STILL NOT CITED: ContractEval (arXiv:2510.12047) shows 0% contract satisfaction under standard prompting, 23-41% with explicit contracts, 49-53% with contract-violating test examples. This validates ExeSpec's motivation (LLMs need grounding for spec generation) but also quantifies the spec quality challenge. Must be cited to strengthen the execution grounding motivation.", "SWE-BENCH VERIFIED CONTAMINATION INSUFFICIENTLY ADDRESSED: OpenAI has officially stopped reporting SWE-bench Verified scores. All frontier models show training data contamination — models can reproduce exact gold patches verbatim. Claude Opus 4.5 scores 80.9% on Verified but only 45.9% on Pro. While Qwen2.5-Coder (sub-frontier) may be less contaminated, the benchmark's credibility is severely damaged. The paper's approach of 'noting contamination concerns per OpenAI's 2026 audit' and 'reporting held-out test pass rates alongside standard metrics' is insufficient. Either: (a) add SWE-bench Pro as a co-primary benchmark, (b) demonstrate Qwen2.5-Coder-7B/32B are not contaminated on Verified via gold-patch reproduction tests, or (c) at minimum acknowledge that the community has moved to Pro and explain why Verified remains informative for sub-frontier models.", "MODEL CURRENCY UNJUSTIFIED: Qwen3-Coder-Next (3B active / 80B total MoE, 256k context, >70% SWE-bench Verified) has been released. Qwen2.5-Coder remains a valid reproducibility choice, but the paper needs one sentence justifying it (e.g., 'strongest open-source code model with dense architecture available at experiment design time; the method is model-agnostic'). Without justification, EMNLP reviewers may question currency.", "'FROM PROMPTS TO PROPERTIES' (FSE 2025/LLanMER) STILL NOT CITED: This paper applied property-based testing to evaluate StarCoder and CodeLlama on MBPP/HumanEval, finding 30-32% of generated solutions only partially adhere to correctness properties and 18-23% fail outright. Validates ExeSpec's property-vs-test framing from the evaluation side."]
+Feedback: This is Round 6, and the idea's experimental design, controlled baselines, and honest ablation commitment are genuinely strong. However, the repeated failure to cite PGS — now raised for the 4th consecutive round as non-negotiable — is becoming a disqualifying pattern. Here is exactly what must change:
+
+1. **CITE AND DIFFERENTIATE FROM PGS** (FINAL WARNING — if unaddressed in Round 7, this warrants failure): Add PGS to key_references and landscape. Note that PGS evaluates ONLY on HumanEval/MBPP/LiveCodeBench and does NOT evaluate on CodeContests, SWE-bench, or DebugBench — this is actually ExeSpec's opportunity. Position ExeSpec's contributions BEYOND PGS: (a) ExeSpec execution-grounds specs before use (probes catch hallucinated specs); PGS validates properties against public tests but doesn't catch internally inconsistent properties before use. (b) ExeSpec evaluates across 4 task types including debugging and issue resolution — PGS only covers generation. (c) ExeSpec's 5-component ablation decomposes which spec types help which tasks — PGS treats properties as monolithic. (d) ExeSpec directly compares against AlphaCodium on CodeContests (PGS's home turf overlap — neither AlphaCodium nor PGS compares against each other). Reframe the narrative: 'PGS demonstrated that property-level feedback outperforms test-based feedback for code generation. We advance this finding by: (1) showing execution-grounded spec verification catches hallucinated specs that corrupt reasoning, (2) extending property-level reasoning to debugging, completion, and issue resolution, (3) providing fine-grained ablation of which specification components help which task types.'
+
+2. **CITE NL-DEBUGGING AS DEBUGGING BASELINE**: Add NL-Debugging (2505.15356, EMNLP 2025 Oral) to key_references. Position ExeSpec's debugging approach as advancing beyond NL-level debugging by providing structured, execution-verified behavioral constraints (not just NL descriptions). If feasible, add NL-Debugging as a 5th baseline condition on DebugBench — this would strongly differentiate ExeSpec.
+
+3. **ADDRESS SWE-BENCH CONTAMINATION CONCRETELY**: Add one of: (a) 'We additionally evaluate on SWE-bench Pro on a representative subset to validate that gains generalize beyond Verified'; (b) 'We verify Qwen2.5-Coder models are not contaminated by testing gold-patch reproduction rates'; (c) 'We acknowledge SWE-bench Verified's contamination concerns are most severe for frontier models; Qwen2.5-Coder-7B/32B are sub-frontier models unlikely to have been trained on the SWE-bench gold patches.' Option (c) is the minimum acceptable response.
+
+4. **CITE CONTRACTEVAL AND 'FROM PROMPTS TO PROPERTIES'**: ContractEval (2510.12047) motivates execution grounding (0% contract satisfaction without it). 'From Prompts to Properties' (FSE 2025) validates the property-vs-test evaluation framing. Both strengthen ExeSpec's problem statement.
+
+5. **ADD MODEL JUSTIFICATION**: One sentence: 'We use Qwen2.5-Coder-7B/32B-Instruct as well-established dense models with strong code performance and reproducible inference via vLLM; the method is model-agnostic and we expect consistent gains across model generations.' If time/budget permit, add one supplementary data point with a Qwen3 model.
+
+The core idea is sound and the experimental design is rigorous. But an EMNLP reviewer who has read PGS (published June 2025, revised May 2026 — highly visible) will immediately recognize the overlap and reject if PGS is not acknowledged. This is the most critical fix.
+
+### Round 7 review
+Verdict: revise
+Issues: ["CRITICAL — PGS STILL NOT CITED (5TH CONSECUTIVE ROUND): PGS (arXiv:2506.18315, 'Use Property-Based Testing to Bridge LLM Code Generation and Validation', June 2025, revised as 'Effective LLM Code Refinement via Property-Oriented and Structurally Minimal Feedback', May 2026) shares ExeSpec's core contribution: using LLM-generated abstract properties instead of test cases for code refinement with execution-based validation at inference time, training-free. PGS evaluates on HumanEval, MBPP, and LiveCodeBench ONLY (NOT CodeContests or SWE-bench — earlier reviewer claims about PGS's CodeContests/SWE-bench numbers were incorrect). PGS achieves 23.1-37.3% relative pass@1 improvement over TDD methods using DeepSeek-R1-Distilled-32B. This has been raised in Rounds 4, 5, 6, and 7 — all unaddressed. If unaddressed in Round 8, this MUST result in failure. No exceptions.", "NL-DEBUGGING STILL NOT CITED (3RD ROUND): NL-Debugging (arXiv:2505.15356, ACL Anthology 2025.emnlp-main.80) was accepted as an ORAL at EMNLP 2025 — the exact target venue. It uses natural language as an intermediate representation for debugging via backtranslation → NL refinement → regeneration, achieving substantial gains on APPS and Codeforces. EMNLP 2026 reviewers WILL know this paper. It establishes the 'structured intermediate representation for code tasks' paradigm at this venue and is a critical baseline for DebugBench evaluation.", "CONTRACTEVAL STILL NOT CITED (3RD ROUND): ContractEval (arXiv:2510.12047) shows 0% contract satisfaction under standard prompting, 23-41% with explicit contracts, 49-53% with example-augmented specification. This simultaneously validates ExeSpec's motivation (LLMs need grounding for contract/spec generation) AND quantifies the spec quality challenge. Must be cited to strengthen execution grounding motivation.", "ALPHACODIUM 44% CLAIM IS MISLEADING: The idea states 'AlphaCodium's flow engineering raises CodeContests pass@5 from 19% to 44%.' This is the VALIDATION SET result (117 problems). On the TEST SET (165 problems), AlphaCodium achieves 29% pass@5 (up from 12% baseline). The distinction must be clarified to avoid misleading readers.", "SWE-BENCH VERIFIED CONTAMINATION REMAINS INADEQUATELY ADDRESSED: OpenAI officially stopped reporting Verified scores in February 2026 after finding frontier models could reproduce verbatim gold patches. The current response ('noting contamination concerns, we report held-out test pass rates alongside standard metrics') is insufficient. Minimum acceptable: explicitly argue that Qwen2.5-Coder-7B/32B are sub-frontier models unlikely to exhibit the same contamination patterns as GPT-5.2/Claude Opus 4.5, and note that the community has moved to SWE-bench Pro. Better: add SWE-bench Pro as a co-primary benchmark.", "MODEL CURRENCY UNJUSTIFIED: Qwen3-Coder-Next (3B active/80B total MoE, 256k context, >70% SWE-bench Verified) was released February 2026. Using Qwen2.5-Coder without a justification sentence will invite reviewer questions. Add: 'We use Qwen2.5-Coder-7B/32B-Instruct as established dense models with reproducible vLLM inference; the method is model-agnostic.'", "MISSING ADDITIONAL RELEVANT WORK: (1) StoryCoder (arXiv:2604.14631, ACL 2026 Main) — training-free structured intermediate reasoning via narrative reformulation, +18.7% pass@10 across 11 models. Concurrent work using structured intermediate representations for code. (2) FixAudit (arXiv:2604.05560, April 2026) — jointly trains fixer and auditor, 35-37% improvement on CodeContests. (3) 'From Prompts to Properties' (FSE Companion 2025/LLanMER) — applies PBT to evaluate LLM code, finding 30-32% partial failures that pass@k misses. These should be cited in landscape or related work."]
+Feedback: This is Round 7, and the idea's experimental design, controlled baselines, and honest ablation commitment are the strongest aspects of the proposal. However, the repeated failure to cite PGS — now flagged for the 5TH CONSECUTIVE ROUND — is approaching disqualification territory. Here is exactly what must change:
+
+1. **CITE AND DIFFERENTIATE FROM PGS** (ABSOLUTE FINAL CHANCE — failure to address in Round 8 means automatic fail): Add PGS (arXiv:2506.18315) to key_references and landscape. Critically, note that PGS evaluates ONLY on HumanEval/MBPP/LiveCodeBench and does NOT evaluate on CodeContests, SWE-bench, or DebugBench. ExeSpec's differentiators vs. PGS: (a) ExeSpec execution-grounds specs BEFORE use via probes, catching hallucinated/contradictory specs — PGS validates properties against public tests but assumes ~87% property accuracy without catching internally inconsistent properties; (b) ExeSpec evaluates across 4 task types (generation, debugging, completion, issue resolution) — PGS covers generation/repair only; (c) ExeSpec's 5-component schema with component ablation decomposes which spec types help which tasks — PGS treats properties as a monolithic category; (d) ExeSpec directly compares against AlphaCodium on CodeContests, a benchmark neither PGS nor AlphaCodium compares against each other on. Reframe narrative: 'PGS demonstrated that property-level feedback outperforms test-based feedback for code generation. We advance this by: (1) execution-grounding specs to catch hallucinated properties, (2) extending to debugging/completion/issue-resolution, (3) decomposing spec component contributions via controlled ablation.'
+
+2. **CITE NL-DEBUGGING** (EMNLP 2025 Oral — reviewers at your target venue will know this): Add NL-Debugging (2505.15356) to key_references and landscape. Position ExeSpec's debugging as advancing beyond NL-level intermediate reasoning by providing structured, execution-verified behavioral constraints. Consider adding NL-Debugging as a 5th baseline condition on DebugBench for a strong venue-specific comparison.
+
+3. **CITE CONTRACTEVAL**: Add ContractEval (2510.12047) to motivate execution grounding: '0% contract satisfaction under standard prompting validates the need for execution-based spec verification.'
+
+4. **FIX ALPHACODIUM 44% CLAIM**: Clarify as 'AlphaCodium raises CodeContests validation-set pass@5 from 19% to 44% (test-set: 12% to 29%)' or simply cite the test-set numbers.
+
+5. **ADDRESS SWE-BENCH CONTAMINATION**: Add one paragraph: 'We use Qwen2.5-Coder-7B/32B, sub-frontier models unlikely to exhibit the verbatim gold-patch reproduction observed in frontier models (GPT-5.2, Claude Opus 4.5). We additionally note that the community has moved toward SWE-bench Pro for frontier evaluation; our results on sub-frontier models provide a contamination-resistant baseline.'
+
+6. **ADD MODEL JUSTIFICATION**: One sentence: 'We use Qwen2.5-Coder as established dense models with strong code performance and reproducible vLLM inference; the method is model-agnostic.'
+
+The core structure is sound. Fix the competitive landscape and this can pass.
+
+### Round 8 review
+Verdict: revise
+Issues: ["CRITICAL FACTUAL ERROR — PGS v2 BENCHMARK COVERAGE: The idea states 'PGS does not evaluate on CodeContests, SWE-bench, or debugging benchmarks' (landscape section) and 'evaluation spans four task types on benchmarks PGS does not cover (CodeContests, SWE-bench Pro, DebugBench)' (approach section). PGS v2 (revised May 1, 2026, title 'Effective LLM Code Refinement via Property-Oriented and Structurally Minimal Feedback') evaluates on FIVE benchmarks: HumanEval, MBPP, LiveCodeBench, CodeContests, AND SWE-bench. On CodeContests with Qwen2.5-Coder: PGS achieves ~22.4% pass@1 vs. baseline ~15%. On SWE-bench with Qwen2.5-Coder: PGS achieves ~12.8% vs. baseline ~10%. PGS v2 uses 6 models including Qwen3-30B, DeepSeek-V3.1, and Claude-Sonnet-4. The idea claims awareness of the v2 revision ('revised May 2026') but bases its differentiation on v1's benchmark scope. This invalidates one of ExeSpec's three claimed differentiators and must be corrected.", "CRITICAL — PGS PROPERTY ACCURACY NUMBERS ARE INCORRECT: The idea cites 'property generation accuracy of 82.4% (easy), 62.8% (medium), and 48.9% (hard) on LiveCodeBench.' PGS v2 Table 2 reports property GENERATION accuracy of 90.6% (easy), 67.6% (medium), 32.4% (hard), with VERIFICATION accuracy of 93.8%/91.2%/76.5%. Neither metric matches the idea's cited numbers. The hard-problem generation accuracy (32.4%) is actually WORSE than claimed (48.9%), which ironically strengthens ExeSpec's motivation—but the numbers must be corrected for credibility.", "TIMELINE VIOLATION: The manual estimate of 18–22 days exceeds the user's hard constraint of ≤16 days. The HIL estimate of 14–18 days barely fits at the low end. The idea should scope to fit within 16 days—either by using the HIL/auto mode as the primary plan or by reducing scope (e.g., dropping one supplementary benchmark).", "NOVELTY REPOSITIONING NEEDED: With PGS v2 covering CodeContests and SWE-bench, ExeSpec's narrative must shift from 'extending PGS to new benchmarks' to 'improving upon PGS via execution grounding on shared benchmarks (catching hallucinated specs that PGS misses) + extending to genuinely new tasks (debugging on DebugBench, cross-file completion on CrossCodeEval/RepoBench) + providing component-level decomposition PGS lacks.' The remaining differentiators are valid: (1) execution grounding catches internally inconsistent specs (PGS validates against public tests but doesn't check inter-property consistency), (2) DebugBench evaluation (PGS doesn't cover debugging), (3) 5-component decomposition with ablation, (4) SWE-bench Pro (contamination-resistant vs. PGS's standard SWE-bench), (5) cross-file completion. But the narrative must be honest about overlap.", "PGS BASELINE COMPARISON MORE COMPLEX THAN ACKNOWLEDGED: PGS v2 already reports Qwen2.5-Coder results on CodeContests and SWE-bench. Rather than reimplementing PGS from scratch, ExeSpec should cite PGS v2's published numbers as the baseline on these benchmarks (with appropriate caveats about experimental setup differences), and reimplement PGS only for DebugBench/CrossCodeEval where PGS has no published numbers. This saves significant implementation time and avoids the risk of a strawmanned reimplementation.", "MODEL CURRENCY GAP WIDENED: PGS v2 uses Qwen3-30B, DeepSeek-V3.1, and Claude-Sonnet-4 alongside Qwen2.5-Coder. ExeSpec uses only Qwen2.5-Coder-7B/32B. While the method is model-agnostic and using Qwen2.5-Coder enables model-controlled comparison with PGS v2, EMNLP reviewers may question why ExeSpec doesn't also evaluate on at least one newer model. Consider adding one data point with Qwen3-30B (used by PGS v2) on a primary benchmark."]
+Feedback: The idea has improved dramatically over 8 rounds — PGS is finally cited, NL-Debugging is a baseline, ContractEval motivates execution grounding, the experimental design is rigorous, and the honest ablation commitment is the proposal's strongest feature. However, a critical factual error undermines the paper's positioning: PGS v2 (May 1, 2026) now evaluates on CodeContests AND SWE-bench, directly contradicting the idea's central differentiator claim. Here is exactly what must change:
+
+1. **CORRECT PGS v2 CLAIMS** (non-negotiable): Update the landscape section to accurately reflect PGS v2's benchmark coverage (5 benchmarks: HumanEval, MBPP, LiveCodeBench, CodeContests, SWE-bench) and model coverage (6 models including Qwen3-30B and Claude-Sonnet-4). Fix the property accuracy numbers to match v2's Table 2 (generation: 90.6%/67.6%/32.4%; verification: 93.8%/91.2%/76.5%). Note that the 32.4% generation accuracy on hard problems actually STRENGTHENS ExeSpec's execution-grounding motivation.
+
+2. **REPOSITION NOVELTY**: Reframe from 'extending PGS to new benchmarks' to: (a) 'Execution grounding catches internally inconsistent and hallucinated specs that PGS's public-test validation misses—particularly critical given PGS v2's 32.4% generation accuracy on hard problems'; (b) 'Extending property-based reasoning to debugging (DebugBench) and cross-file completion (CrossCodeEval/RepoBench)—task types PGS v2 still does not cover'; (c) 'Component-level decomposition revealing which spec types help which tasks—PGS treats properties monolithically'; (d) 'SWE-bench Pro for contamination-resistant evaluation vs. PGS's standard SWE-bench.'
+
+3. **USE PGS v2 PUBLISHED NUMBERS**: On CodeContests and SWE-bench, cite PGS v2's published Qwen2.5-Coder results as the baseline rather than reimplementing from scratch. Reimplement PGS only for DebugBench and CrossCodeEval where PGS v2 has no numbers. This saves time and avoids strawmanning.
+
+4. **FIT TIMELINE TO 16 DAYS**: Either (a) commit to HIL mode with reduced scope (3 primary benchmarks with full baselines, 3 supplementary with ExeSpec vs. direct only), or (b) leverage PGS v2's published numbers to reduce reimplementation effort. The manual 18–22 day estimate violates the user's constraint.
+
+5. **CONSIDER ADDING ONE NEWER MODEL**: PGS v2 uses Qwen3-30B. Adding one data point on a primary benchmark would demonstrate model-agnostic applicability and enable direct comparison with PGS v2's newer-model results.
+
+The core value proposition—execution grounding to catch the 67.6% of hard-problem specs that PGS's generation gets wrong—remains strong. But the paper must be honest about where PGS v2 has already gone and position ExeSpec's contributions accurately.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "bb38eb9c-eebd-4557-8dc5-3f5aa26b5d56",
+  "type": "user",
+  "uuid": "b65a7cf6-bb42-44c8-8804-7e838f46c076",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-12T02:29:45.934Z_
+
+```json
+{
+  "parentUuid": "b65a7cf6-bb42-44c8-8804-7e838f46c076",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "ec17b886-7586-44ff-abfc-14b5560ca12c",
+  "timestamp": "2026-05-12T02:29:45.934Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-12T02:29:45.935Z_
+
+```json
+{
+  "parentUuid": "ec17b886-7586-44ff-abfc-14b5560ca12c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "c2bddfd4-f23d-48cf-9229-a5cd875fff96",
+  "timestamp": "2026-05-12T02:29:45.935Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "c2bddfd4-f23d-48cf-9229-a5cd875fff96",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Execution-Grounded Behavioral Specs for Code LLM Reasoning",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-12T02:29:51.920Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is Round 9 of 10 for reviewing the ExeSpec idea. Let me carefully analyze what has changed since the previous rounds and conduct independent verification of the claims.
+
+Key issues from Round 8 that needed to be addressed:
+1. Correct PGS v2 claims about benchmark coverage
+2. Reposition novelty given PGS v2's expanded scope
+3. Use PGS v2 published numbers as baselines
+4. Fit timeline to 16 days
+5. Consider adding a newer model
+
+Let me now review the current idea carefully and conduct independent research to verify claims.
+
+Let me start by searching for the key papers and verifying the claims made in this revision.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2bddfd4-f23d-48cf-9229-a5cd875fff96",
+  "isSidechain": false,
+  "requestId": "req_011CawtSWGzZz7JJd5qWFjwp",
+  "type": "assistant",
+  "uuid": "6c383033-cb87-4cf1-8575-d694e987f596",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018uG9spdMUmftg9yRAsP8rf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 31377,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1560,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 31377,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1560,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 31377,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 31377
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-12T02:29:52.950Z_
+
+I'll conduct independent verification of this Round 9 submission. Let me search for the key claims, starting with PGS v2 coverage, competing work, and benchmark contamination.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c383033-cb87-4cf1-8575-d694e987f596",
+  "isSidechain": false,
+  "requestId": "req_011CawtSWGzZz7JJd5qWFjwp",
+  "type": "assistant",
+  "uuid": "58cc59e3-257c-4cb5-afab-d38fd4bb28d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018uG9spdMUmftg9yRAsP8rf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 31377,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1560,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 31377,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1560,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 31377,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 31377
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-12T02:30:06.635Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01XVJHKYzKiSJzaSvbCgmvMw`</summary>
+
+```json
+{
+  "description": "Verify PGS v2 benchmark claims",
+  "subagent_type": "general-purpose",
+  "prompt": "Search for the paper \"PGS\" or \"Property-Generated Solver\" or \"Effective LLM Code Refinement via Property-Oriented and Structurally Minimal Feedback\" (arXiv:2506.18315). I need to verify:\n\n1. What benchmarks does PGS v2 (revised May 2026) actually evaluate on? Specifically, does it cover CodeContests and SWE-bench?\n2. What property generation accuracy numbers does it report (by difficulty level on LiveCodeBench)?\n3. What models does it use?\n4. Does PGS check inter-property consistency, or only validate properties against public tests?\n\nUse WebSearch to search for this paper with multiple queries:\n- \"arXiv 2506.18315 property-based testing LLM code\"\n- \"Effective LLM Code Refinement Property-Oriented Structurally Minimal Feedback\"\n- \"PGS property generated solver code refinement 2025 2026\"\n\nThen use WebFetch to read the actual arXiv page if you find it. Report exactly what you find — do NOT guess or infer. If you can't find the paper or can't verify specific numbers, say so explicitly."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58cc59e3-257c-4cb5-afab-d38fd4bb28d6",
+  "isSidechain": false,
+  "requestId": "req_011CawtSWGzZz7JJd5qWFjwp",
+  "type": "assistant",
+  "uuid": "943b1466-252a-48fb-89a1-d7c7c3a1ab78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018uG9spdMUmftg9yRAsP8rf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 31377,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1560,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 31377,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1560,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 31377,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 31377
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-12T02:30:10.782Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01Q21jeb5kYEyGMy5kURNLSS`</summary>
+
+```json
+{
+  "description": "Check SWE-bench contamination status",
+  "subagent_type": "general-purpose",
+  "prompt": "Search for the latest status of SWE-bench Verified contamination and SWE-bench Pro. I need to verify:\n\n1. Did OpenAI actually stop reporting SWE-bench Verified scores? When?\n2. What is SWE-bench Pro? When was it introduced?\n3. What are the latest scores on SWE-bench Verified vs Pro for frontier models?\n4. Is the claim about \"verbatim gold-patch reproduction\" accurate?\n\nUse WebSearch with queries:\n- \"SWE-bench Verified contamination OpenAI stopped reporting 2026\"\n- \"SWE-bench Pro benchmark 2026\"\n- \"SWE-bench contamination gold patch reproduction frontier models\"\n- \"SWE-bench Verified vs Pro scores comparison\"\n\nReport exactly what you find — do NOT make up information."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "943b1466-252a-48fb-89a1-d7c7c3a1ab78",
+  "isSidechain": false,
+  "requestId": "req_011CawtSWGzZz7JJd5qWFjwp",
+  "type": "assistant",
+  "uuid": "cdbfb4bc-55a8-41fe-95ca-d92f0ca774dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018uG9spdMUmftg9yRAsP8rf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 31377,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1560,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 31377,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1560,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 31377,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 31377
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-12T02:30:18.242Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_019pKD6CddbsS5mFS86R7KFp`</summary>
+
+```json
+{
+  "description": "Search for competing work missed",
+  "subagent_type": "general-purpose",
+  "prompt": "Search for recent (2025-2026) papers that might compete with or overlap with \"ExeSpec\" — a training-free method that uses execution-grounded behavioral specifications (preconditions, postconditions, invariants) as intermediate reasoning for LLM code tasks. I need to find works the proposal might have missed.\n\nUse WebSearch with these queries:\n1. \"execution grounded specification code generation LLM 2025 2026\" \n2. \"property-based testing LLM code refinement inference time 2025 2026\"\n3. \"behavioral specification code debugging LLM 2025 2026\"\n4. \"structured intermediate representation code generation 2025 2026\"\n5. \"contract-guided code generation LLM 2025 2026\"\n6. \"specification verification code repair LLM 2026\"\n7. \"site:arxiv.org code specification execution grounding 2026\"\n\nFor any highly relevant papers you find, use WebFetch to read their abstracts. I'm looking for papers that:\n- Use specifications/properties/contracts as intermediate reasoning for code LLMs\n- Apply execution-based verification of LLM-generated specifications\n- Are training-free inference-time methods for code tasks\n- Were published in 2025-2026\n\nReport all findings with titles, venues, dates, and how they relate to ExeSpec."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cdbfb4bc-55a8-41fe-95ca-d92f0ca774dd",
+  "isSidechain": false,
+  "requestId": "req_011CawtSWGzZz7JJd5qWFjwp",
+  "type": "assistant",
+  "uuid": "04ee4ce4-38f4-4dca-a3fd-5e28d9e0b757",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018uG9spdMUmftg9yRAsP8rf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 31377,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1560,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 31377,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1560,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 31377,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 31377
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-12T02:31:17.734Z_
+
+<details><summary>↩ Tool result · `toolu_01Q21jeb5kYEyGMy5kURNLSS`</summary>
+
+```text
+Here is a comprehensive report based on what the web searches returned. I am reporting exactly what the search results say.
+
+---
+
+## 1. Did OpenAI stop reporting SWE-bench Verified scores? When?
+
+**Yes.** OpenAI published a post titled "Why SWE-bench Verified no longer measures frontier coding capabilities" on **February 23, 2026**. In it, OpenAI announced it would no longer report SWE-bench Verified scores and recommended that other model developers stop doing so as well.
+
+The reasons OpenAI cited:
+- **Flawed test cases:** An audit of 138 problems that OpenAI o3 consistently failed found that **59.4%** contain flawed test cases -- either too narrow (enforcing specific implementation details) or too wide (testing functionality not described in the problem).
+- **Training data contamination:** All tested frontier models showed evidence of training data exposure (see item 4 below).
+
+OpenAI now recommends reporting results on **SWE-bench Pro** instead.
+
+---
+
+## 2. What is SWE-bench Pro? When was it introduced?
+
+**SWE-bench Pro** was created by **Scale AI** and launched on **September 19, 2025**. It was designed to address the contamination and task-diversity limitations of SWE-bench Verified.
+
+Key characteristics:
+- **1,865 long-horizon tasks** from **41 real repositories** across **Python, Go, TypeScript, and JavaScript** (compared to SWE-bench Verified's 500 Python-only tasks).
+- Every task requires **at least 10 lines of change**, with over 100 tasks requiring more than 100 lines.
+- Tasks require coordinating changes across an **average of 4.1 files**.
+- Has both a **public** and **private** dataset split (the private split shows even lower scores, suggesting less overfitting/contamination).
+
+---
+
+## 3. Latest scores on SWE-bench Verified vs Pro for frontier models
+
+**SWE-bench Verified (as of recent reporting):**
+- Claude Mythos Preview: **93.9%** (top)
+- Claude Opus 4.5: **80.9%**
+- (Scores are very high across frontier models, with saturation near 90%+)
+
+**SWE-bench Pro (public split, as of ~May 2026):**
+- Claude Mythos Preview: **77.8%** (top, but note this appears to be a later measurement; earlier reports showed ~45.9%)
+- Claude Opus 4.7 (Adaptive): **64.3%**
+- GPT-5.5: **58.6%**
+
+**SWE-bench Pro (private split -- even harder):**
+- Claude Opus 4.1: drops from 22.7% to **17.8%**
+- OpenAI GPT-5: drops from 23.1% to **14.9%**
+
+The performance gap is dramatic. The same model (Claude Mythos Preview) that scores 93.9% on Verified scores far lower on Pro. Earlier models showed gaps like 80.9% (Verified) vs 45.9% (Pro) for Claude Opus 4.5.
+
+---
+
+## 4. Is the claim about "verbatim gold-patch reproduction" accurate?
+
+**Yes, according to OpenAI's published findings.** The search results confirm:
+
+- **GPT-5.2** was shown to output the exact gold patch from a short snippet of the task description, knowing the exact class and method name and the new early return condition introduced in the patch.
+- **Claude Opus 4.5** quoted **word-for-word an inline comment** from a gold patch it supposedly never encountered.
+- **Gemini 3 Flash**, given only a task ID, output the **complete unified diff with correct line numbers**.
+
+OpenAI's contamination detection method involved giving GPT-5 a task's ID, description, gold patch, and PR tests, then allowing 15 turns to probe with different elicitation strategies. A judge model labeled contamination severity from "none" to "strong."
+
+Importantly, on **SWE-bench Pro**, the same contamination pipeline found cases of contamination to be **significantly rarer and less egregious**, and **no model was able to produce a complete verbatim gold patch** on Pro tasks.
+
+---
+
+## Summary
+
+The contamination concern is well-documented and confirmed by OpenAI's own research. SWE-bench Verified is increasingly viewed as an unreliable measure for frontier models due to training data leakage. SWE-bench Pro, while not perfect, represents the current industry-recommended alternative with substantially lower (and presumably more realistic) scores.
+
+---
+
+Sources:
+- [Why SWE-bench Verified no longer measures frontier coding capabilities | OpenAI](https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/)
+- [OpenAI Abandons SWE-bench Verified After Finding 59% of Failed Tests Were Flawed](https://blockchain.news/news/openai-abandons-swe-bench-verified-contamination-flawed-tests)
+- [Is SWE-bench Verified Contaminated? OpenAI Shifts to SWE-bench Pro | CodeSOTA](https://www.codesota.com/news/swe-bench-contamination-debate)
+- [The End of SWE-Bench Verified -- Latent Space Podcast](https://www.latent.space/p/swe-bench-dead)
+- [SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean](https://www.codeant.ai/blogs/swe-bench-scores)
+- [SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%](https://www.morphllm.com/swe-bench-pro)
+- [SWE-Bench Pro: Raising the Bar for Agentic Coding | Scale AI](https://scale.com/blog/swe-bench-pro)
+- [SWE-Bench Pro Leaderboard (Public Dataset) | Scale](https://labs.scale.com/leaderboard/swe_bench_pro_public)
+- [SWE-Bench Explained: Benchmarks, Verified, Pro, and the 2026 Leaderboard](https://www.morphllm.com/swe-benchmark)
+- [OpenAI Developers on X (announcement tweet)](https://x.com/OpenAIDevs/status/2026002219909427270)
+- [Why we no longer evaluate SWE-bench Verified - DEV Community](https://dev.to/jgnoncelogic/why-we-no-longer-evaluate-swe-bench-verified-59gc)
+
+agentId: a2bffc47ff86f6aca (use SendMessage with to: 'a2bffc47ff86f6aca' to continue this agent)
+&lt;usage>total_tokens: 17239
+tool_uses: 7
+duration_ms: 66949&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cdbfb4bc-55a8-41fe-95ca-d92f0ca774dd",
+  "isSidechain": false,
+  "promptId": "bb38eb9c-eebd-4557-8dc5-3f5aa26b5d56",
+  "type": "user",
+  "uuid": "0fb2a72f-b83a-4f1f-95a6-2fa25358b834",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for the latest status of SWE-bench Verified contamination and SWE-bench Pro. I need to verify:\n\n1. Did OpenAI actually stop reporting SWE-bench Verified scores? When?\n2. What is SWE-bench Pro? When was it introduced?\n3. What are the latest scores on SWE-bench Verified vs Pro for frontier models?\n4. Is the claim about \"verbatim gold-patch reproduction\" accurate?\n\nUse WebSearch with queries:\n- \"SWE-bench Verified contamination OpenAI stopped reporting 2026\"\n- \"SWE-bench Pro benchmark 2026\"\n- \"SWE-bench contamination gold patch reproduction frontier models\"\n- \"SWE-bench Verified vs Pro scores comparison\"\n\nReport exactly what you find — do NOT make up information.",
+    "agentId": "a2bffc47ff86f6aca",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is a comprehensive report based on what the web searches returned. I am reporting exactly what the search results say.\n\n---\n\n## 1. Did OpenAI stop reporting SWE-bench Verified scores? When?\n\n**Yes.** OpenAI published a post titled \"Why SWE-bench Verified no longer measures frontier coding capabilities\" on **February 23, 2026**. In it, OpenAI announced it would no longer report SWE-bench Verified scores and recommended that other model developers stop doing so as well.\n\nThe reasons OpenAI cited:\n- **Flawed test cases:** An audit of 138 problems that OpenAI o3 consistently failed found that **59.4%** contain flawed test cases -- either too narrow (enforcing specific implementation details) or too wide (testing functionality not described in the problem).\n- **Training data contamination:** All tested frontier models showed evidence of training data exposure (see item 4 below).\n\nOpenAI now recommends reporting results on **SWE-bench Pro** instead.\n\n---\n\n## 2. What is SWE-bench Pro? When was it introduced?\n\n**SWE-bench Pro** was created by **Scale AI** and launched on **September 19, 2025**. It was designed to address the contamination and task-diversity limitations of SWE-bench Verified.\n\nKey characteristics:\n- **1,865 long-horizon tasks** from **41 real repositories** across **Python, Go, TypeScript, and JavaScript** (compared to SWE-bench Verified's 500 Python-only tasks).\n- Every task requires **at least 10 lines of change**, with over 100 tasks requiring more than 100 lines.\n- Tasks require coordinating changes across an **average of 4.1 files**.\n- Has both a **public** and **private** dataset split (the private split shows even lower scores, suggesting less overfitting/contamination).\n\n---\n\n## 3. Latest scores on SWE-bench Verified vs Pro for frontier models\n\n**SWE-bench Verified (as of recent reporting):**\n- Claude Mythos Preview: **93.9%** (top)\n- Claude Opus 4.5: **80.9%**\n- (Scores are very high across frontier models, with saturation near 90%+)\n\n**SWE-bench Pro (public split, as of ~May 2026):**\n- Claude Mythos Preview: **77.8%** (top, but note this appears to be a later measurement; earlier reports showed ~45.9%)\n- Claude Opus 4.7 (Adaptive): **64.3%**\n- GPT-5.5: **58.6%**\n\n**SWE-bench Pro (private split -- even harder):**\n- Claude Opus 4.1: drops from 22.7% to **17.8%**\n- OpenAI GPT-5: drops from 23.1% to **14.9%**\n\nThe performance gap is dramatic. The same model (Claude Mythos Preview) that scores 93.9% on Verified scores far lower on Pro. Earlier models showed gaps like 80.9% (Verified) vs 45.9% (Pro) for Claude Opus 4.5.\n\n---\n\n## 4. Is the claim about \"verbatim gold-patch reproduction\" accurate?\n\n**Yes, according to OpenAI's published findings.** The search results confirm:\n\n- **GPT-5.2** was shown to output the exact gold patch from a short snippet of the task description, knowing the exact class and method name and the new early return condition introduced in the patch.\n- **Claude Opus 4.5** quoted **word-for-word an inline comment** from a gold patch it supposedly never encountered.\n- **Gemini 3 Flash**, given only a task ID, output the **complete unified diff with correct line numbers**.\n\nOpenAI's contamination detection method involved giving GPT-5 a task's ID, description, gold patch, and PR tests, then allowing 15 turns to probe with different elicitation strategies. A judge model labeled contamination severity from \"none\" to \"strong.\"\n\nImportantly, on **SWE-bench Pro**, the same contamination pipeline found cases of contamination to be **significantly rarer and less egregious**, and **no model was able to produce a complete verbatim gold patch** on Pro tasks.\n\n---\n\n## Summary\n\nThe contamination concern is well-documented and confirmed by OpenAI's own research. SWE-bench Verified is increasingly viewed as an unreliable measure for frontier models due to training data leakage. SWE-bench Pro, while not perfect, represents the current industry-recommended alternative with substantially lower (and presumably more realistic) scores.\n\n---\n\nSources:\n- [Why SWE-bench Verified no longer measures frontier coding capabilities | OpenAI](https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/)\n- [OpenAI Abandons SWE-bench Verified After Finding 59% of Failed Tests Were Flawed](https://blockchain.news/news/openai-abandons-swe-bench-verified-contamination-flawed-tests)\n- [Is SWE-bench Verified Contaminated? OpenAI Shifts to SWE-bench Pro | CodeSOTA](https://www.codesota.com/news/swe-bench-contamination-debate)\n- [The End of SWE-Bench Verified -- Latent Space Podcast](https://www.latent.space/p/swe-bench-dead)\n- [SWE-bench Leaderboard 2026: All Model Scores, Rankings & What They Actually Mean](https://www.codeant.ai/blogs/swe-bench-scores)\n- [SWE-Bench Pro Leaderboard (2026): Why 46% Beats 81%](https://www.morphllm.com/swe-bench-pro)\n- [SWE-Bench Pro: Raising the Bar for Agentic Coding | Scale AI](https://scale.com/blog/swe-bench-pro)\n- [SWE-Bench Pro Leaderboard (Public Dataset) | Scale](https://labs.scale.com/leaderboard/swe_bench_pro_public)\n- [SWE-Bench Explained: Benchmarks, Verified, Pro, and the 2026 Leaderboard](https://www.morphllm.com/swe-benchmark)\n- [OpenAI Developers on X (announcement tweet)](https://x.com/OpenAIDevs/status/2026002219909427270)\n- [Why we no longer evaluate SWE-bench Verified - DEV Community](https://dev.to/jgnoncelogic/why-we-no-longer-evaluate-swe-bench-verified-59gc)"
+      }
+    ],
+    "totalDurationMs": 66949,
+    "totalTokens": 17239,
+    "totalToolUseCount": 7,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3163,
+      "cache_read_input_tokens": 12465,
+      "output_tokens": 1610,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3163
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1610,
+          "cache_read_input_tokens": 12465,
+          "cache_creation_input_tokens": 3163,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3163,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 7
+    }
+  },
+  "sourceToolAssistantUUID": "cdbfb4bc-55a8-41fe-95ca-d92f0ca774dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-12T02:31:28.577Z_
+
+<details><summary>↩ Tool result · `toolu_01XVJHKYzKiSJzaSvbCgmvMw`</summary>
+
+```text
+Excellent. Now I have comprehensive information. The AI-Scholar article describes the v1 results (3 benchmarks, 3 models), while the arXiv HTML page reflects the v2 revision (5 benchmarks, 6 models). Let me compile the findings.
+
+Here is what I found, based on directly reading the arXiv page for paper 2506.18315:
+
+---
+
+## Paper Identity
+
+- **Title (v2):** "Effective LLM Code Refinement via Property-Oriented and Structurally Minimal Feedback"
+- **Title (v1):** "Use Property-Based Testing to Bridge LLM Code Generation and Validation"
+- **arXiv ID:** 2506.18315
+- **v1 date:** June 23, 2025
+- **v2 date:** May 1, 2026
+- **Authors:** Lehan He, Zeren Chen, Zhe Zhang, Xiang Gao, Lu Sheng (note: Jing Shao appears in v1 author list but may have been removed in v2)
+
+---
+
+## 1. Benchmarks in PGS v2
+
+PGS v2 evaluates on **five** benchmarks:
+
+1. **HumanEval** (164 problems)
+2. **MBPP** (~500 problems)
+3. **LiveCodeBench** (880 problems, v5 version)
+4. **CodeContests** (117 problems from the official valid split)
+5. **SWE-Bench Verified** (500 real-world bug-fixing scenarios)
+
+**Yes, it covers both CodeContests and SWE-bench.** These were added in v2; the original v1 only covered HumanEval, MBPP, and LiveCodeBench.
+
+---
+
+## 2. Property Generation Accuracy by Difficulty on LiveCodeBench
+
+The paper includes **Table 2**, titled "Asymmetry of Verification," which reports generation accuracy vs. verification accuracy using DeepSeek-R1-32B on 100 LiveCodeBench problems:
+
+| Difficulty | N | GenAcc (%) | VerAcc (%) | Filtered (%) |
+|------------|-----|------------|------------|--------------|
+| Easy | 32 | 90.6 | 93.8 | 96.9 |
+| Medium | 34 | 67.6 | 91.2 | 94.1 |
+| Hard | 34 | 32.4 | 76.5 | 88.2 |
+| Overall | 100 | 63.0 | 87.0 | 93.0 |
+
+**Important clarification:** These numbers represent the asymmetry between code generation accuracy (GenAcc) and property-based verification accuracy (VerAcc), not standalone "property generation accuracy" per se. The "Filtered" column appears to show accuracy after filtering with the property validation step. The paper does not report a separate metric for what fraction of generated properties themselves are correct.
+
+---
+
+## 3. Models Used
+
+PGS v2 uses **six** LLMs:
+
+1. DeepSeek-Coder-V2
+2. Qwen2.5-Coder
+3. DeepSeek-R1-Distilled-32B
+4. Qwen3-30B
+5. DeepSeek-V3.1
+6. Claude-Sonnet-4
+
+(v1 only used the first three.)
+
+---
+
+## 4. Inter-Property Consistency
+
+**PGS does NOT check inter-property consistency.** It only validates each property individually against public test cases. The paper states: "each property check in C_P is validated against the public test cases T_v. This critical filtering process discards any property that contradicts the known ground truth." This is per-property validation against known correct I/O pairs -- there is no mechanism described for checking whether the generated properties are mutually consistent with each other.
+
+---
+
+## Key Result Numbers (from v2)
+
+- HumanEval (DeepSeek-V2): 89.0% pass@1, 53.8% fix rate
+- LiveCodeBench (DeepSeek-R1-32B): 76.5% pass@1, +12.1% over baseline
+- CodeContests (DeepSeek-R1-32B): 49.7% pass@1
+- SWE-Bench (DeepSeek-R1-32B): 37.3% pass@1
+- Overall: 1.4x-1.6x higher bug fix rate than strongest debugging-based approaches
+- Up to 13.4% pass@1 improvement over other TDD-based methods
+
+---
+
+## Caveats
+
+- I could not parse the OpenReview PDF directly, so the detailed table numbers come from the arXiv HTML rendering of v2.
+- The AI-Scholar blog post describes v1 results only (3 benchmarks, 3 models) and should not be confused with v2.
+
+Sources:
+- [arXiv abs page (2506.18315)](https://arxiv.org/abs/2506.18315)
+- [arXiv HTML version (2506.18315)](https://arxiv.org/html/2506.18315)
+- [HuggingFace paper page](https://huggingface.co/papers/2506.18315)
+- [OpenReview PDF](https://openreview.net/pdf/118263969314daa579a63a2b484a53df949fb2a6.pdf)
+- [AI-Scholar summary (v1)](https://ai-scholar.tech/en/articles/llm-paper/property-generated-solver)
+
+agentId: ad55a098fbd8b232d (use SendMessage with to: 'ad55a098fbd8b232d' to continue this agent)
+&lt;usage>total_tokens: 18754
+tool_uses: 9
+duration_ms: 81937&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "943b1466-252a-48fb-89a1-d7c7c3a1ab78",
+  "isSidechain": false,
+  "promptId": "bb38eb9c-eebd-4557-8dc5-3f5aa26b5d56",
+  "type": "user",
+  "uuid": "95caf856-73fc-42f8-85c8-153450dca512",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for the paper \"PGS\" or \"Property-Generated Solver\" or \"Effective LLM Code Refinement via Property-Oriented and Structurally Minimal Feedback\" (arXiv:2506.18315). I need to verify:\n\n1. What benchmarks does PGS v2 (revised May 2026) actually evaluate on? Specifically, does it cover CodeContests and SWE-bench?\n2. What property generation accuracy numbers does it report (by difficulty level on LiveCodeBench)?\n3. What models does it use?\n4. Does PGS check inter-property consistency, or only validate properties against public tests?\n\nUse WebSearch to search for this paper with multiple queries:\n- \"arXiv 2506.18315 property-based testing LLM code\"\n- \"Effective LLM Code Refinement Property-Oriented Structurally Minimal Feedback\"\n- \"PGS property generated solver code refinement 2025 2026\"\n\nThen use WebFetch to read the actual arXiv page if you find it. Report exactly what you find — do NOT guess or infer. If you can't find the paper or can't verify specific numbers, say so explicitly.",
+    "agentId": "ad55a098fbd8b232d",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Excellent. Now I have comprehensive information. The AI-Scholar article describes the v1 results (3 benchmarks, 3 models), while the arXiv HTML page reflects the v2 revision (5 benchmarks, 6 models). Let me compile the findings.\n\nHere is what I found, based on directly reading the arXiv page for paper 2506.18315:\n\n---\n\n## Paper Identity\n\n- **Title (v2):** \"Effective LLM Code Refinement via Property-Oriented and Structurally Minimal Feedback\"\n- **Title (v1):** \"Use Property-Based Testing to Bridge LLM Code Generation and Validation\"\n- **arXiv ID:** 2506.18315\n- **v1 date:** June 23, 2025\n- **v2 date:** May 1, 2026\n- **Authors:** Lehan He, Zeren Chen, Zhe Zhang, Xiang Gao, Lu Sheng (note: Jing Shao appears in v1 author list but may have been removed in v2)\n\n---\n\n## 1. Benchmarks in PGS v2\n\nPGS v2 evaluates on **five** benchmarks:\n\n1. **HumanEval** (164 problems)\n2. **MBPP** (~500 problems)\n3. **LiveCodeBench** (880 problems, v5 version)\n4. **CodeContests** (117 problems from the official valid split)\n5. **SWE-Bench Verified** (500 real-world bug-fixing scenarios)\n\n**Yes, it covers both CodeContests and SWE-bench.** These were added in v2; the original v1 only covered HumanEval, MBPP, and LiveCodeBench.\n\n---\n\n## 2. Property Generation Accuracy by Difficulty on LiveCodeBench\n\nThe paper includes **Table 2**, titled \"Asymmetry of Verification,\" which reports generation accuracy vs. verification accuracy using DeepSeek-R1-32B on 100 LiveCodeBench problems:\n\n| Difficulty | N | GenAcc (%) | VerAcc (%) | Filtered (%) |\n|------------|-----|------------|------------|--------------|\n| Easy | 32 | 90.6 | 93.8 | 96.9 |\n| Medium | 34 | 67.6 | 91.2 | 94.1 |\n| Hard | 34 | 32.4 | 76.5 | 88.2 |\n| Overall | 100 | 63.0 | 87.0 | 93.0 |\n\n**Important clarification:** These numbers represent the asymmetry between code generation accuracy (GenAcc) and property-based verification accuracy (VerAcc), not standalone \"property generation accuracy\" per se. The \"Filtered\" column appears to show accuracy after filtering with the property validation step. The paper does not report a separate metric for what fraction of generated properties themselves are correct.\n\n---\n\n## 3. Models Used\n\nPGS v2 uses **six** LLMs:\n\n1. DeepSeek-Coder-V2\n2. Qwen2.5-Coder\n3. DeepSeek-R1-Distilled-32B\n4. Qwen3-30B\n5. DeepSeek-V3.1\n6. Claude-Sonnet-4\n\n(v1 only used the first three.)\n\n---\n\n## 4. Inter-Property Consistency\n\n**PGS does NOT check inter-property consistency.** It only validates each property individually against public test cases. The paper states: \"each property check in C_P is validated against the public test cases T_v. This critical filtering process discards any property that contradicts the known ground truth.\" This is per-property validation against known correct I/O pairs -- there is no mechanism described for checking whether the generated properties are mutually consistent with each other.\n\n---\n\n## Key Result Numbers (from v2)\n\n- HumanEval (DeepSeek-V2): 89.0% pass@1, 53.8% fix rate\n- LiveCodeBench (DeepSeek-R1-32B): 76.5% pass@1, +12.1% over baseline\n- CodeContests (DeepSeek-R1-32B): 49.7% pass@1\n- SWE-Bench (DeepSeek-R1-32B): 37.3% pass@1\n- Overall: 1.4x-1.6x higher bug fix rate than strongest debugging-based approaches\n- Up to 13.4% pass@1 improvement over other TDD-based methods\n\n---\n\n## Caveats\n\n- I could not parse the OpenReview PDF directly, so the detailed table numbers come from the arXiv HTML rendering of v2.\n- The AI-Scholar blog post describes v1 results only (3 benchmarks, 3 models) and should not be confused with v2.\n\nSources:\n- [arXiv abs page (2506.18315)](https://arxiv.org/abs/2506.18315)\n- [arXiv HTML version (2506.18315)](https://arxiv.org/html/2506.18315)\n- [HuggingFace paper page](https://huggingface.co/papers/2506.18315)\n- [OpenReview PDF](https://openreview.net/pdf/118263969314daa579a63a2b484a53df949fb2a6.pdf)\n- [AI-Scholar summary (v1)](https://ai-scholar.tech/en/articles/llm-paper/property-generated-solver)"
+      }
+    ],
+    "totalDurationMs": 81937,
+    "totalTokens": 18754,
+    "totalToolUseCount": 9,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1636,
+      "cache_read_input_tokens": 15769,
+      "output_tokens": 1348,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1636
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1348,
+          "cache_read_input_tokens": 15769,
+          "cache_creation_input_tokens": 1636,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1636,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 9
+    }
+  },
+  "sourceToolAssistantUUID": "943b1466-252a-48fb-89a1-d7c7c3a1ab78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "95caf856-73fc-42f8-85c8-153450dca512",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Execution-Grounded Behavioral Specs for Code LLM Reasoning",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19"
+}
+```
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-12T02:34:22.853Z_
+
+<details><summary>↩ Tool result · `toolu_019pKD6CddbsS5mFS86R7KFp`</summary>
+
+```text
+I now have a comprehensive picture. Here is my full report.
+
+---
+
+## Competitive Landscape Analysis for ExeSpec (2024--2026)
+
+I searched across seven queries and fetched abstracts for 15+ papers. Below are the most relevant works organized by degree of overlap with ExeSpec's core ideas (specifications as intermediate reasoning, execution-based verification, training-free inference-time methods for code tasks).
+
+---
+
+### TIER 1: DIRECTLY COMPETING / HIGHLY OVERLAPPING
+
+These papers share the most DNA with ExeSpec and should be cited or distinguished in the proposal.
+
+**1. Self-Spec: Model-Authored Specifications for Reliable LLM Code Generation**
+- Authors: Zihao Xu, Xiao Cheng, Jingling Xue, Yuekang Li
+- Venue: Agents4Science 2025 (October 2025)
+- URL: [OpenReview](https://openreview.net/forum?id=6pr7BUGkLp)
+- Overlap: Very high. Self-Spec prompts an LLM to (i) design its own specification schema, (ii) instantiate it from a docstring, (iii) resolve ambiguities via Q&A, (iv) generate code only from the confirmed spec. It is training-free, uses specifications as an explicit intermediate, and targets code generation. Results: +5 pp on HumanEval for GPT-4o.
+- Key difference from ExeSpec: Self-Spec lets the model choose its own spec format (not necessarily pre/postconditions/invariants), does NOT use execution-based verification of the specifications, and lacks the behavioral grounding loop. ExeSpec's emphasis on *execution-grounded* specs (actually running preconditions/postconditions against test cases) is a distinguishing feature.
+
+**2. CodeSpecBench: Benchmarking LLMs for Executable Behavioral Specification Generation**
+- Authors: Zaoyu Chen, Jianbo Dai, Boyu Zhu, et al.
+- Date: April 14, 2026 (arXiv)
+- URL: [arXiv:2604.12268](https://arxiv.org/abs/2604.12268)
+- Overlap: Very high. CodeSpecBench is a benchmark specifically for LLM generation of *executable behavioral specifications defined via preconditions and postconditions* -- exactly ExeSpec's intermediate representation. It evaluates 15 LLMs on correctness (accepting valid behaviors) and completeness (rejecting invalid behaviors). It also shows that generated specs can improve code generation via semantic re-ranking (+2-3 pp pass@1).
+- Key difference from ExeSpec: CodeSpecBench is primarily a benchmark, not a method. Its downstream application (semantic re-ranking) is simpler than ExeSpec's full specification-guided reasoning pipeline. However, it directly validates the premise that executable behavioral specs are useful for code generation.
+
+**3. Property-Generated Solver (PGS): Effective LLM Code Refinement via Property-Oriented and Structurally Minimal Feedback**
+- Authors: Lehan He, Zeren Chen, Zhe Zhang, Xiang Gao, Lu Sheng
+- Date: June 2025 (arXiv:2506.18315), revised May 2026
+- URL: [arXiv:2506.18315](https://arxiv.org/abs/2506.18315)
+- Overlap: High. PGS uses two LLM agents -- a Generator and a Tester -- where the Tester formulates property-based tests (high-level behavioral properties like "sorting produces non-decreasing sequences") and feeds the simplest failing counterexample back to the Generator. Training-free, uses properties as intermediate reasoning, and execution-grounded via PBT. Results: +23-37% relative gains over TDD methods.
+- Key difference from ExeSpec: PGS uses properties for *refinement feedback* (post-hoc correction), while ExeSpec uses specifications as *upfront intermediate reasoning* (preconditions, postconditions, invariants generated before code). PGS focuses on minimal counterexamples rather than full behavioral specification.
+
+**4. SpecGen: Automated Generation of Formal Program Specifications via Large Language Models**
+- Authors: SpecGen team
+- Venue: ICSE 2025
+- URL: [arXiv:2401.08807](https://arxiv.org/abs/2401.08807)
+- Overlap: High. SpecGen uses conversation-driven LLM prompting to generate formal specifications (JML annotations including preconditions, postconditions, loop invariants), then applies mutation operators and heuristic selection when LLM-generated specs fail verification. Succeeds on 279/385 programs.
+- Key difference from ExeSpec: SpecGen targets formal verification (generating specs for existing code), not code generation. It generates specs *for* code rather than using specs *to generate* code. It also targets JML/Java rather than Python and uses static verification rather than execution-based checking.
+
+**5. Clover: Closed-Loop Verifiable Code Generation**
+- Authors: Chuyue Sun, Ying Sheng, et al. (Stanford)
+- Venue: CAV/SAIV 2024, with versions through late 2024
+- URL: [arXiv:2310.17807](https://arxiv.org/abs/2310.17807)
+- Overlap: High. Clover generates code, docstrings, and formal annotations (postconditions) together, then runs consistency checking among them using formal verification tools + LLMs. Achieves up to 87% acceptance for correct instances with zero false positives. Uses Dafny.
+- Key difference from ExeSpec: Clover uses *formal* (deductive) verification rather than *execution-based* checking. It generates code and specs jointly for consistency checking, whereas ExeSpec generates specs first as intermediate reasoning. Clover requires Dafny, limiting practical applicability.
+
+---
+
+### TIER 2: SIGNIFICANTLY RELATED
+
+**6. Automatic Generation of Formal Specification and Verification Annotations Using LLMs and Test Oracles**
+- Authors: Joao Pascoal Faria, Emanuel Trigo, Vinicius Honorato, Rui Abreu
+- Date: January 2026 (arXiv:2601.12845)
+- URL: [arXiv:2601.12845](https://arxiv.org/abs/2601.12845)
+- Relevance: Generates preconditions, postconditions, loop invariants, and proof helpers for Dafny programs using LLMs (Claude Opus 4.5 + GPT-5.2), with iterative repair via verifier feedback. Training-free. 98.2% success within 8 iterations. Uses test assertions as static oracles to validate pre/postconditions.
+- Difference: Targets formal verification annotation of existing code (Dafny), not code generation from NL descriptions.
+
+**7. NL2Contract: Beyond Postconditions -- Can LLMs Infer Formal Contracts for Automatic Software Verification?**
+- Authors: Cedric Richter, Heike Wehrheim
+- Date: October 2025 (arXiv:2510.12702)
+- URL: [arXiv:2510.12702](https://arxiv.org/abs/2510.12702)
+- Relevance: Translates NL to formal functional contracts (preconditions + postconditions). Shows contracts reduce false alarms in automatic verification vs. postconditions alone.
+- Difference: Targets verification (finding bugs in existing code), not code generation. Does not use specs as intermediate reasoning for generating code.
+
+**8. From Prompts to Properties: Rethinking LLM Code Generation with Property-Based Testing**
+- Venue: FSE Companion 2025
+- URL: [ACM DL](https://dl.acm.org/doi/10.1145/3696630.3728702)
+- Relevance: Applies PBT to evaluate LLM-generated code, finding that 30-32% of solutions only partially adhere to properties and 18-23% fail outright, exposing correctness gaps missed by unit tests.
+- Difference: Uses properties for *evaluation*, not as intermediate reasoning for generation.
+
+**9. LLM-Assisted Repository-Level Generation with Structured Spec-Driven Engineering (SSDE)**
+- Authors: Shuzhao Feng, Boqi Chen, Brett H Meyer, Gunter Mussbacher
+- Venue: FSE Companion 2026 (accepted May 2026)
+- URL: [arXiv:2605.02455](https://arxiv.org/abs/2605.02455)
+- Relevance: Uses structured specifications as LLM inputs for repository-level code generation, arguing they provide superior verifiability. Training-free prompting approach.
+- Difference: Focuses on repository-level MVC generation with structured NL specs, not executable behavioral specifications with pre/postconditions.
+
+**10. Spec Kit Agents: Context-Grounded Agentic Workflows**
+- Authors: Pardis Taghavi, Santosh Bhavani (GitHub)
+- Date: April 2026 (arXiv:2604.05278)
+- URL: [arXiv:2604.05278](https://arxiv.org/abs/2604.05278)
+- Relevance: Multi-agent pipeline that generates SPEC.md/PLAN.md/TASKS.md as intermediate artifacts before code, with validation hooks that check structural/referential constraints. Training-free.
+- Difference: Uses NL-level specs and structural validation (file paths exist, libs present), not executable behavioral specifications with execution-based checking.
+
+---
+
+### TIER 3: RELATED BUT LESS DIRECTLY COMPETITIVE
+
+**11. RLEF: Grounding Code LLMs in Execution Feedback with Reinforcement Learning**
+- Venue: ICML 2025
+- URL: [arXiv:2410.02089](https://arxiv.org/abs/2410.02089)
+- Relevance: Uses execution feedback for code LLMs, but via RL training (not training-free).
+
+**12. Code Execution as Grounded Supervision for LLM Reasoning**
+- Venue: EMNLP 2025
+- URL: [ACL Anthology](https://aclanthology.org/2025.emnlp-main.1260/)
+- Relevance: Extracts verifiable CoT from code execution traces. Training-based (supervision).
+
+**13. Self-Execution Simulation Improves Coding Models**
+- Authors: Gallil Maimon et al.
+- Date: March 2026 (arXiv:2604.03253)
+- Relevance: Models learn to simulate execution step-by-step for self-verification and self-fixing. Requires fine-tuning + RL (not training-free).
+
+**14. LLMLOOP: Improving LLM-Generated Code and Tests through Automated Iterative Feedback Loops**
+- Venue: ICSME 2025
+- Relevance: Five iterative loops (compilation, static analysis, test failures, mutation analysis) for code+test co-refinement. Training-free but uses test-pass feedback, not behavioral specifications.
+
+**15. Understanding Specification-Driven Code Generation with LLMs (CURRANTE)**
+- Venue: SANER 2026 (Registered Report)
+- URL: [arXiv:2601.03878](https://arxiv.org/abs/2601.03878)
+- Relevance: Empirical study of spec-first TDD workflow (Specification -> Tests -> Function). Human-in-the-loop; studies how test refinement affects code quality.
+
+**16. FuzzFeed: Weakest Precondition Generation using LLMs and Fuzzing**
+- Date: July 2025 (arXiv:2507.05272)
+- Relevance: Combines LLMs + fuzz testing to generate weakest preconditions, using execution feedback for iterative context refinement.
+
+**17. REA-Coder: Requirement Alignment for Code Generation**
+- Date: April 2026 (arXiv:2604.16198)
+- Relevance: Training-free iterative requirement alignment via QA checklists before code generation. Uses NL requirements, not formal specs.
+
+**18. Structured Chain-of-Thought Prompting for Code Generation (SCoT)**
+- Venue: TOSEM 2025
+- Relevance: Uses programming structures (sequential, branch, loop) as structured intermediate reasoning for code generation. Training-free prompting.
+- Difference: Uses algorithmic/structural intermediates, not behavioral specifications.
+
+---
+
+### SUMMARY OF KEY GAPS AND POSITIONING
+
+The most important papers ExeSpec should address are:
+
+1. **Self-Spec** -- the closest competitor using specs-as-intermediate-reasoning. ExeSpec's differentiator is execution-based grounding of specifications.
+2. **CodeSpecBench** -- validates the premise that executable behavioral specs (preconditions/postconditions) can improve code generation. ExeSpec could use this benchmark.
+3. **PGS** -- closest in using execution-grounded properties, but for refinement rather than upfront reasoning.
+4. **SpecGen/Clover** -- use formal specifications but for verification, not as intermediate reasoning for generation, and rely on deductive (not execution-based) checking.
+
+ExeSpec's unique combination of (a) pre/postconditions/invariants as intermediate reasoning, (b) execution-based verification of those specifications, and (c) training-free inference-time application appears to be a genuine gap in the literature, though Self-Spec and PGS each capture parts of this combination.
+
+agentId: a9b53bfb6b47df469 (use SendMessage with to: 'a9b53bfb6b47df469' to continue this agent)
+&lt;usage>total_tokens: 42960
+tool_uses: 40
+duration_ms: 244607&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "04ee4ce4-38f4-4dca-a3fd-5e28d9e0b757",
+  "isSidechain": false,
+  "promptId": "bb38eb9c-eebd-4557-8dc5-3f5aa26b5d56",
+  "type": "user",
+  "uuid": "a3f3e7df-5096-443a-9ea2-343787a35700",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for recent (2025-2026) papers that might compete with or overlap with \"ExeSpec\" — a training-free method that uses execution-grounded behavioral specifications (preconditions, postconditions, invariants) as intermediate reasoning for LLM code tasks. I need to find works the proposal might have missed.\n\nUse WebSearch with these queries:\n1. \"execution grounded specification code generation LLM 2025 2026\" \n2. \"property-based testing LLM code refinement inference time 2025 2026\"\n3. \"behavioral specification code debugging LLM 2025 2026\"\n4. \"structured intermediate representation code generation 2025 2026\"\n5. \"contract-guided code generation LLM 2025 2026\"\n6. \"specification verification code repair LLM 2026\"\n7. \"site:arxiv.org code specification execution grounding 2026\"\n\nFor any highly relevant papers you find, use WebFetch to read their abstracts. I'm looking for papers that:\n- Use specifications/properties/contracts as intermediate reasoning for code LLMs\n- Apply execution-based verification of LLM-generated specifications\n- Are training-free inference-time methods for code tasks\n- Were published in 2025-2026\n\nReport all findings with titles, venues, dates, and how they relate to ExeSpec.",
+    "agentId": "a9b53bfb6b47df469",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have a comprehensive picture. Here is my full report.\n\n---\n\n## Competitive Landscape Analysis for ExeSpec (2024--2026)\n\nI searched across seven queries and fetched abstracts for 15+ papers. Below are the most relevant works organized by degree of overlap with ExeSpec's core ideas (specifications as intermediate reasoning, execution-based verification, training-free inference-time methods for code tasks).\n\n---\n\n### TIER 1: DIRECTLY COMPETING / HIGHLY OVERLAPPING\n\nThese papers share the most DNA with ExeSpec and should be cited or distinguished in the proposal.\n\n**1. Self-Spec: Model-Authored Specifications for Reliable LLM Code Generation**\n- Authors: Zihao Xu, Xiao Cheng, Jingling Xue, Yuekang Li\n- Venue: Agents4Science 2025 (October 2025)\n- URL: [OpenReview](https://openreview.net/forum?id=6pr7BUGkLp)\n- Overlap: Very high. Self-Spec prompts an LLM to (i) design its own specification schema, (ii) instantiate it from a docstring, (iii) resolve ambiguities via Q&A, (iv) generate code only from the confirmed spec. It is training-free, uses specifications as an explicit intermediate, and targets code generation. Results: +5 pp on HumanEval for GPT-4o.\n- Key difference from ExeSpec: Self-Spec lets the model choose its own spec format (not necessarily pre/postconditions/invariants), does NOT use execution-based verification of the specifications, and lacks the behavioral grounding loop. ExeSpec's emphasis on *execution-grounded* specs (actually running preconditions/postconditions against test cases) is a distinguishing feature.\n\n**2. CodeSpecBench: Benchmarking LLMs for Executable Behavioral Specification Generation**\n- Authors: Zaoyu Chen, Jianbo Dai, Boyu Zhu, et al.\n- Date: April 14, 2026 (arXiv)\n- URL: [arXiv:2604.12268](https://arxiv.org/abs/2604.12268)\n- Overlap: Very high. CodeSpecBench is a benchmark specifically for LLM generation of *executable behavioral specifications defined via preconditions and postconditions* -- exactly ExeSpec's intermediate representation. It evaluates 15 LLMs on correctness (accepting valid behaviors) and completeness (rejecting invalid behaviors). It also shows that generated specs can improve code generation via semantic re-ranking (+2-3 pp pass@1).\n- Key difference from ExeSpec: CodeSpecBench is primarily a benchmark, not a method. Its downstream application (semantic re-ranking) is simpler than ExeSpec's full specification-guided reasoning pipeline. However, it directly validates the premise that executable behavioral specs are useful for code generation.\n\n**3. Property-Generated Solver (PGS): Effective LLM Code Refinement via Property-Oriented and Structurally Minimal Feedback**\n- Authors: Lehan He, Zeren Chen, Zhe Zhang, Xiang Gao, Lu Sheng\n- Date: June 2025 (arXiv:2506.18315), revised May 2026\n- URL: [arXiv:2506.18315](https://arxiv.org/abs/2506.18315)\n- Overlap: High. PGS uses two LLM agents -- a Generator and a Tester -- where the Tester formulates property-based tests (high-level behavioral properties like \"sorting produces non-decreasing sequences\") and feeds the simplest failing counterexample back to the Generator. Training-free, uses properties as intermediate reasoning, and execution-grounded via PBT. Results: +23-37% relative gains over TDD methods.\n- Key difference from ExeSpec: PGS uses properties for *refinement feedback* (post-hoc correction), while ExeSpec uses specifications as *upfront intermediate reasoning* (preconditions, postconditions, invariants generated before code). PGS focuses on minimal counterexamples rather than full behavioral specification.\n\n**4. SpecGen: Automated Generation of Formal Program Specifications via Large Language Models**\n- Authors: SpecGen team\n- Venue: ICSE 2025\n- URL: [arXiv:2401.08807](https://arxiv.org/abs/2401.08807)\n- Overlap: High. SpecGen uses conversation-driven LLM prompting to generate formal specifications (JML annotations including preconditions, postconditions, loop invariants), then applies mutation operators and heuristic selection when LLM-generated specs fail verification. Succeeds on 279/385 programs.\n- Key difference from ExeSpec: SpecGen targets formal verification (generating specs for existing code), not code generation. It generates specs *for* code rather than using specs *to generate* code. It also targets JML/Java rather than Python and uses static verification rather than execution-based checking.\n\n**5. Clover: Closed-Loop Verifiable Code Generation**\n- Authors: Chuyue Sun, Ying Sheng, et al. (Stanford)\n- Venue: CAV/SAIV 2024, with versions through late 2024\n- URL: [arXiv:2310.17807](https://arxiv.org/abs/2310.17807)\n- Overlap: High. Clover generates code, docstrings, and formal annotations (postconditions) together, then runs consistency checking among them using formal verification tools + LLMs. Achieves up to 87% acceptance for correct instances with zero false positives. Uses Dafny.\n- Key difference from ExeSpec: Clover uses *formal* (deductive) verification rather than *execution-based* checking. It generates code and specs jointly for consistency checking, whereas ExeSpec generates specs first as intermediate reasoning. Clover requires Dafny, limiting practical applicability.\n\n---\n\n### TIER 2: SIGNIFICANTLY RELATED\n\n**6. Automatic Generation of Formal Specification and Verification Annotations Using LLMs and Test Oracles**\n- Authors: Joao Pascoal Faria, Emanuel Trigo, Vinicius Honorato, Rui Abreu\n- Date: January 2026 (arXiv:2601.12845)\n- URL: [arXiv:2601.12845](https://arxiv.org/abs/2601.12845)\n- Relevance: Generates preconditions, postconditions, loop invariants, and proof helpers for Dafny programs using LLMs (Claude Opus 4.5 + GPT-5.2), with iterative repair via verifier feedback. Training-free. 98.2% success within 8 iterations. Uses test assertions as static oracles to validate pre/postconditions.\n- Difference: Targets formal verification annotation of existing code (Dafny), not code generation from NL descriptions.\n\n**7. NL2Contract: Beyond Postconditions -- Can LLMs Infer Formal Contracts for Automatic Software Verification?**\n- Authors: Cedric Richter, Heike Wehrheim\n- Date: October 2025 (arXiv:2510.12702)\n- URL: [arXiv:2510.12702](https://arxiv.org/abs/2510.12702)\n- Relevance: Translates NL to formal functional contracts (preconditions + postconditions). Shows contracts reduce false alarms in automatic verification vs. postconditions alone.\n- Difference: Targets verification (finding bugs in existing code), not code generation. Does not use specs as intermediate reasoning for generating code.\n\n**8. From Prompts to Properties: Rethinking LLM Code Generation with Property-Based Testing**\n- Venue: FSE Companion 2025\n- URL: [ACM DL](https://dl.acm.org/doi/10.1145/3696630.3728702)\n- Relevance: Applies PBT to evaluate LLM-generated code, finding that 30-32% of solutions only partially adhere to properties and 18-23% fail outright, exposing correctness gaps missed by unit tests.\n- Difference: Uses properties for *evaluation*, not as intermediate reasoning for generation.\n\n**9. LLM-Assisted Repository-Level Generation with Structured Spec-Driven Engineering (SSDE)**\n- Authors: Shuzhao Feng, Boqi Chen, Brett H Meyer, Gunter Mussbacher\n- Venue: FSE Companion 2026 (accepted May 2026)\n- URL: [arXiv:2605.02455](https://arxiv.org/abs/2605.02455)\n- Relevance: Uses structured specifications as LLM inputs for repository-level code generation, arguing they provide superior verifiability. Training-free prompting approach.\n- Difference: Focuses on repository-level MVC generation with structured NL specs, not executable behavioral specifications with pre/postconditions.\n\n**10. Spec Kit Agents: Context-Grounded Agentic Workflows**\n- Authors: Pardis Taghavi, Santosh Bhavani (GitHub)\n- Date: April 2026 (arXiv:2604.05278)\n- URL: [arXiv:2604.05278](https://arxiv.org/abs/2604.05278)\n- Relevance: Multi-agent pipeline that generates SPEC.md/PLAN.md/TASKS.md as intermediate artifacts before code, with validation hooks that check structural/referential constraints. Training-free.\n- Difference: Uses NL-level specs and structural validation (file paths exist, libs present), not executable behavioral specifications with execution-based checking.\n\n---\n\n### TIER 3: RELATED BUT LESS DIRECTLY COMPETITIVE\n\n**11. RLEF: Grounding Code LLMs in Execution Feedback with Reinforcement Learning**\n- Venue: ICML 2025\n- URL: [arXiv:2410.02089](https://arxiv.org/abs/2410.02089)\n- Relevance: Uses execution feedback for code LLMs, but via RL training (not training-free).\n\n**12. Code Execution as Grounded Supervision for LLM Reasoning**\n- Venue: EMNLP 2025\n- URL: [ACL Anthology](https://aclanthology.org/2025.emnlp-main.1260/)\n- Relevance: Extracts verifiable CoT from code execution traces. Training-based (supervision).\n\n**13. Self-Execution Simulation Improves Coding Models**\n- Authors: Gallil Maimon et al.\n- Date: March 2026 (arXiv:2604.03253)\n- Relevance: Models learn to simulate execution step-by-step for self-verification and self-fixing. Requires fine-tuning + RL (not training-free).\n\n**14. LLMLOOP: Improving LLM-Generated Code and Tests through Automated Iterative Feedback Loops**\n- Venue: ICSME 2025\n- Relevance: Five iterative loops (compilation, static analysis, test failures, mutation analysis) for code+test co-refinement. Training-free but uses test-pass feedback, not behavioral specifications.\n\n**15. Understanding Specification-Driven Code Generation with LLMs (CURRANTE)**\n- Venue: SANER 2026 (Registered Report)\n- URL: [arXiv:2601.03878](https://arxiv.org/abs/2601.03878)\n- Relevance: Empirical study of spec-first TDD workflow (Specification -> Tests -> Function). Human-in-the-loop; studies how test refinement affects code quality.\n\n**16. FuzzFeed: Weakest Precondition Generation using LLMs and Fuzzing**\n- Date: July 2025 (arXiv:2507.05272)\n- Relevance: Combines LLMs + fuzz testing to generate weakest preconditions, using execution feedback for iterative context refinement.\n\n**17. REA-Coder: Requirement Alignment for Code Generation**\n- Date: April 2026 (arXiv:2604.16198)\n- Relevance: Training-free iterative requirement alignment via QA checklists before code generation. Uses NL requirements, not formal specs.\n\n**18. Structured Chain-of-Thought Prompting for Code Generation (SCoT)**\n- Venue: TOSEM 2025\n- Relevance: Uses programming structures (sequential, branch, loop) as structured intermediate reasoning for code generation. Training-free prompting.\n- Difference: Uses algorithmic/structural intermediates, not behavioral specifications.\n\n---\n\n### SUMMARY OF KEY GAPS AND POSITIONING\n\nThe most important papers ExeSpec should address are:\n\n1. **Self-Spec** -- the closest competitor using specs-as-intermediate-reasoning. ExeSpec's differentiator is execution-based grounding of specifications.\n2. **CodeSpecBench** -- validates the premise that executable behavioral specs (preconditions/postconditions) can improve code generation. ExeSpec could use this benchmark.\n3. **PGS** -- closest in using execution-grounded properties, but for refinement rather than upfront reasoning.\n4. **SpecGen/Clover** -- use formal specifications but for verification, not as intermediate reasoning for generation, and rely on deductive (not execution-based) checking.\n\nExeSpec's unique combination of (a) pre/postconditions/invariants as intermediate reasoning, (b) execution-based verification of those specifications, and (c) training-free inference-time application appears to be a genuine gap in the literature, though Self-Spec and PGS each capture parts of this combination."
+      }
+    ],
+    "totalDurationMs": 244607,
+    "totalTokens": 42960,
+    "totalToolUseCount": 40,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1986,
+      "cache_read_input_tokens": 37706,
+      "output_tokens": 3267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1986
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3267,
+          "cache_read_input_tokens": 37706,
+          "cache_creation_input_tokens": 1986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1986,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 40
+    }
+  },
+  "sourceToolAssistantUUID": "04ee4ce4-38f4-4dca-a3fd-5e28d9e0b757",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-12T02:34:27.656Z_
+
+Good — I now have strong verification data. Let me search for a few more specific items: the NL-Debugging paper, StoryCoder, ContractEval, and the EMNLP 2026 deadline.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3f3e7df-5096-443a-9ea2-343787a35700",
+  "isSidechain": false,
+  "requestId": "req_011Cawtnux65YFvh7kjbyRSt",
+  "type": "assistant",
+  "uuid": "6c721d5d-680b-4025-98c1-34d2945e5cbe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HCtAteRvg1AMPPmMJn9hQA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7771,
+      "cache_read_input_tokens": 43218,
+      "output_tokens": 824,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7771,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 824,
+          "cache_read_input_tokens": 43218,
+          "cache_creation_input_tokens": 7771,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7771
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-12T02:34:34.301Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01FeqfVH6aSg2TiW1qiqAyby`</summary>
+
+```json
+{
+  "description": "Verify NL-Debugging and EMNLP deadline",
+  "subagent_type": "general-purpose",
+  "prompt": "I need to verify several specific claims. Use WebSearch for each:\n\n1. NL-Debugging paper: Search \"NL-Debugging natural language intermediate representation code debugging EMNLP 2025\" and \"arXiv 2505.15356\". Was it accepted at EMNLP 2025? As an oral? What are its key results?\n\n2. EMNLP 2026 ARR submission deadline: Search \"EMNLP 2026 submission deadline ARR\" and \"ACL Rolling Review May 2026 deadline\". Is the ARR submission deadline for EMNLP 2026 actually May 25, 2026?\n\n3. StoryCoder: Search \"StoryCoder narrative reformulation code generation ACL 2026\" and \"arXiv 2604.14631\". Was it accepted at ACL 2026?\n\n4. ContractEval: Search \"ContractEval contract satisfaction code generation arXiv 2510.12047\". Verify the 0% contract satisfaction claim.\n\nReport exactly what you find for each."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c721d5d-680b-4025-98c1-34d2945e5cbe",
+  "isSidechain": false,
+  "requestId": "req_011Cawtnux65YFvh7kjbyRSt",
+  "type": "assistant",
+  "uuid": "92784b29-8f76-4236-8106-9086a7a71110",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HCtAteRvg1AMPPmMJn9hQA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7771,
+      "cache_read_input_tokens": 43218,
+      "output_tokens": 824,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7771,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 824,
+          "cache_read_input_tokens": 43218,
+          "cache_creation_input_tokens": 7771,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7771
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-12T02:34:45.315Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01XVLX4RRGDJkgB4wDwvqnji`</summary>
+
+```json
+{
+  "description": "Verify PGS v2 specific numbers",
+  "subagent_type": "general-purpose",
+  "prompt": "I need to verify specific claims about PGS v2 (arXiv:2506.18315, \"Effective LLM Code Refinement via Property-Oriented and Structurally Minimal Feedback\"). \n\nThe idea under review claims:\n- PGS reports \"property generation accuracy of 82.4% (easy), 62.8% (medium), and 48.9% (hard) on LiveCodeBench\"\n- PGS achieves \"23.1-37.3% relative pass@1 improvement\"\n- PGS \"validates properties against public test cases for soundness but does not check inter-property consistency\"\n\nA previous search found PGS v2 Table 2 reports GenAcc of 90.6% (easy), 67.6% (medium), 32.4% (hard). But these may be CODE generation accuracy, not PROPERTY generation accuracy.\n\nUse WebFetch to access https://arxiv.org/abs/2506.18315 and https://arxiv.org/html/2506.18315 to clarify:\n1. What exactly does Table 2 measure? Is GenAcc \"code generation accuracy\" or \"property generation accuracy\"?\n2. Does PGS report a separate metric for property accuracy/quality?\n3. What does \"48.9%\" refer to in PGS if anything?\n4. Does PGS check inter-property consistency or only validate individual properties against public tests?\n\nBe precise about what the paper actually says vs. what might be inference."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "92784b29-8f76-4236-8106-9086a7a71110",
+  "isSidechain": false,
+  "requestId": "req_011Cawtnux65YFvh7kjbyRSt",
+  "type": "assistant",
+  "uuid": "f6f4aa73-4c68-478f-973b-dd04a896189a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HCtAteRvg1AMPPmMJn9hQA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7771,
+      "cache_read_input_tokens": 43218,
+      "output_tokens": 824,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7771,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 824,
+          "cache_read_input_tokens": 43218,
+          "cache_creation_input_tokens": 7771,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7771
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-12T02:36:16.230Z_
+
+<details><summary>↩ Tool result · `toolu_01FeqfVH6aSg2TiW1qiqAyby`</summary>
+
+```text
+Here are my findings for each claim:
+
+---
+
+## 1. NL-Debugging Paper
+
+**Verified: Yes, it was accepted at EMNLP 2025, and yes, as an Oral.**
+
+- The paper "NL-Debugging: Exploiting Natural Language as an Intermediate Representation for Code Debugging" by Weiming Zhang et al. is confirmed at arXiv 2505.15356 and published in the Proceedings of EMNLP 2025 (pages 1533-1549, Suzhou, China).
+- It appears in the ACL Anthology as `2025.emnlp-main.80`.
+- The author's homepage and multiple sources confirm it was an **Oral Presentation** at EMNLP 2025.
+- **Key results:** The framework uses a "backtranslation" stage (converting buggy code into natural language capturing its logic) followed by a "natural language refinement" stage (using execution feedback to analyze and fix the NL representation). It outperforms traditional code-level debugging methods by enabling a broader modification space through direct NL-level refinement guided by execution feedback.
+
+Sources:
+- [ACL Anthology - NL-Debugging](https://aclanthology.org/2025.emnlp-main.80/)
+- [arXiv 2505.15356](https://arxiv.org/abs/2505.15356)
+- [EMNLP 2025 Accepted Main Conference Papers](https://2025.emnlp.org/program/main_papers/)
+- [Weiming Zhang Homepage](https://wmzhang02.github.io/)
+
+---
+
+## 2. EMNLP 2026 ARR Submission Deadline
+
+**Verified: Yes, the ARR submission deadline for EMNLP 2026 is May 25, 2026.**
+
+- The official EMNLP 2026 Twitter/X account announced: "ARR Submission Deadline: May 25, 2026."
+- The official Call for Papers page at `2026.emnlp.org` confirms this.
+- Important caveat: Since EMNLP and AACL share the ARR May cycle, authors must explicitly select a target conference at submission time, and this choice is binding.
+- The EMNLP commitment deadline is August 2, 2026.
+- Note: The general ARR submission deadline for the May 2026 cycle is May 15, 2026 (ARR's standard 15th-of-the-month deadline), but the EMNLP-specific ARR deadline is May 25, 2026.
+
+Sources:
+- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)
+- [EMNLP 2026 on X - ARR Deadline Announcement](https://x.com/emnlpmeeting/status/2029508292637061462)
+- [EMNLP 2026 on X - Venue Declaration Update](https://x.com/emnlpmeeting/status/2047754845919031450)
+- [ACL Rolling Review Dates](http://aclrollingreview.org/dates)
+
+---
+
+## 3. StoryCoder
+
+**Not verified: Cannot confirm acceptance at ACL 2026.**
+
+- The paper "StoryCoder: Narrative Reformulation for Structured Reasoning in LLM Code Generation" by Geonhui Jang, Dongyoon Han, and YoungJoon Yoo does exist at arXiv 2604.14631 (submitted April 16, 2026).
+- It is also available on OpenReview.
+- However, despite multiple searches, I could **not find evidence that StoryCoder has been accepted at ACL 2026**. The ACL 2026 accepted papers page exists at `2026.aclweb.org/program/accepted_papers/`, but StoryCoder does not appear in any search results linking it to ACL 2026 acceptance. Given that ACL 2026 is scheduled for July 2-7, 2026, and the paper was posted to arXiv only in April 2026, it may still be under review or may have been submitted to a different venue.
+- **Key results (from the preprint):** Experiments across 11 models on HumanEval, LiveCodeBench, and CodeForces show an average gain of 18.7% in zero-shot pass@10.
+
+Sources:
+- [arXiv 2604.14631 - StoryCoder](https://arxiv.org/abs/2604.14631)
+- [ACL 2026 Accepted Papers](https://2026.aclweb.org/program/accepted_papers/)
+- [StoryCoder on OpenReview](https://openreview.net/pdf/40080f64660a67f08c570e52ada2a3a1b40a1789.pdf)
+
+---
+
+## 4. ContractEval
+
+**Verified: The 0% contract satisfaction claim is confirmed, with important nuance.**
+
+- The paper at arXiv 2510.12047 is titled "ContractEval: A Benchmark for Evaluating Contract-Satisfying Assertions in Code Generation" (note: the full title of a later version is "Do Large Language Models Respect Contracts? Evaluating and Enforcing Contract-Adherence in Code Generation").
+- The 0% claim is accurate and specific: **Five code LLMs achieved 0% contract satisfaction rate (CSR) under standard prompting**, meaning none of them rejected even a single contract-violating test input -- despite achieving 75-82% pass@1 on functional correctness for the same tasks.
+- This means models implement the requested functionality but completely ignore input contracts/preconditions.
+- With enhanced prompting (contract-aware descriptions + few-shot ill-formed examples), CSR improves substantially: up to 56.51% for GPT-4o and 62.94% for Gemini-3-flash.
+
+Sources:
+- [arXiv 2510.12047 - ContractEval](https://arxiv.org/abs/2510.12047)
+- [ContractEval HTML version](https://arxiv.org/html/2510.12047)
+- [ContractEval v2 - Extended version](https://arxiv.org/html/2510.12047v2)
+- [ContractEval GitHub](https://github.com/olivialiu121/ContractEval)
+
+agentId: a9c894a233ad2ba58 (use SendMessage with to: 'a9c894a233ad2ba58' to continue this agent)
+&lt;usage>total_tokens: 23520
+tool_uses: 16
+duration_ms: 101924&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "92784b29-8f76-4236-8106-9086a7a71110",
+  "isSidechain": false,
+  "promptId": "bb38eb9c-eebd-4557-8dc5-3f5aa26b5d56",
+  "type": "user",
+  "uuid": "45b260b9-f974-4705-90fa-8f18d6ff20e0",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify several specific claims. Use WebSearch for each:\n\n1. NL-Debugging paper: Search \"NL-Debugging natural language intermediate representation code debugging EMNLP 2025\" and \"arXiv 2505.15356\". Was it accepted at EMNLP 2025? As an oral? What are its key results?\n\n2. EMNLP 2026 ARR submission deadline: Search \"EMNLP 2026 submission deadline ARR\" and \"ACL Rolling Review May 2026 deadline\". Is the ARR submission deadline for EMNLP 2026 actually May 25, 2026?\n\n3. StoryCoder: Search \"StoryCoder narrative reformulation code generation ACL 2026\" and \"arXiv 2604.14631\". Was it accepted at ACL 2026?\n\n4. ContractEval: Search \"ContractEval contract satisfaction code generation arXiv 2510.12047\". Verify the 0% contract satisfaction claim.\n\nReport exactly what you find for each.",
+    "agentId": "a9c894a233ad2ba58",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here are my findings for each claim:\n\n---\n\n## 1. NL-Debugging Paper\n\n**Verified: Yes, it was accepted at EMNLP 2025, and yes, as an Oral.**\n\n- The paper \"NL-Debugging: Exploiting Natural Language as an Intermediate Representation for Code Debugging\" by Weiming Zhang et al. is confirmed at arXiv 2505.15356 and published in the Proceedings of EMNLP 2025 (pages 1533-1549, Suzhou, China).\n- It appears in the ACL Anthology as `2025.emnlp-main.80`.\n- The author's homepage and multiple sources confirm it was an **Oral Presentation** at EMNLP 2025.\n- **Key results:** The framework uses a \"backtranslation\" stage (converting buggy code into natural language capturing its logic) followed by a \"natural language refinement\" stage (using execution feedback to analyze and fix the NL representation). It outperforms traditional code-level debugging methods by enabling a broader modification space through direct NL-level refinement guided by execution feedback.\n\nSources:\n- [ACL Anthology - NL-Debugging](https://aclanthology.org/2025.emnlp-main.80/)\n- [arXiv 2505.15356](https://arxiv.org/abs/2505.15356)\n- [EMNLP 2025 Accepted Main Conference Papers](https://2025.emnlp.org/program/main_papers/)\n- [Weiming Zhang Homepage](https://wmzhang02.github.io/)\n\n---\n\n## 2. EMNLP 2026 ARR Submission Deadline\n\n**Verified: Yes, the ARR submission deadline for EMNLP 2026 is May 25, 2026.**\n\n- The official EMNLP 2026 Twitter/X account announced: \"ARR Submission Deadline: May 25, 2026.\"\n- The official Call for Papers page at `2026.emnlp.org` confirms this.\n- Important caveat: Since EMNLP and AACL share the ARR May cycle, authors must explicitly select a target conference at submission time, and this choice is binding.\n- The EMNLP commitment deadline is August 2, 2026.\n- Note: The general ARR submission deadline for the May 2026 cycle is May 15, 2026 (ARR's standard 15th-of-the-month deadline), but the EMNLP-specific ARR deadline is May 25, 2026.\n\nSources:\n- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [EMNLP 2026 on X - ARR Deadline Announcement](https://x.com/emnlpmeeting/status/2029508292637061462)\n- [EMNLP 2026 on X - Venue Declaration Update](https://x.com/emnlpmeeting/status/2047754845919031450)\n- [ACL Rolling Review Dates](http://aclrollingreview.org/dates)\n\n---\n\n## 3. StoryCoder\n\n**Not verified: Cannot confirm acceptance at ACL 2026.**\n\n- The paper \"StoryCoder: Narrative Reformulation for Structured Reasoning in LLM Code Generation\" by Geonhui Jang, Dongyoon Han, and YoungJoon Yoo does exist at arXiv 2604.14631 (submitted April 16, 2026).\n- It is also available on OpenReview.\n- However, despite multiple searches, I could **not find evidence that StoryCoder has been accepted at ACL 2026**. The ACL 2026 accepted papers page exists at `2026.aclweb.org/program/accepted_papers/`, but StoryCoder does not appear in any search results linking it to ACL 2026 acceptance. Given that ACL 2026 is scheduled for July 2-7, 2026, and the paper was posted to arXiv only in April 2026, it may still be under review or may have been submitted to a different venue.\n- **Key results (from the preprint):** Experiments across 11 models on HumanEval, LiveCodeBench, and CodeForces show an average gain of 18.7% in zero-shot pass@10.\n\nSources:\n- [arXiv 2604.14631 - StoryCoder](https://arxiv.org/abs/2604.14631)\n- [ACL 2026 Accepted Papers](https://2026.aclweb.org/program/accepted_papers/)\n- [StoryCoder on OpenReview](https://openreview.net/pdf/40080f64660a67f08c570e52ada2a3a1b40a1789.pdf)\n\n---\n\n## 4. ContractEval\n\n**Verified: The 0% contract satisfaction claim is confirmed, with important nuance.**\n\n- The paper at arXiv 2510.12047 is titled \"ContractEval: A Benchmark for Evaluating Contract-Satisfying Assertions in Code Generation\" (note: the full title of a later version is \"Do Large Language Models Respect Contracts? Evaluating and Enforcing Contract-Adherence in Code Generation\").\n- The 0% claim is accurate and specific: **Five code LLMs achieved 0% contract satisfaction rate (CSR) under standard prompting**, meaning none of them rejected even a single contract-violating test input -- despite achieving 75-82% pass@1 on functional correctness for the same tasks.\n- This means models implement the requested functionality but completely ignore input contracts/preconditions.\n- With enhanced prompting (contract-aware descriptions + few-shot ill-formed examples), CSR improves substantially: up to 56.51% for GPT-4o and 62.94% for Gemini-3-flash.\n\nSources:\n- [arXiv 2510.12047 - ContractEval](https://arxiv.org/abs/2510.12047)\n- [ContractEval HTML version](https://arxiv.org/html/2510.12047)\n- [ContractEval v2 - Extended version](https://arxiv.org/html/2510.12047v2)\n- [ContractEval GitHub](https://github.com/olivialiu121/ContractEval)"
+      }
+    ],
+    "totalDurationMs": 101924,
+    "totalTokens": 23520,
+    "totalToolUseCount": 16,
+    "usage": {
+      "input_tokens": 788,
+      "cache_creation_input_tokens": 976,
+      "cache_read_input_tokens": 20203,
+      "output_tokens": 1553,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 976
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 788,
+          "output_tokens": 1553,
+          "cache_read_input_tokens": 20203,
+          "cache_creation_input_tokens": 976,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 976,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 16
+    }
+  },
+  "sourceToolAssistantUUID": "92784b29-8f76-4236-8106-9086a7a71110",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "45b260b9-f974-4705-90fa-8f18d6ff20e0",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Execution-Grounded Behavioral Specs for Code LLM Reasoning",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19"
+}
+```
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-12T02:38:13.685Z_
+
+<details><summary>↩ Tool result · `toolu_01XVLX4RRGDJkgB4wDwvqnji`</summary>
+
+```text
+Now I have all the information needed to provide a comprehensive analysis. Here is my report:
+
+---
+
+## Findings: Verification of Claims About PGS (arXiv:2506.18315)
+
+### Critical Version Distinction
+
+The paper has two versions:
+- **v1** (submitted June 23, 2025): Contains the numbers 82.4%, 62.8%, 48.9% and the "23.1-37.3%" claim
+- **v2** (May 1, 2026): Substantially revised; removed Table IV entirely, replaced with different metrics and tables
+
+The claims under review appear to be drawn from **v1**, not v2. This is important because v2 restructured the paper significantly.
+
+---
+
+### Claim 1: "Property generation accuracy of 82.4% (easy), 62.8% (medium), and 48.9% (hard) on LiveCodeBench"
+
+**Partially accurate but uses wrong terminology.** 
+
+In PGS **v1**, Table IV reports "Validation Gen. Acc." (validation generation accuracy) of:
+- Easy: 82.4%
+- Medium: 62.8%  
+- Hard: 48.9%
+
+The paper's own term is **"Validation Gen. Acc."**, defined as "the accuracy of the LLM in formulating the validation artifacts or properties intended to check correctness." This is close to "property generation accuracy" but the paper never uses that exact phrase. The term "property generation accuracy" is a reasonable paraphrase, but it is not the paper's own language.
+
+**These numbers do NOT appear in v2.** In v2, Table 2 reports **GenAcc** (code generation accuracy, not property generation accuracy) of 90.6%/67.6%/32.4% and **VerAcc** (verification accuracy) of 93.8%/91.2%/76.5%. These are fundamentally different metrics from what v1's Table IV reported.
+
+---
+
+### Claim 2: "23.1-37.3% relative pass@1 improvement"
+
+**Accurate for v1; not stated in v2.**
+
+The v1 abstract explicitly states: "PGS achieves substantial pass@1 improvements, ranging from 23.1% to 37.3% relative gains over established TDD methods."
+
+In v2, this claim was replaced with different framing: "up to 13.4% in pass@1 against other TDD-based methods" and "1.4x-1.6x higher than the strongest debugging-based approaches." Note the v2 numbers are absolute percentage points, not relative gains, making them not directly comparable to the v1 relative gains.
+
+Interestingly, the specific numbers 23.1 and 37.3 do appear in v2 but in completely different contexts: "23.1%" appears as a baseline plateau on HumanEval in Section 5.3.1, and "37.3" appears as a PGS pass@1 score on SWE-Bench (DeepSeek-R1-32B).
+
+---
+
+### Claim 3: "Validates properties against public test cases for soundness but does not check inter-property consistency"
+
+**Accurate for both v1 and v2.**
+
+**Soundness validation (confirmed):** v1 explicitly describes two validation criteria:
+1. **Soundness:** "For every correct input-output pair in T_v, the property check must evaluate to True. This ensures the check does not falsely reject known good behaviors."
+2. **Sensitivity:** "For an erroneous output produced by a flawed version, the property check should ideally evaluate to False."
+
+v2 similarly states: "To ensure the soundness of LLM-generated properties, each property check in C^P is validated against the public test cases T_v. This critical filtering process discards any property that contradicts the known ground truth."
+
+**No inter-property consistency (confirmed):** Neither v1 nor v2 mentions any form of inter-property consistency checking, mutual consistency, or cross-validation between generated properties. Properties are validated individually against public test cases only. The terms "consistency," "mutual," "cross-validation," and "inter-property" do not appear in either version in this context.
+
+---
+
+### Summary of What Table 2 Measures (v2)
+
+In v2, Table 2 measures the "Asymmetry of Verification" - comparing:
+- **GenAcc** = Code generation accuracy (can the LLM generate correct code?)
+- **VerAcc** = Verification accuracy (can the LLM verify if code is correct using properties?)
+
+This is explicitly about **code** generation vs. **code verification**, NOT about property generation accuracy. The paper's point is that verification is easier than generation (87.0% vs 63.0% overall), justifying the property-based feedback approach.
+
+---
+
+### Bottom Line
+
+The reviewed claims conflate v1 and v2 of the paper and use imprecise terminology:
+1. The 82.4%/62.8%/48.9% numbers are from **v1 only** (Table IV, "Validation Gen. Acc."), not v2. Calling this "property generation accuracy" is a reasonable paraphrase but not the paper's term.
+2. The "23.1-37.3% relative pass@1 improvement" is from the **v1 abstract** only; v2 reframes improvements differently.
+3. The claim about validating against public tests without inter-property consistency is accurate for both versions.
+
+agentId: a3dddc483217d48be (use SendMessage with to: 'a3dddc483217d48be' to continue this agent)
+&lt;usage>total_tokens: 21771
+tool_uses: 13
+duration_ms: 208364&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f6f4aa73-4c68-478f-973b-dd04a896189a",
+  "isSidechain": false,
+  "promptId": "bb38eb9c-eebd-4557-8dc5-3f5aa26b5d56",
+  "type": "user",
+  "uuid": "fe10fd67-b4e2-4ffe-8bf3-8f473512333b",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify specific claims about PGS v2 (arXiv:2506.18315, \"Effective LLM Code Refinement via Property-Oriented and Structurally Minimal Feedback\"). \n\nThe idea under review claims:\n- PGS reports \"property generation accuracy of 82.4% (easy), 62.8% (medium), and 48.9% (hard) on LiveCodeBench\"\n- PGS achieves \"23.1-37.3% relative pass@1 improvement\"\n- PGS \"validates properties against public test cases for soundness but does not check inter-property consistency\"\n\nA previous search found PGS v2 Table 2 reports GenAcc of 90.6% (easy), 67.6% (medium), 32.4% (hard). But these may be CODE generation accuracy, not PROPERTY generation accuracy.\n\nUse WebFetch to access https://arxiv.org/abs/2506.18315 and https://arxiv.org/html/2506.18315 to clarify:\n1. What exactly does Table 2 measure? Is GenAcc \"code generation accuracy\" or \"property generation accuracy\"?\n2. Does PGS report a separate metric for property accuracy/quality?\n3. What does \"48.9%\" refer to in PGS if anything?\n4. Does PGS check inter-property consistency or only validate individual properties against public tests?\n\nBe precise about what the paper actually says vs. what might be inference.",
+    "agentId": "a3dddc483217d48be",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have all the information needed to provide a comprehensive analysis. Here is my report:\n\n---\n\n## Findings: Verification of Claims About PGS (arXiv:2506.18315)\n\n### Critical Version Distinction\n\nThe paper has two versions:\n- **v1** (submitted June 23, 2025): Contains the numbers 82.4%, 62.8%, 48.9% and the \"23.1-37.3%\" claim\n- **v2** (May 1, 2026): Substantially revised; removed Table IV entirely, replaced with different metrics and tables\n\nThe claims under review appear to be drawn from **v1**, not v2. This is important because v2 restructured the paper significantly.\n\n---\n\n### Claim 1: \"Property generation accuracy of 82.4% (easy), 62.8% (medium), and 48.9% (hard) on LiveCodeBench\"\n\n**Partially accurate but uses wrong terminology.** \n\nIn PGS **v1**, Table IV reports \"Validation Gen. Acc.\" (validation generation accuracy) of:\n- Easy: 82.4%\n- Medium: 62.8%  \n- Hard: 48.9%\n\nThe paper's own term is **\"Validation Gen. Acc.\"**, defined as \"the accuracy of the LLM in formulating the validation artifacts or properties intended to check correctness.\" This is close to \"property generation accuracy\" but the paper never uses that exact phrase. The term \"property generation accuracy\" is a reasonable paraphrase, but it is not the paper's own language.\n\n**These numbers do NOT appear in v2.** In v2, Table 2 reports **GenAcc** (code generation accuracy, not property generation accuracy) of 90.6%/67.6%/32.4% and **VerAcc** (verification accuracy) of 93.8%/91.2%/76.5%. These are fundamentally different metrics from what v1's Table IV reported.\n\n---\n\n### Claim 2: \"23.1-37.3% relative pass@1 improvement\"\n\n**Accurate for v1; not stated in v2.**\n\nThe v1 abstract explicitly states: \"PGS achieves substantial pass@1 improvements, ranging from 23.1% to 37.3% relative gains over established TDD methods.\"\n\nIn v2, this claim was replaced with different framing: \"up to 13.4% in pass@1 against other TDD-based methods\" and \"1.4x-1.6x higher than the strongest debugging-based approaches.\" Note the v2 numbers are absolute percentage points, not relative gains, making them not directly comparable to the v1 relative gains.\n\nInterestingly, the specific numbers 23.1 and 37.3 do appear in v2 but in completely different contexts: \"23.1%\" appears as a baseline plateau on HumanEval in Section 5.3.1, and \"37.3\" appears as a PGS pass@1 score on SWE-Bench (DeepSeek-R1-32B).\n\n---\n\n### Claim 3: \"Validates properties against public test cases for soundness but does not check inter-property consistency\"\n\n**Accurate for both v1 and v2.**\n\n**Soundness validation (confirmed):** v1 explicitly describes two validation criteria:\n1. **Soundness:** \"For every correct input-output pair in T_v, the property check must evaluate to True. This ensures the check does not falsely reject known good behaviors.\"\n2. **Sensitivity:** \"For an erroneous output produced by a flawed version, the property check should ideally evaluate to False.\"\n\nv2 similarly states: \"To ensure the soundness of LLM-generated properties, each property check in C^P is validated against the public test cases T_v. This critical filtering process discards any property that contradicts the known ground truth.\"\n\n**No inter-property consistency (confirmed):** Neither v1 nor v2 mentions any form of inter-property consistency checking, mutual consistency, or cross-validation between generated properties. Properties are validated individually against public test cases only. The terms \"consistency,\" \"mutual,\" \"cross-validation,\" and \"inter-property\" do not appear in either version in this context.\n\n---\n\n### Summary of What Table 2 Measures (v2)\n\nIn v2, Table 2 measures the \"Asymmetry of Verification\" - comparing:\n- **GenAcc** = Code generation accuracy (can the LLM generate correct code?)\n- **VerAcc** = Verification accuracy (can the LLM verify if code is correct using properties?)\n\nThis is explicitly about **code** generation vs. **code verification**, NOT about property generation accuracy. The paper's point is that verification is easier than generation (87.0% vs 63.0% overall), justifying the property-based feedback approach.\n\n---\n\n### Bottom Line\n\nThe reviewed claims conflate v1 and v2 of the paper and use imprecise terminology:\n1. The 82.4%/62.8%/48.9% numbers are from **v1 only** (Table IV, \"Validation Gen. Acc.\"), not v2. Calling this \"property generation accuracy\" is a reasonable paraphrase but not the paper's term.\n2. The \"23.1-37.3% relative pass@1 improvement\" is from the **v1 abstract** only; v2 reframes improvements differently.\n3. The claim about validating against public tests without inter-property consistency is accurate for both versions."
+      }
+    ],
+    "totalDurationMs": 208364,
+    "totalTokens": 21771,
+    "totalToolUseCount": 13,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 746,
+      "cache_read_input_tokens": 19745,
+      "output_tokens": 1279,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 746
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1279,
+          "cache_read_input_tokens": 19745,
+          "cache_creation_input_tokens": 746,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 746,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 13
+    }
+  },
+  "sourceToolAssistantUUID": "f6f4aa73-4c68-478f-973b-dd04a896189a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-12T02:40:57.932Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have comprehensive verification data. Let me synthesize all findings and evaluate this Round 9 submission carefully.
+
+## Key Findings from my research:
+
+### PGS v2 Verification:
+1. **PGS v2 benchmarks**: PGS v2 evaluates on 5 benchmarks: HumanEval, MBPP, LiveCodeBench, CodeContests, AND SWE-bench Verified. The idea claims PGS doesn't cover CodeContests, SWE-bench, or debugging — the CodeContests and SWE-bench claims are WRONG based on PGS v2, but the debugging claim is correct.
+
+
+2. **Round 8 already flagged this**: The previous reviewer identified this exact factual error about PGS v2's benchmark coverage, noting the idea incorrectly omits CodeContests and SWE-bench from PGS's evaluation scope. This same error persists in Round 9, suggesting the submitter didn't address the critical feedback. I'm checking the landscape section more carefully now—it describes PGS as introducing a Generator-Tester framework that creates abstract behavioral properties and validates code against them, achieving significant improvements over TDD methods, but the description cuts off mid-sentence. I'm noticing the v1 and v2 numbers don't align — the idea cites v1 results (82.4%/62.8%/48.9% accuracy and 23.1-37.3% improvements) but claims they're from the current version, even though the paper header says "revised May 2026" which should reflect v2's different metrics and benchmark scope. The v2 tables actually show separate generation and verification accuracies with different values entirely, and the improvements are framed differently. I need to check what the Round 9 idea actually says about PGS v2's approach to see if there's a mismatch there too.
+
+Looking at the approach section, the core contribution is positioned as the delta between the baseline PGS implementation and their method — specifically whether execution grounding and component decomposition provide gains beyond property-based testing. The idea does frame PGS as the critical baseline for isolating their contribution, but it's still using outdated v1 numbers and making claims about PGS's scope that may not hold for v2.
+
+The core problem statement mentions PGS validates properties against public test cases for soundness but doesn't check inter-property consistency or detect contradictions within the property set itself.
+
+However, there are some factual issues with the framing. The 48.9% property generation accuracy cited is from v1 — v2 actually shows 32.4% on hard problems, which is worse and would strengthen the motivation even more. The claim that PGS only evaluates on HumanEval/MBPP/LiveCodeBench is outdated since v2 adds CodeContests and SWE-bench. Similarly, the model list in the landscape section references v1's models (DeepSeek-Coder-V2, Qwen2.5-Coder, DeepSeek-R1-Distilled-32B) but v2 includes Qwen3-30B as well. DeepSeek-V3.1, and Claude-Sonnet-4.
+
+In the landscape: "PGS achieves 23.1–37.3% relative pass@1 improvement over TDD methods" — this is from v1's abstract; v2 reframes differently.
+
+In the landscape: "PGS validates properties against public test cases for soundness, reporting property generation accuracy of 82.4% (easy), 62.8% (medium), and 48.9% (hard) on LiveCodeBench." — These are v1 numbers from Table IV.
+
+In the landscape: "Critically, PGS does not check inter-property consistency, does not evaluate on CodeContests, SWE-bench, or debugging benchmarks, and treats properties as a monolithic category" — The "does not evaluate on CodeContests, SWE-bench" part is WRONG for v2.
+
+In the approach: The submission claims to evaluate across four task types on benchmarks PGS v2 doesn't cover, but that's misleading — v2 actually does evaluate on CodeContests and SWE-bench (standard), though ExeSpec's use of SWE-bench Pro is a genuine differentiator. The critical issue is that Round 8 feedback about benchmark coverage gaps hasn't been properly addressed; DebugBench remains uncovered by PGS v2, yet the framing still incorrectly positions these as novel contributions.
+
+I need to be precise: the factual error about CodeContests and SWE-bench coverage is the core problem that Round 8 flagged, and it's still present in this submission. My verification agent found that 37.3% actually appears in v2 as PGS's pass@1 score on SWE-bench with DeepSeek-R1-32B, not as an improvement claim. The property accuracy numbers the idea cites—82.4%, 62.8%, and 48.9%—are definitely from v1, not v2, which means this is still the same factual error persisting across rounds.
+
+In v2, Table 2 shows different metrics entirely: GenAcc (code generation accuracy) of 90.6%/67.6%/32.4% and VerAcc (verification accuracy) of 93.8%/91.2%/76.5%. The idea's motivation about property accuracy dropping to 48.9% on hard problems doesn't match v2's GenAcc of 32.4%, which is actually worse but measures something fundamentally different—whether the LLM can generate correct code at all, not whether it can verify properties.
+
+The idea conflates v1 and v2 metrics, citing the wrong numbers. This is exactly what Round 8 asked to be fixed. I also need to check the claim about PGS v2's CodeContests results—the approach says the delta between properties and tests replicates PGS's finding on new benchmarks like CodeContests and DebugBench, but PGS v2 has actually been evaluated on CodeContests and standard SWE-bench already. Only DebugBench and SWE-bench Pro are genuinely new for PGS.
+
+Looking at what Round 8 requested versus what's been addressed: PGS is now cited as closest prior work, but the v2 details are still wrong. The property accuracy numbers still use v1 instead of v2's Table 2, the benchmark coverage claim is inaccurate, and the timeline constraint is violated at 18-22 days instead of 16. Some items are done—NL-Debugging, ContractEval, and StoryCoder are cited, and SWE-bench Pro is added as co-primary—but the critical PGS v2 baseline numbers haven't been incorporated.
+
+The strengths of this version are solid: PGS is positioned as the closest prior work with detailed comparison, NL-Debugging serves as a venue-relevant baseline on DebugBench, the experimental design with six controlled conditions is rigorous, and the ablation study is intellectually honest about the novelty risk. The 5-component schema with component-level ablation is well-designed, and using AlphaCodium as a baseline for test-versus-property comparison adds depth.
+
+But there are still some issues I need to address: I'm citing outdated PGS v1 numbers when PGS v2 already covers five benchmarks including CodeContests and SWE-bench, the manual mode timeline of 18-22 days pushes past the 16-day constraint, and reimplementing PGS across all benchmarks is risky when v2 results already exist for Qwen2.5-Coder. I also haven't verified the StoryCoder ACL 2026 Main acceptance claim.
+
+Looking at the novelty angle, the core contribution—execution grounding with cross-spec consistency checking—does go beyond what PGS does, since PGS only validates individual properties against public tests. ExeSpec adds cross-property consistency checking, candidate-code probing, a five-component decomposition, and extensions to debugging and completion tasks. But with PGS v2 now covering the same benchmarks, the benchmark novelty shrinks. The real differentiators are execution grounding catching inconsistent specs that PGS misses, the DebugBench evaluation, component ablations, and SWE-bench Pro for contamination resistance. That feels meaningful but incremental—probably a 3/5 on novelty.
+
+The stronger angle is treating this as a follow-up to PGS's core claim about properties over tests: I'm asking whether execution grounding makes properties more reliable, whether they help beyond generation (debugging, completion, issue resolution), and which property types matter for which tasks. The multi-task extension and ablation design are more novel, especially the debugging framing—using specs as intended-versus-observed behavioral contrasts—and the NL-Debugging comparison would resonate well for EMNLP. I'd stick with 3/5 novelty overall, but the analytical contributions push it toward the stronger end of that rating.
+
+On feasibility, the timeline is the real constraint—18-22 days of manual annotation exceeds the 16-day window, though the human-in-the-loop variant at 14-18 days is borderline. GPU budget of 150-200 H100-hours fits comfortably. The bigger risks are reimplementing PGS, setting up SWE-bench Pro evaluation, and running 6 conditions across 3 benchmarks with 2 models, which is a lot of experiments. Compute-wise it's doable but the schedule is tight—3/5 feasibility. The presentation is clean though: the 3-stage pipeline is well-articulated, the baselines are controlled, and I can explain the distinction from PGS even if some details about their v2 are off—I'd rate clarity at 4/5.
+
+For impact, if execution grounding actually catches hallucinated specs and beats PGS, and the multi-task extension shows properties help with debugging and completion, that's a solid contribution. The DebugBench comparison fits the venue. The ablations would guide future work. But it's still incremental on PGS, not a fundamental shift—3/5 impact. That averages to 3.25, below the 4.0 pass threshold. Since this is round 9 of 10, I need to think about whether these gaps are fixable in the final round.
+
+The factual errors about PGS v2 are straightforward to fix—just update the numbers and benchmarks. The timeline is tougher; I'd need to compress the manual estimate or cut scope. The novelty concern is the hardest because the core idea genuinely builds incrementally on PGS. But wait, let me reconsider what's actually novel here. PGS v2 covers CodeContests and SWE-bench, but not DebugBench. It doesn't do cross-file completion, component ablation, or inter-property consistency checking. So the real novelty is execution grounding with cross-spec consistency checks—that's genuinely new beyond PGS v2.
+
+Looking at the specifics: the DebugBench evaluation frames specs as behavioral contrasts for debugging, the five-component ablation shows which parts help which tasks, SWE-bench Pro resists contamination better than standard SWE-bench, and there's a direct comparison with recent EMNLP work on debugging. These are meaningful contributions. The core mechanism—generate specs, verify, apply to code tasks—mirrors PGS's approach pretty closely, so the novelty really hinges on these specific extensions rather than a fundamentally different method.
+
+For EMNLP 2026, the debugging angle and the comparison with concurrent work are the strongest hooks. The ablation adds rigor to the analysis. I'd rate this around 3 to 3.5 on novelty—solid but not groundbreaking.
+
+That said, I'm questioning whether this lands as a main conference paper or gets relegated to Findings. EMNLP values NLP and language model insights, and while ExeSpec positions specs as structured reasoning intermediates for LLMs, the core contribution feels more like software engineering—spec verification and validation—than a fundamental NLP advance. The venue fit is there with the NL-Debugging comparison, but the framing might push it toward a shorter format rather than a full paper.
+
+The bigger issue is those PGS v2 factual errors from Round 8 are still unresolved. This is my last chance to correct them before the final round locks in the verdict. I need to fix those before moving forward. The PGS v2 factual error actually undermines one of my key differentiators — PGS v2 does cover CodeContests and SWE-bench, so I need to reposition the contribution. The real novelty lies in execution grounding for CodeContests, SWE-bench Pro's contamination resistance versus standard SWE-bench, and DebugBench as a genuinely new benchmark where PGS v2 has no coverage. I should acknowledge what PGS v2 already does, then show how ExeSpec improves or extends those evaluations rather than claiming entirely new ground.
+
+For the timeline, I can make this work in 16 days by leveraging PGS v2's published results as baselines, implementing the full pipeline only on DebugBench where there's no existing data, and focusing on three core benchmarks with complete baseline coverage. On the accuracy metrics, I need to clarify whether I'm citing v1's validation generation numbers or v2's code generation accuracy — they're different values and I should be explicit about which version I'm referencing.
+
+Now I'm thinking through the scoring: if I fix the PGS v2 acknowledgments and update the narrative to reflect that it covers five benchmarks rather than three, this becomes more defensible. The novelty would be incremental at best, but the execution could still be solid if the timeline and methodology are sound.
+
+The debugging extension and component ablation do add some analytical depth, though the core mechanism of grounding specifications through execution is fairly straightforward. I'm leaning toward this being a strong Findings paper rather than Main conference material, which actually works since the user mentioned Findings as an acceptable venue. That lowers the bar slightly and makes the 3.25 average more reasonable for acceptance.
+
+Since I have one more round to work with, let me think through what would actually move this to passable: I need to fix the factual issues with PGS v2, reframe the novelty around how ExeSpec improves existing benchmarks through execution grounding while introducing property-based evaluation on new ones, compress the timeline by leveraging published reference numbers, and make sure the ablation study clearly demonstrates the value of each component.
+
+Now I'm reconsidering whether this can pass even with those fixes. The core question is whether ExeSpec's additions—cross-spec consistency checking, multi-task evaluation, and component ablation—constitute sufficient novelty beyond PGS. For EMNLP Findings specifically, these incremental but meaningful extensions might actually be enough. Let me recalibrate: novelty could be 3.5/5 with better positioning, feasibility improves to 3.5/5 if I fix the timeline, clarity stays at 4/5, and impact could reach 3.5/5 given the venue's standards.
+
+That still averages around 3.5, which falls short of the 4.0 threshold needed for acceptance. I should recommend revision for Round 9, though I need to acknowledge that fixing those PGS v2 errors is non-negotiable. The experimental rigor—particularly the component ablation and spec survival analysis—could actually make this a compelling Findings paper despite the incremental novelty, but I can't justify a pass without hitting that 4.0 average across the board.
+
+Let me settle on the final scores: Novelty gets a 3 since the execution grounding and multi-task approach are genuine contributions, though PGS v2 now covering CodeContests and SWE-bench does diminish the benchmark novelty angle. Feasibility is also a 3 because the 18-22 day timeline exceeds the 16-day constraint, though the GPU budget works and this could improve if they compress the schedule. Clarity deserves a 4—the paper is well-structured with a clear three-stage pipeline and controlled baselines. Impact lands at 3 for Findings, where the NL-Debugging comparison and ablation analysis add real value, even if it's incremental relative to PGS for the Main track.
+
+That puts me at 3.25 average, so revision it is. The critical issue is those persistent PGS v2 factual errors from Round 8 that need to be resolved before Round 10.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe10fd67-b4e2-4ffe-8bf3-8f473512333b",
+  "isSidechain": false,
+  "requestId": "req_011Cawu5vqteJZTcP6p9ufJy",
+  "type": "assistant",
+  "uuid": "8597fe09-f8d7-46a1-a17e-fae149bc283b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01923xyYtQRQ2X1GmLbD8fNF",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3854,
+      "cache_read_input_tokens": 50989,
+      "output_tokens": 10350,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3854,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10350,
+          "cache_read_input_tokens": 50989,
+          "cache_creation_input_tokens": 3854,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3854
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-12T02:41:50.489Z_
+
+Now I have comprehensive verification data. Let me compile my assessment of this Round 9 submission.
+
+Key verified findings:
+- **PGS v2** (May 1, 2026) evaluates on **5 benchmarks** (HumanEval, MBPP, LiveCodeBench, CodeContests, SWE-bench) with **6 models** (including Qwen3-30B, DeepSeek-V3.1, Claude-Sonnet-4)
+- The idea **still claims PGS evaluates on only 3 benchmarks** — the critical Round 8 error persists
+- PGS v1's "Validation Gen. Acc." (82.4%/62.8%/48.9%) was replaced in v2 with fundamentally different metrics (GenAcc = code generation accuracy: 90.6%/67.6%/32.4%)
+- The "23.1-37.3% relative improvement" is v1 language; v2 reframes as "up to 13.4% pass@1" and "1.4-1.6x bug fix rate"
+- SWE-bench Verified contamination is confirmed — OpenAI stopped reporting Feb 23, 2026
+- SWE-bench Pro launched Sep 19, 2025 by Scale AI — 1,865 tasks across Python/Go/TypeScript/JavaScript
+- NL-Debugging was indeed an EMNLP 2025 Oral (confirmed)
+- EMNLP 2026 ARR deadline is indeed May 25, 2026 (confirmed)
+- StoryCoder acceptance at ACL 2026 could **not be verified**
+- ContractEval's 0% contract satisfaction claim is verified (though v2 shows up to 62.94% with enhanced prompting)
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 3, "rationale": "Execution grounding (cross-spec consistency), multi-task extension to debugging/completion, and 5-component ablation are genuine contributions beyond PGS, but the core mechanism (generate properties → verify → use for refinement) is highly similar. PGS v2 now covers CodeContests and SWE-bench, eliminating the 'new benchmark' differentiator on those two. The honest ablation design and NL-Debugging comparison are the strongest novel elements."},
+    "feasibility": {"score": 3, "rationale": "GPU budget (150-200 H100-hours) fits within the ≤200 constraint, but manual timeline (18-22 days) violates the ≤16-day hard constraint. HIL (14-18 days) is borderline. PGS baseline reimplementation on all primary benchmarks is risky and unnecessary where PGS v2 already publishes Qwen2.5-Coder results."},
+    "clarity": {"score": 4, "rationale": "Exceptionally well-structured: 3-stage pipeline, 6 controlled experimental conditions, primary/supplementary benchmark distinction, honest ablation design with explicit 'novelty collapse' test. The experimental logic is clearly articulated."},
+    "impact": {"score": 3, "rationale": "A solid incremental contribution suitable for EMNLP Findings — the debugging extension with NL-Debugging comparison is venue-appropriate, and the component ablation provides useful analytical guidance. But the core advance over PGS is not paradigm-shifting enough for Main track at a top venue."}
+  },
+  "issues": [
+    "CRITICAL — PGS v2 FACTUAL ERRORS PERSIST FROM ROUND 8 (6TH ROUND RAISING THIS ISSUE): The idea states 'PGS achieves 23.1–37.3% relative pass@1 improvement... on HumanEval, MBPP, and LiveCodeBench' and 'PGS does not evaluate on CodeContests, SWE-bench, or debugging benchmarks.' PGS v2 (May 1, 2026) evaluates on FIVE benchmarks: HumanEval, MBPP, LiveCodeBench, CodeContests, AND SWE-bench Verified. It uses SIX models: DeepSeek-Coder-V2, Qwen2.5-Coder, DeepSeek-R1-Distilled-32B, Qwen3-30B, DeepSeek-V3.1, Claude-Sonnet-4. The v1 property accuracy numbers (82.4%/62.8%/48.9%) were replaced in v2 by fundamentally different metrics (GenAcc = code generation accuracy: 90.6%/67.6%/32.4%; VerAcc = verification accuracy: 93.8%/91.2%/76.5%). The '23.1-37.3% relative improvement' is v1-only language; v2 reports 'up to 13.4% pass@1' and '1.4-1.6x bug fix rate.' The idea cites 'revised May 2026' showing awareness of v2 but uses exclusively v1 numbers and scope. This invalidates the claim that 'evaluation spans... benchmarks PGS does not cover (CodeContests, SWE-bench Pro, DebugBench)' — only DebugBench and SWE-bench Pro are genuinely new. This is Round 9; failure to correct this in Round 10 MUST result in fail.",
+    "TIMELINE VIOLATION: Manual estimate of 18-22 days exceeds the user's hard constraint of ≤16 days. The HIL estimate of 14-18 days is borderline. Either commit to HIL/auto mode or reduce scope to fit within 16 days.",
+    "STORYCODER VENUE CLAIM UNVERIFIED: The idea states 'StoryCoder (ACL 2026 Main, arXiv 2604.14631)' but I could not verify acceptance at ACL 2026 despite searching the ACL 2026 accepted papers page. The paper was posted to arXiv on April 16, 2026. Either verify the acceptance or cite as a preprint.",
+    "PGS BASELINE REIMPLEMENTATION IS UNNECESSARILY RISKY: The idea proposes reimplementing PGS from scratch on all primary benchmarks. PGS v2 already publishes Qwen2.5-Coder results on CodeContests and SWE-bench. On these shared benchmarks, cite PGS v2's published numbers as the baseline (with setup-difference caveats). Reimplement PGS only on DebugBench where PGS v2 has no published results. This saves 3-4 days and eliminates strawmanning risk.",
+    "NOVELTY REPOSITIONING NEEDED GIVEN PGS v2's EXPANDED SCOPE: With PGS v2 covering CodeContests and SWE-bench, ExeSpec's narrative must shift. On shared benchmarks: 'ExeSpec improves upon PGS v2 via execution grounding that catches internally inconsistent specs PGS misses.' On new benchmarks: 'ExeSpec provides the first property-based evaluation on DebugBench and uses SWE-bench Pro for contamination-resistant evaluation.' The component ablation and honest 'novelty collapse' test remain the strongest differentiators.",
+    "CONTRACTEVAL v2 NUMBERS DIFFER FROM CITED: The idea cites '23-41% with explicit contracts.' ContractEval v2 reports up to 56.51% for GPT-4o and 62.94% for Gemini-3-flash with enhanced prompting (contract-aware descriptions + few-shot ill-formed examples). While the cited numbers may be from v1, using the latest numbers would more accurately represent the landscape."
+  ],
+  "feedback": "This is Round 9 — the idea must pass or fail in Round 10. The experimental design, honest ablation commitment, and NL-Debugging baseline are genuinely strong. But the PGS v2 factual error — now flagged for the 6th consecutive round — is the single blocking issue. Here is EXACTLY what must change for Round 10:\n\n1. **FIX PGS v2 FACTS** (non-negotiable for pass): (a) Update benchmark list to 5: HumanEval, MBPP, LiveCodeBench, CodeContests, SWE-bench. (b) Update model list to 6: add Qwen3-30B, DeepSeek-V3.1, Claude-Sonnet-4. (c) Either cite v1 numbers (82.4%/62.8%/48.9%) with explicit 'v1 Table IV' attribution, or update to v2's Table 2 metrics (GenAcc: 90.6%/67.6%/32.4%; VerAcc: 93.8%/91.2%/76.5%) with correct interpretation (these measure code generation/verification accuracy, not property generation accuracy). (d) Note that v2 reports improvements as 'up to 13.4% pass@1' rather than '23.1-37.3% relative.' (e) Remove ALL claims that PGS doesn't evaluate on CodeContests or SWE-bench.\n\n2. **REPOSITION NOVELTY GIVEN PGS v2**: Reframe the three differentiators as: (a) On SHARED benchmarks (CodeContests, SWE-bench): 'ExeSpec's execution grounding catches internally inconsistent and hallucinated specs that PGS's public-test-only validation misses — PGS v2's GenAcc of 32.4% on hard problems demonstrates that property quality is the bottleneck, motivating our cross-spec consistency checking.' (b) On NEW benchmarks: 'DebugBench (first property-based debugging evaluation) and SWE-bench Pro (contamination-resistant alternative to PGS v2's standard SWE-bench Verified).' (c) Analytical contribution: '5-component decomposition isolating which spec types help which tasks — PGS treats properties as monolithic.'\n\n3. **USE PGS v2 PUBLISHED NUMBERS ON SHARED BENCHMARKS**: On CodeContests and SWE-bench, cite PGS v2's published Qwen2.5-Coder results as reference baselines. Reimplement PGS only on DebugBench. This saves implementation time and avoids strawmanning.\n\n4. **FIT TIMELINE TO 16 DAYS**: Commit to HIL mode and compress: days 1-3 framework + PGS reimplementation for DebugBench only; days 4-7 primary benchmarks (DebugBench + CodeContests + SWE-bench Pro); days 8-9 supplementary (HumanEval+/MBPP+ + CrossCodeEval); days 10-12 ablation + analysis; days 13-16 writing. Drop RepoBench if needed.\n\n5. **FIX STORYCODER VENUE**: Either verify ACL 2026 acceptance or cite as preprint 'arXiv 2604.14631, April 2026.'\n\nThe core idea — execution-grounded behavioral specifications with cross-spec consistency checking, multi-task extension to debugging, and component ablation — is a legitimate incremental advance over PGS suitable for EMNLP Findings. But the repeated PGS v2 factual errors undermine credibility. Fix these and the idea can pass.",
+  "reason": "PGS v2 factual errors persist from Round 8 (still claims PGS evaluates on only 3 benchmarks when v2 covers 5), timeline exceeds 16-day constraint, and novelty repositioning needed given PGS v2's expanded scope — all fixable in one final round."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8597fe09-f8d7-46a1-a17e-fae149bc283b",
+  "isSidechain": false,
+  "requestId": "req_011Cawu5vqteJZTcP6p9ufJy",
+  "type": "assistant",
+  "uuid": "578b452f-8ecc-4493-962d-6c27916b9120",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01923xyYtQRQ2X1GmLbD8fNF",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3854,
+      "cache_read_input_tokens": 50989,
+      "output_tokens": 10350,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3854,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10350,
+          "cache_read_input_tokens": 50989,
+          "cache_creation_input_tokens": 3854,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3854
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "578b452f-8ecc-4493-962d-6c27916b9120",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Execution-Grounded Behavioral Specs for Code LLM Reasoning",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "578b452f-8ecc-4493-962d-6c27916b9120",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Execution-Grounded Behavioral Specs for Code LLM Reasoning",
+  "sessionId": "f798b600-6634-458d-b3ae-c38ff9f70c19"
+}
+```
+
+---

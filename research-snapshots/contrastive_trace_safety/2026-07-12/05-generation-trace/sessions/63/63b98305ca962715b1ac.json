@@ -1,0 +1,1591 @@
+{
+  "schema_version": "1.0",
+  "id": "63b98305ca962715b1ac",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to deeply research the ComPass paper (arXiv 2602.07561, Feb 2026) which achieves 88.35% patch correctness assessm",
+  "task_key": "agent-a9283c1aa2faddbf0",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a9283c1aa2faddbf0.jsonl",
+    "occurrence": 1,
+    "bytes": 87887,
+    "sha256": "80f5f664c35f615f870f71fb7f68f1a8b07f79081cf6b0749f1d14f6489fa334"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 13,
+      "tool_result": 13
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-11T22:48:55.245Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to deeply research the ComPass paper (arXiv 2602.07561, Feb 2026) which achieves 88.35% patch correctness assessment without execution via contrastive learning. This is critical because it directly addresses the same problem as our proposed idea (execution-free patch filtering for automated program repair).\n\nPlease do the following:\n1. WebSearch for \"ComPass arXiv 2602.07561 patch correctness assessment contrastive learning 2026\"\n2. WebFetch the arXiv abstract page to get full details\n3. Search for any follow-up work or papers that cite ComPass\n4. Search for \"PracAPR simulated trace comparison patch validation\" which was also mentioned as related work\n\nI need to understand:\n- Exactly what ComPass does and how it achieves 88.35%\n- What dataset/benchmark it evaluates on\n- Its limitations\n- How our simulation-based approach would differ from or complement it\n- What PracAPR does\n\nReport all findings in detail."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "9aaf4902-91f4-4aad-93ee-4850f2a3e481",
+            "agentId": "a9283c1aa2faddbf0",
+            "type": "user",
+            "uuid": "ba95b56a-a5d4-4b5d-8c7f-7bd55e2487ac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-11T22:48:55.248Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "ba95b56a-a5d4-4b5d-8c7f-7bd55e2487ac",
+                "isSidechain": true,
+                "agentId": "a9283c1aa2faddbf0",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "07acd02d-581f-4077-bd6d-fd7bf3f737c0",
+                "timestamp": "2026-05-11T22:48:55.248Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-11T22:48:58.724Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll conduct this research systematically. Let me start by loading the necessary tools and then performing the searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07acd02d-581f-4077-bd6d-fd7bf3f737c0",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011CawbbjZUVNYn9Lx69v6cR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2ca0f28a-5cc1-4515-adf1-cf3d88d93283",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014TTxs9dY8Zdu6Nbpt5oBn5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8998,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8998,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-11T22:48:59.154Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012kjrxhUYQs3oRCnF4eHsAb",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2ca0f28a-5cc1-4515-adf1-cf3d88d93283",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011CawbbjZUVNYn9Lx69v6cR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "57d0cecd-85b1-4d70-a564-2a0e22b93058",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014TTxs9dY8Zdu6Nbpt5oBn5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8998,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8998,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-11T22:48:59.161Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_012kjrxhUYQs3oRCnF4eHsAb",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "57d0cecd-85b1-4d70-a564-2a0e22b93058",
+            "isSidechain": true,
+            "promptId": "9aaf4902-91f4-4aad-93ee-4850f2a3e481",
+            "agentId": "a9283c1aa2faddbf0",
+            "type": "user",
+            "uuid": "9d6b1739-14ea-4840-860b-5542c46d1ebc",
+            "sourceToolAssistantUUID": "57d0cecd-85b1-4d70-a564-2a0e22b93058",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-11T22:49:02.027Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me run all the searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d6b1739-14ea-4840-860b-5542c46d1ebc",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011Cawbc37evWEKF8BWgzFw4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5a24306f-87c9-4b46-9789-d7b98851d884",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YAHaHdtdE3eVeArAkC1zkG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1914,
+                "cache_read_input_tokens": 8998,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1914,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-11T22:49:02.985Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DpY884B2XTsv96a8EVxFyA",
+              "name": "WebSearch",
+              "input": {
+                "query": "ComPass arXiv 2602.07561 patch correctness assessment contrastive learning 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5a24306f-87c9-4b46-9789-d7b98851d884",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011Cawbc37evWEKF8BWgzFw4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6780138c-7fbc-4870-9e0a-fd68c7fdbe7e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YAHaHdtdE3eVeArAkC1zkG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1914,
+                "cache_read_input_tokens": 8998,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1914,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-11T22:49:03.930Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017VWD2yzUvJzwnibvtTjbdT",
+              "name": "WebSearch",
+              "input": {
+                "query": "PracAPR simulated trace comparison patch validation automated program repair"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6780138c-7fbc-4870-9e0a-fd68c7fdbe7e",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011Cawbc37evWEKF8BWgzFw4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1ef9bc3b-91be-476e-9bce-066255b3873a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YAHaHdtdE3eVeArAkC1zkG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1914,
+                "cache_read_input_tokens": 8998,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1914,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-11T22:49:04.315Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AfmPhZyrfVE1a4gzEjLo5K",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"ComPass\" patch correctness contrastive learning automated program repair execution-free"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ef9bc3b-91be-476e-9bce-066255b3873a",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011Cawbc37evWEKF8BWgzFw4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b16ee3c6-ff06-48b1-90ff-fda078aea42e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YAHaHdtdE3eVeArAkC1zkG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1914,
+                "cache_read_input_tokens": 8998,
+                "output_tokens": 184,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1914
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 184,
+                    "cache_read_input_tokens": 8998,
+                    "cache_creation_input_tokens": 1914,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1914,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-11T22:49:10.560Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DpY884B2XTsv96a8EVxFyA",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ComPass arXiv 2602.07561 patch correctness assessment contrastive learning 2026\"\n\nLinks: [{\"title\":\"[2602.07561] ComPass: Contrastive Learning for Automated Patch Correctness Assessment in Program Repair\",\"url\":\"https://arxiv.org/abs/2602.07561\"},{\"title\":\"ComPass: Contrastive Learning for Automated Patch Correctness Assessment in Program Repair\",\"url\":\"https://arxiv.org/html/2602.07561\"},{\"title\":\"Contrastive Learning for Automated Patch Correctness ...\",\"url\":\"https://arxiv.org/pdf/2602.07561\"},{\"title\":\"Automatic Patch Correctness Assessment with Large Language Model\",\"url\":\"https://arxiv.org/html/2303.00202v3\"},{\"title\":\"Weakly Supervised Contrastive Learning for Histopathology Patch Embeddings\",\"url\":\"https://arxiv.org/html/2602.09477\"},{\"title\":\"1 Deeply Unsupervised Patch Re-Identiﬁcation for Pre-training Object Detectors\",\"url\":\"https://arxiv.org/pdf/2103.04814\"},{\"title\":\"patch-level contrasting without patch cor\",\"url\":\"https://arxiv.org/pdf/2306.13337\"},{\"title\":\"Conducting patch contrastive learning with mixture of experts on mixed datasets for medical image segmentation | Neural Computing and Applications | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s00521-025-11234-1\"},{\"title\":\"[2602.09477] Weakly Supervised Contrastive Learning for Histopathology Patch Embeddings\",\"url\":\"https://arxiv.org/abs/2602.09477\"},{\"title\":\"Rehabilitation Exercise Quality Assessment through Supervised Contrastive Learning with Hard and Soft Negatives\",\"url\":\"https://arxiv.org/html/2403.02772v1\"}]\n\nBased on the search results, I found the paper you're looking for. Here's information about ComPass:\n\n## ComPass: Contrastive Learning for Automated Patch Correctness Assessment\n\nComPass is a PLM-based APCA approach that leverages contrastive learning and data augmentation to address the technical limitations of prior work in automated program repair.\n\n### Problem It Addresses\nAutomated program repair (APR) attempts to reduce manual debugging efforts and plays a vital role in software maintenance. Despite remarkable progress, APR is still limited in generating overfitting patches, i.e., patches passing available test suites but incorrect.\n\n### Key Technical Approach\nComPass utilizes code transformation rules to generate semantic-preserving code snippets for both unlabeled pre-training corpus and labeled fine-tuning patches. ComPass then pre-trains PLMs with contrastive learning, which captures code features with the same semantics but different structures. ComPass finally integrates representation embeddings of patch code snippets and fine-tunes PLMs with a binary classifier jointly to assess patch code correctness.\n\n### Performance Results\nExperimental results on 2274 real-world patches from Defects4J demonstrate that ComPass achieves an accuracy of 88.35%, significantly outperforming state-of-the-art baseline approaches.\n\nThe paper was published on arXiv on February 7, 2026 (arXiv ID: 2602.07561).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6780138c-7fbc-4870-9e0a-fd68c7fdbe7e",
+            "isSidechain": true,
+            "promptId": "9aaf4902-91f4-4aad-93ee-4850f2a3e481",
+            "agentId": "a9283c1aa2faddbf0",
+            "type": "user",
+            "uuid": "cfd56fd9-55d9-46f7-93b0-77e67bf3ff4d",
+            "sourceToolAssistantUUID": "6780138c-7fbc-4870-9e0a-fd68c7fdbe7e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-11T22:49:11.252Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017VWD2yzUvJzwnibvtTjbdT",
+              "type": "tool_result",
+              "content": "Web search results for query: \"PracAPR simulated trace comparison patch validation automated program repair\"\n\nLinks: [{\"title\":\"Towards Practical and Useful Automated Program Repair for Debugging\",\"url\":\"https://arxiv.org/html/2407.08958v1\"},{\"title\":\"[Literature Review] Towards Practical and Useful Automated Program Repair for Debugging\",\"url\":\"https://www.themoonlight.io/en/review/towards-practical-and-useful-automated-program-repair-for-debugging\"},{\"title\":\"[2407.08958] Towards Practical and Useful Automated Program Repair for Debugging\",\"url\":\"https://arxiv.org/abs/2407.08958\"},{\"title\":\"Towards Practical and Useful Automated Program Repair for Debugging Qi Xin\",\"url\":\"https://cs.brown.edu/~spr/papers/se2030.pdf\"},{\"title\":\"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate\",\"url\":\"https://arxiv.org/html/2604.02647\"},{\"title\":\"Automated Program Repair\",\"url\":\"https://www.emergentmind.com/topics/automated-program-repair\"},{\"title\":\"Accelerating Patch Validation for Program Repair with ...\",\"url\":\"https://arxiv.org/pdf/2305.03955\"},{\"title\":\"A Large-Scale Empirical Review of Patch Correctness Checking Approaches\",\"url\":\"https://lingming.cs.illinois.edu/publications/fse2023b.pdf\"},{\"title\":\"ExpressAPR: Efficient Patch Validation for Java Automated Program Repair Systems (ASE 2023 - Tool Demonstrations) - ASE 2023\",\"url\":\"https://conf.researchr.org/details/ase-2023/ase-2023-tool-demonstrations/5/ExpressAPR-Efficient-Patch-Validation-for-Java-Automated-Program-Repair-Systems\"},{\"title\":\"Patch correctness assessment in automated program repair based on the impact of patches on production and test code | Request PDF\",\"url\":\"https://www.researchgate.net/publication/362078016_Patch_correctness_assessment_in_automated_program_repair_based_on_the_impact_of_patches_on_production_and_test_code\"}]\n\nBased on the search results, here's what I found about PracAPR and simulated trace comparison for patch validation:\n\n## Overview\n\nPracAPR is an interactive repair system that works in an Integrated Development Environment (IDE) to provide effective repair suggestions for debugging and does not require a test suite or program re-execution.\n\n## Patch Validation Through Simulated Trace Comparison\n\nThe key innovation of PracAPR is its approach to patch validation. PracAPR generates via a live programming mechanism simulated traces that reflect the real executions of the original and repaired programs and compares the traces to infer patch correctness. This is achieved through simulated trace generation, where it uses the program's expected execution flow against the proposed patch to discern correctness, with the comparison made against tracked program states to determine whether the applied patch upholds the expected behavior without the necessity of running the revised code.\n\n## System Components\n\nPracAPR performs test-free, flow-analysis-based fault localization, patch generation that combines large language model-based local repair and tailored strategy-driven global repair, and program re-execution-free patch validation based on simulated trace comparison.\n\n## Underlying Framework\n\nThe framework builds upon ROSE (an interactive test-free repair framework), which provides initial solutions for fault localization and patch validation without requiring a test suite and program re-execution, and works in the Eclipse-based Code Bubbles IDE.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ef9bc3b-91be-476e-9bce-066255b3873a",
+            "isSidechain": true,
+            "promptId": "9aaf4902-91f4-4aad-93ee-4850f2a3e481",
+            "agentId": "a9283c1aa2faddbf0",
+            "type": "user",
+            "uuid": "8d89771e-a2e9-49a9-a719-bf7fa3dd0a80",
+            "sourceToolAssistantUUID": "1ef9bc3b-91be-476e-9bce-066255b3873a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-11T22:49:13.455Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AfmPhZyrfVE1a4gzEjLo5K",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"ComPass\" patch correctness contrastive learning automated program repair execution-free\"\n\nLinks: [{\"title\":\"ComPass: Contrastive Learning for Automated Patch Correctness Assessment in Program Repair\",\"url\":\"https://arxiv.org/html/2602.07561\"},{\"title\":\"[2602.07561] ComPass: Contrastive Learning for Automated Patch Correctness Assessment in Program Repair\",\"url\":\"https://arxiv.org/abs/2602.07561\"},{\"title\":\"Contrastive Learning for Automated Patch Correctness ...\",\"url\":\"https://arxiv.org/pdf/2602.07561\"},{\"title\":\"The VRepair Workflow: Two phases of training for transfer learning to... | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/The-VRepair-Workflow-Two-phases-of-training-for-transfer-learning-to-repair_fig1_358331237\"},{\"title\":\"DEAR: a novel deep learning-based approach for automated program repair | Request PDF\",\"url\":\"https://www.researchgate.net/publication/362967899_DEAR_a_novel_deep_learning-based_approach_for_automated_program_repair\"},{\"title\":\"Correct patches generated by different techniques. | Download Table\",\"url\":\"https://www.researchgate.net/figure/Correct-patches-generated-by-different-techniques_tbl3_325693875\"},{\"title\":\"Patch Correctness Assessment in Automated Program Repair\",\"url\":\"https://ali-ghanbari.github.io/publications/issta22-shibboleth.pdf\"},{\"title\":\"Automated patch correctness predicting to fix software defect - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0957417424017445\"},{\"title\":\"Context-aware patch generation for better automated program repair | Request PDF\",\"url\":\"https://www.researchgate.net/publication/329639259_Context-aware_patch_generation_for_better_automated_program_repair\"},{\"title\":\"Crex: Predicting patch correctness in automated repair of C programs through transfer learning of execution semantics - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0950584922001562\"}]\n\nBased on the search results, I found comprehensive information about ComPass:\n\n## ComPass: Overview\n\nComPass is a PLM-based approach for patch correctness assessment based on contrastive learning and data augmentation. It addresses the challenge of patch overfitting in automated program repair, where patches pass available test suites but are actually incorrect.\n\n## Key Technical Approach\n\nComPass introduces contrastive pre-training to learn semantic-invariant code representations from semantic-preserving transformations, overcoming the limitation of treating patch correctness assessment as a purely syntactic classification task. To address the scarcity of labeled patches in existing benchmarks, ComPass leverages large-scale unlabeled code for contrastive pre-training and applies data augmentation during fine-tuning.\n\nComPass generates semantic-preserving patches with code transformation rules, and then fine-tunes PLMs with a cross-entropy classifier jointly to assess patch correctness.\n\n## Execution-Free Assessment\n\nComPass is designed to be deployed as a lightweight filtering component in an APR pipeline, operating after candidate patch generation and before expensive validation or manual inspection. This indicates it performs assessment without requiring execution of the patches.\n\n## Experimental Results\n\nOn 2274 patches from Defects4J, ComPass achieves 88.35% accuracy, 87.50% precision, 88.69% recall and 88.09% F1-score, improving the state-of-the-art technique APPT by 6.33% accuracy, 5.29% precision, 8.87% recall, and 7.05% F1-score.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b16ee3c6-ff06-48b1-90ff-fda078aea42e",
+            "isSidechain": true,
+            "promptId": "9aaf4902-91f4-4aad-93ee-4850f2a3e481",
+            "agentId": "a9283c1aa2faddbf0",
+            "type": "user",
+            "uuid": "19c6cd05-2a88-4af7-b853-b4f48054d17f",
+            "sourceToolAssistantUUID": "b16ee3c6-ff06-48b1-90ff-fda078aea42e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-11T22:49:16.710Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, I have initial results. Now let me fetch the full paper details and search for citing work and more details."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "19c6cd05-2a88-4af7-b853-b4f48054d17f",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011Cawbd5Sb3kUpYeHiA2kb4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "05436af2-d9e3-428d-a634-d109916e5978",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F3XU7M97NK3twDEgBd2hyz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2881,
+                "cache_read_input_tokens": 10912,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2881,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-11T22:49:18.610Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Akes5ZnLx53BDVjEsuPcGZ",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2602.07561",
+                "prompt": "Extract ALL details from this paper abstract page: full title, all authors, full abstract text, submission date, all subject categories, and any other metadata available. I need every detail."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "05436af2-d9e3-428d-a634-d109916e5978",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011Cawbd5Sb3kUpYeHiA2kb4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c4882166-12f9-4057-bf28-902d58e33440",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F3XU7M97NK3twDEgBd2hyz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2881,
+                "cache_read_input_tokens": 10912,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2881,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-11T22:49:22.903Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CLwqhNHwGyMu8RPrPPmjz4",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2602.07561",
+                "prompt": "Extract the full paper content in detail. I need: 1) The complete methodology/approach description - how does ComPass work step by step? 2) What code transformation rules are used? 3) What is the contrastive learning objective? 4) What PLM (pre-trained language model) is used as the backbone? 5) The complete experimental setup - dataset details, baselines compared against, evaluation metrics. 6) All results tables with numbers. 7) Limitations discussed by the authors. 8) The threat to validity or future work sections. 9) How exactly does the 88.35% accuracy break down? 10) What is the dataset size and composition?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4882166-12f9-4057-bf28-902d58e33440",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011Cawbd5Sb3kUpYeHiA2kb4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "02b6dcb6-c69d-4cd9-9355-02356ec90884",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F3XU7M97NK3twDEgBd2hyz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2881,
+                "cache_read_input_tokens": 10912,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2881,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-11T22:49:23.388Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011JjBPJyB4LMaCt6gjUtXec",
+              "name": "WebSearch",
+              "input": {
+                "query": "papers citing ComPass contrastive learning patch correctness 2602.07561 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02b6dcb6-c69d-4cd9-9355-02356ec90884",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011Cawbd5Sb3kUpYeHiA2kb4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "61e45ea7-894e-4ec0-bf82-bb65fe879693",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F3XU7M97NK3twDEgBd2hyz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2881,
+                "cache_read_input_tokens": 10912,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2881,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-11T22:49:23.436Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Akes5ZnLx53BDVjEsuPcGZ",
+              "type": "tool_result",
+              "content": "# ComPass Paper Details\n\n**Full Title:** \"ComPass: Contrastive Learning for Automated Patch Correctness Assessment in Program Repair\"\n\n**Authors:**\n- Quanjun Zhang\n- Ye Shang\n- Haichuan Hu\n- Chunrong Fang\n- Zhenyu Chen\n- Liang Xiao\n\n**Abstract Summary:**\nThe work addresses patch overfitting in automated program repair (APR) through a pre-trained language model approach. The system employs contrastive learning with code transformation techniques to generate semantically equivalent code variants. The methodology involves pre-training on unlabeled data, then fine-tuning with labeled patches using a binary classifier. Results demonstrate 88.35% accuracy on 2,274 real-world patches from Defects4J, surpassing the prior APPT baseline.\n\n**Submission Information:**\n- Submitted: February 7, 2026\n- Last Revised: April 6, 2026 (v2)\n- ArXiv ID: 2602.07561\n\n**Subject Categories:**\n- Computer Science > Software Engineering (cs.SE)\n\n**Additional Metadata:**\n- Document length: 31 pages, 3 figures\n- DOI: https://doi.org/10.48550/arXiv.2602.07561\n- Available formats: PDF, HTML (experimental), TeX Source"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4882166-12f9-4057-bf28-902d58e33440",
+            "isSidechain": true,
+            "promptId": "9aaf4902-91f4-4aad-93ee-4850f2a3e481",
+            "agentId": "a9283c1aa2faddbf0",
+            "type": "user",
+            "uuid": "c4fd0cc6-3c26-4a59-b5f8-f78938c8f309",
+            "sourceToolAssistantUUID": "c4882166-12f9-4057-bf28-902d58e33440",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-11T22:49:24.525Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A2SPVPHCkiJ7vg1pRgoktK",
+              "name": "WebSearch",
+              "input": {
+                "query": "PracAPR ROSE simulated trace patch validation execution-free program repair arXiv 2407.08958"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4fd0cc6-3c26-4a59-b5f8-f78938c8f309",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011Cawbd5Sb3kUpYeHiA2kb4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0164ea9e-021d-45c9-aff7-3d462aa15fbc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F3XU7M97NK3twDEgBd2hyz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2881,
+                "cache_read_input_tokens": 10912,
+                "output_tokens": 469,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2881
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 469,
+                    "cache_read_input_tokens": 10912,
+                    "cache_creation_input_tokens": 2881,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2881,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-11T22:49:28.855Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011JjBPJyB4LMaCt6gjUtXec",
+              "type": "tool_result",
+              "content": "Web search results for query: \"papers citing ComPass contrastive learning patch correctness 2602.07561 2026\"\n\nLinks: [{\"title\":\"[2602.07561] ComPass: Contrastive Learning for Automated Patch Correctness Assessment in Program Repair\",\"url\":\"https://arxiv.org/abs/2602.07561\"},{\"title\":\"ComPass: Contrastive Learning for Automated Patch Correctness Assessment in Program Repair\",\"url\":\"https://arxiv.org/html/2602.07561\"},{\"title\":\"Contrastive Learning for Automated Patch Correctness ...\",\"url\":\"https://arxiv.org/pdf/2602.07561\"},{\"title\":\"DEAR: a novel deep learning-based approach for automated program repair | Request PDF\",\"url\":\"https://www.researchgate.net/publication/362967899_DEAR_a_novel_deep_learning-based_approach_for_automated_program_repair\"},{\"title\":\"GitHub - ryanzhumich/Contrastive-Learning-NLP-Papers: Paper List for Contrastive Learning for Natural Language Processing · GitHub\",\"url\":\"https://github.com/ryanzhumich/Contrastive-Learning-NLP-Papers\"},{\"title\":\"Contrastive Learning with Consistent Representations | OpenReview\",\"url\":\"https://openreview.net/forum?id=gKeSI8w63Z\"},{\"title\":\"GitHub - ContrastiveSR/Contrastive_Learning_Papers: A list of contrastive Learning papers · GitHub\",\"url\":\"https://github.com/ContrastiveSR/Contrastive_Learning_Papers\"},{\"title\":\"GitHub - jcy132/Hneg_SRC: Official Pytorch implementation of \\\"Exploring Patch-wise Semantic Relation for Contrastive Learning in Image-to-Image Translation Tasks\\\" (CVPR 2022)\",\"url\":\"https://github.com/jcy132/Hneg_SRC\"},{\"title\":\"Exploring Patch-wise Semantic Relation for Contrastive Learning in\",\"url\":\"https://openaccess.thecvf.com/content/CVPR2022/papers/Jung_Exploring_Patch-Wise_Semantic_Relation_for_Contrastive_Learning_in_Image-to-Image_Translation_CVPR_2022_paper.pdf\"},{\"title\":\"Contrastive Learning\",\"url\":\"https://paperswithcode.com/task/contrastive-learning\"}]\n\nBased on the search results, I found the ComPass paper (arXiv 2602.07561) itself, but the search results don't show specific papers that cite it. This is likely because the paper was just published on February 7, 2026, making it very recent. \n\nHowever, I can see that ComPass: Contrastive Learning for Automated Patch Correctness Assessment in Program Repair is referenced in a ResearchGate publication about other automated program repair approaches, indicating it has begun to be cited.\n\nTo find more recent citations to this paper, you might want to:\n1. Check Google Scholar's citation tracker for paper 2602.07561\n2. Visit the arXiv abstract page for ComPass, which often shows citing papers\n3. Check specialized academic databases like Semantic Scholar or ACM Digital Library\n\nSince the paper is only a few months old (from February 2026), the citation count may still be limited. Would you like me to search for something more specific about ComPass or related automated patch correctness assessment work?\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "61e45ea7-894e-4ec0-bf82-bb65fe879693",
+            "isSidechain": true,
+            "promptId": "9aaf4902-91f4-4aad-93ee-4850f2a3e481",
+            "agentId": "a9283c1aa2faddbf0",
+            "type": "user",
+            "uuid": "4b65b695-6907-4d87-8f7a-34af3ced24df",
+            "sourceToolAssistantUUID": "61e45ea7-894e-4ec0-bf82-bb65fe879693",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-11T22:49:33.933Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A2SPVPHCkiJ7vg1pRgoktK",
+              "type": "tool_result",
+              "content": "Web search results for query: \"PracAPR ROSE simulated trace patch validation execution-free program repair arXiv 2407.08958\"\n\nLinks: [{\"title\":\"[2407.08958] Towards Practical and Useful Automated Program Repair for Debugging\",\"url\":\"https://arxiv.org/abs/2407.08958\"},{\"title\":\"Towards Practical and Useful Automated Program Repair for Debugging\",\"url\":\"https://arxiv.org/html/2407.08958\"},{\"title\":\"Towards Practical and Useful Automated Program Repair for Debugging Qi Xin\",\"url\":\"https://cs.brown.edu/people/spr/papers/se2030.pdf\"},{\"title\":\"[2505.04441] Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\",\"url\":\"https://arxiv.org/abs/2505.04441\"},{\"title\":\"[2407.03889] Automated C/C++ Program Repair for High-Level Synthesis via Large Language Models\",\"url\":\"https://arxiv.org/abs/2407.03889\"},{\"title\":\"Execution-free program repair\",\"url\":\"https://arxiv.org/html/2405.01309\"},{\"title\":\"[2007.11449] Fast and Precise On-the-fly Patch Validation for All\",\"url\":\"https://arxiv.org/abs/2007.11449\"},{\"title\":\"[2301.01113] Invalidator: Automated Patch Correctness Assessment via Semantic and Syntactic Reasoning\",\"url\":\"https://arxiv.org/abs/2301.01113\"},{\"title\":\"[2301.01113] Invalidator: Automated Patch Correctness Assessment via Semantic and Syntactic Reasoning\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2301.01113\"},{\"title\":\"Patch correctness assessment in automated program repair based on the impact of patches on production and test code | Request PDF\",\"url\":\"https://www.researchgate.net/publication/362078016_Patch_correctness_assessment_in_automated_program_repair_based_on_the_impact_of_patches_on_production_and_test_code\"}]\n\nBased on the search results, I found information about the arXiv paper 2407.08958:\n\n## Paper Summary\n\nThe paper is titled \"Towards Practical and Useful Automated Program Repair for Debugging\" (arXiv 2407.08958), published in July 2024.\n\n## Key Concepts\n\n**PracAPR System:** PracAPR is an interactive repair system that works in an Integrated Development Environment (IDE) to provide effective repair suggestions for debugging. PracAPR does not require a test suite or program re-execution, and assumes that the developer uses an IDE debugger with the program suspended at a location where a problem is observed.\n\n**ROSE and Simulated Trace Patch Validation:** PracAPR generates via a live programming mechanism simulated traces that reflect the real executions of the original and repaired programs and compares the traces to infer patch correctness. This is an execution-free approach to patch validation.\n\n**Patch Generation:** PracAPR performs test-free, flow-analysis-based fault localization, patch generation that combines large language model-based local repair and tailored strategy-driven global repair, and program re-execution-free patch validation based on simulated trace comparison.\n\n## Evaluation Results\n\nROSE's test-free fault localization and patch validation are highly effective: the fault localization included the correct repair location for 89% of the bugs tested and the patch validation gave a top-5 rank for all correct repairs; that a ROSE-based tool can repair as many as 36/40 QuixBugs and 37/60 Defects4J bugs in only seconds; and that ROSE helped 44% more participants succeed in a debugging task and helped reduce the debugging time by about 16.5%.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0164ea9e-021d-45c9-aff7-3d462aa15fbc",
+            "isSidechain": true,
+            "promptId": "9aaf4902-91f4-4aad-93ee-4850f2a3e481",
+            "agentId": "a9283c1aa2faddbf0",
+            "type": "user",
+            "uuid": "8de318fa-45e7-48e7-9231-560166a8289e",
+            "sourceToolAssistantUUID": "0164ea9e-021d-45c9-aff7-3d462aa15fbc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-11T22:49:53.915Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CLwqhNHwGyMu8RPrPPmjz4",
+              "type": "tool_result",
+              "content": "# ComPass: Contrastive Learning for Automated Patch Correctness Assessment\n\n## 1. Complete Methodology/Approach\n\nComPass operates through three sequential phases:\n\n**Phase 1 - Data Augmentation**: Source code is transformed using semantic-preserving rules to generate syntactically distinct but functionally equivalent samples.\n\n**Phase 2 - Contrastive Pre-training**: BERT encoder learns representations where semantically equivalent code snippets cluster together in embedding space while dissimilar ones remain distant.\n\n**Phase 3 - Fine-tuning**: The pre-trained encoder is jointly optimized with a binary classifier using labeled patch data to assess patch correctness.\n\nThe authors explain that this approach addresses limitations of prior work (APPT) by moving beyond treating patch assessment as simple classification and leveraging contrastive learning to learn \"semantic-invariant code representations.\"\n\n## 2. Code Transformation Rules\n\nComPass employs 18 transformation rules adapted from SPAT framework:\n\n| ID | Rule | Function |\n|---|---|---|\n| 0 | LocalVarRenaming | Rename local variables |\n| 1-2 | For2While, While2For | Loop conversions |\n| 3 | ReverseIfElse | Swap if-else blocks |\n| 4-5 | SingleIf2ConditionalExp | Conditional expression conversions |\n| 6-7 | PP2AddAssignment | Assignment operator variations |\n| 8-9 | InfixExpressionDividing, IfDividing | Expression/statement division |\n| 10 | StatementsOrderRearrangement | Reorder non-dependent statements |\n| 11 | LoopIfContinue2Else | Control flow restructuring |\n| 12-13 | VarDeclarationMerging/Dividing | Declaration consolidation |\n| 14-15 | SwitchEqualSides, SwitchStringEqual | Operator swapping |\n| 16 | PrePostFixExpressionDividing | Expression decomposition |\n| 17 | Case2IfElse | Switch-case conversion |\n\nRules are selectively applied only when syntactically applicable to code snippets.\n\n## 3. Contrastive Learning Objective\n\nThe contrastive loss function is formulated as:\n\n\"ℒN = -log [exp(sim(x,x+)) / (exp(sim(x,x+)) + Σexp(sim(x,xj-)))]\"\n\nWhere:\n- x = original code snippet\n- x+ = semantic-preserving positive sample\n- xj- = negative examples (other batch samples)\n- sim() = cosine similarity between embeddings\n\nThe model learns by \"pulling together representations of semantically equivalent code snippets and pushing apart semantically different ones.\"\n\n## 4. Backbone PLM\n\n**BERT (bert-base-uncased)** serves as the encoder backbone with these specifications:\n- 110M parameters\n- 768 hidden dimensions\n- 12 encoder layers\n- 12 attention heads\n- Maximum input sequence length: 512 tokens\n\nThe [CLS] token's final layer hidden state represents the code embedding. Authors chose BERT deliberately to \"avoid data leakage\" since it wasn't pre-trained on source code, enabling fair comparison with prior work.\n\n## 5. Complete Experimental Setup\n\n**Dataset Construction**:\n- **Pre-training corpus**: 485,106 unlabeled code snippets from Defects4J-v2.0\n- **Fine-tuning corpus**: 2,274 labeled patches (1,169 correct, 1,105 overfitting)\n- **Augmentation**: Contrastive pre-training generates 1,234,020 augmented samples; fine-tuning generates 10,983 augmented patches\n\n**Data composition** spans 39 APR tools across 17 projects from Defects4J-v2.0 (835 bugs total).\n\n**Baselines Compared**:\n1. PATCH-SIM (dynamic-based, execution traces)\n2. ODS (static-based, hand-crafted features)\n3. Tian et al. (BERT with LR/DT/SVM classifiers)\n4. CACHE (context-aware AST representations)\n5. APPT (recent BERT-based fine-tuning)\n6. ChatGPT-3.5 (LLM baseline)\n\n**Evaluation Protocol**: 5-fold cross-validation following standard practice in APCA literature.\n\n**Evaluation Metrics**:\n- Accuracy: (TP+TN)/(TP+FP+FN+TN)\n- Precision: TP/(TP+FP)\n- Recall: TP/(TP+FN)\n- F1-score: harmonic mean of precision and recall\n\n**Implementation Details**:\n- Optimizer: Adam with learning rate 5e-5\n- Batch size: 16\n- Maximum epochs: 50\n- Hardware: Two Tesla V100-SXM2 GPUs\n\n## 6. Results Tables\n\n**Table 3 - Main Effectiveness Comparison**:\n\n| Approach | Accuracy | Precision | Recall | F1-Score |\n|----------|----------|-----------|--------|----------|\n| PATCH-SIM | 81.29% | 96.63% | 78.90% | 86.87% |\n| ODS | 61.54% | 82.28% | 64.36% | 72.22% |\n| BERT (LR) | 75.00% | 77.78% | 72.73% | 75.17% |\n| BERT (DT) | 63.74% | 65.09% | 65.37% | 65.23% |\n| BERT (SVM) | 76.58% | 78.48% | 75.76% | 77.09% |\n| CACHE | 73.85% | 73.68% | 86.82% | 79.72% |\n| APPT | 82.02% | 82.21% | 79.91% | 81.04% |\n| ChatGPT-3.5 | 62.14% | 58.05% | 94.95% | 72.05% |\n| **ComPass** | **88.35%** | **87.50%** | **88.69%** | **88.09%** |\n\n**Improvements over APPT**: +6.33% accuracy, +5.29% precision, +8.87% recall, +7.05% F1.\n\n**Table 5 - Ablation Study (Component Impact)**:\n\n| Configuration | Accuracy | Precision | Recall | F1 |\n|---|---|---|---|---|\n| ComPass (full) | 88.35% | 87.50% | 88.69% | 88.09% |\n| w/o Contrastive Learning | 84.72% (↓4.11%) | 80.67% (↓7.80%) | 89.72% | 84.96% (↓3.56%) |\n| w/o Data Augmentation | 85.81% (↓2.88%) | 86.06% (↓1.65%) | 84.04% (↓5.24%) | 85.04% (↓3.47%) |\n| w/o Fine-tuning | 77.70% (↓12.05%) | 72.80% (↓16.80%) | 86.36% (↓2.62%) | 79.00% (↓10.32%) |\n| w/o Pre-training | 76.16% (↓13.80%) | 73.93% (↓15.51%) | 78.64% (↓11.33%) | 76.21% (↓13.48%) |\n\n**Table 6 - Vector Integration Analysis**:\n\n| Method Removed | Accuracy | Precision | Recall | F1 |\n|---|---|---|---|---|\n| Full (Concat+Add+Sub+Mul+Cos+Eu) | 88.35% | 87.50% | 88.69% | 88.09% |\n| w/o Concatenation | 85.65% (↓3.06%) | 83.26% (↓4.84%) | 88.18% | 85.65% (↓2.77%) |\n| w/o Addition | 87.42% (↓1.06%) | 85.90% | 88.64% | 87.25% (↓0.96%) |\n| w/o Subtraction | 84.99% (↓3.81%) | 86.19% | 82.27% (↓7.23%) | 84.19% (↓4.43%) |\n| w/o Multiplication | 87.20% (↓1.31%) | 85.53% | 88.64% | 87.05% (↓1.18%) |\n| w/o Cosine-Similarity | 88.08% | 88.79% | 86.36% (↓2.62%) | 87.56% (↓0.60%) |\n| w/o Euclidean-Similarity | 87.64% (↓0.81%) | 87.27% | 87.27% (↓1.60%) | 87.27% (↓0.93%) |\n\n**Table 7 - Foundation Model Generalization**:\n\nComPass improves baseline techniques when integrated:\n- Tian et al. (DT): +15.67% accuracy\n- Tian et al. (SVM): +4.92% accuracy  \n- APPT: +7.39% accuracy\n- CodeBERT: +6.82% accuracy\n\n**Table 8 - Cross-Project Evaluation** (selected results):\n\n| Project | Approach | Accuracy | Precision | Recall | F1 |\n|---|---|---|---|---|\n| Chart | BERT-SVM | 71.46% | 73.85% | 69.70% | 71.71% |\n| Chart | ComPass | 81.01% | 81.95% | 83.85% | 82.89% |\n| Lang | BERT-SVM | 70.95% | 72.37% | 71.43% | 71.90% |\n| Lang | ComPass | 79.24% | 80.30% | 82.17% | 81.23% |\n\n## 7. Limitations Discussed\n\n**Data Augmentation Limitations**: The transformation rules may not guarantee semantic equivalence in \"all corner cases.\" However, authors mitigated this through \"manual code review to verify semantic equivalence at the Java syntax level.\"\n\n**Single Positive Sample Design**: The authors acknowledge that \"pairing each code snippet with only one semantic-preserving positive sample introduces a limitation.\" Multiple valid transformations exist but weren't fully exploited as a \"trade-off to ensure training stability and computational efficiency.\"\n\n**Language and Benchmark Scope**: ComPass was evaluated only on Java code from Defects4J. Generalization to other programming languages remains unexplored.\n\n**Model Architecture**: Authors deliberately used \"lightweight\" classifier design (two fully-connected layers) to attribute improvements to contrastive learning rather than model complexity.\n\n## 8. Threats to Validity\n\n**Internal Validity**:\n- Semantic equivalence of transformation rules may fail in corner cases\n- Evaluation focuses on identifying overfitting patches rather than correct patch identification\n- Mitigation: Cross-project evaluation conducted as more realistic scenario\n\n**External Validity**:\n- Results tied to BERT; generalization to other PLMs unclear\n- Mitigation: CodeBERT experiments demonstrated extensibility\n- Limited to Defects4J benchmark; other datasets easier to identify (99.9% AUC)\n- Mitigation: Collected largest patch set (2,274 from 39 tools)\n\n**Construct Validity**:\n- Baseline selection may be incomplete given rapidly evolving field\n- Mitigation: Selected techniques represent state-of-the-art and cover diverse categories (static, dynamic, learning-based)\n\n## 9. Accuracy Breakdown (88.35%)\n\nThe 88.35% overall accuracy comprises:\n- True Positives (overfitting patches correctly identified) + True Negatives (correct patches correctly identified) divided by all 2,274 patches\n- Supported by 87.50% precision (87.5% of identified overfitting patches are truly overfitting)\n- 88.69% recall (catches 88.69% of actual overfitting patches)\n- F1-score of 88.09% balancing precision-recall tradeoff\n\nThe breakdown reflects a balanced classifier avoiding both false positives (incorrectly filtering correct patches) and false negatives (missing overfitting patches).\n\n## 10. Dataset Size and Composition\n\n**Labeled Patch Dataset** (2,274 total):\n- 1,169 correct patches (51.4%)\n- 1,105 overfitting patches (48.6%)\n- Source: 39 distinct APR tools\n- Benchmark: Defects4J-v2.0 with 835 real-world bugs across 17 projects\n\n**Unlabeled Pre-training Dataset**:\n- 485,106 code snippets from Defects4J production methods\n- From earliest commit of each project to prevent contamination\n\n**Augmented Data**:\n- Pre-training: 1,234,020 augmented samples (1:2.5 ratio)\n- Fine-tuning: 10,983 augmented patches (1:4.8 ratio)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02b6dcb6-c69d-4cd9-9355-02356ec90884",
+            "isSidechain": true,
+            "promptId": "9aaf4902-91f4-4aad-93ee-4850f2a3e481",
+            "agentId": "a9283c1aa2faddbf0",
+            "type": "user",
+            "uuid": "18006a47-ff1e-40b2-bd86-d96ad0e8437b",
+            "sourceToolAssistantUUID": "02b6dcb6-c69d-4cd9-9355-02356ec90884",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-11T22:49:58.846Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent. Now let me search for additional context -- follow-up work, semantic scholar citations, and the execution-free repair paper that appeared in the search results."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18006a47-ff1e-40b2-bd86-d96ad0e8437b",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011Cawbg4Ng3EKJpBHbrWwG4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a7eb361c-ca0c-49ba-8e0b-1b79adb17734",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015SssjUtUvqYKjNXTLD8yNH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1810,
+                "cache_creation_input_tokens": 4194,
+                "cache_read_input_tokens": 13793,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4194,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-11T22:50:00.436Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BgGJPRi6rX2scuJRz776RY",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2407.08958",
+                "prompt": "Extract all details: full title, authors, abstract, how PracAPR's simulated trace comparison works for patch validation without execution, what ROSE is, evaluation results, and limitations."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a7eb361c-ca0c-49ba-8e0b-1b79adb17734",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011Cawbg4Ng3EKJpBHbrWwG4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ca8c2eb5-3f31-404f-b3a6-7982f967ae68",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015SssjUtUvqYKjNXTLD8yNH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1810,
+                "cache_creation_input_tokens": 4194,
+                "cache_read_input_tokens": 13793,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4194,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-11T22:50:01.330Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RTdmUjRmPRmaR6PFQbnP1a",
+              "name": "WebSearch",
+              "input": {
+                "query": "automated patch correctness assessment execution-free 2025 2026 survey state of the art"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca8c2eb5-3f31-404f-b3a6-7982f967ae68",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011Cawbg4Ng3EKJpBHbrWwG4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "74fdd3e0-9b9a-4f1a-8022-5890b1ca7942",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015SssjUtUvqYKjNXTLD8yNH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1810,
+                "cache_creation_input_tokens": 4194,
+                "cache_read_input_tokens": 13793,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4194,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-11T22:50:01.573Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01392CKBWYCt4TnnSrg99oK7",
+              "name": "WebSearch",
+              "input": {
+                "query": "Semantic Scholar ComPass contrastive learning patch correctness program repair citations"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74fdd3e0-9b9a-4f1a-8022-5890b1ca7942",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011Cawbg4Ng3EKJpBHbrWwG4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a07d773b-fb3f-4c42-9914-aa6d029fe4ef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015SssjUtUvqYKjNXTLD8yNH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1810,
+                "cache_creation_input_tokens": 4194,
+                "cache_read_input_tokens": 13793,
+                "output_tokens": 258,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4194
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1810,
+                    "output_tokens": 258,
+                    "cache_read_input_tokens": 13793,
+                    "cache_creation_input_tokens": 4194,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4194,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-11T22:50:05.234Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BgGJPRi6rX2scuJRz776RY",
+              "type": "tool_result",
+              "content": "# Paper Details: Towards Practical and Useful Automated Program Repair for Debugging\n\n## Full Title\n\"Towards Practical and Useful Automated Program Repair for Debugging\"\n\n## Authors\nQi Xin, Haojun Wu, Steven P. Reiss, Jifeng Xuan\n\n## Abstract Summary\nThe researchers present PracAPR, an interactive repair system integrated into IDEs. Key features include:\n- Operates without requiring comprehensive test suites or program re-execution\n- Works within a debugger context when code halts at a problem location\n- Combines \"large language model-based local repair and tailored strategy-driven global repair\"\n- Uses \"simulated trace comparison\" for validation instead of re-execution\n\n## Simulated Trace Comparison for Validation\nThe abstract describes the mechanism as \"program re-execution-free patch validation based on simulated trace comparison,\" but specific technical details about *how* this works are not provided in the webpage content.\n\n## ROSE\nNo mention of ROSE appears in the provided content.\n\n## Evaluation Results\nNo evaluation results are presented in this webpage excerpt.\n\n## Limitations\nThe abstract implies current APR limitations that PracAPR aims to address:\n- Existing techniques rely on unrealistic assumptions (comprehensive test suites)\n- Slow performance\n- Limited ability to repair \"complex bugs by fixing multiple locations\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca8c2eb5-3f31-404f-b3a6-7982f967ae68",
+            "isSidechain": true,
+            "promptId": "9aaf4902-91f4-4aad-93ee-4850f2a3e481",
+            "agentId": "a9283c1aa2faddbf0",
+            "type": "user",
+            "uuid": "dd0eebf0-ad05-4a65-aa8a-136079eb6787",
+            "sourceToolAssistantUUID": "ca8c2eb5-3f31-404f-b3a6-7982f967ae68",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-11T22:50:09.666Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RTdmUjRmPRmaR6PFQbnP1a",
+              "type": "tool_result",
+              "content": "Web search results for query: \"automated patch correctness assessment execution-free 2025 2026 survey state of the art\"\n\nLinks: [{\"title\":\"Automated patch correctness assessment | Proceedings of the 35th IEEE/ACM International Conference on Automated Software Engineering\",\"url\":\"https://dl.acm.org/doi/10.1145/3324884.3416590\"},{\"title\":\"Automated Patch Correctness Assessment: How Far are We? | IEEE Conference Publication | IEEE Xplore\",\"url\":\"https://ieeexplore.ieee.org/document/9286063\"},{\"title\":\"Patch Correctness Assessment: A Survey | ACM Transactions on Software Engineering and Methodology\",\"url\":\"https://dl.acm.org/doi/abs/10.1145/3702972\"},{\"title\":\"Patch Correctness Assessment: A Survey | Request PDF\",\"url\":\"https://www.researchgate.net/publication/385670765_Patch_Correctness_Assessment_A_Survey\"},{\"title\":\"Invalidator: Automated Patch Correctness Assessment Via Semantic and Syntactic Reasoning | IEEE Journals & Magazine | IEEE Xplore\",\"url\":\"https://ieeexplore.ieee.org/document/10066209/\"},{\"title\":\"Patch correctness assessment in automated program repair based on the impact of patches on production and test code | Proceedings of the 31st ACM SIGSOFT International Symposium on Software Testing and Analysis\",\"url\":\"https://dl.acm.org/doi/10.1145/3533767.3534368\"},{\"title\":\"Automated patch assessment for program repair at scale | Empirical Software Engineering | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s10664-020-09920-w\"},{\"title\":\"ComPass: Contrastive Learning for Automated Patch Correctness Assessment in Program Repair\",\"url\":\"https://arxiv.org/html/2602.07561\"},{\"title\":\"Automatic Patch Correctness Assessment with Large Language Model\",\"url\":\"https://arxiv.org/html/2303.00202v3\"},{\"title\":\"[PDF] Automated Patch Correctness Assessment: How Far are We? | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Automated-Patch-Correctness-Assessment:-How-Far-are-Wang-Wen/45d3ca14f3445075eed6e32b1207bb914514a39a\"}]\n\nBased on the web search results, here's what I found regarding automated patch correctness assessment with focus on execution-free approaches and recent state-of-the-art work:\n\n## Key Research Areas\n\nMost automated program repair methods rely on test cases to determine the correctness of generated patches, but due to the incompleteness of available test suites, some patches that pass all test cases may still be incorrect, leading to research efforts devoted to automated patch correctness assessment (APCA).\n\n## Recent Advances (2025-2026)\n\nWith the emergence of large language model (LLM) technology, researchers have employed LLM to assess patch correctness and have obtained state-of-the-art performance. Recent approaches like LLM4PatchCorrect can directly query large language models for predictions on correctness labels without training on new APR tool patches, reducing manual labeling effort.\n\n## Execution-Free Assessment Methods\n\nThere are different categories of automated patch correctness assessment:\n\nStatic-based APCA relies on static code features, such as code-deleting program transformations, while dynamic-based APCA necessitates runtime information obtained by executing test cases on fixed or patched programs.\n\nA notable technique called Invalidator automatically assesses the correctness of APR-generated patches via semantic and syntactic reasoning, leveraging program invariants to reason about program semantics while also capturing program syntax through language semantics learned from a large code corpus using a pre-trained language model.\n\n## Survey and Empirical Studies\n\nRecent survey work in ACM Transactions on Software Engineering and Methodology (2025) notes that most automated program repair methods rely on test cases to determine correctness, but due to test suite incompleteness, some patches passing tests may still be incorrect.\n\nThe search results reveal active research in this area with multiple papers published in 2025-2026, particularly focusing on LLM-based approaches and semantic analysis methods for patch correctness assessment.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74fdd3e0-9b9a-4f1a-8022-5890b1ca7942",
+            "isSidechain": true,
+            "promptId": "9aaf4902-91f4-4aad-93ee-4850f2a3e481",
+            "agentId": "a9283c1aa2faddbf0",
+            "type": "user",
+            "uuid": "6a8fc0e3-cab8-41b7-a899-7339d8ee81ae",
+            "sourceToolAssistantUUID": "74fdd3e0-9b9a-4f1a-8022-5890b1ca7942",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-11T22:50:12.062Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01392CKBWYCt4TnnSrg99oK7",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Semantic Scholar ComPass contrastive learning patch correctness program repair citations\"\n\nLinks: [{\"title\":\"[2602.07561] ComPass: Contrastive Learning for Automated Patch Correctness Assessment in Program Repair\",\"url\":\"https://arxiv.org/abs/2602.07561\"},{\"title\":\"ComPass: Contrastive Learning for Automated Patch Correctness Assessment in Program Repair\",\"url\":\"https://arxiv.org/html/2602.07561\"},{\"title\":\"DEAR: a novel deep learning-based approach for automated program repair | Request PDF\",\"url\":\"https://www.researchgate.net/publication/362967899_DEAR_a_novel_deep_learning-based_approach_for_automated_program_repair\"},{\"title\":\"[PDF] Evaluating Representation Learning of Code Changes for Predicting Patch Correctness in Program Repair | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Evaluating-Representation-Learning-of-Code-Changes-Tian-Liu/67bc0ca2d6d5490e70efa0101ecc1c04d2ecfb1d\"},{\"title\":\"[PDF] An Analysis of the Search Spaces for Generate and Validate Patch Generation Systems | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/An-Analysis-of-the-Search-Spaces-for-Generate-and-Long-Rinard/245f735b70e71d4ee2d3ab944c8a7508a27e88c2\"},{\"title\":\"Contrastive Learning for Automated Patch Correctness ...\",\"url\":\"https://arxiv.org/pdf/2602.07561\"},{\"title\":\"[2008.02944] Evaluating Representation Learning of Code Changes for Predicting Patch Correctness in Program Repair\",\"url\":\"https://arxiv.org/abs/2008.02944\"},{\"title\":\"[PDF] Identifying Patch Correctness in Test-Based Program Repair | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Identifying-Patch-Correctness-in-Test-Based-Program-Liu-Zeng/2636003728858c4c81c31a0a5bc801008f7eb897\"},{\"title\":\"[PDF] Concolic program repair | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Concolic-program-repair-Shariffdeen-Noller/ab65b25165e9ac037bb161c09ec3308a8b197793\"},{\"title\":\"[PDF] Contrastive Code Representation Learning | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Contrastive-Code-Representation-Learning-Jain-Jain/021bbcefc993c389bad6c1daefd8ff92d0fc2441\"}]\n\nBased on the search results, I found information about ComPass and related research on patch correctness assessment and program repair:\n\n## ComPass: Contrastive Learning for Patch Correctness Assessment\n\nComPass is a PLM-based automated patch correctness assessment (APCA) approach that leverages contrastive learning and data augmentation. Automated program repair (APR) attempts to reduce manual debugging efforts and plays a vital role in software maintenance, though APR is still limited in generating overfitting patches—patches passing available test suites but incorrect.\n\n### Approach and Methods\n\nComPass utilizes code transformation rules to generate semantic-preserving code snippets for both unlabeled pre-training corpus and labeled fine-tuning patches. ComPass then pre-trains PLMs with contrastive learning, which captures code features with the same semantics but different structures. ComPass finally integrates representation embeddings of patch code snippets and fine-tunes PLMs with a binary classifier jointly to assess patch code correctness.\n\n### Performance Results\n\nExperimental results on 2274 real-world patches from Defects4J demonstrate that ComPass achieves an accuracy of 88.35%, significantly outperforming state-of-the-art baseline approaches.\n\n### Innovation\n\nAlthough contrastive learning has been explored in other code-related tasks, such as clone detection and code search, ComPass is the first work to investigate its potential for APCA based on PLMs.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a07d773b-fb3f-4c42-9914-aa6d029fe4ef",
+            "isSidechain": true,
+            "promptId": "9aaf4902-91f4-4aad-93ee-4850f2a3e481",
+            "agentId": "a9283c1aa2faddbf0",
+            "type": "user",
+            "uuid": "e07c9720-4c3f-4f30-b552-0e526a6f9e5e",
+            "sourceToolAssistantUUID": "a07d773b-fb3f-4c42-9914-aa6d029fe4ef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-11T22:50:15.586Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me fetch one more piece -- the PCA survey and the PracAPR full HTML for the simulated trace details."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e07c9720-4c3f-4f30-b552-0e526a6f9e5e",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011CawbhPzQuYQXJR9b3FEJr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "85660367-dce9-405e-b68e-0d0fd809ca02",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017h19NzeeVn6HACXxDo3tqm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4507,
+                "cache_read_input_tokens": 17987,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4507,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-11T22:50:19.085Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ma4yhkBWC2zmB1RsbLaLaS",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2407.08958",
+                "prompt": "Extract ALL details about how PracAPR's simulated trace comparison works for patch validation. How does it simulate execution without actually running the program? What is ROSE? How does it compare traces? What are the specific technical mechanisms? Also extract all evaluation results and limitations."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "85660367-dce9-405e-b68e-0d0fd809ca02",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011CawbhPzQuYQXJR9b3FEJr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "63a40486-43d5-450f-ba5d-dbfcdcc02065",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017h19NzeeVn6HACXxDo3tqm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4507,
+                "cache_read_input_tokens": 17987,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4507,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-11T22:50:19.217Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XhTUiXw8D3hiGz2rB2Y8cJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "APPT automated patch correctness assessment pre-trained language model baseline ComPass"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "63a40486-43d5-450f-ba5d-dbfcdcc02065",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011CawbhPzQuYQXJR9b3FEJr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5c55c0a2-e038-47be-ac3b-b9f4ea771167",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017h19NzeeVn6HACXxDo3tqm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4507,
+                "cache_read_input_tokens": 17987,
+                "output_tokens": 214,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4507
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 214,
+                    "cache_read_input_tokens": 17987,
+                    "cache_creation_input_tokens": 4507,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4507,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-11T22:50:26.592Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ma4yhkBWC2zmB1RsbLaLaS",
+              "type": "tool_result",
+              "content": "# PracAPR Simulated Trace Comparison and Validation\n\n## How Simulated Trace Comparison Works\n\nPracAPR performs patch validation without program re-execution using a live programming mechanism. Rather than running code directly, the system generates \"simulated traces that reflect the real executions of the original and repaired programs and compares the traces to infer patch correctness.\"\n\nThe technical foundation relies on **SEEDE** (a live-programming system), which enables simultaneous execution and editing capabilities within a development environment.\n\n## ROSE Framework\n\nROSE (Reiss et al., 2023) is the foundational interactive test-free repair framework upon which PracAPR builds. Key characteristics include:\n\n- **Integration**: Works within the Eclipse-based Code Bubbles IDE\n- **Input**: Assumes programs suspended at problematic locations\n- **Fault Localization**: Uses abstract-interpretation-based flow analysis for static backward slicing\n- **Trace Generation**: Produces simulated traces via SEEDE for both original and repaired executions\n- **Comparison Method**: Compares traces \"with respect to the problem to infer patch correctness\"\n\n## Evaluation Results\n\nROSE demonstrated strong performance:\n- **Fault localization accuracy**: Identified correct repair locations in 89% of tested bugs\n- **Patch validation effectiveness**: Ranked all correct repairs in top-5\n- **Bug repair capability**: Fixed 36/40 QuixBugs and 37/60 Defects4J bugs in seconds\n- **User study impact**: Helped 44% more participants succeed; reduced debugging time by approximately 16.5%\n\n## Limitations\n\nThe document identifies specific constraints:\n- Current approaches repair fewer than 23% of single-location bugs in Defects4J v1.2\n- State-of-the-art methods fail on 57.3% of single-location bugs\n- Global repair approaches successfully address only 8 of 118 single-fault multi-location bugs\n- Overfitting patches remain problematic"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "63a40486-43d5-450f-ba5d-dbfcdcc02065",
+            "isSidechain": true,
+            "promptId": "9aaf4902-91f4-4aad-93ee-4850f2a3e481",
+            "agentId": "a9283c1aa2faddbf0",
+            "type": "user",
+            "uuid": "f4fafb6f-834f-4bcb-9783-33711ff7fda2",
+            "sourceToolAssistantUUID": "63a40486-43d5-450f-ba5d-dbfcdcc02065",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-11T22:50:26.702Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XhTUiXw8D3hiGz2rB2Y8cJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"APPT automated patch correctness assessment pre-trained language model baseline ComPass\"\n\nLinks: [{\"title\":\"ComPass: Contrastive Learning for Automated Patch Correctness Assessment in Program Repair\",\"url\":\"https://arxiv.org/html/2602.07561\"},{\"title\":\"[2602.07561] ComPass: Contrastive Learning for Automated Patch Correctness Assessment in Program Repair\",\"url\":\"https://arxiv.org/abs/2602.07561\"},{\"title\":\"Contrastive Learning for Automated Patch Correctness ...\",\"url\":\"https://arxiv.org/pdf/2602.07561\"},{\"title\":\"(PDF) Boosting Automated Patch Correctness Prediction via Pre-trained Language Model\",\"url\":\"https://www.researchgate.net/publication/367558621_Boosting_Automated_Patch_Correctness_Prediction_via_Pre-trained_Language_Model\"},{\"title\":\"[2301.12453] APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models\",\"url\":\"https://arxiv.org/abs/2301.12453\"},{\"title\":\"GitHub - iSEngLab/APPT: [TSE 2024] APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models · GitHub\",\"url\":\"https://github.com/iSEngLab/APPT\"},{\"title\":\"GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub\",\"url\":\"https://github.com/iSEngLab/AwesomeLLM4APR\"},{\"title\":\"[PDF] Invalidator: Automated Patch Correctness Assessment Via Semantic and Syntactic Reasoning | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Invalidator:-Automated-Patch-Correctness-Assessment-Le-Cong-Luong/f6beeaf7ca72e4ef32a8a8110d4c7e30b18b0231\"},{\"title\":\"Automatic Patch Correctness Assessment with Large Language Model\",\"url\":\"https://arxiv.org/html/2303.00202v3\"},{\"title\":\"APPT: Boosting Automated Patch Correctness Prediction ...\",\"url\":\"https://arxiv.org/pdf/2301.12453\"}]\n\nBased on the web search results, I found comprehensive information about both APPT and ComPass:\n\n## APPT (Automated Patch Correctness Assessment)\n\nAPPT is a pre-trained model-based automated patch correctness assessment technique that adopts a pre-trained model as the encoder stack, followed by an LSTM stack and a deep learning classifier, with the pre-trained model fine-tuned in conjunction with other components as a whole pipeline to fully adapt it for reasoning about patch correctness. On 1,183 Defects4J patches, APPT achieves prediction accuracy of 79.7% and recall of 83.2%.\n\n## ComPass (A ComPass Baseline)\n\nComPass is a PLM-based APCA approach that leverages contrastive learning and data augmentation to address the technical limitations of prior work. ComPass is designed to address the two key limitations of APPT by introducing contrastive pre-training to overcome the limitation of treating patch correctness assessment purely as a classification task that is sensitive to syntactic perturbations. ComPass leverages large-scale unlabeled code for contrastive pre-training and applies data augmentation during fine-tuning, reducing the reliance on limited labeled patch data.\n\n## Performance Comparison\n\nComPass achieves 88.35% for accuracy, 87.50% for precision, 88.69% for recall and 88.09% for F1-score, improving the state-of-the-art technique APPT by 6.33% accuracy, 5.29% precision, 8.87% recall, and 7.05% F1-score.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5c55c0a2-e038-47be-ac3b-b9f4ea771167",
+            "isSidechain": true,
+            "promptId": "9aaf4902-91f4-4aad-93ee-4850f2a3e481",
+            "agentId": "a9283c1aa2faddbf0",
+            "type": "user",
+            "uuid": "c61906a0-db28-4298-97fb-8aed07084e33",
+            "sourceToolAssistantUUID": "5c55c0a2-e038-47be-ac3b-b9f4ea771167",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-11T22:51:49.286Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have comprehensive information. Here is the full detailed research report.\n\n---\n\n## Detailed Research Report: ComPass and PracAPR\n\n### 1. ComPass: Contrastive Learning for Automated Patch Correctness Assessment\n\n**Paper:** \"ComPass: Contrastive Learning for Automated Patch Correctness Assessment in Program Repair\"\n**ArXiv:** [2602.07561](https://arxiv.org/abs/2602.07561) (submitted Feb 7, 2026; revised Apr 6, 2026 as v2)\n**Authors:** Quanjun Zhang, Ye Shang, Haichuan Hu, Chunrong Fang, Zhenyu Chen, Liang Xiao\n**Length:** 31 pages, 3 figures\n\n#### What ComPass Does -- Full Technical Breakdown\n\nComPass is the first work to apply contrastive learning to automated patch correctness assessment (APCA). It operates in three phases:\n\n**Phase 1 -- Data Augmentation:** ComPass uses 18 semantic-preserving code transformation rules (adapted from the SPAT framework) to generate syntactically different but functionally equivalent code variants. These include: local variable renaming, for/while loop conversion, if-else reversal, conditional expression conversions, assignment operator variations, statement reordering, declaration merging/dividing, switch-case to if-else conversion, and others. The rules are only applied when syntactically valid for a given snippet.\n\n**Phase 2 -- Contrastive Pre-training:** Using a standard BERT encoder (bert-base-uncased, 110M parameters, 768 hidden dims, 12 layers), ComPass pre-trains on 485,106 unlabeled code snippets from Defects4J-v2.0, augmented to 1,234,020 samples. The contrastive loss pulls together embeddings of semantically equivalent code (original + transformed variant) while pushing apart embeddings of semantically different code. The [CLS] token's final hidden state serves as the code representation.\n\n**Phase 3 -- Fine-tuning:** The pre-trained encoder is fine-tuned jointly with a binary classifier (two fully-connected layers) on 2,274 labeled patches. A key innovation is their vector integration strategy: they combine patch representations using concatenation, addition, subtraction, multiplication, cosine similarity, and Euclidean similarity -- all six operations are concatenated and fed to the classifier. Data augmentation is also applied during fine-tuning, expanding to 10,983 samples.\n\n#### How It Achieves 88.35% Accuracy\n\nThe main results on 2,274 patches from Defects4J (1,169 correct, 1,105 overfitting) using 5-fold cross-validation:\n\n| Approach | Accuracy | Precision | Recall | F1 |\n|---|---|---|---|---|\n| PATCH-SIM (dynamic) | 81.29% | 96.63% | 78.90% | 86.87% |\n| ODS (static) | 61.54% | 82.28% | 64.36% | 72.22% |\n| CACHE | 73.85% | 73.68% | 86.82% | 79.72% |\n| APPT (prior SOTA) | 82.02% | 82.21% | 79.91% | 81.04% |\n| ChatGPT-3.5 | 62.14% | 58.05% | 94.95% | 72.05% |\n| **ComPass** | **88.35%** | **87.50%** | **88.69%** | **88.09%** |\n\nThe ablation study reveals the contribution of each component:\n- Removing contrastive learning: accuracy drops 4.11% (to 84.72%)\n- Removing data augmentation: accuracy drops 2.88% (to 85.81%)\n- Removing fine-tuning: accuracy drops 12.05% (to 77.70%)\n- Removing pre-training: accuracy drops 13.80% (to 76.16%)\n\nThis confirms that both contrastive pre-training and fine-tuning are essential, with contrastive learning providing a meaningful but not overwhelming boost.\n\n#### Dataset/Benchmark\n\n- **Labeled data:** 2,274 patches from Defects4J-v2.0 (835 bugs, 17 projects, 39 APR tools). Split: 1,169 correct (51.4%), 1,105 overfitting (48.6%).\n- **Unlabeled pre-training data:** 485,106 code snippets from Defects4J production methods (earliest commit of each project to prevent data leakage).\n- **Evaluation protocol:** 5-fold cross-validation.\n- ComPass also generalizes across PLMs: when applied to CodeBERT, it yields +6.82% accuracy improvement.\n\n#### Limitations (Author-Stated and Inferred)\n\n1. **Java-only, Defects4J-only:** All evaluation is on Java. Generalization to other languages is completely unexplored.\n2. **Single positive sample:** Each code snippet is paired with only one semantic-preserving transformation (for computational efficiency), which limits the contrastive learning signal.\n3. **Transformation rule soundness:** The 18 rules may not guarantee semantic equivalence in all corner cases (mitigated by manual review).\n4. **No execution information used:** ComPass is purely static/representation-based. It does not use any runtime behavior, execution traces, or dynamic analysis.\n5. **Benchmark saturation concern:** On easier datasets, prior work already achieves 99.9% AUC, so the Defects4J benchmark is specifically chosen because it remains challenging.\n6. **BERT as backbone:** They deliberately chose BERT (not code-specific PLMs) to avoid data leakage, but this may limit representation quality.\n7. **Cross-project generalization:** While they test cross-project scenarios, results are lower (e.g., 81% for Chart, 79% for Lang) indicating room for improvement in generalization.\n\n#### Citations/Follow-up Work\n\nGiven that ComPass was published only in February 2026 (3 months ago), no citing papers were found yet. It appears to be the current SOTA for APCA on Defects4J.\n\n---\n\n### 2. PracAPR and Simulated Trace Comparison\n\n**Paper:** \"Towards Practical and Useful Automated Program Repair for Debugging\"\n**ArXiv:** [2407.08958](https://arxiv.org/abs/2407.08958) (July 2024)\n**Authors:** Qi Xin, Haojun Wu, Steven P. Reiss, Jifeng Xuan\n\n#### What PracAPR Does\n\nPracAPR is an interactive, IDE-integrated repair system that operates without requiring test suites or program re-execution. It assumes the developer is using an IDE debugger with the program suspended at a problematic location. It has three components:\n\n1. **Test-free fault localization:** Uses abstract-interpretation-based flow analysis (backward slicing) to identify candidate fault locations without running tests.\n\n2. **Patch generation:** Combines LLM-based local repair with tailored strategy-driven global repair (addressing multi-location bugs).\n\n3. **Execution-free patch validation via simulated trace comparison:** This is the key innovation. PracAPR uses **SEEDE** (a live-programming system built on the Eclipse-based Code Bubbles IDE) to generate simulated execution traces for both the original and patched programs. It then compares these traces to infer correctness -- without actually running either version.\n\nPracAPR builds on the **ROSE** framework (Reiss et al., 2023), which is an interactive test-free repair framework providing the foundational mechanisms for fault localization and patch validation.\n\n#### PracAPR Evaluation Results\n\n- Fault localization included the correct repair location in 89% of tested bugs\n- Patch validation ranked all correct repairs in top-5\n- Repaired 36/40 QuixBugs and 37/60 Defects4J bugs in seconds\n- User study: 44% more participants succeeded; debugging time reduced by ~16.5%\n\n#### PracAPR Limitations\n\n- Current APR approaches repair fewer than 23% of single-location bugs in Defects4J v1.2\n- State-of-the-art methods fail on 57.3% of single-location bugs\n- Only 8 of 118 single-fault multi-location bugs are handled by global repair approaches\n- Tied to the Eclipse/Code Bubbles IDE ecosystem\n\n---\n\n### 3. Critical Comparison: How a Simulation-Based Approach Would Differ From/Complement ComPass\n\nThis is the most strategically important part of the analysis:\n\n**What ComPass does well:**\n- Purely static, lightweight, and fast -- no execution needed\n- Strong accuracy (88.35%) on Defects4J\n- Works as a post-hoc filter on any APR tool's output\n- Contrastive learning captures structural code semantics\n\n**What ComPass does NOT capture:**\n- **Runtime behavior:** ComPass has zero signal about what the patch actually *does* at runtime. It learns syntactic/structural patterns correlated with correctness, but cannot reason about program states, variable values, or execution paths.\n- **Semantic correctness:** The 88.35% ceiling likely reflects the fundamental limit of what can be inferred from code structure alone. The remaining ~12% of errors may be cases where syntactically plausible patches have incorrect runtime behavior.\n- **Behavioral equivalence:** ComPass cannot determine whether a patch preserves the intended input-output behavior -- it can only assess whether the code *looks* correct based on learned patterns.\n\n**Where a simulation-based approach would be complementary:**\n- A simulation/trace-based approach (like PracAPR's SEEDE mechanism, but generalized) would capture *behavioral* signals that ComPass completely misses.\n- The two approaches are largely orthogonal: ComPass operates on code representations (syntactic/structural), while simulation operates on execution semantics (behavioral).\n- A combined approach could use ComPass-style filtering as a fast first pass, then apply simulation-based verification on the surviving candidates -- getting the speed of static analysis with the precision of behavioral analysis.\n- Alternatively, simulation traces could be used as additional features alongside contrastive code embeddings in a joint model.\n\n**Key differentiation of a simulation-based approach:**\n- It would reason about *what the code does* rather than *what the code looks like*\n- It could catch semantically incorrect patches that happen to have correct-looking syntax (the ~12% ComPass misses)\n- PracAPR demonstrates feasibility of simulation without execution, but their approach is IDE-bound and not designed as a general APCA filter\n- A general-purpose simulation-based APCA tool that works outside an IDE context would be novel\n\n**The gap in the literature:**\n- ComPass and APPT represent the SOTA for learning-based APCA (purely static)\n- PATCH-SIM represents dynamic APCA (requires actual execution, achieves 81.29% accuracy but 96.63% precision -- very few false positives when it does flag something)\n- PracAPR shows simulation-based validation is feasible but is tied to a specific IDE\n- No existing work combines contrastive/representation learning with simulated execution traces for APCA -- this represents a clear research gap\n\n---\n\n### 4. The Broader Landscape (APPT -- ComPass's Main Baseline)\n\n**APPT** (arXiv [2301.12453](https://arxiv.org/abs/2301.12453), TSE 2024) is the prior SOTA that ComPass improves upon. APPT uses a pre-trained model encoder followed by an LSTM stack and a deep learning classifier, fine-tuned end-to-end. On 1,183 Defects4J patches, APPT achieved 79.7% accuracy and 83.2% recall. ComPass explicitly addresses two APPT limitations: (1) treating APCA as pure classification without capturing semantic invariance, and (2) reliance on limited labeled data without leveraging unlabeled code.\n\nA recent **survey on patch correctness assessment** was published in ACM Transactions on Software Engineering and Methodology (2025), confirming this remains an active and unsettled research area.\n\n---\n\n### Summary of Key Takeaways\n\n1. **ComPass is the current SOTA** at 88.35% accuracy on the hardest APCA benchmark (Defects4J 2,274 patches), surpassing APPT by 6.33%.\n2. **ComPass is purely static** -- it uses code structure/representation only, with no execution or simulation component.\n3. **PracAPR demonstrates execution-free simulation is viable** for patch validation (via SEEDE/ROSE), but is constrained to an IDE context and not designed as a general APCA tool.\n4. **The research gap is clear:** No existing work combines learned code representations with simulated execution traces for general-purpose APCA. A simulation-based approach would be complementary to ComPass, capturing behavioral signals that static analysis fundamentally cannot.\n5. **ComPass's ~12% error rate** likely represents patches that are syntactically plausible but behaviorally incorrect -- exactly the cases where simulation-based reasoning would add value.\n6. **No papers citing ComPass** have appeared yet (paper is only 3 months old).\n\nSources:\n- [ComPass: Contrastive Learning for Automated Patch Correctness Assessment (arXiv abstract)](https://arxiv.org/abs/2602.07561)\n- [ComPass full paper (HTML)](https://arxiv.org/html/2602.07561)\n- [PracAPR: Towards Practical and Useful Automated Program Repair for Debugging (arXiv abstract)](https://arxiv.org/abs/2407.08958)\n- [PracAPR full paper (HTML)](https://arxiv.org/html/2407.08958)\n- [APPT: Boosting Automated Patch Correctness Prediction via Fine-tuning Pre-trained Models](https://arxiv.org/abs/2301.12453)\n- [Patch Correctness Assessment: A Survey (ACM TOSEM 2025)](https://dl.acm.org/doi/abs/10.1145/3702972)\n- [Invalidator: Automated Patch Correctness Assessment via Semantic and Syntactic Reasoning](https://arxiv.org/abs/2301.01113)\n- [PracAPR at Brown CS](https://cs.brown.edu/~spr/papers/se2030.pdf)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c61906a0-db28-4298-97fb-8aed07084e33",
+            "isSidechain": true,
+            "agentId": "a9283c1aa2faddbf0",
+            "requestId": "req_011CawbiUdz2SDmQCYRFJqNg",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c0b42b1e-5239-405f-8dd8-b4f6842d3e3e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f7ed7f67-a87f-46e7-a409-d4d552b7568f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EntTReFmKQkYGgiXoKWmVz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1706,
+                "cache_read_input_tokens": 22494,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1706,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-deeply-research-the-compass-paper-arxiv-2602-07561-feb-2026-which-ac.md"
+}

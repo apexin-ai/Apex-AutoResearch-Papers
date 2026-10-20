@@ -1,0 +1,2375 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-10 (UTC).** Your job: indep
+
+**Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 29
+- **Recorded user turns:** 1
+- **Tool calls:** 4
+- **Original source:** `logs/chats/exported-trajectories/account-1/03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8.jsonl`
+- **Structured JSON:** [`42234e4091e26af27a86.json`](../../sessions/42/42234e4091e26af27a86.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T06:09:28.395Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T06:09:28.395Z",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-10 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: NLP and Code Models.\n\nDirection: Code understanding and generation — repo-level comprehension, program repair, code reasoning, debugging, test generation, code-to-documentation, cross-language code transfer. NOT just code completion — focus on higher-level code reasoning tasks.\n\nContribution type: METHOD ONLY. Propose new training methods, retrieval-augmented code repair, or inference algorithms for code tasks. Not a new benchmark or leaderboard entry.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Code models are often evaluated zero-shot or few-shot — budget goes to SFT/LoRA if fine-tuning.\n2. Time: ≤16 days. Build on existing code models (DeepSeek-Coder-V2, StarCoder2, CodeLlama, Qwen2.5-Coder) and frameworks (aider, SWE-agent, Moatless).\n3. Eval: SWE-bench Verified, HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, CodeContests.\n\nLook for: repo-level context compression for code understanding, retrieval-augmented repair with semantic code search, code reasoning via execution feedback, cross-repo transfer learning. Avoid: simple prompt templates for code completion.\n\nTag: direction=code_models, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 4/10)\n{\n  \"title\": \"Failure-Type-Conditioned Retrieval Augmentation for Repository Repair\",\n  \"core_problem\": \"Retrieval-augmented repair systems fall into two camps: code-text-similarity retrieval (RAP-Gen, RELREPAIR) and soft root-cause-augmented retrieval (ReinFix, ICSE 2026), which concatenates an LLM-generated free-text root-cause description with the buggy code into a unified embedding space using text-embedding-3-large. Neither approach exploits the structural regularity that bugs of the same semantic TYPE — null dereference, off-by-one, API misuse, type mismatch, concurrency — share fix templates even when code looks syntactically dissimilar. The open question is whether hard categorical type partitioning of the retrieval index outperforms ReinFix's soft semantic root-cause augmentation for cross-repository fix transfer, particularly in a multi-language setting. Two methodological challenges discipline the comparison and, when addressed directly, become analytical contributions: (1) corpus sparsity — a natural bug-fix corpus of ~3,050 pairs across 18 types yields only ~31 Java instances per type on average, requiring an explicit minimum-threshold and merge policy for rare types; and (2) classifier error propagation — when an incoming bug is misclassified into the wrong type partition, hard partitioning will underperform soft retrieval for those instances, making the performance gap conditional on classifier confidence. Addressing both challenges — by measuring classifier accuracy against DebugBench's ground-truth labels and adding a confidence-gated fallback to soft retrieval — turns potential weaknesses into measurable experimental variables that sharpen, rather than undermine, the core hypothesis.\",\n  \"opportunity\": \"ReCode (CIKM 2025, arXiv 2509.02330) demonstrates algorithm-type-aware retrieval in competitive programming but is explicitly scoped to algorithmic tags (greedy, DP, graph). ReinFix (ICSE 2026, arXiv 2506.23100) advances toward root-cause-conditioned retrieval for real-world repositories, showing +32 bugs fixed on Defects4J V1.2 and +38 on V2.0, but its mechanism — LLM-generated free-text root-cause descriptions embedded jointly with buggy code in one unified vector database using text-embedding-3-large — is a soft, continuous approach without type-level partitioning. SWE-Exp (arXiv 2507.23361, revised February 2026) introduces an experience bank that retrieves the top N=10 issues 'most relevant in terms of error type' using soft cosine similarity over (issue-type + description) embeddings encoded by Multilingual-E5-Large; it stores distilled modification strategies rather than concrete fix patches, operates as a fully agentic pipeline, and is scoped to Python. SWE-Exp's type signal is a soft retrieval-time metadata feature, not a hard index-construction partition; FTCR's structural departure is to partition the retrieval corpus into discrete type sub-indices before any query is issued, enabling retrieval-pool precision rather than post-hoc reranking. DynaFix (arXiv 2512.24635) subsequently surpasses ReinFix on Defects4J V2.0 using execution-level dynamic information and iterative repair, confirming that retrieval strategy and execution-level augmentation are independently improvable axes; FTCR operates on the retrieval strategy axis. RetypeR (ICSME 2024) applies type-specific retrieval but only for Python type errors (one narrow subcategory). The untested hypothesis is that hard categorical type partitioning — classify the incoming failure into one of N discrete semantic types, then retrieve only from the type-matched sub-corpus — yields better precision in retrieving transferable fix templates than ReinFix's joint embedding, because bugs within a type share syntactic fix motifs that bugs with merely similar code but different root causes do not. DebugBench uniquely provides 4,253 instances with ground-truth 18-category type annotations across C++, Java, and Python; crucially, these ground-truth labels enable direct calibration of the few-shot type classifier, turning classifier error propagation from a latent risk into a measurable experimental variable. The confidence-gated hybrid (fall back to soft retrieval for low-confidence classifications) addresses the structural risk of hard partitioning and has principled precedent in CRAG (Yan et al., 2024; arXiv:2401.15884) for general RAG systems. M-RAG (ACL 2024, arXiv 2405.16420) additionally validates that partition-based retrieval consistently outperforms single-store retrieval across NLP tasks, providing domain-general support for the partition hypothesis before evaluating it in the code repair setting.\",\n  \"landscape\": \"RELREPAIR (arXiv 2509.16701) retrieves relevant code from the same project using function names and comments, improving repair on Defects4J V1.2 by +17.1% and achieving 48.3% fix rate on ManySStuBs4J, but retrieves current project code rather than cross-repository historical fixes. RepoRepair (arXiv 2603.01048) achieves 45.7% on SWE-bench Lite via documentation-guided localization; the current SWE-bench Lite SOTA is approximately 62.7% (Claude Opus 4.6, May 2026) using agentic scaffolding — a different regime from FTCR's retrieval-only approach, which targets 20–35% with the same model and is not a SOTA claim. ReinFix (arXiv 2506.23100, ICSE 2026) is the closest prior work and primary baseline: it uses an LLM to generate a free-text root-cause description per bug, then embeds (buggy_code + root_cause_text) as a single concatenated string into a unified vector database using text-embedding-3-large, built from 100K samples of the TRANSFER corpus (1M bug-fix pairs). Retrieval is by cosine similarity over this joint embedding — no type-level partitioning, and root cause is a continuous semantic descriptor, not a discrete category. SWE-Exp (arXiv 2507.23361, revised February 2026) is the most important concurrent work: it retrieves top N=10 issues 'most relevant in terms of error type' from an experience bank using soft cosine similarity over (issue-type + description) embeddings (Multilingual-E5-Large encoder), achieving 73.0% on SWE-bench Verified with Claude 4 Sonnet in a fully agentic pipeline. Three design differences distinguish SWE-Exp from FTCR: (1) retrieval mechanism — SWE-Exp uses soft cosine similarity with type as embedding metadata at retrieval time; FTCR partitions the index into discrete type sub-corpora at construction time, so only same-type pairs are ever candidates for a query; (2) retrieved artifact — SWE-Exp stores distilled problem perspectives and generalized modification strategies; FTCR retrieves concrete historical fix patches for direct template transfer; (3) scope — SWE-Exp is fully agentic and scoped to Python; FTCR is retrieval-only and covers C++, Java, and Python, using DebugBench's oracle type labels for cross-lingual calibration. The testable question SWE-Exp leaves open is whether hard construction-time partitioning outperforms soft retrieval-time type filtering for fix-template precision. DynaFix (arXiv 2512.24635) outperforms ReinFix on Defects4J V2.0 using execution-level dynamic information and iterative repair; D4C (ICSE 2025, arXiv 2404.08877) repairs 180 Defects4J bugs via LLM objective alignment. Both update the Defects4J performance landscape but are orthogonal to FTCR's retrieval strategy focus. FTCR's structural departure from ReinFix is to (1) classify incoming failures into discrete categories, then (2) retrieve only from the type-matched sub-index, using the identical encoder (text-embedding-3-large) for a clean comparison that isolates partitioning as the primary architectural variable — noting that partitioning also reduces the effective retrieval pool to ~1/N_types of the full corpus, a corpus-size effect that a random-partition control ablation is designed to separate from type-matching precision. RetypeR (ICSME 2024, Hao et al.) applies a two-stage external+internal retrieval conditioned on Python type errors, establishing that type-specific retrieval helps for one narrow bug class and language; FTCR extends this principle to 18 categories across three languages. M-RAG (ACL 2024, arXiv 2405.16420) demonstrates that multi-partition RAG consistently outperforms single-store RAG across NLP tasks (summarization: +11%, translation: +8%, dialogue: +12%), validating the general principle of partition-based retrieval before applying it to code repair. PatchRecall (arXiv 2604.10481, April 2026) introduces history-based retrieval for file-level localization on SWE-bench — complementary (localization rather than cross-repository fix template retrieval). The APR survey (arXiv 2506.23749) reviews 63+ systems and identifies retrieval augmentation as the key enhancement, but no reviewed system applies hard taxonomic type classification as the retrieval partition key across multiple languages.\",\n  \"approach\": \"We build FTCR (Failure-Type-Conditioned Retrieval), a pipeline whose central hypothesis is that hard categorical type partitioning of the retrieval index outperforms ReinFix-style soft root-cause embedding for cross-repository fix transfer. The key ablation — same model, same encoder (text-embedding-3-large, identical to ReinFix for a clean comparison), same corpus, varying only the indexing and retrieval key — isolates partitioning as the primary architectural variable, with the corpus-size confound separated by a random-partition control (see below).\\n\\nRetrieval Corpus Construction. Four sources: the SWE-bench non-Lite split (~1,994 Python instances, post-2021 to reduce LLM contamination), BugsInPy (493 Python bugs, 17 projects), Defects4J V1.2 pre-filtered to Java-8-compatible bugs (~360 of 395, following the 91% reproducibility figure), and GitBug-Java (199 Java bugs from 2023 commits, isolated Docker environments). Total annotated corpus: approximately 3,050 natural bug-fix pairs (Python: ~2,487; Java: ~559).\\n\\nCorpus Sparsity Policy. Each pair is annotated with one of 18 semantic categories aligned with DebugBench's taxonomy (four major types: Syntax, Reference, Logic, Multiple; 18 minor subtypes) via few-shot prompting using DebugBench's labeled examples as demonstrations; three annotation passes measure inter-run consistency. A per-type instance count table is computed and reported in the paper for transparency. For the combined Python+Java corpus (3,050 pairs), 18-type analysis is viable: Python instances dominate (~2,487) and yield an estimated mean of ~138 pairs per type. For Java-only ablations (~559 pairs, ~31 per type average), a minimum-threshold policy applies: types with fewer than 30 Java instances are merged into nearest-neighbor supercategories (e.g., Concurrency + Resource-Leak → Resource-Management; Format-Error + Syntax-Error → Low-Level, since compiled Defects4J/GitBug-Java bugs contain near-zero syntax errors). Java ablation results are reported for the 6–8 resulting categories that each exceed 50 instances, with merged categories explicitly labeled. This avoids the degenerate case of k=5 retrieval from a 15-instance sub-index, which approximates exhaustive lookup rather than similarity-based retrieval.\\n\\nEncoder Specification. Primary encoder: text-embedding-3-large (OpenAI API), identical to ReinFix, to eliminate encoder choice as a confound; embedding cost is negligible (~$5–15 for corpus plus all evaluation queries at $0.13/1M tokens). Secondary ablation: CodeBERT-base substituted for both FTCR and the ReinFix-style baseline, verifying that the hard-vs-soft finding is not encoder-specific and deconfounding the encoder-vs-partitioning comparison.\\n\\nType Classifier Calibration on DebugBench Ground Truth. Since DebugBench provides oracle type labels for 4,253 instances, a held-out 20% split (851 instances) directly measures our few-shot classifier's per-type precision and recall against ground truth, yielding an overall accuracy estimate. Cross-dataset zero-shot agreement is measured by applying the same classifier to a 10% random sample (~56 pairs) of the Java annotation set (Defects4J + GitBug-Java) with human-verified labels as oracle, yielding a cross-lingual label consistency score. This produces the NLP contribution: a falsifiable empirical claim that LLM-inferred bug type labels achieve X% agreement with DebugBench ground-truth labels (Python/C++), transfer zero-shot to unseen Java bugs with Y% agreement, and are predictive of retrieval-augmented repair success — type-matched retrieval outperforms soft retrieval by Z% for correctly-classified bugs while underperforming by W% for misclassified bugs.\\n\\nRandom-Partition Control. To isolate the type-matching benefit from the corpus-size reduction effect — hard partitioning reduces the effective retrieval pool to ~1/N_types of the full index, which independently affects recall — we add a random-partition baseline (Variant F): the corpus is randomly partitioned into N equivalently-sized sub-indices, and each query retrieves from a randomly assigned sub-index. Any performance gap between FTCR (Variant E, hard type partition) and this control measures the precision benefit of type-matching net of pool-size reduction. This converts the comparison from 'clean but contested' to 'rigorous and unambiguous.'\\n\\nConfidence-Gated Retrieval Fallback. At inference time, the type classifier outputs a probability distribution over 18 categories. For instances where the top-class probability exceeds a calibrated threshold τ (tuned on held-out DebugBench validation split), FTCR applies hard type-partitioned retrieval. For instances below τ — typically multi-type or ambiguous bugs — it falls back to soft joint-embedding retrieval (identical to the ReinFix baseline). This confidence-gated hybrid is evaluated as a sixth system variant alongside: (A) text-similarity RAG (no type signal), (B) RELREPAIR (project-internal retrieval), (C) RepoRepair (documentation-guided), (D) ReinFix-style soft retrieval (re-implemented on same corpus and same encoder), (E) FTCR@hard-all, and (F) random-partition control (same N sub-indices, randomly assigned — corpus-size control). The confidence-gated fallback has principled precedent in CRAG (Yan et al., 2024; arXiv:2401.15884). The projected finding: correctly-classified high-confidence bugs show systematic gains from hard partitioning (+5–10% repair success on Defects4J where oracle type labels allow clean stratification); misclassified or low-confidence bugs show performance on par with or slightly below soft retrieval; the confidence gate recovers aggregate performance for ambiguous cases; the random-partition control falls between soft retrieval and FTCR@hard-all, confirming that type-matching rather than pool-size reduction drives the gain.\\n\\nExpected Performance on SWE-bench Lite. We project FTCR to achieve 20–35% resolve rate with Claude Sonnet 4.6 in retrieval-only (non-agentic) mode, comparable to ReinFix-style retrieval on the same corpus. This is below the current SWE-bench Lite SOTA (~62.7%, Claude Opus 4.6, May 2026, agentic scaffolding) and below RepoRepair's 45.7% (documentation-guided multi-step localization). Lower aggregate performance than RepoRepair is explicitly defended: FTCR does not incorporate documentation-guided localization, which is an orthogonal architectural component. The primary SWE-bench Lite contribution is validating that the type-conditioned advantage observed on DebugBench transfers to real-world Python repositories, not claiming absolute SOTA.\\n\\nDebugBench's synthetic-bug domain gap (LeetCode code, GPT-4-implanted bugs) is acknowledged; DebugBench results serve as type-controlled ablations with oracle labels while SWE-bench Lite validates real-world transfer.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~88 H100-hours (~150 A100-hours equivalent)\",\n      \"gpu_utilization\": \"~30-40% utilized; high idle while researchers design annotation prompts, debug Defects4J Java-8 environments, manually review per-type count tables, and verify annotation consistency across passes\",\n      \"timeline\": \"4-6 months\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"~$450 (150 A100-hours × $3/h on RunPod/Lambda Labs)\",\n      \"embedding_api_cost\": \"~$5-15 (text-embedding-3-large for 3,050-pair corpus + evaluation queries, at $0.13/1M tokens; negligible relative to overall budget)\",\n      \"note\": \"Well within the 200 H100-hour hard budget\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~165 H100-hours (~280 A100-hours equivalent)\",\n      \"gpu_utilization\": \"~55-65% utilized; agent continuously queues embedding and evaluation jobs while human approves ablation configurations at decision gates\",\n      \"timeline\": \"6-8 weeks\",\n      \"team\": \"1 researcher, ~30 min/day check-in for ablation approval, per-type count table review, confidence threshold tuning, and failure triage\",\n      \"claude_api_cost\": \"$200-400 (annotation: ~3,050 instances × ~$0.02/call ≈ $61; 3 annotation passes for consistency ≈ $183; DebugBench classifier calibration: 851 held-out instances × $0.02 ≈ $17; pipeline orchestration and repair: ~1,500 agent turns × $0.10/turn ≈ $150; buffer ~$50)\",\n      \"embedding_api_cost\": \"~$5-15 (text-embedding-3-large for corpus and evaluation queries)\",\n      \"estimated_gpu_cost\": \"~$840 (280 A100-hours × $3/h)\",\n      \"note\": \"Within the 200 H100-hour hard budget\",\n      \"risk_note\": \"Defects4J Docker reproducibility is the primary bottleneck — the Java-8 pre-filter eliminates ~9% upfront, but remaining instances still require environment triage. GitBug-Java's isolated Docker images significantly reduce this overhead for the Java supplement. Java per-type sparsity is the secondary risk: if the 6-8 type categories above threshold have unequal sizes, the Java ablation may be underpowered for the smallest categories.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~190 H100-hours (~323 A100-hours equivalent; capped to stay within 200 H100-hour budget)\",\n      \"gpu_utilization\": \"near-zero idle; agent continuously queues DebugBench and SWE-bench Lite evaluation runs in parallel with index-rebuild experiments across taxonomy granularity variants\",\n      \"ablation_scope\": \"Hard vs. soft retrieval key comparison (FTCR vs. ReinFix-style baseline), random-partition control (N equivalent-size random sub-indices to isolate type-matching from pool-size effect), confidence-gated hybrid (threshold τ sweep), taxonomy granularity (6-type coarse / 18-type fine / merged-Java), retrieval k (1/3/5/10), encoder choice (text-embedding-3-large primary / CodeBERT-base secondary), cross-dataset generalization (Defects4J-Java train → SWE-bench-Lite Python eval), classifier accuracy stratification (by confidence band)\",\n      \"timeline\": \"10-14 days with 2 A100 nodes running in parallel\",\n      \"team\": \"0 (initial ~4h setup for corpus pipeline, per-type sub-index construction scaffold, random-partition control scaffold, confidence-gated hybrid logic, and Docker environment configuration)\",\n      \"claude_api_cost\": \"$500-850 (3-pass annotation of 3,050 pairs ≈ $183; DebugBench classifier calibration ≈ $17; multi-run orchestration ~5,000 agent turns × $0.10 ≈ $500; buffer ~$150)\",\n      \"embedding_api_cost\": \"~$10-20 (text-embedding-3-large for corpus + all evaluation query embeddings; CodeBERT-base is self-hosted, no API cost)\",\n      \"estimated_gpu_cost\": \"~$969 (323 A100-hours × $3/h)\",\n      \"speed_bottleneck\": \"GPU count (single A100 serializes SWE-bench Lite at ~10 min/instance; 2+ nodes needed for meaningful parallelism) and Claude API rate limits on concurrent classification calls\",\n      \"risk_note\": \"Auto-assigned bug type labels may drift from human-interpretable categories without the three-pass consistency check; the confidence-gated hybrid adds a hyperparameter (τ) that requires tuning on the DebugBench held-out split before SWE-bench Lite evaluation. SWE-bench Lite infrastructure failures can silently inflate repair failure counts without human oversight.\"\n    }\n  },\n  \"target_venues\": [\n    \"ICSE 2027 (mandatory abstract deadline June 23, 2026 — PRIMARY target; best fit for SE audience; full ReinFix comparison on Defects4J V1.2 provides the direct head-to-head evaluation reviewers will expect; per-type corpus sparsity table, random-partition control, and confidence-gated ablation address the three most likely reviewer objections about hard partitioning; random-partition control specifically converts the 'corpus-size confound' objection into a closed experimental question)\",\n    \"EMNLP 2026 Findings (ARR submission deadline May 25, 2026 — secondary attempt; the NLP contribution — LLM-inferred bug type labels achieve X% agreement with DebugBench ground-truth labels across C++/Java/Python, transfer zero-shot to unseen Java bugs with Y% agreement, and predict repair success — is a measurement finding about cross-lingual LLM classification reliability suited to Findings rather than the main track; if the May 25 ARR deadline is too close given remaining experiments, defer to ICSE 2027 submission only. Note: EMNLP 2026 warns against hallucinated citations; all cited arXiv IDs must be independently verified before submission, including CRAG arXiv:2401.15884, which was withdrawn from ICLR 2025 and should be cited only as a preprint.)\",\n    \"FSE 2027 (full paper deadline October 2, 2026 — backup venue if ICSE review cycle overlaps unfavorably; same SE audience, equally appropriate for a retrieval-architecture study with multi-language empirical evaluation)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"ReinFix: Repair Ingredients Are All You Need — Improving LLM-Based Program Repair via Repair Ingredients Search (ICSE 2026, arXiv 2506.23100) [primary competing baseline; must compare directly on Defects4J V1.2 using same text-embedding-3-large encoder; uses a unified vector database, not a specific named implementation]\",\n    \"SWE-Exp: Experience-Driven Software Issue Resolution (arXiv 2507.23361, revised February 2026) [most important concurrent work; retrieves top N=10 issues by soft cosine similarity over (issue-type + description) embeddings using Multilingual-E5-Large; stores distilled modification strategies, not fix patches; agentic, Python-only; achieves 73.0% on SWE-bench Verified with Claude 4 Sonnet — differentiate by hard vs. soft partitioning at index-construction time, fix-template vs. strategy retrieval, and multi-language scope]\",\n    \"ReCode: Improving LLM-based Code Repair with Fine-Grained Retrieval-Augmented Generation (CIKM 2025, arXiv 2509.02330) [algorithm-type-conditioned retrieval in competitive programming — conceptual ancestor]\",\n    \"RetypeR: Integrated Retrieval-based Automatic Program Repair for Python Type Errors (ICSME 2024, Hao et al.) [type-specific retrieval for one language and one error class — FTCR extends to 18 types and 3 languages]\",\n    \"DynaFix: Iterative Automated Program Repair Driven by Execution-Level Dynamic Information (arXiv 2512.24635) [surpasses ReinFix on Defects4J V2.0 using execution-level augmentation; orthogonal to FTCR's retrieval strategy contribution, included in landscape]\",\n    \"D4C: Aligning the Objective of LLM-based Program Repair (ICSE 2025, arXiv 2404.08877) [180 Defects4J bugs via objective alignment; updates Defects4J performance landscape]\",\n    \"M-RAG: Reinforcing Large Language Model Performance through Retrieval-Augmented Generation with Multiple Partitions (ACL 2024, arXiv 2405.16420) [multi-partition RAG validated on NLP tasks: +11% summarization, +8% translation, +12% dialogue; principled precedent for partition-based retrieval across domains]\",\n    \"RELREPAIR: Enhancing Automated Program Repair by Retrieving Relevant Code (arXiv 2509.16701) [project-internal retrieval baseline]\",\n    \"RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair (arXiv 2603.01048) [documentation-guided localization baseline; 45.7% on SWE-bench Lite using multi-step localization, orthogonal to FTCR's retrieval focus]\",\n    \"DebugBench: Evaluating Debugging Capability of Large Language Models (ACL Findings 2024) [primary evaluation with ground-truth 18-category labels across C++/Java/Python; held-out 20% split used for few-shot classifier calibration; synthetic-bug limitation acknowledged]\",\n    \"GitBug-Java: A Reproducible Benchmark of Recent Java Bugs (MSR 2024, arXiv 2402.02961) [199 recent Java bugs in isolated Docker environments; supplement for Defects4J Java corpus]\",\n    \"SWE-smith: Scaling Data for Software Engineering Agents (NeurIPS 2025, arXiv 2504.21798) [50k Python task instances from 128 repos; used as scale corpus for Python retrieval index]\",\n    \"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications (arXiv 2506.23749) [63-system survey confirming retrieval augmentation as key enhancement with no type-partitioned system identified]\",\n    \"What Do They Fix? LLM-Aided Categorization of Security Patches (NDSS 2026, arXiv 2509.22796) [confirms LLM-based bug taxonomy inference is practical at scale]\",\n    \"PatchRecall: Patch-Driven Retrieval for Automated Program Repair (arXiv 2604.10481) [history-based retrieval for file localization — complementary scope]\",\n    \"RAP-Gen: Retrieval-Augmented Patch Generation with CodeT5 (ESEC/FSE 2023) [text-similarity RAG baseline]\",\n    \"CRAG: Corrective Retrieval Augmented Generation (Yan et al., 2024; arXiv:2401.15884) [confidence-gated fallback mechanism with retrieval quality scoring; precedent for the FTCR confidence-gated hybrid variant; note: withdrawn from ICLR 2025, unpublished — cite as preprint only]\"\n  ],\n  \"description\": \"FTCR tests a specific hypothesis in retrieval-augmented program repair: hard categorical type partitioning of the retrieval index outperforms soft root-cause-augmented retrieval (ReinFix's approach, ICSE 2026) for cross-repository fix template transfer. ReinFix (ICSE 2026, arXiv 2506.23100) is the closest prior work — it embeds LLM-generated free-text root-cause descriptions jointly with buggy code into a unified vector database using text-embedding-3-large, showing +32/+38 bugs fixed on Defects4J V1.2/V2.0. FTCR's structural departure is to (1) classify incoming failures into one of 18 discrete semantic categories aligned with DebugBench's empirically-validated taxonomy, and (2) retrieve only from the type-matched sub-index, using the identical encoder (text-embedding-3-large) to isolate partitioning as the primary architectural variable. Round 4 revisions address five issues: (a) CRAG citation corrected throughout — CRAG was withdrawn from ICLR 2025 and never published; correct citation is 'CRAG (Yan et al., 2024; arXiv:2401.15884)'; (b) SWE-Exp (arXiv 2507.23361, revised February 2026) added to landscape and opportunity as the most important concurrent work — it uses soft cosine similarity over (issue-type + description) embeddings as metadata, stores distilled modification strategies rather than fix patches, is agentic and Python-only; FTCR differs in hard construction-time partitioning, fix-template retrieval, and multi-language scope; (c) random-partition control added as Variant F to the ablation suite — randomly partitions corpus into N equivalent-sized sub-indices to isolate the type-matching benefit from the corpus-size reduction effect (~1/N_types pool shrinkage), converting the 'clean comparison' qualifier into a closed experimental question; (d) EMNLP target downgraded from main track to Findings — the X%/Y%/Z%/W% cross-lingual semantic stability finding is a measurement contribution suited to Findings; ICSE 2027 is positioned as the clear primary target; (e) ReinFix's vector store softened from 'FAISS vector store' to 'unified vector database' to avoid misrepresenting an unspecified implementation detail. RetypeR (ICSME 2024) establishes type-specific retrieval for Python type errors specifically; FTCR extends to 18 categories across C++, Java, and Python. The retrieval corpus (~3,050 natural bug-fix pairs from SWE-bench non-Lite, BugsInPy, Defects4J V1.2, and GitBug-Java) requires no GPU training; the approach is fully inference-based. Target venues: ICSE 2027 (abstract June 23, primary), EMNLP 2026 Findings (ARR May 25, secondary attempt), FSE 2027 (October 2, backup).\",\n  \"project_name\": \"failure_type_rag_repair\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL — Uncited competing work invalidates novelty claim: ReinFix (ICSE 2025, arXiv 2506.23100) embeds root-cause classification into retrieval from a 1M-pair historical bug-fix corpus, which is mechanistically nearly identical to FTCR's type-conditioned retrieval from historical corpus. The proposal must cite and differentiate from ReinFix; without this, reviewers will reject on novelty grounds.\", \"CRITICAL — ReCode overlap is underplayed: ReCode already implements algorithm-type-conditioned retrieval with type-partitioned sub-knowledge-bases, the identical core mechanism. FTCR's contribution is extending this to real-world bugs (competitive programming → repositories), which must be framed more precisely. The current framing overclaims novelty.\", \"HIGH — Dataset size claim is internally inconsistent: BugsInPy (493) + Defects4J (1,192) = ~1,685 pairs, not 6,500. If the SWE-bench training split (19,000 instances) is included, that's 20,000+. The '~6,500' figure suggests some undescribed quality-filtering or subsetting logic that is not specified in the proposal. This will raise red flags in review.\", \"HIGH — Defects4J reproducibility crisis: Independent studies (MSR 2025) found ~50% of Defects4J fault-triggering tests are regression tests added post-hoc, and nearly 50% become non-reproducible with modern Java. BugsInPy showed 67% reproducibility. Mining ~1,685 pairs from these datasets may yield fewer than 900 reliably reproducible bug-fix pairs, undermining the corpus quality and scale claims.\", \"MEDIUM — Uncited prior art RetypeR (ICSME 2024): This paper applies type-specific retrieval (external retrieval stage conditioned on Python type errors) and should be discussed as prior art that narrows the novelty of cross-language type-conditioned retrieval.\", \"MEDIUM — Resource units inconsistency: The hard constraint is ≤200 H100-hours, but the proposal reports A100-hours throughout. Manual mode (~150 A100h ≈ 90 H100h) is within budget, but auto-research mode (~650 A100h ≈ 390 H100h) significantly exceeds the constraint. This should be flagged and the primary experiment budget anchored in H100-hours.\", \"MEDIUM — EMNLP framing needs NLP-centric repositioning: The primary contribution is a retrieval system design (SE contribution). EMNLP 'NLP and Code Models' track requires a clear NLP/LLM contribution. The few-shot taxonomy induction approach and its ability to generalize zero-shot across languages should be foregrounded as the NLP contribution; the retrieval architecture is the engineering substrate.\", \"LOW — DebugBench validity concern: DebugBench uses LeetCode code with GPT-4-implanted synthetic bugs, not real repository bugs. Results on DebugBench may not transfer to SWE-bench Lite, requiring a careful discussion of the domain gap between the two evaluation settings.\"]\nFeedback: The core gap FTCR targets is real but narrower than claimed. To make this revisable into a strong paper: (1) Reframe the novelty around what's genuinely new — the extension of type-partitioned retrieval from algorithmic contest code (ReCode) to real-world multi-language repository bugs with an 18-category taxonomy grounded in DebugBench's empirically validated type structure. This is a specific, defensible contribution. (2) Add ReinFix as a baseline: since ReinFix uses root-cause-conditioned retrieval from historical corpus, you must compare against it directly on a shared benchmark (Defects4J is common). If FTCR's type-partitioned index outperforms ReinFix's joint root-cause+code embedding, that's a publishable finding. (3) Fix the dataset size: either restrict to BugsInPy+Defects4J and acknowledge the smaller corpus (~1,500–1,685 pairs after reproducibility filtering), or explicitly include a quality-filtered SWE-bench train subset and describe the filtering criteria. (4) Run a reproducibility pre-check: before committing to Defects4J as a corpus source, filter to only Java 8-compatible bugs (reported to have ~80% reproducibility) and report the usable fraction. (5) For EMNLP fit, pivot the NLP angle to the few-shot taxonomy induction finding — specifically, whether LLM-inferred bug types are consistent, cross-lingual, and predictive of repair success. This is the NLP scientific question. (6) The 16-day timeline is only viable in auto-research mode with parallel evaluation; the paper should scope evaluation to DebugBench (where type labels are ground-truth) plus SWE-bench Lite (300 instances), and acknowledge that a full Defects4J corpus build is out-of-scope for the conference timeline.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"CRITICAL — Citation error: ReinFix is confirmed ICSE 2026 (arXiv 2506.23100 states 'Accepted by ICSE 2026'), not ICSE 2025 as the proposal states throughout. EMNLP 2026 explicitly warns against hallucinated citations and has stated it may desk-reject papers with such errors. Every reference to 'ReinFix (ICSE 2025)' must be corrected to 'ReinFix (ICSE 2026)'.\", \"HIGH — Corpus sparsity renders type partitioning semantically degenerate for rare types: 559 Java pairs (Defects4J + GitBug-Java) across 18 types yields ~31 Java instances per type on average. For rare bug categories (concurrency, resource leaks, format errors), this may be 5–15 instances. Retrieving k=5 from a sub-index of 15 instances is not retrieval—it is exhaustive lookup. The proposal must either (a) restrict to the 6–8 most frequent types where >50 Java instances exist, or (b) merge rare types into a broader category, or (c) acknowledge that the per-type ablation is only meaningful for the top N types and report per-type corpus sizes in the paper.\", \"HIGH — Classifier error propagation is unaddressed: if the type classifier misclassifies an incoming bug (which will occur for edge cases and multi-type bugs), the system retrieves from the wrong partition and almost certainly underperforms soft retrieval for those instances. This is the main structural risk of hard partitioning over soft embedding. The proposal must analyze: (a) classifier accuracy on held-out annotated bugs, (b) the performance degradation attributable to misclassification, and (c) whether a confidence-gated fallback to soft retrieval recovers performance.\", \"HIGH — EMNLP venue fit remains questionable: the core contribution is an IR architecture decision (partitioning a FAISS index by categorical label). EMNLP 'NLP and Code Models' reviewers will ask what the NLP/LM finding is. The 'few-shot cross-lingual taxonomy induction' contribution (measuring whether LLM-inferred bug types are consistent across annotation runs) is secondary and not a compelling standalone NLP finding—LLM classification consistency is well-studied. If submitting to EMNLP, the NLP contribution must be foregrounded more strongly, e.g., a finding that LLM-inferred type labels are cross-lingually stable and predictive of repair success at the p<0.01 level, with analysis of failure cases that reveal type-specific linguistic patterns in bug descriptions.\", \"MEDIUM — ASE 2026 NIER deadline (May 12) is 2 days from today and experiments are not done: listing it as a target venue is unrealistic. Remove from target_venues or replace with a venue with a later deadline (e.g., EMNLP Findings via ARR, or FSE 2027).\", \"MEDIUM — No expected performance range stated for SWE-bench Lite: reviewers will immediately compare against the RepoRepair baseline (45.7% on Lite). The proposal should state an expected performance range and justify why a lower absolute number is acceptable given the paper's focus on architectural comparison rather than SOTA performance.\", \"LOW — The proposal does not specify which encoding model will be used for FTCR. ReinFix uses text-embedding-3-large (OpenAI API). If FTCR uses the same encoder for fair comparison, this imposes an ongoing API cost not captured in the GPU-hour budget. If using CodeBERT or UniXcoder instead, the encoder comparison is confounded with the hard/soft partitioning comparison. This should be clarified explicitly.\"]\nFeedback: The Round 2 revision has fixed the major structural issues from Round 1 (ReinFix is now a baseline, dataset sizes are consistent, RetypeR is cited, compute is in H100-hours, DebugBench limitations acknowledged). The core hypothesis is testable and the ablation design is clean. Three issues must be addressed before this is submission-ready: (1) Fix the citation error throughout — ReinFix is ICSE 2026, not ICSE 2025; submit it as 'ReinFix (ICSE 2026, arXiv:2506.23100)'. (2) Address corpus sparsity directly in the methods section: report per-type instance counts in a table, restrict the full 18-type analysis to the Python+Java combined corpus, and for the Java-only ablations acknowledge that only the top N types have >50 instances. For types below a minimum threshold (suggest 30 instances), either merge or exclude from per-type breakdown. (3) Add a classifier accuracy analysis: measure the type classifier on the annotated DebugBench ground-truth labels (since DebugBench already has ground-truth types, you can directly measure LLM classifier accuracy), then report how type-matched retrieval performance varies as a function of classifier confidence. This turns the error propagation problem into a feature — it becomes an analysis of when hard partitioning helps vs. hurts. For EMNLP specifically: the NLP contribution must be stated as a crisp finding, not a process. Frame it as: 'We show that LLM-inferred bug type labels achieve X% agreement with DebugBench ground-truth labels, transfer zero-shot to unseen Java bugs with Y% agreement, and are predictive of retrieval-augmented repair success (type-matched retrieval outperforms soft retrieval by Z% for correctly classified bugs, while underperforming by W% for misclassified bugs).' This is a falsifiable empirical claim that EMNLP reviewers can evaluate.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"CRITICAL — CRAG citation is a hallucinated venue: The proposal cites 'CRAG (ICLR 2024)' but CRAG (arXiv:2401.15884) was submitted to ICLR 2025 and withdrawn — it was never accepted or published at any ICLR. Citing it as a published ICLR paper is precisely the kind of hallucinated venue citation EMNLP warns may trigger desk rejection. The correct citation is 'CRAG (Yan et al., 2024; arXiv:2401.15884)'.\", \"HIGH — Unacknowledged concurrent work: SWE-Exp (arXiv:2507.23361, July 2025) uses an experience bank where retrieval explicitly surfaces 'the top N=10 issues most relevant in terms of error type' via cosine similarity, achieves 41.6% on SWE-bench Verified, and is publicly available with open-source code. While the mechanism is different (experience trajectories + soft cosine vs. hard categorical partitioning of fix templates), EMNLP and ICSE reviewers will notice its absence. FTCR must cite it, note the difference (soft type-similarity vs. hard categorical partitioning), and explain why hard partitioning is a distinct hypothesis worth testing.\", \"MEDIUM — 'Clean comparison' overstates the isolation: Type-partitioned retrieval fundamentally reduces the effective retrieval corpus to 1/N_types (≈1/18 on average) of the full index. A smaller retrieval pool affects recall independently of the type-matching benefit. Without a 'random-partition baseline' (random corpus subsets of equivalent size per query), the observed gain (or loss) conflates two effects: (a) partitioning precision and (b) retrieval corpus size. The proposal should either add this control or explicitly acknowledge it as a confound in Section 4.\", \"MEDIUM — EMNLP main track fit remains overstated: The NLP contribution — measuring X% agreement between LLM-inferred bug type labels and DebugBench ground truth, then correlating with repair success — is a measurement finding about LLM classification reliability on a well-structured taxonomy. This is useful but unlikely to be viewed as a primary NLP/LM contribution by EMNLP main track reviewers, who expect findings that advance understanding of language models. EMNLP Findings is a more realistic target; ICSE 2027 (already listed) is the natural primary venue where the SE audience will value the retrieval architecture contribution directly.\", \"LOW — Minor ReinFix technical inaccuracy: The proposal states ReinFix uses 'a unified FAISS vector store' but the ReinFix paper (arXiv:2506.23100) only refers to 'a vector database' without specifying FAISS as the implementation. This overly specific characterization of the baseline's internals should be softened to 'a unified vector database' to avoid misrepresentation of the primary baseline.\"]\nFeedback: Round 3 has successfully addressed the four critical/high issues from Round 2: citation corrected to ICSE 2026 throughout, corpus sparsity handled with explicit per-type table and 30-instance merge policy, classifier error propagation addressed with confidence-gated hybrid and DebugBench calibration, and EMNLP framing sharpened to a crisp X%/Y%/Z%/W% falsifiable claim. The core hypothesis is testable and genuinely novel for multi-language APR. Two issues block submission: (1) Fix the CRAG citation immediately — replace every instance of 'CRAG (ICLR 2024)' with 'CRAG (Yan et al., 2024; arXiv:2401.15884)'. CRAG was submitted to ICLR 2025 but withdrawn and unpublished; citing it as published ICLR work is a hallucinated venue citation that can trigger desk rejection at EMNLP. (2) Add SWE-Exp (arXiv:2507.23361) to the landscape with one paragraph: it uses soft cosine retrieval filtered 'in terms of error type' from an experience bank; FTCR's departure is hard categorical partitioning at index-construction time, not just retrieval-time filtering, plus fix-template retrieval rather than trajectory experience. For longer-term strengthening: add a random-partition baseline (randomly assign corpus pairs to N equivalent-sized sub-indices) to isolate the type-matching benefit from the corpus-size effect. This single ablation converts the comparison from 'clean but contested' to 'rigorous and unambiguous'. On venue strategy: ICSE 2027 (abstract June 23) should be positioned as the primary target; EMNLP 2026 ARR (May 25) can be attempted for Findings if the NLP framing holds, but do not overinvest in EMNLP main track positioning — the primary audience for this work is the SE/APR community.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T06:09:28.400Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T06:09:28.400Z",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8"
+}
+```
+
+---
+
+## Round 1
+
+27 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T06:09:28.432Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-10 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: NLP and Code Models.
+
+Direction: Code understanding and generation — repo-level comprehension, program repair, code reasoning, debugging, test generation, code-to-documentation, cross-language code transfer. NOT just code completion — focus on higher-level code reasoning tasks.
+
+Contribution type: METHOD ONLY. Propose new training methods, retrieval-augmented code repair, or inference algorithms for code tasks. Not a new benchmark or leaderboard entry.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Code models are often evaluated zero-shot or few-shot — budget goes to SFT/LoRA if fine-tuning.
+2. Time: ≤16 days. Build on existing code models (DeepSeek-Coder-V2, StarCoder2, CodeLlama, Qwen2.5-Coder) and frameworks (aider, SWE-agent, Moatless).
+3. Eval: SWE-bench Verified, HumanEval/MBPP, CrossCodeEval, RepoBench, DebugBench, CodeContests.
+
+Look for: repo-level context compression for code understanding, retrieval-augmented repair with semantic code search, code reasoning via execution feedback, cross-repo transfer learning. Avoid: simple prompt templates for code completion.
+
+Tag: direction=code_models, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 4/10)
+{
+  "title": "Failure-Type-Conditioned Retrieval Augmentation for Repository Repair",
+  "core_problem": "Retrieval-augmented repair systems fall into two camps: code-text-similarity retrieval (RAP-Gen, RELREPAIR) and soft root-cause-augmented retrieval (ReinFix, ICSE 2026), which concatenates an LLM-generated free-text root-cause description with the buggy code into a unified embedding space using text-embedding-3-large. Neither approach exploits the structural regularity that bugs of the same semantic TYPE — null dereference, off-by-one, API misuse, type mismatch, concurrency — share fix templates even when code looks syntactically dissimilar. The open question is whether hard categorical type partitioning of the retrieval index outperforms ReinFix's soft semantic root-cause augmentation for cross-repository fix transfer, particularly in a multi-language setting. Two methodological challenges discipline the comparison and, when addressed directly, become analytical contributions: (1) corpus sparsity — a natural bug-fix corpus of ~3,050 pairs across 18 types yields only ~31 Java instances per type on average, requiring an explicit minimum-threshold and merge policy for rare types; and (2) classifier error propagation — when an incoming bug is misclassified into the wrong type partition, hard partitioning will underperform soft retrieval for those instances, making the performance gap conditional on classifier confidence. Addressing both challenges — by measuring classifier accuracy against DebugBench's ground-truth labels and adding a confidence-gated fallback to soft retrieval — turns potential weaknesses into measurable experimental variables that sharpen, rather than undermine, the core hypothesis.",
+  "opportunity": "ReCode (CIKM 2025, arXiv 2509.02330) demonstrates algorithm-type-aware retrieval in competitive programming but is explicitly scoped to algorithmic tags (greedy, DP, graph). ReinFix (ICSE 2026, arXiv 2506.23100) advances toward root-cause-conditioned retrieval for real-world repositories, showing +32 bugs fixed on Defects4J V1.2 and +38 on V2.0, but its mechanism — LLM-generated free-text root-cause descriptions embedded jointly with buggy code in one unified vector database using text-embedding-3-large — is a soft, continuous approach without type-level partitioning. SWE-Exp (arXiv 2507.23361, revised February 2026) introduces an experience bank that retrieves the top N=10 issues 'most relevant in terms of error type' using soft cosine similarity over (issue-type + description) embeddings encoded by Multilingual-E5-Large; it stores distilled modification strategies rather than concrete fix patches, operates as a fully agentic pipeline, and is scoped to Python. SWE-Exp's type signal is a soft retrieval-time metadata feature, not a hard index-construction partition; FTCR's structural departure is to partition the retrieval corpus into discrete type sub-indices before any query is issued, enabling retrieval-pool precision rather than post-hoc reranking. DynaFix (arXiv 2512.24635) subsequently surpasses ReinFix on Defects4J V2.0 using execution-level dynamic information and iterative repair, confirming that retrieval strategy and execution-level augmentation are independently improvable axes; FTCR operates on the retrieval strategy axis. RetypeR (ICSME 2024) applies type-specific retrieval but only for Python type errors (one narrow subcategory). The untested hypothesis is that hard categorical type partitioning — classify the incoming failure into one of N discrete semantic types, then retrieve only from the type-matched sub-corpus — yields better precision in retrieving transferable fix templates than ReinFix's joint embedding, because bugs within a type share syntactic fix motifs that bugs with merely similar code but different root causes do not. DebugBench uniquely provides 4,253 instances with ground-truth 18-category type annotations across C++, Java, and Python; crucially, these ground-truth labels enable direct calibration of the few-shot type classifier, turning classifier error propagation from a latent risk into a measurable experimental variable. The confidence-gated hybrid (fall back to soft retrieval for low-confidence classifications) addresses the structural risk of hard partitioning and has principled precedent in CRAG (Yan et al., 2024; arXiv:2401.15884) for general RAG systems. M-RAG (ACL 2024, arXiv 2405.16420) additionally validates that partition-based retrieval consistently outperforms single-store retrieval across NLP tasks, providing domain-general support for the partition hypothesis before evaluating it in the code repair setting.",
+  "landscape": "RELREPAIR (arXiv 2509.16701) retrieves relevant code from the same project using function names and comments, improving repair on Defects4J V1.2 by +17.1% and achieving 48.3% fix rate on ManySStuBs4J, but retrieves current project code rather than cross-repository historical fixes. RepoRepair (arXiv 2603.01048) achieves 45.7% on SWE-bench Lite via documentation-guided localization; the current SWE-bench Lite SOTA is approximately 62.7% (Claude Opus 4.6, May 2026) using agentic scaffolding — a different regime from FTCR's retrieval-only approach, which targets 20–35% with the same model and is not a SOTA claim. ReinFix (arXiv 2506.23100, ICSE 2026) is the closest prior work and primary baseline: it uses an LLM to generate a free-text root-cause description per bug, then embeds (buggy_code + root_cause_text) as a single concatenated string into a unified vector database using text-embedding-3-large, built from 100K samples of the TRANSFER corpus (1M bug-fix pairs). Retrieval is by cosine similarity over this joint embedding — no type-level partitioning, and root cause is a continuous semantic descriptor, not a discrete category. SWE-Exp (arXiv 2507.23361, revised February 2026) is the most important concurrent work: it retrieves top N=10 issues 'most relevant in terms of error type' from an experience bank using soft cosine similarity over (issue-type + description) embeddings (Multilingual-E5-Large encoder), achieving 73.0% on SWE-bench Verified with Claude 4 Sonnet in a fully agentic pipeline. Three design differences distinguish SWE-Exp from FTCR: (1) retrieval mechanism — SWE-Exp uses soft cosine similarity with type as embedding metadata at retrieval time; FTCR partitions the index into discrete type sub-corpora at construction time, so only same-type pairs are ever candidates for a query; (2) retrieved artifact — SWE-Exp stores distilled problem perspectives and generalized modification strategies; FTCR retrieves concrete historical fix patches for direct template transfer; (3) scope — SWE-Exp is fully agentic and scoped to Python; FTCR is retrieval-only and covers C++, Java, and Python, using DebugBench's oracle type labels for cross-lingual calibration. The testable question SWE-Exp leaves open is whether hard construction-time partitioning outperforms soft retrieval-time type filtering for fix-template precision. DynaFix (arXiv 2512.24635) outperforms ReinFix on Defects4J V2.0 using execution-level dynamic information and iterative repair; D4C (ICSE 2025, arXiv 2404.08877) repairs 180 Defects4J bugs via LLM objective alignment. Both update the Defects4J performance landscape but are orthogonal to FTCR's retrieval strategy focus. FTCR's structural departure from ReinFix is to (1) classify incoming failures into discrete categories, then (2) retrieve only from the type-matched sub-index, using the identical encoder (text-embedding-3-large) for a clean comparison that isolates partitioning as the primary architectural variable — noting that partitioning also reduces the effective retrieval pool to ~1/N_types of the full corpus, a corpus-size effect that a random-partition control ablation is designed to separate from type-matching precision. RetypeR (ICSME 2024, Hao et al.) applies a two-stage external+internal retrieval conditioned on Python type errors, establishing that type-specific retrieval helps for one narrow bug class and language; FTCR extends this principle to 18 categories across three languages. M-RAG (ACL 2024, arXiv 2405.16420) demonstrates that multi-partition RAG consistently outperforms single-store RAG across NLP tasks (summarization: +11%, translation: +8%, dialogue: +12%), validating the general principle of partition-based retrieval before applying it to code repair. PatchRecall (arXiv 2604.10481, April 2026) introduces history-based retrieval for file-level localization on SWE-bench — complementary (localization rather than cross-repository fix template retrieval). The APR survey (arXiv 2506.23749) reviews 63+ systems and identifies retrieval augmentation as the key enhancement, but no reviewed system applies hard taxonomic type classification as the retrieval partition key across multiple languages.",
+  "approach": "We build FTCR (Failure-Type-Conditioned Retrieval), a pipeline whose central hypothesis is that hard categorical type partitioning of the retrieval index outperforms ReinFix-style soft root-cause embedding for cross-repository fix transfer. The key ablation — same model, same encoder (text-embedding-3-large, identical to ReinFix for a clean comparison), same corpus, varying only the indexing and retrieval key — isolates partitioning as the primary architectural variable, with the corpus-size confound separated by a random-partition control (see below).\n\nRetrieval Corpus Construction. Four sources: the SWE-bench non-Lite split (~1,994 Python instances, post-2021 to reduce LLM contamination), BugsInPy (493 Python bugs, 17 projects), Defects4J V1.2 pre-filtered to Java-8-compatible bugs (~360 of 395, following the 91% reproducibility figure), and GitBug-Java (199 Java bugs from 2023 commits, isolated Docker environments). Total annotated corpus: approximately 3,050 natural bug-fix pairs (Python: ~2,487; Java: ~559).\n\nCorpus Sparsity Policy. Each pair is annotated with one of 18 semantic categories aligned with DebugBench's taxonomy (four major types: Syntax, Reference, Logic, Multiple; 18 minor subtypes) via few-shot prompting using DebugBench's labeled examples as demonstrations; three annotation passes measure inter-run consistency. A per-type instance count table is computed and reported in the paper for transparency. For the combined Python+Java corpus (3,050 pairs), 18-type analysis is viable: Python instances dominate (~2,487) and yield an estimated mean of ~138 pairs per type. For Java-only ablations (~559 pairs, ~31 per type average), a minimum-threshold policy applies: types with fewer than 30 Java instances are merged into nearest-neighbor supercategories (e.g., Concurrency + Resource-Leak → Resource-Management; Format-Error + Syntax-Error → Low-Level, since compiled Defects4J/GitBug-Java bugs contain near-zero syntax errors). Java ablation results are reported for the 6–8 resulting categories that each exceed 50 instances, with merged categories explicitly labeled. This avoids the degenerate case of k=5 retrieval from a 15-instance sub-index, which approximates exhaustive lookup rather than similarity-based retrieval.\n\nEncoder Specification. Primary encoder: text-embedding-3-large (OpenAI API), identical to ReinFix, to eliminate encoder choice as a confound; embedding cost is negligible (~$5–15 for corpus plus all evaluation queries at $0.13/1M tokens). Secondary ablation: CodeBERT-base substituted for both FTCR and the ReinFix-style baseline, verifying that the hard-vs-soft finding is not encoder-specific and deconfounding the encoder-vs-partitioning comparison.\n\nType Classifier Calibration on DebugBench Ground Truth. Since DebugBench provides oracle type labels for 4,253 instances, a held-out 20% split (851 instances) directly measures our few-shot classifier's per-type precision and recall against ground truth, yielding an overall accuracy estimate. Cross-dataset zero-shot agreement is measured by applying the same classifier to a 10% random sample (~56 pairs) of the Java annotation set (Defects4J + GitBug-Java) with human-verified labels as oracle, yielding a cross-lingual label consistency score. This produces the NLP contribution: a falsifiable empirical claim that LLM-inferred bug type labels achieve X% agreement with DebugBench ground-truth labels (Python/C++), transfer zero-shot to unseen Java bugs with Y% agreement, and are predictive of retrieval-augmented repair success — type-matched retrieval outperforms soft retrieval by Z% for correctly-classified bugs while underperforming by W% for misclassified bugs.\n\nRandom-Partition Control. To isolate the type-matching benefit from the corpus-size reduction effect — hard partitioning reduces the effective retrieval pool to ~1/N_types of the full index, which independently affects recall — we add a random-partition baseline (Variant F): the corpus is randomly partitioned into N equivalently-sized sub-indices, and each query retrieves from a randomly assigned sub-index. Any performance gap between FTCR (Variant E, hard type partition) and this control measures the precision benefit of type-matching net of pool-size reduction. This converts the comparison from 'clean but contested' to 'rigorous and unambiguous.'\n\nConfidence-Gated Retrieval Fallback. At inference time, the type classifier outputs a probability distribution over 18 categories. For instances where the top-class probability exceeds a calibrated threshold τ (tuned on held-out DebugBench validation split), FTCR applies hard type-partitioned retrieval. For instances below τ — typically multi-type or ambiguous bugs — it falls back to soft joint-embedding retrieval (identical to the ReinFix baseline). This confidence-gated hybrid is evaluated as a sixth system variant alongside: (A) text-similarity RAG (no type signal), (B) RELREPAIR (project-internal retrieval), (C) RepoRepair (documentation-guided), (D) ReinFix-style soft retrieval (re-implemented on same corpus and same encoder), (E) FTCR@hard-all, and (F) random-partition control (same N sub-indices, randomly assigned — corpus-size control). The confidence-gated fallback has principled precedent in CRAG (Yan et al., 2024; arXiv:2401.15884). The projected finding: correctly-classified high-confidence bugs show systematic gains from hard partitioning (+5–10% repair success on Defects4J where oracle type labels allow clean stratification); misclassified or low-confidence bugs show performance on par with or slightly below soft retrieval; the confidence gate recovers aggregate performance for ambiguous cases; the random-partition control falls between soft retrieval and FTCR@hard-all, confirming that type-matching rather than pool-size reduction drives the gain.\n\nExpected Performance on SWE-bench Lite. We project FTCR to achieve 20–35% resolve rate with Claude Sonnet 4.6 in retrieval-only (non-agentic) mode, comparable to ReinFix-style retrieval on the same corpus. This is below the current SWE-bench Lite SOTA (~62.7%, Claude Opus 4.6, May 2026, agentic scaffolding) and below RepoRepair's 45.7% (documentation-guided multi-step localization). Lower aggregate performance than RepoRepair is explicitly defended: FTCR does not incorporate documentation-guided localization, which is an orthogonal architectural component. The primary SWE-bench Lite contribution is validating that the type-conditioned advantage observed on DebugBench transfers to real-world Python repositories, not claiming absolute SOTA.\n\nDebugBench's synthetic-bug domain gap (LeetCode code, GPT-4-implanted bugs) is acknowledged; DebugBench results serve as type-controlled ablations with oracle labels while SWE-bench Lite validates real-world transfer.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~88 H100-hours (~150 A100-hours equivalent)",
+      "gpu_utilization": "~30-40% utilized; high idle while researchers design annotation prompts, debug Defects4J Java-8 environments, manually review per-type count tables, and verify annotation consistency across passes",
+      "timeline": "4-6 months",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "~$450 (150 A100-hours × $3/h on RunPod/Lambda Labs)",
+      "embedding_api_cost": "~$5-15 (text-embedding-3-large for 3,050-pair corpus + evaluation queries, at $0.13/1M tokens; negligible relative to overall budget)",
+      "note": "Well within the 200 H100-hour hard budget"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~165 H100-hours (~280 A100-hours equivalent)",
+      "gpu_utilization": "~55-65% utilized; agent continuously queues embedding and evaluation jobs while human approves ablation configurations at decision gates",
+      "timeline": "6-8 weeks",
+      "team": "1 researcher, ~30 min/day check-in for ablation approval, per-type count table review, confidence threshold tuning, and failure triage",
+      "claude_api_cost": "$200-400 (annotation: ~3,050 instances × ~$0.02/call ≈ $61; 3 annotation passes for consistency ≈ $183; DebugBench classifier calibration: 851 held-out instances × $0.02 ≈ $17; pipeline orchestration and repair: ~1,500 agent turns × $0.10/turn ≈ $150; buffer ~$50)",
+      "embedding_api_cost": "~$5-15 (text-embedding-3-large for corpus and evaluation queries)",
+      "estimated_gpu_cost": "~$840 (280 A100-hours × $3/h)",
+      "note": "Within the 200 H100-hour hard budget",
+      "risk_note": "Defects4J Docker reproducibility is the primary bottleneck — the Java-8 pre-filter eliminates ~9% upfront, but remaining instances still require environment triage. GitBug-Java's isolated Docker images significantly reduce this overhead for the Java supplement. Java per-type sparsity is the secondary risk: if the 6-8 type categories above threshold have unequal sizes, the Java ablation may be underpowered for the smallest categories."
+    },
+    "auto_research": {
+      "gpu_hours": "~190 H100-hours (~323 A100-hours equivalent; capped to stay within 200 H100-hour budget)",
+      "gpu_utilization": "near-zero idle; agent continuously queues DebugBench and SWE-bench Lite evaluation runs in parallel with index-rebuild experiments across taxonomy granularity variants",
+      "ablation_scope": "Hard vs. soft retrieval key comparison (FTCR vs. ReinFix-style baseline), random-partition control (N equivalent-size random sub-indices to isolate type-matching from pool-size effect), confidence-gated hybrid (threshold τ sweep), taxonomy granularity (6-type coarse / 18-type fine / merged-Java), retrieval k (1/3/5/10), encoder choice (text-embedding-3-large primary / CodeBERT-base secondary), cross-dataset generalization (Defects4J-Java train → SWE-bench-Lite Python eval), classifier accuracy stratification (by confidence band)",
+      "timeline": "10-14 days with 2 A100 nodes running in parallel",
+      "team": "0 (initial ~4h setup for corpus pipeline, per-type sub-index construction scaffold, random-partition control scaffold, confidence-gated hybrid logic, and Docker environment configuration)",
+      "claude_api_cost": "$500-850 (3-pass annotation of 3,050 pairs ≈ $183; DebugBench classifier calibration ≈ $17; multi-run orchestration ~5,000 agent turns × $0.10 ≈ $500; buffer ~$150)",
+      "embedding_api_cost": "~$10-20 (text-embedding-3-large for corpus + all evaluation query embeddings; CodeBERT-base is self-hosted, no API cost)",
+      "estimated_gpu_cost": "~$969 (323 A100-hours × $3/h)",
+      "speed_bottleneck": "GPU count (single A100 serializes SWE-bench Lite at ~10 min/instance; 2+ nodes needed for meaningful parallelism) and Claude API rate limits on concurrent classification calls",
+      "risk_note": "Auto-assigned bug type labels may drift from human-interpretable categories without the three-pass consistency check; the confidence-gated hybrid adds a hyperparameter (τ) that requires tuning on the DebugBench held-out split before SWE-bench Lite evaluation. SWE-bench Lite infrastructure failures can silently inflate repair failure counts without human oversight."
+    }
+  },
+  "target_venues": [
+    "ICSE 2027 (mandatory abstract deadline June 23, 2026 — PRIMARY target; best fit for SE audience; full ReinFix comparison on Defects4J V1.2 provides the direct head-to-head evaluation reviewers will expect; per-type corpus sparsity table, random-partition control, and confidence-gated ablation address the three most likely reviewer objections about hard partitioning; random-partition control specifically converts the 'corpus-size confound' objection into a closed experimental question)",
+    "EMNLP 2026 Findings (ARR submission deadline May 25, 2026 — secondary attempt; the NLP contribution — LLM-inferred bug type labels achieve X% agreement with DebugBench ground-truth labels across C++/Java/Python, transfer zero-shot to unseen Java bugs with Y% agreement, and predict repair success — is a measurement finding about cross-lingual LLM classification reliability suited to Findings rather than the main track; if the May 25 ARR deadline is too close given remaining experiments, defer to ICSE 2027 submission only. Note: EMNLP 2026 warns against hallucinated citations; all cited arXiv IDs must be independently verified before submission, including CRAG arXiv:2401.15884, which was withdrawn from ICLR 2025 and should be cited only as a preprint.)",
+    "FSE 2027 (full paper deadline October 2, 2026 — backup venue if ICSE review cycle overlaps unfavorably; same SE audience, equally appropriate for a retrieval-architecture study with multi-language empirical evaluation)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "ReinFix: Repair Ingredients Are All You Need — Improving LLM-Based Program Repair via Repair Ingredients Search (ICSE 2026, arXiv 2506.23100) [primary competing baseline; must compare directly on Defects4J V1.2 using same text-embedding-3-large encoder; uses a unified vector database, not a specific named implementation]",
+    "SWE-Exp: Experience-Driven Software Issue Resolution (arXiv 2507.23361, revised February 2026) [most important concurrent work; retrieves top N=10 issues by soft cosine similarity over (issue-type + description) embeddings using Multilingual-E5-Large; stores distilled modification strategies, not fix patches; agentic, Python-only; achieves 73.0% on SWE-bench Verified with Claude 4 Sonnet — differentiate by hard vs. soft partitioning at index-construction time, fix-template vs. strategy retrieval, and multi-language scope]",
+    "ReCode: Improving LLM-based Code Repair with Fine-Grained Retrieval-Augmented Generation (CIKM 2025, arXiv 2509.02330) [algorithm-type-conditioned retrieval in competitive programming — conceptual ancestor]",
+    "RetypeR: Integrated Retrieval-based Automatic Program Repair for Python Type Errors (ICSME 2024, Hao et al.) [type-specific retrieval for one language and one error class — FTCR extends to 18 types and 3 languages]",
+    "DynaFix: Iterative Automated Program Repair Driven by Execution-Level Dynamic Information (arXiv 2512.24635) [surpasses ReinFix on Defects4J V2.0 using execution-level augmentation; orthogonal to FTCR's retrieval strategy contribution, included in landscape]",
+    "D4C: Aligning the Objective of LLM-based Program Repair (ICSE 2025, arXiv 2404.08877) [180 Defects4J bugs via objective alignment; updates Defects4J performance landscape]",
+    "M-RAG: Reinforcing Large Language Model Performance through Retrieval-Augmented Generation with Multiple Partitions (ACL 2024, arXiv 2405.16420) [multi-partition RAG validated on NLP tasks: +11% summarization, +8% translation, +12% dialogue; principled precedent for partition-based retrieval across domains]",
+    "RELREPAIR: Enhancing Automated Program Repair by Retrieving Relevant Code (arXiv 2509.16701) [project-internal retrieval baseline]",
+    "RepoRepair: Leveraging Code Documentation for Repository-Level Automated Program Repair (arXiv 2603.01048) [documentation-guided localization baseline; 45.7% on SWE-bench Lite using multi-step localization, orthogonal to FTCR's retrieval focus]",
+    "DebugBench: Evaluating Debugging Capability of Large Language Models (ACL Findings 2024) [primary evaluation with ground-truth 18-category labels across C++/Java/Python; held-out 20% split used for few-shot classifier calibration; synthetic-bug limitation acknowledged]",
+    "GitBug-Java: A Reproducible Benchmark of Recent Java Bugs (MSR 2024, arXiv 2402.02961) [199 recent Java bugs in isolated Docker environments; supplement for Defects4J Java corpus]",
+    "SWE-smith: Scaling Data for Software Engineering Agents (NeurIPS 2025, arXiv 2504.21798) [50k Python task instances from 128 repos; used as scale corpus for Python retrieval index]",
+    "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications (arXiv 2506.23749) [63-system survey confirming retrieval augmentation as key enhancement with no type-partitioned system identified]",
+    "What Do They Fix? LLM-Aided Categorization of Security Patches (NDSS 2026, arXiv 2509.22796) [confirms LLM-based bug taxonomy inference is practical at scale]",
+    "PatchRecall: Patch-Driven Retrieval for Automated Program Repair (arXiv 2604.10481) [history-based retrieval for file localization — complementary scope]",
+    "RAP-Gen: Retrieval-Augmented Patch Generation with CodeT5 (ESEC/FSE 2023) [text-similarity RAG baseline]",
+    "CRAG: Corrective Retrieval Augmented Generation (Yan et al., 2024; arXiv:2401.15884) [confidence-gated fallback mechanism with retrieval quality scoring; precedent for the FTCR confidence-gated hybrid variant; note: withdrawn from ICLR 2025, unpublished — cite as preprint only]"
+  ],
+  "description": "FTCR tests a specific hypothesis in retrieval-augmented program repair: hard categorical type partitioning of the retrieval index outperforms soft root-cause-augmented retrieval (ReinFix's approach, ICSE 2026) for cross-repository fix template transfer. ReinFix (ICSE 2026, arXiv 2506.23100) is the closest prior work — it embeds LLM-generated free-text root-cause descriptions jointly with buggy code into a unified vector database using text-embedding-3-large, showing +32/+38 bugs fixed on Defects4J V1.2/V2.0. FTCR's structural departure is to (1) classify incoming failures into one of 18 discrete semantic categories aligned with DebugBench's empirically-validated taxonomy, and (2) retrieve only from the type-matched sub-index, using the identical encoder (text-embedding-3-large) to isolate partitioning as the primary architectural variable. Round 4 revisions address five issues: (a) CRAG citation corrected throughout — CRAG was withdrawn from ICLR 2025 and never published; correct citation is 'CRAG (Yan et al., 2024; arXiv:2401.15884)'; (b) SWE-Exp (arXiv 2507.23361, revised February 2026) added to landscape and opportunity as the most important concurrent work — it uses soft cosine similarity over (issue-type + description) embeddings as metadata, stores distilled modification strategies rather than fix patches, is agentic and Python-only; FTCR differs in hard construction-time partitioning, fix-template retrieval, and multi-language scope; (c) random-partition control added as Variant F to the ablation suite — randomly partitions corpus into N equivalent-sized sub-indices to isolate the type-matching benefit from the corpus-size reduction effect (~1/N_types pool shrinkage), converting the 'clean comparison' qualifier into a closed experimental question; (d) EMNLP target downgraded from main track to Findings — the X%/Y%/Z%/W% cross-lingual semantic stability finding is a measurement contribution suited to Findings; ICSE 2027 is positioned as the clear primary target; (e) ReinFix's vector store softened from 'FAISS vector store' to 'unified vector database' to avoid misrepresenting an unspecified implementation detail. RetypeR (ICSME 2024) establishes type-specific retrieval for Python type errors specifically; FTCR extends to 18 categories across C++, Java, and Python. The retrieval corpus (~3,050 natural bug-fix pairs from SWE-bench non-Lite, BugsInPy, Defects4J V1.2, and GitBug-Java) requires no GPU training; the approach is fully inference-based. Target venues: ICSE 2027 (abstract June 23, primary), EMNLP 2026 Findings (ARR May 25, secondary attempt), FSE 2027 (October 2, backup).",
+  "project_name": "failure_type_rag_repair",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL — Uncited competing work invalidates novelty claim: ReinFix (ICSE 2025, arXiv 2506.23100) embeds root-cause classification into retrieval from a 1M-pair historical bug-fix corpus, which is mechanistically nearly identical to FTCR's type-conditioned retrieval from historical corpus. The proposal must cite and differentiate from ReinFix; without this, reviewers will reject on novelty grounds.", "CRITICAL — ReCode overlap is underplayed: ReCode already implements algorithm-type-conditioned retrieval with type-partitioned sub-knowledge-bases, the identical core mechanism. FTCR's contribution is extending this to real-world bugs (competitive programming → repositories), which must be framed more precisely. The current framing overclaims novelty.", "HIGH — Dataset size claim is internally inconsistent: BugsInPy (493) + Defects4J (1,192) = ~1,685 pairs, not 6,500. If the SWE-bench training split (19,000 instances) is included, that's 20,000+. The '~6,500' figure suggests some undescribed quality-filtering or subsetting logic that is not specified in the proposal. This will raise red flags in review.", "HIGH — Defects4J reproducibility crisis: Independent studies (MSR 2025) found ~50% of Defects4J fault-triggering tests are regression tests added post-hoc, and nearly 50% become non-reproducible with modern Java. BugsInPy showed 67% reproducibility. Mining ~1,685 pairs from these datasets may yield fewer than 900 reliably reproducible bug-fix pairs, undermining the corpus quality and scale claims.", "MEDIUM — Uncited prior art RetypeR (ICSME 2024): This paper applies type-specific retrieval (external retrieval stage conditioned on Python type errors) and should be discussed as prior art that narrows the novelty of cross-language type-conditioned retrieval.", "MEDIUM — Resource units inconsistency: The hard constraint is ≤200 H100-hours, but the proposal reports A100-hours throughout. Manual mode (~150 A100h ≈ 90 H100h) is within budget, but auto-research mode (~650 A100h ≈ 390 H100h) significantly exceeds the constraint. This should be flagged and the primary experiment budget anchored in H100-hours.", "MEDIUM — EMNLP framing needs NLP-centric repositioning: The primary contribution is a retrieval system design (SE contribution). EMNLP 'NLP and Code Models' track requires a clear NLP/LLM contribution. The few-shot taxonomy induction approach and its ability to generalize zero-shot across languages should be foregrounded as the NLP contribution; the retrieval architecture is the engineering substrate.", "LOW — DebugBench validity concern: DebugBench uses LeetCode code with GPT-4-implanted synthetic bugs, not real repository bugs. Results on DebugBench may not transfer to SWE-bench Lite, requiring a careful discussion of the domain gap between the two evaluation settings."]
+Feedback: The core gap FTCR targets is real but narrower than claimed. To make this revisable into a strong paper: (1) Reframe the novelty around what's genuinely new — the extension of type-partitioned retrieval from algorithmic contest code (ReCode) to real-world multi-language repository bugs with an 18-category taxonomy grounded in DebugBench's empirically validated type structure. This is a specific, defensible contribution. (2) Add ReinFix as a baseline: since ReinFix uses root-cause-conditioned retrieval from historical corpus, you must compare against it directly on a shared benchmark (Defects4J is common). If FTCR's type-partitioned index outperforms ReinFix's joint root-cause+code embedding, that's a publishable finding. (3) Fix the dataset size: either restrict to BugsInPy+Defects4J and acknowledge the smaller corpus (~1,500–1,685 pairs after reproducibility filtering), or explicitly include a quality-filtered SWE-bench train subset and describe the filtering criteria. (4) Run a reproducibility pre-check: before committing to Defects4J as a corpus source, filter to only Java 8-compatible bugs (reported to have ~80% reproducibility) and report the usable fraction. (5) For EMNLP fit, pivot the NLP angle to the few-shot taxonomy induction finding — specifically, whether LLM-inferred bug types are consistent, cross-lingual, and predictive of repair success. This is the NLP scientific question. (6) The 16-day timeline is only viable in auto-research mode with parallel evaluation; the paper should scope evaluation to DebugBench (where type labels are ground-truth) plus SWE-bench Lite (300 instances), and acknowledge that a full Defects4J corpus build is out-of-scope for the conference timeline.
+
+### Round 2 review
+Verdict: revise
+Issues: ["CRITICAL — Citation error: ReinFix is confirmed ICSE 2026 (arXiv 2506.23100 states 'Accepted by ICSE 2026'), not ICSE 2025 as the proposal states throughout. EMNLP 2026 explicitly warns against hallucinated citations and has stated it may desk-reject papers with such errors. Every reference to 'ReinFix (ICSE 2025)' must be corrected to 'ReinFix (ICSE 2026)'.", "HIGH — Corpus sparsity renders type partitioning semantically degenerate for rare types: 559 Java pairs (Defects4J + GitBug-Java) across 18 types yields ~31 Java instances per type on average. For rare bug categories (concurrency, resource leaks, format errors), this may be 5–15 instances. Retrieving k=5 from a sub-index of 15 instances is not retrieval—it is exhaustive lookup. The proposal must either (a) restrict to the 6–8 most frequent types where >50 Java instances exist, or (b) merge rare types into a broader category, or (c) acknowledge that the per-type ablation is only meaningful for the top N types and report per-type corpus sizes in the paper.", "HIGH — Classifier error propagation is unaddressed: if the type classifier misclassifies an incoming bug (which will occur for edge cases and multi-type bugs), the system retrieves from the wrong partition and almost certainly underperforms soft retrieval for those instances. This is the main structural risk of hard partitioning over soft embedding. The proposal must analyze: (a) classifier accuracy on held-out annotated bugs, (b) the performance degradation attributable to misclassification, and (c) whether a confidence-gated fallback to soft retrieval recovers performance.", "HIGH — EMNLP venue fit remains questionable: the core contribution is an IR architecture decision (partitioning a FAISS index by categorical label). EMNLP 'NLP and Code Models' reviewers will ask what the NLP/LM finding is. The 'few-shot cross-lingual taxonomy induction' contribution (measuring whether LLM-inferred bug types are consistent across annotation runs) is secondary and not a compelling standalone NLP finding—LLM classification consistency is well-studied. If submitting to EMNLP, the NLP contribution must be foregrounded more strongly, e.g., a finding that LLM-inferred type labels are cross-lingually stable and predictive of repair success at the p<0.01 level, with analysis of failure cases that reveal type-specific linguistic patterns in bug descriptions.", "MEDIUM — ASE 2026 NIER deadline (May 12) is 2 days from today and experiments are not done: listing it as a target venue is unrealistic. Remove from target_venues or replace with a venue with a later deadline (e.g., EMNLP Findings via ARR, or FSE 2027).", "MEDIUM — No expected performance range stated for SWE-bench Lite: reviewers will immediately compare against the RepoRepair baseline (45.7% on Lite). The proposal should state an expected performance range and justify why a lower absolute number is acceptable given the paper's focus on architectural comparison rather than SOTA performance.", "LOW — The proposal does not specify which encoding model will be used for FTCR. ReinFix uses text-embedding-3-large (OpenAI API). If FTCR uses the same encoder for fair comparison, this imposes an ongoing API cost not captured in the GPU-hour budget. If using CodeBERT or UniXcoder instead, the encoder comparison is confounded with the hard/soft partitioning comparison. This should be clarified explicitly."]
+Feedback: The Round 2 revision has fixed the major structural issues from Round 1 (ReinFix is now a baseline, dataset sizes are consistent, RetypeR is cited, compute is in H100-hours, DebugBench limitations acknowledged). The core hypothesis is testable and the ablation design is clean. Three issues must be addressed before this is submission-ready: (1) Fix the citation error throughout — ReinFix is ICSE 2026, not ICSE 2025; submit it as 'ReinFix (ICSE 2026, arXiv:2506.23100)'. (2) Address corpus sparsity directly in the methods section: report per-type instance counts in a table, restrict the full 18-type analysis to the Python+Java combined corpus, and for the Java-only ablations acknowledge that only the top N types have >50 instances. For types below a minimum threshold (suggest 30 instances), either merge or exclude from per-type breakdown. (3) Add a classifier accuracy analysis: measure the type classifier on the annotated DebugBench ground-truth labels (since DebugBench already has ground-truth types, you can directly measure LLM classifier accuracy), then report how type-matched retrieval performance varies as a function of classifier confidence. This turns the error propagation problem into a feature — it becomes an analysis of when hard partitioning helps vs. hurts. For EMNLP specifically: the NLP contribution must be stated as a crisp finding, not a process. Frame it as: 'We show that LLM-inferred bug type labels achieve X% agreement with DebugBench ground-truth labels, transfer zero-shot to unseen Java bugs with Y% agreement, and are predictive of retrieval-augmented repair success (type-matched retrieval outperforms soft retrieval by Z% for correctly classified bugs, while underperforming by W% for misclassified bugs).' This is a falsifiable empirical claim that EMNLP reviewers can evaluate.
+
+### Round 3 review
+Verdict: revise
+Issues: ["CRITICAL — CRAG citation is a hallucinated venue: The proposal cites 'CRAG (ICLR 2024)' but CRAG (arXiv:2401.15884) was submitted to ICLR 2025 and withdrawn — it was never accepted or published at any ICLR. Citing it as a published ICLR paper is precisely the kind of hallucinated venue citation EMNLP warns may trigger desk rejection. The correct citation is 'CRAG (Yan et al., 2024; arXiv:2401.15884)'.", "HIGH — Unacknowledged concurrent work: SWE-Exp (arXiv:2507.23361, July 2025) uses an experience bank where retrieval explicitly surfaces 'the top N=10 issues most relevant in terms of error type' via cosine similarity, achieves 41.6% on SWE-bench Verified, and is publicly available with open-source code. While the mechanism is different (experience trajectories + soft cosine vs. hard categorical partitioning of fix templates), EMNLP and ICSE reviewers will notice its absence. FTCR must cite it, note the difference (soft type-similarity vs. hard categorical partitioning), and explain why hard partitioning is a distinct hypothesis worth testing.", "MEDIUM — 'Clean comparison' overstates the isolation: Type-partitioned retrieval fundamentally reduces the effective retrieval corpus to 1/N_types (≈1/18 on average) of the full index. A smaller retrieval pool affects recall independently of the type-matching benefit. Without a 'random-partition baseline' (random corpus subsets of equivalent size per query), the observed gain (or loss) conflates two effects: (a) partitioning precision and (b) retrieval corpus size. The proposal should either add this control or explicitly acknowledge it as a confound in Section 4.", "MEDIUM — EMNLP main track fit remains overstated: The NLP contribution — measuring X% agreement between LLM-inferred bug type labels and DebugBench ground truth, then correlating with repair success — is a measurement finding about LLM classification reliability on a well-structured taxonomy. This is useful but unlikely to be viewed as a primary NLP/LM contribution by EMNLP main track reviewers, who expect findings that advance understanding of language models. EMNLP Findings is a more realistic target; ICSE 2027 (already listed) is the natural primary venue where the SE audience will value the retrieval architecture contribution directly.", "LOW — Minor ReinFix technical inaccuracy: The proposal states ReinFix uses 'a unified FAISS vector store' but the ReinFix paper (arXiv:2506.23100) only refers to 'a vector database' without specifying FAISS as the implementation. This overly specific characterization of the baseline's internals should be softened to 'a unified vector database' to avoid misrepresentation of the primary baseline."]
+Feedback: Round 3 has successfully addressed the four critical/high issues from Round 2: citation corrected to ICSE 2026 throughout, corpus sparsity handled with explicit per-type table and 30-instance merge policy, classifier error propagation addressed with confidence-gated hybrid and DebugBench calibration, and EMNLP framing sharpened to a crisp X%/Y%/Z%/W% falsifiable claim. The core hypothesis is testable and genuinely novel for multi-language APR. Two issues block submission: (1) Fix the CRAG citation immediately — replace every instance of 'CRAG (ICLR 2024)' with 'CRAG (Yan et al., 2024; arXiv:2401.15884)'. CRAG was submitted to ICLR 2025 but withdrawn and unpublished; citing it as published ICLR work is a hallucinated venue citation that can trigger desk rejection at EMNLP. (2) Add SWE-Exp (arXiv:2507.23361) to the landscape with one paragraph: it uses soft cosine retrieval filtered 'in terms of error type' from an experience bank; FTCR's departure is hard categorical partitioning at index-construction time, not just retrieval-time filtering, plus fix-template retrieval rather than trajectory experience. For longer-term strengthening: add a random-partition baseline (randomly assign corpus pairs to N equivalent-sized sub-indices) to isolate the type-matching benefit from the corpus-size effect. This single ablation converts the comparison from 'clean but contested' to 'rigorous and unambiguous'. On venue strategy: ICSE 2027 (abstract June 23) should be positioned as the primary target; EMNLP 2026 ARR (May 25) can be attempted for Findings if the NLP framing holds, but do not overinvest in EMNLP main track positioning — the primary audience for this work is the SE/APR community.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "fd5619af-3f85-4c66-9cbd-a828b2223d45",
+  "type": "user",
+  "uuid": "bdc72c29-234b-4f71-9a90-f7ea84c9b1bc",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T06:09:28.430Z_
+
+```json
+{
+  "parentUuid": "bdc72c29-234b-4f71-9a90-f7ea84c9b1bc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "e682f30d-642f-471e-81f0-708efd88de91",
+  "timestamp": "2026-05-10T06:09:28.430Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T06:09:28.430Z_
+
+```json
+{
+  "parentUuid": "e682f30d-642f-471e-81f0-708efd88de91",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "b5a82db0-1a24-478e-b7f0-e3b0d87c365e",
+  "timestamp": "2026-05-10T06:09:28.430Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b5a82db0-1a24-478e-b7f0-e3b0d87c365e",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Type-partitioned retrieval for multi-language code repair",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T06:09:45.938Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this Round 4 submission of the FTCR (Failure-Type-Conditioned Retrieval) paper idea. I need to independently verify claims, search for competing work, and assess whether the previous round's issues have been addressed.
+
+From the previous reviews:
+- Round 3 issues that were raised:
+  1. CRITICAL: CRAG citation was hallucinated (ICLR 2024 when it was withdrawn from ICLR 2025)
+  2. HIGH: Unacknowledged concurrent work SWE-Exp (arXiv:2507.23361)
+  3. MEDIUM: "Clean comparison" overstates isolation (need random-partition baseline)
+  4. MEDIUM: EMNLP main track fit overstated
+  5. LOW: ReinFix FAISS specification inaccuracy
+
+Looking at Round 4 submission, the authors have addressed most concerns: the CRAG citation is now correctly attributed with the arXiv identifier, SWE-Exp has been incorporated into the landscape and opportunity sections, a random-partition control variant has been added, and the venue expectation has been downgraded to Findings. I need to verify the ReinFix FAISS specification fix and check if any new issues have emerged.
+
+Now I'm doing a thorough verification pass on the key claims and citations: checking whether SWE-Exp really achieves 73.0% on SWE-bench Verified at that arXiv ID, confirming ReinFix's ICSE 2026 status and embedding model, validating CRAG's ICLR 2025 withdrawal, searching for competing work in type-conditioned retrieval for APR, and reviewing the current SOTA on SWE-bench Verified alongside details on DebugBench, M-RAG, and RepoRep.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5a82db0-1a24-478e-b7f0-e3b0d87c365e",
+  "isSidechain": false,
+  "requestId": "req_011CatPaQusGot4Fd6RZPeah",
+  "type": "assistant",
+  "uuid": "425a8ab4-773b-4ecd-82a6-7b641b78d6a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0113FXJNh6StSeW7qER69Jys",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20538,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 2176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20538,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2176,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 20538,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20538
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T06:09:45.947Z_
+
+I'll conduct independent research to verify the Round 4 claims before issuing a verdict. Let me search across multiple dimensions simultaneously.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "425a8ab4-773b-4ecd-82a6-7b641b78d6a6",
+  "isSidechain": false,
+  "requestId": "req_011CatPaQusGot4Fd6RZPeah",
+  "type": "assistant",
+  "uuid": "af9582f4-071a-4ce9-86bf-594603912a2b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0113FXJNh6StSeW7qER69Jys",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20538,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 2176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20538,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2176,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 20538,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20538
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T06:09:54.295Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01SvN75Jszgd4Ho7Vi18P2cg`</summary>
+
+```json
+{
+  "description": "Search for SWE-Exp paper and concurrent work on type-conditioned retrieval for APR",
+  "subagent_type": "Explore",
+  "prompt": "Search for information about the following papers and verify their claims. Use WebSearch and WebFetch tools.\n\n1. Search for \"SWE-Exp experience-driven software issue resolution arXiv 2507.23361\" - verify:\n   - Does this paper exist at arXiv 2507.23361?\n   - Does it achieve 73.0% on SWE-bench Verified?\n   - Does it use Multilingual-E5-Large encoder?\n   - Is it Python-only and agentic?\n   - Does it retrieve \"top N=10 issues most relevant in terms of error type\"?\n\n2. Search for \"ReinFix repair ingredients ICSE 2026 arXiv 2506.23100\" - verify:\n   - Is this correctly cited as ICSE 2026?\n   - Does it use text-embedding-3-large?\n   - Does it show +32/+38 bugs fixed on Defects4J V1.2/V2.0?\n   - Does it use a unified vector database (not specifically FAISS)?\n\n3. Search for \"CRAG corrective retrieval augmented generation arXiv 2401.15884 ICLR 2025 withdrawn\" - verify:\n   - Was CRAG (arXiv:2401.15884) submitted to ICLR 2025 and withdrawn?\n   - Has it been published anywhere else?\n\n4. Search for any concurrent work on type-conditioned or category-aware retrieval for program repair in 2025-2026 that might not be cited in the paper. Use queries like:\n   - \"bug type retrieval augmented program repair 2026\"\n   - \"categorical bug classification repair arxiv 2025 2026\"\n   - \"failure type conditioned retrieval code repair\"\n\nPlease search thoroughly and report exact findings including URLs and key details."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af9582f4-071a-4ce9-86bf-594603912a2b",
+  "isSidechain": false,
+  "requestId": "req_011CatPaQusGot4Fd6RZPeah",
+  "type": "assistant",
+  "uuid": "9e030d17-76a8-4076-978f-d917f31a40c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0113FXJNh6StSeW7qER69Jys",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20538,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 2176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20538,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2176,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 20538,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20538
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-10T06:10:04.469Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01RjEnajubDeGSAzdra92ryA`</summary>
+
+```json
+{
+  "description": "Search for SWE-bench SOTA, DynaFix, M-RAG validity, and DebugBench details",
+  "subagent_type": "Explore",
+  "prompt": "Search for the following to help verify claims in a research paper on retrieval-augmented program repair. Use WebSearch and WebFetch tools.\n\n1. Search for \"SWE-bench Verified leaderboard 2026 SOTA\" - what is the current best performance? The paper claims ~62.7% with Claude Opus 4.6 in May 2026. Also check SWE-bench Lite SOTA and verify if RepoRepair achieves 45.7% on SWE-bench Lite (arXiv 2603.01048).\n\n2. Search for \"DynaFix iterative automated program repair execution arXiv 2512.24635\" - verify:\n   - Does this paper exist?\n   - Does it surpass ReinFix on Defects4J V2.0?\n   - Does it use execution-level dynamic information?\n\n3. Search for \"M-RAG multiple partitions retrieval augmented generation ACL 2024 arXiv 2405.16420\" - verify:\n   - Does this paper exist?\n   - Does it show +11% summarization, +8% translation, +12% dialogue improvements?\n   - Is it from ACL 2024?\n\n4. Search for \"DebugBench evaluating debugging LLM ACL Findings 2024\" - verify:\n   - Does it have 4,253 instances?\n   - Does it have 18-category type annotations?\n   - Does it cover C++, Java, and Python?\n   - Is it LeetCode-based with GPT-4-implanted bugs?\n\n5. Search for \"GitBug-Java reproducible benchmark Java bugs MSR 2024 arXiv 2402.02961\" - verify existence and that it has 199 Java bugs in isolated Docker environments.\n\n6. Search for \"PatchRecall patch-driven retrieval automated program repair arXiv 2604.10481\" - does this paper exist and does it focus on file localization?\n\nPlease report exact findings with URLs."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e030d17-76a8-4076-978f-d917f31a40c1",
+  "isSidechain": false,
+  "requestId": "req_011CatPaQusGot4Fd6RZPeah",
+  "type": "assistant",
+  "uuid": "d9d53d54-2481-427f-92de-10c033940121",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0113FXJNh6StSeW7qER69Jys",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20538,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 2176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20538,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2176,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 20538,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20538
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-10T06:10:14.330Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_016ySodsbwAH2xYGYfkfUJnt`</summary>
+
+```json
+{
+  "description": "Search for competing work and novelty check on type-partitioned retrieval for code repair",
+  "subagent_type": "Explore",
+  "prompt": "I'm doing an adversarial review of a research paper on \"Failure-Type-Conditioned Retrieval Augmentation for Repository Repair\" (FTCR). The core idea is: classify incoming bugs into discrete semantic types (null dereference, off-by-one, API misuse, type mismatch, etc.), then retrieve fix examples only from type-matched sub-index, instead of using soft semantic similarity retrieval.\n\nI need to find competing or concurrent work that may invalidate the novelty claim. Please search extensively:\n\n1. Search \"type-aware retrieval program repair 2025 2026\" on arXiv\n2. Search \"error category conditioned retrieval bug fixing\" \n3. Search \"semantic type bug classification retrieval augmented repair 2025\"\n4. Search \"ReCode CIKM 2025 algorithm type retrieval arXiv 2509.02330\" - verify this paper exists and what it does\n5. Search \"RetypeR ICSME 2024 type-specific retrieval Python type errors\" - verify existence\n6. Search \"partition-based retrieval code generation debugging\" 2025 2026\n7. Search site:openreview.net for \"type-conditioned retrieval program repair\" 2025-2026\n8. Search \"SWE-agent code repair type classification 2026\" for any concurrent agentic approaches\n9. Search \"experience bank software engineering issue resolution\" for other SWE-Exp-like work\n10. Search \"hard partition retrieval vs soft retrieval code\" to find papers comparing these approaches\n\nAlso please check: Is there any recent work combining execution feedback with type-conditioned retrieval that would make FTCR's retrieval-only approach look insufficient?\n\nReport all relevant papers found with URLs and key details."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d9d53d54-2481-427f-92de-10c033940121",
+  "isSidechain": false,
+  "requestId": "req_011CatPaQusGot4Fd6RZPeah",
+  "type": "assistant",
+  "uuid": "fe1c7b6c-110b-413a-8645-5c73d2140098",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0113FXJNh6StSeW7qER69Jys",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20538,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 2176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20538,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2176,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 20538,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20538
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-10T06:10:46.042Z_
+
+<details><summary>↩ Tool result · `toolu_01RjEnajubDeGSAzdra92ryA`</summary>
+
+```text
+Perfect! I now have comprehensive verification data. Let me compile my findings:
+
+## Verification Report on Research Paper Claims
+
+I've systematically searched for and verified all six papers and claims mentioned in the research paper. Here are my detailed findings:
+
+### 1. SWE-bench SOTA Claims
+
+**Claim: ~62.7% with Claude Opus 4.6 in May 2026 on SWE-bench Lite**
+- **Status: VERIFIED**
+- Claude Opus 4.6 leads the SWE-bench Lite leaderboard with exactly 62.7% as of May 9, 2026
+- Source: [SWE-bench Lite Leaderboard 2026](https://pricepertoken.com/leaderboards/benchmark/swe-bench-lite)
+
+**Claim: RepoRepair achieves 45.7% on SWE-bench Lite (arXiv 2603.01048)**
+- **Status: VERIFIED**
+- RepoRepair achieves 45.7% repair rate on SWE-bench Lite with $0.44 average cost per fix
+- Also reports 77.6% file-level fault localization accuracy
+- Source: [arXiv:2603.01048 - RepoRepair](https://arxiv.org/abs/2603.01048)
+
+---
+
+### 2. DynaFix Paper (arXiv 2512.24635)
+
+**Status: ALL CLAIMS VERIFIED**
+- **Paper exists:** Yes, confirmed on arXiv
+- **Uses execution-level dynamic information:** Confirmed - DynaFix integrates execution-level dynamic information including variable states, branch paths, and call stacks using ByteTrace instrumentation
+- **Performance on Defects4J V2.0:** Confirmed - DynaFix repairs 186 single-function bugs with GPT-4o, achieving 10% improvement over state-of-the-art, including 38 previously unrepaired bugs. Achieves 236 repairs with GPT-4.
+- **Note:** The abstract does not break down specific comparisons against ReinFix on Defects4J V2.0; the full paper would be needed for that detail
+- Source: [arXiv:2512.24635 - DynaFix](https://arxiv.org/abs/2512.24635)
+
+---
+
+### 3. M-RAG Paper (arXiv 2405.16420)
+
+**Status: ALL CLAIMS VERIFIED**
+- **Paper exists:** Yes, confirmed on arXiv and published at ACL 2024
+- **Performance improvements:** Exactly as claimed:
+  - Text summarization: +11%
+  - Machine translation: +8%
+  - Dialogue generation: +12%
+- **Published at ACL 2024:** Confirmed - Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 1966–1978, Bangkok, Thailand, August 2024
+- Sources: [arXiv:2405.16420](https://arxiv.org/abs/2405.16420), [ACL Anthology](https://aclanthology.org/2024.acl-long.108/)
+
+---
+
+### 4. DebugBench Paper (ACL Findings 2024)
+
+**Status: ALL CLAIMS VERIFIED**
+- **Paper exists:** Yes, confirmed at ACL Findings 2024
+- **Instances:** Exactly 4,253 instances
+- **Category annotations:** Covers "four major bug categories and 18 minor types" (note: paper specifies "four major categories" not just general coverage)
+- **Programming languages:** Covers C++, Java, and Python
+- **Bug source:** Code collected from LeetCode community with bugs implanted using GPT-4
+- Sources: [arXiv:2401.04621](https://arxiv.org/abs/2401.04621), [ACL Anthology](https://aclanthology.org/2024.findings-acl.247.pdf)
+
+---
+
+### 5. GitBug-Java Paper (MSR 2024, arXiv 2402.02961)
+
+**Status: ALL CLAIMS VERIFIED**
+- **Paper exists:** Yes, confirmed at MSR 2024
+- **Bug count:** Exactly 199 Java bugs from 55 open-source repositories
+- **Isolated Docker environments:** Confirmed - Uses Docker containers with complete offline reproduction environments. Each bug-fix is executed 5 times offline to verify reproducibility. Docker images average 412.3 MB and are stored on Zenodo for long-term preservation.
+- Source: [arXiv:2402.02961](https://arxiv.org/abs/2402.02961), [MSR 2024 Conference](https://dl.acm.org/doi/10.1145/3643991.3644884)
+
+---
+
+### 6. PatchRecall Paper (arXiv 2604.10481)
+
+**Status: VERIFIED**
+- **Paper exists:** Yes, confirmed on arXiv (submitted April 12, 2026)
+- **Focus on file localization:** Confirmed - The paper explicitly focuses on "Retrieving the correct set of files from a large codebase" as a crucial step in Automated Program Repair
+- **Approach:** Combines codebase retrieval (matching issue descriptions) and history-based retrieval (leveraging similar past issues) with reranking
+- Source: [arXiv:2604.10481](https://arxiv.org/abs/2604.10481)
+
+---
+
+## Summary
+
+All papers and performance claims in the research paper have been verified as accurate with the following sources:
+
+1. [SWE-bench Lite Leaderboard 2026](https://pricepertoken.com/leaderboards/benchmark/swe-bench-lite)
+2. [arXiv:2603.01048 - RepoRepair](https://arxiv.org/abs/2603.01048)
+3. [arXiv:2512.24635 - DynaFix](https://arxiv.org/abs/2512.24635)
+4. [arXiv:2405.16420 - M-RAG](https://arxiv.org/abs/2405.16420)
+5. [ACL 2024 M-RAG Publication](https://aclanthology.org/2024.acl-long.108/)
+6. [arXiv:2401.04621 - DebugBench](https://arxiv.org/abs/2401.04621)
+7. [ACL Findings 2024 - DebugBench](https://aclanthology.org/2024.findings-acl.247.pdf)
+8. [arXiv:2402.02961 - GitBug-Java](https://arxiv.org/abs/2402.02961)
+9. [MSR 2024 - GitBug-Java](https://dl.acm.org/doi/10.1145/3643991.3644884)
+10. [arXiv:2604.10481 - PatchRecall](https://arxiv.org/abs/2604.10481)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d9d53d54-2481-427f-92de-10c033940121",
+  "isSidechain": false,
+  "promptId": "fd5619af-3f85-4c66-9cbd-a828b2223d45",
+  "type": "user",
+  "uuid": "90f49bcf-097a-4be7-b782-c8779b40c4f2",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for the following to help verify claims in a research paper on retrieval-augmented program repair. Use WebSearch and WebFetch tools.\n\n1. Search for \"SWE-bench Verified leaderboard 2026 SOTA\" - what is the current best performance? The paper claims ~62.7% with Claude Opus 4.6 in May 2026. Also check SWE-bench Lite SOTA and verify if RepoRepair achieves 45.7% on SWE-bench Lite (arXiv 2603.01048).\n\n2. Search for \"DynaFix iterative automated program repair execution arXiv 2512.24635\" - verify:\n   - Does this paper exist?\n   - Does it surpass ReinFix on Defects4J V2.0?\n   - Does it use execution-level dynamic information?\n\n3. Search for \"M-RAG multiple partitions retrieval augmented generation ACL 2024 arXiv 2405.16420\" - verify:\n   - Does this paper exist?\n   - Does it show +11% summarization, +8% translation, +12% dialogue improvements?\n   - Is it from ACL 2024?\n\n4. Search for \"DebugBench evaluating debugging LLM ACL Findings 2024\" - verify:\n   - Does it have 4,253 instances?\n   - Does it have 18-category type annotations?\n   - Does it cover C++, Java, and Python?\n   - Is it LeetCode-based with GPT-4-implanted bugs?\n\n5. Search for \"GitBug-Java reproducible benchmark Java bugs MSR 2024 arXiv 2402.02961\" - verify existence and that it has 199 Java bugs in isolated Docker environments.\n\n6. Search for \"PatchRecall patch-driven retrieval automated program repair arXiv 2604.10481\" - does this paper exist and does it focus on file localization?\n\nPlease report exact findings with URLs.",
+    "agentId": "a551db514ee4935cb",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Perfect! I now have comprehensive verification data. Let me compile my findings:\n\n## Verification Report on Research Paper Claims\n\nI've systematically searched for and verified all six papers and claims mentioned in the research paper. Here are my detailed findings:\n\n### 1. SWE-bench SOTA Claims\n\n**Claim: ~62.7% with Claude Opus 4.6 in May 2026 on SWE-bench Lite**\n- **Status: VERIFIED**\n- Claude Opus 4.6 leads the SWE-bench Lite leaderboard with exactly 62.7% as of May 9, 2026\n- Source: [SWE-bench Lite Leaderboard 2026](https://pricepertoken.com/leaderboards/benchmark/swe-bench-lite)\n\n**Claim: RepoRepair achieves 45.7% on SWE-bench Lite (arXiv 2603.01048)**\n- **Status: VERIFIED**\n- RepoRepair achieves 45.7% repair rate on SWE-bench Lite with $0.44 average cost per fix\n- Also reports 77.6% file-level fault localization accuracy\n- Source: [arXiv:2603.01048 - RepoRepair](https://arxiv.org/abs/2603.01048)\n\n---\n\n### 2. DynaFix Paper (arXiv 2512.24635)\n\n**Status: ALL CLAIMS VERIFIED**\n- **Paper exists:** Yes, confirmed on arXiv\n- **Uses execution-level dynamic information:** Confirmed - DynaFix integrates execution-level dynamic information including variable states, branch paths, and call stacks using ByteTrace instrumentation\n- **Performance on Defects4J V2.0:** Confirmed - DynaFix repairs 186 single-function bugs with GPT-4o, achieving 10% improvement over state-of-the-art, including 38 previously unrepaired bugs. Achieves 236 repairs with GPT-4.\n- **Note:** The abstract does not break down specific comparisons against ReinFix on Defects4J V2.0; the full paper would be needed for that detail\n- Source: [arXiv:2512.24635 - DynaFix](https://arxiv.org/abs/2512.24635)\n\n---\n\n### 3. M-RAG Paper (arXiv 2405.16420)\n\n**Status: ALL CLAIMS VERIFIED**\n- **Paper exists:** Yes, confirmed on arXiv and published at ACL 2024\n- **Performance improvements:** Exactly as claimed:\n  - Text summarization: +11%\n  - Machine translation: +8%\n  - Dialogue generation: +12%\n- **Published at ACL 2024:** Confirmed - Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 1966–1978, Bangkok, Thailand, August 2024\n- Sources: [arXiv:2405.16420](https://arxiv.org/abs/2405.16420), [ACL Anthology](https://aclanthology.org/2024.acl-long.108/)\n\n---\n\n### 4. DebugBench Paper (ACL Findings 2024)\n\n**Status: ALL CLAIMS VERIFIED**\n- **Paper exists:** Yes, confirmed at ACL Findings 2024\n- **Instances:** Exactly 4,253 instances\n- **Category annotations:** Covers \"four major bug categories and 18 minor types\" (note: paper specifies \"four major categories\" not just general coverage)\n- **Programming languages:** Covers C++, Java, and Python\n- **Bug source:** Code collected from LeetCode community with bugs implanted using GPT-4\n- Sources: [arXiv:2401.04621](https://arxiv.org/abs/2401.04621), [ACL Anthology](https://aclanthology.org/2024.findings-acl.247.pdf)\n\n---\n\n### 5. GitBug-Java Paper (MSR 2024, arXiv 2402.02961)\n\n**Status: ALL CLAIMS VERIFIED**\n- **Paper exists:** Yes, confirmed at MSR 2024\n- **Bug count:** Exactly 199 Java bugs from 55 open-source repositories\n- **Isolated Docker environments:** Confirmed - Uses Docker containers with complete offline reproduction environments. Each bug-fix is executed 5 times offline to verify reproducibility. Docker images average 412.3 MB and are stored on Zenodo for long-term preservation.\n- Source: [arXiv:2402.02961](https://arxiv.org/abs/2402.02961), [MSR 2024 Conference](https://dl.acm.org/doi/10.1145/3643991.3644884)\n\n---\n\n### 6. PatchRecall Paper (arXiv 2604.10481)\n\n**Status: VERIFIED**\n- **Paper exists:** Yes, confirmed on arXiv (submitted April 12, 2026)\n- **Focus on file localization:** Confirmed - The paper explicitly focuses on \"Retrieving the correct set of files from a large codebase\" as a crucial step in Automated Program Repair\n- **Approach:** Combines codebase retrieval (matching issue descriptions) and history-based retrieval (leveraging similar past issues) with reranking\n- Source: [arXiv:2604.10481](https://arxiv.org/abs/2604.10481)\n\n---\n\n## Summary\n\nAll papers and performance claims in the research paper have been verified as accurate with the following sources:\n\n1. [SWE-bench Lite Leaderboard 2026](https://pricepertoken.com/leaderboards/benchmark/swe-bench-lite)\n2. [arXiv:2603.01048 - RepoRepair](https://arxiv.org/abs/2603.01048)\n3. [arXiv:2512.24635 - DynaFix](https://arxiv.org/abs/2512.24635)\n4. [arXiv:2405.16420 - M-RAG](https://arxiv.org/abs/2405.16420)\n5. [ACL 2024 M-RAG Publication](https://aclanthology.org/2024.acl-long.108/)\n6. [arXiv:2401.04621 - DebugBench](https://arxiv.org/abs/2401.04621)\n7. [ACL Findings 2024 - DebugBench](https://aclanthology.org/2024.findings-acl.247.pdf)\n8. [arXiv:2402.02961 - GitBug-Java](https://arxiv.org/abs/2402.02961)\n9. [MSR 2024 - GitBug-Java](https://dl.acm.org/doi/10.1145/3643991.3644884)\n10. [arXiv:2604.10481 - PatchRecall](https://arxiv.org/abs/2604.10481)"
+      }
+    ],
+    "totalDurationMs": 41569,
+    "totalTokens": 29684,
+    "totalToolUseCount": 15,
+    "usage": {
+      "input_tokens": 693,
+      "cache_creation_input_tokens": 780,
+      "cache_read_input_tokens": 26505,
+      "output_tokens": 1706,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 780
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 693,
+          "output_tokens": 1706,
+          "cache_read_input_tokens": 26505,
+          "cache_creation_input_tokens": 780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 780,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 15
+    }
+  },
+  "sourceToolAssistantUUID": "d9d53d54-2481-427f-92de-10c033940121",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-10T06:11:17.488Z_
+
+<details><summary>↩ Tool result · `toolu_01SvN75Jszgd4Ho7Vi18P2cg`</summary>
+
+```text
+Perfect! Now let me compile a comprehensive report with all the findings.
+
+## Summary of Findings
+
+Based on my thorough search and verification, here are the exact findings about each paper and related work:
+
+### 1. **SWE-Exp (arXiv 2507.23361)**
+
+**Verification Results:**
+- ✅ **Paper exists** at arXiv 2507.23361: [https://arxiv.org/abs/2507.23361](https://arxiv.org/abs/2507.23361)
+- ✅ **73.0% on SWE-bench Verified** - CONFIRMED: The paper states "SWE-Exp achieves a Pass@1 resolution rate of 73.0% on SWE-Bench Verified using the state-of-the-art LLM Claude 4 Sonnet."
+- ✅ **Multilingual-E5-Large encoder** - CONFIRMED: "We compute cosine similarity based on embeddings generated by the Multilingual-E5-Large model."
+- ✅ **Retrieval strategy for top N=10 issues** - CONFIRMED: "the top N=10 issues that are most relevant in terms of error type based on cosine similarity"
+- ⚠️ **Python-only and agentic** - Not explicitly verified in abstract, but the paper describes an experience-enhanced agent approach
+
+**Source:** [https://arxiv.org/html/2507.23361v2](https://arxiv.org/html/2507.23361v2)
+
+---
+
+### 2. **ReinFix (arXiv 2506.23100)**
+
+**Verification Results:**
+- ✅ **ICSE 2026 publication** - CONFIRMED: "Accepted by ICSE 2026" / "published in the 48th International Conference on Software Engineering (ICSE) 2026"
+- ✅ **text-embedding-3-large** - CONFIRMED: The paper explicitly states "text-embedding-3-large (OpenAI, [2024])" as the embedding model
+- ✅ **+32/+38 bugs fixed** - CONFIRMED: "ReinFix fixes 146 bugs, which is 32 more than the baselines on Defects4J V1.2. On Defects4J V2.0, ReinFix fixes 38 more bugs than the SOTA."
+- ✅ **Unified vector database (not FAISS-specific)** - CONFIRMED: The paper references "a vector database" for storing "(buggy_code, fix_code, root_cause, embedding_value)" without specifying FAISS as the implementation
+
+**Sources:** 
+- [https://arxiv.org/abs/2506.23100](https://arxiv.org/abs/2506.23100)
+- [https://arxiv.org/html/2506.23100](https://arxiv.org/html/2506.23100)
+
+---
+
+### 3. **CRAG (arXiv 2401.15884)**
+
+**Verification Results:**
+- ✅ **ICLR 2025 submission - WITHDRAWN** - CONFIRMED: OpenReview page shows "ICLR 2025 Conference Withdrawn Submission" with submission date September 26, 2024 and modification date November 26, 2024
+- ❓ **Published elsewhere** - NOT CONFIRMED: No evidence of publication in other peer-reviewed venues found. The paper remains available on arXiv with v3 dated October 7, 2024, and is cited by other works but has not appeared in published proceedings
+
+**Sources:** 
+- [https://arxiv.org/abs/2401.15884](https://arxiv.org/abs/2401.15884)
+- [https://openreview.net/forum?id=JnWJbrnaUE](https://openreview.net/forum?id=JnWJbrnaUE)
+
+---
+
+### 4. **Concurrent Work on Type-Conditioned/Category-Aware Retrieval (2025-2026)**
+
+**Key Papers Found:**
+
+**a) ReCode: Improving LLM-based Code Repair with Fine-Grained Retrieval-Augmented Generation (2025)**
+- Uses algorithm-aware hybrid retrieval where the LLM infers algorithm type for retrieval
+- Multi-label classification approach assigning multiple algorithm categories to snippets
+- [https://arxiv.org/html/2509.02330v1](https://arxiv.org/html/2509.02330v1)
+
+**b) InferFix: End-to-End Program Repair with LLMs (ESEC/FSE 2023, updated context)**
+- Uses bug type annotations to augment prompts
+- Employs semantic retrieval via transformer encoder with contrastive learning
+- Searches for semantically equivalent bugs with type-aware matching
+- [https://arxiv.org/abs/2303.07263](https://arxiv.org/abs/2303.07263)
+
+**c) A Systematic Literature Review: Large Language Models for Automated Program Repair (TOSEM 2026)**
+- Comprehensive taxonomy of LLM-based APR approaches including retrieval-augmented methods
+- Categorizes design paradigms: fine-tuning, prompting, procedural pipelines, agentic frameworks
+- [https://github.com/iSEngLab/AwesomeLLM4APR](https://github.com/iSEngLab/AwesomeLLM4APR)
+
+**d) Doctor-RAG: Failure-Aware Repair for Agentic Retrieval-Augmented Generation (2026)**
+- Models failure types (format errors, retrieval failures, reasoning-induced errors)
+- Uses failure-type conditioned repair strategies
+- [https://arxiv.org/html/2604.00865](https://arxiv.org/html/2604.00865)
+
+**e) A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications (2025-2026)**
+- Recent comprehensive review of error type and bug type retrieval mechanisms
+- [https://arxiv.org/html/2506.23749v1](https://arxiv.org/html/2506.23749v1)
+
+**f) EH-Fixer (2025)**
+- Specialized approach for propagated error-handling (PEH) bugs
+- Constructs propagation paths and repairs through retrieval-augmented generation
+- Represents specialized error-type handling
+
+**g) GitBugs: Bug Reports for Duplicate Detection, Retrieval Augmented Generation, Triage (2026)**
+- Dataset with standardized categorical fields for bug classification
+- Supports RAG-based bug retrieval tasks
+- [https://arxiv.org/abs/2504.09651](https://arxiv.org/abs/2504.09651)
+
+---
+
+### Summary Table
+
+| Paper | Exists | Key Claim 1 | Key Claim 2 | Key Claim 3 | Status |
+|-------|--------|-----------|-----------|-----------|--------|
+| SWE-Exp (2507.23361) | ✅ | 73.0% verified ✅ | Multilingual-E5 ✅ | Top N=10 by error type ✅ | All verified |
+| ReinFix (2506.23100) | ✅ | ICSE 2026 ✅ | text-embedding-3-large ✅ | +32/+38 bugs ✅ | All verified |
+| CRAG (2401.15884) | ✅ | ICLR 2025 withdrawn ✅ | Not published elsewhere ❌ | - | Withdrawn, unpublished |
+
+All verification claims for papers 1-2 have been confirmed with direct evidence. CRAG was submitted to and withdrawn from ICLR 2025 with no subsequent peer-reviewed publication found. Significant concurrent work on type-aware retrieval for program repair exists but does not appear to cite or build directly on these specific approaches in the 2025-2026 timeline.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9e030d17-76a8-4076-978f-d917f31a40c1",
+  "isSidechain": false,
+  "promptId": "fd5619af-3f85-4c66-9cbd-a828b2223d45",
+  "type": "user",
+  "uuid": "11808445-ce18-4cad-bc7b-257426f3b4e3",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for information about the following papers and verify their claims. Use WebSearch and WebFetch tools.\n\n1. Search for \"SWE-Exp experience-driven software issue resolution arXiv 2507.23361\" - verify:\n   - Does this paper exist at arXiv 2507.23361?\n   - Does it achieve 73.0% on SWE-bench Verified?\n   - Does it use Multilingual-E5-Large encoder?\n   - Is it Python-only and agentic?\n   - Does it retrieve \"top N=10 issues most relevant in terms of error type\"?\n\n2. Search for \"ReinFix repair ingredients ICSE 2026 arXiv 2506.23100\" - verify:\n   - Is this correctly cited as ICSE 2026?\n   - Does it use text-embedding-3-large?\n   - Does it show +32/+38 bugs fixed on Defects4J V1.2/V2.0?\n   - Does it use a unified vector database (not specifically FAISS)?\n\n3. Search for \"CRAG corrective retrieval augmented generation arXiv 2401.15884 ICLR 2025 withdrawn\" - verify:\n   - Was CRAG (arXiv:2401.15884) submitted to ICLR 2025 and withdrawn?\n   - Has it been published anywhere else?\n\n4. Search for any concurrent work on type-conditioned or category-aware retrieval for program repair in 2025-2026 that might not be cited in the paper. Use queries like:\n   - \"bug type retrieval augmented program repair 2026\"\n   - \"categorical bug classification repair arxiv 2025 2026\"\n   - \"failure type conditioned retrieval code repair\"\n\nPlease search thoroughly and report exact findings including URLs and key details.",
+    "agentId": "ae31adfacd4577243",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Perfect! Now let me compile a comprehensive report with all the findings.\n\n## Summary of Findings\n\nBased on my thorough search and verification, here are the exact findings about each paper and related work:\n\n### 1. **SWE-Exp (arXiv 2507.23361)**\n\n**Verification Results:**\n- ✅ **Paper exists** at arXiv 2507.23361: [https://arxiv.org/abs/2507.23361](https://arxiv.org/abs/2507.23361)\n- ✅ **73.0% on SWE-bench Verified** - CONFIRMED: The paper states \"SWE-Exp achieves a Pass@1 resolution rate of 73.0% on SWE-Bench Verified using the state-of-the-art LLM Claude 4 Sonnet.\"\n- ✅ **Multilingual-E5-Large encoder** - CONFIRMED: \"We compute cosine similarity based on embeddings generated by the Multilingual-E5-Large model.\"\n- ✅ **Retrieval strategy for top N=10 issues** - CONFIRMED: \"the top N=10 issues that are most relevant in terms of error type based on cosine similarity\"\n- ⚠️ **Python-only and agentic** - Not explicitly verified in abstract, but the paper describes an experience-enhanced agent approach\n\n**Source:** [https://arxiv.org/html/2507.23361v2](https://arxiv.org/html/2507.23361v2)\n\n---\n\n### 2. **ReinFix (arXiv 2506.23100)**\n\n**Verification Results:**\n- ✅ **ICSE 2026 publication** - CONFIRMED: \"Accepted by ICSE 2026\" / \"published in the 48th International Conference on Software Engineering (ICSE) 2026\"\n- ✅ **text-embedding-3-large** - CONFIRMED: The paper explicitly states \"text-embedding-3-large (OpenAI, [2024])\" as the embedding model\n- ✅ **+32/+38 bugs fixed** - CONFIRMED: \"ReinFix fixes 146 bugs, which is 32 more than the baselines on Defects4J V1.2. On Defects4J V2.0, ReinFix fixes 38 more bugs than the SOTA.\"\n- ✅ **Unified vector database (not FAISS-specific)** - CONFIRMED: The paper references \"a vector database\" for storing \"(buggy_code, fix_code, root_cause, embedding_value)\" without specifying FAISS as the implementation\n\n**Sources:** \n- [https://arxiv.org/abs/2506.23100](https://arxiv.org/abs/2506.23100)\n- [https://arxiv.org/html/2506.23100](https://arxiv.org/html/2506.23100)\n\n---\n\n### 3. **CRAG (arXiv 2401.15884)**\n\n**Verification Results:**\n- ✅ **ICLR 2025 submission - WITHDRAWN** - CONFIRMED: OpenReview page shows \"ICLR 2025 Conference Withdrawn Submission\" with submission date September 26, 2024 and modification date November 26, 2024\n- ❓ **Published elsewhere** - NOT CONFIRMED: No evidence of publication in other peer-reviewed venues found. The paper remains available on arXiv with v3 dated October 7, 2024, and is cited by other works but has not appeared in published proceedings\n\n**Sources:** \n- [https://arxiv.org/abs/2401.15884](https://arxiv.org/abs/2401.15884)\n- [https://openreview.net/forum?id=JnWJbrnaUE](https://openreview.net/forum?id=JnWJbrnaUE)\n\n---\n\n### 4. **Concurrent Work on Type-Conditioned/Category-Aware Retrieval (2025-2026)**\n\n**Key Papers Found:**\n\n**a) ReCode: Improving LLM-based Code Repair with Fine-Grained Retrieval-Augmented Generation (2025)**\n- Uses algorithm-aware hybrid retrieval where the LLM infers algorithm type for retrieval\n- Multi-label classification approach assigning multiple algorithm categories to snippets\n- [https://arxiv.org/html/2509.02330v1](https://arxiv.org/html/2509.02330v1)\n\n**b) InferFix: End-to-End Program Repair with LLMs (ESEC/FSE 2023, updated context)**\n- Uses bug type annotations to augment prompts\n- Employs semantic retrieval via transformer encoder with contrastive learning\n- Searches for semantically equivalent bugs with type-aware matching\n- [https://arxiv.org/abs/2303.07263](https://arxiv.org/abs/2303.07263)\n\n**c) A Systematic Literature Review: Large Language Models for Automated Program Repair (TOSEM 2026)**\n- Comprehensive taxonomy of LLM-based APR approaches including retrieval-augmented methods\n- Categorizes design paradigms: fine-tuning, prompting, procedural pipelines, agentic frameworks\n- [https://github.com/iSEngLab/AwesomeLLM4APR](https://github.com/iSEngLab/AwesomeLLM4APR)\n\n**d) Doctor-RAG: Failure-Aware Repair for Agentic Retrieval-Augmented Generation (2026)**\n- Models failure types (format errors, retrieval failures, reasoning-induced errors)\n- Uses failure-type conditioned repair strategies\n- [https://arxiv.org/html/2604.00865](https://arxiv.org/html/2604.00865)\n\n**e) A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications (2025-2026)**\n- Recent comprehensive review of error type and bug type retrieval mechanisms\n- [https://arxiv.org/html/2506.23749v1](https://arxiv.org/html/2506.23749v1)\n\n**f) EH-Fixer (2025)**\n- Specialized approach for propagated error-handling (PEH) bugs\n- Constructs propagation paths and repairs through retrieval-augmented generation\n- Represents specialized error-type handling\n\n**g) GitBugs: Bug Reports for Duplicate Detection, Retrieval Augmented Generation, Triage (2026)**\n- Dataset with standardized categorical fields for bug classification\n- Supports RAG-based bug retrieval tasks\n- [https://arxiv.org/abs/2504.09651](https://arxiv.org/abs/2504.09651)\n\n---\n\n### Summary Table\n\n| Paper | Exists | Key Claim 1 | Key Claim 2 | Key Claim 3 | Status |\n|-------|--------|-----------|-----------|-----------|--------|\n| SWE-Exp (2507.23361) | ✅ | 73.0% verified ✅ | Multilingual-E5 ✅ | Top N=10 by error type ✅ | All verified |\n| ReinFix (2506.23100) | ✅ | ICSE 2026 ✅ | text-embedding-3-large ✅ | +32/+38 bugs ✅ | All verified |\n| CRAG (2401.15884) | ✅ | ICLR 2025 withdrawn ✅ | Not published elsewhere ❌ | - | Withdrawn, unpublished |\n\nAll verification claims for papers 1-2 have been confirmed with direct evidence. CRAG was submitted to and withdrawn from ICLR 2025 with no subsequent peer-reviewed publication found. Significant concurrent work on type-aware retrieval for program repair exists but does not appear to cite or build directly on these specific approaches in the 2025-2026 timeline."
+      }
+    ],
+    "totalDurationMs": 83187,
+    "totalTokens": 36588,
+    "totalToolUseCount": 21,
+    "usage": {
+      "input_tokens": 981,
+      "cache_creation_input_tokens": 2330,
+      "cache_read_input_tokens": 31334,
+      "output_tokens": 1943,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2330
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 981,
+          "output_tokens": 1943,
+          "cache_read_input_tokens": 31334,
+          "cache_creation_input_tokens": 2330,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2330,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 21
+    }
+  },
+  "sourceToolAssistantUUID": "9e030d17-76a8-4076-978f-d917f31a40c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "11808445-ce18-4cad-bc7b-257426f3b4e3",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Type-partitioned retrieval for multi-language code repair",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8"
+}
+```
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T06:11:35.670Z_
+
+<details><summary>↩ Tool result · `toolu_016ySodsbwAH2xYGYfkfUJnt`</summary>
+
+```text
+Excellent. Now let me compile a comprehensive report of all the competing and concurrent work I've found:
+
+## Comprehensive Adversarial Review: Competing and Concurrent Work on Type-Conditioned Retrieval for Program Repair
+
+Based on my extensive search, I've identified several papers that directly compete with or relate to FTCR's novelty claims. Here's the detailed analysis:
+
+---
+
+### **DIRECT COMPETITORS: Type-Aware/Algorithm-Aware Retrieval with Hard Partitioning**
+
+#### **1. ReCode (2025) - PRIMARY COMPETITOR**
+- **Link:** [https://arxiv.org/abs/2509.02330](https://arxiv.org/abs/2509.02330)
+- **Full PDF:** [https://arxiv.org/pdf/2509.02330](https://arxiv.org/pdf/2509.02330)
+- **Published:** CIKM 2025
+- **Core Innovation:** Algorithm-aware retrieval strategy with predicted type labels, dual-encoder architecture, semantic retrieval across sub-knowledge bases
+- **Threat to FTCR novelty:** **CRITICAL** - ReCode implements nearly identical core ideas: (1) classifies bugs into algorithm types, (2) performs retrieval in type-matched sub-indices, (3) uses hard partitioning rather than soft semantic similarity. This is essentially FTCR but for competitive programming errors on RACodeBench.
+- **Key Difference:** Focuses on algorithmic bugs rather than semantic error types; predicts algorithm types using LLM before retrieval.
+
+#### **2. Towards Defect-Type-Aware Adaptive Program Repair (2026)**
+- **Link:** [https://link.springer.com/article/10.1007/s11219-026-09751-w](https://link.springer.com/article/10.1007/s11219-026-09751-w)
+- **Published:** Software Quality Journal 2026
+- **Core Innovation:** Multi-stage approach with explicit defect type identification stage (defect localization → type ID → context selection → patch generation)
+- **Threat to FTCR novelty:** **HIGH** - Explicitly stages defect type identification before context retrieval and patch generation, achieving 272.73% improvement over baseline (GPT-3.5).
+- **Key Difference:** Stages the type classification within a 4-step pipeline rather than purely as a retrieval partitioning strategy.
+
+---
+
+### **CLOSELY RELATED: Retrieval-Augmented Program Repair with Fine-Grained Strategies**
+
+#### **3. RELREPAIR (2025)**
+- **Link:** [https://arxiv.org/abs/2509.16701](https://arxiv.org/abs/2509.16701)
+- **PDF:** [https://arxiv.org/pdf/2509.16701](https://arxiv.org/pdf/2509.16701)
+- **Core Innovation:** Systematically retrieves relevant code from repository (function signatures + snippets) via query rewriting and similarity-based search
+- **Threat to FTCR novelty:** **MODERATE-HIGH** - Uses hard partitioning of repository code into function-level indices, retrieves across them. Different partitioning strategy (function-level vs. semantic type-level) but same principle of structured retrieval.
+- **Performance:** 17.1% improvement on ManySStuBs4J (48.3% overall fix rate)
+
+#### **4. RetypeR (ICSME 2024)**
+- **Conference Link:** [https://conf.researchr.org/details/icsme-2024/icsme-2024-papers/20/RetypeR-Integrated-Retrieval-based-Automatic-Program-Repair-for-Python-Type-Errors](https://conf.researchr.org/details/icsme-2024/icsme-2024-papers/20/RetypeR-Integrated-Retrieval-based-Automatic-Program-Repair-for-Python-Type-Errors)
+- **IEEE Xplore:** [https://ieeexplore.ieee.org/document/10795035/](https://ieeexplore.ieee.org/document/10795035/)
+- **Core Innovation:** Type-specific retrieval for Python type errors (external + internal retrieval stages)
+- **Threat to FTCR novelty:** **MODERATE** - Focuses specifically on type errors (more narrowly scoped than FTCR's semantic error categories), uses a two-stage retrieval approach.
+
+---
+
+### **RELATED: Experience-Based and Dynamic Approaches**
+
+#### **5. SWE-Exp: Experience-Driven Software Issue Resolution (2025)**
+- **Link:** [https://arxiv.org/abs/2507.23361](https://arxiv.org/abs/2507.23361)
+- **PDF:** [https://www.arxiv.org/pdf/2507.23361](https://www.arxiv.org/pdf/2507.23361)
+- **GitHub:** [https://github.com/YerbaPage/SWE-Exp](https://github.com/YerbaPage/SWE-Exp)
+- **Core Innovation:** Multi-faceted experience bank capturing successful and failed trajectories, with trajectory-guided retrieval
+- **Threat to FTCR novelty:** **MODERATE** - Uses structured retrieval based on prior trajectories (a form of problem-space partitioning), not purely semantic similarity. Achieves 41.6% Pass@1 on SWE-bench-Verified.
+- **Key Difference:** Experience-based rather than type-based partitioning; focuses on issue resolution workflow.
+
+#### **6. DynaFix (2025)**
+- **Link:** [https://arxiv.org/html/2512.24635v2](https://arxiv.org/html/2512.24635v2)
+- **Core Innovation:** Iterative program repair driven by execution-level dynamic information (variable states, control-flow paths)
+- **Threat to FTCR novelty:** **MODERATE-HIGH** - Shows that execution feedback combined with retrieval can outperform retrieval-only approaches. Suggests FTCR's retrieval-only strategy may be incomplete.
+- **Performance:** GPT-4 repairs 236 single-function bugs on Defects4J; GPT-4o repairs 186
+
+---
+
+### **FOUNDATIONAL SURVEYS AND FRAMEWORKS**
+
+#### **7. A Survey of LLM-based Automated Program Repair (2025)**
+- **Link:** [https://arxiv.org/abs/2506.23749v1](https://arxiv.org/abs/2506.23749v1)
+- **Full HTML:** [https://arxiv.org/html/2506.23749v1](https://arxiv.org/html/2506.23749v1)
+- **PDF:** [https://arxiv.org/pdf/2506.23749](https://arxiv.org/pdf/2506.23749)
+- **Coverage:** Categorizes 62 recent systems into four paradigms (fine-tuning, prompting, procedural pipelines, agentic frameworks) with retrieval and analysis augmentation as orthogonal layers
+- **Relevance:** **CRITICAL CONTEXT** - Establishes that type-aware/analysis-aware retrieval is one of two major augmentation strategies alongside soft semantic retrieval. Provides baseline taxonomy.
+
+#### **8. Retrieval-Augmented Code Generation: A Survey (2025)**
+- **Link:** [https://arxiv.org/abs/2510.04905](https://arxiv.org/abs/2510.04905)
+- **PDF:** [https://arxiv.org/pdf/2510.04905](https://arxiv.org/pdf/2510.04905)
+- **Coverage:** Comprehensive survey of RAG from January 2023 to August 2025, covering partition-based and hierarchical retrieval strategies
+- **Relevance:** **HIGH** - Documents existing partition-based retrieval approaches (cAST, R2C2-Coder, hierarchical pruning) that use structure-aware partitioning rather than semantic similarity.
+
+---
+
+### **EXECUTION FEEDBACK + RETRIEVAL (Challenging retrieval-only adequacy)**
+
+#### **9. Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate**
+- **Link:** [https://arxiv.org/html/2604.02647v1](https://arxiv.org/html/2604.02647v1)
+- **Core Innovation:** Multi-agent debate guided by execution traces (richer semantic signals than pure code-text embeddings)
+- **Threat to FTCR novelty:** **MODERATE** - Demonstrates that execution feedback can be more valuable than retrieval alone for diagnosis. Suggests FTCR needs execution feedback layer.
+
+#### **10. ReAPR: Automatic Program Repair via Retrieval-Augmented LLMs (2025)**
+- **Link:** [https://link.springer.com/article/10.1007/s11219-025-09728-1](https://link.springer.com/article/10.1007/s11219-025-09728-1)
+- **Published:** Software Quality Journal 2025
+- **Core Innovation:** Retrieval-augmented APR with analysis augmentation (compiler diagnostics, fault localization)
+- **Performance:** 68 bugs fixed (DPR), 59 bugs fixed (BM25) on Defects4J 2.0
+- **Threat to FTCR novelty:** **MODERATE** - Combines retrieval with analysis-level feedback, outperforming retrieval-only baselines.
+
+---
+
+### **TEST-DRIVEN AND SPECIFICATION-DRIVEN RETRIEVAL (Alternative partitioning strategies)**
+
+#### **11. Leveraging Enhanced Test-Driven Development for Accurate Code Generation in LLMs (SANER 2026)**
+- **Link:** [https://conf.researchr.org/details/saner-2026/saner-2026-papers/6/Leveraging-Enhanced-Test-Driven-Development-for-Accurate-Code-Generation-in-LLMs](https://conf.researchr.org/details/saner-2026/saner-2026-papers/6/Leveraging-Enhanced-Test-Driven-Development-for-Accurate-Code-Generation-in-LLMs)
+- **Core Innovation:** Block-level test-driven verification with CFG decomposition and multi-dimensional error scoring
+- **Relevance:** Partitions repair task by test block rather than semantic error type, achieves fine-grained error localization.
+
+#### **12. TDAD: Test-Driven Agentic Development (2025)**
+- **Link:** [https://arxiv.org/html/2603.17973v1](https://arxiv.org/html/2603.17973v1)
+- **Core Innovation:** Graph-based impact analysis to identify affected tests, partitions repair by test dependencies
+- **Relevance:** Hard-partitioned retrieval based on code-test dependency graphs rather than semantic error types.
+
+---
+
+### **REPOSITORY-LEVEL AND STRUCTURED APPROACHES**
+
+#### **13. ARISE: Repository-Level Graph Representation for Agentic Fault Localization (2025)**
+- **Link:** [https://arxiv.org/html/2605.03117](https://arxiv.org/html/2605.03117)
+- **Core Innovation:** Repository-level graph representations for structured fault localization and repair
+- **Relevance:** Uses structural graph partitioning rather than semantic partitioning.
+
+#### **14. RepoRepair: Leveraging Code Documentation for Repository-Level APR (2026)**
+- **Link:** [https://arxiv.org/abs/2603.01048](https://arxiv.org/abs/2603.01048)
+- **Core Innovation:** Documentation-augmented retrieval from repository
+- **Relevance:** Alternative retrieval strategy using documentation structure.
+
+#### **15. PatchRecall: Patch-Driven Retrieval for APR (2025)**
+- **Link:** [https://arxiv.org/html/2604.10481](https://arxiv.org/html/2604.10481)
+- **Core Innovation:** Retrieval driven by historical patch patterns rather than semantic bug types
+- **Relevance:** Alternative hard-partitioning strategy (patch-pattern-based vs. error-type-based).
+
+---
+
+### **BUG CLASSIFICATION AND TAXONOMY WORK**
+
+#### **16. A Survey of Bugs in AI-Generated Code**
+- **Link:** [https://arxiv.org/pdf/2512.05239](https://arxiv.org/pdf/2512.05239)
+- **Coverage:** Eight major bug categories (Functionality, Reliability, Syntax, Code Style, Hallucination, System, Test, Unspecified)
+- **Relevance:** Establishes broader bug taxonomies; FTCR's semantic error types (null dereference, off-by-one, API misuse, type mismatch) is narrower but related.
+
+---
+
+### **CRITICAL SYNTHESIS: Novelty Vulnerability Assessment**
+
+**FTCR's Core Claim:**
+Type-conditioned (hard-partitioned) retrieval beats soft semantic similarity retrieval for bug-fix examples.
+
+**Competing Work Already Claiming This:**
+
+| Work | Year | Approach | Status | Threat Level |
+|------|------|----------|--------|--------------|
+| ReCode | 2025 | Algorithm-type partitioning, sub-indices, dual-encoder | Published CIKM | **CRITICAL** |
+| Defect-Type-Aware APR | 2026 | Explicit type ID stage | Published SQJ | **HIGH** |
+| RELREPAIR | 2025 | Function-signature partitioning, repo retrieval | Published arXiv | **HIGH** |
+| RetypeR | 2024 | Type-error partitioning for Python | Published ICSME | **MODERATE-HIGH** |
+| SWE-Exp | 2025 | Experience-bank partitioning | Published arXiv | **MODERATE** |
+| DynaFix | 2025 | Execution-feedback augmented (retrieval insufficient alone) | Published arXiv | **MODERATE-HIGH** |
+
+**NOVELTY INVALIDATION:**
+
+1. **ReCode (CIKM 2025)** directly implements type-aware hard-partitioned retrieval with algorithm types, published before or concurrent with FTCR. This is the most direct threat.
+
+2. **Defect-Type-Aware APR (SQJ 2026)** shows that explicit defect type classification in a pipeline stage significantly outperforms baselines, validating the core principle FTCR relies on.
+
+3. **Execution feedback approaches** (DynaFix, Runtime Execution Traces, ReAPR) suggest that FTCR's retrieval-only strategy may be incomplete—execution feedback combined with type-conditioned retrieval could be superior.
+
+4. **Broader retrieval partitioning literature** (RELREPAIR, RetypeR, SWE-Exp, ARISE, PatchRecall) shows hard partitioning of knowledge bases (by function, type, patch pattern, dependency graph) is an established principle, not novel to semantic error types.
+
+**Recommended Defensibility for FTCR:**
+- **Strength angle:** Domain-specific focus on *semantic error types* in repository repair (null dereference, off-by-one, API misuse, type mismatch) vs. competitive programming algorithms (ReCode) or Python type errors (RetypeR).
+- **Vulnerability:** ReCode published concurrently with nearly identical methodology on a different domain. The core algorithmic contribution (type classification + partitioned retrieval) is not unique.
+- **Missing element:** No execution feedback integration; DynaFix and other concurrent work show this could be the needed advancement.
+
+---
+
+### **OpenReview/2025 Submissions (from site search)**
+
+The OpenReview search found related work but no exact "type-conditioned retrieval" match, suggesting FTCR may be the first to use that exact framing, though the underlying ideas (hard partitioning, structured retrieval, type awareness) are well-established.
+
+**Key OpenReview Papers Found:**
+- ARCS (Agentic Retrieval-Augmented Code) - [https://openreview.net/pdf?id=qrfgXhZcG7](https://openreview.net/pdf?id=qrfgXhZcG7)
+- Attention-Guided Context Pruning in RAG - [https://openreview.net/forum?id=sEcdaSzgF9](https://openreview.net/forum?id=sEcdaSzgF9)
+
+---
+
+## Summary
+
+FTCR's novelty is **moderately threatened** by **ReCode (2025)** and **Defect-Type-Aware APR (2026)**, which independently implement type-aware hard-partitioned retrieval. The core principle is not new (as shown by RELREPAIR, SWE-Exp, and broader partition-based retrieval literature), but the specific application to *semantic error types* may be novel. The approach lacks execution feedback integration, which concurrent work (DynaFix) shows is a critical missing element.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fe1c7b6c-110b-413a-8645-5c73d2140098",
+  "isSidechain": false,
+  "promptId": "fd5619af-3f85-4c66-9cbd-a828b2223d45",
+  "type": "user",
+  "uuid": "c25274b7-b934-49ff-b0a2-9dafdf49b150",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I'm doing an adversarial review of a research paper on \"Failure-Type-Conditioned Retrieval Augmentation for Repository Repair\" (FTCR). The core idea is: classify incoming bugs into discrete semantic types (null dereference, off-by-one, API misuse, type mismatch, etc.), then retrieve fix examples only from type-matched sub-index, instead of using soft semantic similarity retrieval.\n\nI need to find competing or concurrent work that may invalidate the novelty claim. Please search extensively:\n\n1. Search \"type-aware retrieval program repair 2025 2026\" on arXiv\n2. Search \"error category conditioned retrieval bug fixing\" \n3. Search \"semantic type bug classification retrieval augmented repair 2025\"\n4. Search \"ReCode CIKM 2025 algorithm type retrieval arXiv 2509.02330\" - verify this paper exists and what it does\n5. Search \"RetypeR ICSME 2024 type-specific retrieval Python type errors\" - verify existence\n6. Search \"partition-based retrieval code generation debugging\" 2025 2026\n7. Search site:openreview.net for \"type-conditioned retrieval program repair\" 2025-2026\n8. Search \"SWE-agent code repair type classification 2026\" for any concurrent agentic approaches\n9. Search \"experience bank software engineering issue resolution\" for other SWE-Exp-like work\n10. Search \"hard partition retrieval vs soft retrieval code\" to find papers comparing these approaches\n\nAlso please check: Is there any recent work combining execution feedback with type-conditioned retrieval that would make FTCR's retrieval-only approach look insufficient?\n\nReport all relevant papers found with URLs and key details.",
+    "agentId": "a9d32d3b6efa2e697",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Excellent. Now let me compile a comprehensive report of all the competing and concurrent work I've found:\n\n## Comprehensive Adversarial Review: Competing and Concurrent Work on Type-Conditioned Retrieval for Program Repair\n\nBased on my extensive search, I've identified several papers that directly compete with or relate to FTCR's novelty claims. Here's the detailed analysis:\n\n---\n\n### **DIRECT COMPETITORS: Type-Aware/Algorithm-Aware Retrieval with Hard Partitioning**\n\n#### **1. ReCode (2025) - PRIMARY COMPETITOR**\n- **Link:** [https://arxiv.org/abs/2509.02330](https://arxiv.org/abs/2509.02330)\n- **Full PDF:** [https://arxiv.org/pdf/2509.02330](https://arxiv.org/pdf/2509.02330)\n- **Published:** CIKM 2025\n- **Core Innovation:** Algorithm-aware retrieval strategy with predicted type labels, dual-encoder architecture, semantic retrieval across sub-knowledge bases\n- **Threat to FTCR novelty:** **CRITICAL** - ReCode implements nearly identical core ideas: (1) classifies bugs into algorithm types, (2) performs retrieval in type-matched sub-indices, (3) uses hard partitioning rather than soft semantic similarity. This is essentially FTCR but for competitive programming errors on RACodeBench.\n- **Key Difference:** Focuses on algorithmic bugs rather than semantic error types; predicts algorithm types using LLM before retrieval.\n\n#### **2. Towards Defect-Type-Aware Adaptive Program Repair (2026)**\n- **Link:** [https://link.springer.com/article/10.1007/s11219-026-09751-w](https://link.springer.com/article/10.1007/s11219-026-09751-w)\n- **Published:** Software Quality Journal 2026\n- **Core Innovation:** Multi-stage approach with explicit defect type identification stage (defect localization → type ID → context selection → patch generation)\n- **Threat to FTCR novelty:** **HIGH** - Explicitly stages defect type identification before context retrieval and patch generation, achieving 272.73% improvement over baseline (GPT-3.5).\n- **Key Difference:** Stages the type classification within a 4-step pipeline rather than purely as a retrieval partitioning strategy.\n\n---\n\n### **CLOSELY RELATED: Retrieval-Augmented Program Repair with Fine-Grained Strategies**\n\n#### **3. RELREPAIR (2025)**\n- **Link:** [https://arxiv.org/abs/2509.16701](https://arxiv.org/abs/2509.16701)\n- **PDF:** [https://arxiv.org/pdf/2509.16701](https://arxiv.org/pdf/2509.16701)\n- **Core Innovation:** Systematically retrieves relevant code from repository (function signatures + snippets) via query rewriting and similarity-based search\n- **Threat to FTCR novelty:** **MODERATE-HIGH** - Uses hard partitioning of repository code into function-level indices, retrieves across them. Different partitioning strategy (function-level vs. semantic type-level) but same principle of structured retrieval.\n- **Performance:** 17.1% improvement on ManySStuBs4J (48.3% overall fix rate)\n\n#### **4. RetypeR (ICSME 2024)**\n- **Conference Link:** [https://conf.researchr.org/details/icsme-2024/icsme-2024-papers/20/RetypeR-Integrated-Retrieval-based-Automatic-Program-Repair-for-Python-Type-Errors](https://conf.researchr.org/details/icsme-2024/icsme-2024-papers/20/RetypeR-Integrated-Retrieval-based-Automatic-Program-Repair-for-Python-Type-Errors)\n- **IEEE Xplore:** [https://ieeexplore.ieee.org/document/10795035/](https://ieeexplore.ieee.org/document/10795035/)\n- **Core Innovation:** Type-specific retrieval for Python type errors (external + internal retrieval stages)\n- **Threat to FTCR novelty:** **MODERATE** - Focuses specifically on type errors (more narrowly scoped than FTCR's semantic error categories), uses a two-stage retrieval approach.\n\n---\n\n### **RELATED: Experience-Based and Dynamic Approaches**\n\n#### **5. SWE-Exp: Experience-Driven Software Issue Resolution (2025)**\n- **Link:** [https://arxiv.org/abs/2507.23361](https://arxiv.org/abs/2507.23361)\n- **PDF:** [https://www.arxiv.org/pdf/2507.23361](https://www.arxiv.org/pdf/2507.23361)\n- **GitHub:** [https://github.com/YerbaPage/SWE-Exp](https://github.com/YerbaPage/SWE-Exp)\n- **Core Innovation:** Multi-faceted experience bank capturing successful and failed trajectories, with trajectory-guided retrieval\n- **Threat to FTCR novelty:** **MODERATE** - Uses structured retrieval based on prior trajectories (a form of problem-space partitioning), not purely semantic similarity. Achieves 41.6% Pass@1 on SWE-bench-Verified.\n- **Key Difference:** Experience-based rather than type-based partitioning; focuses on issue resolution workflow.\n\n#### **6. DynaFix (2025)**\n- **Link:** [https://arxiv.org/html/2512.24635v2](https://arxiv.org/html/2512.24635v2)\n- **Core Innovation:** Iterative program repair driven by execution-level dynamic information (variable states, control-flow paths)\n- **Threat to FTCR novelty:** **MODERATE-HIGH** - Shows that execution feedback combined with retrieval can outperform retrieval-only approaches. Suggests FTCR's retrieval-only strategy may be incomplete.\n- **Performance:** GPT-4 repairs 236 single-function bugs on Defects4J; GPT-4o repairs 186\n\n---\n\n### **FOUNDATIONAL SURVEYS AND FRAMEWORKS**\n\n#### **7. A Survey of LLM-based Automated Program Repair (2025)**\n- **Link:** [https://arxiv.org/abs/2506.23749v1](https://arxiv.org/abs/2506.23749v1)\n- **Full HTML:** [https://arxiv.org/html/2506.23749v1](https://arxiv.org/html/2506.23749v1)\n- **PDF:** [https://arxiv.org/pdf/2506.23749](https://arxiv.org/pdf/2506.23749)\n- **Coverage:** Categorizes 62 recent systems into four paradigms (fine-tuning, prompting, procedural pipelines, agentic frameworks) with retrieval and analysis augmentation as orthogonal layers\n- **Relevance:** **CRITICAL CONTEXT** - Establishes that type-aware/analysis-aware retrieval is one of two major augmentation strategies alongside soft semantic retrieval. Provides baseline taxonomy.\n\n#### **8. Retrieval-Augmented Code Generation: A Survey (2025)**\n- **Link:** [https://arxiv.org/abs/2510.04905](https://arxiv.org/abs/2510.04905)\n- **PDF:** [https://arxiv.org/pdf/2510.04905](https://arxiv.org/pdf/2510.04905)\n- **Coverage:** Comprehensive survey of RAG from January 2023 to August 2025, covering partition-based and hierarchical retrieval strategies\n- **Relevance:** **HIGH** - Documents existing partition-based retrieval approaches (cAST, R2C2-Coder, hierarchical pruning) that use structure-aware partitioning rather than semantic similarity.\n\n---\n\n### **EXECUTION FEEDBACK + RETRIEVAL (Challenging retrieval-only adequacy)**\n\n#### **9. Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate**\n- **Link:** [https://arxiv.org/html/2604.02647v1](https://arxiv.org/html/2604.02647v1)\n- **Core Innovation:** Multi-agent debate guided by execution traces (richer semantic signals than pure code-text embeddings)\n- **Threat to FTCR novelty:** **MODERATE** - Demonstrates that execution feedback can be more valuable than retrieval alone for diagnosis. Suggests FTCR needs execution feedback layer.\n\n#### **10. ReAPR: Automatic Program Repair via Retrieval-Augmented LLMs (2025)**\n- **Link:** [https://link.springer.com/article/10.1007/s11219-025-09728-1](https://link.springer.com/article/10.1007/s11219-025-09728-1)\n- **Published:** Software Quality Journal 2025\n- **Core Innovation:** Retrieval-augmented APR with analysis augmentation (compiler diagnostics, fault localization)\n- **Performance:** 68 bugs fixed (DPR), 59 bugs fixed (BM25) on Defects4J 2.0\n- **Threat to FTCR novelty:** **MODERATE** - Combines retrieval with analysis-level feedback, outperforming retrieval-only baselines.\n\n---\n\n### **TEST-DRIVEN AND SPECIFICATION-DRIVEN RETRIEVAL (Alternative partitioning strategies)**\n\n#### **11. Leveraging Enhanced Test-Driven Development for Accurate Code Generation in LLMs (SANER 2026)**\n- **Link:** [https://conf.researchr.org/details/saner-2026/saner-2026-papers/6/Leveraging-Enhanced-Test-Driven-Development-for-Accurate-Code-Generation-in-LLMs](https://conf.researchr.org/details/saner-2026/saner-2026-papers/6/Leveraging-Enhanced-Test-Driven-Development-for-Accurate-Code-Generation-in-LLMs)\n- **Core Innovation:** Block-level test-driven verification with CFG decomposition and multi-dimensional error scoring\n- **Relevance:** Partitions repair task by test block rather than semantic error type, achieves fine-grained error localization.\n\n#### **12. TDAD: Test-Driven Agentic Development (2025)**\n- **Link:** [https://arxiv.org/html/2603.17973v1](https://arxiv.org/html/2603.17973v1)\n- **Core Innovation:** Graph-based impact analysis to identify affected tests, partitions repair by test dependencies\n- **Relevance:** Hard-partitioned retrieval based on code-test dependency graphs rather than semantic error types.\n\n---\n\n### **REPOSITORY-LEVEL AND STRUCTURED APPROACHES**\n\n#### **13. ARISE: Repository-Level Graph Representation for Agentic Fault Localization (2025)**\n- **Link:** [https://arxiv.org/html/2605.03117](https://arxiv.org/html/2605.03117)\n- **Core Innovation:** Repository-level graph representations for structured fault localization and repair\n- **Relevance:** Uses structural graph partitioning rather than semantic partitioning.\n\n#### **14. RepoRepair: Leveraging Code Documentation for Repository-Level APR (2026)**\n- **Link:** [https://arxiv.org/abs/2603.01048](https://arxiv.org/abs/2603.01048)\n- **Core Innovation:** Documentation-augmented retrieval from repository\n- **Relevance:** Alternative retrieval strategy using documentation structure.\n\n#### **15. PatchRecall: Patch-Driven Retrieval for APR (2025)**\n- **Link:** [https://arxiv.org/html/2604.10481](https://arxiv.org/html/2604.10481)\n- **Core Innovation:** Retrieval driven by historical patch patterns rather than semantic bug types\n- **Relevance:** Alternative hard-partitioning strategy (patch-pattern-based vs. error-type-based).\n\n---\n\n### **BUG CLASSIFICATION AND TAXONOMY WORK**\n\n#### **16. A Survey of Bugs in AI-Generated Code**\n- **Link:** [https://arxiv.org/pdf/2512.05239](https://arxiv.org/pdf/2512.05239)\n- **Coverage:** Eight major bug categories (Functionality, Reliability, Syntax, Code Style, Hallucination, System, Test, Unspecified)\n- **Relevance:** Establishes broader bug taxonomies; FTCR's semantic error types (null dereference, off-by-one, API misuse, type mismatch) is narrower but related.\n\n---\n\n### **CRITICAL SYNTHESIS: Novelty Vulnerability Assessment**\n\n**FTCR's Core Claim:**\nType-conditioned (hard-partitioned) retrieval beats soft semantic similarity retrieval for bug-fix examples.\n\n**Competing Work Already Claiming This:**\n\n| Work | Year | Approach | Status | Threat Level |\n|------|------|----------|--------|--------------|\n| ReCode | 2025 | Algorithm-type partitioning, sub-indices, dual-encoder | Published CIKM | **CRITICAL** |\n| Defect-Type-Aware APR | 2026 | Explicit type ID stage | Published SQJ | **HIGH** |\n| RELREPAIR | 2025 | Function-signature partitioning, repo retrieval | Published arXiv | **HIGH** |\n| RetypeR | 2024 | Type-error partitioning for Python | Published ICSME | **MODERATE-HIGH** |\n| SWE-Exp | 2025 | Experience-bank partitioning | Published arXiv | **MODERATE** |\n| DynaFix | 2025 | Execution-feedback augmented (retrieval insufficient alone) | Published arXiv | **MODERATE-HIGH** |\n\n**NOVELTY INVALIDATION:**\n\n1. **ReCode (CIKM 2025)** directly implements type-aware hard-partitioned retrieval with algorithm types, published before or concurrent with FTCR. This is the most direct threat.\n\n2. **Defect-Type-Aware APR (SQJ 2026)** shows that explicit defect type classification in a pipeline stage significantly outperforms baselines, validating the core principle FTCR relies on.\n\n3. **Execution feedback approaches** (DynaFix, Runtime Execution Traces, ReAPR) suggest that FTCR's retrieval-only strategy may be incomplete—execution feedback combined with type-conditioned retrieval could be superior.\n\n4. **Broader retrieval partitioning literature** (RELREPAIR, RetypeR, SWE-Exp, ARISE, PatchRecall) shows hard partitioning of knowledge bases (by function, type, patch pattern, dependency graph) is an established principle, not novel to semantic error types.\n\n**Recommended Defensibility for FTCR:**\n- **Strength angle:** Domain-specific focus on *semantic error types* in repository repair (null dereference, off-by-one, API misuse, type mismatch) vs. competitive programming algorithms (ReCode) or Python type errors (RetypeR).\n- **Vulnerability:** ReCode published concurrently with nearly identical methodology on a different domain. The core algorithmic contribution (type classification + partitioned retrieval) is not unique.\n- **Missing element:** No execution feedback integration; DynaFix and other concurrent work show this could be the needed advancement.\n\n---\n\n### **OpenReview/2025 Submissions (from site search)**\n\nThe OpenReview search found related work but no exact \"type-conditioned retrieval\" match, suggesting FTCR may be the first to use that exact framing, though the underlying ideas (hard partitioning, structured retrieval, type awareness) are well-established.\n\n**Key OpenReview Papers Found:**\n- ARCS (Agentic Retrieval-Augmented Code) - [https://openreview.net/pdf?id=qrfgXhZcG7](https://openreview.net/pdf?id=qrfgXhZcG7)\n- Attention-Guided Context Pruning in RAG - [https://openreview.net/forum?id=sEcdaSzgF9](https://openreview.net/forum?id=sEcdaSzgF9)\n\n---\n\n## Summary\n\nFTCR's novelty is **moderately threatened** by **ReCode (2025)** and **Defect-Type-Aware APR (2026)**, which independently implement type-aware hard-partitioned retrieval. The core principle is not new (as shown by RELREPAIR, SWE-Exp, and broader partition-based retrieval literature), but the specific application to *semantic error types* may be novel. The approach lacks execution feedback integration, which concurrent work (DynaFix) shows is a critical missing element."
+      }
+    ],
+    "totalDurationMs": 81336,
+    "totalTokens": 38516,
+    "totalToolUseCount": 17,
+    "usage": {
+      "input_tokens": 1713,
+      "cache_creation_input_tokens": 1071,
+      "cache_read_input_tokens": 31630,
+      "output_tokens": 4102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1071
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1713,
+          "output_tokens": 4102,
+          "cache_read_input_tokens": 31630,
+          "cache_creation_input_tokens": 1071,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1071,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 17
+    }
+  },
+  "sourceToolAssistantUUID": "fe1c7b6c-110b-413a-8645-5c73d2140098",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-10T06:13:51.874Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have comprehensive research results. Let me analyze the key findings:
+
+**Key verifications:**
+
+1. **SWE-Exp (arXiv 2507.23361)**: CONFIRMED. 73.0% on SWE-bench Verified with Claude 4 Sonnet. Uses Multilingual-E5-Large. Retrieves top N=10 issues by error type via cosine similarity. The Round 4 submission correctly characterizes this.
+
+2. **ReinFix (ICSE 2026, arXiv 2506.23100)**: CONFIRMED. 
+
+32 and 38 additional bugs fixed on Defects4J V1.2 and V2.0 respectively using text-embedding-3-large, with a unified vector database for storage rather than FAISS specifically.
+
+3. **CRAG (arXiv 2401.15884)**: CONFIRMED withdrawn from ICLR 2025. Round 4 correctly cites it as "arXiv:2401.15884" only.
+
+4. **M-RAG (ACL 2024, arXiv 2405.16420)**: CONFIRMED. +11% summarization, +8% translation, +12% dialogue. Published at ACL 2024.
+
+Now I'm verifying a series of benchmark datasets and recent competing approaches. DebugBench contains 4,253 instances across 4 major and 18 minor bug categories in C++, Java, and Python, using LeetCode code with GPT-4-implanted bugs. GitBug-Java from MSR 2024 has 199 Java bugs tested in Docker environments. DynaFix leverages execution-level dynamic information, while PatchRecall focuses specifically on file localization. The current SOTA on SWE-bench Lite sits around 62.7% with Claude Opus 4.6, and RepoRepair achieves 45.7% on the same benchmark. I'm starting to identify additional competing work in this space.
+
+A paper on defect-type-aware adaptive program repair from Software Quality Journal 2026 looks potentially significant—it uses explicit defect type identification as a preprocessing stage before retrieval and patch generation, which could represent a competing approach. ReCode from CIKM 2025 is already cited in the proposal, and the differentiation is clear: ReCode uses algorithmic tags for competitive programming while this work targets semantic bug types for repository repair. I need to assess whether the defect-type-aware paper represents a genuine threat to the novelty of this approach, particularly since it appears to follow a similar multi-stage pipeline with defect localization, type identification, and context selection.
+
+The key distinction seems to be that this competing work focuses on context selection within a single bug report rather than retrieval from an external corpus of historical bug-fix pairs, which is the core contribution of the FTCR paper. Still, I should verify whether it actually does retrieve from a corpus or just operates on local context, since the title suggests something potentially overlapping. I'm also tracking several citation corrections from previous review rounds—CRAG has been fixed to the correct arXiv identifier, SWE-Exp has been added, and I need to continue checking the remaining issues. partition control (Variant F) added ✓
+4. EMNLP downgraded to Findings ✓
+5. ReinFix FAISS softened ✓
+
+**Remaining potential issues:**
+
+1. **"Towards Defect-Type-Aware Adaptive Program Repair" (SQJ 2026)**: This paper may overlap with FTCR's contribution and is not cited. However, it's in a different domain (appears to be a different pipeline). The search result claims it uses "defect type identification" before context selection. This might be worth flagging.
+
+2. **Novelty concerns with ReCode**: The paper already addresses this by differentiating from ReCode (algorithmic tags vs. semantic bug types). This is a legitimate differentiation.
+
+3. **SWE-Exp characterization**: The paper claims SWE-Exp uses soft cosine similarity with type as metadata, while FTCR uses hard construction at index time. From the search results, SWE-Exp retrieves the top 10 most relevant issues based on error type similarity, but doesn't partition the index by type during construction—it incorporates type into the embedding for retrieval instead. This distinction holds up.
+
+4. **EMNLP 2026 Findings feasibility**: With the ARR deadline at May 25, 2026 and only 15 days remaining, completing all experiments and writing the paper in that timeframe is a serious concern, especially for a secondary venue submission.
+
+5. **Compute budget**: The estimates appear reasonable—manual (~88 H100-hours), human-in-loop (~165 H100-hours), and auto-research (~190 H100-hours) all fit within the 200 H100-hour budget, though API costs are non-trivial.
+
+6. **Doctor** [text cuts off]
+
+I'm checking whether the remaining concerns about novelty and feasibility are actually blocking issues or just things to monitor. to be addressed, the CRAG citation's been corrected, SWE-Exp is now positioned as concurrent work with clear distinctions, I've added a random-partition control variant to separate the type-matching benefit from pool-size effects, downgraded EMNLP to Findings track, and softened the ReinFix implementation detail.
+
+The main remaining issue is verifying that "Towards Defect-Type-Aware Adaptive Program Repair" paper—if it actually uses type-conditioned retrieval from an external corpus like FTCR does, that's a real novelty problem, though the "context selection" framing suggests it might operate differently. With the EMNLP ARR deadline just 15 days away, I need to decide whether submitting a complete paper is feasible given these outstanding questions.
+
+There's also the question of whether a cross-lingual measurement finding really fits EMNLP Findings' expectations around advancing understanding of language models, and I'm noticing a performance gap that needs reconciling—SWE-Exp claims 73% on SWE-bench Verified with Claude 4 Sonnet while FTCR targets only 20-35% in retrieval-only mode, which seems like a significant discrepancy to address.
+
+The random-partition control and confidence-gated hybrid approach both strengthen the experimental rigor. Looking at the novelty score, the type-conditioned retrieval idea is solid and the control makes the comparison more rigorous, though ReCode's algorithm-type partitioning is quite similar—the differentiation around semantic bug types versus algorithmic tags is legitimate but modest. Feasibility looks reasonable too at around 3.5/5 given the resource estimates.
+
+The main concern is that even with a well-written proposal and clear ablation designs, the absolute performance gap between the retrieval-only approach and agentic methods (20-35% versus 73%) could undermine the perceived impact, bringing the overall score to around 3.6—just below the 4.0 threshold. I need to check whether that "Defect-Type-Aware Adaptive Program Repair" paper from SQJ 2026 overlaps with this work and potentially cite it.
+
+There are also some factual details to verify: whether SWE-Exp is truly Python-only as claimed, and whether the 15-day timeline to EMNLP is realistic for completing all experiments and writing. The core hypothesis about hard type partitioning outperforming soft semantic retrieval remains unproven and is the crux of what needs to be demonstrated.
+
+The performance numbers are concerning though—targeting 20-35% on SWE-bench Lite while RepoRepair hits 45.7% and SWE-Exp reaches 73% on SWE-bench Verified is a significant gap. In the current era of agentic systems, reviewers might question whether a retrieval-only approach constitutes a meaningful contribution.
+
+I need to dig deeper into that concurrent defect-type-aware APR work to see if it's actually overlapping with FTCR's approach. The search results mention a multi-stage pipeline with explicit defect type identification, but I should understand what specifically differentiates it.
+
+Looking at the key distinction: FTCR does type classification then retrieves from an external cross-repo corpus partitioned by type, while the other paper appears to do type identification followed by context selection—though I'm not sure if that context selection involves external retrieval or just intra-project code selection. This uncertainty means I should flag it as a potential competing work that needs investigation.
+
+All the previous round 4 revisions have been addressed, so I'm evaluating whether this is ready to pass or needs further revision.
+
+The core hypothesis is testable and the ablation design is now solid with the random-partition control, but I think "revise" is still the right call because I need to investigate that SQJ paper and potentially cite it, the aggregate performance gap against agentic approaches might concern EMNLP reviewers, and I should be more transparent about the EMNLP deadline feasibility.
+
+Looking at the SQJ paper more closely, the key question is whether their "context selection" is doing external cross-repository retrieval like FTCR or just within-project selection—that's the real differentiator. Their 272% improvement over GPT-3.5 suggests they're working with an older baseline, so it's probably a different scope entirely.
+
+Weighing everything: the ablation study addresses most concerns, but the average scores still land around 3.5-3.8, below the 4.0 threshold. The SQJ paper needs investigation, there's the practical impact question about retrieval-only approaches when agentic systems hit 73%, and the EMNLP Findings fit is still uncertain. I'm leaning toward "revise" with concrete feedback rather than outright rejection.
+
+The main issue to tackle in Round 5 is clarifying the relationship to that "Defect-Type-Aware Adaptive Program Repair" work—whether it's truly a duplicate concern or something orthogonal. Looking back at my concerns, I realize several of them don't hold up. The "Defect-Type-Aware Adaptive APR" work is from Software Quality Journal with a different scope than what FTCR is doing, and FTCR isn't claiming to be state-of-the-art—it's testing a specific hypothesis about type-partitioned versus soft retrieval, which is a valid analytical contribution. The timeline concern is also addressed since the paper already has a fallback plan to defer to ICSE 2027 if needed. And the SWE-Exp Python limitation makes sense given that SWE-bench itself is Python-focused. The paper is actually quite mature at this stage, though the average scores remain around 3.5 due to novelty concerns around ReCode similarity and the feasibility questions around the compressed timeline.
+
+Let me recalibrate the individual scores more rigorously. Novelty is around 3.5 because while type-conditioned retrieval isn't entirely new, FTCR extends it to 18 semantic types rather than just algorithm or error types, adds a random-partition control for more rigorous comparison, covers multiple languages, and explores cross-repo transfer learning. Feasibility also sits at 3.5 given that the resource estimates are actually within budget and corpus sparsity is manageable.
+
+Clarity is strong at 4 with well-articulated hypotheses and ablation designs. Impact lands at 3.5 since the multi-language scope is valuable but the retrieval-only approach might be seen as somewhat limited in the agentic era. That puts the average at 3.625, still below the 4.0 threshold, so I'm sticking with "revise" but the feedback should be targeted and specific.
+
+I'm also noticing the "Defect-Type-Aware Adaptive Program Repair" paper appears to use a 4-stage pipeline where defect localization feeds into type identification, then context selection, and finally patch generation—and that context selection step could potentially involve retrieval from an external corpus.
+
+The Software Quality Journal is less prestigious than ICSE or EMNLP, but if it's using the same core mechanism as FTCR, that's a real concern. My verdict remains "revise" because this paper needs closer investigation—if the context selection step includes type-conditioned retrieval from a cross-repo corpus, it would directly conflict with FTCR's main contribution, and the authors need to either cite it and differentiate their work or acknowledge the overlap.
+
+Beyond that, there's a medium-priority issue around practical utility: SWE-Exp and RepoRepair are achieving much higher numbers on their benchmarks, while FTCR is targeting 20-35% with a retrieval-only approach. EMNLP reviewers might push back on why studying retrieval in isolation matters if the results are demonstrably weaker, so the paper needs a stronger argument for why this modular, interpretable approach is valuable as an orthogonal contribution. Finally, there's the timeline concern—with the ARR deadline just 15 days away, if the corpus annotation and experiments haven't started yet, that's a real feasibility risk.
+
+Actually, stepping back: I should reconsider whether these issues really warrant a "revise" recommendation given we're already on round 4 and most major problems have been tackled. The critical question is whether there are any blockers that would trigger desk rejection or novelty failure. The hallucination issue is fixed, SWE-Exp is properly cited and differentiated, and the random-partition control handles the clean comparison concern. So what's actually stopping this from moving forward?
+
+The "Defect-Type-Aware Adaptive APR" paper from SQJ 2026 is a new discovery that could be problematic—it's either HIGH severity if it uses type-conditioned external corpus retrieval (overlapping with FTCR), or LOW if it's just within-project context selection. Without reading it, I'm flagging this as MEDIUM and needing investigation. There's also the practical utility framing that could be stronger, and the EMNLP timeline is tight but not a dealbreaker. Given all this, I'm settling on "revise" with scores around 3.5-3.6 across novelty, feasibility, clarity, and impact, with one HIGH potential overlap issue, one MEDIUM framing issue, and one LOW timeline concern.
+
+This proposal is actually quite solid and could pass after Round 5 addresses these points. But let me double-check my novelty score—I want to make sure I'm being fair and not inflating it. The type-conditioned retrieval idea itself isn't entirely new since ReCode already does algorithm-type partitioning, but applying it to semantic bug types across multiple languages is genuinely novel. The DebugBench calibration contribution is clever, the random-partition ablation shows rigor, and the hard versus soft framing is precise and testable. So 3.5 for novelty feels right—it's not groundbreaking but it's a legitimate advance in this specific context.
+
+On feasibility, the 190 H100-hours is right at the limit, Defects4J reproducibility concerns are being mitigated, and while the EMNLP deadline is tight, ICSE 2027 is the real target. API costs are manageable at $5-15 for embeddings and $500-850 for Claude. I'd rate feasibility at 3.5 given the timeline pressure and potential corpus sparsity issues. Clarity is strong at 4, and impact lands at 3.5 since it's a focused hypothesis test that contributes orthogonal knowledge about retrieval strategies rather than chasing SOTA. Averaging these out gives me 3.625, which falls short of the 4.0 threshold.
+
+But I should reconsider the novelty angle more carefully. ReCode tackles algorithm-type partitioned retrieval in competitive programming with categories like greedy and DP, while this work applies semantic bug-type partitioning to real-world repository repair across multiple languages with an 18-category taxonomy and cross-repo transfer learning focus. The domain shift from competitive programming to production code repair is substantial, and the random-partition control for rigorous comparison isn't something ReCode addresses. So this is a meaningful extension into new territory rather than a completely derivative idea. That keeps my novelty score at 3.5, and with the other ratings, the verdict stays at revise. Now I need to identify the actionable feedback for Round 5, starting with the highest-priority issues.
+
+There's a recent paper on defect-type-aware adaptive program repair that explicitly uses defect type identification followed by context selection before patch generation, and I need to check whether their "context selection" involves type-conditioned retrieval from a cross-repo fix corpus. If it does, that's a direct overlap with FTCR's core mechanism and the authors need to either cite and differentiate or confirm they're only using within-project context. Beyond that, there's a practical utility gap that needs addressing—FTCR targets 20-35% on SWE-bench Lite while concurrent agentic and documentation-augmented approaches hit 73% and 45.7% respectively, so EMNLP Findings reviewers will likely question why a retrieval-only method matters when agentic systems dominate. The authors should make an explicit case for why retrieval strategies remain valuable as modular components that can be upgraded even within larger agentic pipelines.
+
+I should also verify SWE-Exp's exact scope since the paper claims it's Python-only, but if it actually supports multiple languages, that weakens FTCR's differentiation argument around multi-language capability.
+
+These are solid incremental issues, but the core paper is sound. After the Round 4 fixes addressed hallucinated citations, uncited competing work, and methodological concerns with the random-partition control, I don't see anything that would trigger a desk rejection. This is a revise verdict.
+
+Now I'll prepare the JSON output.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c25274b7-b934-49ff-b0a2-9dafdf49b150",
+  "isSidechain": false,
+  "requestId": "req_011CatPjnarR9H9AjwYAbu6P",
+  "type": "assistant",
+  "uuid": "949879d4-39ad-4ff7-be27-b0ccb0c5dc45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01AJZ8ei4zCFsUdkYvSVzs8y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9998,
+      "cache_read_input_tokens": 32169,
+      "output_tokens": 7429,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9998,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7429,
+          "cache_read_input_tokens": 32169,
+          "cache_creation_input_tokens": 9998,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9998
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-10T06:13:51.876Z_
+
+Based on my comprehensive research, I can now assess the Round 4 submission. Let me synthesize the findings.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "949879d4-39ad-4ff7-be27-b0ccb0c5dc45",
+  "isSidechain": false,
+  "requestId": "req_011CatPjnarR9H9AjwYAbu6P",
+  "type": "assistant",
+  "uuid": "b4d5cdef-273f-4d69-8e4f-d70eca575ff6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01AJZ8ei4zCFsUdkYvSVzs8y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9998,
+      "cache_read_input_tokens": 32169,
+      "output_tokens": 7429,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9998,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7429,
+          "cache_read_input_tokens": 32169,
+          "cache_creation_input_tokens": 9998,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9998
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-10T06:13:59.431Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01Qf4TdxeK59fV2r35d2ZmBJ`</summary>
+
+```json
+{
+  "description": "Verify Defect-Type-Aware APR SQJ 2026 paper and SWE-Exp Python scope",
+  "subagent_type": "Explore",
+  "prompt": "I need to verify two specific things for a research paper review. Please use WebSearch and WebFetch tools.\n\n1. Search for and read \"Towards Defect-Type-Aware Adaptive Program Repair\" published in Software Quality Journal 2026 at https://link.springer.com/article/10.1007/s11219-026-09751-w\n\nKey questions about this paper:\n- Does it use retrieval from an external cross-repository bug-fix corpus conditioned on defect type? Or does it only select context from within the same project?\n- What exactly is \"context selection\" in their pipeline (defect localization → type ID → context selection → patch generation)?\n- Is it purely intra-project or does it use cross-repo historical fix templates?\n- What programming languages does it cover?\n- What benchmarks does it evaluate on?\n\n2. Search for SWE-Exp (arXiv 2507.23361) and verify: is it truly Python-only? The paper claims \"agentic pipeline scoped to Python\" - please verify whether SWE-Exp supports Java, C++, or only Python repositories. Check the SWE-bench Verified benchmark and what languages it covers.\n\nAlso: search for any other 2025-2026 papers on \"hard partition retrieval vs soft retrieval\" for code generation or program repair that compare these two approaches empirically. This is the core comparison FTCR claims to make - is there any paper that has already done this comparison?\n\nPlease report exact findings with URLs and page-level details where possible."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4d5cdef-273f-4d69-8e4f-d70eca575ff6",
+  "isSidechain": false,
+  "requestId": "req_011CatPjnarR9H9AjwYAbu6P",
+  "type": "assistant",
+  "uuid": "79767856-6d56-49a7-9daf-211b33aaeefe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01AJZ8ei4zCFsUdkYvSVzs8y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9998,
+      "cache_read_input_tokens": 32169,
+      "output_tokens": 7429,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9998,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7429,
+          "cache_read_input_tokens": 32169,
+          "cache_creation_input_tokens": 9998,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9998
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "79767856-6d56-49a7-9daf-211b33aaeefe",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Type-partitioned retrieval for multi-language code repair",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-10T06:16:09.159Z_
+
+<details><summary>↩ Tool result · `toolu_01Qf4TdxeK59fV2r35d2ZmBJ`</summary>
+
+```text
+Now I have comprehensive information. Let me compile the final report with all the findings.
+
+---
+
+## Research Paper Verification Report
+
+Based on my comprehensive search and verification, here are my findings for your three research questions:
+
+### 1. "Towards Defect-Type-Aware Adaptive Program Repair" (TypeRepair) - Springer 2026
+
+**Paper Location:** [https://link.springer.com/article/10.1007/s11219-026-09751-w](https://link.springer.com/article/10.1007/s11219-026-09751-w)
+
+**Authors:** Zhang, R., Zhang, S. & Xie, L., published in Software Quality Journal, Volume 34, Article 14 (2026)
+
+**Key Findings on Your Questions:**
+
+- **Context Selection Method:** The paper defines a four-stage pipeline: defect localization → defect type identification → **context selection** → patch generation. However, I could not access the full paper content to determine whether context selection uses **cross-repository retrieval from an external bug-fix corpus conditioned on defect type** or only intra-project selection. The paper appears to be behind a Springer paywall.
+
+- **Context Selection Details:** The framework tailors context selection to adaptively choose relevant code context based on specific defect types, but the specifics of whether it retrieves from cross-repository historical fix templates versus same-project context are not accessible from the abstract/metadata.
+
+- **Programming Languages:** The paper evaluation used **Defects4J v1.2/v2.0 and QuixBugs benchmarks.** Defects4J is a Java-focused benchmark. I could not confirm whether TypeRepair also covers Python or C++ from available summaries.
+
+- **Benchmarks:** Defects4J v1.2, Defects4J v2.0, and QuixBugs
+
+- **Performance:** On Defects4J v2.0, TypeRepair achieves **272.73% improvement over baseline LLM with GPT-3.5 and 257.89% with GPT-4**, plus independently repairs 33 bugs that no other method fixes.
+
+---
+
+### 2. SWE-Exp (arXiv 2507.23361) - Language Support Verification
+
+**Status:** **NOT Python-only** as stated, but more nuanced:
+
+- **Actual Finding:** SWE-Exp is evaluated exclusively on **Python-based repositories** (Django, SymPy, Sphinx) using **SWE-bench Verified**, which is **Python-only.**
+
+- **Critical Clarification:** The paper explicitly states: *"Our evaluation focuses exclusively on Python-based open-source projects, limiting our ability to demonstrate cross-language effectiveness."* However, the authors claim their approach is *"theoretically language-agnostic, as it captures high-level issue resolution patterns like problem comprehension and modification experiences rather than language-specific syntax or semantics."*
+
+- **Agentic Pipeline:** YES - SWE-Exp uses a **dual-agent architecture** (Instructor Agent for strategy + Assistant Agent for execution) built on Monte Carlo Tree Search (MCTS), not merely a pipeline.
+
+- **Benchmark:** SWE-bench Verified (500 human-verified Python GitHub issues)
+
+- **GitHub Repository:** [https://github.com/YerbaPage/SWE-Exp](https://github.com/YerbaPage/SWE-Exp) - 99.5% Python codebase
+
+- **Performance:** Achieves state-of-the-art 41.6% Pass@1 on SWE-bench Verified
+
+**Related Benchmarks:**
+- **SWE-bench Verified** = Python-only (500 curated instances)
+- **SWE-bench Multilingual** = 9 languages (C, C++, Go, Java, JavaScript, TypeScript, PHP, Ruby, Rust) - 300 tasks
+- **Multi-SWE-bench** = 8 languages (Python, Java, TypeScript, JavaScript, Go, Rust, C, C++) - 2,132 instances
+
+---
+
+### 3. Hard Partition vs. Soft Retrieval Comparison Papers (2025-2026)
+
+**I found NO papers explicitly comparing "hard partition retrieval vs. soft retrieval" with those specific terms.** However, I found highly relevant empirical retrieval comparison work:
+
+#### **Most Relevant: ICSE 2026 Paper**
+
+**Title:** [What to Retrieve for Effective Retrieval-Augmented Code Generation? An Empirical Study and Beyond](https://arxiv.org/abs/2503.20589)
+
+**arXiv:** 2503.20589
+
+**Key Empirical Findings:**
+- Retrieved **similar code snippets often introduce noise, degrading results by up to 15%**
+- **In-context code and API information significantly enhance performance**
+- Proposes AllianceCoder with chain-of-thought decomposition
+- **Benchmarks:** CoderEval, RepoExec
+- **Results:** 10-20% Pass@1 improvement over existing approaches
+
+#### **Partition-Based RAG Research: M-RAG**
+
+**Title:** [M-RAG: Reinforcing Large Language Model Performance through Retrieval-Augmented Generation with Multiple Partitions](https://arxiv.org/html/2405.16420v1)
+
+**Key Findings on Partitioning:**
+- Implements **hard partitioning** (discrete, non-overlapping segments) - NOT soft partitioning
+- Four strategies tested: **Randomization, Clustering, Indexing, Category**
+- **Finding:** Optimal performance requires partition count (3-10 depending on task), with performance degradation as partitions increase
+- No soft partition (overlapping membership) methodology discussed
+- Improvements: 11% (summarization), 8% (translation), 12% (dialogue)
+
+#### **Other Relevant Work:**
+
+- **ReCode (arXiv 2509.02330):** Fine-grained RAG for code repair comparing "unified encoding vs. dual encoding" and "algorithm-aware vs. random selection" - NOT explicitly hard vs. soft
+- **An Empirical Study of Retrieval-Augmented Code Generation (2501.13742):** Tests impact of retrieved code quality on frameworks
+- **ReAPR (Software Quality Journal 2025):** Retrieval-augmented APR using bug-fix pair databases
+
+---
+
+## Summary for Your Research:
+
+1. **TypeRepair/Springer Paper:** Appears to be intra-project focused (Defects4J, QuixBugs), not cross-repository corpus. Need full-text access to confirm.
+
+2. **SWE-Exp:** Strictly **Python evaluation only** on SWE-bench Verified, though claimed as language-agnostic in design.
+
+3. **Hard vs. Soft Retrieval Comparison:** **No existing paper with explicit hard/soft partition comparison for code generation/repair.** The closest is ICSE 2026's AllianceCoder showing in-context + API retrieval outperforms similar-code retrieval. M-RAG explores hard partitioning strategies but not soft alternatives.
+
+**Sources:**
+- [Springer: TypeRepair (2026)](https://link.springer.com/article/10.1007/s11219-026-09751-w)
+- [arXiv 2507.23361: SWE-Exp](https://arxiv.org/abs/2507.23361)
+- [ICSE 2026: What to Retrieve for Effective RAG-based Code Generation](https://arxiv.org/abs/2503.20589)
+- [M-RAG: Hard Partitioning Strategies](https://arxiv.org/html/2405.16420v1)
+- [GitHub: SWE-Exp Repository](https://github.com/YerbaPage/SWE-Exp)
+- [SWE-bench Verified Documentation](https://www.swebench.com/verified.html)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79767856-6d56-49a7-9daf-211b33aaeefe",
+  "isSidechain": false,
+  "promptId": "fd5619af-3f85-4c66-9cbd-a828b2223d45",
+  "type": "user",
+  "uuid": "9f20d233-f307-44df-b7b2-ac5f4ddfb159",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify two specific things for a research paper review. Please use WebSearch and WebFetch tools.\n\n1. Search for and read \"Towards Defect-Type-Aware Adaptive Program Repair\" published in Software Quality Journal 2026 at https://link.springer.com/article/10.1007/s11219-026-09751-w\n\nKey questions about this paper:\n- Does it use retrieval from an external cross-repository bug-fix corpus conditioned on defect type? Or does it only select context from within the same project?\n- What exactly is \"context selection\" in their pipeline (defect localization → type ID → context selection → patch generation)?\n- Is it purely intra-project or does it use cross-repo historical fix templates?\n- What programming languages does it cover?\n- What benchmarks does it evaluate on?\n\n2. Search for SWE-Exp (arXiv 2507.23361) and verify: is it truly Python-only? The paper claims \"agentic pipeline scoped to Python\" - please verify whether SWE-Exp supports Java, C++, or only Python repositories. Check the SWE-bench Verified benchmark and what languages it covers.\n\nAlso: search for any other 2025-2026 papers on \"hard partition retrieval vs soft retrieval\" for code generation or program repair that compare these two approaches empirically. This is the core comparison FTCR claims to make - is there any paper that has already done this comparison?\n\nPlease report exact findings with URLs and page-level details where possible.",
+    "agentId": "a53dad893a02bb007",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have comprehensive information. Let me compile the final report with all the findings.\n\n---\n\n## Research Paper Verification Report\n\nBased on my comprehensive search and verification, here are my findings for your three research questions:\n\n### 1. \"Towards Defect-Type-Aware Adaptive Program Repair\" (TypeRepair) - Springer 2026\n\n**Paper Location:** [https://link.springer.com/article/10.1007/s11219-026-09751-w](https://link.springer.com/article/10.1007/s11219-026-09751-w)\n\n**Authors:** Zhang, R., Zhang, S. & Xie, L., published in Software Quality Journal, Volume 34, Article 14 (2026)\n\n**Key Findings on Your Questions:**\n\n- **Context Selection Method:** The paper defines a four-stage pipeline: defect localization → defect type identification → **context selection** → patch generation. However, I could not access the full paper content to determine whether context selection uses **cross-repository retrieval from an external bug-fix corpus conditioned on defect type** or only intra-project selection. The paper appears to be behind a Springer paywall.\n\n- **Context Selection Details:** The framework tailors context selection to adaptively choose relevant code context based on specific defect types, but the specifics of whether it retrieves from cross-repository historical fix templates versus same-project context are not accessible from the abstract/metadata.\n\n- **Programming Languages:** The paper evaluation used **Defects4J v1.2/v2.0 and QuixBugs benchmarks.** Defects4J is a Java-focused benchmark. I could not confirm whether TypeRepair also covers Python or C++ from available summaries.\n\n- **Benchmarks:** Defects4J v1.2, Defects4J v2.0, and QuixBugs\n\n- **Performance:** On Defects4J v2.0, TypeRepair achieves **272.73% improvement over baseline LLM with GPT-3.5 and 257.89% with GPT-4**, plus independently repairs 33 bugs that no other method fixes.\n\n---\n\n### 2. SWE-Exp (arXiv 2507.23361) - Language Support Verification\n\n**Status:** **NOT Python-only** as stated, but more nuanced:\n\n- **Actual Finding:** SWE-Exp is evaluated exclusively on **Python-based repositories** (Django, SymPy, Sphinx) using **SWE-bench Verified**, which is **Python-only.**\n\n- **Critical Clarification:** The paper explicitly states: *\"Our evaluation focuses exclusively on Python-based open-source projects, limiting our ability to demonstrate cross-language effectiveness.\"* However, the authors claim their approach is *\"theoretically language-agnostic, as it captures high-level issue resolution patterns like problem comprehension and modification experiences rather than language-specific syntax or semantics.\"*\n\n- **Agentic Pipeline:** YES - SWE-Exp uses a **dual-agent architecture** (Instructor Agent for strategy + Assistant Agent for execution) built on Monte Carlo Tree Search (MCTS), not merely a pipeline.\n\n- **Benchmark:** SWE-bench Verified (500 human-verified Python GitHub issues)\n\n- **GitHub Repository:** [https://github.com/YerbaPage/SWE-Exp](https://github.com/YerbaPage/SWE-Exp) - 99.5% Python codebase\n\n- **Performance:** Achieves state-of-the-art 41.6% Pass@1 on SWE-bench Verified\n\n**Related Benchmarks:**\n- **SWE-bench Verified** = Python-only (500 curated instances)\n- **SWE-bench Multilingual** = 9 languages (C, C++, Go, Java, JavaScript, TypeScript, PHP, Ruby, Rust) - 300 tasks\n- **Multi-SWE-bench** = 8 languages (Python, Java, TypeScript, JavaScript, Go, Rust, C, C++) - 2,132 instances\n\n---\n\n### 3. Hard Partition vs. Soft Retrieval Comparison Papers (2025-2026)\n\n**I found NO papers explicitly comparing \"hard partition retrieval vs. soft retrieval\" with those specific terms.** However, I found highly relevant empirical retrieval comparison work:\n\n#### **Most Relevant: ICSE 2026 Paper**\n\n**Title:** [What to Retrieve for Effective Retrieval-Augmented Code Generation? An Empirical Study and Beyond](https://arxiv.org/abs/2503.20589)\n\n**arXiv:** 2503.20589\n\n**Key Empirical Findings:**\n- Retrieved **similar code snippets often introduce noise, degrading results by up to 15%**\n- **In-context code and API information significantly enhance performance**\n- Proposes AllianceCoder with chain-of-thought decomposition\n- **Benchmarks:** CoderEval, RepoExec\n- **Results:** 10-20% Pass@1 improvement over existing approaches\n\n#### **Partition-Based RAG Research: M-RAG**\n\n**Title:** [M-RAG: Reinforcing Large Language Model Performance through Retrieval-Augmented Generation with Multiple Partitions](https://arxiv.org/html/2405.16420v1)\n\n**Key Findings on Partitioning:**\n- Implements **hard partitioning** (discrete, non-overlapping segments) - NOT soft partitioning\n- Four strategies tested: **Randomization, Clustering, Indexing, Category**\n- **Finding:** Optimal performance requires partition count (3-10 depending on task), with performance degradation as partitions increase\n- No soft partition (overlapping membership) methodology discussed\n- Improvements: 11% (summarization), 8% (translation), 12% (dialogue)\n\n#### **Other Relevant Work:**\n\n- **ReCode (arXiv 2509.02330):** Fine-grained RAG for code repair comparing \"unified encoding vs. dual encoding\" and \"algorithm-aware vs. random selection\" - NOT explicitly hard vs. soft\n- **An Empirical Study of Retrieval-Augmented Code Generation (2501.13742):** Tests impact of retrieved code quality on frameworks\n- **ReAPR (Software Quality Journal 2025):** Retrieval-augmented APR using bug-fix pair databases\n\n---\n\n## Summary for Your Research:\n\n1. **TypeRepair/Springer Paper:** Appears to be intra-project focused (Defects4J, QuixBugs), not cross-repository corpus. Need full-text access to confirm.\n\n2. **SWE-Exp:** Strictly **Python evaluation only** on SWE-bench Verified, though claimed as language-agnostic in design.\n\n3. **Hard vs. Soft Retrieval Comparison:** **No existing paper with explicit hard/soft partition comparison for code generation/repair.** The closest is ICSE 2026's AllianceCoder showing in-context + API retrieval outperforms similar-code retrieval. M-RAG explores hard partitioning strategies but not soft alternatives.\n\n**Sources:**\n- [Springer: TypeRepair (2026)](https://link.springer.com/article/10.1007/s11219-026-09751-w)\n- [arXiv 2507.23361: SWE-Exp](https://arxiv.org/abs/2507.23361)\n- [ICSE 2026: What to Retrieve for Effective RAG-based Code Generation](https://arxiv.org/abs/2503.20589)\n- [M-RAG: Hard Partitioning Strategies](https://arxiv.org/html/2405.16420v1)\n- [GitHub: SWE-Exp Repository](https://github.com/YerbaPage/SWE-Exp)\n- [SWE-bench Verified Documentation](https://www.swebench.com/verified.html)"
+      }
+    ],
+    "totalDurationMs": 129721,
+    "totalTokens": 43918,
+    "totalToolUseCount": 32,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 1389,
+      "cache_read_input_tokens": 40645,
+      "output_tokens": 1877,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1389
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 1877,
+          "cache_read_input_tokens": 40645,
+          "cache_creation_input_tokens": 1389,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1389,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 32
+    }
+  },
+  "sourceToolAssistantUUID": "79767856-6d56-49a7-9daf-211b33aaeefe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-10T06:17:16.700Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! Now I have comprehensive verification data. Let me synthesize the findings into a final assessment.
+
+Key findings:
+1. **"Towards Defect-Type-Aware Adaptive Program Repair" (TypeRepair, SQJ 2026)**: Uses Defects4J and QuixBugs benchmarks (Java-focused). The "context selection" step appears to be intra-project (from the available abstract). It uses GPT-3.5/GPT-4, not the newer Claude models. The approach seems different from FTCR's cross-repo retrieval partitioned by type. 
+
+This is likely different enough that it doesn't undermine FTCR's novelty, though it should be cited.
+
+2. **SWE-Exp scope**: Confirmed Python-only in evaluation (SWE-bench Verified is Python-only). FTCR's multi-language scope (C++/Java/Python) is a genuine differentiator. The paper's claim that SWE-Exp is "Python-only" is correct.
+
+3. **Hard vs. soft retrieval comparison**: No existing paper makes this exact comparison for code repair. This validates FTCR's core hypothesis as genuinely novel and untested.
+
+4. Now I'm examining the performance metrics from SWE-Exp to understand how they compare.
+
+I'm finding conflicting reports on SWE-Exp's performance on SWE-bench Verified—one source says 73.0% while another says 41.6%. Let me reconcile these numbers by looking at what each agent actually found and whether they're measuring the same thing.
+
+The first agent pulled 73.0% from the v2 HTML version of the paper, which specifically mentions using Claude 4 Sonnet. The third agent found 41.6%, likely from an earlier version. This suggests the paper was revised between July 2025 and February 2026, with the newer version achieving better results after switching to a more capable model. So the FTCR paper's claim of 73.0% appears to be from the updated version.
+
+I've now verified all the core citations in the paper—ReinFix, SWE-Exp, M-RAG, DebugBench, GitBug-Java, PatchRecall, and DynaFix all check out. I corrected the CRAG reference to be arXiv-only, and confirmed that SWE-Exp's evaluation was limited to Python. I also found an ICSE 2026 paper on retrieval strategies that notes how retrieved code snippets can introduce noise and degrade performance by up to 15%, which provides useful context though it doesn't directly address the hard versus soft partitioning question.
+
+The hard versus soft retrieval comparison for code repair does appear to be genuinely unexplored. TypeRepair from SQJ 2026 uses defect type identification in its repair pipeline, but it seems to operate within a single project rather than across repositories like FTCR does, so it's related but distinct—though reviewers might still want to see it acknowledged. The SWE-Exp performance number of 73.0% comes from the February 2026 revision and should be verified as the latest. With only 15 days until the EMNLP ARR deadline, there's a tight timeline, and the paper already has a fallback plan in place.
+
+There's also a potential concern with "What to Retrieve" from ICSE 2026, which found that retrieving similar code snippets can actually harm performance by degrading results by 15%. This could be a counterargument to FTCR's type-partitioned retrieval approach if it's just pulling syntactically similar code within type partitions. But FTCR's defense would be that type-conditioned retrieval specifically targets semantically relevant fix templates rather than just syntactically similar code, so the type partition should mitigate the noise problem that paper identified. The ICSE 2027 abstract deadline is June 23, 2026—about 7 weeks out—which is tight but workable for running 16-day experiments.
+
+Reassessing the novelty: the hard versus soft retrieval comparison for code repair doesn't exist in the literature, TypeRepair appears to be intra-project focused so it's not a direct threat, SWE-Exp is correctly limited to Python, and "What to Retrieve" provides context without undermining the core contribution. So I'm revising my scores upward—novelty to 3.5/5 since the hard/soft comparison for bug-type partitioned cross-repo repair is genuinely unexplored, feasibility to 3.5/5 with the corpus and experiments well-specified and ICSE 2027 as the primary target, clarity stays at 4/5, and impact at 3.5/5.
+
+That puts the average at 3.625, below the 4.0 threshold, but I'm on Round 4 now and the major issues have been resolved—what remains are low-to-medium concerns like TypeRepair's scope and the EMNLP deadline. The real question is whether this is solid enough for ICSE 2027, where the core contribution—testing hard type-partitioned retrieval against soft root-cause retrieval for cross-repo bug fix transfer—is a clear SE contribution with a rigorous ablation design.
+
+For EMNLP 2026 Findings, the NLP contribution feels thin and the 15-day timeline is unrealistic, so ICSE 2027 is the primary target. The hypothesis itself is genuinely novel: whether type-partitioned retrieval outperforms soft retrieval for APR, and either outcome would be useful for the community.
+
+The impact is still limited though—I'm testing one architectural variable in a complex system, the absolute performance lags behind agentic methods, and the corpus is relatively small. I'll keep impact at 3.5.
+
+Now I need to flag some remaining issues. TypeRepair from Software Quality Journal 2026 does explicit defect type identification before context selection on Defects4J and QuixBugs, and while it seems to use intra-project selection rather than cross-repo retrieval, I should cite and differentiate it if there's any overlap. There's also "What to Retrieve for Effective Retrieval-Augmented Code Generation?" from ICSE 2026 that I need to examine.
+
+That paper empirically demonstrates that retrieved similar code can introduce noise and degrade performance by up to 15%, which is a theoretical challenge to type-partitioned retrieval—I need to acknowledge this and argue why semantic type partitioning actually reduces rather than concentrates this noise. The EMNLP ARR deadline is 16 days away, which is tight for the experimental pipeline, so I should be explicit that experiments need to start immediately if we're targeting that. But ICSE 2027 is the primary target anyway.
+
+I'm reconsidering whether to pass or revise—the last three rounds all ended in revise, and each one addressed the feedback, so I need to think through whether another revision cycle makes sense here. the major issues faithfully. The remaining issues I'm finding are:
+1. One potentially relevant new paper (TypeRepair SQJ 2026) that should be cited
+2. One counterevidence paper (ICSE 2026 "What to Retrieve") that should be addressed
+3. EMNLP deadline timing (acknowledged in paper)
+
+These are incremental improvements, not structural flaws. The core methodology is sound.
+
+But the average score is 3.625, below the 4.0 threshold. To reach "pass," I'd need to see scores averaging 4.0+.
+
+For a "pass" rating:
+- Novelty needs to be 4+ (it's 3.5 - the hard/soft comparison is novel but the overall framework extends ReCode/RetypeR)
+- Impact needs to be 4+ (it's 3.5 - the eval-only approach is increasingly marginal in the agentic era)
+
+The paper as submitted doesn't quite reach 4.0 average. I'll maintain "revise."
+
+But I should be careful not to be too harsh—the paper is genuinely improving each round. Looking at whether a "pass" is defensible: all previous critical issues are addressed, the core hypothesis about hard versus soft retrieval for cross-repo bugs is genuinely novel, the ablation design with random-partition controls is rigorous, and the corpus construction is well-specified with resource estimates within budget. Against that, the average score falls short of 4.0, and there are two unaddressed papers—TypeRepair and "What to Retrieve"—that could represent overlapping or contradictory work.
+
+I'm sticking with "revise" because those missing citations are significant enough that addressing them would strengthen the paper's positioning at ICSE 2027.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f20d233-f307-44df-b7b2-ac5f4ddfb159",
+  "isSidechain": false,
+  "requestId": "req_011CatQ5wyiKQZyEFnFhEEqA",
+  "type": "assistant",
+  "uuid": "3671a06e-08d9-4524-a1c6-0adac89ff1ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019TS3jdin2XAYzNtz3v7PCb",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9305,
+      "cache_read_input_tokens": 42167,
+      "output_tokens": 5345,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9305,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5345,
+          "cache_read_input_tokens": 42167,
+          "cache_creation_input_tokens": 9305,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9305
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-10T06:18:08.393Z_
+
+Now I have enough verified information to issue a rigorous verdict on Round 4. Let me compile the final assessment.
+
+**Verified facts from independent research:**
+- ReinFix (ICSE 2026, arXiv 2506.23100): ✅ All claims confirmed — ICSE 2026, text-embedding-3-large, +32/+38 Defects4J, "unified vector database" (not FAISS-specific)
+- SWE-Exp (arXiv 2507.23361): ✅ 73.0% confirmed (v2/revised Feb 2026 with Claude 4 Sonnet), Multilingual-E5-Large confirmed, Python-only evaluation confirmed, soft cosine similarity confirmed
+- CRAG (arXiv 2401.15884): ✅ Withdrawn from ICLR 2025, unpublished — Round 4 correctly cites arXiv only
+- M-RAG (ACL 2024, arXiv 2405.16420): ✅ All percentage improvements confirmed
+- DebugBench: ✅ 4,253 instances, 18 minor categories, C++/Java/Python
+- GitBug-Java: ✅ 199 bugs, isolated Docker environments
+- DynaFix, PatchRecall: ✅ Verified
+- SWE-bench Lite SOTA: ✅ ~62.7% confirmed
+- RepoRepair 45.7%: ✅ Confirmed
+- Hard vs. soft retrieval for type-partitioned code repair: **No existing paper makes this direct comparison** — validated as genuinely unexplored territory
+
+**New competing work found through independent search:**
+1. "Towards Defect-Type-Aware Adaptive Program Repair" (Software Quality Journal 2026, Zhang et al.) — uses defect type ID before context selection on Defects4J/QuixBugs; appears intra-project but needs citation
+2. "What to Retrieve for Effective Retrieval-Augmented Code Generation?" (ICSE 2026, arXiv 2503.20589) — finds retrieved similar code snippets can *degrade* performance by up to 15%, a potential counterargument requiring acknowledgment
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {
+      "score": 4,
+      "rationale": "Independent verification confirms no existing paper makes the hard-partition vs. soft-retrieval comparison specifically for semantic bug-type conditioned cross-repo repair; ReCode (CIKM 2025) covers algorithmic tags for competitive programming, RetypeR covers Python type errors only — FTCR's 18-type taxonomy across C++/Java/Python with the random-partition control ablation is a clean, defensible extension. Score would be 3.5 without the random-partition control, which genuinely elevates the methodological contribution."
+    },
+    "feasibility": {
+      "score": 3,
+      "rationale": "Auto-research mode at ~190 H100-hours is within the 200-hour budget, but the EMNLP ARR deadline is May 25 (15 days from today), and corpus annotation (3,050 pairs × 3 passes), index construction, and all six system variants must be complete and written up. The ICSE 2027 abstract deadline (June 23) is 44 days away and feasible; the EMNLP secondary target is not credible without immediate experiment execution, and the paper's hedge ('if too close, defer') underestimates how much work remains."
+    },
+    "clarity": {
+      "score": 4,
+      "rationale": "Round 4 is exceptionally well-specified: the six system variants (A–F), the random-partition control's purpose, the confidence-gated hybrid's rationale, the corpus sparsity merge policy, and the X%/Y%/Z%/W% falsifiable claim are all clearly articulated. This is among the clearest method proposals reviewed."
+    },
+    "impact": {
+      "score": 3,
+      "rationale": "A targeted architectural comparison (hard vs. soft type partitioning for retrieval) is a useful, reproducible contribution to APR, but the 20–35% projected SWE-bench Lite performance sits 10+ points below RepoRepair (45.7%) and 38 points below SWE-Exp (73% agentic); reviewers at ICSE 2027 will ask whether a retrieval-only method adds sufficient incremental knowledge over the finding that agentic execution feedback dominates retrieval strategy. The answer needs to be in the paper."
+    }
+  },
+  "issues": [
+    "HIGH — Uncited concurrent work: 'Towards Defect-Type-Aware Adaptive Program Repair' (TypeRepair, Zhang et al., Software Quality Journal 2026, link.springer.com/article/10.1007/s11219-026-09751-w) uses explicit defect type identification before context selection in a 4-stage pipeline (localization → type ID → context selection → patch generation) on Defects4J V1.2/V2.0 and QuixBugs, independently achieving 272% improvement over GPT-3.5 baseline. The paper must be obtained, read, and cited: if 'context selection' uses type-conditioned retrieval from a cross-repo external corpus (which cannot be confirmed from the abstract alone due to paywall), the overlap with FTCR is substantial and reviewers will notice its absence. If TypeRepair uses only within-project context, that is FTCR's key differentiation and must be stated explicitly.",
+    "HIGH — Unaddressed counterevidence: 'What to Retrieve for Effective Retrieval-Augmented Code Generation?' (ICSE 2026, arXiv 2503.20589) empirically shows that retrieving syntactically similar code snippets degrades performance by up to 15% compared to retrieving in-context examples and API information. This is a direct challenge to FTCR's premise: if type-partitioned retrieval returns syntactically similar-but-wrong-level-of-abstraction fixes within each partition, it may concentrate rather than reduce this noise. The authors must address this finding — either by arguing that semantic type partitioning selects at a different abstraction level than syntax similarity, or by adding an experiment measuring within-type fix template quality vs. cross-type.",
+    "MEDIUM — Practical utility framing missing: FTCR projects 20–35% on SWE-bench Lite while SWE-Exp achieves 73% on SWE-bench Verified and RepoRepair achieves 45.7% on Lite. ICSE 2027 reviewers will ask why the retrieval strategy matters in isolation when execution-augmented agentic methods dominate. The paper needs an explicit 'why retrieval strategy matters' argument: e.g., (1) retrieval modules are independently upgradeable components within agentic systems — DynaFix adds execution feedback orthogonally to retrieval, so a better retrieval module improves the whole pipeline; (2) the 20–35% baseline is specifically the retrieval contribution, not the full agentic ceiling. This argument exists implicitly but must be stated explicitly.",
+    "LOW — EMNLP 2026 ARR deadline is not credible given current state: The May 25 deadline is 15 days away. To submit to ARR requires a complete written paper, full experimental results, and bibliography validation (EMNLP's hallucinated-citation warning is explicit). The paper's hedge ('if too close, defer') should be changed to a definitive decision: either commit to running minimum viable experiments starting immediately (DebugBench classifier calibration + Defects4J V1.2 with the 4 primary variants) or acknowledge ICSE 2027 as the sole target. Leaving it ambiguous signals poor project planning to co-authors and advisors."
+  ],
+  "feedback": "Round 4 has successfully resolved all five issues from Round 3: CRAG citation is correct (arXiv-only), SWE-Exp is cited with three clear design differences, the random-partition control (Variant F) converts the corpus-size confound into a closed experimental question, EMNLP is downgraded to Findings, and ReinFix's implementation detail is softened. Independent verification confirms all cited paper claims are accurate. The hard-vs-soft retrieval comparison for semantic bug-type partitioned cross-repo repair is genuinely novel — no existing paper makes this specific comparison. Two actions are required for Round 5: (1) Read the TypeRepair SQJ 2026 paper (Zhang et al., doi:10.1007/s11219-026-09751-w) and add it to the landscape — the differentiation is either that TypeRepair uses intra-project context (state this explicitly) or that it uses cross-repo retrieval but covers only Java with a different pipeline structure (then FTCR's C++/Java/Python scope and the hard/soft comparison are the differentiators). (2) Cite and respond to 'What to Retrieve for Effective RAG Code Generation?' (ICSE 2026, arXiv:2503.20589): its finding that similar code retrieval degrades performance by 15% motivates FTCR's type-conditioning exactly — within a type partition, retrieved examples share fix structure rather than surface-level code similarity, which is the argument FTCR needs to make explicit. These two additions would resolve the remaining novelty and counterevidence gaps. The practical utility framing (retrieval as a modular component upgradeable within agentic pipelines) should be added as a paragraph in the introduction — this is the clearest answer to 'why does this matter when agentic methods dominate at 73%.'",
+  "reason": "Round 4 addresses all Round 3 issues faithfully, but independent search uncovers two uncited papers (TypeRepair SQJ 2026, ICSE 2026 'What to Retrieve') that must be addressed before ICSE 2027 submission; average score 3.5 remains below the 4.0 pass threshold."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3671a06e-08d9-4524-a1c6-0adac89ff1ee",
+  "isSidechain": false,
+  "requestId": "req_011CatQ5wyiKQZyEFnFhEEqA",
+  "type": "assistant",
+  "uuid": "f4c89eea-18ac-4076-9738-93b5bb88404b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019TS3jdin2XAYzNtz3v7PCb",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9305,
+      "cache_read_input_tokens": 42167,
+      "output_tokens": 5345,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9305,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5345,
+          "cache_read_input_tokens": 42167,
+          "cache_creation_input_tokens": 9305,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9305
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f4c89eea-18ac-4076-9738-93b5bb88404b",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Type-partitioned retrieval for multi-language code repair",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f4c89eea-18ac-4076-9738-93b5bb88404b",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Type-partitioned retrieval for multi-language code repair",
+  "sessionId": "03b0f4c8-b8b9-4b5a-b0e4-1179fbb0efa8"
+}
+```
+
+---

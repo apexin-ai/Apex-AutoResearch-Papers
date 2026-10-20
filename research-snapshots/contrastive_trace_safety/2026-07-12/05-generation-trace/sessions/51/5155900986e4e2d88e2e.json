@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "5155900986e4e2d88e2e",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> ## 背景 plan_013 需要在 StarCoder2-3B 上也训练 retriever，与 Qwen 对比。StarCoder2-3B 已下载到 /root/autodl-tmp/.hf_cache/",
+  "task_key": "c8bcf360-fb76-4e11-8813-f0a7e89bfe88",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/c8bcf360-fb76-4e11-8813-f0a7e89bfe88.jsonl",
+    "occurrence": 1,
+    "bytes": 917452,
+    "sha256": "eed1fe0b14a7dd7aad863145fc14f228d2c3e05f772c7baa3495ffd59d58c969"
+  },
+  "statistics": {
+    "messages": 534,
+    "user_turns": 1,
+    "tool_calls": 193,
+    "roles": {
+      "record": 81,
+      "user": 1,
+      "assistant": 66,
+      "tool_call": 193,
+      "tool_result": 193
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "5155900986e4e2d88e2e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 532,
+      "chunks": [
+        {
+          "path": "5155900986e4e2d88e2e-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "5155900986e4e2d88e2e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5155900986e4e2d88e2e-part-0003.json",
+          "message_count": 174
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-plan-013-starcoder2-3b-retriever-qwen-starcoder2-3b-root-autodl.md"
+}
