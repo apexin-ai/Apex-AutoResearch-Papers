@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **121 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **122 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -89,6 +89,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [prod_0510](../paper-assets/prod_0510/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/prod_0510/05-generation-trace/readable/README.md) |
 | [prov_grounded_uie](../paper-assets/prov_grounded_uie/05-generation-trace/README.md) | 38 | 94 | 86 | 3 | 18,264 | [Read](../paper-assets/prov_grounded_uie/05-generation-trace/readable/README.md) |
 | [provenance_weight_training](../paper-assets/provenance_weight_training/05-generation-trace/README.md) | 635 | 1,144 | 1,073 | 177 | 231,336 | [Read](../paper-assets/provenance_weight_training/05-generation-trace/readable/README.md) |
+| [provenance_weight_training--export-20260712](../research-snapshots/provenance_weight_training/2026-07-12/05-generation-trace/README.md) | 1,009 | 0 | 0 | 0 | 123,794 | [Read](../research-snapshots/provenance_weight_training/2026-07-12/05-generation-trace/readable/README.md) |
 | [ratekv](../paper-assets/ratekv/05-generation-trace/README.md) | 260 | 513 | 419 | 58 | 87,631 | [Read](../paper-assets/ratekv/05-generation-trace/readable/README.md) |
 | [recovery_aware_struct_prune](../paper-assets/recovery_aware_struct_prune/05-generation-trace/README.md) | 768 | 1,451 | 1,406 | 122 | 248,503 | [Read](../paper-assets/recovery_aware_struct_prune/05-generation-trace/readable/README.md) |
 | [recovery_aware_struct_prune--export-20260712](../research-snapshots/recovery_aware_struct_prune/2026-07-12/05-generation-trace/README.md) | 936 | 0 | 0 | 0 | 77,304 | [Read](../research-snapshots/recovery_aware_struct_prune/2026-07-12/05-generation-trace/readable/README.md) |
@@ -130,6 +131,6 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**142,299 source records · 14,735,429 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**143,308 source records · 14,859,223 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.

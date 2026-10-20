@@ -353,6 +353,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 1216
+        },
+        "provenance_weight_training": {
+          "status": "uploaded",
+          "project": "provenance_weight_training",
+          "collection": "provenance_weight_training--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "632409a9c8bf67cba2f6a5f072fbcfc951fb4e2511e16ed1cc1c6a430c90ac79",
+          "indexed_members": 1014,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1009
         }
       },
       "status": "in_progress",

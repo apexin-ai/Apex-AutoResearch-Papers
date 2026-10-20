@@ -1140,6 +1140,19 @@
       }
     },
     {
+      "project": "provenance_weight_training--export-20260712",
+      "title": "When Does Detect-and-Reweight Work for Synthetic Contamination? (July export snapshot)",
+      "catalog": "../research-snapshots/provenance_weight_training/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1009,
+        "messages": 123794,
+        "user_turns": 5476,
+        "tool_calls": 33783,
+        "unparsed_lines": 0,
+        "conversation": 1009
+      }
+    },
+    {
       "project": "ratekv",
       "title": "When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic",
       "catalog": "../paper-assets/ratekv/05-generation-trace/catalog.json",
